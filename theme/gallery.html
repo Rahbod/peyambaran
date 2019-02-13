@@ -57,7 +57,20 @@
 
         #simpleGallery img {
             max-width: 100%;
-            height:auto;
+            height: auto;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        /*------------------------------main content : gallery footer*/
+        .-more {
+            border: 1px solid #877ef3;
+            color: #877ef3;
+        }
+
+        .-more i {
+            color: #877ef3;
         }
     </style>
 </head>
@@ -350,7 +363,7 @@
                         </div>
                     </div>
                     <div class="content-footer galleryFooter text-center mb-5">
-                        <a href="void:;" class="btn text-purple">
+                        <a href="void:;" class="btn text-purple -more">
                             <i class="fas fa-ellipsis-h"></i>
                             بیشتر
                         </a>
