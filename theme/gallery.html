@@ -16,18 +16,16 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap-4-classes.css">
 
     <style>
-        .galleryHeader__container {
-            background: #877ef3;
-            color: #fff;
+        /*------------------------------sidebar menu*/
+
+        #sidebar a {
+            font-weight: 500;
+            color: #000;
         }
 
         .text-purple {
             color: #877ef3;
             font-size: 15px;
-        }
-
-        .-hoverBlue {
-            color: #000;
         }
 
         .-hoverBlue:hover, .-hoverBlue:focus {
@@ -38,9 +36,18 @@
             color: #2271fa;
         }
 
-        #sidebar a {
-            font-weight: 500;
-            line-height: 1;
+        /*------------------------------main content : gallery header*/
+        .galleryHeader__container {
+            background: #877ef3;
+            color: #fff;
+        }
+
+        .galleryHeader__title {
+            font-size: 30px;
+        }
+
+        .galleryHeader__subTitle {
+            font-size: 20px;
         }
     </style>
 </head>
@@ -254,13 +261,13 @@
             <div class="col-md-9">
                 <div class="gallery">
                     <div class="content-header galleryHeader">
-                        <div class="galleryHeader__container p-3">
+                        <div class="galleryHeader__container p-3 rounded">
                             <div class="rightBox">
-                                <img class="img-fluid bg-dark" src="images/gallery/gallery.png" alt="">
+                                <img class="img-fluid bg-dark" src="./images/gallery/gallery.png" alt="">
                             </div>
                             <div class="leftBox">
-                                <h1>گالری تصاویر</h1>
-                                <h3>بیمارستان پیامبران</h3>
+                                <h1 class="galleryHeader__title">گالری تصاویر</h1>
+                                <h3 class="galleryHeader__subTitle">بیمارستان پیامبران</h3>
                             </div>
                         </div>
                     </div>
