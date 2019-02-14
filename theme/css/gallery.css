@@ -1,0 +1,126 @@
+
+/*------------------------------sidebar menu*/
+
+#sidebar a {
+    font-weight: 400;
+    /*color: #000;*/
+}
+
+.text-purple {
+    color: #877ef3;
+    font-size: 15px;
+}
+
+.-hoverBlue:hover, .-hoverBlue:focus {
+    color: #5499fa;
+}
+
+.-hoverBlue:visited {
+    color: #2271fa;
+}
+
+/*------------------------------main content : gallery header*/
+.galleryHeader {
+    display: flex;
+    background: #877ef3;
+    padding: 20px 30px;
+    align-items: center;
+}
+
+.galleryHeader__image {
+    width: 60px;
+    height: 60px;
+}
+
+.texts {
+    color: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    margin-right: 1rem;
+}
+
+.galleryHeader__container img {
+    float: right;
+    width: 64px;
+    height: 88px;
+}
+
+.galleryHeader__subTitle, .galleryHeader__title {
+    font-size: 20px;
+    margin: 0;
+}
+
+.galleryHeader__subTitle {
+    font-weight: 200;
+}
+
+/*------------------------------main content : simple gallery*/
+.simpleGallery__image {
+    max-width: 100%;
+    height: auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.imgContainer {
+    position: relative;
+}
+
+.-hoverShowBox {
+    top: 0;
+    width: 100%;
+    right: 0;
+    height: 0;
+    opacity: 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    z-index: -1;
+    position: absolute;
+    background: #000;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgContainer:hover .-hoverShowBox {
+    background: #877ef3;
+    color: #fff;
+    z-index: 1;
+    height: 100%;
+    opacity: 0.7;
+}
+
+/*------------------------------main content : gallery footer*/
+.-more {
+    border: 1px solid #877ef3;
+    color: #877ef3;
+}
+
+.-more i {
+    color: #877ef3;
+}
+
+/*------------------------- header */
+.blueHeader {
+    background-color: #3f8dfa;
+    color: #fff;
+}
+
+.logo .logo-right {
+    color: #fff !important;
+}
+
+.logo .logo-right > * {
+    color: inherit !important;
+}
+
+header .logo img {
+    background-color: #3f8dfa;
+}
