@@ -1,6 +1,9 @@
 
 /*------------------------------sidebar menu*/
 
+.text-dark-2 {
+    color: #0d0d0d;
+}
 #sidebar a {
     font-weight: 400;
     /*color: #000;*/
