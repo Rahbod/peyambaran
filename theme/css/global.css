@@ -55,11 +55,11 @@ body {
     margin-right: 1rem;
 }
 
-.galleryHeader__container img {
-    float: right;
-    width: 64px;
-    height: 88px;
-}
+/*.galleryHeader__container img {*/
+    /*float: right;*/
+    /*width: 64px;*/
+    /*height: 88px;*/
+/*}*/
 
 .content-header__subTitle, .content-header__title {
     font-size: 20px;

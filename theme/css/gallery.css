@@ -12,7 +12,8 @@
 }
 
 .-hoverBlue:hover, .-hoverBlue:focus {
-    color: #5499fa;
+    color: #5499fa!important;
+    text-decoration: underline!important;
 }
 
 .-hoverBlue:visited {
