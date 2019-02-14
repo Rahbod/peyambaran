@@ -32,3 +32,40 @@ body {
 .content {
     padding-top: 20px;
 }
+/*--------------------------- content header*/
+/*------------------------------main content : gallery header*/
+.content-header {
+    display: flex;
+    background: #877ef3;
+    padding: 20px 30px;
+    align-items: center;
+}
+
+.content-header__image {
+    width: 60px;
+    height: 60px;
+}
+
+.titles {
+    color: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    margin-right: 1rem;
+}
+
+.galleryHeader__container img {
+    float: right;
+    width: 64px;
+    height: 88px;
+}
+
+.content-header__subTitle, .content-header__title {
+    font-size: 20px;
+    margin: 0;
+}
+
+.content-header__subTitle {
+    font-weight: 200;
+}
