@@ -67,12 +67,15 @@
 
 /*------------------------------main content : gallery footer*/
 .-more {
-    border: 1px solid #877ef3;
-    color: #877ef3;
+    border: 1px solid #c4c2f5;
+    color: #9f99f4;
+    max-width:160px;
+    max-height:45px;
+    padding:15px;
 }
 
 .-more i {
-    color: #877ef3;
+    color: #9f99f4;
 }
 
 /*------------------------- header */
