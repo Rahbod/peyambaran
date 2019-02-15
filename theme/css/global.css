@@ -117,3 +117,22 @@ body {
 .-more.gray i{
     color: #acadae;
 }
+
+
+/*------------------------- header */
+.blueHeader {
+    background-color: #3f8dfa;
+    color: #fff;
+}
+
+.logo .logo-right {
+    color: #fff !important;
+}
+
+.logo .logo-right > * {
+    color: inherit !important;
+}
+
+header .logo img {
+    background-color: #3f8dfa;
+}
