@@ -4,12 +4,9 @@
     outline: none !important;
 }
 
-html{
-    overflow-x: hidden;
-}
-
 body {
     font-family: 'IRANSans';
+    overflow-x: hidden;
     font-size: 13px;
     color: #323232;
 }
