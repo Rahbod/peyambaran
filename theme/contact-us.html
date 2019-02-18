@@ -20,11 +20,15 @@
     <style>
         .content-header {
             background: #3f8dfa;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
         }
 
         .submitBtn {
             width: 285px;
             background: #3f8dfa;
+            height: 45px;
         }
 
         .securityCode__input {
@@ -37,7 +41,8 @@
             padding: 75px 75px 30px 90px;
             background: #e2e2e2 !important;
         }
-        .contactUs__container::before, .contactUs__container::after{
+
+        .contactUs__container::before, .contactUs__container::after {
             content: '';
             clear: both;
             display: table;
@@ -75,6 +80,18 @@
 
         .-required {
             color: #e33b3b;
+        }
+
+        .texts {
+            padding: 45px 45px 60px 45px;
+        }
+
+        .-btrr {
+            border-top-right-radius: 10px;
+        }
+
+        .-btlr {
+            border-top-left-radius: 10px;
         }
     </style>
 </head>
@@ -200,9 +217,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 -bbrr -bblr">
-                    <div class="">
-                        <h4 class="-blue">آماده پاسخگویی به انتقادات ،
+                <div class="col-xs-12 -bbrr -bblr -btrr -btlr">
+                    <div class="texts">
+                        <h4 class="-blue m-0">آماده پاسخگویی به انتقادات ،
                             پیشنهادات و سوالات شما هستیم.
                         </h4>
                         <p class="-grey">
