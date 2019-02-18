@@ -33,9 +33,14 @@
             margin-left: 50px;
         }
 
-        .contactUs__form {
+        .contactUs__container {
             padding: 75px 75px 30px 90px;
             background: #e2e2e2 !important;
+        }
+        .contactUs__container::before, .contactUs__container::after{
+            content: '';
+            clear: both;
+            display: table;
         }
 
         .contactUs__form .form-control {
@@ -211,96 +216,98 @@
 
                         </p>
                     </div>
-                    <form class="contactUs__form" enctype="multipart/form-data">
-                        <div class="form-row">
-                            <div class="form-group col-lg-3">
-                                <label for="department">بخش مورد نظر</label>
-                                <select name="department" tabindex="1" class="form-control" id="department">
-                                    <option selected>مدیریت</option>
-                                    <option>پذیرش</option>
-                                    <option>صندوق</option>
-                                    <option>آزمایشگاه</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="full_name">بخش مورد نظر</label>
-                                <span class="-required">(الزامی)</span>
-                                <input placeholder="نام و نام خانوادگی" minlength="3" maxlength="255" type="text"
-                                       class="form-control" tabindex="2"
-                                       name="full_name" id="full_name">
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="electronic-mail">پست الکترونیکی</label>
-                                <input placeholder="پست الکترونیکی" type="email"
-                                       class="form-control"
-                                       spellcheck="false" tabindex="3"
-                                       name="email" id="electronic-mail">
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="grade">میزان تحصیلات</label>
-                                <select name="grade" tabindex="4" class="form-control" id="grade">
-                                    <option selected>مدیریت</option>
-                                    <option>پذیرش</option>
-                                    <option>صندوق</option>
-                                    <option>آزمایشگاه</option>
-                                </select>
-                            </div>
+                    <div class="contactUs__container">
+                        <form action="#" class="contactUs__form" enctype="multipart/form-data">
+                            <div class="form-row">
+                                <div class="form-group col-lg-3">
+                                    <label for="department">بخش مورد نظر</label>
+                                    <select name="department" tabindex="1" class="form-control" id="department">
+                                        <option selected>مدیریت</option>
+                                        <option>پذیرش</option>
+                                        <option>صندوق</option>
+                                        <option>آزمایشگاه</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="full_name">بخش مورد نظر</label>
+                                    <span class="-required">(الزامی)</span>
+                                    <input placeholder="نام و نام خانوادگی" minlength="3" maxlength="255" type="text"
+                                           class="form-control" tabindex="2"
+                                           name="full_name" id="full_name">
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="electronic-mail">پست الکترونیکی</label>
+                                    <input placeholder="پست الکترونیکی" type="email"
+                                           class="form-control"
+                                           spellcheck="false" tabindex="3"
+                                           name="email" id="electronic-mail">
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="grade">میزان تحصیلات</label>
+                                    <select name="grade" tabindex="4" class="form-control" id="grade">
+                                        <option selected>مدیریت</option>
+                                        <option>پذیرش</option>
+                                        <option>صندوق</option>
+                                        <option>آزمایشگاه</option>
+                                    </select>
+                                </div>
 
-                            <div class="form-group col-lg-3">
-                                <label for="country">کشور</label>
-                                <select name="country" tabindex="5" class="form-control" id="country">
-                                    <option selected>ایران</option>
-                                    <option>عراق</option>
-                                    <option>افغانستان</option>
-                                    <option>کویت</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="city">منطفه / شهر</label>
-                                <select name="city" tabindex="6" class="form-control" id="city">
-                                    <option selected>تهران</option>
-                                    <option>قم</option>
-                                    <option>مشهد</option>
-                                    <option>اصفهان</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="phone">شماره تماس</label>
-                                <span class="-required">(الزامی)</span>
-                                <input placeholder="شماره تماس" type="text"
-                                       class=" form-control" spellcheck="false" tabindex="7"
-                                       name="phone" id="phone">
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="address">ادرس</label>
-                                <input placeholder="آدرس" type="text"
-                                       class=" form-control" spellcheck="false" tabindex="8"
-                                       name="address" id="address">
-                            </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="country">کشور</label>
+                                    <select name="country" tabindex="5" class="form-control" id="country">
+                                        <option selected>ایران</option>
+                                        <option>عراق</option>
+                                        <option>افغانستان</option>
+                                        <option>کویت</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="city">منطفه / شهر</label>
+                                    <select name="city" tabindex="6" class="form-control" id="city">
+                                        <option selected>تهران</option>
+                                        <option>قم</option>
+                                        <option>مشهد</option>
+                                        <option>اصفهان</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="phone">شماره تماس</label>
+                                    <span class="-required">(الزامی)</span>
+                                    <input placeholder="شماره تماس" type="text"
+                                           class=" form-control" spellcheck="false" tabindex="7"
+                                           name="phone" id="phone">
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="address">ادرس</label>
+                                    <input placeholder="آدرس" type="text"
+                                           class=" form-control" spellcheck="false" tabindex="8"
+                                           name="address" id="address">
+                                </div>
 
-                            <div class="form-group col-lg-12">
-                                <label for="description">متن پیام</label>
-                                <span class="-required">(الزامی)</span>
-                                <input placeholder="متن پیام" type="text"
-                                       class=" form-control" spellcheck="false" tabindex="9"
-                                       name="description" id="description">
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <div class="clearfix">
-                                    <button type="button" class="btn submitBtn">ارسال به بخش مربوطه</button>
+                                <div class="form-group col-lg-12">
+                                    <label for="description">متن پیام</label>
+                                    <span class="-required">(الزامی)</span>
+                                    <input placeholder="متن پیام" type="text"
+                                           class=" form-control" spellcheck="false" tabindex="9"
+                                           name="description" id="description">
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="clearfix">
+                                        <button type="button" class="btn submitBtn">ارسال به بخش مربوطه</button>
 
-                                    <input class="floatToLeft securityCode__input form-control"
-                                           placeholder="تصویر امنیتی"
-                                           type="text">
-                                    <a class="floatToLeft form-control securityCode__image">
-                                        <!--<img src="" alt="">-->
-                                        RCii7485
-                                    </a>
+                                        <input class="floatToLeft securityCode__input form-control"
+                                               placeholder="تصویر امنیتی"
+                                               type="text">
+                                        <a class="floatToLeft form-control securityCode__image">
+                                            <!--<img src="" alt="">-->
+                                            RCii7485
+                                        </a>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
