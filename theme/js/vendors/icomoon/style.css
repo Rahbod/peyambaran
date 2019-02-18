@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?2uf9vr');
-  src:  url('fonts/icomoon.eot?2uf9vr#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?2uf9vr') format('truetype'),
-    url('fonts/icomoon.woff?2uf9vr') format('woff'),
-    url('fonts/icomoon.svg?2uf9vr#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?f4hrx9');
+  src:  url('fonts/icomoon.eot?f4hrx9#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?f4hrx9') format('truetype'),
+    url('fonts/icomoon.woff?f4hrx9') format('woff'),
+    url('fonts/icomoon.svg?f4hrx9#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icomoon-search-solid:before {
+  content: "\e942";
+}
+.icomoon-eye-regular:before {
+  content: "\e93f";
+}
+.icomoon-comment-alt-regular:before {
+  content: "\e940";
+}
+.icomoon-calendar-alt-regular:before {
+  content: "\e941";
+}
 .icomoon-images-regular:before {
   content: "\e900";
 }
@@ -236,6 +248,35 @@
 }
 .icomoon-gallery1:before {
   content: "\e930";
+}
+.icomoon-picture .path1:before {
+  content: "\e931";
+  color: rgb(195, 225, 237);
+}
+.icomoon-picture .path2:before {
+  content: "\e932";
+  margin-left: -1em;
+  color: rgb(237, 138, 25);
+}
+.icomoon-picture .path3:before {
+  content: "\e933";
+  margin-left: -1em;
+  color: rgb(26, 145, 114);
+}
+.icomoon-picture .path4:before {
+  content: "\e934";
+  margin-left: -1em;
+  color: rgb(26, 145, 114);
+}
+.icomoon-picture .path5:before {
+  content: "\e935";
+  margin-left: -1em;
+  color: rgb(107, 91, 75);
+}
+.icomoon-picture .path6:before {
+  content: "\e936";
+  margin-left: -1em;
+  color: rgb(37, 174, 136);
 }
 .icomoon-picture-1:before {
   content: "\e937";

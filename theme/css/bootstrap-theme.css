@@ -889,6 +889,7 @@ section .title-description{
 .news-item-inner .news-description .overlay {
     position: absolute;
     display: inline-block;
+    height:70%;
     left: 0;
     right: 0;
     bottom: 0;

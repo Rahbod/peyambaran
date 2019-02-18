@@ -1,0 +1,139 @@
+
+body {
+    background: #eef1f7;
+    top: 68px;
+    bottom: 89px;
+}
+
+.content {
+    padding-top: 70px;
+}
+
+.content-header {
+    margin-bottom: 90px;
+    -webkit-border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    border-radius: 10px !important;
+}
+
+.-more {
+    border: 1px solid #d7d7d7;
+    color: #acadae;
+}
+
+.-more:hover {
+    border: 1px solid #b4b4b4;
+    color: #acadae;
+}
+
+.-more i {
+    color: #acadae;
+}
+
+.clinic-program {
+    margin-bottom: 150px;
+}
+
+.newsSearchForm label {
+    font-size: 11px;
+    color: #fff;
+}
+
+.search-for {
+    width: 415px !important;
+    font-size: 12px;
+}
+
+.card {
+    background: #fff;
+    padding: 20px 35px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #dee1e7;
+    position: relative;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    max-height: 125px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-title {
+    margin: 20px 0;
+    color: #000;
+}
+
+.card-text {
+    color: #919191;
+}
+
+.-show4Lines {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 21px;
+    max-height: 84px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.card:hover, .card:focus {
+    -webkit-box-shadow: 0 0 8px rgba(49, 175, 145, 0.5);
+    -moz-box-shadow: 0 0 8px rgba(49, 175, 145, 0.5);
+    box-shadow: 0 0 8px rgba(49, 175, 145, 0.5);
+}
+
+.card:hover .card-title, .card:focus .card-title {
+    color: #31af91;
+}
+
+.content-header {
+    background: #31af91;
+}
+
+.transparent-bg {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 85px;
+    width: 100%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.9));
+}
+
+.input-group-addon:last-child {
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-left: 0;
+}
+
+.icomoon-search-solid {
+    color: #31af91;
+}
+
+.news .search-container .search-btn {
+    background-color: #fff;
+}
+
+.news .search-container .form-control {
+    background-color: #fff;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.search-form-label {
+    padding-right: 10px;
+    color: #fff;
+}
