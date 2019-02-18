@@ -35,11 +35,17 @@
 
         .contactUs__container {
             padding: 75px 75px 30px 90px;
-            background: #e2e2e2;
+            background: #e2e2e2 !important;
         }
 
         .contactUs__form .form-control {
             height: 45px;
+        }
+
+        .contactUs__form label {
+            font-weight: bold;
+            color: #a1a2a5;
+
         }
 
         .floatToLeft {
@@ -48,9 +54,22 @@
             width: 130px;
             height: 45px !important;
         }
+
         .submitBtn:hover, .submitBtn:focus {
             background: #316fc4;
             color: #fff;
+        }
+
+        .-blue {
+            color: #3f8dfa;
+        }
+
+        .-grey {
+            color: #a1a2a5;
+        }
+
+        .-required {
+            color: #e33b3b;
         }
     </style>
 </head>
@@ -206,7 +225,7 @@
                                 </div>
                                 <div class="form-group col-lg-3">
                                     <label for="full_name">بخش مورد نظر</label>
-                                    <span class="required">(الزامی)</span>
+                                    <span class="-required">(الزامی)</span>
                                     <input placeholder="نام و نام خانوادگی" minlength="3" maxlength="255" type="text"
                                            class="form-control" tabindex="2"
                                            name="full_name" id="full_name">
@@ -248,7 +267,7 @@
                                 </div>
                                 <div class="form-group col-lg-3">
                                     <label for="phone">شماره تماس</label>
-                                    <span class="required">(الزامی)</span>
+                                    <span class="-required">(الزامی)</span>
                                     <input placeholder="شماره تماس" type="text"
                                            class=" form-control" spellcheck="false" tabindex="7"
                                            name="phone" id="phone">
@@ -262,12 +281,12 @@
 
                                 <div class="form-group col-lg-12">
                                     <label for="description">متن پیام</label>
-                                    <span class="required">(الزامی)</span>
+                                    <span class="-required">(الزامی)</span>
                                     <input placeholder="متن پیام" type="text"
                                            class=" form-control" spellcheck="false" tabindex="9"
                                            name="description" id="description">
                                 </div>
-                                <div class="form-group col-12">
+                                <div class="form-group col-lg-12">
                                     <div class="clearfix">
                                         <button type="button" class="btn submitBtn">ارسال به بخش مربوطه</button>
 
