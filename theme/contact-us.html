@@ -48,6 +48,10 @@
             width: 130px;
             height: 45px !important;
         }
+        .submitBtn:hover, .submitBtn:focus {
+            background: #316fc4;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -265,14 +269,16 @@
                                 </div>
                                 <div class="form-group col-12">
                                     <div class="clearfix">
+                                        <button type="button" class="btn submitBtn">ارسال به بخش مربوطه</button>
+
+                                        <input class="floatToLeft securityCode__input form-control"
+                                               placeholder="تصویر امنیتی"
+                                               type="text">
                                         <a class="floatToLeft form-control securityCode__image">
                                             <!--<img src="" alt="">-->
                                             RCii7485
                                         </a>
-                                        <input class="floatToLeft securityCode__input form-control"
-                                               placeholder="تصویر امنیتی"
-                                               type="text">
-                                        <button type="submit" class="btn submitBtn">ارسال به بخش مربوطه</button>
+
                                     </div>
                                 </div>
                             </div>
