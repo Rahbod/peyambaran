@@ -26,6 +26,7 @@
             width: 285px;
             background: #3f8dfa;
         }
+
         .securityCode__input {
             background: #fff;
             margin-right: 10px;
@@ -33,7 +34,19 @@
         }
 
         .contactUs__container {
-            padding: 75px 75px 30px 95px;
+            padding: 75px 75px 30px 90px;
+            background: #e2e2e2;
+        }
+
+        .contactUs__form .form-control {
+            height: 45px;
+        }
+
+        .floatToLeft {
+            float: left;
+            display: inline-block;
+            width: 130px;
+            height: 45px !important;
         }
     </style>
 </head>
@@ -252,11 +265,11 @@
                                 </div>
                                 <div class="form-group col-12">
                                     <div class="clearfix">
-                                        <a class="floatToRight form-control securityCode__image">
+                                        <a class="floatToLeft form-control securityCode__image">
                                             <!--<img src="" alt="">-->
                                             RCii7485
                                         </a>
-                                        <input class="floatToRight securityCode__input form-control"
+                                        <input class="floatToLeft securityCode__input form-control"
                                                placeholder="تصویر امنیتی"
                                                type="text">
                                         <button type="submit" class="btn submitBtn">ارسال به بخش مربوطه</button>
