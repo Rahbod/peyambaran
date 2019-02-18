@@ -16,6 +16,26 @@
     <link type="text/css" rel="stylesheet" href="js/vendors/icomoon/style.css">
     <link type="text/css" rel="stylesheet" href="css/authentication.css">
 
+
+    <style>
+        .content-header {
+            background: #3f8dfa;
+        }
+
+        .submitBtn {
+            width: 285px;
+            background: #3f8dfa;
+        }
+        .securityCode__input {
+            background: #fff;
+            margin-right: 10px;
+            margin-left: 50px;
+        }
+
+        .contactUs__container {
+            padding: 75px 75px 30px 95px;
+        }
+    </style>
 </head>
 <body>
 <header class="blueHeader">
@@ -126,25 +146,25 @@
     </div>
 </header>
 <main class="content">
-    <section class="contact-us">
+    <section class="">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 ">
-                    <div class="content-header blueHeader">
+                    <div class="content-header">
                         <img src="./svg/phone.png" class="img-fluid content-header__image"
                              alt="">
                         <div class="titles">
-                            <h1 class="media-heading content-header__title galleryHeader__title">تماس با ما</h1>
-                            <h3 class="content-header__subTitle galleryHeader__subTitle">بیمارستان پیامبران</h3>
+                            <h1 class="media-heading content-header__title">تماس با ما</h1>
+                            <h3 class="content-header__subTitle">بیمارستان پیامبران</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-12 -bbrr -bblr">
                     <div class="">
-                        <h4 class="register-form-container__title">آماده پاسخگویی به انتقادات ،
+                        <h4 class="-blue">آماده پاسخگویی به انتقادات ،
                             پیشنهادات و سوالات شما هستیم.
                         </h4>
-                        <p class="register-form-container__description">
+                        <p class="-grey">
                             با ساخت حساب کاربری میتوانید
                             با ساخت حساب کاربری میتوانید
                             با ساخت حساب کاربری میتوانید
@@ -155,8 +175,8 @@
 
                         </p>
                     </div>
-                    <div class="contact-us-form-container">
-                        <form action="#" class="forms contact-us-form" enctype="multipart/form-data">
+                    <div class="contactUs__container">
+                        <form action="#" class="forms contactUs__form" enctype="multipart/form-data">
                             <div class="form-row">
                                 <div class="form-group col-lg-3">
                                     <label for="department">بخش مورد نظر</label>
@@ -181,7 +201,6 @@
                                            spellcheck="false" tabindex="3"
                                            name="email" id="electronic-mail">
                                 </div>
-
                                 <div class="form-group col-lg-3">
                                     <label for="grade">میزان تحصیلات</label>
                                     <select name="grade" tabindex="4" class="form-control" id="grade">
@@ -191,6 +210,7 @@
                                         <option>آزمایشگاه</option>
                                     </select>
                                 </div>
+
                                 <div class="form-group col-lg-3">
                                     <label for="country">کشور</label>
                                     <select name="country" tabindex="5" class="form-control" id="country">
@@ -230,7 +250,6 @@
                                            class=" form-control" spellcheck="false" tabindex="9"
                                            name="description" id="description">
                                 </div>
-
                                 <div class="form-group col-12">
                                     <div class="clearfix">
                                         <a class="floatToRight form-control securityCode__image">
