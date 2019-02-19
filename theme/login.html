@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>بیمارستان پیامبران</title>
+
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-rtl.min.css">
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.css">
+    <link type="text/css" rel="stylesheet" href="css/fontiran-fa-num.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css">
+    <link type="text/css" rel="stylesheet" href="css/responsive-theme.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-4-classes.css">
+    <link type="text/css" rel="stylesheet" href="css/global.css">
+    <link type="text/css" rel="stylesheet" href="js/vendors/icomoon/style.css">
+    <link type="text/css" rel="stylesheet" href="css/authentication.css">
+
+    <style>
+        .-blueBg {
+            background: #3f8dfa !important;
+        }
+
+        .submitBtn:hover, .submitBtn:focus {
+            background: #3372ca !important;
+        }
+
+        .register-form-container__description {
+            color: #727272;
+        }
+
+        .vertical-separator-line {
+            border-left-color: #3f8dfa;
+        }
+
+        .register-form-container__title {
+            color: #727272;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .forgotBtn, .register-form-container__title {
+            color: #727272;
+            font-weight: bold;
+        }
+        .social-accounts:hover a, .social-accounts:focus a {
+            color: #3f8dfa;
+        }
+    </style>
+</head>
+<body>
+<header class="blueHeader separator">
+    <div class="container">
+        <div class="top row">
+            <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
+                <div class="dropdown language-select">
+                    <label>Language</label>
+                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="icon icon-chevron-down"></span>
+                        eng
+                        <span class="language-icon"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">فارسی</a></li>
+                        <li><a href="#">العربیة</a></li>
+                        <li><a href="#">English</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="btn btn-green btn-sm" data-toggle="modal" target="#signup">
+                    <i class="user-icon"></i>
+                    ثبت نام
+                </a>
+                <a href="#" class="btn btn-purple btn-sm" data-toggle="modal" target="#login">
+                    <i class="user-icon"></i>
+                    ورود
+                </a>
+                <form class="search-form">
+                    <div class="input-group search-container">
+                        <input class="form-control" placeholder="متن جستجو">
+                        <span class="input-group-addon">
+                            <button type="submit" class="search-btn"><i class="search-icon"></i></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
+                <img src="images/bg-white-logo.png">
+                <div class="logo-right">
+                    <h1>بیمارســتان پیامبران</h1>
+                    <h2>Payambaran</h2>
+                    <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-container">
+        <div class="container">
+            <ul class="nav navbar nav-pills">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target='#deps' href="#">
+                        <i class="icon icon-chevron-down"></i>
+                        بخش های بیمارستان
+                    </a>
+                    <div class="dropdown-menu" id="deps">
+                        <div class="container">
+                            <ul class="menu-part">
+                                <li><a href="#">بستری</a></li>
+                                <li><a href="#">لاله</a></li>
+                                <li><a href="#">ارکیده</a></li>
+                                <li><a href="#">یاس</a></li>
+                                <li><a href="#">شبنم</a></li>
+                                <li><a href="#">شکوفه</a></li>
+                                <li><a href="#">نیلوفر</a></li>
+                                <li><a href="#">شقایق</a></li>
+                                <li><a href="#">غزال</a></li>
+                                <li><a href="#">سپیده</a></li>
+                                <li><a href="#">سوئیت</a></li>
+                            </ul>
+                            <ul class="menu-part">
+                                <li><a href="#">جراحی</a></li>
+                                <li><a href="#">اتاق عمل قلب</a></li>
+                                <li><a href="#">اتاق عمل جنرال</a></li>
+                                <li><a href="#">اتاق عمل قلب</a></li>
+                                <li><a href="#">اتاق عمل جنرال</a></li>
+                            </ul>
+                            <ul class="menu-part">
+                                <li><a href="#">مراقبت های ویژه</a></li>
+                                <li><a href="#">ICU</a></li>
+                                <li><a href="#">ICU.OH</a></li>
+                                <li><a href="#">CCU</a></li>
+                                <li><a href="#">NICU</a></li>
+                            </ul>
+                            <ul class="menu-part">
+                                <li><a href="#">سرپایی</a></li>
+                                <li><a href="#">آندوسکوپی</a></li>
+                                <li><a href="#">کلینیک پوست لیزر و جراحی</a></li>
+                                <li><a href="#">کلینیک زخم</a></li>
+                                <li><a href="#">اورژانس</a></li>
+                                <li><a href="#">کلینیک</a></li>
+                            </ul>
+                            <ul class="menu-part">
+                                <li><a href="#">جراحی</a></li>
+                                <li><a href="#">اتاق عمل قلب</a></li>
+                                <li><a href="#">اتاق عمل جنرال</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#">پاراکلینیک ها</a></li>
+                <li><a href="#">پزشکان</a></li>
+                <li><a href="#">تعرفه ها</a></li>
+                <li><a href="#">برنامه کلینیک ها</a></li>
+                <li><a href="#">گردشگری سلامت</a></li>
+                <li><a href="#">اعتباربخشی</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<main class="content">
+    <section class="register">
+        <div class="container">
+            <div class="row register-container">
+                <div class="col-xs-12 px-0">
+                    <div class="content-header -blueBg">
+                        <img src="./svg/user.svg" class="img-fluid content-header__image"
+                             alt="">
+                        <div class="titles">
+                            <h1 class="media-heading content-header__title galleryHeader__title">ورود</h1>
+                            <h3 class="content-header__subTitle galleryHeader__subTitle">ورود به حساب کاربری</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 px-0 bg-white -bbrr -bblr">
+                    <div class="register-form">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-6 vertical-separator-line">
+                                    <div class="register-form-container">
+                                        <h4 class="register-form-container__title">ورود به حساب کاربری</h4>
+                                        <p class="register-form-container__description">
+                                            لطفا اطلاعات حساب کاربری خود را وارد نمایید.
+                                            <br>
+                                            در صورت فراموشی اطلاعات حساب کاربری ،از گزینه فراموشی رمز عبور استفاده
+                                            نمایید.
+
+                                        </p>
+
+                                        <form action="#" class="forms"
+                                              enctype="multipart/form-data">
+                                            <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <input placeholder="شماره تماس" type="text"
+                                                           class="toggleLabel form-control"
+                                                           autocomplete="name" spellcheck="false" tabindex="1"
+                                                           name="phone" id="phone">
+                                                </div>
+
+                                                <div class="form-group col-12">
+                                                    <input placeholder="رمز عبور" type="text"
+                                                           class="toggleLabel form-control"
+                                                           autocomplete="password" spellcheck="false" tabindex="2"
+                                                           name="password" id="password">
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <div class="text-left">
+                                                        <a class="forgotBtn" href="void:;">رمز عبور خود را فراموش کرده
+                                                            ام</a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-12">
+                                                    <div class="clearfix">
+                                                        <a class="floatToRight form-control securityCode__image">
+                                                            <!--<img src="" alt="">-->
+                                                            RCii7485
+                                                        </a>
+                                                        <input class="floatToRight securityCode__input form-control"
+                                                               placeholder="تصویر امنیتی"
+                                                               type="text">
+                                                        <button type="submit" class="btn submitBtn -blueBg">ورود
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="social-accounts-container">
+                                        <div class="social-accounts login-with-google">
+                                            <a href="void:;">
+                                                ورود با حساب گوگل
+                                                <img src="./images/register/google.png" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="social-accounts login-with-facebook">
+                                            <a href="void:;">
+                                                ورود با حساب فیسبوک
+                                                <img src="./images/register/facebook.png" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="social-accounts login-with-twitter">
+                                            <a href="void:;">
+                                                ورود با حساب تویتتر
+                                                <img src="./images/register/twitter.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <section class="map-bg">
+        <div class="map"></div>
+    </section>
+    <div class="bottom-section">
+        <div class="container">
+            <div class="overflow-fix">
+                <div class="form-container">
+                    <h3>تماس با ما</h3>
+                    <div class="text">در صورتی که مایل به تماس با ما هستید، می توانید از طریق فرم زیر بخش مورد نظر خود
+                        را انتخاب و موضوع خود را مطرح کنید.<br>همچنین می توانید با شماره تماس های درج شده نیز تماس حاصل
+                        فرمایید.
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="form-row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <label for="select">بخش موردنظر</label>
+                                    <select id="select">
+                                        <option>مدیریت</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <label for="name">نام و نام خانوادگی</label>
+                                    <input id="name" type="text" placeholder="نام و نام خانوادگی">
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <label for="email">پست الکترونیکی</label>
+                                    <input id="email" type="text" placeholder="exampel@email.com">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <label for="mobile">شماره تلفن همراه</label>
+                                    <input id="mobile" type="text" placeholder="09xxxxxxxx">
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <label for="text">متن پیام</label>
+                                    <textarea id="text" placeholder="بنویسید"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row last">
+                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 captcha">
+                                    <img src="uploads/captcha.png">
+                                    <a href="#">کد جدید ایجاد کنید</a>
+                                    <input type="text" placeholder="صورة أمنية">
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                    <input type="submit" value="ارسال به بخش مربوطه">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="info-container">
+                    <ul>
+                        <li>
+                            <i class="icon point-icon"></i>
+                            <div>آدرس بیمارستان پیامبران<br> تهران - میدان دوم صادقیه - بلوارآیت الله کاشانی - بلوار
+                                اباذر - بیمارستان تخصصی و فوق تخصصی پیامبران
+                            </div>
+                        </li>
+                        <li>
+                            <i class="icon phone-icon"></i>
+                            <div>تلفن و فکس<br> 44079131-41 - 44078392</div>
+                        </li>
+                        <li class="email">
+                            <i class="icon email-icon"></i>
+                            <div>info@payambaranhospital.com</div>
+                        </li>
+                        <li>
+                            <i class="icon share-icon"></i>
+                            <div>
+                                <a href="#" class="icon instagram-icon"></a>
+                                <a href="#" class="icon facebook-icon"></a>
+                                <a href="#" class="icon google-icon"></a>
+                                <a href="#" class="icon twitter-icon"></a>
+                            </div>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="certificate-block">
+                        <h3>مدارک معتبر</h3>
+                        <div class="certs">
+                            <div class="cert-item">
+                                <div class="cert-item-inner">
+                                    <h4 class="bolder open-sans">ISO 9001:2008</h4>
+                                    <p>Professional of medical therapeutic & diginic service</p>
+                                </div>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-item-inner">
+                                    <h4 class="bolder open-sans">IPD</h4>
+                                    <p>International Patient Department</p>
+                                </div>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-item-inner">
+                                    <h4 class="bolder open-sans">ISO 14001:2004</h4>
+                                    <p>Professional of medical therapeutic & diginic service</p>
+                                </div>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-item-inner">
+                                    <h4 class="bolder open-sans">OHSAS 18001:207</h4>
+                                    <p>Professional of medical therapeutic & diginic service</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-section">
+        <div class="container">
+            <div class="footer-block">
+                <h4>بخش های بیمارستان</h4>
+                <div class="footer-sub-block">
+                    <ul class="menu-part">
+                        <li><a href="#">بستری</a></li>
+                        <li><a href="#">لاله</a></li>
+                        <li><a href="#">ارکیده</a></li>
+                        <li><a href="#">یاس</a></li>
+                        <li><a href="#">شبنم</a></li>
+                        <li><a href="#">شکوفه</a></li>
+                        <li><a href="#">نیلوفر</a></li>
+                        <li><a href="#">شقایق</a></li>
+                        <li><a href="#">غزال</a></li>
+                        <li><a href="#">سپیده</a></li>
+                        <li><a href="#">سوئیت</a></li>
+                    </ul>
+                    <ul class="menu-part">
+                        <li><a href="#">جراحی</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                    </ul>
+                    <ul class="menu-part">
+                        <li><a href="#">مراقبت های ویژه</a></li>
+                        <li><a href="#">ICU</a></li>
+                        <li><a href="#">ICU.OH</a></li>
+                        <li><a href="#">CCU</a></li>
+                        <li><a href="#">NICU</a></li>
+                    </ul>
+                    <ul class="menu-part">
+                        <li><a href="#">سرپایی</a></li>
+                        <li><a href="#">آندوسکوپی</a></li>
+                        <li><a href="#">کلینیک پوست لیزر و جراحی</a></li>
+                        <li><a href="#">کلینیک زخم</a></li>
+                        <li><a href="#">اورژانس</a></li>
+                        <li><a href="#">کلینیک</a></li>
+                    </ul>
+                    <ul class="menu-part">
+                        <li><a href="#">جراحی</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-block">
+                <h4>پاراکلینیک ها</h4>
+                <div class="footer-sub-block">
+                    <ul class="menu-part">
+                        <li><a href="#">بستری</a></li>
+                        <li><a href="#">لاله</a></li>
+                        <li><a href="#">ارکیده</a></li>
+                        <li><a href="#">یاس</a></li>
+                        <li><a href="#">سپیده</a></li>
+                        <li><a href="#">سوئیت</a></li>
+                    </ul>
+                    <ul class="menu-part">
+                        <li><a href="#">جراحی</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                    </ul>
+                    <ul class="menu-part">
+                        <li><a href="#">جراحی</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-block">
+                <h4>دیگر بخش ها</h4>
+                <div class="footer-sub-block">
+                    <ul class="menu-part">
+                        <li><a href="#">جراحی</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                    </ul>
+                    <ul class="menu-part">
+                        <li><a href="#">مراقبت های ویژه</a></li>
+                        <li><a href="#">ICU</a></li>
+                        <li><a href="#">ICU.OH</a></li>
+                        <li><a href="#">CCU</a></li>
+                        <li><a href="#">NICU</a></li>
+                    </ul>
+                    <ul class="menu-part">
+                        <li><a href="#">سرپایی</a></li>
+                        <li><a href="#">آندوسکوپی</a></li>
+                        <li><a href="#">کلینیک پوست لیزر و جراحی</a></li>
+                        <li><a href="#">کلینیک زخم</a></li>
+                        <li><a href="#">اورژانس</a></li>
+                        <li><a href="#">کلینیک</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="pull-right">
+                    <a href="http://tarsiminc.com" target="_blank">by tarsim.inc</a>
+                </div>
+                <div class="pull-left text hidden-xs"><b>PAYAMBARAN HOSPITAL</b> . ALL RIGHTS RESERVED © 2018</div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.script.js"></script>
+
+</body>
+</html>
