@@ -27,6 +27,24 @@
             border-radius: 10px;
             margin-bottom:40px;
         }
+        .panel-default>.panel-heading {
+            color: #333;
+            background-color: #fff;
+            border-color: transparent;
+            margin-bottom:5px;
+            padding: 15px 25px 15px;
+        }
+
+        .panel-title::after,.panel-title::before {
+            content: '';
+            clear: both;
+            display: table;
+        }
+        .panel-title__doctorAvatar {
+            float: right;
+            width:100px;
+            height:100px;
+        }
     </style>
 </head>
 <body>
@@ -292,18 +310,18 @@
                                             <div class="col-lg-6">
                                                 <h4 class="panel-title">
                                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                                        <img src="./images/doctors/doctor-1.png" alt="">
-                                                        <h4>دکتر حسین ماندگار</h4>
-                                                        <h5>فوق تخصص جراحی قلب و عروق</h5>
-                                                        <p><i></i> اطلاعات بیشتر</p>
+                                                        <img class="panel-title__doctorAvatar" src="./images/doctors/doctor-1.png" alt="">
+                                                        <h4 class="panel-title__doctorName">دکتر حسین ماندگار</h4>
+                                                        <h5 class="panel-title__doctorExpertise">فوق تخصص جراحی قلب و عروق</h5>
+                                                        <p class="panel-title__more"><i></i> اطلاعات بیشتر</p>
                                                     </a>
                                                 </h4>
                                             </div>
                                             <div class="col-lg-2">
-                                                <a class="btn" href="void:;">دریافت نوبت</a>
+                                                <a class="btn panel-title__takeTurn" href="void:;">دریافت نوبت</a>
                                             </div>
                                             <div class="col-lg-4">
-                                                <div class="">
+                                                <div class="panel-title__doctorTimes">
                                                     <i class="icomoon-checked"></i>
                                                     <span>سه شنبه</span>
                                                     <span>
