@@ -21,29 +21,36 @@
         .panel-title {
             background: #fff;
         }
+
         .content-header {
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
             border-radius: 10px;
-            margin-bottom:40px;
+            margin-bottom: 40px;
         }
-        .panel-default>.panel-heading {
+
+        .panel-default > .panel-heading {
             color: #333;
             background-color: #fff;
             border-color: transparent;
-            margin-bottom:5px;
+            margin-bottom: 5px;
             padding: 15px 25px 15px;
         }
 
-        .panel-title::after,.panel-title::before {
+        .panel-default > .panel-heading + .panel-collapse > .panel-body {
+            background: #f5f5f5;
+        }
+
+        .panel-title::after, .panel-title::before {
             content: '';
             clear: both;
             display: table;
         }
+
         .panel-title__doctorAvatar {
             float: right;
-            width:100px;
-            height:100px;
+            width: 100px;
+            height: 100px;
         }
     </style>
 </head>
@@ -309,10 +316,13 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                                        <img class="panel-title__doctorAvatar" src="./images/doctors/doctor-1.png" alt="">
+                                                    <a data-toggle="collapse" data-parent="#accordion"
+                                                       href="#collapse1">
+                                                        <img class="panel-title__doctorAvatar"
+                                                             src="./images/doctors/doctor-1.png" alt="">
                                                         <h4 class="panel-title__doctorName">دکتر حسین ماندگار</h4>
-                                                        <h5 class="panel-title__doctorExpertise">فوق تخصص جراحی قلب و عروق</h5>
+                                                        <h5 class="panel-title__doctorExpertise">فوق تخصص جراحی قلب و
+                                                            عروق</h5>
                                                         <p class="panel-title__more"><i></i> اطلاعات بیشتر</p>
                                                     </a>
                                                 </h4>
@@ -351,7 +361,8 @@
                                     <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
                                         minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                        commodo consequat.</div>
+                                        commodo consequat.
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel panel-default">
@@ -365,7 +376,8 @@
                                     <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
                                         minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                        commodo consequat.</div>
+                                        commodo consequat.
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel panel-default">
@@ -379,7 +391,8 @@
                                     <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
                                         minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                        commodo consequat.</div>
+                                        commodo consequat.
+                                    </div>
                                 </div>
                             </div>
                         </div>
