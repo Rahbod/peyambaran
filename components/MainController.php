@@ -17,6 +17,15 @@ class MainController extends Controller
 {
     public $bodyClass;
 
+    public function init()
+    {
+        parent::init();
+        if (Yii::$app->session->has('language'))
+            Yii::$app->language = Yii::$app->session->get('language');
+        else if (isset(Yii::$app->request->cookies['language']))
+            Yii::$app->language = Yii::$app->request->cookies['language']->value;
+    }
+
     /**
      * Returns actions that excluded from user roles
      * @return array

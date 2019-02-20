@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\DynamicActiveRecord;
+use app\components\MultiLangActiveRecord;
 use Yii;
 use yii\db\Query;
 use yii\helpers\Json;
@@ -21,7 +22,7 @@ use yii\web\IdentityInterface;
  * @property string $created
  * @property integer $status
  */
-class User extends DynamicActiveRecord implements IdentityInterface
+class User extends MultiLangActiveRecord implements IdentityInterface
 {
     /**
      * This variables determine that the log is executed or not.
@@ -42,20 +43,24 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public $authKey;
     public $accessToken;
 
-    public static $dynaDefaults = [
-        'email' => ['CHAR', ''],
-        'phone' => ['CHAR', ''],
-        'text' => ['CHAR', ''],
-        'image' => ['CHAR', ''],
-        'nationalCode' => ['INTEGER', ''],
-        'memCode' => ['INTEGER', ''],
-        'gender' => ['INTEGER', ''],
-        'address' => ['CHAR', ''],
-        'birthDate' => ['DATETIME', ''],
+    public function init()
+    {
+        parent::init();
+        self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
+            'email' => ['CHAR', ''],
+            'phone' => ['CHAR', ''],
+            'text' => ['CHAR', ''],
+            'image' => ['CHAR', ''],
+            'nationalCode' => ['INTEGER', ''],
+            'memCode' => ['INTEGER', ''],
+            'gender' => ['INTEGER', ''],
+            'address' => ['CHAR', ''],
+            'birthDate' => ['DATETIME', ''],
 
-        'updated' => ['DATETIME', ''],
-        'lastLogin' => ['DATETIME', ''],
-    ];
+            'updated' => ['DATETIME', ''],
+            'lastLogin' => ['DATETIME', ''],
+        ]);
+    }
 
     /**
      * @inheritdoc
