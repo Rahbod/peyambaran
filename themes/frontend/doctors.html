@@ -1033,6 +1033,7 @@
         console.log(This);
         console.log(This.parentsUntil('.panel'));
         var panel_collapse = This.parentsUntil('.panel').find('.panel-collapse');
+        console.log(panel_collapse);
         $(panel_collapse).collapse();
 
         This.parentsUntil('.panel').css({
