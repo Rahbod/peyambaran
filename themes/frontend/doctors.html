@@ -114,7 +114,7 @@
             border: 1px solid #85c296;
         }
 
-        .panel-heading:hover .panel-title__doctorTimes,.panel-heading:hover .panel-title__doctorTimes * {
+        .panel-heading:hover .panel-title__doctorTimes, .panel-heading:hover .panel-title__doctorTimes * {
             color: #85c296;
         }
 
@@ -1022,21 +1022,21 @@
 <script type="text/javascript" src="js/jquery.script.js"></script>
 <script>
 
-    //    $('.panel-title').on('click',function (event) {
-    //        $('.overlay').css({
-    //            'display': 'block'
-    //        });
-    //
-    //        var This = $(event.target);
-    //        console.log(This);
-    //        console.log(This.parentsUntil('.panel'));
-    //        var panel_collapse = This.parentsUntil('.panel').find('.panel-collapse');
-    //        $(panel_collapse).collapse();
-    //
-    //        This.parentsUntil('.panel').css({
-    //            'z-index':1000
-    //        });
-    //    })
+    $('.panel-title').on('click', function (event) {
+        $('.overlay').css({
+            'display': 'block'
+        });
+
+        var This = $(event.target);
+        console.log(This);
+        console.log(This.parentsUntil('.panel'));
+        var panel_collapse = This.parentsUntil('.panel').find('.panel-collapse');
+        $(panel_collapse).collapse();
+
+        This.parentsUntil('.panel').css({
+            'z-index': 1000
+        });
+    })
 </script>
 </body>
 </html>
