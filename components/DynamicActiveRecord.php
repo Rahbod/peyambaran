@@ -65,16 +65,26 @@ class DynamicActiveRecord extends CustomActiveRecord
 
     public static $dynaDefaults = [];
 
+    public static $dynamicColumn = 'dyna';
+
     /**
-     * Specifies the name of the table column containing dynamic attributes.
-     *
-     * @return string Name of the table column containing dynamic column data
-     * @throws \yii\base\Exception if not overriden by descendent class.
+     * @inheritdoc
      */
     public static function dynamicColumn()
     {
-        throw new \yii\base\Exception('A DynamicActiveRecord class must override "dynamicColumn()"');
+        return self::$dynamicColumn;
     }
+
+//    /**
+//     * Specifies the name of the table column containing dynamic attributes.
+//     *
+//     * @return string Name of the table column containing dynamic column data
+//     * @throws \yii\base\Exception if not overriden by descendent class.
+//     */
+//    public static function dynamicColumn()
+//    {
+//        throw new \yii\base\Exception('A DynamicActiveRecord class must override "dynamicColumn()"');
+//    }
 
     /**
      * @inheritdoc

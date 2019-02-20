@@ -5,7 +5,7 @@ namespace app\components;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
-
+Yii::setAlias('@app', dirname(__DIR__));
 
 class Setting
 {
@@ -483,7 +483,7 @@ class Setting
     {
         $config = self::getAll();
         $config[$key] = $value;
-        $res = file_put_contents(self::$_file, Json::encode($config));
+        $res = file_put_contents(Yii::getAlias('@app').'/'.self::$_file, Json::encode($config));
         return $res === false ? false : true;
     }
 
@@ -496,7 +496,7 @@ class Setting
      */
     public static function setAll($config)
     {
-        $res = file_put_contents(self::$_file, Json::encode($config));
+        $res = file_put_contents(Yii::getAlias('@app').'/'.self::$_file, Json::encode($config));
         return $res === false ? false : true;
     }
 
@@ -509,7 +509,7 @@ class Setting
      */
     public static function getAll($filter = false)
     {
-        $filePath = self::$_file;
+        $filePath = Yii::getAlias('@app').'/'.self::$_file;
         $json = file_get_contents($filePath);
         if ($filter) {
             $settings = Json::decode($json);
@@ -524,12 +524,12 @@ class Setting
 
     public static function existsDefaults()
     {
-        return is_file(self::$_defaultsFile);
+        return is_file(Yii::getAlias('@app').'/'.self::$_defaultsFile);
     }
 
     public static function getDefaults()
     {
-        $filePath = self::$_defaultsFile;
+        $filePath = Yii::getAlias('@app').'/'.self::$_defaultsFile;
         return Json::decode(file_get_contents($filePath));
     }
 
@@ -541,8 +541,8 @@ class Setting
                 if(!isset($defs[$key]))
                     $defs[$key] = $value;
             }
-            @file_put_contents(self::$_defaultsFile, Json::encode($defs));
+            @file_put_contents(Yii::getAlias('@app').'/'.self::$_defaultsFile, Json::encode($defs));
         }else
-            @file_put_contents(self::$_defaultsFile, Json::encode($newConfig));
+            @file_put_contents(Yii::getAlias('@app').'/'.self::$_defaultsFile, Json::encode($newConfig));
     }
 }

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\components\MainController;
 use app\components\Setting;
+use app\models\Item;
 use app\models\RoleSearch;
 use Yii;
 use app\models\Role;
