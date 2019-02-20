@@ -81,6 +81,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'ind'=>'site/index',
                 '<language:\w+>'=>'site/change-lang',
                 '<language:\w+>/'=>'site/change-lang',
                 '<language:\w+>/<controller:\w+>/<action:\w+>' => 'site/change-lang',
