@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\components\MainController;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -62,6 +63,22 @@ class SiteController extends MainController
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionChangeLang($language= false, $controller = false, $action= false)
+    {
+        if ($language) {
+            Yii::$app->language = $language;
+            Yii::$app->session->set('language', $language);
+            $cookie = new \yii\web\Cookie([
+                'name' => 'language',
+                'value' => $language,
+            ]);
+            $cookie->expire = time() + (60 * 60 * 24 * 365); // (1 year)
+            Yii::$app->response->cookies->add($cookie);
+        }
+        $url = str_replace("$language/", "", Yii::$app->request->getUrl());
+        $this->redirect($url);
     }
 
     /**

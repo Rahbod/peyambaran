@@ -76,12 +76,17 @@ $config = [
         ],
         'db' => $db,
         'urlManager' => [
+            'class' => 'app\components\MultilingualUrlManager',
             'baseUrl' => $baseUrl,
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<language:\w+>'=>'site/change-lang',
+                '<language:\w+>/'=>'site/change-lang',
+                '<language:\w+>/<controller:\w+>/<action:\w+>' => 'site/change-lang',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+//                '<lang:\w+>/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+//                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             ],
         ],
         'view' => [
