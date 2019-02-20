@@ -84,6 +84,12 @@ $config = [
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             ],
         ],
+        'view' => [
+            'theme' => [
+                'basePath' => '@app/themes/frontend',
+                'baseUrl' => '@web/themes/frontend',
+            ]
+        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
