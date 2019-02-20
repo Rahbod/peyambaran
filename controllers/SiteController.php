@@ -77,7 +77,8 @@ class SiteController extends MainController
             $cookie->expire = time() + (60 * 60 * 24 * 365); // (1 year)
             Yii::$app->response->cookies->add($cookie);
         }
-        $url = str_replace("$language/", "", Yii::$app->request->getUrl());
+        $url = str_replace($language, "", Yii::$app->request->getUrl());
+        $url = str_replace("//", "/", $url);
         $this->redirect($url);
     }
 
