@@ -46,7 +46,7 @@
         .panel-group .panel {
             border-radius: 10px;
             padding: 5px;
-            z-index: 1000;
+            /*z-index: 1000;*/
             position: relative;
         }
 
@@ -1032,16 +1032,8 @@
         var This = $(event.target);
 //        console.log(This);
 //        console.log(This.parentsUntil('.panel'));
-//        var panel_collapse_id = This.parentsUntil('.panel').find('.collapse').attr('id');
-
-//        var panel=This.parentsUntil('.panel');
-//        console.log($(panel+'div').last().attr('id'));
-//        console.log(This.parentsUntil('.panel').last());
-//        console.log(This.parentsUntil('.panel').last());
-//        console.log(This.parentsUntil('.panel').find('.collapse'));
-//        console.log(This.parentsUntil('.panel').find('collapse'));
-//        console.log(panel_collapse_id);
-        $('#collapse1').collapse();
+        var panel_collapse = This.parentsUntil('.panel').find('.panel-collapse');
+        $(panel_collapse).collapse();
 
         This.parentsUntil('.panel').css({
             'z-index': 1000
