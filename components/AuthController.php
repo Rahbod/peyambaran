@@ -13,7 +13,7 @@ use yii\web\HttpException;
  *
  * @property User $user
  */
-class AuthController extends MainController
+abstract class AuthController extends MainController
 {
     public $bodyClass;
 

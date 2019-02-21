@@ -2,11 +2,13 @@
 
 use \yii\web\Request;
 
-$baseUrl = str_replace('/web', '', (new Request)->getBaseUrl());
+Yii::setAlias('@webapp', rtrim(str_replace("public_html", "", (new Request)->getBaseUrl()),'/'));
 
-$params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
-require(__DIR__ . '/../components/Setting.php');
+$baseUrl = (new Request)->getBaseUrl();
+
+$params = require_once __DIR__ . '/params.php';
+$db = require_once __DIR__ . '/db.php';
+require_once(__DIR__ . '/../components/Setting.php');
 use app\components\Setting;
 
 $config = [
@@ -81,19 +83,18 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'ind'=>'site/index',
-                '<language:\w+>'=>'site/change-lang',
-                '<language:\w+>/'=>'site/change-lang',
+                '<language:\w{2}>'=>'site/change-lang',
                 '<language:\w+>/<controller:\w+>/<action:\w+>' => 'site/change-lang',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-//                '<lang:\w+>/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-//                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                '<controller:\w+>' => '<controller>/index',
+                '<lang:\w+>/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             ],
         ],
         'view' => [
             'theme' => [
                 'basePath' => '@app/themes/frontend',
-                'baseUrl' => '@web/themes/frontend',
+                'baseUrl' => '@webapp/themes/frontend',
             ]
         ],
         'authManager' => [
@@ -127,6 +128,26 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
+        'generators' => [ //here
+            'controller' => [ // generator name
+                'class' => 'app\giigenerators\controller\Generator', // generator class
+                'templates' => [ //setting for out templates
+                    'dyna-multilingual' => '@app/giigenerators/controller/dynamultilingual', // template name => path to template
+                ]
+            ],
+            'crud' => [ // generator name
+                'class' => 'app\giigenerators\crud\Generator', // generator class
+                'templates' => [ //setting for out templates
+                    'dyna-multilingual' => '@app/giigenerators/crud/dynamultilingual', // template name => path to template
+                ]
+            ],
+            'model' => [ // generator name
+                'class' => 'app\giigenerators\model\Generator', // generator class
+                'templates' => [ //setting for out templates
+                    'dyna-multilingual' => '@app/giigenerators/model/dynamultilingual', // template name => path to template
+                ]
+            ]
+        ],
     ];
 }
 

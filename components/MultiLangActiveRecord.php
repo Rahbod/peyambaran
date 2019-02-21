@@ -17,7 +17,7 @@ use yii\helpers\Json;
  *
  * @property $lang string
  */
-class MultiLangActiveRecord extends DynamicActiveRecord
+abstract class MultiLangActiveRecord extends DynamicActiveRecord
 {
     public static $dynaDefaults = [
         'lang' => ['CHAR', ''],

@@ -13,9 +13,10 @@ use app\models\User;
  *
  * @property User $user
  */
-class MainController extends Controller
+abstract class MainController extends Controller
 {
     public $bodyClass;
+    public $theme;
 
     public function init()
     {
@@ -55,6 +56,20 @@ class MainController extends Controller
             return Yii::$app->user->can($action);
         else
             return Yii::$app->user->can($this->id . ucfirst($action));
+    }
+
+
+    public function setTheme($theme)
+    {
+        if ($theme) {
+            Yii::$app->view->theme = new \yii\base\Theme([
+                'basePath' => '@app/themes/' . $theme,
+                'baseUrl' => '@webapp/themes/' . $theme,
+            ]);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

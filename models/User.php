@@ -22,7 +22,7 @@ use yii\web\IdentityInterface;
  * @property string $created
  * @property integer $status
  */
-class User extends MultiLangActiveRecord implements IdentityInterface
+class User extends DynamicActiveRecord implements IdentityInterface
 {
     /**
      * This variables determine that the log is executed or not.

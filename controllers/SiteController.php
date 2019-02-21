@@ -3,14 +3,10 @@
 namespace app\controllers;
 
 use app\components\MainController;
-use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
 use app\models\ContactForm;
 
 class SiteController extends MainController
@@ -47,9 +43,9 @@ class SiteController extends MainController
     public function actions()
     {
         return [
-//            'error' => [
-//                'class' => 'yii\web\ErrorAction',
-//            ],
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
@@ -57,10 +53,10 @@ class SiteController extends MainController
         ];
     }
 
-    public function actionError()
-    {
-        var_dump(Yii::$app->request);exit;
-    }
+//    public function actionError()
+//    {
+//        var_dump(Yii::$app->request);exit;
+//    }
 
     /**
      * Displays homepage.
@@ -69,10 +65,6 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
-        $m = new User();
-        $n = User::find()->all();
-        var_dump(ArrayHelper::map($n, 'id', 'username'),
-            ArrayHelper::map(User::find(false)->all(), 'id', 'username'));exit();
         return $this->render('index');
     }
 
@@ -91,40 +83,6 @@ class SiteController extends MainController
         $url = str_replace($language, "", Yii::$app->request->getUrl());
         $url = str_replace("//", "/", $url);
         $this->redirect($url);
-    }
-
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
     }
 
     /**
