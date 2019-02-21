@@ -1,85 +1,86 @@
 /*.table {*/
-/*border-color: #c4c4c4;*/
-/*margin-bottom: 50px;*/
-/*border-collapse: separate;*/
+    /*border-color: #c4c4c4;*/
+    /*margin-bottom: 50px;*/
+    /*border-collapse: separate;*/
 /*}*/
 
 /*.table tr td:first-of-type {*/
-/*position: relative;*/
-/*padding-right: 15px;*/
-/*border-radius: 0 6px 6px 0;*/
-/*overflow: hidden;*/
+    /*position: relative;*/
+    /*padding-right: 15px;*/
+    /*border-radius: 0 6px 6px 0;*/
+    /*overflow: hidden;*/
 /*}*/
 
 /*.table tr td:last-of-type {*/
-/*border-radius: 6px 0 0 6px;*/
-/*overflow: hidden;*/
+    /*border-radius: 6px 0 0 6px;*/
+    /*overflow: hidden;*/
 /*}*/
 
 /*.table tr td:first-of-type:before {*/
-/*opacity: 0;*/
-/*content: "";*/
-/*position: absolute;*/
-/*top: 0;*/
-/*right: 0;*/
-/*width: 6px;*/
-/*height: 100%;*/
-/*background: #877ef3;*/
-/*-webkit-transition: width 0.5s;*/
-/*-moz-transition: width 0.5s;*/
-/*-ms-transition: width 0.5s;*/
-/*-o-transition: width 0.5s;*/
-/*transition: width 0.5s;*/
+    /*opacity: 0;*/
+    /*content: "";*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*width: 6px;*/
+    /*height: 100%;*/
+    /*background: #877ef3;*/
+    /*-webkit-transition: width 0.5s;*/
+    /*-moz-transition: width 0.5s;*/
+    /*-ms-transition: width 0.5s;*/
+    /*-o-transition: width 0.5s;*/
+    /*transition: width 0.5s;*/
 /*}*/
 
 /*thead {*/
-/*border-bottom-width: 2px;*/
-/*border-bottom-color: #aaaaaa;*/
+    /*border-bottom-width: 2px;*/
+    /*border-bottom-color: #aaaaaa;*/
 /*}*/
 
 /*thead th:not(.noPadding) {*/
-/*padding-bottom: 5px !important;*/
+    /*padding-bottom: 5px !important;*/
 
 /*}*/
 
 /*thead th {*/
-/*overflow: hidden;*/
-/*color: #535353;*/
+    /*overflow: hidden;*/
+    /*color: #535353;*/
 /*}*/
 
 /*head th:focus {*/
-/*color: #877ef3;*/
+    /*color: #877ef3;*/
 /*}*/
 
 /*.table-hover > tbody > tr:hover {*/
-/*background-color: #e0e0e0;*/
-/*border-color: #c4c4c4;*/
+    /*background-color: #e0e0e0;*/
+    /*border-color: #c4c4c4;*/
 /*}*/
 
 /*.table-hover > tbody > tr:hover td:first-of-type:before {*/
-/*opacity: 1;*/
+    /*opacity: 1;*/
 /*}*/
 
 /*tbody tr:last-child {*/
-/*border-bottom: 1px solid #e0e0e0;*/
+    /*border-bottom: 1px solid #e0e0e0;*/
 /*}*/
 
 /*tbody td {*/
-/*line-height: 34px !important;*/
+    /*line-height: 34px !important;*/
 /*}*/
 
 /*.doctorImage {*/
-/*border: 2px solid #b8d4f2;*/
-/*width: 40px;*/
-/*height: 40px;*/
-/*margin-left: 5px;*/
-/*margin-bottom: -10px;*/
-/*vertical-align: middle;*/
+    /*border: 2px solid #b8d4f2;*/
+    /*width: 40px;*/
+    /*height: 40px;*/
+    /*margin-left: 5px;*/
+    /*margin-bottom: -10px;*/
+    /*vertical-align: middle;*/
 /*}*/
 
 /*.clinic-program {*/
-/*margin-bottom: 150px;*/
+    /*margin-bottom: 150px;*/
 /*}*/
+
 
 .table {
     border-color: #c4c4c4;
@@ -87,18 +88,13 @@
     border-collapse: separate;
 }
 
-.table tr td:first-of-type {
+.table tr td:first-of-type{
     position: relative;
     padding-right: 15px;
+    border-radius: 0 6px 6px 0;
     overflow: hidden;
 }
-
-.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
-    border-top: 1px solid #c4c4c4 !important;
-    vertical-align: middle !important;
-}
-
-.table tr td:last-of-type {
+.table tr td:last-of-type{
     border-radius: 6px 0 0 6px;
     overflow: hidden;
 }
@@ -120,7 +116,8 @@
 }
 
 thead {
-    border-bottom: 2px solid #aaaaaa !important;
+    border-bottom-width: 2px;
+    border-bottom-color: #aaaaaa;
 }
 
 thead th:not(.noPadding) {
@@ -128,11 +125,10 @@ thead th:not(.noPadding) {
 
 }
 
-thead th {
+thead th{
     overflow: hidden;
     color: #535353;
 }
-
 head th:focus {
     color: #877ef3;
 }
@@ -140,19 +136,17 @@ head th:focus {
 .table-hover > tbody > tr:hover {
     background-color: #e0e0e0;
     border-color: #c4c4c4;
-    border-radius: 0 6px 6px 0;
 }
 
 .table-hover > tbody > tr:hover td:first-of-type:before {
     opacity: 1;
-    border-radius: 0 6px 6px 0;
 }
 
 tbody tr:last-child {
     border-bottom: 1px solid #e0e0e0;
 }
 
-tbody td {
+tbody td{
     line-height: 34px !important;
 }
 
