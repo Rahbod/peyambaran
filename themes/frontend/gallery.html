@@ -17,6 +17,19 @@
     <link type="text/css" rel="stylesheet" href="css/global.css">
     <link type="text/css" rel="stylesheet" href="css/gallery.css">
 
+    <style>
+
+        .html5lightbox::after, .html5lightbox::before {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        .gallery__imageContainer {
+            width: 33.3333%;
+            float: right;
+        }
+    </style>
 </head>
 <body>
 <header class="blueHeader">
@@ -605,7 +618,7 @@
 <script type="text/javascript" src="js/simple-lightbox.min.js"></script>
 <script type="text/javascript" src="js/jquery.script.js"></script>
 <script>
-//    var lightbox = $('#simpleGallery a').simpleLightbox();
+    //    var lightbox = $('#simpleGallery a').simpleLightbox();
 
 </script>
 </body>
