@@ -1031,13 +1031,14 @@
     $('.panel-title').on('click', function (event) {
         $('.overlay').toggle();
         var This = $(event.target);
+        var panel_parent=This.parents('.panel');
         var el_id = This.parents('.panel').find('div.collapse').attr('id');
         $('#' + el_id).collapse();
-        if (This.parents('.panel').hasClass('-z-index')) {
-            This.parents('.panel').removeClass('-z-index')
+        if (panel_parent.hasClass('-z-index')) {
+            panel_parent.removeClass('-z-index')
         }
         else {
-            This.parents('.panel').addClass('-z-index')
+            panel_parent.addClass('-z-index')
         }
     })
 </script>
