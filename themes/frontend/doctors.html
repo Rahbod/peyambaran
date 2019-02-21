@@ -1035,9 +1035,15 @@
         var panel_collapse = This.parentsUntil('.panel').find('.panel-collapse');
         $(panel_collapse).collapse();
 
-        This.parentsUntil('.panel').css({
-            'z-index': 1000
+        $('.panel').not(This.parentsUntil('.panel')).css({
+            'z-index':0
         });
+
+
+
+//        This.parentsUntil('.panel').css({
+//            'z-index': 1000
+//        });
     })
 </script>
 </body>
