@@ -45,6 +45,13 @@ body {
 .-btlr {
     border-top-left-radius: 10px;
 }
+.-bbrr {
+    border-bottom-right-radius: 10px;
+}
+
+.-bblr {
+    border-bottom-left-radius: 10px;
+}
 /*--------------------------- content header*/
 .content-header {
     display: flex;
