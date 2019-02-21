@@ -90,9 +90,11 @@
 .table tr td:first-of-type {
     position: relative;
     padding-right: 15px;
-    border-radius: 0 6px 6px 0;
     overflow: hidden;
+    border-top: 1px solid #c4c4c4;
+    vertical-align: middle;
 }
+
 
 .table tr td:last-of-type {
     border-radius: 6px 0 0 6px;
@@ -116,8 +118,7 @@
 }
 
 thead {
-    border-bottom-width: 2px;
-    border-bottom-color: #aaaaaa;
+    border-bottom: 2px solid #aaaaaa !important;
 }
 
 thead th:not(.noPadding) {
@@ -137,6 +138,7 @@ head th:focus {
 .table-hover > tbody > tr:hover {
     background-color: #e0e0e0;
     border-color: #c4c4c4;
+    border-radius: 0 6px 6px 0;
 }
 
 .table-hover > tbody > tr:hover td:first-of-type:before {
