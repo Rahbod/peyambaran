@@ -1,0 +1,91 @@
+
+.submitBtn {
+    width: 285px;
+    background: #3f8dfa;
+    /*height: 40px;*/
+}
+
+.securityCode__image {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.securityCode__input {
+    background: #fff;
+    margin-right: 10px;
+    margin-left: 50px;
+}
+
+.contactUs__container {
+    padding: 75px 75px 30px 90px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background: #e2e2e2 !important;
+}
+
+.contactUs__container::before, .contactUs__container::after {
+    content: '';
+    clear: both;
+    display: table;
+}
+
+.contactUs__form .form-control {
+    /*height: 40px;*/
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.contactUs__form label {
+    margin-right: 10px;
+    font-weight: 500;
+    color: #676767;
+}
+
+.floatToLeft {
+    float: left;
+    display: inline-block;
+    width: 130px;
+    /*height: 40px !important;*/
+}
+
+.submitBtn:hover, .submitBtn:focus {
+    background: #316fc4;
+    color: #fff;
+}
+
+.-blue {
+    color: #3f8dfa;
+}
+
+.-grey {
+    color: #a1a2a5;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.-required {
+    color: #e33b3b;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.texts {
+    padding: 45px 45px 60px 45px;
+}
+
+.texts h4 {
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+
+
+.contactUsPage {
+    margin-bottom: 100px;
+}
+
+#description {
+    height: auto !important;
+}

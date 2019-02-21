@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>بیمارستان پیامبران</title>
-
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap-rtl.min.css">
     <link type="text/css" rel="stylesheet" href="css/font-awesome.css">
@@ -13,8 +12,9 @@
     <link type="text/css" rel="stylesheet" href="css/responsive-theme.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap-4-classes.css">
     <link type="text/css" rel="stylesheet" href="css/global.css">
-    <link type="text/css" rel="stylesheet" href="css/clinic-program.css">
     <link type="text/css" rel="stylesheet" href="js/vendors/icomoon/style.css">
+    <link type="text/css" rel="stylesheet" href="css/clinic-program.css">
+
 
     <style>
         body {
@@ -23,99 +23,16 @@
             bottom: 89px;
         }
 
-        .content {
-            padding-top: 70px;
-        }
-
         .content-header {
             margin-bottom: 90px;
         }
 
-        .table {
-            border-color: #c4c4c4;
-            margin-bottom: 50px;
-            border-collapse: separate;
-        }
 
-        .table tr td:first-of-type{
-            position: relative;
-            padding-right: 15px;
-            border-radius: 0 6px 6px 0;
-            overflow: hidden;
-        }
-        .table tr td:last-of-type{
-            border-radius: 6px 0 0 6px;
-            overflow: hidden;
-        }
-
-        .table tr td:first-of-type:before {
-            opacity: 0;
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 6px;
-            height: 100%;
-            background: #877ef3;
-            -webkit-transition: width 0.5s;
-            -moz-transition: width 0.5s;
-            -ms-transition: width 0.5s;
-            -o-transition: width 0.5s;
-            transition: width 0.5s;
-        }
-
-        thead {
-            border-bottom-width: 2px;
-            border-bottom-color: #aaaaaa;
-        }
-
-        thead th:not(.noPadding) {
-            padding-bottom: 5px !important;
-
-        }
-
-        thead th{
-            overflow: hidden;
-            color: #535353;
-        }
-        head th:focus {
-            color: #877ef3;
-        }
-
-        .table-hover > tbody > tr:hover {
-            background-color: #e0e0e0;
-            border-color: #c4c4c4;
-        }
-
-        .table-hover > tbody > tr:hover td:first-of-type:before {
-            opacity: 1;
-        }
-
-        tbody tr:last-child {
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        tbody td{
-            line-height: 34px !important;
-        }
-
-        .doctorImage {
-            border: 2px solid #b8d4f2;
-            width: 40px;
-            height: 40px;
-            margin-left: 5px;
-            margin-bottom: -10px;
-            vertical-align: middle;
-        }
-
-        .clinic-program {
-            margin-bottom: 150px;
-        }
 
     </style>
 </head>
 <body>
-<header class="blueHeader">
+<header class="-blueHeader">
     <div class="container">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
@@ -225,13 +142,14 @@
 <main class="content">
     <section class="clinic-program">
         <div class="container">
-            <div class="row clinic-program-container">
+            <div class="row">
                 <div class="col-xs-12">
-                    <div class="content-header rounded">
+                    <div class="content-header">
                         <img src="./svg/gallery-white.svg" class="img-fluid content-header__image mirror" alt="">
-                        <div class="titles">
-                            <h1 class="media-heading content-header__title galleryHeader__title">برنامه کلینیک ها</h1>
-                            <h3 class="content-header__subTitle galleryHeader__subTitle">بیمارستان پیامبران</h3>
+                        <div class="content-header__titles">
+                            <h1 class="media-heading content-header__title">برنامه کلینیک ها</h1>
+
+                            <h3 class="content-header__subTitle">بیمارستان پیامبران</h3>
                         </div>
                     </div>
                 </div>
@@ -258,7 +176,9 @@
                                 <td>یک شنبه</td>
                                 <td>2/10/97</td>
                                 <td>8:30 - 12:00</td>
-                                <td>متن توضیحات</td>
+                                <td>
+                                    <button class="btn btn-primary text-white">A</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>کودکان</td>
@@ -298,7 +218,9 @@
                                 <td>یک شنبه</td>
                                 <td>2/10/97</td>
                                 <td>8:30 - 12:00</td>
-                                <td>متن توضیحات</td>
+                                <td>
+                                    <button class="btn btn-info text-white">B</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>کودکان</td>
@@ -322,9 +244,9 @@
                     </div>
                 </div>
                 <div class="col-xs-12">
-                    <div class="content-footer galleryFooter text-center mb-5">
+                    <div class="content-footer text-center mb-5">
                         <a href="void:;" class="btn -more gray">
-                            <i class="icon-ellipsis-h-solid"></i>
+                            <i class="icomoon-ellipsis-h-solid"></i>
                             بارگزاری بیشتر
                         </a>
                     </div>

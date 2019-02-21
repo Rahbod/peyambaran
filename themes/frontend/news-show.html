@@ -16,7 +16,7 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap-4-classes.css">
     <link type="text/css" rel="stylesheet" href="js/vendors/icomoon/style.css">
     <link type="text/css" rel="stylesheet" href="css/global.css">
-    <link type="text/css" rel="stylesheet" href="css/gallery.css">
+    <link type="text/css" rel="stylesheet" href="css/news-show.css">
 
     <style>
         body {
@@ -30,168 +30,12 @@
         }
 
         .content-header {
-            margin-bottom: 90px;
-        }
-
-        .-more {
-            border: 1px solid #d7d7d7;
-            color: #acadae;
-        }
-
-        .-more:hover {
-            border: 1px solid #b4b4b4;
-            color: #acadae;
-        }
-
-        .-more i {
-            color: #acadae;
-        }
-
-        .clinic-program {
-            margin-bottom: 150px;
-        }
-
-        .newsSearchForm label {
-            font-size: 11px;
-            color: #fff;
-        }
-
-        .search-for {
-            width: 415px !important;
-            font-size: 12px;
-        }
-
-        .card {
-            background: #fff;
-            padding: 20px 35px;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-            border: 1px solid #dee1e7;
-            position: relative;
-        }
-
-        .card-img-top {
-            width: 100%;
-            height: auto;
-            max-height: 125px;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .card-title {
-            margin: 20px 0;
-            color: #000;
-        }
-
-        .card-text {
-            color: #919191;
-        }
-
-        .-show4Lines {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            line-height: 21px;
-            max-height: 84px;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-        }
-
-        .card:hover, .card:focus {
-            border-color: #31af91;
-        }
-
-        .card:hover .card-title, .card:focus .card-title {
-            color: #31af91;
-        }
-
-        .content-header {
-            background: #31af91;
-        }
-
-        .transparent-bg {
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            height: 85px;
-            width: 100%;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.9));
-        }
-
-        .input-group-addon:last-child {
-            border-right-width: 1px;
-            border-right-style: solid;
-            border-left: 0;
-        }
-
-        .icomoon-search-solid {
-            color: #31af91;
-        }
-
-        /*------------------ news show styles*/
-        .newsShow__title {
-            margin-bottom: 40px;
-        }
-
-        .newsShow__paragraph {
-            line-height: 30px;
-        }
-
-        .simpleGallery__image {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .imgContainer {
-            width: 32.23333%;
-            margin-left: 1%;
-            height: auto;
-            display: inline-block;
-            float: right;
-            margin-bottom: 1%;
-        }
-
-        .related-news {
-            margin-top: 70px;
-            border-top: 2px solid #cbd2e3;
-            background: #e5e8f0;
-            padding-bottom: 60px;
-            padding-top: 60px;
-        }
-
-        .content-header {
             margin-bottom: 20px;
         }
-
-        .newsShow {
-            background: #fff;
-            border-top: 8px solid #31af91;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            padding: 40px 60px;
-            -webkit-box-shadow: 0px 2px 5px 2px #c9ccd1;
-            -moz-box-shadow: 0px 2px 5px 2px #c9ccd1;
-            box-shadow: 0px 2px 5px 2px #c9ccd1;
-        }
-
-        .section-title {
-            color: #7783a2 !important;
-        }
-
     </style>
 </head>
 <body>
-<header class="blueHeader">
+<header class="-blueHeader">
     <div class="container">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
@@ -303,29 +147,24 @@
         <div class="container">
             <div class="row news-show-container">
                 <div class="col-xs-12">
-                    <div class="content-header rounded">
-                        <img src="./svg/gallery-white.svg" class="img-fluid content-header__image gallery-icon" alt="">
-                        <div class="titles">
-                            <h1 class="media-heading content-header__title galleryHeader__title">اخبار و رویدادها</h1>
-                            <h3 class="content-header__subTitle galleryHeader__subTitle">بیمارستان پیامبران</h3>
+                    <div class="content-header ">
+                        <img src="./images/news/news-header-image.png" class="img-fluid content-header__image" alt="">
+                        <div class="content-header__titles">
+                            <h1 class="media-heading content-header__title">اخبار و رویدادها</h1>
+                            <h3 class="content-header__subTitle">بیمارستان پیامبران</h3>
                         </div>
                         <div class="newsSearchBox">
-                            <form class="newsSearchForm" enctype="multipart/form-data">
-
-                                <label for="search-for">جستجو در خبرها </label>
-                                <div class="input-group">
-
-                                    <input placeholder="عنوان جستجو" type="search" id="search-for" name="search_for"
-                                           class="form-control search-for">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">
-                                            <i class="icomoon-search-solid"></i>
-                                        </button>
-                                      </span>
+                            <form class="search-form" style="min-width: 400px;">
+                                <p style="color: #fff;margin-right: 10px;" class="search-form-label">جستجو در خبرها</p>
+                                <div class="input-group search-container">
+                                    <input class="form-control" placeholder="عنوان جستجو">
+                                    <span class="input-group-addon">
+                            <button type="submit" class="search-btn"><i class="search-icon"></i></button>
+                        </span>
                                 </div>
-
                             </form>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-xs-12">
