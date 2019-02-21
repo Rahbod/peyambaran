@@ -46,7 +46,7 @@
         .panel-group .panel {
             border-radius: 10px;
             padding: 5px;
-            z-index: 1000;
+            z-index: 1;
             position: relative;
         }
 
@@ -172,7 +172,7 @@
             width: 100%;
             height: 100%;
             background: #1f1f1fcc;
-            z-index: 999;
+            z-index:1;
             display: none;
             -webkit-transition: all 0.2s;
             -moz-transition: all 0.2s;
@@ -1033,12 +1033,16 @@
 //        console.log(This);
 //        console.log(This.parentsUntil('.panel'));
         var panel_collapse = This.parentsUntil('.panel').find('.panel-collapse');
+
+        console.log(This.parents('.panel'));
+        console.log(This.parents('.panel').find('div.collapse'));
+        console.log(This.parents('.panel').find('div.collapse').attr('id'));
+
         $(panel_collapse).collapse();
 
-        $('.panel').not(This.parentsUntil('.panel')).css({
-            'z-index':0
-        });
-
+//        $('.panel').not(This.parentsUntil('.panel')).css({
+//            'z-index':0
+//        });
 
 
 //        This.parentsUntil('.panel').css({
