@@ -91,11 +91,12 @@
     position: relative;
     padding-right: 15px;
     overflow: hidden;
+    border-radius: 0 6px 6px 0;
 }
 
-.table tr td {
-    border-top: 1px solid #c4c4c4!important;
-    vertical-align: middle!important;
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    border-top: 1px solid #c4c4c4 !important;
+    vertical-align: middle !important;
 }
 
 .table tr td:last-of-type {
@@ -145,6 +146,7 @@ head th:focus {
 
 .table-hover > tbody > tr:hover td:first-of-type:before {
     opacity: 1;
+    border-radius: 0 6px 6px 0;
 }
 
 tbody tr:last-child {
