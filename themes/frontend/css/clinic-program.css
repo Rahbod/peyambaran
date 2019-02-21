@@ -94,8 +94,8 @@
 }
 
 .table tr td {
-    border-top: 1px solid #c4c4c4;
-    vertical-align: middle;
+    border-top: 1px solid #c4c4c4!important;
+    vertical-align: middle!important;
 }
 
 .table tr td:last-of-type {
