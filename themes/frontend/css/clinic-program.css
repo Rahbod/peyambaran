@@ -148,6 +148,8 @@ tbody tr:last-child {
 
 tbody td{
     line-height: 34px !important;
+    font-weight: 500!important;
+    color: #5d5d5d!important;
 }
 
 .doctorImage {
