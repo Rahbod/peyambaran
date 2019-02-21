@@ -26,13 +26,13 @@
 
 
 /*------------------------------main content : simple gallery*/
-.simpleGallery__image {
-    max-width: 100%;
-    height: auto;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
+/*.simpleGallery__image {*/
+    /*max-width: 100%;*/
+    /*height: auto;*/
+    /*-webkit-border-radius: 5px;*/
+    /*-moz-border-radius: 5px;*/
+    /*border-radius: 5px;*/
+/*}*/
 
 .imgContainer {
     border-radius: 10px;
@@ -42,7 +42,7 @@
     margin-bottom: 15px;
 }
 
-.-hoverShowBox {
+.-hoverBox {
     top: 0;
     width: 100%;
     right: 0;
@@ -56,38 +56,38 @@
     z-index: 1;
 }
 
-.-hoverShowBox h6,
-.-hoverShowBox h4{
+.-hoverBox h6,
+.-hoverBox h4{
     display: block;
     color: #fff !important;
     opacity: 0;
 }
-.-hoverShowBox,
-.-hoverShowBox h6,
-.-hoverShowBox h4,
-.imgContainer:hover .-hoverShowBox .video-play-icon i{
+.-hoverBox,
+.-hoverBox h6,
+.-hoverBox h4,
+.imgContainer:hover .-hoverBox .video-play-icon i{
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     -ms-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
-.imgContainer:hover .-hoverShowBox .video-play-icon i{
+.imgContainer:hover .-hoverBox .video-play-icon i{
     opacity: .9;
 }
-.-hoverShowBox.black {
+.-hoverBox.black {
     background: #00000044;
 }
-.imgContainer:hover .-hoverShowBox.black {
+.imgContainer:hover .-hoverBox.black {
     background: #000000aa;
     color: #fff;
 }
-.imgContainer:hover .-hoverShowBox.purple {
+.imgContainer:hover .-hoverBox.purple {
     background: #877ef3cc;
     color: #fff;
 }
-.imgContainer:hover .-hoverShowBox h6,
-.imgContainer:hover .-hoverShowBox h4{
+.imgContainer:hover .-hoverBox h6,
+.imgContainer:hover .-hoverBox h4{
     opacity: 1;
 }
 
