@@ -27,7 +27,14 @@
             margin-bottom: 90px;
         }
 
-
+        .-toggleMainNav {
+            top: -100%;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            transition: all 0.2s;
+        }
     </style>
 </head>
 <body>
@@ -479,6 +486,19 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.script.js"></script>
+<script>
+    var position = $(window).scrollTop();
 
+    $(window).scroll(function () {
+        var scroll = $(window).scrollTop();
+        if (scroll > position) {
+            $('header').addClass('-toggleMainNav');
+
+        } else {
+            $('header').removeClass('-toggleMainNav');
+        }
+        position = scroll;
+    });
+</script>
 </body>
 </html>
