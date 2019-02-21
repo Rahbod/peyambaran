@@ -38,6 +38,13 @@ body {
     padding-top: 70px;
 }
 
+.-btrr {
+    border-top-right-radius: 10px;
+}
+
+.-btlr {
+    border-top-left-radius: 10px;
+}
 /*--------------------------- content header*/
 .content-header {
     display: flex;
