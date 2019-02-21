@@ -90,3 +90,8 @@
 .imgContainer:hover .-hoverShowBox h4{
     opacity: 1;
 }
+
+.gallery__imageContainer {
+    width:33.3333%;
+    height:auto;
+}
