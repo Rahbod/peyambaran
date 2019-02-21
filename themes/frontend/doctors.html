@@ -1025,9 +1025,7 @@
 <script>
 
     $('.panel-title').on('click', function (event) {
-        $('.overlay').css({
-            'display': 'block'
-        });
+        $('.overlay').toggle();
 
         var This = $(event.target);
 
