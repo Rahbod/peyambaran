@@ -194,6 +194,10 @@
             margin-top: 30px;
             margin-bottom: 130px;
         }
+
+        .-z-index {
+            z-index: 99;
+        }
     </style>
 </head>
 <body class="body">
@@ -1026,18 +1030,15 @@
 
     $('.panel-title').on('click', function (event) {
         $('.overlay').toggle();
-
         var This = $(event.target);
-
-//        console.log(This.parents('.panel'));
-//        console.log(This.parents('.panel').find('div.collapse'));
         var el_id = This.parents('.panel').find('div.collapse').attr('id');
-        $('#'+el_id).collapse();
-
-        This.parents('.panel').css({
-            'z-index': 99
-        });
-
+        $('#' + el_id).collapse();
+        if (This.parents('.panel').hasClass('-z-index')) {
+            This.parents('.panel').removeClass('-z-index')
+        }
+        else {
+            This.parents('.panel').addClass('-z-index')
+        }
     })
 </script>
 </body>
