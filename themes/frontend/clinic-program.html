@@ -27,7 +27,7 @@
             margin-bottom: 90px;
         }
 
-        .-hideMainNav {
+        .-toggleMainNav {
             /*top: -100%;*/
             -webkit-transform: translateY(-100%);
             -moz-transform: translateY(-100%);
@@ -35,20 +35,6 @@
             -o-transform: translateY(-100%);
             transform: translateY(-100%);
 
-            -webkit-transition: all 0.2s;
-            -moz-transition: all 1s;
-            -ms-transition: all 1s;
-            -o-transition: all 1s;
-            transition: all 1s;
-        }
-
-        .-showMainNav {
-            /*top: -100%;*/
-            -webkit-transform: translateY(0);
-            -moz-transform: translateY(0);
-            -ms-transform: translateY(0);
-            -o-transform: translateY(0);
-            transform: translateY(0);
 
             -webkit-transition: all 0.2s;
             -moz-transition: all 1s;
@@ -56,6 +42,7 @@
             -o-transition: all 1s;
             transition: all 1s;
         }
+
     </style>
 </head>
 <body>
@@ -513,21 +500,10 @@
     $(window).scroll(function () {
         var scroll = $(window).scrollTop();
         if (scroll > position) {
-            if ($('header').hasClass('-hideMainNav')) {
-                $('header').removeClass('-hideMainNav');
-            }
-            else {
-                $('header').addClass('-hideMainNav');
-            }
-
+            $('header').addClass('-toggleMainNav');
 
         } else {
-            if ($('header').hasClass('-showMainNav')) {
-                $('header').removeClass('-showMainNav')
-            }
-            else {
-                $('header').addClass('-showMainNav');
-            }
+            $('header').removeClass('-toggleMainNav');
         }
         position = scroll;
     });
