@@ -43,6 +43,21 @@ $(function() {
             $('header').removeClass('shadow');
     });
 
+    // hide or show the main navbar base on page scroll : start
+    var position = $(window).scrollTop();
+    $(window).scroll(function () {
+        var scroll = $(window).scrollTop();
+        if (scroll > position) {
+            $('header').addClass('-toggleMainNav');
+
+        } else {
+            $('header').removeClass('-toggleMainNav');
+        }
+        position = scroll;
+    });
+    // hide or show the main navbar base on page scroll : end
+
+
     $("body").on("mouseover", "li.dropdown", function () {
         $(this).addClass("open");
     }).on("mouseleave", "li.dropdown", function () {
