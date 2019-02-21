@@ -513,10 +513,21 @@
     $(window).scroll(function () {
         var scroll = $(window).scrollTop();
         if (scroll > position) {
-            $('header').toggleClass('-hideMainNav');
+            if ($('header').hasClass('-hideMainNav')) {
+                $('header').removeClass('-hideMainNav');
+            }
+            else {
+                $('header').addClass('-hideMainNav');
+            }
+
 
         } else {
-            $('header').toggleClass('-showMainNav');
+            if ($('header').hasClass('-showMainNav')) {
+                $('header').removeClass('-showMainNav')
+            }
+            else {
+                $('header').addClass('-showMainNav');
+            }
         }
         position = scroll;
     });
