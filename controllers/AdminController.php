@@ -9,6 +9,11 @@ use app\models\LoginForm;
 
 class AdminController extends AuthController
 {
+    public function getSystemActions()
+    {
+        return ['index', 'login'];
+    }
+
     /**
     * for set admin theme
     */
@@ -20,6 +25,8 @@ class AdminController extends AuthController
 
     public function actionIndex()
     {
+        if(Yii::$app->user->isGuest)
+            return $this->redirect(['login']);
         return $this->render('index');
     }
 
@@ -35,9 +42,11 @@ class AdminController extends AuthController
             return $this->goHome();
         }
 
+        $this->layout='login';
+
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(['/admin']);
         }
 
         $model->password = '';

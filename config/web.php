@@ -84,6 +84,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '<language:\w{2}>'=>'site/change-lang',
+                '<language:\w{2}>/<controller:\w+>' => 'site/change-lang',
                 '<language:\w+>/<controller:\w+>/<action:\w+>' => 'site/change-lang',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<controller:\w+>' => '<controller>/index',

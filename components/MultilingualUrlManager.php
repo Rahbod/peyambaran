@@ -18,15 +18,12 @@ class MultilingualUrlManager extends UrlManager
         $language = isset($params['lang']) ? $params['lang'] : 0;
         unset($params['lang']);
 
-        if ($language === 0) {
-            if (\Yii::$app->session->has('language'))
-                $language = \Yii::$app->session->get('language');
-            else if (isset(\Yii::$app->request->cookies['language']))
-                $language = \Yii::$app->request->cookies['language']->value;
+        if ($language !== 0 && $language !== false) {
             $route = trim($params[0], '/');
             $route = "$language/$route";
             $params[0] = $route;
         }
+
         return parent::createUrl($params);
     }
 }

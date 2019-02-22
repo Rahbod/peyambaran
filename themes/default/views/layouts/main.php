@@ -32,8 +32,8 @@ AppAsset::register($this);
     </script>
 
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css', [], 'fullcalendar'); ?>
-    <!--    --><?php //$this->registerCssFile($this->theme->baseUrl.'/css/fontiran-fa-num.css', [], 'fontiran-fa-num');?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/base/fontiran.css', [], 'fontiran'); ?>
+    <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/base/flag-icon.css', [], 'flag-icon'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/base/vendors.bundle.rtl.css', [], 'vendors'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/custom/datatables/datatables.bundle.rtl.css', [], 'datatables'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/custom/fullcalendar/fullcalendar.bundle.rtl.css', [], 'full-calendar'); ?>

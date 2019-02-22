@@ -71,14 +71,51 @@ abstract class MainController extends Controller
             return false;
         }
     }
+
+    public static function getMenu($roleID)
+    {
+        $roleID = $roleID == 'superAdmin'?'admin':$roleID;
+        $menu = [
+            /* ADMIN MENU */
+            'admin' => [
+                [
+                    'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">داشبورد</span>',
+                    'url' => ['/admin'],
+                ],
+                "<li class='m-menu__section'><h4 class='m-menu__section-text'>منوی مدیریت</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
+                [
+                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">صفحات</span>',
+                    'items' => [
+                        ['label' => 'لیست', 'url' => ['/page/index']],
+                        ['label' => 'افزودن', 'url' => ['/page/create']],
+                    ]
+                ],
+                [
+                    'label' => '<i class="m-menu__link-icon flaticon-logout"></i><span class="m-menu__link-text text-danger">خروج</span>',
+                    'url' => ['/admin/logout']
+                ]
+            ],
+
+            /* GUEST MENU */
+            'guest' => [
+                "<li class='m-menu__section'><h4 class='m-menu__section-text'>ورود به سامانه مدیریت</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
+                [
+                    'label' => '<i class="m-menu__link-icon flaticon-imac"></i><span class="m-menu__link-text">ورود</span>',
+                    'url' => ['/admin'],
+                ]
+            ],
+
+        ];
+        return isset($menu[$roleID])?$menu[$roleID]:$menu['guest'];
+    }
 }
 
 
 function dd($vars)
 {
     $args = func_get_args();
-    echo Html::beginTag('pre',['class' => 'xdebug-var-dump', 'dir' => 'ltr']);
-    foreach ($args as $arg){
+    echo Html::beginTag('pre', ['class' => 'xdebug-var-dump', 'dir' => 'ltr']);
+    foreach ($args as $arg) {
         var_dump($arg);
         echo "\n";
     }

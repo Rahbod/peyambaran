@@ -10,7 +10,7 @@ Target Server Type    : MariaDB
 Target Server Version : 100208
 File Encoding         : 65001
 
-Date: 2019-02-20 17:20:47
+Date: 2019-02-21 21:54:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -134,7 +134,7 @@ CREATE TABLE `category` (
   KEY `Status` (`status`),
   KEY `lft` (`left`,`right`),
   FULLTEXT KEY `name_2` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Nested records to store tree structures.\r\nIt includes categories, tags, persons.\r\n! This table is based on what Yii has designed.\r\nIf nothing exists, we will use "Nested sets" structure.';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Nested records to store tree structures.\r\nIt includes categories, tags, persons.\r\n! This table is based on what Yii has designed.\r\nIf nothing exists, we will use "Nested sets" structure.';
 
 -- ----------------------------
 -- Records of category
@@ -276,7 +276,7 @@ CREATE TABLE `page` (
   PRIMARY KEY (`id`),
   KEY `cat_id` (`cat_id`),
   CONSTRAINT `page_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of page
