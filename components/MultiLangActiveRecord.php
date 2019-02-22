@@ -1,16 +1,10 @@
 <?php
-/**
- * @link https://github.com/tom--/dynamic-ar
- * @copyright Copyright (c) 2015 Spinitron LLC
- * @license http://opensource.org/licenses/ISC
- */
 
 namespace app\components;
 
 use Yii;
-use yii\base\Exception;
-use yii\base\UnknownPropertyException;
-use yii\helpers\Json;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /**
  * MultiLangActiveRecord
@@ -19,9 +13,30 @@ use yii\helpers\Json;
  */
 abstract class MultiLangActiveRecord extends DynamicActiveRecord
 {
+    private static $langArray = [
+        'fa' => 'فارسی',
+        'ar' => 'عربی',
+        'en' => 'انگلیسی',
+    ];
+
     public static $dynaDefaults = [
         'lang' => ['CHAR', ''],
     ];
+
+    /**
+     * @param $form ActiveForm
+     * @param $model DynamicActiveRecord
+     * @return mixed
+     */
+    public static function renderSelectLangInput($form, $model)
+    {
+        $html  = Html::beginTag('div',['class' => 'row']);
+        $html .= Html::beginTag('div',['class' => 'col-md-4 col-sm-6 col-xs-12']);
+        $html .= $form->field($model, 'lang')->dropDownList(self::$langArray,['class' => 'form-control']);
+        $html .= Html::endTag('div');
+        $html .= Html::endTag('div');
+        return $html;
+    }
 
     public function init()
     {
@@ -29,12 +44,17 @@ abstract class MultiLangActiveRecord extends DynamicActiveRecord
         $this->lang = Yii::$app->language;
     }
 
-    public static function find($langFilter = true)
+    public function rules()
     {
-        /** @var $query DynamicActiveQuery */
-        $query = Yii::createObject(DynamicActiveQuery::className(), [get_called_class()]);
-        if($langFilter)
-            $query->where([self::columnGetString('lang') => Yii::$app->language]);
-        return $query;
+        return [
+            ['lang', 'required']
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'lang' => Yii::t('words', 'Lang')
+        ];
     }
 }

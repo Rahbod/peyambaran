@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'base.libraryName' => 'کتابخانه تخصصی تاریخ',
     'base.successMsg' => 'اطلاعات با موفقیت ثبت شد.',
     'base.dangerMsg' => 'در ثبت اطلاعات خطایی رخ داده است.',
     'base.deleteSuccessMsg' => 'عملیات حذف با موفقیت انجام شد.',
@@ -251,4 +250,13 @@ return [
     'setting.events' => 'رویدادها',
     'setting.afterMessage' => 'پس از ارسال پیام',
     'setting.afterNotification' => 'پس از ثبت اطلاعیه',
+    /******************************************************************/
+    'Lang' => 'زبان',
+    'Name' => 'عنوان',
+    'Status' => 'وضعیت',
+    'Created' => 'تاریخ ثبت',
+    'ID' => 'شناسه',
+    'Creator' => 'ایجاد کننده',
+    'Body' => 'متن',
+    'Image' => 'تصویر',
 ];

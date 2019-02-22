@@ -25,7 +25,7 @@ use app\components\customWidgets\CustomActiveForm;
 ?>
 <?= "<?php " ?>$form = CustomActiveForm::begin([
     'id' => '<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form',
-<!--    'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],-->
+    //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
     'enableAjaxValidation' => true,
     'enableClientValidation' => true,
     'validateOnSubmit' => true,

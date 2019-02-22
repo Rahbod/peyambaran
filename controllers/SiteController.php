@@ -68,7 +68,7 @@ class SiteController extends MainController
         return $this->render('index');
     }
 
-    public function actionChangeLang($language= false, $controller = false, $action= false)
+    public function actionChangeLang($language = false, $controller = false, $action = false)
     {
         if ($language) {
             Yii::$app->language = $language;
@@ -80,8 +80,12 @@ class SiteController extends MainController
             $cookie->expire = time() + (60 * 60 * 24 * 365); // (1 year)
             Yii::$app->response->cookies->add($cookie);
         }
+
+        if (!$controller)
+            return $this->redirect(Yii::$app->request->getReferrer());
+
         $url = str_replace(["/$language", "$language/"], "", Yii::$app->request->getUrl());
-        $this->redirect($url);
+        return $this->redirect($url);
     }
 
     /**

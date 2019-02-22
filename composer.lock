@@ -4,24 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "034bbfc71f61138e58d0fcceeb267368",
+    "content-hash": "521eb14d6dd0a26ad363471ca34fc7c6",
     "packages": [
         {
-            "name": "2amigos/yii2-ckeditor-widget",
-            "version": "2.1.0",
+            "name": "2amigos/yii2-tinymce-widget",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/2amigos/yii2-ckeditor-widget.git",
-                "reference": "2ba96ec670d0745b5616d2aa94d720cc7288bc08"
+                "url": "https://github.com/2amigos/yii2-tinymce-widget.git",
+                "reference": "a58b7a59a1508f4251a8cea9e010d31c9733bde4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/2amigos/yii2-ckeditor-widget/zipball/2ba96ec670d0745b5616d2aa94d720cc7288bc08",
-                "reference": "2ba96ec670d0745b5616d2aa94d720cc7288bc08",
+                "url": "https://api.github.com/repos/2amigos/yii2-tinymce-widget/zipball/a58b7a59a1508f4251a8cea9e010d31c9733bde4",
+                "reference": "a58b7a59a1508f4251a8cea9e010d31c9733bde4",
                 "shasum": ""
             },
             "require": {
-                "ckeditor/ckeditor": "~4.7.0+full",
+                "tinymce/tinymce": ">=4",
                 "yiisoft/yii2": "^2.0"
             },
             "require-dev": {
@@ -31,11 +31,14 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0-dev"
+                },
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "dosamigos\\ckeditor\\": "src"
+                    "dosamigos\\tinymce\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -50,18 +53,18 @@
                     "role": "Developer"
                 }
             ],
-            "description": "CKEditor widget for Yii2.",
-            "homepage": "http://yiiwheels.com/extension/ckeditor-widget",
+            "description": "TinyMCE widget for Yii2.",
+            "homepage": "http://yiiwheels.com/extension/tinymce-widget",
             "keywords": [
                 "2amigos",
-                "CKEditor",
                 "extension",
+                "tinymce",
                 "widget",
                 "yii",
                 "yii 2",
                 "yii2"
             ],
-            "time": "2017-06-12T18:51:26+00:00"
+            "time": "2018-11-01T20:46:52+00:00"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -261,47 +264,6 @@
                 "markdown-extra"
             ],
             "time": "2018-03-26T11:24:36+00:00"
-        },
-        {
-            "name": "ckeditor/ckeditor",
-            "version": "4.7.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "97b8f412f6b36985c734daf0717e81009a885dba"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ckeditor/ckeditor-releases/zipball/97b8f412f6b36985c734daf0717e81009a885dba",
-                "reference": "97b8f412f6b36985c734daf0717e81009a885dba",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+",
-                "LGPL-2.1+",
-                "MPL-1.1+"
-            ],
-            "authors": [
-                {
-                    "name": "CKSource",
-                    "homepage": "http://cksource.com"
-                }
-            ],
-            "description": "JavaScript WYSIWYG web text editor.",
-            "homepage": "http://ckeditor.com",
-            "keywords": [
-                "CKEditor",
-                "editor",
-                "fckeditor",
-                "html",
-                "javascript",
-                "richtext",
-                "text",
-                "wysiwyg"
-            ],
-            "time": "2017-09-13T13:09:47+00:00"
         },
         {
             "name": "creocoder/yii2-nested-sets",
@@ -602,6 +564,52 @@
                 "mailer"
             ],
             "time": "2018-07-31T09:26:32+00:00"
+        },
+        {
+            "name": "tinymce/tinymce",
+            "version": "5.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tinymce/tinymce-dist.git",
+                "reference": "3c11f7826e30ddda6da6fae18249f0b6495f371b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/3c11f7826e30ddda6da6fae18249f0b6495f371b",
+                "reference": "3c11f7826e30ddda6da6fae18249f0b6495f371b",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "tinymce.js",
+                        "plugins/*/plugin.js",
+                        "themes/*/theme.js"
+                    ],
+                    "files": [
+                        "tinymce.min.js",
+                        "plugins/*/plugin.min.js",
+                        "themes/*/theme.min.js",
+                        "skins/**"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-only"
+            ],
+            "description": "Web based JavaScript HTML WYSIWYG editor control.",
+            "homepage": "http://www.tinymce.com",
+            "keywords": [
+                "editor",
+                "html",
+                "javascript",
+                "richtext",
+                "tinymce",
+                "wysiwyg"
+            ],
+            "time": "2019-02-21T06:12:21+00:00"
         },
         {
             "name": "yiisoft/yii2",

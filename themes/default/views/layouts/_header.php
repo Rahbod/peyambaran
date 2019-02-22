@@ -604,19 +604,19 @@
                                             <div class="m-dropdown__content">
                                                 <ul class="m-nav m-nav--skin-light">
                                                     <li class="m-nav__item m-nav__item--active">
-                                                        <a href="<?= \yii\helpers\Url::to(['/admin', 'lang' => 'fa']) ?>" class="m-nav__link m-nav__link--active">
+                                                        <a href="<?= \yii\helpers\Url::to(['/fa']) ?>" class="m-nav__link m-nav__link--active">
                                                             <span class="m-nav__link-icon"><i class="flag-icon flag-icon-ir flag-icon-squared flag-icon-rounded"></i></span>
                                                             <span class="m-nav__link-title m-topbar__language-text m-nav__link-text">فارسی</span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="<?= \yii\helpers\Url::to(['/admin', 'lang' => 'ar']) ?>" class="m-nav__link">
+                                                        <a href="<?= \yii\helpers\Url::to(['/ar']) ?>" class="m-nav__link">
                                                             <span class="m-nav__link-icon"><i class="flag-icon flag-icon-sa flag-icon-squared flag-icon-rounded"></i></span>
                                                             <span class="m-nav__link-title m-topbar__language-text m-nav__link-text">عربی</span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="<?= \yii\helpers\Url::to(['/admin', 'lang' => 'en']) ?>" class="m-nav__link">
+                                                        <a href="<?= \yii\helpers\Url::to(['/en']) ?>" class="m-nav__link">
                                                             <span class="m-nav__link-icon"><i class="flag-icon flag-icon-us flag-icon-squared flag-icon-rounded"></i></span>
                                                             <span class="m-nav__link-title m-topbar__language-text m-nav__link-text">انگلیسی</span>
                                                         </a>

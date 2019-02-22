@@ -55,7 +55,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         $this->setTheme('default');
         parent::init();
     }
-/**
+
+    /**
      * {@inheritdoc}
      */
     public function behaviors()
@@ -123,8 +124,13 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             return ActiveForm::validate($model);
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', <?= $urlParams ?>]);
+        if (Yii::$app->request->post()){
+            $model->load(Yii::$app->request->post());
+            if ($model->save()) {
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->redirect(['view', <?= $urlParams ?>]);
+            }else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
         return $this->render('create', [
@@ -149,8 +155,13 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             return ActiveForm::validate($model);
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', <?= $urlParams ?>]);
+        if (Yii::$app->request->post()){
+            $model->load(Yii::$app->request->post());
+            if ($model->save()) {
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->redirect(['view', <?= $urlParams ?>]);
+            }else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [

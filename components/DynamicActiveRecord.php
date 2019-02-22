@@ -44,7 +44,7 @@ use yii\helpers\Json;
  *
  * @editor Rahbod Group < http://www.rahbod.com >
  */
-abstract class DynamicActiveRecord extends CustomActiveRecord
+class DynamicActiveRecord extends CustomActiveRecord
 {
     /**
      * Prefix for base64 encoded dynamic attribute values
