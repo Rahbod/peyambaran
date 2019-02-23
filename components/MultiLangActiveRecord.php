@@ -47,7 +47,7 @@ abstract class MultiLangActiveRecord extends DynamicActiveRecord
     public function rules()
     {
         return [
-            ['lang', 'required']
+            [['lang'], 'required']
         ];
     }
 

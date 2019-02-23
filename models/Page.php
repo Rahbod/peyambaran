@@ -36,8 +36,8 @@ class Page extends \app\models\Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
             [['body', 'image'], 'required'],
+            ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }
 

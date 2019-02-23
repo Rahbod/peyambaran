@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use devgroup\dropzone\UploadAction;
 use Yii;
 use app\models\Page;
 use app\models\PageSearch;
@@ -16,6 +17,8 @@ use yii\widgets\ActiveForm;
  */
 class PageController extends AuthController
 {
+
+
     /**
     * for set admin theme
     */
@@ -37,6 +40,17 @@ class PageController extends AuthController
                     'delete' => ['POST'],
                 ],
             ],
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'uploadImage' => [
+                'class' => UploadAction::className(),
+                'model' => new Page(),
+                'modelName' => 'Page'
+            ]
         ];
     }
 
@@ -85,7 +99,6 @@ class PageController extends AuthController
 
         if (Yii::$app->request->post()){
             $model->load(Yii::$app->request->post());
-            \app\components\dd($model->created);
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);

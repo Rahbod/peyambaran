@@ -43,14 +43,15 @@ abstract class Item extends \app\components\MultiLangActiveRecord
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['userID', 'modelID', 'name', 'created', 'status'], 'required'],
+            [['name'], 'required'],
             [['userID', 'modelID', 'status'], 'integer'],
             [['type'], 'number'],
             [['dyna', 'extra'], 'string'],
             [['name'], 'string', 'max' => 511],
             [['created'], 'string', 'max' => 20],
             ['created', 'default', 'value' => time()],
-            ['status', 'default', 'value' => 1],
+            ['userID', 'default', 'value' => Yii::$app->user->getId()],
+            ['status', 'default', 'value' => self::STATUS_PUBLISHED],
             [['userID'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userID' => 'id']],
             [['modelID'], 'exist', 'skipOnError' => true, 'targetClass' => Model::className(), 'targetAttribute' => ['modelID' => 'id']],
         ]);
