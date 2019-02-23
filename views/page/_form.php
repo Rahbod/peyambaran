@@ -17,7 +17,18 @@ use app\components\customWidgets\CustomActiveForm;
 <div class="m-portlet__body">
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
+    <?= $form->errorSummary($model) ?>
+
     <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
+
+    <?= $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(),[
+        'url' => \yii\helpers\Url::to(['uploadImage']), // upload url
+        'removeUrl' => \yii\helpers\Url::to(['deleteImage']), // upload url
+        'storedFiles' => [], // stores files
+        'options' => [
+            'maxFiles' => 1
+        ], // dropzone js options
+    ]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

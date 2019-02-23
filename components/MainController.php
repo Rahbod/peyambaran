@@ -17,6 +17,7 @@ abstract class MainController extends Controller
 {
     public $bodyClass;
     public $theme;
+    public $tmpDir = 'uploads/temp';
 
     public function init()
     {
