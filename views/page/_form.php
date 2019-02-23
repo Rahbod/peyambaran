@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Page */
@@ -21,14 +22,25 @@ use app\components\customWidgets\CustomActiveForm;
 
     <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
 
-    <?= $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(),[
-        'url' => \yii\helpers\Url::to(['uploadImage']), // upload url
-        'removeUrl' => \yii\helpers\Url::to(['deleteImage']), // upload url
-        'storedFiles' => [], // stores files
+    <?php echo $form->field($model, 'formAttachments')->widget(\devgroup\dropzone\DropZone::className(), [
+        'url' => Url::to(['uploadImage']),
+        'removeUrl' => Url::to(['deleteImage']),
+        'storedFiles' => isset($serverAttachments) ? $serverAttachments : [],
+        'sortable' => false, // sortable flag
+        'sortableOptions' => [], // sortable options
+        'htmlOptions' => ['class' => 'uploader single', 'id' => Html::getInputId($model, 'formAttachments')],
         'options' => [
-            'maxFiles' => 1
-        ], // dropzone js options
-    ]) ?>
+            'createImageThumbnails' => false,
+            'addRemoveLinks' => true,
+            'dictRemoveFile' => 'حذف',
+            'addViewLinks' => true,
+            'dictViewFile' => 'مشاهده فایل',
+            'dictDefaultMessage' => 'جهت افزودن ضمیمه کلیک کنید',
+            'acceptedFiles' => 'png, jpeg, jpg',
+            'maxFiles' => 1,
+            'maxFileSize' => 0.5,
+        ],
+    ])?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
