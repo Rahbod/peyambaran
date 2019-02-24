@@ -92,6 +92,13 @@ abstract class MainController extends Controller
                     ]
                 ],
                 [
+                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">منو</span>',
+                    'items' => [
+                        ['label' => 'لیست', 'url' => ['/menu/index']],
+                        ['label' => 'افزودن', 'url' => ['/menu/create']],
+                    ]
+                ],
+                [
                     'label' => '<i class="m-menu__link-icon flaticon-logout"></i><span class="m-menu__link-text text-danger">خروج</span>',
                     'url' => ['/admin/logout']
                 ]

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use \app\components\MultiLangActiveRecord;
 
 /**
  * This is the model class for table "item".
@@ -21,7 +22,7 @@ use Yii;
  * @property User $user
  * @property Model $model
  */
-abstract class Item extends \app\components\MultiLangActiveRecord
+abstract class Item extends MultiLangActiveRecord
 {
     const STATUS_DELETED = -1;
     const STATUS_DISABLED = 0;

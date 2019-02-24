@@ -10,7 +10,6 @@ use yii\helpers\Url;
 ?>
 <?php $form = CustomActiveForm::begin([
     'id' => 'page-form',
-    //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
     'enableAjaxValidation' => true,
     'enableClientValidation' => true,
     'validateOnSubmit' => true,
@@ -22,20 +21,20 @@ use yii\helpers\Url;
 
     <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
 
-    <?php echo $form->field($model, 'formAttachments')->widget(\devgroup\dropzone\DropZone::className(), [
+    <?php echo $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(), [
         'url' => Url::to(['uploadImage']),
         'removeUrl' => Url::to(['deleteImage']),
         'storedFiles' => isset($serverAttachments) ? $serverAttachments : [],
         'sortable' => false, // sortable flag
         'sortableOptions' => [], // sortable options
-        'htmlOptions' => ['class' => 'uploader single', 'id' => Html::getInputId($model, 'formAttachments')],
+        'htmlOptions' => ['class' => '', 'id' => Html::getInputId($model, 'image')],
         'options' => [
             'createImageThumbnails' => false,
             'addRemoveLinks' => true,
             'dictRemoveFile' => 'حذف',
             'addViewLinks' => true,
             'dictViewFile' => 'مشاهده فایل',
-            'dictDefaultMessage' => 'جهت افزودن ضمیمه کلیک کنید',
+            'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
             'acceptedFiles' => 'png, jpeg, jpg',
             'maxFiles' => 1,
             'maxFileSize' => 0.5,

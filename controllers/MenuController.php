@@ -2,27 +2,20 @@
 
 namespace app\controllers;
 
-use devgroup\dropzone\RemoveAction;
-use devgroup\dropzone\UploadAction;
-use devgroup\dropzone\UploadedFiles;
 use Yii;
-use app\models\Page;
-use app\models\PageSearch;
+use app\models\Menu;
+use app\models\MenuSearch;
 use app\components\AuthController;
-use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
- * PageController implements the CRUD actions for Page model.
+ * MenuController implements the CRUD actions for Menu model.
  */
-class PageController extends AuthController
+class MenuController extends AuthController
 {
-    public $imageDir = 'uploads/pages';
-    private $imageOptions = [];
-
     /**
     * for set admin theme
     */
@@ -30,14 +23,6 @@ class PageController extends AuthController
     {
         $this->setTheme('default');
         parent::init();
-    }
-
-    public function getSystemActions()
-    {
-        return [
-            'uploadImage',
-            'deleteImage',
-        ];
     }
 
     /**
@@ -55,34 +40,13 @@ class PageController extends AuthController
         ];
     }
 
-    public function actions()
-    {
-        return [
-            'uploadImage' => [
-                'class' => UploadAction::className(),
-                'upload' => $this->imageDir,
-                'fileName' => Html::getInputName(new Page(), 'image'),
-                'rename' => UploadAction::RENAME_UNIQUE,
-//                'validateOptions' => array(
-//                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
-//                )
-            ],
-            'removeImage' => [
-                'class' => RemoveAction::className(),
-                'model' => new Page(),
-                'storedMode' => RemoveAction::STORED_FIELD_MODE,
-                'upload' => $this->imageDir
-            ],
-        ];
-    }
-
     /**
-     * Lists all Page models.
+     * Lists all Menu models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PageSearch();
+        $searchModel = new MenuSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -92,7 +56,7 @@ class PageController extends AuthController
     }
 
     /**
-     * Displays a single Page model.
+     * Displays a single Menu model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -105,13 +69,13 @@ class PageController extends AuthController
     }
 
     /**
-     * Creates a new Page model.
+     * Creates a new Menu model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Page();
+        $model = new Menu();
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -121,9 +85,7 @@ class PageController extends AuthController
 
         if (Yii::$app->request->post()){
             $model->load(Yii::$app->request->post());
-            $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
             if ($model->save()) {
-                $image->move($this->imageDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             }else
@@ -136,7 +98,7 @@ class PageController extends AuthController
     }
 
     /**
-     * Updates an existing Page model.
+     * Updates an existing Menu model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -152,13 +114,9 @@ class PageController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
-
         if (Yii::$app->request->post()){
-            $oldImage = $model->image;
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
-                $image->update($oldImage, $model->image, $this->tmpDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             }else
@@ -171,7 +129,7 @@ class PageController extends AuthController
     }
 
     /**
-     * Deletes an existing Page model.
+     * Deletes an existing Menu model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -185,15 +143,15 @@ class PageController extends AuthController
     }
 
     /**
-     * Finds the Page model based on its primary key value.
+     * Finds the Menu model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Page the loaded model
+     * @return Menu the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Page::findOne($id)) !== null) {
+        if (($model = Menu::findOne($id)) !== null) {
             return $model;
         }
 
