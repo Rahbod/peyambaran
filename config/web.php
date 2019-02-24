@@ -13,6 +13,7 @@ use app\components\Setting;
 
 $config = [
     'id' => 'basic',
+    'name' => 'Payambaran',
     'basePath' => dirname(__DIR__),
     'language' => Setting::get('language'),
     'bootstrap' => ['log'],
