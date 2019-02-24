@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\DynamicActiveRecord;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
@@ -9,6 +10,7 @@ use Yii;
 use app\models\Page;
 use app\models\PageSearch;
 use app\components\AuthController;
+use yii\db\ActiveRecord;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -58,7 +60,7 @@ class PageController extends AuthController
     public function actions()
     {
         return [
-            'uploadImage' => [
+            'upload-image' => [
                 'class' => UploadAction::className(),
                 'upload' => $this->imageDir,
                 'fileName' => Html::getInputName(new Page(), 'image'),
@@ -67,14 +69,12 @@ class PageController extends AuthController
                     'acceptedTypes' => array('png', 'jpg', 'jpeg')
                 )
             ],
-            'removeImage' => [
+            'delete-image' => [
                 'class' => RemoveAction::className(),
-                'upload' => $this->imageDir
-            ],
-            'uploadImage' => [
-                'class' => UploadAction::className(),
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
                 'model' => new Page(),
-                'modelName' => 'Page'
+                'attribute' => 'image',
+                'upload' => $this->imageDir
             ]
         ];
     }
@@ -170,6 +170,7 @@ class PageController extends AuthController
 
         return $this->render('update', [
             'model' => $model,
+            'image' => $image,
         ]);
     }
 

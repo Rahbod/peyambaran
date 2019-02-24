@@ -30,11 +30,11 @@ class MultiLangActiveQuery extends DynamicActiveQuery
      */
     public function one($db = null)
     {
-        $class = $this->modelClass;
-        $field = $class::columnGetString('lang');
-        $this->andWhere([
-            $field => \Yii::$app->language
-        ]);
+//        $class = $this->modelClass;
+//        $field = $class::columnGetString('lang');
+//        $this->andWhere([
+//            $field => \Yii::$app->language
+//        ]);
         return parent::one($db);
     }
 }
