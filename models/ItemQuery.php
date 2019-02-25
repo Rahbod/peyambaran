@@ -24,8 +24,8 @@ class ItemQuery extends MultiLangActiveQuery
      */
     public function all($db = null)
     {
-        $this->alias('t')->addSelect('t.*')->joinWith('model')->andWhere([
-            'model.name' => $this->_modelName
+        $this->andWhere([
+            'modelID' => Model::findOne(['name' => $this->_modelName])->id
         ]);
         return parent::all($db);
     }
@@ -36,8 +36,8 @@ class ItemQuery extends MultiLangActiveQuery
      */
     public function one($db = null)
     {
-        $this->alias('t')->addSelect('t.*')->joinWith('model')->andWhere([
-            'model.name' => $this->_modelName
+        $this->andWhere([
+            'modelID' => Model::findOne(['name' => $this->_modelName])->id
         ]);
         return parent::one($db);
     }

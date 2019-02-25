@@ -65,7 +65,7 @@ abstract class Item extends MultiLangActiveRecord
     {
         return array_merge(parent::attributeLabels(), [
             'id' => Yii::t('words', 'ID'),
-            'userID' => Yii::t('words', 'creator'),
+            'userID' => Yii::t('words', 'Creator'),
             'modelID' => Yii::t('words', 'Model'),
             'type' => Yii::t('words', 'Type'),
             'name' => Yii::t('words', 'Name'),

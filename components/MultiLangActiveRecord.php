@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
  */
 abstract class MultiLangActiveRecord extends DynamicActiveRecord
 {
-    private static $langArray = [
+    public static $langArray = [
         'fa' => 'فارسی',
         'ar' => 'عربی',
         'en' => 'انگلیسی',

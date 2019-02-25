@@ -21,7 +21,8 @@
         "devgroup/yii2-dropzone": "*",
         "kartik-v/yii2-widget-select2": "@dev",
         "creocoder/yii2-nested-sets": "^0.9.0",
-        "2amigos/yii2-tinymce-widget": "~1.1"
+        "2amigos/yii2-tinymce-widget": "~1.1",
+        "sallar/jdatetime": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

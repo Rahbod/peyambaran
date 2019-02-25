@@ -22,19 +22,19 @@ use yii\helpers\Url;
     <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
 
     <?php echo $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(), [
-        'url' => Url::to(['uploadImage']),
-        'removeUrl' => Url::to(['deleteImage']),
-        'storedFiles' => isset($serverAttachments) ? $serverAttachments : [],
+        'url' => Url::to(['upload-image']),
+        'removeUrl' => Url::to(['delete-image']),
+        'storedFiles' => isset($image) ? $image : [],
         'sortable' => false, // sortable flag
         'sortableOptions' => [], // sortable options
-        'htmlOptions' => ['class' => '', 'id' => Html::getInputId($model, 'image')],
+        'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'image')],
         'options' => [
-            'createImageThumbnails' => false,
+            'createImageThumbnails' => true,
             'addRemoveLinks' => true,
             'dictRemoveFile' => 'حذف',
             'addViewLinks' => true,
-            'dictViewFile' => 'مشاهده فایل',
-            'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
+            'dictViewFile' => '',
+            'dictDefaultMessage' => 'جهت افزودن ضمیمه کلیک کنید',
             'acceptedFiles' => 'png, jpeg, jpg',
             'maxFiles' => 1,
             'maxFileSize' => 0.5,

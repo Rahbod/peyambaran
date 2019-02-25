@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <div class="m-portlet__body">
+            <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
             <!--begin: Datatable -->
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                 <?= CustomGridView::widget([

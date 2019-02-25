@@ -42,19 +42,35 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="m-portlet__body">
+        <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
         <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
                     'id',
-                    'userID',
-                    'modelID',
-                    'type',
+                    [
+                        'attribute' => 'userID',
+                        'value' => $model->user->username
+                    ],
+                    [
+                        'attribute' => 'lang',
+                        'value' => '<b>'.\app\components\MultiLangActiveRecord::$langArray[$model->lang].'</b>',
+                        'format' => 'raw',
+                    ],
                     'name',
-                    'dyna',
-                    'extra:ntext',
-                    'created',
-                    'status',
+                    [
+                        'attribute' => 'created',
+                        'value' => jDateTime::date('Y/m/d', $model->created)
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'value' => \app\models\Page::getStatusLabels($model->status)
+                    ],
+                    [
+                        'attribute' => 'body',
+                        'value' => $model->body,
+                        'format' => 'raw'
+                    ],
                 ],
             ]) ?>
         </div>

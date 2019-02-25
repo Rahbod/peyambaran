@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Page */
+/* @var $image \devgroup\dropzone\UploadedFiles */
 
 $this->title = Yii::t('words', 'Update Page: {name}', [
     'name' => $model->name,
@@ -29,7 +30,8 @@ $this->params['breadcrumbs'][] = Yii::t('words', 'Update');
     </div>
     <!--begin::Form-->
     <?= $this->render('_form', [
-    'model' => $model,
+        'model' => $model,
+        'image' => $image,
     ]) ?>
     <!--end::Form-->
 </div>
