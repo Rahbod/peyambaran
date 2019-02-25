@@ -85,17 +85,19 @@ abstract class MainController extends Controller
                 ],
                 "<li class='m-menu__section'><h4 class='m-menu__section-text'>منوی مدیریت</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
                 [
-                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">صفحات</span>',
+                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">آیتم ها</span>',
                     'items' => [
-                        ['label' => 'لیست', 'url' => ['/page/index']],
-                        ['label' => 'افزودن', 'url' => ['/page/create']],
+                        ['label' => 'مدیریت صفحات', 'url' => ['/page/index']],
+                        ['label' => 'مدیریت اسلاید', 'url' => ['/slide/index']],
+                        ['label' => 'مدیریت اشخاص', 'url' => ['/person/index']],
+                        ['label' => 'مدیریت بیمه ها', 'url' => ['/insurance/index']],
                     ]
                 ],
                 [
-                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">منو</span>',
+                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">دسته بندی ها</span>',
                     'items' => [
-                        ['label' => 'لیست', 'url' => ['/menu/index']],
-                        ['label' => 'افزودن', 'url' => ['/menu/create']],
+                        ['label' => 'مدیریت منو', 'url' => ['/menu/index']],
+                        ['label' => 'دسته بندی اخبار و مقالات', 'url' => ['/menu/index']],
                     ]
                 ],
                 [

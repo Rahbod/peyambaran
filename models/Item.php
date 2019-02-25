@@ -30,6 +30,12 @@ abstract class Item extends MultiLangActiveRecord
 
     public static $modelName = null;
 
+    public function init()
+    {
+        $this->status = 1;
+        parent::init();
+    }
+
     /**
      * {@inheritdoc}
      */

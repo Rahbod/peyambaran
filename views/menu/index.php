@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\MenuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= Yii::t('words', 'Create Menu') ?></span>
@@ -38,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <div class="m-portlet__body">
+            <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
             <!--begin: Datatable -->
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                 <?= CustomGridView::widget([
@@ -45,18 +48,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                       'id',
-                       'parentID',
-                       'type',
-                       'name',
-                       'dyna',
-                        //'extra:ntext',
-                        //'created',
-                        //'status',
-                        //'left',
-                        //'right',
-                        //'depth',
-                        //'tree',
+                        'name',
+                        'parentID',
+                        [
+                            'attribute' => 'status',
+                            'value' => function($model){
+                                return $model->status;
+                            },
+                        ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
                 ]); ?>

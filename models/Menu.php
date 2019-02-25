@@ -38,7 +38,7 @@ class Menu extends Category
     public function rules()
     {
         return array_merge(parent::rules(), [
-//            ['type', 'default', 'value' => self::$typeName]
+            ['type', 'default', 'value' => self::$typeName]
         ]);
     }
 

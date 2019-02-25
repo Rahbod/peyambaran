@@ -73,6 +73,7 @@ class Category extends MultiLangActiveRecord
     public function init()
     {
         parent::init();
+        $this->status = 1;
         self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
 
         ]);
@@ -85,12 +86,12 @@ class Category extends MultiLangActiveRecord
     {
         return array_merge(parent::rules(),[
             [['parentID', 'status', 'left', 'right', 'depth', 'tree'], 'integer'],
-            [['type', 'name', 'created', 'left', 'right', 'depth'], 'required'],
+            [['name'], 'required'],
             [['type', 'dyna', 'extra'], 'string'],
             [['created'], 'safe'],
             ['created', 'default', 'value' => time()],
+            [['left', 'right', 'depth', 'tree'], 'default', 'value' => 0],
             ['status', 'default', 'value' => self::STATUS_PUBLISHED],
-            ['type', 'default', 'value' => self::$typeName],
             [['name'], 'string', 'max' => 511],
         ]);
     }

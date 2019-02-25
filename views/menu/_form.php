@@ -17,28 +17,14 @@ use app\components\customWidgets\CustomActiveForm;
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
         <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
-
-        <?= $form->field($model, 'parentID')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Menu::find()->roots(), 'id', 'name')) ?>
-
-        <?= $form->field($model, 'type')->dropDownList([ 'cat' => 'Cat', 'tag' => 'Tag', 'lst' => 'Lst', 'mnu' => 'Mnu', ], ['prompt' => '']) ?>
-
+        <?php
+        echo $form->errorSummary($model);
+        ?>
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'dyna')->textInput() ?>
+        <?= $form->field($model, 'parentID')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Menu::find()->roots()->all(), 'id', 'name')) ?>
 
-        <?= $form->field($model, 'extra')->textarea(['rows' => 6]) ?>
-
-        <?= $form->field($model, 'created')->textInput() ?>
-
-        <?= $form->field($model, 'status')->textInput() ?>
-
-        <?= $form->field($model, 'left')->textInput() ?>
-
-        <?= $form->field($model, 'right')->textInput() ?>
-
-        <?= $form->field($model, 'depth')->textInput() ?>
-
-        <?= $form->field($model, 'tree')->textInput() ?>
+        <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
 
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">

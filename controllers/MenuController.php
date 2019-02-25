@@ -17,8 +17,8 @@ use yii\widgets\ActiveForm;
 class MenuController extends AuthController
 {
     /**
-    * for set admin theme
-    */
+     * for set admin theme
+     */
     public function init()
     {
         $this->setTheme('default');
@@ -83,12 +83,19 @@ class MenuController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
-            if ($model->save()) {
+            if (!$model->parentID && $model->makeRoot()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
-            }else
+                return $this->redirect(['index']);
+            } else if ($model->parentID) {
+                $parent = Menu::findOne($model->parentID);
+                if ($model->appendTo($parent)) {
+                    Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                    return $this->redirect(['index']);
+                } else
+                    Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -114,12 +121,12 @@ class MenuController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
