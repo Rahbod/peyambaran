@@ -4,6 +4,7 @@ namespace app\models;
 
 use creocoder\nestedsets\NestedSetsBehavior;
 use Yii;
+use \app\components\MultiLangActiveRecord;
 
 /**
  * This is the model class for table "category".
@@ -28,8 +29,19 @@ use Yii;
  *
  * @property Page[] $pages
  */
-class Category extends \app\components\MultiLangActiveRecord
+class Category extends MultiLangActiveRecord
 {
+    const STATUS_DELETED = -1;
+    const STATUS_DISABLED = 0;
+    const STATUS_PUBLISHED = 1;
+
+    const TYPE_CATEGORY = 'cat';
+    const TYPE_TAG = 'tag';
+    const TYPE_LIST = 'lst';
+    const TYPE_MENU = 'mnu';
+
+    public static $typeName = null;
+
     /**
      * {@inheritdoc}
      */
@@ -61,6 +73,7 @@ class Category extends \app\components\MultiLangActiveRecord
     public function init()
     {
         parent::init();
+        $this->status = 1;
         self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
 
         ]);
@@ -71,13 +84,16 @@ class Category extends \app\components\MultiLangActiveRecord
      */
     public function rules()
     {
-        return [
+        return array_merge(parent::rules(),[
             [['parentID', 'status', 'left', 'right', 'depth', 'tree'], 'integer'],
-            [['type', 'name', 'created', 'left', 'right', 'depth'], 'required'],
+            [['name'], 'required'],
             [['type', 'dyna', 'extra'], 'string'],
             [['created'], 'safe'],
+            ['created', 'default', 'value' => time()],
+            [['left', 'right', 'depth', 'tree'], 'default', 'value' => 0],
+            ['status', 'default', 'value' => self::STATUS_PUBLISHED],
             [['name'], 'string', 'max' => 511],
-        ];
+        ]);
     }
 
     /**
@@ -85,25 +101,20 @@ class Category extends \app\components\MultiLangActiveRecord
      */
     public function attributeLabels()
     {
-        return [
+        return array_merge(parent::attributeLabels(), [
             'id' => Yii::t('app', 'ID'),
-            'parentID' => Yii::t('app', 'Parent I D'),
-            'type' => Yii::t('app', 'ENUM:
-\'cat\': Category
-\'tag\': Tag/Taxonomy
-\'lst\': List \'mnu\': Menu'),
+            'parentID' => Yii::t('app', 'Parent ID'),
+            'type' => Yii::t('app', 'Type'),
             'name' => Yii::t('app', 'Name'),
             'dyna' => Yii::t('app', 'Dyna'),
             'extra' => Yii::t('app', 'Extra'),
             'created' => Yii::t('app', 'Created'),
-            'status' => Yii::t('app', '-1: Suspended
-0: Unpublished
-1: Published'),
+            'status' => Yii::t('app', 'Status'),
             'left' => Yii::t('app', 'Left'),
             'right' => Yii::t('app', 'Right'),
             'depth' => Yii::t('app', 'Depth'),
             'tree' => Yii::t('app', 'Tree'),
-        ];
+        ]);
     }
 
     /**

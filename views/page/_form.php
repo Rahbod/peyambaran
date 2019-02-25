@@ -10,7 +10,6 @@ use yii\helpers\Url;
 ?>
 <?php $form = CustomActiveForm::begin([
     'id' => 'page-form',
-    //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
     'enableAjaxValidation' => true,
     'enableClientValidation' => true,
     'validateOnSubmit' => true,
@@ -40,7 +39,7 @@ use yii\helpers\Url;
             'maxFiles' => 1,
             'maxFileSize' => 0.5,
         ],
-    ]) ?>
+    ])?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
