@@ -183,7 +183,10 @@ class PageController extends AuthController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
+        $image->removeAll(true);
+        $model->delete();
 
         return $this->redirect(['index']);
     }

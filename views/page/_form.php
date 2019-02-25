@@ -35,7 +35,7 @@ use yii\helpers\Url;
             'dictRemoveFile' => 'حذف',
             'addViewLinks' => true,
             'dictViewFile' => '',
-            'dictDefaultMessage' => 'جهت افزودن ضمیمه کلیک کنید',
+            'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
             'acceptedFiles' => 'png, jpeg, jpg',
             'maxFiles' => 1,
             'maxFileSize' => 0.5,

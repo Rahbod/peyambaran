@@ -10,18 +10,34 @@ namespace app\components;
  */
 class MultiLangActiveQuery extends DynamicActiveQuery
 {
+    protected $languageCondition = true;
+
     /**
      * {@inheritdoc}
      * @return DynamicActiveRecord[]|array
      */
     public function all($db = null)
     {
-        $class = $this->modelClass;
-        $field = $class::columnGetString('lang');
-        $this->andWhere([
-            $field => \Yii::$app->language
-        ]);
+        if($this->languageCondition) {
+            $class = $this->modelClass;
+            $field = $class::columnGetString('lang');
+            $this->andWhere([
+                $field => \Yii::$app->language
+            ]);
+        }
         return parent::all($db);
+    }
+
+    public function count($q = '*', $db = null)
+    {
+        if($this->languageCondition) {
+            $class = $this->modelClass;
+            $field = $class::columnGetString('lang');
+            $this->andWhere([
+                $field => \Yii::$app->language
+            ]);
+        }
+        return parent::count($q, $db);
     }
 
     /**

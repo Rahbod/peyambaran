@@ -46,15 +46,33 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                       'id',
-                       'userID',
-                       'modelID',
-                       'type',
-                       'name',
-                        //'dyna',
-                        //'extra:ntext',
-                        //'created',
-                        //'status',
+                        [
+                            'attribute' => 'userID',
+                            'value' => function($model){
+                                return $model->user->username;
+                            }
+                        ],
+                        'name',
+                        [
+                            'attribute' => 'created',
+                            'value' => function($model){
+                                return jDateTime::date('Y/m/d', $model->created);
+                            }
+                        ],
+                        [
+                            'attribute' => 'status',
+                            'value' => function($model){
+                                return \app\models\Page::getStatusLabels($model->status);
+                            },
+                            'filter'=>\app\models\Page::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'lang',
+                            'value' => function($model){
+                                return \app\models\Page::$langArray[$model->lang];
+                            },
+                            'filter'=>\app\models\Page::getStatusFilter()
+                        ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
                 ]); ?>

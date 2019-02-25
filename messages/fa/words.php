@@ -259,5 +259,12 @@ return [
     'Creator' => 'ایجاد کننده',
     'Body' => 'متن',
     'Image' => 'تصویر',
-    'Creator' => 'ایجادکننده',
+    'Avatar' => 'تصویر پروفایل',
+    'Expertise' => 'تخصص',
+    'Experience' => 'تجربه',
+    'Resume' => 'توضیحات',
+    'Full Name' => 'نام کامل',
+    'First Name' => 'نام کوچک',
+    'Sure Name' => 'نام خانوادگی',
+    'Type' => 'نوع',
 ];

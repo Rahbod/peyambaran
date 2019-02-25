@@ -23,7 +23,6 @@ class Page extends \app\models\Item
     public function init()
     {
         parent::init();
-        $this->status = 1;
         self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
             'body' => ['CHAR', ''],
             'image' => ['CHAR', ''],

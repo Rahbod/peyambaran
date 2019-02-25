@@ -85,10 +85,24 @@ abstract class MainController extends Controller
                 ],
                 "<li class='m-menu__section'><h4 class='m-menu__section-text'>منوی مدیریت</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
                 [
+                    'label' => '<i class="m-menu__link-icon far fa-images"></i><span class="m-menu__link-text">اسلایدشو</span>',
+                    'items' => [
+                        ['label' => 'لیست', 'url' => ['/slide/index']],
+                        ['label' => 'افزودن', 'url' => ['/slide/create']],
+                    ]
+                ],
+                [
                     'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">صفحات</span>',
                     'items' => [
                         ['label' => 'لیست', 'url' => ['/page/index']],
                         ['label' => 'افزودن', 'url' => ['/page/create']],
+                    ]
+                ],
+                [
+                    'label' => '<i class="m-menu__link-icon fas fa-user-md"></i><span class="m-menu__link-text">اشخاص</span>',
+                    'items' => [
+                        ['label' => 'لیست', 'url' => ['/person/index']],
+                        ['label' => 'افزودن', 'url' => ['/person/create']],
                     ]
                 ],
                 [

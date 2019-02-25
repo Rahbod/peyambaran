@@ -37,6 +37,7 @@ abstract class Item extends \app\components\MultiLangActiveRecord
         return 'item';
     }
 
+
     /**
      * {@inheritdoc}
      */
@@ -109,5 +110,14 @@ abstract class Item extends \app\components\MultiLangActiveRecord
         if (is_null($status))
             return $statusLabels;
         return $statusLabels[$status];
+    }
+
+    public static function getStatusFilter()
+    {
+        $statusLabels = [
+            self::STATUS_DISABLED => 'غیرفعال',
+            self::STATUS_PUBLISHED => 'منتشر شده',
+        ];
+        return $statusLabels;
     }
 }

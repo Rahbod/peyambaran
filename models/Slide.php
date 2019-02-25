@@ -35,8 +35,9 @@ class Slide extends \app\models\Item
     public function rules()
     {
         return array_merge(parent::rules(), [
+            [['image'], 'required'],
+            [['link'], 'string'],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
-            [['body', 'image'], 'required'],
         ]);
     }
 
@@ -46,7 +47,7 @@ class Slide extends \app\models\Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(),[
-            'body' => Yii::t('words', 'Body'),
+            'link' => Yii::t('words', 'Link'),
             'image' => Yii::t('words', 'Image'),
         ]);
     }
