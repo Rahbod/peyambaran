@@ -5,11 +5,11 @@ use app\components\customWidgets\CustomActiveForm;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Slide */
+/* @var $model app\models\Insurance */
 /* @var $form app\components\customWidgets\CustomActiveForm */
 ?>
 <?php $form = CustomActiveForm::begin([
-    'id' => 'slide-form',
+    'id' => 'insurance-form',
     //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
     'enableAjaxValidation' => true,
     'enableClientValidation' => true,
@@ -37,8 +37,10 @@ use yii\helpers\Url;
                 'maxFileSize' => 0.5,
             ],
         ]) ?>
-
+        
         <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
+
+        <?= $form->field($model, 'type')->dropDownList(\app\models\Insurance::getTypeLabels()) ?>
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

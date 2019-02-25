@@ -267,4 +267,11 @@ return [
     'First Name' => 'نام کوچک',
     'Sure Name' => 'نام خانوادگی',
     'Type' => 'نوع',
+    'Doctor' => 'پزشک',
+    'Personal' => 'پرسنل',
+    'Logo' => 'لوگو',
+    'Outpatient' => 'سرپایی',
+    'Inpatient' => 'بستری',
+    'News' => 'خبر',
+    'Article' => 'مقاله',
 ];

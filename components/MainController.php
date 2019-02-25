@@ -87,6 +87,7 @@ abstract class MainController extends Controller
                 [
                     'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">آیتم ها</span>',
                     'items' => [
+                        ['label' => 'مدیریت اخبار و مقالات', 'url' => ['/post/index']],
                         ['label' => 'مدیریت صفحات', 'url' => ['/page/index']],
                         ['label' => 'مدیریت اسلاید', 'url' => ['/slide/index']],
                         ['label' => 'مدیریت اشخاص', 'url' => ['/person/index']],

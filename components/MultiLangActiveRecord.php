@@ -32,7 +32,7 @@ abstract class MultiLangActiveRecord extends DynamicActiveRecord
     {
         $html  = Html::beginTag('div',['class' => 'row']);
         $html .= Html::beginTag('div',['class' => 'col-md-4 col-sm-6 col-xs-12']);
-        $html .= $form->field($model, 'lang')->dropDownList(self::$langArray,['class' => 'form-control']);
+        $html .= $form->field($model, 'lang')->dropDownList(self::$langArray,['class' => 'form-control m-input m-input--solid']);
         $html .= Html::endTag('div');
         $html .= Html::endTag('div');
         return $html;

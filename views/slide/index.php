@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'value' => function($model){
                                 return \app\models\Page::$langArray[$model->lang];
                             },
-                            'filter'=>\app\models\Page::getStatusFilter()
+                            'filter'=>\app\models\Page::$langArray
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],

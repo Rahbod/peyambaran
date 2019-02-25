@@ -3,16 +3,14 @@
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
-
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PersonSearch */
+/* @var $searchModel app\models\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $model \app\models\Person */
 
-$this->title = Yii::t('words', 'People');
+$this->title = Yii::t('words', 'Posts');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="person-index">
+<div class="post-index">
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,11 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
-                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create Person') ?></span>
+							<span><?= Yii::t('words', 'Create Post') ?></span>
 						</span>
                         </a>
                     </li>
@@ -49,32 +46,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                        'name',
-//                        [
-//                            'attribute' => 'type',
-//                            'value' => function ($model) {
-//                                return $model->getTypeLabel();
-//                            }
-//                        ],
-                        [
-                            'attribute' => 'expertise',
-                            'value' => function ($model) {
-                                return $model->getExpertiseLabel();
-                            }
-                        ],
-                        [
-                            'attribute' => 'created',
-                            'value' => function ($model) {
-                                return jDateTime::date('Y/m/d', $model->created);
-                            }
-                        ],
-                        [
-                            'attribute' => 'status',
-                            'value' => function ($model) {
-                                return \app\models\Page::getStatusLabels($model->status);
-                            },
-                            'filter' => \app\models\Page::getStatusFilter()
-                        ],
+                       'id',
+                       'userID',
+                       'modelID',
+                       'type',
+                       'name',
+                        //'dyna',
+                        //'extra:ntext',
+                        //'created',
+                        //'status',
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
                 ]); ?>

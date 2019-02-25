@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Page */
+/* @var $model app\models\Post */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Pages'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Posts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -43,36 +43,19 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
-        <div class="mb-4 text-center" style="display: block;overflow: hidden;width: 100%;">
-            <img class="rounded" style="overflow: hidden;border: 1px solid #ddd" src="<?= Yii::getAlias("@web/{$this->context->imageDir}/$model->image") ?>">
-        </div>
         <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    [
-                        'attribute' => 'userID',
-                        'value' => $model->user->username
-                    ],
-                    [
-                        'attribute' => 'lang',
-                        'value' => '<b>'.\app\components\MultiLangActiveRecord::$langArray[$model->lang].'</b>',
-                        'format' => 'raw',
-                    ],
+                    'id',
+                    'userID',
+                    'modelID',
+                    'type',
                     'name',
-                    [
-                        'attribute' => 'created',
-                        'value' => jDateTime::date('Y/m/d', $model->created)
-                    ],
-                    [
-                        'attribute' => 'status',
-                        'value' => \app\models\Page::getStatusLabels($model->status)
-                    ],
-                    [
-                        'attribute' => 'body',
-                        'value' => $model->body,
-                        'format' => 'raw'
-                    ],
+                    'dyna',
+                    'extra:ntext',
+                    'created',
+                    'status',
                 ],
             ]) ?>
         </div>

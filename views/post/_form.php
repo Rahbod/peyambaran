@@ -5,11 +5,11 @@ use app\components\customWidgets\CustomActiveForm;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Slide */
+/* @var $model app\models\Post */
 /* @var $form app\components\customWidgets\CustomActiveForm */
 ?>
 <?php $form = CustomActiveForm::begin([
-    'id' => 'slide-form',
+    'id' => 'post-form',
     //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
     'enableAjaxValidation' => true,
     'enableClientValidation' => true,
@@ -40,7 +40,18 @@ use yii\helpers\Url;
 
         <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
 
-        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        <div class="row">
+            <div class="col-sm-4">
+                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'type')->dropDownList(\app\models\Post::getTypeLabels()) ?>
+            </div>
+        </div>
+
+        <?= $form->field($model, 'body')->widget(\dosamigos\tinymce\TinyMce::className(), [
+            'options' => ['rows' => 6],
+        ]); ?>
 
         <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
 

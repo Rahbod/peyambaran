@@ -34,6 +34,14 @@ class Person extends \app\models\Item
         return Yii::t('words', ucfirst(self::$typeLabels[$type]));
     }
 
+    public static function getTypeLabels()
+    {
+        $lbs = [];
+        foreach (self::$typeLabels as $key => $label)
+            $lbs[$key] = Yii::t('words', ucfirst($label));
+        return $lbs;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -65,6 +73,7 @@ class Person extends \app\models\Item
             [['avatar', 'expertise'], 'required'],
             [['expertise', 'experience'], 'number'],
             [['avatar', 'link', 'resume', 'firstname', 'surename'], 'string'],
+            [['type'], 'default' , 'value' => self::TYPE_DOCTOR],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }
@@ -93,5 +102,10 @@ class Person extends \app\models\Item
     public static function find()
     {
         return new PersonQuery(get_called_class());
+    }
+
+    public function getExpertiseLabel()
+    {
+        return $this->expertise?Expertise::findOne($this->expertise):null;
     }
 }

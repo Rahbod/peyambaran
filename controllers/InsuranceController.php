@@ -6,8 +6,8 @@ use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
-use app\models\Page;
-use app\models\PageSearch;
+use app\models\Insurance;
+use yii\data\ActiveDataProvider;
 use app\components\AuthController;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
@@ -16,16 +16,16 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
- * PageController implements the CRUD actions for Page model.
+ * InsuranceController implements the CRUD actions for Insurance model.
  */
-class PageController extends AuthController
+class InsuranceController extends AuthController
 {
     public $imageDir = 'uploads/pages';
     private $imageOptions = [];
 
     /**
-    * for set admin theme
-    */
+     * for set admin theme
+     */
     public function init()
     {
         $this->setTheme('default');
@@ -61,7 +61,7 @@ class PageController extends AuthController
             'upload-image' => [
                 'class' => UploadAction::className(),
                 'upload' => $this->imageDir,
-                'fileName' => Html::getInputName(new Page(), 'image'),
+                'fileName' => Html::getInputName(new Insurance(), 'image'),
                 'rename' => UploadAction::RENAME_UNIQUE,
                 'validateOptions' => array(
                     'acceptedTypes' => array('png', 'jpg', 'jpeg')
@@ -70,7 +70,7 @@ class PageController extends AuthController
             'delete-image' => [
                 'class' => RemoveAction::className(),
                 'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new Page(),
+                'model' => new Insurance(),
                 'attribute' => 'image',
                 'upload' => $this->imageDir
             ]
@@ -78,22 +78,22 @@ class PageController extends AuthController
     }
 
     /**
-     * Lists all Page models.
+     * Lists all Insurance models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PageSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Insurance::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Page model.
+     * Displays a single Insurance model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -106,13 +106,13 @@ class PageController extends AuthController
     }
 
     /**
-     * Creates a new Page model.
+     * Creates a new Insurance model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Page();
+        $model = new Insurance();
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -137,7 +137,7 @@ class PageController extends AuthController
     }
 
     /**
-     * Updates an existing Page model.
+     * Updates an existing Insurance model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -152,7 +152,6 @@ class PageController extends AuthController
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-
         $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
 
         if (Yii::$app->request->post()){
@@ -173,7 +172,7 @@ class PageController extends AuthController
     }
 
     /**
-     * Deletes an existing Page model.
+     * Deletes an existing Insurance model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -190,15 +189,15 @@ class PageController extends AuthController
     }
 
     /**
-     * Finds the Page model based on its primary key value.
+     * Finds the Insurance model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Page the loaded model
+     * @return Insurance the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Page::findOne($id)) !== null) {
+        if (($model = Insurance::findOne($id)) !== null) {
             return $model;
         }
 

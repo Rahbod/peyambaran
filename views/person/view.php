@@ -44,18 +44,44 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
         <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+            <div class="text-center mb-4" style="display: block;overflow: hidden">
+                <img class="rounded-circle" style="display: inline-block;overflow: hidden" width="160" height="160" src="<?= Yii::getAlias("@web/{$this->context->avatarDir}/$model->avatar") ?>">
+            </div>
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'id',
-                    'userID',
-                    'modelID',
-                    'type',
-                    'name',
-                    'dyna',
-                    'extra:ntext',
-                    'created',
-                    'status',
+                    [
+                        'attribute' => 'userID',
+                        'value' => $model->user->username
+                    ],
+                    [
+                        'attribute' => 'name',
+                        'value' => '<b>'.$model->name.'</b>',
+                        'format' => 'raw',
+                    ],
+                    'firstname',
+                    'surename',
+                    [
+                        'attribute' => 'expertise',
+                        'value' => $model->getExpertiseLabel()?$model->getExpertiseLabel()->name:null,
+                    ],
+                    [
+                        'attribute' => 'experience',
+                        'value' => $model->expertise.'  سال',
+                    ],
+                    [
+                        'attribute' => 'resume',
+                        'value' => $model->resume,
+                        'format' => 'raw'
+                    ],
+                    [
+                        'attribute' => 'created',
+                        'value' => jDateTime::date('Y/m/d', $model->created)
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'value' => \app\models\Page::getStatusLabels($model->status)
+                    ],
                 ],
             ]) ?>
         </div>

@@ -28,6 +28,7 @@ use \app\components\MultiLangActiveRecord;
  * @property int $tree
  *
  * @property Page[] $pages
+ * @property Catitem[] $catitems
  */
 class Category extends MultiLangActiveRecord
 {
@@ -39,6 +40,7 @@ class Category extends MultiLangActiveRecord
     const TYPE_TAG = 'tag';
     const TYPE_LIST = 'lst';
     const TYPE_MENU = 'mnu';
+    const TYPE_EXP = 'exp';
 
     public static $typeName = null;
 
@@ -126,11 +128,40 @@ class Category extends MultiLangActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCatitems()
+    {
+        return $this->hasMany(Catitem::className(), ['catID' => 'id']);
+    }
+
+    /**
      * {@inheritdoc}
      * @return CategoryQuery the active query used by this AR class.
      */
     public static function find()
     {
         return new CategoryQuery(get_called_class());
+    }
+
+    public static function getStatusLabels($status = null)
+    {
+        $statusLabels = [
+            self::STATUS_DELETED => 'حذف شده',
+            self::STATUS_DISABLED => 'غیرفعال',
+            self::STATUS_PUBLISHED => 'منتشر شده',
+        ];
+        if (is_null($status))
+            return $statusLabels;
+        return $statusLabels[$status];
+    }
+
+    public static function getStatusFilter()
+    {
+        $statusLabels = [
+            self::STATUS_DISABLED => 'غیرفعال',
+            self::STATUS_PUBLISHED => 'منتشر شده',
+        ];
+        return $statusLabels;
     }
 }

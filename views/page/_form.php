@@ -17,10 +17,6 @@ use yii\helpers\Url;
 <div class="m-portlet__body">
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
-    <?= $form->errorSummary($model) ?>
-
-    <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
-
     <?php echo $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(), [
         'url' => Url::to(['upload-image']),
         'removeUrl' => Url::to(['delete-image']),
@@ -40,6 +36,8 @@ use yii\helpers\Url;
             'maxFileSize' => 0.5,
         ],
     ])?>
+
+    <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

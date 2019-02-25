@@ -43,6 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+        <div class="mb-4 text-center" style="display: block;overflow: hidden;width: 100%;">
+            <img class="rounded" style="max-width:90%;overflow: hidden;border: 1px solid #ddd" src="<?= Yii::getAlias("@web/{$this->context->imageDir}/$model->image") ?>">
+        </div>
         <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
             <?= DetailView::widget([
                 'model' => $model,
@@ -68,11 +71,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'link',
                         'value' => $model->link?Html::a($model->link, $model->link):null,
-                        'format' => 'raw'
-                    ],
-                    [
-                        'attribute' => 'image',
-                        'value' => Html::img(Yii::getAlias("@web/{$this->context->imageDir}/{$model->image}")),
                         'format' => 'raw'
                     ],
                 ],
