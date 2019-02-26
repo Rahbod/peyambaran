@@ -26,7 +26,7 @@ class Menu extends Category
     public function init()
     {
         parent::init();
-        self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
+        $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'menu_type' => ['INTEGER', 1],
             'link' => ['CHAR', '']
         ]);

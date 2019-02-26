@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\PictureGallery;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
@@ -35,8 +36,8 @@ class PostController extends AuthController
     public function getSystemActions()
     {
         return [
-            'uploadImage',
-            'deleteImage',
+            'upload-image',
+            'delete-image',
         ];
     }
 

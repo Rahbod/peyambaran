@@ -50,8 +50,8 @@ class SlideController extends AuthController
     public function getSystemActions()
     {
         return [
-            'uploadImage',
-            'deleteImage',
+            'upload-image',
+            'delete-image',
         ];
     }
 

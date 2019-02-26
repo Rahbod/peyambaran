@@ -5,25 +5,19 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "item".
+ *
  */
-class Expertise extends Category
+class VideoGallery extends Gallery
 {
-    public static $typeName = self::TYPE_EXP;
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return 'category';
-    }
+    public static $typeName = self::TYPE_VIDEO_GALLERY;
 
     public function init()
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-
+            'image' => ['CHAR', ''],
+            'video' => ['CHAR', '']
         ]);
     }
 
@@ -33,6 +27,7 @@ class Expertise extends Category
     public function rules()
     {
         return array_merge(parent::rules(), [
+            [['image', 'video'], 'required'],
         ]);
     }
 
@@ -42,6 +37,8 @@ class Expertise extends Category
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
+            'image' => Yii::t('words', 'Poster'),
+            'video' => Yii::t('words', 'Video'),
         ]);
     }
 }

@@ -76,7 +76,7 @@ class Category extends MultiLangActiveRecord
     {
         parent::init();
         $this->status = 1;
-        self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
+        $this->dynaDefaults = array_merge($this->dynaDefaults, [
 
         ]);
     }

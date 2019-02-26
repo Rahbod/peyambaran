@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "category".
  */
-class Lists extends \app\models\Category
+class Lists extends Category
 {
     public static $typeName = self::TYPE_LIST;
 
@@ -22,7 +22,7 @@ class Lists extends \app\models\Category
     public function init()
     {
         parent::init();
-        self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
+        $this->dynaDefaults = array_merge($this->dynaDefaults, [
 
         ]);
     }

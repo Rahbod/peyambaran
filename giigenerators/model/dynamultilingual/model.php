@@ -46,7 +46,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     public function init()
     {
         parent::init();
-        self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
+        $this->dynaDefaults = array_merge($this->dynaDefaults, [
 
         ]);
     }

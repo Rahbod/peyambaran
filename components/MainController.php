@@ -95,6 +95,13 @@ abstract class MainController extends Controller
                     ]
                 ],
                 [
+                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">گالری</span>',
+                    'items' => [
+                        ['label' => 'مدیریت تصاویر', 'url' => ['/gallery/index']],
+                        ['label' => 'مدیریت ویدئوها', 'url' => ['/gallery/index-video']],
+                    ]
+                ],
+                [
                     'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">دسته بندی ها</span>',
                     'items' => [
                         ['label' => 'مدیریت منو', 'url' => ['/menu/index']],

@@ -50,8 +50,8 @@ class PersonController extends AuthController
     public function getSystemActions()
     {
         return [
-            'uploadImage',
-            'deleteImage',
+            'upload-image',
+            'delete-image',
         ];
     }
 

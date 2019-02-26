@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "item".
  *
  */
-class Page extends \app\models\Item
+class Page extends Item
 {
     public static $modelName = 'page';
 
@@ -23,7 +23,7 @@ class Page extends \app\models\Item
     public function init()
     {
         parent::init();
-        self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
+        $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'body' => ['CHAR', ''],
             'image' => ['CHAR', ''],
         ]);
