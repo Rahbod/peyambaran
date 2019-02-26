@@ -6,17 +6,18 @@ use Yii;
 
 /**
  * This is the model class for table "item".
+ *
  */
-class Insurance extends Item
+class Gallery extends Item
 {
-    const TYPE_OUTPATIENT = 1;
-    const TYPE_INPATIENT = 2;
+    const TYPE_PICTURE_GALLERY = 1;
+    const TYPE_VIDEO_GALLERY = 2;
 
-    public static $modelName = 'insurance';
+    public static $modelName = 'gallery';
 
     public static $typeLabels = [
-        self::TYPE_OUTPATIENT => 'outpatient',
-        self::TYPE_INPATIENT => 'inpatient'
+        self::TYPE_PICTURE_GALLERY => 'Picture Gallery',
+        self::TYPE_VIDEO_GALLERY => 'Video Gallery'
     ];
 
     public function getTypeLabel($type = false)
@@ -46,7 +47,9 @@ class Insurance extends Item
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-            'image' => ['CHAR', ''],
+            'short_description' => ['CHAR', ''],
+            'body' => ['CHAR', ''],
+            'catID' => ['INTEGER', ''],
         ]);
     }
 
@@ -56,8 +59,11 @@ class Insurance extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['image'], 'required'],
+            [['short_description','catID'], 'required'],
+            [['short_description'], 'string', 'max' => 255],
+            [['body'], 'string', 'max' => 255],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
+//            [['catID'], 'exist', 'skipOnError' => false, 'targetClass' => Category::className(), 'targetAttribute' => ['catID' => 'id']],
         ]);
     }
 
@@ -67,7 +73,9 @@ class Insurance extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'image' => Yii::t('words', 'Logo'),
+            'short_description' => Yii::t('words', 'Short Description'),
+            'body' => Yii::t('words', 'Description'),
+            'catID' => Yii::t('words', 'Category'),
         ]);
     }
 

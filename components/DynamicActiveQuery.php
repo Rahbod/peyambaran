@@ -125,7 +125,7 @@ class DynamicActiveQuery extends ActiveQuery
             $this->select[] = '*';
         }
 
-        if (is_array($this->select) && (in_array('*', $this->select) || in_array($this->getTableNameAndAlias()[1].'.*', $this->select))) {
+        if (is_array($this->select) && (in_array('*', $this->select) || in_array($this->getTableNameAndAlias()[1] . '.*', $this->select))) {
             $db = $modelClass::getDb();
             $this->select[$this->_dynamicColumn] =
                 'COLUMN_JSON(' . $this->getTableNameAndAlias()[1] . '.' . $db->quoteColumnName($this->_dynamicColumn) . ')';
@@ -243,7 +243,7 @@ class DynamicActiveQuery extends ActiveQuery
         unset($this->select[$dynamicColumn]);
 
         // SQL where statement
-        $subFields = $modelClass::${$dynamicColumn . "Defaults"};
+        $subFields = (new $modelClass)->{$dynamicColumn . "Defaults"};
         if (is_array($this->where)) {
             list($tableName, $alias) = $this->getTableNameAndAlias();
             $sql = $alias . '.' . $dynamicColumn;
@@ -270,9 +270,9 @@ class DynamicActiveQuery extends ActiveQuery
         if (is_array($this->orderBy)) {
             $dynamicFieldsContainer = $modelClass::${$dynamicColumn . 'Defaults'};
             $sortableFields = [];
-            $dynamicFields = $dynamicFieldsContainer?array_keys($dynamicFieldsContainer):[];
+            $dynamicFields = $dynamicFieldsContainer ? array_keys($dynamicFieldsContainer) : [];
 
-            foreach($this->orderBy as $key => $value) {
+            foreach ($this->orderBy as $key => $value) {
                 if ($value instanceof Expression)
                     continue;
                 else
@@ -288,8 +288,9 @@ class DynamicActiveQuery extends ActiveQuery
                 if ($fields && in_array($orderByField, $fields)) {
                     try {
                         $type = $dynamicFieldsContainer[$orderByField][0];
-                    }catch(ErrorException $e){
-                        var_dump($this->orderBy, $orderByField);exit;
+                    } catch (ErrorException $e) {
+                        var_dump($this->orderBy, $orderByField);
+                        exit;
                     }
                     $this->orderBy["COLUMN_GET($dynamicColumn, '$orderByField' AS $type)"] = $this->orderBy[$orderByField];
                     unset($this->orderBy[$orderByField]);

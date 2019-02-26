@@ -63,7 +63,7 @@ class DynamicActiveRecord extends CustomActiveRecord
 
     private $_dynamicAttributes = [];
 
-    public static $dynaDefaults = [];
+    public $dynaDefaults = [];
 
     public static $dynamicColumn = 'dyna';
 
@@ -634,7 +634,7 @@ class DynamicActiveRecord extends CustomActiveRecord
     {
         $modelObject = Yii::createObject(self::className());
         $dynamicFieldName = $modelObject::dynamicColumn();
-        $dynamicDefaultValues = $modelObject::${$dynamicFieldName . 'Defaults'};
+        $dynamicDefaultValues = $modelObject->{$dynamicFieldName . 'Defaults'};
         $alias = $alias ? "`$alias`." : '';
         if ($as)
             return "COLUMN_GET({$alias}`{$dynamicFieldName}`, '{$field}' AS {$as})";

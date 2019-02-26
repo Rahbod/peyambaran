@@ -274,4 +274,10 @@ return [
     'Inpatient' => 'بستری',
     'News' => 'خبر',
     'Article' => 'مقاله',
+    'Short Description' => 'توضیح کوتاه',
+    'Description' => 'توضیحات',
+    'Thumbnail Image' => 'تصویر کوچک',
+    'Full Image' => 'تصویر کامل',
+    'Video' => 'ویدئو',
+    'Poster' => 'پوستر ویدئو',
 ];

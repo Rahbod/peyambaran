@@ -2,42 +2,27 @@
 
 namespace app\controllers;
 
-use devgroup\dropzone\RemoveAction;
-use devgroup\dropzone\UploadAction;
-use devgroup\dropzone\UploadedFiles;
 use Yii;
-use app\models\Insurance;
-use yii\data\ActiveDataProvider;
+use app\models\Message;
+use app\models\MessageSearch;
 use app\components\AuthController;
-use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
- * InsuranceController implements the CRUD actions for Insurance model.
+ * MessageController implements the CRUD actions for Message model.
  */
-class InsuranceController extends AuthController
+class MessageController extends AuthController
 {
-    public $imageDir = 'uploads/pages';
-    private $imageOptions = [];
-
     /**
-     * for set admin theme
-     */
+    * for set admin theme
+    */
     public function init()
     {
         $this->setTheme('default');
         parent::init();
-    }
-
-    public function getSystemActions()
-    {
-        return [
-            'upload-image',
-            'delete-image',
-        ];
     }
 
     /**
@@ -55,45 +40,23 @@ class InsuranceController extends AuthController
         ];
     }
 
-    public function actions()
-    {
-        return [
-            'upload-image' => [
-                'class' => UploadAction::className(),
-                'upload' => $this->imageDir,
-                'fileName' => Html::getInputName(new Insurance(), 'image'),
-                'rename' => UploadAction::RENAME_UNIQUE,
-                'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
-                )
-            ],
-            'delete-image' => [
-                'class' => RemoveAction::className(),
-                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new Insurance(),
-                'attribute' => 'image',
-                'upload' => $this->imageDir
-            ]
-        ];
-    }
-
     /**
-     * Lists all Insurance models.
+     * Lists all Message models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Insurance::find(),
-        ]);
+        $searchModel = new MessageSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Insurance model.
+     * Displays a single Message model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -106,13 +69,13 @@ class InsuranceController extends AuthController
     }
 
     /**
-     * Creates a new Insurance model.
+     * Creates a new Message model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Insurance();
+        $model = new Message();
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -122,9 +85,7 @@ class InsuranceController extends AuthController
 
         if (Yii::$app->request->post()){
             $model->load(Yii::$app->request->post());
-            $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
             if ($model->save()) {
-                $image->move($this->imageDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             }else
@@ -137,7 +98,7 @@ class InsuranceController extends AuthController
     }
 
     /**
-     * Updates an existing Insurance model.
+     * Updates an existing Message model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -152,13 +113,10 @@ class InsuranceController extends AuthController
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
 
         if (Yii::$app->request->post()){
-            $oldImage = $model->image;
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
-                $image->update($oldImage, $model->image, $this->tmpDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             }else
@@ -167,12 +125,11 @@ class InsuranceController extends AuthController
 
         return $this->render('update', [
             'model' => $model,
-            'image' => $image,
         ]);
     }
 
     /**
-     * Deletes an existing Insurance model.
+     * Deletes an existing Message model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -180,24 +137,21 @@ class InsuranceController extends AuthController
      */
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
-        $image->removeAll(true);
-        $model->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Insurance model based on its primary key value.
+     * Finds the Message model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Insurance the loaded model
+     * @return Message the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Insurance::findOne($id)) !== null) {
+        if (($model = Message::findOne($id)) !== null) {
             return $model;
         }
 

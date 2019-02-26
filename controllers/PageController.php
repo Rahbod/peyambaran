@@ -35,8 +35,8 @@ class PageController extends AuthController
     public function getSystemActions()
     {
         return [
-            'uploadImage',
-            'deleteImage',
+            'upload-image',
+            'delete-image',
         ];
     }
 

@@ -15,7 +15,7 @@ use Yii;
  * @property string $link
  *
  */
-class Person extends \app\models\Item
+class Person extends Item
 {
     const TYPE_DOCTOR = 1;
     const TYPE_PERSONAL = 2;
@@ -53,7 +53,7 @@ class Person extends \app\models\Item
     public function init()
     {
         parent::init();
-        self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
+        $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'firstname' => ['CHAR', ''],
             'surename' => ['CHAR', ''],
             'avatar' => ['CHAR', ''],

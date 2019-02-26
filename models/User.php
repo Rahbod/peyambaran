@@ -46,7 +46,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function init()
     {
         parent::init();
-        self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
+        $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'email' => ['CHAR', ''],
             'phone' => ['CHAR', ''],
             'text' => ['CHAR', ''],
@@ -106,7 +106,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
 
     public function checkPassword($attribute)
     {
-        if(!$this->validatePassword($this->oldPassword, $this->password))
+        if (!$this->validatePassword($this->oldPassword, $this->password))
             $this->addError($attribute, Yii::t('words', 'user.wrongOldPassword'));
     }
 
@@ -221,13 +221,13 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         $this->updated = date(Yii::$app->params['dbDateTimeFormat']);
-        if($this->scenario != 'delete-user' && $this->scenario != 'change_password')
+        if ($this->scenario != 'delete-user' && $this->scenario != 'change_password')
             $this->birthDate = date(Yii::$app->params['dbDateTimeFormat'], $this->birthDate);
 
         if ($this->scenario == 'change_password')
             $this->password = $this->newPassword;
 
-        if ($this->isNewRecord || $this->scenario=='change_password')
+        if ($this->isNewRecord || $this->scenario == 'change_password')
             $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
 
         $this->_old = $this->oldAttributes; // for create log
@@ -241,10 +241,10 @@ class User extends DynamicActiveRecord implements IdentityInterface
     {
         parent::afterSave($insert, $changedAttributes);
 
-        if(!$insert && $this->logging){
-            if($this->scenario == 'edit-profile')
+        if (!$insert && $this->logging) {
+            if ($this->scenario == 'edit-profile')
                 $code = Log::EVENT_USER_EDIT_PROFILE;
-            else if($this->scenario == 'delete-user')
+            else if ($this->scenario == 'delete-user')
                 $code = Log::EVENT_USER_REMOVE;
             else
                 $code = Log::EVENT_USER_EDIT;
@@ -253,14 +253,14 @@ class User extends DynamicActiveRecord implements IdentityInterface
                 Json::encode(['old' => $changedAttributes, 'new' => $this->getNewValues($changedAttributes, $this->attributes)]));
         }
 
-        if($this->scenario == 'edit-profile')
+        if ($this->scenario == 'edit-profile')
             return;
 
         if (Yii::$app->request->post('User') and $insert)
             $this->password = Yii::$app->request->post('User')['password'];
 
         if ($this->groups) {
-            if (!$insert){
+            if (!$insert) {
                 $lastRels = UserUGroup::find()->where(['userID' => $this->id])->all();
                 foreach ($lastRels as $rel)
                     $rel->delete();
@@ -278,7 +278,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function getAvatar()
     {
         $path = Yii::getAlias('@web/themes/frontend/svg/default-user.svg');
-        if(!Yii::$app->user->isGuest && $this->image && is_file(Yii::getAlias('uploads/users/avatars/') . $this->image)){
+        if (!Yii::$app->user->isGuest && $this->image && is_file(Yii::getAlias('uploads/users/avatars/') . $this->image)) {
             $path = Yii::getAlias('@web/uploads/users/avatars/');
             $path .= $this->image;
         }

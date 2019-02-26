@@ -12,7 +12,7 @@ use \app\components\MultiLangActiveRecord;
  * @property int $userID Book creator
  * @property int $modelID
  * @property string $type
- * @property string $name عنوان
+ * @property string $name
  * @property resource $dyna All fields
  * @property string $extra JSON array keeps all other options
  * @property string $created
@@ -29,6 +29,7 @@ abstract class Item extends MultiLangActiveRecord
     const STATUS_PUBLISHED = 1;
 
     public static $modelName = null;
+    public static $typeName = null;
 
     public function init()
     {

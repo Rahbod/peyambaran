@@ -31,8 +31,8 @@ class UserController extends MainController
     public function getSystemActions()
     {
         return [
-            'uploadImage',
-            'removeImage',
+            'upload-image',
+            'delete-image',
         ];
     }
 

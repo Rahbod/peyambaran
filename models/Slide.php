@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "item".
  *
  */
-class Slide extends \app\models\Item
+class Slide extends Item
 {
     public static $modelName = 'slide';
 
@@ -23,7 +23,7 @@ class Slide extends \app\models\Item
     public function init()
     {
         parent::init();
-        self::$dynaDefaults = array_merge(parent::$dynaDefaults, [
+        $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'link' => ['CHAR', ''],
             'image' => ['CHAR', ''],
         ]);
