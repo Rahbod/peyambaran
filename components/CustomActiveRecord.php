@@ -3,6 +3,7 @@
 namespace app\components;
 
 use app\models\Log;
+use app\models\Menu;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Json;
@@ -87,7 +88,7 @@ abstract class CustomActiveRecord extends ActiveRecord
             );
         /* save log process */
 
-        parent::afterDelete();
+        parent::afterFind();
     }
 
     public function getOld($changedAttributes)

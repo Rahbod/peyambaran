@@ -6,6 +6,7 @@ use Yii;
 use app\models\Menu;
 use app\models\MenuSearch;
 use app\components\AuthController;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -85,16 +86,18 @@ class MenuController extends AuthController
 
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
-            if (!$model->parentID && $model->makeRoot()) {
+            $saveResult = false;
+            $parentID = $model->parentID;
+            if ($parentID == '') {
+                $saveResult = $model->makeRoot();
+                $model->parentID = null;
+            }else {
+                $parent = Menu::findOne($parentID);
+                $saveResult = $model->prependTo($parent);
+            }
+            if ($saveResult) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index']);
-            } else if ($model->parentID) {
-                $parent = Menu::findOne($model->parentID);
-                if ($model->appendTo($parent)) {
-                    Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                    return $this->redirect(['index']);
-                } else
-                    Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }

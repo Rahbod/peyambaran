@@ -104,27 +104,35 @@ class Category extends MultiLangActiveRecord
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'id' => Yii::t('app', 'ID'),
-            'parentID' => Yii::t('app', 'Parent ID'),
-            'type' => Yii::t('app', 'Type'),
-            'name' => Yii::t('app', 'Name'),
-            'dyna' => Yii::t('app', 'Dyna'),
-            'extra' => Yii::t('app', 'Extra'),
-            'created' => Yii::t('app', 'Created'),
-            'status' => Yii::t('app', 'Status'),
-            'left' => Yii::t('app', 'Left'),
-            'right' => Yii::t('app', 'Right'),
-            'depth' => Yii::t('app', 'Depth'),
-            'tree' => Yii::t('app', 'Tree'),
+            'id' => Yii::t('words', 'ID'),
+            'parentID' => Yii::t('words', 'Parent ID'),
+            'type' => Yii::t('words', 'Type'),
+            'name' => Yii::t('words', 'Name'),
+            'dyna' => Yii::t('words', 'Dyna'),
+            'extra' => Yii::t('words', 'Extra'),
+            'created' => Yii::t('words', 'Created'),
+            'status' => Yii::t('words', 'Status'),
+            'left' => Yii::t('words', 'Left'),
+            'right' => Yii::t('words', 'Right'),
+            'depth' => Yii::t('words', 'Depth'),
+            'tree' => Yii::t('words', 'Tree'),
         ]);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPages()
+    public function getParent()
     {
-        return $this->hasMany(Page::className(), ['cat_id' => 'id']);
+        return $this->hasOne(Category::className(), ['id' => 'parentID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategories()
+    {
+        return $this->hasMany(Category::className(), ['parentID' => 'id']);
     }
 
     /**

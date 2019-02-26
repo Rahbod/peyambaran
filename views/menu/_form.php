@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
+use app\models\Menu;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Menu */
@@ -16,15 +17,37 @@ use app\components\customWidgets\CustomActiveForm;
 ]); ?>
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
-        <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
-        <?php
-        echo $form->errorSummary($model);
-        ?>
-        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'parentID')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Menu::find()->roots()->all(), 'id', 'name')) ?>
+        <div class="row">
+            <div class="col-sm-4">
+                <?= $form->field($model, 'lang')->dropDownList(Menu::$langArray, ['class' => 'form-control m-input m-input--solid']) ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'parentID')->dropDownList(Menu::parents(), [
+                    'prompt' => 'بدون والد'
+                ]) ?>
+            </div>
+        </div>
 
         <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+
+        <?php echo $form->field($model, 'content', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox(['id' => 'content-trigger'], false) ?>
+
+
+        <div class="content-box" style="display: none">
+
+            <?= $form->field($model, 'menu_type')->radioList(Menu::$menuTypeLabels, ['class' => 'menu-type']) ?>
+
+            <div class="menu-type-container type-1" style="display: none">
+                <?= $form->field($model, 'link')->dropDownList(\app\models\Page::getList(), ['class' => 'form-control m-input m-input--solid select2', 'data-live-search' => true]) ?>
+            </div>
+            <div class="menu-type-container type-2" style="display: none">2</div>
+            <div class="menu-type-container type-3" style="display: none">3</div>
+
+        </div>
 
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
@@ -34,3 +57,25 @@ use app\components\customWidgets\CustomActiveForm;
         </div>
     </div>
 <?php CustomActiveForm::end(); ?>
+
+
+<?php
+$this->registerJs('
+    if($("#content-trigger").is(":checked"))
+        $(".content-box").show();
+
+    var val = $(".menu-type input:checked").val();
+    $(".menu-type-container").not(".type-"+val).hide();
+    $(".menu-type-container.type-"+val).show();
+    
+    $("body").on("change", "#content-trigger", function(){
+        if($(this).is(":checked"))
+            $(".content-box").show();
+        else
+            $(".content-box").hide();
+    }).on("change", ".menu-type input", function(){
+        var val = $(this).val();
+        $(".menu-type-container").not(".type-"+val).hide();
+        $(".menu-type-container.type-"+val).show();
+    });
+', \yii\web\View::POS_READY, 'content-trigger');

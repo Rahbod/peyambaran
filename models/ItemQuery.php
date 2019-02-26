@@ -73,4 +73,10 @@ class ItemQuery extends MultiLangActiveQuery
 
         return parent::one($db);
     }
+
+    public function valid()
+    {
+        $this->andWhere(['status' => Item::STATUS_PUBLISHED]);
+        return $this;
+    }
 }

@@ -268,7 +268,7 @@ class DynamicActiveQuery extends ActiveQuery
 
         // SQL order by statement
         if (is_array($this->orderBy)) {
-            $dynamicFieldsContainer = $modelClass::${$dynamicColumn . 'Defaults'};
+            $dynamicFieldsContainer = (new $modelClass)->{$dynamicColumn . 'Defaults'};
             $sortableFields = [];
             $dynamicFields = $dynamicFieldsContainer ? array_keys($dynamicFieldsContainer) : [];
 

@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "item".
@@ -58,5 +60,11 @@ class Page extends Item
     public static function find()
     {
         return new ItemQuery(get_called_class());
+    }
+
+
+    public static function getList()
+    {
+        return ArrayHelper::map(Page::find()->valid()->all(), 'id', 'name');
     }
 }

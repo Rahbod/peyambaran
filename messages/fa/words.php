@@ -280,4 +280,11 @@ return [
     'Full Image' => 'تصویر کامل',
     'Video' => 'ویدئو',
     'Poster' => 'پوستر ویدئو',
+    'Parent' => 'والد',
+    'Parent ID' => 'والد',
+    'Menu Type' => 'نوع منو',
+    'Page Link' => 'والد',
+    'External Link' => 'والد',
+    'Action' => 'ماژول',
+    'Content' => 'محتوا',
 ];
