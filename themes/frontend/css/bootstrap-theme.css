@@ -68,6 +68,10 @@ a:active {
     float: left;
 }
 
+.clock-icon {
+    background-image: url("../svg/clock.svg");
+}
+
 .images-icon {
     background-image: url("../images/services_p3_2.png");
 }
