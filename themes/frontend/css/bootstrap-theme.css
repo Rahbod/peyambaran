@@ -117,11 +117,11 @@ a:active {
 }
 
 .advice-icon {
-    background-image: url("../images/services_p6_white.png");
+    background-image: url("../images/services_p6.png");
 }
 
 .advice-icon-white {
-    background-image: url("../images/services_p6.png");
+    background-image: url("../images/services_p6_white.png");
     z-index: -1;
 
 }
