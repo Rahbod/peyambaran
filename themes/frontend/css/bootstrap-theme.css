@@ -74,7 +74,7 @@ a:active {
 
 .clock-icon-white {
     background-image: url("../images/services_p1_white.png");
-    display: none;
+    z-index: -1;
 }
 
 .images-icon {
@@ -83,7 +83,7 @@ a:active {
 
 .images-icon-white {
     background-image: url("../images/services_p3_2_white.png");
-    display: none;
+    z-index: -1;
 
 }
 
@@ -93,7 +93,7 @@ a:active {
 
 .reception-icon-white {
     background-image: url("../images/services_p4_white.png");
-    display: none;
+    z-index: -1;
 
 }
 
@@ -103,7 +103,7 @@ a:active {
 
 .association-icon-white {
     background-image: url("../images/services_p5_white.png");
-    display: none;
+    z-index: -1;
 
 }
 
@@ -113,7 +113,7 @@ a:active {
 
 .advice-icon-white {
     background-image: url("../images/services_p6.png");
-    display: none;
+    z-index: -1;
 
 }
 
@@ -764,8 +764,8 @@ section .title-description {
     background-color: #7166f1;
 }
 
-.online-item-inner:hover .advice-icon-white {
-    display: block;
+.online-item-inner:hover .-hover-show {
+    z-index: 1;
 }
 
 .online-item-inner:active *,
