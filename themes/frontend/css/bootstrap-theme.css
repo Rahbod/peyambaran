@@ -66,6 +66,16 @@ a:active {
     display: inline-block;
     overflow: hidden;
     float: left;
+    position: relative;
+}
+
+.-hover-show {
+    left: 0;
+    top: 0;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    position: absolute;
 }
 
 .clock-icon {
