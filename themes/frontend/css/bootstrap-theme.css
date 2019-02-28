@@ -127,7 +127,7 @@ a:active {
 }
 
 .magnifier-icon {
-    background-image: url("../images/services_p1.png");
+    background-image: url("../images/services_p2.png");
     /*border-radius: 50%;*/
     /*background-size: 60% !important;*/
     /*background-color: #fff;*/
@@ -139,7 +139,7 @@ a:active {
 }
 
 .magnifier-icon-white {
-    background-image: url("../images/services_p1_white.png");
+    background-image: url("../images/services_p2_white.png");
 }
 
 .doctor-icon {
@@ -794,7 +794,7 @@ section .title-description {
 }
 
 .item-image-circle {
-    background-color: #7166f1;
+    /*background-color: #7166f1;*/
     width: 75px;
     height: 75px;
     border-radius: 50%;
