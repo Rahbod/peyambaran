@@ -127,15 +127,19 @@ a:active {
 }
 
 .magnifier-icon {
-    background-image: url("../svg/magnifier.svg");
-    border-radius: 50%;
-    background-size: 60% !important;
-    background-color: #fff;
-    width: 45px;
-    height: 45px;
-    display: inline-block;
-    overflow: hidden;
-    margin: 15px;
+    background-image: url("../images/services_p1.png");
+    /*border-radius: 50%;*/
+    /*background-size: 60% !important;*/
+    /*background-color: #fff;*/
+    /*width: 45px;*/
+    /*height: 45px;*/
+    /*display: inline-block;*/
+    /*overflow: hidden;*/
+    /*margin: 15px;*/
+}
+
+.magnifier-icon-white {
+    background-image: url("../images/services_p1_white.png");
 }
 
 .doctor-icon {
