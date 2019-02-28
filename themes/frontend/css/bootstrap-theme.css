@@ -66,7 +66,6 @@ a:active {
     display: inline-block;
     overflow: hidden;
     float: left;
-    position: relative;
 }
 
 .-hover-show {
@@ -798,6 +797,7 @@ section .title-description {
     display: inline-block;
     overflow: hidden;
     text-align: center;
+    position: relative;
 }
 
 .item-title {
