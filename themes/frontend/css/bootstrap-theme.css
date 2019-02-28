@@ -139,6 +139,7 @@ a:active {
 }
 
 .magnifier-icon-white {
+    z-index: -1;
     background-image: url("../images/services_p2_white.png");
 }
 
