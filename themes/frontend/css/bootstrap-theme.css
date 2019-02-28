@@ -69,23 +69,52 @@ a:active {
 }
 
 .clock-icon {
-    background-image: url("../svg/clock.svg");
+    background-image: url("../images/services_p1.png");
+}
+
+.clock-icon-white {
+    background-image: url("../images/services_p1_white.png");
+    display: none;
 }
 
 .images-icon {
     background-image: url("../images/services_p3_2.png");
 }
 
+.images-icon-white {
+    background-image: url("../images/services_p3_2_white.png");
+    display: none;
+
+}
+
 .reception-icon {
     background-image: url("../images/services_p4.png");
+}
+
+.reception-icon-white {
+    background-image: url("../images/services_p4_white.png");
+    display: none;
+
 }
 
 .association-icon {
     background-image: url("../images/services_p5.png");
 }
 
+.association-icon-white {
+    background-image: url("../images/services_p5_white.png");
+    display: none;
+
+}
+
 .advice-icon {
+    background-image: url("../images/services_p6_white.png");
+}
+
+.advice-icon-white {
     background-image: url("../images/services_p6.png");
+    display: none;
+
 }
 
 .magnifier-icon {
@@ -733,6 +762,10 @@ section .title-description {
 .online-item-inner:hover {
     color: #fff;
     background-color: #7166f1;
+}
+
+.online-item-inner:hover .advice-icon-white {
+    display: block;
 }
 
 .online-item-inner:active *,
