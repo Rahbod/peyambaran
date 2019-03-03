@@ -1,4 +1,7 @@
 <?php
+
+use \app\models\Menu;
+
 /* @var $this \yii\web\View */
 
 // echo Yii::getAlias('@web/themes/frontend/images/menu-logo.png')
@@ -50,6 +53,26 @@
     <div class="navbar-container">
         <div class="container">
             <ul class="nav navbar nav-pills">
+                <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item):?>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" data-target='#deps' href="#">
+                            <i class="icon icon-chevron-down"></i>
+                            <?= $item->name ?>
+                        </a>
+                        <div class="dropdown-menu" id="deps">
+                            <div class="container">
+                                <ul class="menu-part">
+                                    <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                        <li<?= $sub_item->children(1)->count()>0?" class='has-child'":"" ?>><a href="<?= $sub_item->url ?>" ><?= $sub_item->name ?></a></li>
+                                        <?php foreach ($sub_item->children(1)->all() as $sub_item_child): ?>
+                                            <li><a href="<?= $sub_item_child->url ?>" ><?= $sub_item_child->name ?></a></li>
+                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach;?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" data-target='#deps' href="#">
                         <i class="icon icon-chevron-down"></i>

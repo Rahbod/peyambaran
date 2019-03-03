@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Attachment;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
@@ -37,6 +38,8 @@ class PageController extends AuthController
         return [
             'upload-image',
             'delete-image',
+            'upload-attachment',
+            'delete-attachment',
         ];
     }
 
@@ -60,7 +63,6 @@ class PageController extends AuthController
         return [
             'upload-image' => [
                 'class' => UploadAction::className(),
-                'upload' => $this->imageDir,
                 'fileName' => Html::getInputName(new Page(), 'image'),
                 'rename' => UploadAction::RENAME_UNIQUE,
                 'validateOptions' => array(
@@ -73,7 +75,21 @@ class PageController extends AuthController
                 'model' => new Page(),
                 'attribute' => 'image',
                 'upload' => $this->imageDir
-            ]
+            ],
+            'upload-attachment' => [
+                'class' => UploadAction::className(),
+                'upload' => Attachment::getAttachmentPath(),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'model' => new Page(),
+                'modelName' => 'Page'
+            ],
+            'delete-attachment' => [
+                'class' => RemoveAction::className(),
+                'upload' => Attachment::getAttachmentPath(),
+                'storedMode' => RemoveAction::STORED_RECORD_MODE,
+                'model' => new Attachment(),
+                'attribute' => 'file'
+            ],
         ];
     }
 
@@ -126,7 +142,7 @@ class PageController extends AuthController
             if ($model->save()) {
                 $image->move($this->imageDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(isset($_GET['return'])?$_GET['return']:['view', 'id' => $model->id]);
             }else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -154,6 +170,7 @@ class PageController extends AuthController
         }
 
         $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
+        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments);
 
         if (Yii::$app->request->post()){
             $oldImage = $model->image;
@@ -169,6 +186,7 @@ class PageController extends AuthController
         return $this->render('update', [
             'model' => $model,
             'image' => $image,
+            'gallery' => $gallery,
         ]);
     }
 

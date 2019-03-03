@@ -47,11 +47,18 @@ class PersonController extends AuthController
         ];
     }
 
+    public function getMenuActions()
+    {
+        return [
+            'list'
+        ];
+    }
+
     public function getSystemActions()
     {
         return [
-            'upload-image',
-            'delete-image',
+            'upload-avatar',
+            'delete-avatar',
         ];
     }
 

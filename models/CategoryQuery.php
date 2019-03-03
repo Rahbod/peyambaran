@@ -38,6 +38,7 @@ class CategoryQuery extends DynamicActiveQuery
                 'type' => $this->_typeName
             ]);
         }
+        $this->orderBySort();
         return parent::all($db);
     }
 
@@ -63,5 +64,17 @@ class CategoryQuery extends DynamicActiveQuery
             ]);
         }
         return parent::one($db);
+    }
+
+    public function valid()
+    {
+        $this->andWhere(['status' => Category::STATUS_PUBLISHED])->orderBySort();
+        return $this;
+    }
+
+    public function orderBySort()
+    {
+        $this->orderBy([Category::columnGetString('sort') => SORT_ASC]);
+        return $this;
     }
 }

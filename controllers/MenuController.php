@@ -2,11 +2,14 @@
 
 namespace app\controllers;
 
+use richardfan\sortable\SortableAction;
 use Yii;
 use app\models\Menu;
 use app\models\MenuSearch;
 use app\components\AuthController;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -41,6 +44,17 @@ class MenuController extends AuthController
         ];
     }
 
+    public function actions()
+    {
+        return [
+            'sort-item' => [
+                'class' => SortableAction::className(),
+                'activeRecordClassName' => Menu::className(),
+                'orderColumn' => 'sort',
+            ],
+        ];
+    }
+
     /**
      * Lists all Menu models.
      * @return mixed
@@ -49,7 +63,7 @@ class MenuController extends AuthController
     {
         $searchModel = new MenuSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $dataProvider->pagination = false;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -91,7 +105,7 @@ class MenuController extends AuthController
             if ($parentID == '') {
                 $saveResult = $model->makeRoot();
                 $model->parentID = null;
-            }else {
+            } else {
                 $parent = Menu::findOne($parentID);
                 $saveResult = $model->prependTo($parent);
             }
@@ -117,6 +131,8 @@ class MenuController extends AuthController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $parent = $model->parents(1)->one();
+        $children = $model->children()->all();
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -126,12 +142,28 @@ class MenuController extends AuthController
 
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
-            if ($model->save()) {
+
+            $saveResult = false;
+            $parentID = $model->parentID;
+            $model->parentID = null;
+            if ($parentID == '') {
+                if ($parent)
+                    $saveResult = $model->makeRoot();
+                else
+                    $saveResult = $model->save();
+            } else {
+                $newParent = Menu::findOne($parentID);
+                $saveResult = $model->appendTo($newParent);
+            }
+
+            if ($saveResult) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
+        if ($parent)
+            $model->parentID = $parent->id;
 
         return $this->render('update', [
             'model' => $model,
@@ -147,7 +179,14 @@ class MenuController extends AuthController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $result = $this->findModel($id);
+        $result = $result->deleteWithChildren();
+
+        if ($result === false)
+            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
+        else
+            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
+
 
         return $this->redirect(['index']);
     }

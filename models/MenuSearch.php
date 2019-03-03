@@ -73,6 +73,8 @@ class MenuSearch extends Menu
             ->andFilterWhere(['like', 'dyna', $this->dyna])
             ->andFilterWhere(['like', 'extra', $this->extra]);
 
+        $query->orderBy([self::columnGetString('sort') => SORT_ASC]);
+
         return $dataProvider;
     }
 }

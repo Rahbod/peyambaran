@@ -43,18 +43,48 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
             <!--begin: Datatable -->
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                <?= CustomGridView::widget([
+                <?= \richardfan\sortable\SortableGridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
+                    'sortUrl' => \yii\helpers\Url::to(['sort-item']),
                     'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
+                        [
+                            'header' => '',
+                            'value' => function(){
+                                return '<i class="handle"></i>';
+                            },
+                            'format' => 'raw',
+                            'contentOptions' => ['class' => 'handle-container'],
+                            'headerOptions' => ['class' => 'handle-container'],
+                        ],
                         'name',
-                        'parentID',
+                        [
+                            'attribute' => 'parentID',
+                            'value' => function($model){
+                                return $model->parent?"<b>{$model->parent->name}</b>":'-';
+                            },
+                            'filter' => \app\models\Menu::parents(),
+                            'format' => 'raw'
+                        ],
+                        [
+                            'attribute' => 'menu_type',
+                            'value' => function($model){
+                                return $model->getMenuTypeLabel();
+                            },
+                        ],
+                        [
+                            'header' => Yii::t('words', 'Link'),
+                            'value' => function($model){
+                                return $model->getUrl()!= "#"?Html::a(Yii::t('words', 'show'), $model->getUrl(), ['target' => '_blank']):'-';
+                            },
+                            'format' => 'raw'
+                        ],
                         [
                             'attribute' => 'status',
                             'value' => function($model){
-                                return $model->status;
+                                return $model->getStatusLabel();
                             },
+                            'filter' => \app\models\Menu::getStatusFilter()
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
@@ -62,5 +92,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+    <?php
+//    var_dump(\yii\helpers\ArrayHelper::map(\app\models\Menu::find()->roots()->all(), 'url', 'name'));exit;
+    ?>
     <?php Pjax::end(); ?>
 </div>

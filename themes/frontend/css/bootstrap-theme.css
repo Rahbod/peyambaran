@@ -398,7 +398,7 @@ header .logo img {
 .navbar .dropdown-menu .menu-part>li>a{
     display: inline-block;
 }
-.navbar .dropdown-menu .menu-part>li:not(:first-of-type)>a{
+.navbar .dropdown-menu .menu-part>li:not(.has-child)>a{
     color: #606060;
     position: relative;
     -webkit-transition: all 0.2s ease-in-out;
@@ -408,12 +408,13 @@ header .logo img {
     transition: all 0.2s ease-in-out;
     border-bottom: 1px solid transparent;
 }
-.navbar .dropdown-menu .menu-part>li:first-of-type>a{
+.navbar .dropdown-menu .menu-part>li.has-child>a{
     font-size: 16px;
     font-weight: bold;
     color: #606060;
+    cursor: default;
 }
-.navbar .dropdown-menu .menu-part>li>a:before{
+.navbar .dropdown-menu .menu-part>li:not(.has-child)>a:before{
     content: "\f053";
     font-family: FontAwesome !important;
     color: #3f8dfa;
@@ -429,9 +430,9 @@ header .logo img {
     transition: all 0.2s ease-in-out;
 }
 .navbar .dropdown-menu .menu-part>li.active>a,
-.navbar .dropdown-menu .menu-part>li>a:focus,
-.navbar .dropdown-menu .menu-part>li>a:active,
-.navbar .dropdown-menu .menu-part>li>a:hover{
+.navbar .dropdown-menu .menu-part>li:not(.has-child)>a:focus,
+.navbar .dropdown-menu .menu-part>li:not(.has-child)>a:active,
+.navbar .dropdown-menu .menu-part>li:not(.has-child)>a:hover{
     color: #3f8dfa;
     border-bottom-color: #3f8dfa;
     font-weight: bold;

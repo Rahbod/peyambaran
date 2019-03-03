@@ -79,4 +79,6 @@ return [
     'setting' => 'تنظیمات',
     'changeStatus' => 'تایید نظر',
     'read' => 'خواندن',
+    'person' => 'ماژول پزشکان',
+    'person.list' => 'لیست پزشکان',
 ];

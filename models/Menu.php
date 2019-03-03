@@ -2,10 +2,23 @@
 
 namespace app\models;
 
+use app\components\MainController;
+use app\controllers\MenuController;
 use Yii;
+use yii\base\ViewContextInterface;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
 /**
  * This is the model class for table "category".
+ *
+ * @property boolean $content
+ * @property int $menu_type
+ * @property int $page_id
+ * @property string $action_name
+ * @property string $external_link
+ *
  */
 class Menu extends Category
 {
@@ -35,7 +48,9 @@ class Menu extends Category
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'content' => ['INTEGER', ''],
             'menu_type' => ['INTEGER', ''],
-            'link' => ['CHAR', '']
+            'page_id' => ['INTEGER', ''],
+            'action_name' => ['CHAR', ''],
+            'external_link' => ['CHAR', '']
         ]);
     }
 
@@ -46,6 +61,9 @@ class Menu extends Category
     {
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
+            [['menu_type', 'page_id'], 'integer'],
+            [['external_link'], 'url'],
+            [['action_name', 'external_link'], 'string'],
             ['content', 'default', 'value' => 0]
         ]);
     }
@@ -57,8 +75,10 @@ class Menu extends Category
     {
         return array_merge(parent::attributeLabels(), [
             'menu_type' => Yii::t('words', 'Menu Type'),
-            'link' => Yii::t('words', 'Link'),
             'content' => Yii::t('words', 'Content'),
+            'page_id' => Yii::t('words', 'Page Name'),
+            'action_name' => Yii::t('words', 'Module Name'),
+            'external_link' => Yii::t('words', 'External Link')
         ]);
     }
 
@@ -90,8 +110,8 @@ class Menu extends Category
     public function getMenuTypeLabel($type = false)
     {
         if (!$type)
-            $type = $this->type;
-        return Yii::t('words', ucfirst(self::$menuTypeLabels[$type]));
+            $type = $this->menu_type;
+        return $type?Yii::t('words', ucfirst(self::$menuTypeLabels[$type])):'-';
     }
 
     public static function getMenuTypeLabels()
@@ -100,5 +120,64 @@ class Menu extends Category
         foreach (self::$menuTypeLabels as $key => $label)
             $lbs[$key] = Yii::t('words', ucfirst($label));
         return $lbs;
+    }
+
+    /**
+     * @param $context ViewContextInterface|MainController
+     * @param $model Menu
+     * @param $attribute string
+     * @param $form ActiveForm
+     *
+     * @return string
+     * @throws \ReflectionException
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function renderMenuActionsSelect($context, $model, $attribute, $options = [], $form = false)
+    {
+        $validControllers = [
+            'app\controllers\PostController',
+            'app\controllers\PersonController',
+        ];
+        $controllers = $context->getAllActions($validControllers, [], true);
+        $controllers = $context->prepareForSelect($controllers);
+
+        $selection = $model->isNewRecord ? null : $model->$attribute;
+
+        Html::addCssClass($options, 'form-control');
+        $options['name'] = Html::getInputName($model, $attribute);
+
+        $html = Html::beginTag('div', ['class' => 'form-group m-form__group']);
+        if ($form)
+            $html .= $form->field($model, $attribute, ['template' => '{label}'])->label();
+        $html .= Html::beginTag('select', $options);
+        foreach ($controllers as $controller => $actions) {
+            $html .= Html::beginTag('optgroup', ['label' => Yii::t('actions', $controller)]);
+            $html .= Html::renderSelectOptions($selection, $actions);
+            $html .= Html::endTag('optgroup');
+        }
+        $html .= Html::endTag('select');
+        if ($form)
+            $html .= $form->field($model, $attribute, ['template' => '{error}'])->error();
+        $html .= Html::endTag('div');
+
+        return $html;
+    }
+
+    public function getUrl()
+    {
+        switch ($this->menu_type) {
+            case self::MENU_TYPE_PAGE_LINK:
+                $page = Page::findOne($this->page_id);
+                if (!$page)
+                    return '#';
+                return $page->getUrl();
+            case self::MENU_TYPE_ACTION:
+                $url = str_replace('@', '/', $this->action_name);
+                return Url::to(["/$url"]);
+            case self::MENU_TYPE_EXTERNAL_LINK:
+                return $this->external_link;
+            default:
+                return '#';
+        }
     }
 }
