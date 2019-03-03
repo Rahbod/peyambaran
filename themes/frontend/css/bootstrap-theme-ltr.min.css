@@ -174,3 +174,37 @@ section .form-container input[type="submit"], .bottom-section .form-container .c
 .content-header {
     direction: ltr;
 }
+
+.content-header__titles {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+.table-responsive {
+    direction: ltr;
+}
+
+th {
+    text-align: left;
+}
+
+.table tr td:first-of-type:before {
+    right: auto;
+    left: 0;
+}
+
+.table tr td:first-of-type {
+    padding-right: 5px;
+    padding-left: 15px;
+    border-radius: 6px 0 0 6px;
+}
+
+.table tr td:last-of-type {
+    border-radius: 0 6px 6px 0;
+}
+
+.content-footer__linkText {
+    float: left;
+    margin-right: 5px;
+}
+
