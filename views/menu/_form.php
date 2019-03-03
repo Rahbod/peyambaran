@@ -39,14 +39,26 @@ use app\models\Menu;
 
         <div class="content-box" style="display: none">
 
-            <?= $form->field($model, 'menu_type')->radioList(Menu::$menuTypeLabels, ['class' => 'menu-type']) ?>
+            <?= $form->field($model, 'menu_type')->radioList(Menu::$menuTypeLabels, ['class' => 'menu-type', 'separator' => '<br>']) ?>
 
             <div class="menu-type-container type-1" style="display: none">
-                <?= $form->field($model, 'link')->dropDownList(\app\models\Page::getList(), ['class' => 'form-control m-input m-input--solid select2', 'data-live-search' => true]) ?>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <?= $form->field($model, 'page_id')->dropDownList(\app\models\Page::getList(), ['class' => 'form-control m-input m-input--solid select2', 'data-live-search' => true]) ?>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group m-form__group">
+                            <?= Html::a('<i class="fa fa-plus"></i> صفحه جدید', ['/page/create', 'return' => Yii::$app->request->url], ['encode' => false, 'class' => 'btn btn-info']) ?>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="menu-type-container type-2" style="display: none">2</div>
-            <div class="menu-type-container type-3" style="display: none">3</div>
-
+            <div class="menu-type-container type-2" style="display: none">
+                <?= Menu::renderMenuActionsSelect($this->context, $model, 'action_name', ['class' => 'form-control m-input m-input--solid'], $form) ?>
+            </div>
+            <div class="menu-type-container type-3" style="display: none">
+                <?= $form->field($model, 'external_link')->textInput() ?>
+            </div>
         </div>
 
     </div>

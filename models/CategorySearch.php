@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Menu;
+use app\models\Category;
 
 /**
- * MenuSearch represents the model behind the search form of `app\models\Menu`.
+ * CategorySearch represents the model behind the search form of `app\models\Category`.
  */
-class MenuSearch extends Menu
+class CategorySearch extends Category
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class MenuSearch extends Menu
      */
     public function search($params)
     {
-        $query = Menu::find();
+        $query = Category::find();
 
         // add conditions that should always apply here
 
@@ -60,7 +60,6 @@ class MenuSearch extends Menu
         $query->andFilterWhere([
             'id' => $this->id,
             'parentID' => $this->parentID,
-            'created' => $this->created,
             'status' => $this->status,
             'left' => $this->left,
             'right' => $this->right,
@@ -71,9 +70,8 @@ class MenuSearch extends Menu
         $query->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'dyna', $this->dyna])
-            ->andFilterWhere(['like', 'extra', $this->extra]);
-
-        $query->orderBy([self::columnGetString('sort') => SORT_ASC]);
+            ->andFilterWhere(['like', 'extra', $this->extra])
+            ->andFilterWhere(['like', 'created', $this->created]);
 
         return $dataProvider;
     }

@@ -47,7 +47,7 @@ class Page extends Item
      */
     public function attributeLabels()
     {
-        return array_merge(parent::attributeLabels(),[
+        return array_merge(parent::attributeLabels(), [
             'body' => Yii::t('words', 'Body'),
             'image' => Yii::t('words', 'Image'),
         ]);
@@ -66,5 +66,10 @@ class Page extends Item
     public static function getList()
     {
         return ArrayHelper::map(Page::find()->valid()->all(), 'id', 'name');
+    }
+
+    public function getUrl()
+    {
+        return Url::to(['/page/view', 'id' => $this->id, 'title' => urlencode($this->name)]);
     }
 }

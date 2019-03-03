@@ -2,28 +2,21 @@
 
 namespace app\controllers;
 
-use app\models\Attachment;
-use devgroup\dropzone\RemoveAction;
-use devgroup\dropzone\UploadAction;
-use devgroup\dropzone\UploadedFiles;
+use richardfan\sortable\SortableAction;
 use Yii;
-use app\models\Page;
-use app\models\PageSearch;
+use app\models\Category;
+use app\models\CategorySearch;
 use app\components\AuthController;
-use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
- * PageController implements the CRUD actions for Page model.
+ * CategoryController implements the CRUD actions for Category model.
  */
-class PageController extends AuthController
+class CategoryController extends AuthController
 {
-    public $imageDir = 'uploads/pages';
-    private $imageOptions = [];
-
     /**
     * for set admin theme
     */
@@ -31,16 +24,6 @@ class PageController extends AuthController
     {
         $this->setTheme('default');
         parent::init();
-    }
-
-    public function getSystemActions()
-    {
-        return [
-            'upload-image',
-            'delete-image',
-            'upload-attachment',
-            'delete-attachment',
-        ];
     }
 
     /**
@@ -61,46 +44,23 @@ class PageController extends AuthController
     public function actions()
     {
         return [
-            'upload-image' => [
-                'class' => UploadAction::className(),
-                'fileName' => Html::getInputName(new Page(), 'image'),
-                'rename' => UploadAction::RENAME_UNIQUE,
-                'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
-                )
-            ],
-            'delete-image' => [
-                'class' => RemoveAction::className(),
-                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new Page(),
-                'attribute' => 'image',
-                'upload' => $this->imageDir
-            ],
-            'upload-attachment' => [
-                'class' => UploadAction::className(),
-                'upload' => Attachment::getAttachmentPath(),
-                'rename' => UploadAction::RENAME_UNIQUE,
-                'model' => new Page(),
-                'modelName' => 'Page'
-            ],
-            'delete-attachment' => [
-                'class' => RemoveAction::className(),
-                'upload' => Attachment::getAttachmentPath(),
-                'storedMode' => RemoveAction::STORED_RECORD_MODE,
-                'model' => new Attachment(),
-                'attribute' => 'file'
+            'sort-item' => [
+                'class' => SortableAction::className(),
+                'activeRecordClassName' => Category::className(),
+                'orderColumn' => 'sort',
             ],
         ];
     }
 
     /**
-     * Lists all Page models.
+     * Lists all Category models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PageSearch();
+        $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = false;
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -109,7 +69,7 @@ class PageController extends AuthController
     }
 
     /**
-     * Displays a single Page model.
+     * Displays a single Category model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -122,13 +82,13 @@ class PageController extends AuthController
     }
 
     /**
-     * Creates a new Page model.
+     * Creates a new Category model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Page();
+        $model = new Category();
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -138,11 +98,18 @@ class PageController extends AuthController
 
         if (Yii::$app->request->post()){
             $model->load(Yii::$app->request->post());
-            $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
-            if ($model->save()) {
-                $image->move($this->imageDir);
+            $saveResult = false;
+            $parentID = $model->parentID;
+            if ($parentID == '') {
+                $saveResult = $model->makeRoot();
+                $model->parentID = null;
+            } else {
+                $parent = Category::findOne($parentID);
+                $saveResult = $model->prependTo($parent);
+            }
+            if ($saveResult) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(isset($_GET['return'])?$_GET['return']:['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id]);
             }else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -153,7 +120,7 @@ class PageController extends AuthController
     }
 
     /**
-     * Updates an existing Page model.
+     * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -169,14 +136,9 @@ class PageController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
-        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments);
-
         if (Yii::$app->request->post()){
-            $oldImage = $model->image;
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
-                $image->update($oldImage, $model->image, $this->tmpDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             }else
@@ -185,13 +147,11 @@ class PageController extends AuthController
 
         return $this->render('update', [
             'model' => $model,
-            'image' => $image,
-            'gallery' => $gallery,
         ]);
     }
 
     /**
-     * Deletes an existing Page model.
+     * Deletes an existing Category model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -199,24 +159,21 @@ class PageController extends AuthController
      */
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
-        $image->removeAll(true);
-        $model->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Page model based on its primary key value.
+     * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Page the loaded model
+     * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Page::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null) {
             return $model;
         }
 

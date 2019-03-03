@@ -5,13 +5,13 @@ use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\MenuSearch */
+/* @var $searchModel app\models\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Menus');
+$this->title = Yii::t('words', 'Categorys');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="menu-index">
+<div class="category-index">
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create Menu') ?></span>
+							<span><?= Yii::t('words', 'Create Category') ?></span>
 						</span>
                         </a>
                     </li>
@@ -63,28 +63,21 @@ $this->params['breadcrumbs'][] = $this->title;
                             'value' => function($model){
                                 return $model->parent?"<b>{$model->parent->name}</b>":'-';
                             },
-                            'filter' => \app\models\Menu::parents(),
+                            'filter' => \app\models\Category::parents(),
                             'format' => 'raw'
                         ],
                         [
-                            'attribute' => 'menu_type',
+                            'attribute' => 'category_type',
                             'value' => function($model){
-                                return $model->getMenuTypeLabel();
+                                return $model->getCategoryTypeLabel($model->category_type);
                             },
-                        ],
-                        [
-                            'header' => Yii::t('words', 'Link'),
-                            'value' => function($model){
-                                return $model->getUrl()!= "#"?Html::a(Yii::t('words', 'show'), $model->getUrl(), ['target' => '_blank']):'-';
-                            },
-                            'format' => 'raw'
                         ],
                         [
                             'attribute' => 'status',
                             'value' => function($model){
                                 return $model->getStatusLabel();
                             },
-                            'filter' => \app\models\Menu::getStatusFilter()
+                            'filter' => \app\models\Category::getStatusFilter()
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
@@ -93,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <?php
-//    var_dump(\yii\helpers\ArrayHelper::map(\app\models\Menu::find()->roots()->all(), 'url', 'name'));exit;
+//    var_dump(\yii\helpers\ArrayHelper::map(\app\models\Category::find()->roots()->all(), 'url', 'name'));exit;
     ?>
     <?php Pjax::end(); ?>
 </div>

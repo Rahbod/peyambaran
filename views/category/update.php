@@ -3,14 +3,12 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Page */
-/* @var $image \devgroup\dropzone\UploadedFiles */
-/* @var $gallery \devgroup\dropzone\UploadedFiles */
+/* @var $model app\models\Category */
 
-$this->title = Yii::t('words', 'Update Page: {name}', [
+$this->title = Yii::t('words', 'Update Category: {name}', [
     'name' => $model->name,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Pages'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Categorys'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('words', 'Update');
 ?>
@@ -31,9 +29,7 @@ $this->params['breadcrumbs'][] = Yii::t('words', 'Update');
     </div>
     <!--begin::Form-->
     <?= $this->render('_form', [
-        'model' => $model,
-        'image' => $image,
-        'gallery' => $gallery,
+    'model' => $model,
     ]) ?>
     <!--end::Form-->
 </div>
