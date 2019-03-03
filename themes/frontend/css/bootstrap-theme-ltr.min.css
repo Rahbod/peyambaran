@@ -74,4 +74,6 @@ header .logo {
     content: "\f054";
 }
 /*-------------------------- section news and articles*/
-/*.texture-bg health-texture*/
+.insurance-title-container {
+    direction: ltr;
+}
