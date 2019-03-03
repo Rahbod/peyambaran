@@ -1,0 +1,171 @@
+header div[class^="col-"] {
+    float: right !important;
+    text-align: right;
+}
+
+header > .container {
+    margin-bottom: 10px;
+}
+
+header .logo {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbar {
+    float: left;
+}
+
+.nav-pills > li {
+    float: left;
+}
+
+.navbar .dropdown-menu .container {
+    direction: ltr;
+    text-align: left;
+}
+
+.navbar .dropdown-menu .menu-part > li > a:before {
+    content: "\f054";
+    left: -15px;
+}
+
+/*-------------------------- section : slider-container*/
+.slider .slide-item .over-slide-inner {
+    text-align: left;
+    margin-left: auto;
+}
+
+.slider .slide-item img {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+/**/
+@media (min-width: 1200px) {
+    /*.circle-texture div[class^="col-"],*/
+    /*.insurance-container div[class^="col-"],*/
+    /*.gallery-container div[class^="col-"],*/
+    /*.bottom-section div[class^="col-"] ,*/
+    /*.bottom-section form .form-row div[class^="col-"]*/
+    .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6,
+    .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+        float: left;
+        text-align: left;
+
+    }
+}
+
+.item-image {
+    text-align: right;
+}
+
+.item-description {
+    direction: ltr;
+}
+
+/*---------------------------- sectio : insurance-container*/
+.insurance-box .insurance-item {
+    float: left;
+}
+
+.insurance-btn-box ul > li a {
+    padding-right: 30px;
+    padding-left: 10px;
+}
+
+.insurance-btn-box ul > li a i {
+    right: 15px;
+    left: auto;
+}
+
+.insurance-btn-box ul > li a i.icon-chevron-left:before {
+    content: "\f054";
+}
+
+/*-------------------------- section news and articles*/
+.insurance-title-container {
+    direction: ltr;
+}
+
+.gallery-item-details .item-image-big {
+    float: left;
+}
+
+.gallery-item-details .gallery-details {
+    float: left;
+    padding-left: 40px;
+}
+
+.gallery-item .item-image {
+    float: left;
+    text-align: left;
+}
+
+.gallery-item .item-details {
+    float: left;
+    padding: 0 0 0 15px;
+}
+
+.gallery-item .item-details p {
+    direction: ltr;
+}
+
+.bottom-section .form-container {
+    float: left;
+    padding-right: 70px;
+    direction: ltr;
+}
+
+.bottom-section .info-container {
+    float: right;
+    padding-left: 70px;
+    border-right: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.33);
+    direction: ltr;
+    padding-top: 0;
+
+}
+
+.bottom-section .form-container .captcha img {
+    border-radius: 10px 0px 0px 10px;
+    width: 90px;
+}
+
+.bottom-section .form-container .captcha a::before {
+    border-radius: 0 10px 10px 0;
+}
+
+.bottom-section .form-container .captcha a {
+    left: 105px;
+    right: auto;
+}
+
+section .form-container input[type="submit"], .bottom-section .form-container .captcha input {
+    margin-right: auto;
+    margin-left: 50px;
+}
+
+.bottom-section .info-container .icon {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    margin-left: auto;
+}
+
+.certificate-block h3 {
+    width: 100%;
+}
+
+.footer-section .footer-block {
+    float: left;
+    text-align: left;
+    padding-left: 0;
+}
+
+.footer-section .footer-block:first-child {
+    padding-right: 20px;
+}

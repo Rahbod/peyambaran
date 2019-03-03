@@ -14,7 +14,9 @@
     <link type="text/css" rel="stylesheet" href="css/global.css">
     <link type="text/css" rel="stylesheet" href="js/vendors/icomoon/style.css">
     <link type="text/css" rel="stylesheet" href="css/clinic-program.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-theme-ltr.min.css">
 
+    <link rel="icon" href="images/fav-icons/hand-with-heart.jpg">
 
     <style>
         body {
@@ -22,13 +24,9 @@
             top: 68px;
             bottom: 89px;
         }
-
         .content-header {
             margin-bottom: 90px;
         }
-
-
-
     </style>
 </head>
 <body>
@@ -37,10 +35,10 @@
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
                 <div class="dropdown language-select">
-                    <label>Language</label>
+                    <!--<label>Language</label>-->
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="icon icon-chevron-down"></span>
-                        eng
+                        en
                         <span class="language-icon"></span>
                     </button>
                     <ul class="dropdown-menu">
@@ -51,15 +49,15 @@
                 </div>
                 <a href="#" class="btn btn-green btn-sm" data-toggle="modal" target="#signup">
                     <i class="user-icon"></i>
-                    ثبت نام
+                    sign up
                 </a>
                 <a href="#" class="btn btn-purple btn-sm" data-toggle="modal" target="#login">
                     <i class="user-icon"></i>
-                    ورود
+                    log in
                 </a>
                 <form class="search-form">
                     <div class="input-group search-container">
-                        <input class="form-control" placeholder="متن جستجو">
+                        <input class="form-control" placeholder="search query">
                         <span class="input-group-addon">
                             <button type="submit" class="search-btn"><i class="search-icon"></i></button>
                         </span>
@@ -69,7 +67,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
                 <img src="images/bg-white-logo.png">
                 <div class="logo-right">
-                    <h1>بیمارســتان پیامبران</h1>
+                    <h1>Payambaran Hospital</h1>
                     <h2>Payambaran</h2>
                     <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
                 </div>
@@ -82,59 +80,58 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" data-target='#deps' href="#">
                         <i class="icon icon-chevron-down"></i>
-                        بخش های بیمارستان
+                        Hospital Departments
                     </a>
                     <div class="dropdown-menu" id="deps">
                         <div class="container">
                             <ul class="menu-part">
-                                <li><a href="#">بستری</a></li>
-                                <li><a href="#">لاله</a></li>
-                                <li><a href="#">ارکیده</a></li>
-                                <li><a href="#">یاس</a></li>
-                                <li><a href="#">شبنم</a></li>
-                                <li><a href="#">شکوفه</a></li>
-                                <li><a href="#">نیلوفر</a></li>
-                                <li><a href="#">شقایق</a></li>
-                                <li><a href="#">غزال</a></li>
-                                <li><a href="#">سپیده</a></li>
-                                <li><a href="#">سوئیت</a></li>
+                                <li><a href="#">Hospitalization</a></li>
+                                <li><a href="#">Tulip</a></li>
+                                <li><a href="#">Orchid</a></li>
+                                <li><a href="#">Jasmine</a></li>
+                                <li><a href="#">Dew</a></li>
+                                <li><a href="#">Blossom</a></li>
+                                <li><a href="#">Lilies</a></li>
+                                <li><a href="#">Anemone</a></li>
+                                <li><a href="#">Deer</a></li>
+                                <li><a href="#">Dawn</a></li>
+                                <li><a href="#">Suite</a></li>
                             </ul>
                             <ul class="menu-part">
-                                <li><a href="#">جراحی</a></li>
-                                <li><a href="#">اتاق عمل قلب</a></li>
-                                <li><a href="#">اتاق عمل جنرال</a></li>
-                                <li><a href="#">اتاق عمل قلب</a></li>
-                                <li><a href="#">اتاق عمل جنرال</a></li>
+                                <li><a href="#">Surgery</a></li>
+                                <li><a href="#">Heart Surgery Room</a></li>
+                                <li><a href="#">Public Surgery Room</a></li>
+
                             </ul>
                             <ul class="menu-part">
-                                <li><a href="#">مراقبت های ویژه</a></li>
+                                <li><a href="#">intensive care</a></li>
                                 <li><a href="#">ICU</a></li>
                                 <li><a href="#">ICU.OH</a></li>
                                 <li><a href="#">CCU</a></li>
                                 <li><a href="#">NICU</a></li>
                             </ul>
                             <ul class="menu-part">
-                                <li><a href="#">سرپایی</a></li>
-                                <li><a href="#">آندوسکوپی</a></li>
-                                <li><a href="#">کلینیک پوست لیزر و جراحی</a></li>
-                                <li><a href="#">کلینیک زخم</a></li>
-                                <li><a href="#">اورژانس</a></li>
-                                <li><a href="#">کلینیک</a></li>
+                                <li><a href="#">Outpatient</a></li>
+                                <li><a href="#">endoscopy</a></li>
+                                <li><a href="#">Skin ,Laser And Surgery Clinic</a></li>
+                                <li><a href="#">Wound Clinic</a></li>
+                                <li><a href="#">Emergency</a></li>
+                                <li><a href="#">Clinic</a></li>
                             </ul>
                             <ul class="menu-part">
-                                <li><a href="#">جراحی</a></li>
-                                <li><a href="#">اتاق عمل قلب</a></li>
-                                <li><a href="#">اتاق عمل جنرال</a></li>
+                                <li><a href="#">Surgery</a></li>
+                                <li><a href="#">Heart Surgery Room</a></li>
+                                <li><a href="#">Public Surgery Room</a></li>
                             </ul>
                         </div>
                     </div>
                 </li>
-                <li><a href="#">پاراکلینیک ها</a></li>
-                <li><a href="#">پزشکان</a></li>
-                <li><a href="#">تعرفه ها</a></li>
-                <li><a href="#">برنامه کلینیک ها</a></li>
-                <li><a href="#">گردشگری سلامت</a></li>
-                <li><a href="#">اعتباربخشی</a></li>
+                <li><a href="#">Para Clinics</a></li>
+                <li><a href="#">Doctors</a></li>
+                <li><a href="#">Tariffs</a></li>
+                <li><a href="#">Clinics Program</a></li>
+                <li><a href="#">Tourism And Health</a></li>
+                <li><a href="#">Accreditation</a></li>
             </ul>
         </div>
     </div>
