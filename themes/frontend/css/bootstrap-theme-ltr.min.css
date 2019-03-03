@@ -211,6 +211,7 @@ th {
 /*---------------------- contact us*/
 .texts h4, .texts p {
     text-align: left;
+    direction: ltr;
 }
 
 .contactUs__form {
