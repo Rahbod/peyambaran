@@ -208,3 +208,16 @@ th {
     margin-right: 5px;
 }
 
+/*---------------------- contact us*/
+.texts h4, .texts p {
+    text-align: left;
+}
+
+.contactUs__form {
+    direction: ltr;
+}
+
+.contactUs__form label {
+    margin-right: 0;
+    margin-left: 10px;
+}
