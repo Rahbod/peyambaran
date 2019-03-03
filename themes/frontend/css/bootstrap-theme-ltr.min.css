@@ -41,7 +41,10 @@ header .logo {
 
 /**/
 @media (min-width: 1200px) {
-    .circle-texture div[class^="col-"], .insurance-container div[class^="col-"] {
+    .circle-texture div[class^="col-"],
+    .insurance-container div[class^="col-"],
+    .gallery-container div[class^="col-"],
+    .bottom-section div[class^="col-"] {
         float: left;
         text-align: left;
     }
@@ -73,7 +76,45 @@ header .logo {
 .insurance-btn-box ul > li a i.icon-chevron-left:before {
     content: "\f054";
 }
+
 /*-------------------------- section news and articles*/
 .insurance-title-container {
     direction: ltr;
+}
+
+.gallery-item-details .item-image-big {
+    float: left;
+}
+
+.gallery-item-details .gallery-details {
+    float: left;
+    padding-left: 40px;
+}
+
+.gallery-item .item-image {
+    float: left;
+    text-align: left;
+}
+
+.gallery-item .item-details {
+    float: left;
+    padding: 0 0 0 15px;
+}
+
+.gallery-item .item-details p {
+    direction: ltr;
+}
+
+.bottom-section .form-container {
+    float: left;
+    padding-right: 70px;
+    direction: ltr;
+}
+
+.bottom-section .info-container {
+    float: right;
+    padding-left: 70px;
+    border-left: 1px solid rgba(255, 255, 255, 0.33);
+    direction: ltr;
+
 }
