@@ -169,3 +169,8 @@ section .form-container input[type="submit"], .bottom-section .form-container .c
 .footer-section .footer-block:first-child {
     padding-right: 20px;
 }
+
+/*----------------------------- clinic program */
+.content-header {
+    direction: ltr;
+}
