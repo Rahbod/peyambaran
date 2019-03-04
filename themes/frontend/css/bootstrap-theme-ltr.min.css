@@ -582,9 +582,10 @@ body {
     -o-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
+
 .doctors .panel-heading::before {
     left: -5px;
-    right:0;
+    right: 0;
 
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -593,4 +594,37 @@ body {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 
+}
+
+.doctors .panel-title__doctorAvatar {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+/*---------------------- forgot password*/
+.vertical-separator-line {
+    border-left: 0;
+    border-right: 2px solid #e82d2d;
+}
+
+.social-accounts img {
+    left: auto;
+    right: 25px;
+}
+
+.register-form-container {
+    padding: 0 65px 0 0;
+}
+
+.social-accounts-container {
+    padding: 25px 25px 25px 55px;
+}
+
+/*----------------news*/
+.news .search-container .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
