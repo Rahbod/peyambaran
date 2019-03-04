@@ -3,29 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>بیمارستان پیامبران</title>
+    <title>بیمارستان پیامبران | داشبورد</title>
 
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="css/bootstrap-rtl.min.css">
-    <link type="text/css" rel="stylesheet" href="css/font-awesome.css">
-    <link type="text/css" rel="stylesheet" href="css/fontiran-fa-num.css">
-    <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css">
-    <link type="text/css" rel="stylesheet" href="css/responsive-theme.css">
-    <link type="text/css" rel="stylesheet" href="css/bootstrap-4-classes.css">
-    <link type="text/css" rel="stylesheet" href="css/global.css">
-    <link type="text/css" rel="stylesheet" href="js/vendors/icomoon/style.css">
-    <link type="text/css" rel="stylesheet" href="css/authentication.css">
-    <link type="text/css" rel="stylesheet" href="css/contact-us.css">
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap-rtl.min.css">
+    <link type="text/css" rel="stylesheet" href="../css/font-awesome.css">
+    <link type="text/css" rel="stylesheet" href="../css/fontiran-fa-num.css">
+    <link type="text/css" rel="stylesheet" href="css/simplelightbox.min.css">
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap-theme.css">
+    <link type="text/css" rel="stylesheet" href="../css/responsive-theme.css">
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap-4-classes.css">
+    <link type="text/css" rel="stylesheet" href="../js/vendors/icomoon/style.css">
+    <link type="text/css" rel="stylesheet" href="../css/global.css">
+    <link type="text/css" rel="stylesheet" href="../css/gallery.css">
 
-
-    <style>
-        .content-header {
-            background: #3f8dfa;
-        }
-    </style>
 </head>
 <body>
-<header class="-blueHeader">
+<header class="blueHeader">
     <div class="container">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
@@ -42,14 +36,17 @@
                         <li><a href="#">English</a></li>
                     </ul>
                 </div>
-                <a href="#" class="btn btn-green btn-sm" data-toggle="modal" target="#signup">
-                    <i class="user-icon"></i>
-                    ثبت نام
-                </a>
-                <a href="#" class="btn btn-purple btn-sm" data-toggle="modal" target="#login">
-                    <i class="user-icon"></i>
-                    ورود
-                </a>
+                <div class="user-header-box">
+                    <a href="#">
+                        <div class="user-header-pic">
+                            <img src="../images/user.jpg">
+                        </div>
+                    </a>
+                    <div class="user-header-details">
+                        <a href="#"><span class="user-header-name">یوسف مبشری</span></a>
+                        <a href="#"><span class="user-header-setting icon-gear"></span></a>
+                    </div>
+                </div>
                 <form class="search-form">
                     <div class="input-group search-container">
                         <input class="form-control" placeholder="متن جستجو">
@@ -60,7 +57,7 @@
                 </form>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
-                <img src="images/bg-white-logo.png">
+                <img src="../images/logo-white.png">
                 <div class="logo-right">
                     <h1>بیمارســتان پیامبران</h1>
                     <h2>Payambaran</h2>
@@ -133,137 +130,79 @@
     </div>
 </header>
 <main class="content">
-    <section class="contactUsPage">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 ">
-                    <div class="content-header">
-                        <img src="./images/call.png" class="img-fluid content-header__image"
-                             alt="">
-                        <div class="content-header__titles">
-                            <h1 class="media-heading content-header__title">تماس با ما</h1>
-                            <h3 class="content-header__subTitle">بیمارستان پیامبران</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="sidebar-user-menu">
+                    <div class="top-section">
+                        <div class="user-side-pic">
+                            <img src="../images/user-big.jpg">
                         </div>
-                        <div class="socialAccounts">
-                            <a title="اینستاگرام" class="" href="void:;"><img src="./svg/instagram.png" alt=""></a>
-                            <a title="فیسبوک" class="" href="void:;"><img src="./svg/facebook.png" alt=""></a>
-                            <a title="گوگل پلاس" class="" href="void:;"><img src="./svg/google.png" alt=""></a>
-                            <a title="توییتر" class="" href="void:;"><img src="./svg/twitter.png" alt=""></a>
+                        <div class="user-side-details">
+                            <h3>یوسف مبشری</h3>
+                            <p>yusef.mobasheri@gmail.com</p>
+                            <p>09358389265</p>
                         </div>
+                        <a href="#" class="user-side-setting"><span class="icon-gear"></span></a>
                     </div>
+                    <div class="content-section">
+                        <ul class="list-unstyled">
+                            <li class="active"><a href="#user-tab-1" data-toggle="tab"><i class="clock-icon"></i><span>درخواست نوبت</span></a></li>
+                            <li><a href="#user-tab-2" data-toggle="tab"><i class="clock-icon"></i><span>درخواست پذیرش بستری</span></a></li>
+                            <li><a href="#user-tab-3" data-toggle="tab"><i class="clock-icon"></i><span>درخواست پذیرش کلینیک</span></a></li>
+                            <li><a href="#user-tab-4" data-toggle="tab"><i class="clock-icon"></i><span>درخواست پذیرش پاراکلینیک</span></a></li>
+                            <li><a href="#user-tab-5" data-toggle="tab"><i class="clock-icon"></i><span>جوابدهی آزمایشگاه</span></a></li>
+                            <li><a href="#user-tab-6" data-toggle="tab"><i class="clock-icon"></i><span>جوابدهی تصویربرداری</span></a></li>
+                            <li><a href="#user-tab-7" data-toggle="tab"><i class="clock-icon"></i><span>درخواست همکاری</span></a></li>
+                            <li><a href="#user-tab-8" data-toggle="tab"><i class="clock-icon"></i><span>درخواست مشاوره پزشکی</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-border"></div>
                 </div>
-                <div class="col-xs-12">
-                    <div class="texts">
-                        <h4 class="-blue">آماده پاسخگویی به انتقادات ،
-                            پیشنهادات و سوالات شما هستیم.
-                        </h4>
-                        <p class="-grey">
-                            با ساخت حساب کاربری میتوانید
-                            با ساخت حساب کاربری میتوانید
-                            با ساخت حساب کاربری میتوانید
-                            ارائه شده در بیمارستان مانند : جواب آزمایش ،
-                            ارائه شده در بیمارستان مانند : جواب آزمایش ،
-                            ارائه شده در بیمارستان مانند : جواب آزمایش ،
-                            نوبت دهی ،تصاویر PACS را به صورت آنلاین پیگیری و دریافت نمایید.
-
-                        </p>
-                    </div>
-                    <div class="contactUs__container">
-                        <form action="#" class="contactUs__form" enctype="multipart/form-data">
-                            <div class="form-row">
-                                <div class="form-group col-lg-3">
-                                    <label for="department">بخش مورد نظر</label>
-                                    <select name="department" tabindex="1" class="form-control" id="department">
-                                        <option selected>مدیریت</option>
-                                        <option>پذیرش</option>
-                                        <option>صندوق</option>
-                                        <option>آزمایشگاه</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-lg-3">
-                                    <label for="full_name">بخش مورد نظر</label>
-                                    <span class="-required">(الزامی)</span>
-                                    <input placeholder="نام و نام خانوادگی" minlength="3" maxlength="255" type="text"
-                                           class="form-control" tabindex="2"
-                                           name="full_name" id="full_name">
-                                </div>
-                                <div class="form-group col-lg-3">
-                                    <label for="electronic-mail">پست الکترونیکی</label>
-                                    <input placeholder="پست الکترونیکی" type="email"
-                                           class="form-control"
-                                           spellcheck="false" tabindex="3"
-                                           name="email" id="electronic-mail">
-                                </div>
-                                <div class="form-group col-lg-3">
-                                    <label for="grade">میزان تحصیلات</label>
-                                    <select name="grade" tabindex="4" class="form-control" id="grade">
-                                        <option selected>مدیریت</option>
-                                        <option>پذیرش</option>
-                                        <option>صندوق</option>
-                                        <option>آزمایشگاه</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group col-lg-3">
-                                    <label for="country">کشور</label>
-                                    <select name="country" tabindex="5" class="form-control" id="country">
-                                        <option selected>ایران</option>
-                                        <option>عراق</option>
-                                        <option>افغانستان</option>
-                                        <option>کویت</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-lg-3">
-                                    <label for="city">منطقه / شهر</label>
-                                    <select name="city" tabindex="6" class="form-control" id="city">
-                                        <option selected>منطقه / شهر</option>
-                                        <option>تهران</option>
-                                        <option>قم</option>
-                                        <option>مشهد</option>
-                                        <option>اصفهان</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-lg-3">
-                                    <label for="phone">شماره تماس</label>
-                                    <span class="-required">(الزامی)</span>
-                                    <input placeholder="شماره تماس" type="text"
-                                           class=" form-control" spellcheck="false" tabindex="7"
-                                           name="phone" id="phone">
-                                </div>
-                                <div class="form-group col-lg-3">
-                                    <label for="address">ادرس</label>
-                                    <input placeholder="آدرس" type="text"
-                                           class=" form-control" spellcheck="false" tabindex="8"
-                                           name="address" id="address">
-                                </div>
-
-                                <div class="form-group col-lg-12">
-                                    <label for="description">متن پیام</label>
-                                    <span class="-required">(الزامی)</span>
-                                    <textarea placeholder="متن پیام" name="description" class="form-control"
-                                              tabindex="9" id="description" cols="30" rows="8"></textarea>
-                                </div>
-                                <div class="form-group col-lg-12">
-                                    <div class="clearfix">
-                                        <button tabindex="11" type="button" class="btn submitBtn">ارسال به بخش مربوطه</button>
-
-                                        <input tabindex="10" class="floatToLeft securityCode__input form-control"
-                                               placeholder="تصویر امنیتی"
-                                               type="text">
-                                        <a class="floatToLeft form-control securityCode__image">
-                                            <!--<img src="" alt="">-->
-                                            RCii7485
-                                        </a>
-
-                                    </div>
-                                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content">
+                    <div class="tab-pane active in" id="user-tab-1">
+                        <div class="content-header rounded">
+                            <img src="../svg/gallery-white.svg" class="img-fluid content-header__image" alt="">
+                            <div class="titles">
+                                <h1 class="media-heading content-header__title galleryHeader__title">درخواست نوبت</h1>
+                                <h3 class="content-header__subTitle galleryHeader__subTitle">بیمارستان پیامبران</h3>
                             </div>
-                        </form>
+                        </div>
+                        <div class="content-body">
+                            <div class="table-responsive">
+                                <table class="custom-table">
+                                    <thead>
+                                    <tr>
+                                        <th width="50%">عنوان آزمایش</th>
+                                        <th width="20%">نام پزشک</th>
+                                        <th width="15%">تاریخ آزمایش</th>
+                                        <th width="15%">تاریخ جوابدهی</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>چربی خون، کلسترل، LDL</td>
+                                        <td>دکتر علی مقصودلو</td>
+                                        <td>97/11/24</td>
+                                        <td>97/11/28</td>
+                                    </tr>
+                                    <tr>
+                                        <td>آزمایش تیروئید</td>
+                                        <td>دکتر محمد پوربافرانی</td>
+                                        <td>97/11/24</td>
+                                        <td>97/11/28</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </main>
 <footer>
     <section class="map-bg">
@@ -487,9 +426,8 @@
         </div>
     </div>
 </footer>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.script.js"></script>
-
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/jquery.script.js"></script>
 </body>
 </html>
