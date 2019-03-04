@@ -1,3 +1,8 @@
+header div[class^="col-"] {
+    float: left !important;
+    text-align: left;
+}
+
 .text-right {
     text-align: left !important;
 }
@@ -46,7 +51,7 @@ body {
 
 .logo > * {
     display: inline-block;
-    float: right;
+    float: left;
 }
 
 .logo .logo-right {
@@ -55,7 +60,7 @@ body {
 }
 
 .logo .logo-right > * {
-    text-align: right;
+    text-align: left;
 }
 
 .language-select label {
@@ -345,11 +350,6 @@ body {
     padding-right: 15px;
     padding-left: 0;
 }
-
-/*header div[class^="col-"] {*/
-/*float: right !important;*/
-/*text-align: right;*/
-/*}*/
 
 /*header > .container {*/
 /*margin-bottom: 10px;*/
