@@ -1,3 +1,23 @@
+.text-right {
+    text-align: left !important;
+}
+
+.insurance-title-container {
+    text-align: left;
+}
+
+section-title {
+    text-align: left;
+}
+
+.insurance-btn-box .icon-chevron-left:before {
+    content: "\f054";
+}
+
+.item-title {
+    text-align: left;
+}
+
 body {
     direction: ltr;
 }
@@ -66,6 +86,7 @@ body {
 
 .navbar > li > a {
     border-radius: 4px 4px 0 0;
+    direction: rtl;
 }
 
 .navbar .dropdown-menu {
@@ -96,17 +117,9 @@ body {
 }
 
 .insurance-btn-box ul > li a {
-
     padding: 10px 15px;
-    padding-right: 30px;
-    padding-left: 10px;
-
-}
-
-.insurance-btn-box ul > li a i {
-
-    left: 15px;
-    right: 0;
+    padding-left: 30px;
+    text-align: left;
 }
 
 .insurance-box .insurance-item {
@@ -114,7 +127,6 @@ body {
 }
 
 .insurance-box .insurance-item-inner {
-    padding-right: 0;
     padding-left: 65px;
 }
 
@@ -136,16 +148,12 @@ body {
     padding-right: 0;
 }
 
-.news-image-inner img {
-    right: 50%;
-}
-
 .news-item-inner .news-details {
     padding: 0 15px 15px;
 }
 
 .news-item-inner h3 {
-
+    text-align: left;
     margin: 20px 0 0;
 }
 
@@ -161,7 +169,7 @@ body {
 .gallery-item .item-details {
 
     float: left;
-    padding: 0 15px 0 0;
+    padding: 0 0 0 15px;
 }
 
 .gallery-item .item-details h4.with-small {
@@ -169,7 +177,7 @@ body {
 }
 
 .gallery-item-details .gallery-details {
-
+    text-align: left;
     float: left;
     padding-left: 40px;
     padding-right: 0;
@@ -188,18 +196,18 @@ body {
 
 }
 
+.bottom-section .info-container {
+    float: right;
+    padding-left: 70px;
+    padding-right: 0;
+    padding-top: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.33);
+    border-right: none;
+}
+
 .bottom-section .form-container {
     float: left;
     padding-right: 70px;
-    padding-left: 0;
-}
-
-.bottom-section .info-container {
-    float: right;
-
-    padding-left: 70px;
-    padding-right: 0;
-
 }
 
 .bottom-section .form-container .captcha img {
@@ -216,7 +224,6 @@ body {
     border-radius: 0 10px 10px 0;
 }
 
-.bottom-section .form-container input[type="submit"],
 .bottom-section .form-container .captcha input {
     margin-left: 50px;
     margin-right: 0;
@@ -225,8 +232,8 @@ body {
 .bottom-section .info-container .icon {
 
     float: left;
-    margin-left: 10px;
-    margin-right: 0;
+    margin-left: 0;
+    margin-right: 10px;
 }
 
 .footer-section {
@@ -265,8 +272,10 @@ body {
 
 }
 
-.cert-item,
-.certificate-block h3,
+.certificate-block h3 {
+    width: 100%;
+}
+
 .certs {
     float: left;
 }
@@ -370,18 +379,18 @@ body {
 /*}*/
 
 /*!*-------------------------- section : slider-container*!*/
-/*.slider .slide-item .over-slide-inner {*/
-/*text-align: left;*/
-/*margin-left: auto;*/
-/*}*/
+.slider .slide-item .over-slide-inner {
+    text-align: left;
+    margin-left: auto;
+}
 
-/*.slider .slide-item img {*/
-/*-webkit-transform: rotateY(180deg);*/
-/*-moz-transform: rotateY(180deg);*/
-/*-ms-transform: rotateY(180deg);*/
-/*-o-transform: rotateY(180deg);*/
-/*transform: rotateY(180deg);*/
-/*}*/
+.slider .slide-item img {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
 
 /*!**!*/
 /*!*@media (min-width: 1200px) {*!*/
@@ -526,25 +535,25 @@ body {
 /*text-align: left;*/
 /*}*/
 
-/*.table tr td:first-of-type:before {*/
-/*right: auto;*/
-/*left: 0;*/
-/*}*/
+.table tr td:first-of-type:before {
+    right: auto;
+    left: 0;
+}
 
-/*.table tr td:first-of-type {*/
-/*padding-right: 5px;*/
-/*padding-left: 15px;*/
-/*border-radius: 6px 0 0 6px;*/
-/*}*/
+.table tr td:first-of-type {
+    padding-right: 5px;
+    padding-left: 15px;
+    border-radius: 6px 0 0 6px;
+}
 
-/*.table tr td:last-of-type {*/
-/*border-radius: 0 6px 6px 0;*/
-/*}*/
+.table tr td:last-of-type {
+    border-radius: 0 6px 6px 0;
+}
 
-/*.content-footer__linkText {*/
-/*float: left;*/
-/*margin-right: 5px;*/
-/*}*/
+.content-footer__linkText {
+    float: left;
+    margin-right: 5px;
+}
 
 /*!*---------------------- contact us*!*/
 /*.texts h4, .texts p {*/
@@ -556,7 +565,32 @@ body {
 /*direction: ltr;*/
 /*}*/
 
-/*.contactUs__form label {*/
-/*margin-right: 0;*/
-/*margin-left: 10px;*/
-/*}*/
+.contactUs__form label {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+/*--------------------- doctors*/
+.doctors .content-header {
+    padding: 0 0 0 30px;
+}
+
+.doctors .doctors-image {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.doctors .panel-heading::before {
+    left: -5px;
+    right:0;
+
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
