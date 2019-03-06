@@ -20,9 +20,6 @@ use app\models\Category;
 
         <div class="row">
             <div class="col-sm-4">
-                <?= $form->field($model, 'lang')->dropDownList(Category::$langArray, ['class' => 'form-control m-input m-input--solid']) ?>
-            </div>
-            <div class="col-sm-4">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-sm-4">

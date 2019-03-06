@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use app\components\MultiLangActiveQuery;
-
 /**
  * This is the ActiveQuery class for [[Item]].
  *

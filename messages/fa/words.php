@@ -296,4 +296,6 @@ return [
     'Video Gallery' => 'گالری ویدئو',
     'Insurance' => 'بیمه',
     'Category Type' => 'نوع دسته بندی',
+    'Date' => 'تاریخ',
+    'Holiday' => 'تعطیل',
 ];
