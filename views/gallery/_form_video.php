@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
+use \yii\helpers\Url;
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Gallery */
@@ -16,23 +18,64 @@ use app\components\customWidgets\CustomActiveForm;
 ]); ?>
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
-    <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
 
-        <?= $form->field($model, 'userID')->textInput() ?>
+        <?php echo $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(), [
+            'url' => Url::to(['upload-image']),
+            'removeUrl' => Url::to(['delete-image']),
+            'storedFiles' => isset($image) ? $image : [],
+            'sortable' => false, // sortable flag
+            'sortableOptions' => [], // sortable options
+            'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'image')],
+            'options' => [
+                'createImageThumbnails' => true,
+                'addRemoveLinks' => true,
+                'dictRemoveFile' => 'حذف',
+                'addViewLinks' => true,
+                'dictViewFile' => '',
+                'dictDefaultMessage' => 'جهت آپلود تصویر پوستر کلیک کنید',
+                'acceptedFiles' => 'png, jpeg, jpg',
+                'maxFiles' => 1,
+                'maxFileSize' => 0.2,
+            ],
+        ]) ?>
 
-        <?= $form->field($model, 'modelID')->textInput() ?>
+        <?php echo $form->field($model, 'video')->widget(\devgroup\dropzone\DropZone::className(), [
+            'url' => Url::to(['upload-video']),
+            'removeUrl' => Url::to(['delete-video']),
+            'storedFiles' => isset($image) ? $image : [],
+            'sortable' => false, // sortable flag
+            'sortableOptions' => [], // sortable options
+            'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'video')],
+            'options' => [
+                'createImageThumbnails' => true,
+                'addRemoveLinks' => true,
+                'dictRemoveFile' => 'حذف',
+                'addViewLinks' => true,
+                'dictViewFile' => '',
+                'dictDefaultMessage' => 'جهت آپلود ویدئو کلیک کنید',
+                'acceptedFiles' => 'mp4',
+                'maxFiles' => 1,
+                'maxFileSize' => 10,
+            ],
+        ]) ?>
 
-        <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
+        <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
 
-        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        <div class="row">
+            <div class="col-sm-4">
+                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'short_description')->textInput() ?>
+            </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'formCategories')->dropDownList(Category::getWithType(Category::CATEGORY_TYPE_IMAGE_GALLERY), ['prompt' => Yii::t('words', 'Select Category')]) ?>
+            </div>
+        </div>
 
-        <?= $form->field($model, 'dyna')->textInput() ?>
+        <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
-        <?= $form->field($model, 'extra')->textarea(['rows' => 6]) ?>
-
-        <?= $form->field($model, 'created')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'status')->textInput() ?>
+        <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
 
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">

@@ -6,6 +6,7 @@ use creocoder\nestedsets\NestedSetsBehavior;
 use richardfan\sortable\SortableAction;
 use Yii;
 use \app\components\MultiLangActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "category".
@@ -13,16 +14,16 @@ use \app\components\MultiLangActiveRecord;
  * @property int $id
  * @property int $parentID
  * @property string $type ENUM:
- 'cat': Category
- 'tag': Tag/Taxonomy
- 'lst': List 'mnu': Menu
+ * 'cat': Category
+ * 'tag': Tag/Taxonomy
+ * 'lst': List 'mnu': Menu
  * @property string $name
  * @property resource $dyna
  * @property string $extra
  * @property string $created
  * @property int $status -1: Suspended
- 0: Unpublished
- 1: Published
+ * 0: Unpublished
+ * 1: Published
  * @property int $left
  * @property int $right
  * @property int $depth
@@ -84,7 +85,7 @@ class Category extends MultiLangActiveRecord
         parent::init();
         $this->status = 1;
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-            'category_type' => ['INTEGER', ''],
+            'category_type' => ['CHAR', ''],
             'sort' => ['INTEGER', '']
         ]);
     }
@@ -94,7 +95,7 @@ class Category extends MultiLangActiveRecord
      */
     public function rules()
     {
-        return array_merge(parent::rules(),[
+        return array_merge(parent::rules(), [
             [['parentID', 'status', 'left', 'right', 'depth', 'tree', 'sort'], 'integer'],
             [['name'], 'required'],
             [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
@@ -176,7 +177,7 @@ class Category extends MultiLangActiveRecord
 
     public static function getCategoryTypeLabel($status = null)
     {
-        return isset(self::getCategoryTypeLabels()[$status])?self::getCategoryTypeLabels()[$status]:null;
+        return isset(self::getCategoryTypeLabels()[$status]) ? self::getCategoryTypeLabels()[$status] : null;
     }
 
     public function getStatusLabel($status = null)
@@ -229,5 +230,27 @@ class Category extends MultiLangActiveRecord
             }
         }
         return $parents;
+    }
+
+    public function getFullName()
+    {
+        if (!$this->parentID)
+            return $this->name;
+
+        $name = $this->name;
+        $parent = $this->getParent()->one();
+        while ($parent) {
+            $name .= "$parent->name/$name";
+            $parent = $this->getParent();
+        }
+        return $name;
+    }
+
+    public static function getWithType($type, $return = 'array')
+    {
+        $models = self::find()->valid()->andWhere([self::columnGetString('category_type') => $type])->all();
+        if ($return == 'array')
+            return ArrayHelper::map($models, 'id', 'fullName');
+        return $models;
     }
 }

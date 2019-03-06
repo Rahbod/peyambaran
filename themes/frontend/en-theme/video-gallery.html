@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>بیمارستان پیامبران</title>
+
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
+    <!--<link type="text/css" rel="stylesheet" href="css/bootstrap-rtl.min.css">-->
+    <link type="text/css" rel="stylesheet" href="../css/font-awesome.css">
+    <link type="text/css" rel="stylesheet" href="../css/fontiran-fa-num.css">
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap-theme.css">
+    <link type="text/css" rel="stylesheet" href="../css/responsive-theme.css">
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap-4-classes.css">
+    <link type="text/css" rel="stylesheet" href="../js/vendors/icomoon/style.css">
+    <link type="text/css" rel="stylesheet" href="../css/global.css">
+    <link type="text/css" rel="stylesheet" href="../css/gallery.css">
+    <link type="text/css" rel="stylesheet" href="../css/bootstrap-theme-ltr.min.css">
+    <link rel="icon" href="../images/fav-icons/hand-with-heart.jpg">
+    <style>
+        .-hoverBox {
+            background: #3b3b3b;
+        }
+
+        .gallery__playBox {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #818c9460;
+            text-align: center;
+            vertical-align: middle;
+            display: flex;
+        }
+
+        .gallery__playIcon {
+            margin: auto;
+        }
+
+        .gallery__imageContainer:hover .gallery__playBox {
+            z-index: -1;
+        }
+
+        .gallery__imageContainer:hover .-hoverBox {
+            background: #39393acc;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<header class="-blueHeader">
+    <div class="container">
+        <div class="top row">
+            <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
+                <div class="dropdown language-select">
+                    <!--<label>Language</label>-->
+                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="icon icon-chevron-down"></span>
+                        en
+                        <span class="language-icon"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">فارسی</a></li>
+                        <li><a href="#">العربیة</a></li>
+                        <li><a href="#">English</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="btn btn-green btn-sm" data-toggle="modal" target="#signup">
+                    <i class="user-icon"></i>
+                    sign up
+                </a>
+                <a href="#" class="btn btn-purple btn-sm" data-toggle="modal" target="#login">
+                    <i class="user-icon"></i>
+                    log in
+                </a>
+                <form class="search-form">
+                    <div class="input-group search-container">
+                        <input class="form-control" placeholder="search query">
+                        <span class="input-group-addon">
+                            <button type="submit" class="search-btn"><i class="search-icon"></i></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
+                <img src="../images/logo-white.png">
+                <div class="logo-right">
+                    <h1>Payambaran Hospital</h1>
+                    <h2>Payambaran</h2>
+                    <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-container">
+        <div class="container">
+            <ul class="nav navbar nav-pills">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target='#deps' href="#">
+                        <i class="icon icon-chevron-down"></i>
+                        Hospital Departments
+                    </a>
+                    <div class="dropdown-menu" id="deps">
+                        <div class="container">
+                            <ul class="menu-part">
+                                <li><a href="#">Hospitalization</a></li>
+                                <li><a href="#">Tulip</a></li>
+                                <li><a href="#">Orchid</a></li>
+                                <li><a href="#">Jasmine</a></li>
+                                <li><a href="#">Dew</a></li>
+                                <li><a href="#">Blossom</a></li>
+                                <li><a href="#">Lilies</a></li>
+                                <li><a href="#">Anemone</a></li>
+                                <li><a href="#">Deer</a></li>
+                                <li><a href="#">Dawn</a></li>
+                                <li><a href="#">Suite</a></li>
+                            </ul>
+                            <ul class="menu-part">
+                                <li><a href="#">Surgery</a></li>
+                                <li><a href="#">Heart Surgery Room</a></li>
+                                <li><a href="#">Public Surgery Room</a></li>
+
+                            </ul>
+                            <ul class="menu-part">
+                                <li><a href="#">intensive care</a></li>
+                                <li><a href="#">ICU</a></li>
+                                <li><a href="#">ICU.OH</a></li>
+                                <li><a href="#">CCU</a></li>
+                                <li><a href="#">NICU</a></li>
+                            </ul>
+                            <ul class="menu-part">
+                                <li><a href="#">Outpatient</a></li>
+                                <li><a href="#">endoscopy</a></li>
+                                <li><a href="#">Skin ,Laser And Surgery Clinic</a></li>
+                                <li><a href="#">Wound Clinic</a></li>
+                                <li><a href="#">Emergency</a></li>
+                                <li><a href="#">Clinic</a></li>
+                            </ul>
+                            <ul class="menu-part">
+                                <li><a href="#">Surgery</a></li>
+                                <li><a href="#">Heart Surgery Room</a></li>
+                                <li><a href="#">Public Surgery Room</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#">Para Clinics</a></li>
+                <li><a href="#">Doctors</a></li>
+                <li><a href="#">Tariffs</a></li>
+                <li><a href="#">Clinics Program</a></li>
+                <li><a href="#">Tourism And Health</a></li>
+                <li><a href="#">Accreditation</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<main class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <h4 class="text-purple">Payambaran Hospital Video Gallery</h4>
+                    </div>
+                    <ul class="list-unstyled">
+                        <!--<p>Dummy Heading</p>-->
+                        <li class="active mb-3">
+                            <!--<a href="void:;" class="text-purple">جراحی</a>-->
+                            <ul class="list-unstyled submenu">
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Obstetrics and Gynecology</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Anesthesia</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mb-3">
+                            <!--<a class="text-purple" href="void:;">سرپایی</a>-->
+                            <ul class="list-unstyled submenu">
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">emergency</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">public surgery</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">infants</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Neurological Surgery</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Ear, throat and nose</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="mb-3">
+                            <!--<a class="text-purple" href="void:;">مراقبت های ویژه</a>-->
+                            <ul class="list-unstyled submenu">
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">labor</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">orology</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Cardiovascular</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">eye</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mb-3">
+                            <!--<a class="text-purple" href="void:;">بستری</a>-->
+                            <ul class="list-unstyled submenu">
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">heart surgery</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">dentist</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Pharmacy</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Plastic Surgery</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Orthopedic</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Oral and Maxillofacial
+                                        Surgery</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Internal and digestive</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Internal, Neurology</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Infectious</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Physiotherapy</a>
+                                </li>
+
+                            </ul>
+
+                            <ul class="list-unstyled submenu">
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Lung</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Nutrition</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">romatology</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">glands</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Audiologists</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Nephrology</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">sterility</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">skin and hair</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">radiology</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">radioterapy</a>
+                                </li>
+                                <li>
+                                    <a class="-hoverBlue text-dark-2" href="void:;">Psychiatry</a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-9">
+                <div class="content-header">
+                    <img src="../images/gallery/video-gallery-header-image.png" class="img-fluid content-header__image"
+                         alt="">
+                    <div class="content-header__titles">
+                        <h1 class="media-heading content-header__title">Video Gallery</h1>
+                        <h3 class="content-header__subTitle">Payambaran Hospital</h3>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <h4 class="text-purple my-40">Equipment and technology of the operating room of the Payambaran</h4>
+
+                    <p class="mb-5">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae commodi culpa deserunt
+                        dicta enim, et eveniet harum id libero, magni officiis praesentium provident quaerat quidem
+                        sapiente similique voluptate, voluptatum.
+                    </p>
+                    <div class="mt-3 mb-5">
+                        <div class="gallery__imageContainer">
+                            <a class="gallery__link" href="../images/gallery/gallery-2.jpg">
+                                <img class="gallery__images" src="../images/gallery/gallery-2.jpg"
+                                     alt="">
+                                <div class="gallery__playBox rounded">
+                                    <img class="gallery__playIcon" src="../images/play-icon.png"
+                                         alt="">
+                                </div>
+                            </a>
+                            <div class="-hoverBox">
+                                <a href="../media/videos/360.mp4" data-fullscreenmode="true"
+                                   data-transition="slide"
+                                   data-thumbnail="images/gallery/gallery-2.jpg"
+                                   class="html5lightbox"
+                                   data-group="set3" data-width="600"
+                                   data-height="400" title="Equipment and technology of the operating room of the Payambaran">
+                                    <h4>Patology Labor</h4>
+                                    <img src="../images/play-icon.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="gallery__imageContainer">
+                            <a class="gallery__link" href="../images/gallery/gallery-2.jpg">
+                                <img class="gallery__images" src="../images/gallery/gallery-2.jpg"
+                                     alt="">
+                                <div class="gallery__playBox rounded">
+                                    <img class="gallery__playIcon" src="../images/play-icon.png"
+                                         alt="">
+                                </div>
+                            </a>
+                            <div class="-hoverBox">
+                                <a href="../media/videos/360.mp4" data-fullscreenmode="true"
+                                   data-transition="slide"
+                                   data-thumbnail="images/gallery/gallery-2.jpg"
+                                   class="html5lightbox"
+                                   data-group="set3" data-width="600"
+                                   data-height="400" title="Equipment and technology of the operating room of the Payambaran">
+                                    <h4>Patology Labor</h4>
+                                    <img src="../images/play-icon.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="gallery__imageContainer">
+                            <a class="gallery__link" href="../images/gallery/gallery-2.jpg">
+                                <img class="gallery__images" src="../images/gallery/gallery-2.jpg"
+                                     alt="">
+                                <div class="gallery__playBox rounded">
+                                    <img class="gallery__playIcon" src="../images/play-icon.png"
+                                         alt="">
+                                </div>
+                            </a>
+                            <div class="-hoverBox">
+                                <a href="../media/videos/360.mp4" data-fullscreenmode="true"
+                                   data-transition="slide"
+                                   data-thumbnail="images/gallery/gallery-2.jpg"
+                                   class="html5lightbox"
+                                   data-group="set3" data-width="600"
+                                   data-height="400" title="Equipment and technology of the operating room of the Payambaran">
+                                    <h4>Patology Labor</h4>
+                                    <img src="../images/play-icon.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="gallery__imageContainer">
+                            <a class="gallery__link" href="../images/gallery/gallery-2.jpg">
+                                <img class="gallery__images" src="../images/gallery/gallery-2.jpg"
+                                     alt="">
+                                <div class="gallery__playBox rounded">
+                                    <img class="gallery__playIcon" src="../images/play-icon.png"
+                                         alt="">
+                                </div>
+                            </a>
+                            <div class="-hoverBox">
+                                <a href="../media/videos/360.mp4" data-fullscreenmode="true"
+                                   data-transition="slide"
+                                   data-thumbnail="images/gallery/gallery-2.jpg"
+                                   class="html5lightbox"
+                                   data-group="set3" data-width="600"
+                                   data-height="400" title="Equipment and technology of the operating room of the Payambaran">
+                                    <h4>Patology Labor</h4>
+                                    <img src="../images/play-icon.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="gallery__imageContainer">
+                            <a class="gallery__link" href="../images/gallery/gallery-2.jpg">
+                                <img class="gallery__images" src="../images/gallery/gallery-2.jpg"
+                                     alt="">
+                                <div class="gallery__playBox rounded">
+                                    <img class="gallery__playIcon" src="../images/play-icon.png"
+                                         alt="">
+                                </div>
+                            </a>
+                            <div class="-hoverBox">
+                                <a href="../media/videos/360.mp4" data-fullscreenmode="true"
+                                   data-transition="slide"
+                                   data-thumbnail="images/gallery/gallery-2.jpg"
+                                   class="html5lightbox"
+                                   data-group="set3" data-width="600"
+                                   data-height="400" title="Equipment and technology of the operating room of the Payambaran">
+                                    <h4>Patology Labor</h4>
+                                    <img src="../images/play-icon.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="gallery__imageContainer">
+                            <a class="gallery__link" href="../images/gallery/gallery-2.jpg">
+                                <img class="gallery__images" src="../images/gallery/gallery-2.jpg"
+                                     alt="">
+                                <div class="gallery__playBox rounded">
+                                    <img class="gallery__playIcon" src="../images/play-icon.png"
+                                         alt="">
+                                </div>
+                            </a>
+                            <div class="-hoverBox">
+                                <a href="../media/videos/360.mp4" data-fullscreenmode="true"
+                                   data-transition="slide"
+                                   data-thumbnail="images/gallery/gallery-2.jpg"
+                                   class="html5lightbox"
+                                   data-group="set3" data-width="600"
+                                   data-height="400" title="Equipment and technology of the operating room of the Payambaran">
+                                    <h4>Patology Labor</h4>
+                                    <img src="../images/play-icon.png">
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="content-footer text-center">
+                    <a href="void:;" class="btn text-purple -more purple">
+                        <i class="icomoon-ellipsis-h-solid"></i>
+                        <span class="content-footer__linkText">load more</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="footer-section">
+    <div class="container">
+        <div class="footer-block">
+            <h4>Hospital Departments</h4>
+            <div class="footer-sub-block">
+                <ul class="menu-part">
+                    <li><a href="#">Hospitalization</a></li>
+                    <li><a href="#">Tulip</a></li>
+                    <li><a href="#">Orchid</a></li>
+                    <li><a href="#">Jasmine</a></li>
+                    <li><a href="#">Dew</a></li>
+                    <li><a href="#">Blossom</a></li>
+                    <li><a href="#">Lilies</a></li>
+                    <li><a href="#">Anemone</a></li>
+                    <li><a href="#">Deer</a></li>
+                    <li><a href="#">Dawn</a></li>
+                    <li><a href="#">Suite</a></li>
+                </ul>
+                <ul class="menu-part">
+                    <li><a href="#">Surgery</a></li>
+                    <li><a href="#">Heart Surgery Room</a></li>
+                    <li><a href="#">Public Surgery Room</a></li>
+
+                </ul>
+                <ul class="menu-part">
+                    <li><a href="#">intensive care</a></li>
+                    <li><a href="#">ICU</a></li>
+                    <li><a href="#">ICU.OH</a></li>
+                    <li><a href="#">CCU</a></li>
+                    <li><a href="#">NICU</a></li>
+                </ul>
+                <ul class="menu-part">
+                    <li><a href="#">Outpatient</a></li>
+                    <li><a href="#">endoscopy</a></li>
+                    <li><a href="#">Skin ,Laser And Surgery Clinic</a></li>
+                    <li><a href="#">Wound Clinic</a></li>
+                    <li><a href="#">Emergency</a></li>
+                    <li><a href="#">Clinic</a></li>
+                </ul>
+                <ul class="menu-part">
+                    <li><a href="#">Surgery</a></li>
+                    <li><a href="#">Heart Surgery Room</a></li>
+                    <li><a href="#">Public Surgery Room</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-block">
+            <h4>Para Clinics</h4>
+            <div class="footer-sub-block">
+                <ul class="menu-part">
+                    <li><a href="#">Hospitalization</a></li>
+                    <li><a href="#">Tulip</a></li>
+                    <li><a href="#">Orchid</a></li>
+                    <li><a href="#">Jasmine</a></li>
+                    <li><a href="#">Dew</a></li>
+                    <li><a href="#">Suite</a></li>
+                </ul>
+                <ul class="menu-part">
+                    <li><a href="#">Surgery</a></li>
+                    <li><a href="#">Heart Surgery Room</a></li>
+                    <li><a href="#">Public Surgery Room</a></li>
+
+                </ul>
+                <ul class="menu-part">
+                    <li><a href="#">intensive care</a></li>
+                    <li><a href="#">ICU</a></li>
+                    <li><a href="#">ICU.OH</a></li>
+                    <li><a href="#">CCU</a></li>
+                    <li><a href="#">NICU</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="footer-block">
+            <h4>Other Departments</h4>
+            <div class="footer-sub-block">
+                <ul class="menu-part">
+                    <li><a href="#">Outpatient</a></li>
+                    <li><a href="#">endoscopy</a></li>
+                    <li><a href="#">Skin ,Laser And Surgery Clinic</a></li>
+                    <li><a href="#">Wound Clinic</a></li>
+                    <li><a href="#">Emergency</a></li>
+                    <li><a href="#">Clinic</a></li>
+                </ul>
+                <ul class="menu-part">
+                    <li><a href="#">Surgery</a></li>
+                    <li><a href="#">Heart Surgery Room</a></li>
+                    <li><a href="#">Public Surgery Room</a></li>
+                </ul>
+                <ul class="menu-part">
+                    <li><a href="#">Hospitalization</a></li>
+                    <li><a href="#">Tulip</a></li>
+                    <li><a href="#">Orchid</a></li>
+                    <li><a href="#">Jasmine</a></li>
+                    <li><a href="#">Dew</a></li>
+                    <li><a href="#">Suite</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div class="pull-right">
+                <a href="http://tarsiminc.com" target="_blank">by tarsim.inc</a>
+            </div>
+            <div class="pull-left text hidden-xs"><b>PAYAMBARAN HOSPITAL</b> . ALL RIGHTS RESERVED © 2018</div>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/vendors/html5lightbox/html5lightbox.js"></script>
+<script type="text/javascript" src="../js/jquery.script.js"></script>
+</body>
+</html>

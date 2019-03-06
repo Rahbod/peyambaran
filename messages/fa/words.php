@@ -298,4 +298,9 @@ return [
     'Category Type' => 'نوع دسته بندی',
     'Date' => 'تاریخ',
     'Holiday' => 'تعطیل',
+    'Publish Date' => 'تاریخ انتشار',
+    'Select Category' => 'دسته بندی را انتخاب کنید',
+    'Category' => 'دسته بندی',
+    'Tags' => 'برچسب ها',
+    'Summary' => 'خلاصه متن',
 ];

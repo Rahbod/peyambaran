@@ -1,36 +1,363 @@
+/*----------------------------- header*/
 header div[class^="col-"] {
     float: right !important;
-    text-align: right;
+    text-align: left;
 }
 
-header > .container {
+header .row.top {
     margin-bottom: 10px;
 }
 
-header .logo {
-    padding-left: 15px;
-    padding-right: 15px;
+.text-right {
+    text-align: left !important;
+}
+
+.insurance-title-container {
+    text-align: left;
+}
+
+.section-title {
+    text-align: left;
+}
+
+.insurance-btn-box .icon-chevron-left:before {
+    content: "\f054";
+}
+
+.item-title {
+    text-align: left;
+}
+
+body {
+    direction: ltr;
+}
+
+.online-services-icons {
+    float: right;
+}
+
+.-hover-show {
+    left: auto;
+    right: 0;
+    top: 0;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    left: auto;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.logo > * {
+    display: inline-block;
+    float: left;
+}
+
+.logo .logo-right {
+    padding-right: 0;
+    padding-left: 10px;
+}
+
+.logo .logo-right > * {
+    text-align: left;
+}
+
+.language-select label {
+
+    text-align: right;
+}
+
+.search-form {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+.search-form .input-group-addon:last-child {
+    border-radius: 0 7px 7px 0;
+}
+
+.search-form .input-group-addon .search-btn {
+    border-radius: 0 7px 7px 0;
+}
+
+.search-container .form-control {
+    border-radius: 7px 0 0 7px;
 }
 
 .navbar {
     float: left;
 }
 
-.nav-pills > li {
+.navbar > li > a {
+    border-radius: 4px 4px 0 0;
+    direction: rtl;
+}
+
+.navbar .dropdown-menu {
+    text-align: left;
+}
+
+.navbar .dropdown-menu .menu-part {
+    margin: 0 0 1em;
+}
+
+.navbar .dropdown-menu .menu-part > li:not(.has-child) > a:before {
+
+    left: -15px;
+    right: 0;
+}
+
+.slider {
+    direction: ltr;
+}
+
+.slider .slide-item .over-slide-inner {
+    padding: 0 0 0 80px;
+    text-align: left;
+}
+
+.item-image {
+    text-align: right;
+}
+
+.insurance-btn-box ul > li a {
+    padding: 10px 15px;
+    padding-left: 30px;
+    text-align: left;
+}
+
+.insurance-box .insurance-item {
     float: left;
 }
 
-.navbar .dropdown-menu .container {
+.insurance-box .insurance-item-inner {
+    padding-left: 65px;
+}
+
+.insurance-box .insurance-item .item-image {
+
+    left: 15px;
+    right: 0;
+
+}
+
+.news-item-inner .statics-row > span {
+
+    float: left;
+}
+
+.news-item-inner .statics-row > span [class*='-icon'] {
+
+    margin-left: 5px;
+    padding-right: 0;
+}
+
+.news-item-inner .news-details {
+    padding: 0 15px 15px;
+}
+
+.news-item-inner h3 {
+    text-align: left;
+    margin: 20px 0 0;
+}
+
+.gallery-tabs {
+    text-align: right;
+}
+
+.gallery-item .item-image {
+
+    float: left;
+}
+
+.gallery-item .item-details {
+
+    float: left;
+    padding: 0 0 0 15px;
+}
+
+.gallery-item .item-details h4.with-small {
+    margin: 15px 0 0;
+}
+
+.gallery-item-details .gallery-details {
+    text-align: left;
+    float: left;
+    padding-left: 40px;
+    padding-right: 0;
+}
+
+.gallery-item-details .item-image-big {
+
+    float: left;
+}
+
+.gallery-item-details .item-image-big img {
+
+    top: 50%;
+    right: 50%;
+    left: 0;
+
+}
+
+.bottom-section .info-container {
+    float: right;
+    padding-left: 70px;
+    padding-right: 0;
+    padding-top: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.33);
+    border-right: none;
+}
+
+.bottom-section .form-container {
+    float: left;
+    padding-right: 70px;
+}
+
+.bottom-section .form-container .captcha img {
+    border-radius: 10px 0 0 10px;
+
+}
+
+.bottom-section .form-container .captcha a {
+    left: 115px;
+    right: 0;
+}
+
+.bottom-section .form-container .captcha a::before {
+    border-radius: 0 10px 10px 0;
+}
+
+.bottom-section .form-container .captcha input {
+    margin-left: 50px;
+    margin-right: 0;
+}
+
+.bottom-section .info-container .icon {
+
+    float: left;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+/*---------------- footer */
+.footer-section {
+    padding: 70px 0 30px;
+}
+
+.footer-section .footer-block {
+    float: left;
+}
+
+.footer-section .footer-block:first-child {
+    padding-left: 0;
+    padding-right: auto;
+}
+
+.footer-section .footer-block:last-child {
+    padding-right: 0;
+    padding-left: auto;
+}
+
+.footer-section .footer-block h4 {
+
+    margin: 0 0 15px;
+
+}
+
+.footer-section .footer-block ul li {
+    margin: 0 0 5px;
+
+}
+
+.footer-section .copyright a::before {
+
+    right: 0;
+    left: auto;
+
+}
+
+.certificate-block h3 {
+    width: 100%;
+}
+
+.certs {
+    float: left;
+}
+
+.cert-item-inner {
     direction: ltr;
     text-align: left;
 }
 
-.navbar .dropdown-menu .menu-part > li > a:before {
-    content: "\f054";
-    left: -15px;
+.footer-sub-block .menu-part {
+    float: left;
 }
 
-/*-------------------------- section : slider-container*/
+.user-header-box {
+
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.user-header-pic {
+    left: 0;
+    right: auto;
+}
+
+.user-header-details {
+    padding: 4px 30px 4px 30px;
+    float: right;
+}
+
+.sidebar-user-menu .user-side-pic {
+
+    left: 15px;
+    right: 0;
+}
+
+.user-side-details {
+
+    padding-left: 125px;
+    padding-right: 0;
+}
+
+.user-side-setting {
+
+    right: 0;
+
+}
+
+.sidebar-user-menu .content-section > ul > li {
+    padding: 5px 60px 5px 15px;
+}
+
+.sidebar-user-menu .content-section > ul > li > a > i {
+
+    float: left;
+}
+
+.custom-table tbody td:first-of-type,
+.custom-table thead th:first-of-type {
+    border-radius: 6px 0 0 6px;
+    padding-left: 15px;
+    padding-right: 0;
+}
+
+.custom-table tbody td:last-of-type,
+.custom-table thead th:last-of-type {
+    border-radius: 0 6px 6px 0;
+    padding-right: 15px;
+    padding-left: 0;
+}
+
+/*!*-------------------------- section : slider-container*!*/
 .slider .slide-item .over-slide-inner {
     text-align: left;
     margin-left: auto;
@@ -42,130 +369,90 @@ header .logo {
     -ms-transform: rotateY(180deg);
     -o-transform: rotateY(180deg);
     transform: rotateY(180deg);
-}
 
-/**/
-@media (min-width: 1200px) {
-    /*.circle-texture div[class^="col-"],*/
-    /*.insurance-container div[class^="col-"],*/
-    /*.gallery-container div[class^="col-"],*/
-    /*.bottom-section div[class^="col-"] ,*/
-    /*.bottom-section form .form-row div[class^="col-"]*/
-    .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6,
-    .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
-        float: left;
-        text-align: left;
+/*!*----------------------------- clinic program *!*/
 
-    }
-}
-
-.item-image {
-    text-align: right;
-}
-
-.item-description {
-    direction: ltr;
-}
-
-/*---------------------------- sectio : insurance-container*/
-.insurance-box .insurance-item {
-    float: left;
-}
-
-.insurance-btn-box ul > li a {
-    padding-right: 30px;
-    padding-left: 10px;
-}
-
-.insurance-btn-box ul > li a i {
-    right: 15px;
-    left: auto;
-}
-
-.insurance-btn-box ul > li a i.icon-chevron-left:before {
-    content: "\f054";
-}
-
-/*-------------------------- section news and articles*/
-.insurance-title-container {
-    direction: ltr;
-}
-
-.gallery-item-details .item-image-big {
-    float: left;
-}
-
-.gallery-item-details .gallery-details {
-    float: left;
-    padding-left: 40px;
-}
-
-.gallery-item .item-image {
-    float: left;
-    text-align: left;
-}
-
-.gallery-item .item-details {
-    float: left;
-    padding: 0 0 0 15px;
-}
-
-.gallery-item .item-details p {
-    direction: ltr;
-}
-
-.bottom-section .form-container {
-    float: left;
-    padding-right: 70px;
-    direction: ltr;
-}
-
-.bottom-section .info-container {
-    float: right;
-    padding-left: 70px;
-    border-right: none;
-    border-left: 1px solid rgba(255, 255, 255, 0.33);
-    direction: ltr;
-    padding-top: 0;
-
-}
-
-.bottom-section .form-container .captcha img {
-    border-radius: 10px 0px 0px 10px;
-    width: 90px;
-}
-
-.bottom-section .form-container .captcha a::before {
-    border-radius: 0 10px 10px 0;
-}
-
-.bottom-section .form-container .captcha a {
-    left: 105px;
+.table tr td:first-of-type:before {
     right: auto;
+    left: 0;
 }
 
-section .form-container input[type="submit"], .bottom-section .form-container .captcha input {
-    margin-right: auto;
-    margin-left: 50px;
+.table tr td:first-of-type {
+    padding-right: 5px;
+    padding-left: 15px;
+    border-radius: 6px 0 0 6px;
 }
 
-.bottom-section .info-container .icon {
+.table tr td:last-of-type {
+    border-radius: 0 6px 6px 0;
+}
+
+.content-footer__linkText {
     float: left;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    margin-left: auto;
+    margin-right: 5px;
 }
 
-.certificate-block h3 {
-    width: 100%;
+/*!*---------------------- contact us*!*/
+.contactUs__form label {
+    margin-right: 0;
+    margin-left: 10px;
 }
 
-.footer-section .footer-block {
-    float: left;
-    text-align: left;
-    padding-left: 0;
+/*--------------------- doctors*/
+.doctors .content-header {
+    padding: 0 0 0 30px;
 }
 
-.footer-section .footer-block:first-child {
-    padding-right: 20px;
+.doctors .doctors-image {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.doctors .panel-heading::before {
+    left: -5px;
+    right: 0;
+
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+.doctors .panel-title__doctorAvatar {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+/*---------------------- forgot password*/
+.vertical-separator-line {
+    border-left: 0;
+    border-right: 2px solid #e82d2d;
+}
+
+.social-accounts img {
+    left: auto;
+    right: 25px;
+}
+
+.register-form-container {
+    padding: 0 65px 0 0;
+}
+
+.social-accounts-container {
+    padding: 25px 25px 25px 55px;
+}
+
+/*----------------news*/
+.news .search-container .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }

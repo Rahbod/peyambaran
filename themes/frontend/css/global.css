@@ -78,6 +78,7 @@ body {
 }
 
 .content-header__subTitle, .content-header__title {
+    color: #fff;
     font-size: 20px;
     margin: 0;
 }

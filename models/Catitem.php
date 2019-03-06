@@ -18,6 +18,9 @@ use yii\db\ActiveRecord;
  */
 class Catitem extends ActiveRecord
 {
+    const TYPE_CATEGORY = 'cat';
+    const TYPE_TAXONOMY = 'tax';
+
     /**
      * {@inheritdoc}
      */
@@ -32,9 +35,10 @@ class Catitem extends ActiveRecord
     public function rules()
     {
         return [
-            [['itemID', 'catID', 'type', 'status'], 'required'],
+            [['itemID', 'catID', 'type'], 'required'],
             [['itemID', 'catID', 'status'], 'integer'],
             [['type'], 'string'],
+            [['status'], 'default', 'value' => 1],
             [['itemID', 'catID', 'type'], 'unique', 'targetAttribute' => ['itemID', 'catID', 'type']],
             [['itemID'], 'exist', 'skipOnError' => true, 'targetClass' => Item::className(), 'targetAttribute' => ['itemID' => 'id']],
             [['catID'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['catID' => 'id']],
