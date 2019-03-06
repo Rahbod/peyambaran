@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
 use yii\helpers\Url;
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
@@ -47,7 +48,16 @@ use yii\helpers\Url;
             <div class="col-sm-4">
                 <?= $form->field($model, 'type')->dropDownList(\app\models\Post::getTypeLabels()) ?>
             </div>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'formCategories')->dropDownList(Category::getWithType(Category::CATEGORY_TYPE_NEWS), ['prompt' => Yii::t('words', 'Select Category')]) ?>
+            </div>
+
+            <div class="col-sm-4">
+                <?= $form->field($model, 'publish_date')->widget(\yii\jui\DatePicker::className(), ['dateFormat' => 'php:Y/m/d','options' => ['class' => 'form-control m-input m-input--solid']]) ?>
+            </div>
         </div>
+
+        <?= $form->field($model, 'summary')->textarea(['rows' => 6]) ?>
 
         <?= $form->field($model, 'body')->widget(\dosamigos\tinymce\TinyMce::className(), [
             'options' => ['rows' => 6],

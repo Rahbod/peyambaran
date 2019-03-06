@@ -48,6 +48,8 @@ class Post extends Item
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'body' => ['CHAR', ''],
             'image' => ['CHAR', ''],
+            'publish_date' => ['CHAR', ''],
+            'summary' => ['CHAR', ''],
         ]);
     }
 
@@ -57,7 +59,8 @@ class Post extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['body', 'image'], 'required'],
+            [['body', 'image', 'formCategories'], 'required'],
+            [['publish_date', 'summary'], 'string'],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }
@@ -70,6 +73,8 @@ class Post extends Item
         return array_merge(parent::attributeLabels(), [
             'body' => Yii::t('words', 'Body'),
             'image' => Yii::t('words', 'Image'),
+            'publish_date' => Yii::t('words', 'Publish Date'),
+            'summary' => Yii::t('words', 'Summary'),
         ]);
     }
 
@@ -80,5 +85,10 @@ class Post extends Item
     public static function find()
     {
         return new ItemQuery(get_called_class());
+    }
+
+    public static function validQuery()
+    {
+        return self::find()->valid()->andWhere(['<=', self::columnGetString('publish_date'), time()]);
     }
 }

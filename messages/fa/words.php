@@ -296,4 +296,9 @@ return [
     'Video Gallery' => 'گالری ویدئو',
     'Insurance' => 'بیمه',
     'Category Type' => 'نوع دسته بندی',
+    'Publish Date' => 'تاریخ انتشار',
+    'Select Category' => 'دسته بندی را انتخاب کنید',
+    'Category' => 'دسته بندی',
+    'Tags' => 'برچسب ها',
+    'Summary' => 'خلاصه متن',
 ];

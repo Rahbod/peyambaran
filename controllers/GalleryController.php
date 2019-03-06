@@ -72,7 +72,6 @@ class GalleryController extends AuthController
             /* Video Gallery Actions */
             'upload-image' => [
                 'class' => UploadAction::className(),
-                'upload' => $this->imageDir,
                 'fileName' => Html::getInputName(new VideoGallery(), 'image'),
                 'rename' => UploadAction::RENAME_UNIQUE,
                 'validateOptions' => array(
@@ -88,24 +87,22 @@ class GalleryController extends AuthController
             ],
             'upload-video' => [
                 'class' => UploadAction::className(),
-                'upload' => $this->imageDir,
-                'fileName' => Html::getInputName(new PictureGallery(), 'full_image'),
+                'fileName' => Html::getInputName(new VideoGallery(), 'video'),
                 'rename' => UploadAction::RENAME_UNIQUE,
                 'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                    'acceptedTypes' => array('mp4')
                 )
             ],
             'delete-video' => [
                 'class' => RemoveAction::className(),
                 'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new PictureGallery(),
-                'attribute' => 'full_image',
-                'upload' => $this->imageDir
+                'model' => new VideoGallery(),
+                'attribute' => 'video',
+                'upload' => $this->videoDir
             ],
             /* Picture Gallery Actions */
             'upload-thumb' => [
                 'class' => UploadAction::className(),
-                'upload' => $this->imageDir,
                 'fileName' => Html::getInputName(new PictureGallery(), 'thumbnail_image'),
                 'rename' => UploadAction::RENAME_UNIQUE,
                 'validateOptions' => array(
@@ -121,7 +118,6 @@ class GalleryController extends AuthController
             ],
             'upload-full-image' => [
                 'class' => UploadAction::className(),
-                'upload' => $this->imageDir,
                 'fileName' => Html::getInputName(new PictureGallery(), 'full_image'),
                 'rename' => UploadAction::RENAME_UNIQUE,
                 'validateOptions' => array(
@@ -253,7 +249,7 @@ class GalleryController extends AuthController
         $searchModel->type = Gallery::TYPE_VIDEO_GALLERY;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('index_video', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
