@@ -2,5 +2,4 @@
 .idea
 
 psd/*
-
-vendor.zip
+*.zip

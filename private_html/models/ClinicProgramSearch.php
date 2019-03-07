@@ -65,6 +65,8 @@ class ClinicProgramSearch extends ClinicProgram
             ->andFilterWhere(['like', 'dyna', $this->dyna])
             ->andFilterWhere(['like', 'created', $this->created]);
 
+        $query->andWhere(['>=', 'date', strtotime(date('Y/m/d 00:00:00', time()))]);
+
         return $dataProvider;
     }
 }

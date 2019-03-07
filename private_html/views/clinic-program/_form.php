@@ -31,9 +31,9 @@ $dayID = $model->isNewRecord ? false : $model->id;
 
         <div class="row">
             <div class="col-sm-4">
-                <div class="form-group m-form__group">
+                <div class="form-group m-form__group has-danger">
                     <?= Html::label($model->getAttributeLabel('date'), '', ['class' => 'col-form-label control-label']) ?>
-                    <?= Html::textInput('', jDateTime::date('l d F Y', $model->date), ['readonly' => true, 'class' => 'form-control m-input m-input--solid disabled']) ?>
+                    <?= Html::textInput('', jDateTime::date('l d F Y', $model->date), ['readonly' => true, 'class' => 'form-control m-input m-input--solid disabled text-danger', 'style' => 'font-weight: bold']) ?>
                 </div>
             </div>
             <div class="col-sm-4">

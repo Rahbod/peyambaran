@@ -68,10 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return $model->user->username;
                             }
                         ],
-                        [
-                            'class' => 'app\components\customWidgets\CustomActionColumn',
-                            'template' => '{view} {update}'
-                        ]
+                        ['class' => 'app\components\customWidgets\CustomActionColumn',]
                     ],
                 ]); ?>
             </div>
