@@ -23,7 +23,7 @@ use app\models\Category;
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-sm-4">
-                <?= $form->field($model, 'parentID')->dropDownList(Category::parents(), [
+                <?= $form->field($model, 'parentID')->dropDownList(Category::parentsList(), [
                     'prompt' => 'بدون والد'
                 ]) ?>
             </div>
@@ -42,7 +42,7 @@ use app\models\Category;
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
             <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary">Cancel</button>
+            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel')?></button>
         </div>
     </div>
 <?php CustomActiveForm::end(); ?>

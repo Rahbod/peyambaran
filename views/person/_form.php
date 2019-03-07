@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
 use \yii\helpers\Url;
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Person */
@@ -17,7 +18,9 @@ use \yii\helpers\Url;
 ]); ?>
 <div class="m-portlet__body">
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
-
+    <?php
+    echo $form->errorSummary($model)
+    ?>
     <?php echo $form->field($model, 'avatar')->widget(\devgroup\dropzone\DropZone::className(), [
         'url' => Url::to(['upload-avatar']),
         'removeUrl' => Url::to(['delete-avatar']),
@@ -50,13 +53,13 @@ use \yii\helpers\Url;
         <div class="col-sm-4">
             <?= $form->field($model, 'surename')->textInput(['maxlength' => true]) ?>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <?= $form->field($model, 'expertise')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Expertise::find()->all(), 'id', 'name')) ?>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'type')->dropDownList(\app\models\Person::getTypeLabels(), ['prompt' => Yii::t('words', 'Select Type')]) ?>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
+            <?= $form->field($model, 'expertise')->dropDownList(Category::getWithType(Category::CATEGORY_TYPE_EXPERTISE), ['prompt' => Yii::t('words', 'Select Expertise')]) ?>
+        </div>
+        <div class="col-sm-4">
             <?= $form->field($model, 'experience', ['template' => "{label}\n<div class='input-group'>{input}<div class='input-group-append'><span class='input-group-text'>سال</span></div></div>\n{hint}\n{error}"])->textInput() ?>
         </div>
     </div>
@@ -69,7 +72,7 @@ use \yii\helpers\Url;
 <div class="m-portlet__foot m-portlet__foot--fit">
     <div class="m-form__actions">
         <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-        <button type="reset" class="btn btn-secondary">Cancel</button>
+        <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel')?></button>
     </div>
 </div>
 <?php CustomActiveForm::end(); ?>

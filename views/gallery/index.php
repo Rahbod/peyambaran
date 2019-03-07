@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\GallerySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Galleries');
+$this->title = Yii::t('words', 'Picture Gallery');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gallery-index">
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create Gallery') ?></span>
+							<span><?= Yii::t('words', 'Create Picture') ?></span>
 						</span>
                         </a>
                     </li>
@@ -46,15 +46,33 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                       'id',
-                       'userID',
-                       'modelID',
-                       'type',
-                       'name',
-                        //'dyna',
-                        //'extra:ntext',
-                        //'created',
-                        //'status',
+                        [
+                            'attribute' => 'userID',
+                            'value' => function($model){
+                                return $model->user->username;
+                            }
+                        ],
+                        'name',
+                        [
+                            'attribute' => 'created',
+                            'value' => function($model){
+                                return jDateTime::date('Y/m/d', $model->created);
+                            }
+                        ],
+                        [
+                            'attribute' => 'status',
+                            'value' => function($model){
+                                return \app\models\Page::getStatusLabels($model->status);
+                            },
+                            'filter'=>\app\models\Page::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'lang',
+                            'value' => function($model){
+                                return \app\models\Page::$langArray[$model->lang];
+                            },
+                            'filter'=>\app\models\Page::$langArray
+                        ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
                 ]); ?>

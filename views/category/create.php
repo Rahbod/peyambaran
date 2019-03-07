@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Category */
 
 $this->title = Yii::t('words', 'Create Category');
-$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.Yii::t('words', 'Categorys').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
+$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.Yii::t('words', 'Categories').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

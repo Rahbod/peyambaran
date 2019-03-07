@@ -18,7 +18,7 @@ class CategorySearch extends Category
     {
         return [
             [['id', 'parentID', 'status', 'left', 'right', 'depth', 'tree'], 'integer'],
-            [['type', 'name', 'dyna', 'extra', 'created'], 'safe'],
+            [['category_type', 'type', 'name', 'dyna', 'extra', 'created'], 'safe'],
         ];
     }
 
@@ -65,6 +65,7 @@ class CategorySearch extends Category
             'right' => $this->right,
             'depth' => $this->depth,
             'tree' => $this->tree,
+            'category_type' => $this->category_type,
         ]);
 
         $query->andFilterWhere(['like', 'type', $this->type])

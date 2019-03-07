@@ -52,9 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'modelID',
                     'type',
                     'name',
-                    'dyna',
-                    'extra:ntext',
-                    'created',
                     'status',
                 ],
             ]) ?>

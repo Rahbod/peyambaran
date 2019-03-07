@@ -26,7 +26,7 @@ use app\models\Menu;
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-sm-4">
-                <?= $form->field($model, 'parentID')->dropDownList(Menu::parents(), [
+                <?= $form->field($model, 'parentID')->dropDownList(Menu::parentsList(), [
                     'prompt' => 'بدون والد'
                 ]) ?>
             </div>
@@ -48,7 +48,7 @@ use app\models\Menu;
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group m-form__group">
-                            <?= Html::a('<i class="fa fa-plus"></i> صفحه جدید', ['/page/create', 'return' => Yii::$app->request->url], ['encode' => false, 'class' => 'btn btn-info']) ?>
+                            <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('words', 'Create Page'), ['/page/create', 'return' => Yii::$app->request->url], ['encode' => false, 'class' => 'btn btn-info']) ?>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ use app\models\Menu;
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
             <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary">Cancel</button>
+            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel') ?></button>
         </div>
     </div>
 <?php CustomActiveForm::end(); ?>

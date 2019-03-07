@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ClinicProgram */
 
-$this->title = Yii::t('words', 'Create Clinic Program');
-$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.Yii::t('words', 'Clinic Programs').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
+$this->title = Yii::t('words', 'Create New Day');
+$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.Yii::t('words', 'Clinic Program').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

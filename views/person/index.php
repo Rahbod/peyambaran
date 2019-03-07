@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'expertise',
                             'value' => function ($model) {
-                                return $model->getExpertiseLabel();
+                                return $model->getExpertiseLabel()?$model->getExpertiseLabel()->name:null;
                             }
                         ],
                         [

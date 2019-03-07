@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'experience',
-                        'value' => $model->expertise.'  سال',
+                        'value' => $model->experience.'  سال',
                     ],
                     [
                         'attribute' => 'resume',

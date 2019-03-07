@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\AuthController;
 use app\models\UGroup;
 use app\models\UserSearch;
 use devgroup\dropzone\UploadedFiles;
@@ -13,16 +14,21 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-use app\components\MainController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * UserController implements the CRUD actions for User model.
  */
-class UserController extends MainController
+class UserController extends AuthController
 {
     public $avatarPath = 'uploads/users/avatars';
+
+    public function init()
+    {
+        $this->setTheme('default');
+        parent::init();
+    }
 
     /**
      * Returns actions that excluded from user roles
@@ -202,9 +208,9 @@ class UserController extends MainController
         }
 
         if ($result === false)
-            Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
+            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
         else
-            Yii::$app->session->setFlash('public-alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
+            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
 
         return $this->actionIndex();
     }
@@ -223,5 +229,23 @@ class UserController extends MainController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionChangePassword()
+    {
+        $model = User::findOne(Yii::$app->user->id);
+        $model->setScenario('change-password');
+        
+        if(Yii::$app->request->post()){
+            $model->load(Yii::$app->request->post());
+            if ($model->save()){
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                $this->redirect(['/admin/index']);
+            } else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+
+        }
+        
+        return $this->render('change_pass', compact('model'));
     }
 }

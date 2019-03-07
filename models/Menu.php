@@ -91,7 +91,7 @@ class Menu extends Category
         return new CategoryQuery(get_called_class());
     }
 
-    public static function parents()
+    public static function parentsList()
     {
         $parents = [];
         $roots = self::find()->roots()->all();

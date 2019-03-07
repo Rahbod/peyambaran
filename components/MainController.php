@@ -23,6 +23,7 @@ abstract class MainController extends Controller
     public function init()
     {
         parent::init();
+        Yii::$app->name = Yii::t('words', 'Payambaran Hospital');
         if (Yii::$app->session->has('language'))
             Yii::$app->language = Yii::$app->session->get('language');
         else if (isset(Yii::$app->request->cookies['language']))
@@ -212,7 +213,7 @@ abstract class MainController extends Controller
         $temp = [];
         foreach ($array as $controller => $actions) {
             foreach ($actions as $action)
-                $temp[$controller][lcfirst($controller).'@'.$action] = Yii::t('actions', lcfirst($controller).'.'.$action);
+                $temp[$controller][lcfirst($controller) . '@' . $action] = Yii::t('actions', lcfirst($controller) . '.' . $action);
         }
         return $temp;
     }
@@ -224,46 +225,64 @@ abstract class MainController extends Controller
             /* ADMIN MENU */
             'admin' => [
                 [
-                    'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">داشبورد</span>',
+                    'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">'.Yii::t('words','Dashboard').'</span>',
                     'url' => ['/admin'],
                 ],
-                "<li class='m-menu__section'><h4 class='m-menu__section-text'>منوی مدیریت</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
+                "<li class='m-menu__section'><h4 class='m-menu__section-text'>".Yii::t('words','Management Menu')."</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
                 [
-                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">مدیریت منو</span>',
+                    'label' => '<i class="m-menu__link-icon fa fa-calendar-alt"></i><span class="m-menu__link-text">'.Yii::t('words','Clinic Program').'</span>',
+                    'items' => [
+                        ['label' => Yii::t('words', 'Manage Days'), 'url' => ['/clinic-program/index']],
+                        ['label' => Yii::t('words', 'Create New Day'), 'url' => ['/clinic-program/create']],
+                    ]
+                ],
+                [
+                    'label' => '<i class="m-menu__link-icon fa fa-bars"></i><span class="m-menu__link-text">'.Yii::t('words','Menus').'</span>',
                     'url' => ['/menu/index']
                 ],
                 [
-                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">آیتم ها</span>',
+                    'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . Yii::t('words', 'Items') . '</span>',
                     'items' => [
-                        ['label' => 'مدیریت اسلاید', 'url' => ['/slide/index']],
-                        ['label' => 'مدیریت صفحات', 'url' => ['/page/index']],
-                        ['label' => 'مدیریت اشخاص', 'url' => ['/person/index']],
-                        ['label' => 'مدیریت اخبار و مقالات', 'url' => ['/post/index']],
-                        ['label' => 'مدیریت بیمه ها', 'url' => ['/insurance/index']],
+                        ['label' => Yii::t('words', 'Slides'), 'url' => ['/slide/index']],
+                        ['label' => Yii::t('words', 'Pages'), 'url' => ['/page/index']],
+                        ['label' => Yii::t('words', 'People'), 'url' => ['/person/index']],
+                        ['label' => Yii::t('words', 'Posts'), 'url' => ['/post/index']],
+                        ['label' => Yii::t('words', 'Insurances'), 'url' => ['/insurance/index']],
                     ]
                 ],
                 [
-                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">گالری</span>',
+                    'label' => '<i class="m-menu__link-icon fa fa-images"></i><span class="m-menu__link-text">'.Yii::t('words', 'Gallery').'</span>',
                     'items' => [
-                        ['label' => 'مدیریت تصاویر', 'url' => ['/gallery/index']],
-                        ['label' => 'مدیریت ویدئوها', 'url' => ['/gallery/index-video']],
+                        ['label' => Yii::t('words','Picture Gallery'), 'url' => ['/gallery/index']],
+                        ['label' => Yii::t('words','Video Gallery'), 'url' => ['/gallery/index-video']],
                     ]
                 ],
                 [
-                    'label' => '<i class="m-menu__link-icon flaticon-layers"></i><span class="m-menu__link-text">دسته بندی ها</span>',
+                    'label' => '<i class="m-menu__link-icon fa fa-th"></i><span class="m-menu__link-text">'.Yii::t('words','Categories').'</span>',
                     'url' => ['/category/index']
                 ],
                 [
-                    'label' => '<i class="m-menu__link-icon flaticon-logout"></i><span class="m-menu__link-text text-danger">خروج</span>',
+                    'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">'.Yii::t('words', 'Messages').'</span>',
+                    'items' => [
+                        ['label' => Yii::t('words','Picture Gallery'), 'url' => ['/gallery/index']],
+                        ['label' => Yii::t('words','Video Gallery'), 'url' => ['/gallery/index-video']],
+                    ]
+                ],
+                [
+                    'label' => '<i class="m-menu__link-icon fa fa-cogs"></i><span class="m-menu__link-text">'.Yii::t('words','Setting').'</span>',
+                    'url' => ['/admin/setting']
+                ],
+                [
+                    'label' => '<i class="m-menu__link-icon flaticon-logout"></i><span class="m-menu__link-text text-danger">'.Yii::t('words','Logout').'</span>',
                     'url' => ['/admin/logout']
                 ]
             ],
 
             /* GUEST MENU */
             'guest' => [
-                "<li class='m-menu__section'><h4 class='m-menu__section-text'>ورود به سامانه مدیریت</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
+                "<li class='m-menu__section'><h4 class='m-menu__section-text'>".Yii::t('words','Categories')."</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
                 [
-                    'label' => '<i class="m-menu__link-icon flaticon-imac"></i><span class="m-menu__link-text">ورود</span>',
+                    'label' => '<i class="m-menu__link-icon flaticon-imac"></i><span class="m-menu__link-text">'.Yii::t('words','Login').'</span>',
                     'url' => ['/admin'],
                 ]
             ],

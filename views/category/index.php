@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Categorys');
+$this->title = Yii::t('words', 'Categories');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
@@ -59,18 +59,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'name',
                         [
-                            'attribute' => 'parentID',
-                            'value' => function($model){
-                                return $model->parent?"<b>{$model->parent->name}</b>":'-';
-                            },
-                            'filter' => \app\models\Category::parents(),
-                            'format' => 'raw'
-                        ],
-                        [
                             'attribute' => 'category_type',
                             'value' => function($model){
                                 return $model->getCategoryTypeLabel($model->category_type);
                             },
+                            'filter' => \app\models\Category::getCategoryTypeLabels()
+                        ],
+                        [
+                            'attribute' => 'parentID',
+                            'value' => function($model){
+                                return $model->parent?"<b>{$model->parent->name}</b>":'-';
+                            },
+                            'filter' => \app\models\Category::parentsList(),
+                            'format' => 'raw'
                         ],
                         [
                             'attribute' => 'status',

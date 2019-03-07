@@ -660,14 +660,14 @@
                                                     <li class="m-nav__section m--hide">
                                                         <span class="m-nav__section-text"></span>
                                                     </li>
+<!--                                                    <li class="m-nav__item">-->
+<!--                                                        <a href="header/profile.html" class="m-nav__link">-->
+<!--                                                            <i class="m-nav__link-icon flaticon-cogwheel-1"></i>-->
+<!--                                                            <span class="m-nav__link-text">مشخصات کاربری</span>-->
+<!--                                                        </a>-->
+<!--                                                    </li>-->
                                                     <li class="m-nav__item">
-                                                        <a href="header/profile.html" class="m-nav__link">
-                                                            <i class="m-nav__link-icon flaticon-cogwheel-1"></i>
-                                                            <span class="m-nav__link-text">مشخصات کاربری</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="m-nav__item">
-                                                        <a href="header/profile.html" class="m-nav__link">
+                                                        <a href="<?= \yii\helpers\Url::to(['/user/change-password']) ?>" class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-lock-1"></i>
                                                             <span class="m-nav__link-text">تغییر کلمه عبور</span>
                                                         </a>

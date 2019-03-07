@@ -17,7 +17,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Yii::$app->name . (($this->title) ? ' - ' . $this->title : ''); ?></title>
+    <title><?= (($this->title) ? $this->title . ' - ': ''). Yii::$app->name; ?></title>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
         WebFont.load({

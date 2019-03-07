@@ -45,7 +45,7 @@ class Category extends MultiLangActiveRecord
     const TYPE_EXP = 'exp';
 
     const CATEGORY_TYPE_NEWS = 'news';
-    const CATEGORY_TYPE_IMAGE_GALLERY = 'image_gallery';
+    const CATEGORY_TYPE_PICTURE_GALLERY = 'image_gallery';
     const CATEGORY_TYPE_VIDEO_GALLERY = 'video_gallery';
     const CATEGORY_TYPE_INSURANCE = 'insurance';
     const CATEGORY_TYPE_EXPERTISE = 'expertise';
@@ -167,7 +167,7 @@ class Category extends MultiLangActiveRecord
     {
         $statusLabels = [
             self::CATEGORY_TYPE_NEWS => Yii::t('words', 'News & Articles'),
-            self::CATEGORY_TYPE_IMAGE_GALLERY => Yii::t('words', 'Image Gallery'),
+            self::CATEGORY_TYPE_PICTURE_GALLERY => Yii::t('words', 'Picture Gallery'),
             self::CATEGORY_TYPE_VIDEO_GALLERY => Yii::t('words', 'Video Gallery'),
             self::CATEGORY_TYPE_INSURANCE => Yii::t('words', 'Insurance'),
             self::CATEGORY_TYPE_EXPERTISE => Yii::t('words', 'Expertise'),
@@ -217,7 +217,7 @@ class Category extends MultiLangActiveRecord
         return self::find()->max(self::columnGetString('sort'));
     }
 
-    public static function parents()
+    public static function parentsList()
     {
         $parents = [];
         $roots = self::find()->roots()->all();

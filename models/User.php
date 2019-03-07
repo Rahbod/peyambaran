@@ -84,15 +84,15 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['name', 'username', 'status', 'roleID', 'email'], 'required', 'except' => ['change_password', 'manual_insert']],
+            [['name', 'username', 'status', 'roleID', 'email'], 'required', 'except' => ['change-password', 'manual_insert']],
             ['groups', 'required', 'on' => ['insert']],
             [['name', 'username', 'status', 'roleID'], 'required', 'on' => 'manual_insert'],
             [['password'], 'required', 'on' => 'insert'],
-            [['newPassword', 'repeatPassword'], 'required', 'on' => 'change_password'],
-            [['oldPassword'], 'required', 'on' => 'change_password'],
-            [['oldPassword'], 'checkPassword', 'on' => 'change_password'],
+            [['newPassword', 'repeatPassword'], 'required', 'on' => 'change-password'],
+            [['oldPassword'], 'required', 'on' => 'change-password'],
+            [['oldPassword'], 'checkPassword', 'on' => 'change-password'],
             ['repeatPassword', 'compare', 'compareAttribute' => 'password', 'on' => 'insert'],
-            ['repeatPassword', 'compare', 'compareAttribute' => 'newPassword', 'on' => 'change_password'],
+            ['repeatPassword', 'compare', 'compareAttribute' => 'newPassword', 'on' => 'change-password'],
             ['created', 'default', 'value' => date(Yii::$app->params['dbDateTimeFormat']), 'on' => ['insert', 'manual_insert']],
             //['email', 'email'],
             [['dyna', 'address'], 'string'],
@@ -221,13 +221,13 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         $this->updated = date(Yii::$app->params['dbDateTimeFormat']);
-        if ($this->scenario != 'delete-user' && $this->scenario != 'change_password')
+        if ($this->scenario != 'delete-user' && $this->scenario != 'change-password')
             $this->birthDate = date(Yii::$app->params['dbDateTimeFormat'], $this->birthDate);
 
-        if ($this->scenario == 'change_password')
+        if ($this->scenario == 'change-password')
             $this->password = $this->newPassword;
 
-        if ($this->isNewRecord || $this->scenario == 'change_password')
+        if ($this->isNewRecord || $this->scenario == 'change-password')
             $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
 
         $this->_old = $this->oldAttributes; // for create log

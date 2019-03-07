@@ -70,10 +70,10 @@ class Person extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['avatar', 'expertise'], 'required'],
-            [['expertise', 'experience'], 'number'],
+            [['expertise'], 'required'],
+            [['expertise', 'experience'], 'integer'],
             [['avatar', 'link', 'resume', 'firstname', 'surename'], 'string'],
-            [['type'], 'default' , 'value' => self::TYPE_DOCTOR],
+            [['type'], 'default', 'value' => self::TYPE_DOCTOR],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }
@@ -106,6 +106,20 @@ class Person extends Item
 
     public function getExpertiseLabel()
     {
-        return $this->expertise?Expertise::findOne($this->expertise):null;
+        return $this->expertise ? Category::findOne($this->expertise) : null;
+    }
+
+    public static function getWithType($type)
+    {
+        return self::find()->valid()->andWhere(['type' => $type])->orderBy(['name' => SORT_ASC])->all();
+    }
+
+
+    public $programRelModel = null;
+    public function getProgramRel($dayID)
+    {
+        if (!$this->programRelModel)
+            $this->programRelModel = $this->hasOne(PersonProgramRel::className(), ['personID' => 'id'])->andWhere(['dayID' => $dayID])->one();
+        return $this->programRelModel;
     }
 }

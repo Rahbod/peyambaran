@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'value' => function($model){
                                 return $model->parent?"<b>{$model->parent->name}</b>":'-';
                             },
-                            'filter' => \app\models\Menu::parents(),
+                            'filter' => \app\models\Menu::parentsList(),
                             'format' => 'raw'
                         ],
                         [

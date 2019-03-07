@@ -68,7 +68,7 @@ use \yii\helpers\Url;
                 <?= $form->field($model, 'short_description')->textInput() ?>
             </div>
             <div class="col-sm-4">
-                <?= $form->field($model, 'formCategories')->dropDownList(Category::getWithType(Category::CATEGORY_TYPE_IMAGE_GALLERY), ['prompt' => Yii::t('words', 'Select Category')]) ?>
+                <?= $form->field($model, 'formCategories')->dropDownList(Category::getWithType(Category::CATEGORY_TYPE_PICTURE_GALLERY), ['prompt' => Yii::t('words', 'Select Category')]) ?>
             </div>
         </div>
 
@@ -80,7 +80,7 @@ use \yii\helpers\Url;
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
             <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary">Cancel</button>
+            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel')?></button>
         </div>
     </div>
 <?php CustomActiveForm::end(); ?>

@@ -5,11 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ClinicProgram */
 
-$this->title = Yii::t('words', 'Update Clinic Program: {name}', [
-    'name' => $model->id,
+$this->title = Yii::t('words', 'Update Day: {name}', [
+    'name' => jDateTime::date('l d F Y', $model->date),
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Clinic Programs'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Clinic Program'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('words', 'Update');
 ?>
 

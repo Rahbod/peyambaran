@@ -53,7 +53,7 @@ use app\models\Category;
             </div>
 
             <div class="col-sm-4">
-                <?= $form->field($model, 'publish_date')->widget(\yii\jui\DatePicker::className(), ['dateFormat' => 'php:Y/m/d','options' => ['class' => 'form-control m-input m-input--solid']]) ?>
+                <?= $form->field($model, 'publish_date')->widget(\yii\jui\DatePicker::className(), ['dateFormat' => 'php:Y/m/d','options' => ['class' => 'form-control m-input m-input--solid', 'autocomplete' => 'off']]) ?>
             </div>
         </div>
 
@@ -69,7 +69,7 @@ use app\models\Category;
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
             <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary">Cancel</button>
+            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel')?></button>
         </div>
     </div>
 <?php CustomActiveForm::end(); ?>
