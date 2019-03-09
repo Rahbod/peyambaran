@@ -17,6 +17,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= (($this->title) ? $this->title . ' - ': ''). Yii::$app->name; ?></title>
+    <?php $this->registerCssFile($this->theme->baseUrl.'/css/bootstrap.min.css', ['depends' => [BootstrapAsset::className()],'media' => 'all'], 'bootstrap');?>
     <?php $this->registerCssFile($this->theme->baseUrl.'/css/bootstrap-rtl.min.css', ['depends' => [BootstrapAsset::className()],'media' => 'all'], 'bootstrap-rtl');?>
     <?php $this->registerCssFile($this->theme->baseUrl.'/css/fontiran-fa-num.css', ['depends' => [BootstrapAsset::className()],'media' => 'all'], 'fontiran-fa-num');?>
     <?php $this->registerCssFile($this->theme->baseUrl.'/css/font-awesome.css', ['depends' => [BootstrapAsset::className()],'media' => 'all'], 'font-awesome');?>
