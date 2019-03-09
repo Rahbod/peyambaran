@@ -2291,6 +2291,11 @@ section .title-description {
     font-weight: 300;
 }
 
+.text-purple {
+    color: #877ef3;
+    font-size: 15px;
+}
+
 .-required {
     color: #e33b3b;
     font-weight: bold;
@@ -2631,6 +2636,7 @@ section .title-description {
 .register .content-header__title {
     font-size: 22px;
 }
+
 /*--------------------- forgot password */
 .register.forgotPassword .submitBtn {
     background: #e82d2d;
@@ -2640,7 +2646,7 @@ section .title-description {
     background: #e82d2d !important;
 }
 
-.register.forgotPassword .submitBtn:hover,.register.forgotPassword  .submitBtn:focus {
+.register.forgotPassword .submitBtn:hover, .register.forgotPassword .submitBtn:focus {
     background: #bc2424 !important;
 }
 
@@ -2659,12 +2665,101 @@ section .title-description {
     font-size: 18px;
 }
 
-.register.forgotPassword .forgotBtn,.register.forgotPassword  .register-form-container__title {
+.register.forgotPassword .forgotBtn, .register.forgotPassword .register-form-container__title {
     color: #727272;
     font-weight: bold;
 }
-.register.forgotPassword .social-accounts:hover a,.register.forgotPassword  .social-accounts:focus a {
+
+.register.forgotPassword .social-accounts:hover a, .register.forgotPassword .social-accounts:focus a {
     color: #e82d2d;
+}
+
+/*#endregion*/
+
+/*#region gallery*/
+/*------------------------------sidebar menu*/
+.text-dark-2 {
+    color: #0d0d0d;
+}
+
+#sidebar a {
+    font-weight: 400;
+    /*color: #000;*/
+}
+
+.-hoverBlue:hover, .-hoverBlue:focus {
+    color: #5499fa !important;
+    border-bottom: 1px solid #5499fa;
+}
+
+.-hoverBlue:visited {
+    color: #2271fa;
+}
+
+/*------------------------------main content : html5lightbox */
+#html5-watermark {
+    display: none !important;
+}
+
+.gallery__imageContainer {
+    width: 31.3333%;
+    float: right;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.gallery__imageContainer h4 {
+    color: #fff;
+}
+
+.html5-title {
+    text-align: right !important;
+    font-family: IRANSans !important;
+}
+
+.gallery__images {
+    max-width: 100%;
+    height: auto;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.gallery__imageContainer {
+    position: relative;
+}
+
+.-hoverBox {
+    top: 0;
+    width: 100%;
+    right: 0;
+    height: 0;
+    opacity: 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    z-index: -1;
+    position: absolute;
+    background: #000;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery__imageContainer:hover .-hoverBox {
+    background: #877ef3cc;
+    color: #fff;
+    z-index: 1;
+    height: 100%;
+    opacity: 1;
 }
 
 /*#endregion*/
