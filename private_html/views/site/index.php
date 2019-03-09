@@ -1,51 +1,21 @@
 <?php
+use \app\models\Slide;
+use \yii\helpers\Html;
+
 /* @var $this yii\web\View */
 ?>
 
+
 <section class="slider-container">
     <div class="slider owl-carousel owl-theme" data-items="1">
-        <div class="slide-item relative">
-            <div class="image-container">
-                <img src="images/slide1.png">
-            </div>
-            <div class="over-slide">
-                <div class="container">
-                    <div class="over-slide-inner">
-                        <div class="flex-inner">
-                            <h3>سامانه نوبت دهی بیمارستان تخصصی و فوق تخصصی پیامبران</h3>
-                            <p>جهت دریافت نوبت برای مراجعه به هریک از متخصصان
-                                موجود در بیمارستان پیامبران میتوانید با استفاده از سامانه
-                                نوبت دهی بیمارستان پیامبران اقدام به اخذ نوبت نمایید.</p>
-                            <div class="text-left">
-                                <div><span class="text-green">اطلاعات بیشتر</span></div>
-                                <div><a href="#" class="btn btn-purple">نوبت دهی</a></div>
-                            </div>
-                        </div>
-                    </div>
+        <?php foreach (Slide::find()->valid()->all() as $slide):
+        if($slide->image && is_file(Yii::getAlias('@webroot/uploads/slide/').$slide->image)):?>
+            <div class="slide-item relative">
+                <div class="image-container">
+                    <img src="<?= Yii::getAlias('@web/uploads/slide/').$slide->image ?>" alt="<?= Html::encode($slide->name) ?>">
                 </div>
             </div>
-        </div>
-        <div class="slide-item relative">
-            <div class="image-container">
-                <img src="images/slide1.png">
-            </div>
-            <div class="over-slide">
-                <div class="container">
-                    <div class="over-slide-inner">
-                        <div class="flex-inner">
-                            <h3>سامانه نوبت دهی بیمارستان تخصصی و فوق تخصصی پیامبران</h3>
-                            <p>جهت دریافت نوبت برای مراجعه به هریک از متخصصان
-                                موجود در بیمارستان پیامبران میتوانید با استفاده از سامانه
-                                نوبت دهی بیمارستان پیامبران اقدام به اخذ نوبت نمایید.</p>
-                            <div class="text-left">
-                                <div><span class="text-green">اطلاعات بیشتر</span></div>
-                                <div><a href="#" class="btn btn-purple">نوبت دهی</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php endif;endforeach; ?>
     </div>
 </section>
 <section class="texture-bg circle-texture">
@@ -1034,6 +1004,119 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="gallery-category-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="map-bg">
+    <div class="map"></div>
+</section>
+<section class="bottom-section">
+    <div class="container">
+        <div class="overflow-fix">
+            <div class="form-container">
+                <h3>تماس با ما</h3>
+                <div class="text">در صورتی که مایل به تماس با ما هستید، می توانید از طریق فرم زیر بخش مورد نظر خود
+                    را انتخاب و موضوع خود را مطرح کنید.<br>همچنین می توانید با شماره تماس های درج شده نیز تماس حاصل
+                    فرمایید.
+                </div>
+                <form>
+                    <div class="row">
+                        <div class="form-row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <label for="select">بخش موردنظر</label>
+                                <select id="select">
+                                    <option>مدیریت</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <label for="name">نام و نام خانوادگی</label>
+                                <input id="name" type="text" placeholder="نام و نام خانوادگی">
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <label for="email">پست الکترونیکی</label>
+                                <input id="email" type="text" placeholder="exampel@email.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <label for="mobile">شماره تلفن همراه</label>
+                                <input id="mobile" type="text" placeholder="09xxxxxxxx">
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                <label for="text">متن پیام</label>
+                                <textarea id="text" placeholder="بنویسید"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row last">
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 captcha">
+                                <img src="uploads/captcha.png">
+                                <a href="#">کد جدید ایجاد کنید</a>
+                                <input type="text" placeholder="صورة أمنية">
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                <input type="submit" value="ارسال به بخش مربوطه">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="info-container">
+                <ul>
+                    <li>
+                        <i class="icon point-icon"></i>
+                        <div>آدرس بیمارستان پیامبران<br> تهران - میدان دوم صادقیه - بلوارآیت الله کاشانی - بلوار
+                            اباذر - بیمارستان تخصصی و فوق تخصصی پیامبران
+                        </div>
+                    </li>
+                    <li>
+                        <i class="icon phone-icon"></i>
+                        <div>تلفن و فکس<br> 44079131-41 - 44078392</div>
+                    </li>
+                    <li class="email">
+                        <i class="icon email-icon"></i>
+                        <div>info@payambaranhospital.com</div>
+                    </li>
+                    <li>
+                        <i class="icon share-icon"></i>
+                        <div>
+                            <a href="#" class="icon instagram-icon"></a>
+                            <a href="#" class="icon facebook-icon"></a>
+                            <a href="#" class="icon google-icon"></a>
+                            <a href="#" class="icon twitter-icon"></a>
+                        </div>
+                    </li>
+                </ul>
+                <hr>
+                <div class="certificate-block">
+                    <h3>مدارک معتبر</h3>
+                    <div class="certs">
+                        <div class="cert-item">
+                            <div class="cert-item-inner">
+                                <h4 class="bolder open-sans">ISO 9001:2008</h4>
+                                <p>Professional of medical therapeutic & diginic service</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-item-inner">
+                                <h4 class="bolder open-sans">IPD</h4>
+                                <p>International Patient Department</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-item-inner">
+                                <h4 class="bolder open-sans">ISO 14001:2004</h4>
+                                <p>Professional of medical therapeutic & diginic service</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-item-inner">
+                                <h4 class="bolder open-sans">OHSAS 18001:207</h4>
+                                <p>Professional of medical therapeutic & diginic service</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

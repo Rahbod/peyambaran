@@ -312,6 +312,7 @@ return [
     'Cancel' => 'انصراف',
     'Login to management system' => 'ورود به سامانه مدیریت',
     'Login' => 'ورود',
+    'Register' => 'ثبت نام',
     'Logout' => 'خروج',
     'Dashboard' => 'داشبورد',
     'Management Menu' => 'منوی مدیریت',
@@ -359,4 +360,10 @@ return [
     'Specialist Doctor' => 'پزشک متخصص',
     'Week Days' => 'روزهای هفته',
     'Time' => 'زمان',
+    'Search...' => 'متن جستجو...',
+
+    /****** User ******/
+    'Create user account' => 'ساخت حساب کاربری',
+    'Account information' => 'اطلاعات حساب کاربری',
+    'register_text' => 'با ساخت حساب کاربری میتوانید خدمات ارائه شده در بیمارستان مانند : جواب آزمایش، نوبت دهی، تصاویر PACS را به صورت آنلاین پیگیری و دریافت نمایید.',
 ];

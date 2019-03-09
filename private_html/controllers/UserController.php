@@ -39,6 +39,9 @@ class UserController extends AuthController
         return [
             'upload-image',
             'delete-image',
+            'login',
+            'register',
+            'forget-password',
         ];
     }
 
@@ -189,8 +192,8 @@ class UserController extends AuthController
 //                    'delete-user'
                     $model = $this->findModel($data['id']);
                     if ($model) {
-                        if($model->status)
-                        $model->scenario = 'delete-user';
+                        if ($model->status)
+                            $model->scenario = 'delete-user';
                         $model->status = User::STATUS_DELETED;
                         $result = $model->save(false);
                     }
@@ -235,17 +238,70 @@ class UserController extends AuthController
     {
         $model = User::findOne(Yii::$app->user->id);
         $model->setScenario('change-password');
-        
-        if(Yii::$app->request->post()){
+
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
-            if ($model->save()){
+            if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 $this->redirect(['/admin/index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
 
         }
-        
+
         return $this->render('change_pass', compact('model'));
+    }
+
+
+    public function actionLogin()
+    {
+        $this->setTheme('frontend');
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->redirect(['/admin']);
+        }
+
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionLogout()
+    {
+        $this->setTheme('frontend');
+    }
+
+    public function actionRegister()
+    {
+        $this->setTheme('frontend');
+
+        $model= new User();
+        $model->setScenario('insert');
+
+        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
+            $model->load(Yii::$app->request->post());
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if (Yii::$app->request->post()){
+            $model->load(Yii::$app->request->post());
+            if ($model->save()) {
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->refresh();
+            }else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+        }
+
+
+        return $this->render('register');
+    }
+
+    public function actionForgetPassword()
+    {
+        $this->setTheme('frontend');
+
     }
 }
