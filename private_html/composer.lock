@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e76d4927b52322be553c10654f7c61e8",
+    "content-hash": "200fb83054759c718aa2846fdfa664fd",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -71,7 +71,7 @@
             "version": "v3.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
+                "url": "git@github.com:twbs/bootstrap.git",
                 "reference": "4c547f2175b9a05aa43551f6927da83fe249ce42"
             },
             "dist": {
@@ -131,13 +131,32 @@
             "version": "3.3.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "9e8ec3d10fad04748176144f108d7355662ae75e"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/9e8ec3d10fad04748176144f108d7355662ae75e",
                 "reference": "9e8ec3d10fad04748176144f108d7355662ae75e",
+                "shasum": null
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/jquery-infinite-scroll",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/metafizzy/infinite-scroll.git",
+                "reference": "f0d9eecb55a428b2fd4027964a22b84633ba6e3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/metafizzy/infinite-scroll/zipball/f0d9eecb55a428b2fd4027964a22b84633ba6e3e",
+                "reference": "f0d9eecb55a428b2fd4027964a22b84633ba6e3e",
                 "shasum": null
             },
             "type": "bower-asset",
@@ -510,6 +529,55 @@
                 "yii2"
             ],
             "time": "2018-12-11T10:34:32+00:00"
+        },
+        {
+            "name": "nirvana-msu/yii2-infinite-scroll",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nirvana-msu/yii2-infinite-scroll.git",
+                "reference": "ee78b2f2abb1a2c18248867733ddc37eee68392c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nirvana-msu/yii2-infinite-scroll/zipball/ee78b2f2abb1a2c18248867733ddc37eee68392c",
+                "reference": "ee78b2f2abb1a2c18248867733ddc37eee68392c",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-infinite-scroll": "2.*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "nirvana\\infinitescroll\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Stepanov",
+                    "email": "student_vmk@mail.ru"
+                }
+            ],
+            "description": "Yii2 extension for infinite-scroll jQuery plugin",
+            "keywords": [
+                "infinite-scroll",
+                "jquery",
+                "plugin",
+                "widget",
+                "yii2"
+            ],
+            "time": "2017-07-17T20:37:34+00:00"
         },
         {
             "name": "richardfan1126/yii2-sortable-gridview",
@@ -3783,7 +3851,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kartik-v/yii2-widget-select2": 20,
-        "sallar/jdatetime": 20
+        "sallar/jdatetime": 20,
+        "nirvana-msu/yii2-infinite-scroll": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

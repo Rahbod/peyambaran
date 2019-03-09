@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('words', 'Manage Days');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="clinic-program-index">
+<div class="clinic-index">
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

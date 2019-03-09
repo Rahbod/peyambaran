@@ -10,7 +10,7 @@ Target Server Type    : MariaDB
 Target Server Version : 100208
 File Encoding         : 65001
 
-Date: 2019-03-07 17:56:35
+Date: 2019-03-09 18:25:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -281,7 +281,7 @@ CREATE TABLE `message` (
   `dyna` blob DEFAULT NULL COMMENT 'All fields',
   `created` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of message
@@ -417,3 +417,9 @@ CREATE TABLE `user_request` (
 -- ----------------------------
 -- Records of user_request
 -- ----------------------------
+
+-- ----------------------------
+-- View structure for clinic_program_view
+-- ----------------------------
+DROP VIEW IF EXISTS `clinic_program_view`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `clinic_program_view` AS select (select `c`.`name` from `category` `c` where `c`.`id` = column_get(`i`.`dyna`,'expertise' as signed)) AS `exp`,`i`.`name` AS `name`,`cp`.`date` AS `date`,`ppr`.`start_time` AS `start_time`,`ppr`.`end_time` AS `end_time`,`ppr`.`description` AS `description` from ((`clinic_program` `cp` join `person_program_rel` `ppr` on(`cp`.`id` = `ppr`.`dayID`)) join `item` `i` on(`i`.`modelID` = (select `model`.`id` from `model` where `model`.`name` = 'person') and `i`.`id` = `ppr`.`personID`)) ;
