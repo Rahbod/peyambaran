@@ -2763,3 +2763,37 @@ section .title-description {
 }
 
 /*#endregion*/
+
+/*#region gallery*/
+.register.login .-blueBg {
+    background: #3f8dfa !important;
+}
+
+.register.login .submitBtn:hover, .submitBtn:focus {
+    background: #3372ca !important;
+}
+
+.register.login .register-form-container__description {
+    color: #727272;
+}
+
+.register.login .vertical-separator-line {
+    border-left-color: #3f8dfa;
+}
+
+.register.login .register-form-container__title {
+    color: #727272;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.register.login .forgotBtn, .register-form-container__title {
+    color: #727272;
+    font-weight: bold;
+}
+
+.register.login .social-accounts:hover a, .social-accounts:focus a {
+    color: #3f8dfa;
+}
+
+/*#endregion*/
