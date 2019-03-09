@@ -40,7 +40,7 @@ use \yii\helpers\Html;
                             <button type="submit" class="search-btn"><i class="search-icon"></i></button>
                         </span>
                     </div>
-                </form>
+                <?= Html::endForm() ?>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
                 <img src="<?= $this->theme->baseUrl.(Yii::$app->controller->bodyClass == 'blueHeader'?"logo-white.png":"/images/logo.png")?>">
