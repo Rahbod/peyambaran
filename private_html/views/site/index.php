@@ -3,27 +3,22 @@
 ?>
 
 <section class="slider-container">
-    <div class="slider owl-carousel owl-theme" data-loop="true" data-items="1">
+    <div class="slider owl-carousel owl-theme" data-items="1">
         <div class="slide-item relative">
             <div class="image-container">
-                <img src="../images/slide1.png">
+                <img src="images/slide1.png">
             </div>
             <div class="over-slide">
                 <div class="container">
                     <div class="over-slide-inner">
                         <div class="flex-inner">
-                            <h3>
-                                Payambaran Hospital Specialist And Super Specialist Reception System
-
-                            </h3>
-                            <p>
-                                To get a turn for each expert
-                                Available in the Payambaran Hospital you can use the system
-                                Take turns taking the Payambaran Hospital.
-                            </p>
+                            <h3>سامانه نوبت دهی بیمارستان تخصصی و فوق تخصصی پیامبران</h3>
+                            <p>جهت دریافت نوبت برای مراجعه به هریک از متخصصان
+                                موجود در بیمارستان پیامبران میتوانید با استفاده از سامانه
+                                نوبت دهی بیمارستان پیامبران اقدام به اخذ نوبت نمایید.</p>
                             <div class="text-left">
-                                <div><span class="text-green">more info</span></div>
-                                <div><a href="#" class="btn btn-purple">reception</a></div>
+                                <div><span class="text-green">اطلاعات بیشتر</span></div>
+                                <div><a href="#" class="btn btn-purple">نوبت دهی</a></div>
                             </div>
                         </div>
                     </div>
@@ -32,24 +27,19 @@
         </div>
         <div class="slide-item relative">
             <div class="image-container">
-                <img src="../images/slide1.png">
+                <img src="images/slide1.png">
             </div>
             <div class="over-slide">
                 <div class="container">
                     <div class="over-slide-inner">
                         <div class="flex-inner">
-                            <h3>
-                                Payambaran Hospital Specialist And Super Specialist Reception System
-
-                            </h3>
-                            <p>
-                                To get a turn for each expert
-                                Available in the Payambaran Hospital you can use the system
-                                Take turns taking the Payambaran Hospital.
-                            </p>
+                            <h3>سامانه نوبت دهی بیمارستان تخصصی و فوق تخصصی پیامبران</h3>
+                            <p>جهت دریافت نوبت برای مراجعه به هریک از متخصصان
+                                موجود در بیمارستان پیامبران میتوانید با استفاده از سامانه
+                                نوبت دهی بیمارستان پیامبران اقدام به اخذ نوبت نمایید.</p>
                             <div class="text-left">
-                                <div><span class="text-green">more info</span></div>
-                                <div><a href="#" class="btn btn-purple">reception</a></div>
+                                <div><span class="text-green">اطلاعات بیشتر</span></div>
+                                <div><a href="#" class="btn btn-purple">نوبت دهی</a></div>
                             </div>
                         </div>
                     </div>
@@ -63,8 +53,8 @@
         <div class="row online-services-container">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right">
                 <div class="online-services-icon"></div>
-                <h3 class="section-title">Online Services</h3>
-                <p class="title-description">Payambaran Hospital</p>
+                <h3 class="section-title">سرویس های آنلاین</h3>
+                <p class="title-description">بیمارستان پیامبران</p>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 text-right">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 online-item">
@@ -77,9 +67,8 @@
                                 </div>
                             </div>
                             <div class="item-details">
-                                <h4 class="item-title">Reception</h4>
-                                <p class="item-description">To Get a Turn<br>To Visit Payambaran Hopital Specialists
-                                </p>
+                                <h4 class="item-title">نوبت دهی</h4>
+                                <p class="item-description">جهت دریافت نوبت<br>جهت مراجعه به متخصصان بیمارستان</p>
                             </div>
                         </a>
                     </div>
@@ -94,9 +83,9 @@
                                 </div>
                             </div>
                             <div class="item-details">
-                                <h4 class="item-title">Labor Answering</h4>
-                                <p class="item-description">
-                                    Receive special patient testimonials along with a doctor's opinion </p>
+                                <h4 class="item-title">جوابدهی آزمایشگاه</h4>
+                                <p class="item-description">دریافت جواب آزمایشات ویژه مراجعین به همراه نظر پزشک
+                                    آزمایشگاه</p>
                             </div>
                         </a>
                     </div>
@@ -111,11 +100,9 @@
                                 </div>
                             </div>
                             <div class="item-details">
-                                <h4 class="item-title">Photos <span class="open-sans">PACS</span></h4>
-                                <p class="item-description">
-
-                                    Get PACS images with your doctor's advice for everyone Imaging done
-                                </p>
+                                <h4 class="item-title">تصاویر <span class="open-sans">PACS</span></h4>
+                                <p class="item-description">دریافت تصاویر PACS به همراه نظر پزشک برای تمامی
+                                    تصویربرداری های انجام شده</p>
                             </div>
                         </a>
                     </div>
@@ -130,10 +117,9 @@
                                 </div>
                             </div>
                             <div class="item-details">
-                                <h4 class="item-title">Reception Reply</h4>
-                                <p class="item-description">
-                                    Applying admissions, clinics and paraclinics Hospital
-                                </p>
+                                <h4 class="item-title">درخواست پذیرش</h4>
+                                <p class="item-description">ارسال درخواست پذیرش بستری، کلینیک و پاراکلینیک
+                                    بیمارستان</p>
                             </div>
                         </a>
                     </div>
@@ -148,10 +134,9 @@
                                 </div>
                             </div>
                             <div class="item-details">
-                                <h4 class="item-title">Cooperation Request</h4>
-                                <p class="item-description">
-                                    Applying for doctors, treatment staff and related matters Hospital
-                                </p>
+                                <h4 class="item-title">درخواست همکاری</h4>
+                                <p class="item-description">ارسال درخواست همکاری پزشکان، کادر درمان و موارد مربوط به
+                                    بیمارستان</p>
                             </div>
                         </a>
                     </div>
@@ -166,10 +151,9 @@
                                 </div>
                             </div>
                             <div class="item-details">
-                                <h4 class="item-title">Medical Advice Requests</h4>
-                                <p class="item-description">
-                                    Applying for medical advice with doctors and specialists Hospital
-                                </p>
+                                <h4 class="item-title">درخواست مشاوره پزشکی</h4>
+                                <p class="item-description">ارسال درخواست مشاوره پزشکی با پزشکان و متخصصان
+                                    بیمارستان</p>
                             </div>
                         </a>
                     </div>
@@ -183,19 +167,19 @@
         <div class="row insurance-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
                 <div class="umbrella-icon"></div>
-                <h3 class="section-title">Insurance<span class="hidden">Payambaran Hospital Contract </span></h3>
-                <p class="title-description">Contractor of the Payambaran</p>
+                <h3 class="section-title">بیمه های<span class="hidden">طرف قرارداد پیامبران</span></h3>
+                <p class="title-description">طرف قرارداد پیامبران</p>
                 <div class="row">
                     <div class="insurance-btn-box">
                         <ul>
                             <li class="active"><a href="#" data-toggle="tab" data-target="#insurance-box-1">
-                                    <span>Insurances</span>
-                                    <small>of the contracting party</small>
+                                    <span>بیمه های</span>
+                                    <small>طرف قرارداد بستری</small>
                                     <i class="icon icon-chevron-left"></i>
                                 </a></li>
                             <li><a href="#" data-toggle="tab" data-target="#insurance-box-2">
-                                    <span>Insurances</span>
-                                    <small>of the contracting party</small>
+                                    <span>بیمه های</span>
+                                    <small>طرف قرارداد بستری</small>
                                     <i class="icon icon-chevron-left"></i>
                                 </a></li>
                         </ul>
@@ -209,9 +193,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-1.png">
+                                        <img class="grayscale" src="uploads/bime-1.png">
                                     </div>
-                                    <h4>Karafarin Insurance</h4>
+                                    <h4>بیمه کارآفرین</h4>
                                 </a>
                             </div>
                         </div>
@@ -219,9 +203,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-2.png">
+                                        <img class="grayscale" src="uploads/bime-2.png">
                                     </div>
-                                    <h4>Alborz Insurance</h4>
+                                    <h4>بیمه البرز</h4>
                                 </a>
                             </div>
                         </div>
@@ -229,9 +213,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-3.png">
+                                        <img class="grayscale" src="uploads/bime-3.png">
                                     </div>
-                                    <h4>Asia Insurance</h4>
+                                    <h4>بیمه آسیا</h4>
                                 </a>
                             </div>
                         </div>
@@ -239,10 +223,10 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-4.png">
+                                        <img class="grayscale" src="uploads/bime-4.png">
                                     </div>
-                                    <h4 class="with-small">Salamat Insurance</h4>
-                                    <small>(employee_iranian_other stratum)</small>
+                                    <h4 class="with-small">بیمه سلامت</h4>
+                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
                                 </a>
                             </div>
                         </div>
@@ -250,20 +234,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-5.png">
+                                        <img class="grayscale" src="uploads/bime-5.png">
                                     </div>
-                                    <h4>Iran Insurance</h4>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-1.png">
-                                    </div>
-                                    <h4>Karafarin Insurance</h4>
+                                    <h4>بیمه ایران</h4>
                                 </a>
                             </div>
                         </div>
@@ -271,9 +244,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-2.png">
+                                        <img class="grayscale" src="uploads/bime-1.png">
                                     </div>
-                                    <h4>Alborz Insurance</h4>
+                                    <h4>بیمه کارآفرین</h4>
                                 </a>
                             </div>
                         </div>
@@ -281,9 +254,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-3.png">
+                                        <img class="grayscale" src="uploads/bime-2.png">
                                     </div>
-                                    <h4>Asia Insurance</h4>
+                                    <h4>بیمه البرز</h4>
                                 </a>
                             </div>
                         </div>
@@ -291,10 +264,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-4.png">
+                                        <img class="grayscale" src="uploads/bime-3.png">
                                     </div>
-                                    <h4 class="with-small">Salamat Insurance</h4>
-                                    <small>(employee_iranian_other stratum)</small>
+                                    <h4>بیمه آسیا</h4>
                                 </a>
                             </div>
                         </div>
@@ -302,20 +274,10 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-5.png">
+                                        <img class="grayscale" src="uploads/bime-4.png">
                                     </div>
-                                    <h4>Iran Insurance</h4>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-1.png">
-                                    </div>
-                                    <h4>Karafarin Insurance</h4>
+                                    <h4 class="with-small">بیمه سلامت</h4>
+                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
                                 </a>
                             </div>
                         </div>
@@ -323,9 +285,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-2.png">
+                                        <img class="grayscale" src="uploads/bime-5.png">
                                     </div>
-                                    <h4>Alborz Insurance</h4>
+                                    <h4>بیمه ایران</h4>
                                 </a>
                             </div>
                         </div>
@@ -333,9 +295,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-3.png">
+                                        <img class="grayscale" src="uploads/bime-1.png">
                                     </div>
-                                    <h4>Asia Insurance</h4>
+                                    <h4>بیمه کارآفرین</h4>
                                 </a>
                             </div>
                         </div>
@@ -343,10 +305,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-4.png">
+                                        <img class="grayscale" src="uploads/bime-2.png">
                                     </div>
-                                    <h4 class="with-small">Salamat Insurance</h4>
-                                    <small>(employee_iranian_other stratum)</small>
+                                    <h4>بیمه البرز</h4>
                                 </a>
                             </div>
                         </div>
@@ -354,20 +315,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-5.png">
+                                        <img class="grayscale" src="uploads/bime-3.png">
                                     </div>
-                                    <h4>Iran Insurance</h4>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-1.png">
-                                    </div>
-                                    <h4>Karafarin Insurance</h4>
+                                    <h4>بیمه آسیا</h4>
                                 </a>
                             </div>
                         </div>
@@ -375,9 +325,10 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-2.png">
+                                        <img class="grayscale" src="uploads/bime-4.png">
                                     </div>
-                                    <h4>Alborz Insurance</h4>
+                                    <h4 class="with-small">بیمه سلامت</h4>
+                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
                                 </a>
                             </div>
                         </div>
@@ -385,9 +336,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-3.png">
+                                        <img class="grayscale" src="uploads/bime-5.png">
                                     </div>
-                                    <h4>Asia Insurance</h4>
+                                    <h4>بیمه ایران</h4>
                                 </a>
                             </div>
                         </div>
@@ -395,10 +346,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-4.png">
+                                        <img class="grayscale" src="uploads/bime-1.png">
                                     </div>
-                                    <h4 class="with-small">Salamat Insurance</h4>
-                                    <small>(employee_iranian_other stratum)</small>
+                                    <h4>بیمه کارآفرین</h4>
                                 </a>
                             </div>
                         </div>
@@ -406,9 +356,40 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-5.png">
+                                        <img class="grayscale" src="uploads/bime-2.png">
                                     </div>
-                                    <h4>Iran Insurance</h4>
+                                    <h4>بیمه البرز</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-3.png">
+                                    </div>
+                                    <h4>بیمه آسیا</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-4.png">
+                                    </div>
+                                    <h4 class="with-small">بیمه سلامت</h4>
+                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-5.png">
+                                    </div>
+                                    <h4>بیمه ایران</h4>
                                 </a>
                             </div>
                         </div>
@@ -418,9 +399,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-1.png">
+                                        <img class="grayscale" src="uploads/bime-2.png">
                                     </div>
-                                    <h4>Karafarin Insurance</h4>
+                                    <h4>بیمه البرز</h4>
                                 </a>
                             </div>
                         </div>
@@ -428,9 +409,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-2.png">
+                                        <img class="grayscale" src="uploads/bime-3.png">
                                     </div>
-                                    <h4>Alborz Insurance</h4>
+                                    <h4>بیمه آسیا</h4>
                                 </a>
                             </div>
                         </div>
@@ -438,9 +419,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-3.png">
+                                        <img class="grayscale" src="uploads/bime-1.png">
                                     </div>
-                                    <h4>Asia Insurance</h4>
+                                    <h4>بیمه کارآفرین</h4>
                                 </a>
                             </div>
                         </div>
@@ -448,10 +429,10 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-4.png">
+                                        <img class="grayscale" src="uploads/bime-4.png">
                                     </div>
-                                    <h4 class="with-small">Salamat Insurance</h4>
-                                    <small>(employee_iranian_other stratum)</small>
+                                    <h4 class="with-small">بیمه سلامت</h4>
+                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
                                 </a>
                             </div>
                         </div>
@@ -459,20 +440,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-5.png">
+                                        <img class="grayscale" src="uploads/bime-5.png">
                                     </div>
-                                    <h4>Iran Insurance</h4>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-1.png">
-                                    </div>
-                                    <h4>Karafarin Insurance</h4>
+                                    <h4>بیمه ایران</h4>
                                 </a>
                             </div>
                         </div>
@@ -480,9 +450,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-2.png">
+                                        <img class="grayscale" src="uploads/bime-2.png">
                                     </div>
-                                    <h4>Alborz Insurance</h4>
+                                    <h4>بیمه البرز</h4>
                                 </a>
                             </div>
                         </div>
@@ -490,9 +460,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-3.png">
+                                        <img class="grayscale" src="uploads/bime-3.png">
                                     </div>
-                                    <h4>Asia Insurance</h4>
+                                    <h4>بیمه آسیا</h4>
                                 </a>
                             </div>
                         </div>
@@ -500,10 +470,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-4.png">
+                                        <img class="grayscale" src="uploads/bime-1.png">
                                     </div>
-                                    <h4 class="with-small">Salamat Insurance</h4>
-                                    <small>(employee_iranian_other stratum)</small>
+                                    <h4>بیمه کارآفرین</h4>
                                 </a>
                             </div>
                         </div>
@@ -511,20 +480,10 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-5.png">
+                                        <img class="grayscale" src="uploads/bime-4.png">
                                     </div>
-                                    <h4>Iran Insurance</h4>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-1.png">
-                                    </div>
-                                    <h4>Karafarin Insurance</h4>
+                                    <h4 class="with-small">بیمه سلامت</h4>
+                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
                                 </a>
                             </div>
                         </div>
@@ -532,9 +491,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-2.png">
+                                        <img class="grayscale" src="uploads/bime-5.png">
                                     </div>
-                                    <h4>Alborz Insurance</h4>
+                                    <h4>بیمه ایران</h4>
                                 </a>
                             </div>
                         </div>
@@ -542,9 +501,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-3.png">
+                                        <img class="grayscale" src="uploads/bime-2.png">
                                     </div>
-                                    <h4>Asia Insurance</h4>
+                                    <h4>بیمه البرز</h4>
                                 </a>
                             </div>
                         </div>
@@ -552,10 +511,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-4.png">
+                                        <img class="grayscale" src="uploads/bime-3.png">
                                     </div>
-                                    <h4 class="with-small">Salamat Insurance</h4>
-                                    <small>(employee_iranian_other stratum)</small>
+                                    <h4>بیمه آسیا</h4>
                                 </a>
                             </div>
                         </div>
@@ -563,20 +521,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-5.png">
+                                        <img class="grayscale" src="uploads/bime-1.png">
                                     </div>
-                                    <h4>Iran Insurance</h4>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-1.png">
-                                    </div>
-                                    <h4>Karafarin Insurance</h4>
+                                    <h4>بیمه کارآفرین</h4>
                                 </a>
                             </div>
                         </div>
@@ -584,9 +531,10 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-2.png">
+                                        <img class="grayscale" src="uploads/bime-4.png">
                                     </div>
-                                    <h4>Alborz Insurance</h4>
+                                    <h4 class="with-small">بیمه سلامت</h4>
+                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
                                 </a>
                             </div>
                         </div>
@@ -594,9 +542,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-3.png">
+                                        <img class="grayscale" src="uploads/bime-5.png">
                                     </div>
-                                    <h4>Asia Insurance</h4>
+                                    <h4>بیمه ایران</h4>
                                 </a>
                             </div>
                         </div>
@@ -604,10 +552,9 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-4.png">
+                                        <img class="grayscale" src="uploads/bime-2.png">
                                     </div>
-                                    <h4 class="with-small">Salamat Insurance</h4>
-                                    <small>(employee_iranian_other stratum)</small>
+                                    <h4>بیمه البرز</h4>
                                 </a>
                             </div>
                         </div>
@@ -615,9 +562,91 @@
                             <div class="insurance-item-inner">
                                 <a href="#">
                                     <div class="item-image">
-                                        <img class="grayscale" src="../uploads/bime-5.png">
+                                        <img class="grayscale" src="uploads/bime-3.png">
                                     </div>
-                                    <h4>Iran Insurance</h4>
+                                    <h4>بیمه آسیا</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-1.png">
+                                    </div>
+                                    <h4>بیمه کارآفرین</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-4.png">
+                                    </div>
+                                    <h4 class="with-small">بیمه سلامت</h4>
+                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-5.png">
+                                    </div>
+                                    <h4>بیمه ایران</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-2.png">
+                                    </div>
+                                    <h4>بیمه البرز</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-3.png">
+                                    </div>
+                                    <h4>بیمه آسیا</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-1.png">
+                                    </div>
+                                    <h4>بیمه کارآفرین</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-4.png">
+                                    </div>
+                                    <h4 class="with-small">بیمه سلامت</h4>
+                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="insurance-item">
+                            <div class="insurance-item-inner">
+                                <a href="#">
+                                    <div class="item-image">
+                                        <img class="grayscale" src="uploads/bime-5.png">
+                                    </div>
+                                    <h4>بیمه ایران</h4>
                                 </a>
                             </div>
                         </div>
@@ -631,12 +660,10 @@
     <div class="container">
         <div class="row insurance-container">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
-                <div class="insurance-title-container">
-                    <div class="news-icon"></div>
-                    <div class="inline-title">
-                        <h3 class="section-title">News And Articles</h3>
-                        <p class="title-description">Payambaran Hospital</p>
-                    </div>
+                <div class="news-icon"></div>
+                <div class="inline-title">
+                    <h3 class="section-title">اخبار و مقالات</h3>
+                    <p class="title-description">بیمارستان پیامبران</p>
                 </div>
             </div>
         </div>
@@ -652,22 +679,16 @@
                         </div>
                         <div class="news-image">
                             <div class="news-image-inner">
-                                <img src="../uploads/news1.png">
+                                <img src="uploads/news1.png">
                             </div>
                         </div>
                         <div class="news-details">
-                            <h3>Launch of the new NICU section in the development phase of the hospital</h3>
-                            <div class="news-description">
-                                Lorem Ipsum, a fictitious text with the inaudible simplicity of the printing
-                                industry
-                                                                     And using graphic designers. Printers and
-                                texts, as well as newspapers and magazines in the column
-                                                                     The line is as needed for the current
-                                requirements of the technology required and diverse applications
-                                                                     Improved application tools. A lot of books in
-                                sixty three percent of the past, present and future
-                                                                     It requires a lot of knowledge of the community
-                                and experts.
+                            <h3>راه اندازی بخش جدید NICU در فاز توسعه بیمارستان</h3>
+                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
+                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
+                                شناخت فراوان جامعه و متخصصان را می طلبد.
                                 <div class="overlay"></div>
                             </div>
                         </div>
@@ -684,22 +705,16 @@
                         </div>
                         <div class="news-image">
                             <div class="news-image-inner">
-                                <img src="../uploads/news2.png">
+                                <img src="uploads/news2.png">
                             </div>
                         </div>
                         <div class="news-details">
-                            <h3>Launch of the new NICU section in the development phase of the hospital</h3>
-                            <div class="news-description">
-                                Lorem Ipsum, a fictitious text with the inaudible simplicity of the printing
-                                industry
-                                                                     And using graphic designers. Printers and
-                                texts, as well as newspapers and magazines in the column
-                                                                     The line is as needed for the current
-                                requirements of the technology required and diverse applications
-                                                                     Improved application tools. A lot of books in
-                                sixty three percent of the past, present and future
-                                                                     It requires a lot of knowledge of the community
-                                and experts.
+                            <h3>تعرفه جدید بستری وزارت بهداشت به بیمارستان ها ابلاغ شد</h3>
+                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
+                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
+                                شناخت فراوان جامعه و متخصصان را می طلبد.
                                 <div class="overlay"></div>
                             </div>
                         </div>
@@ -716,22 +731,16 @@
                         </div>
                         <div class="news-image">
                             <div class="news-image-inner">
-                                <img src="../uploads/news3.png">
+                                <img src="uploads/news3.png">
                             </div>
                         </div>
                         <div class="news-details">
-                            <h3>Launch of the new NICU section in the development phase of the hospital</h3>
-                            <div class="news-description">
-                                Lorem Ipsum, a fictitious text with the inaudible simplicity of the printing
-                                industry
-                                                                     And using graphic designers. Printers and
-                                texts, as well as newspapers and magazines in the column
-                                                                     The line is as needed for the current
-                                requirements of the technology required and diverse applications
-                                                                     Improved application tools. A lot of books in
-                                sixty three percent of the past, present and future
-                                                                     It requires a lot of knowledge of the community
-                                and experts.
+                            <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
+                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
+                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
+                                شناخت فراوان جامعه و متخصصان را می طلبد.
                                 <div class="overlay"></div>
                             </div>
                         </div>
@@ -748,22 +757,16 @@
                         </div>
                         <div class="news-image">
                             <div class="news-image-inner">
-                                <img src="../uploads/news1.png">
+                                <img src="uploads/news1.png">
                             </div>
                         </div>
                         <div class="news-details">
-                            <h3>Launch of the new NICU section in the development phase of the hospital</h3>
-                            <div class="news-description">
-                                Lorem Ipsum, a fictitious text with the inaudible simplicity of the printing
-                                industry
-                                                                     And using graphic designers. Printers and
-                                texts, as well as newspapers and magazines in the column
-                                                                     The line is as needed for the current
-                                requirements of the technology required and diverse applications
-                                                                     Improved application tools. A lot of books in
-                                sixty three percent of the past, present and future
-                                                                     It requires a lot of knowledge of the community
-                                and experts.
+                            <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
+                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
+                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
+                                شناخت فراوان جامعه و متخصصان را می طلبد.
                                 <div class="overlay"></div>
                             </div>
                         </div>
@@ -780,22 +783,16 @@
                         </div>
                         <div class="news-image">
                             <div class="news-image-inner">
-                                <img src="../uploads/news2.png">
+                                <img src="uploads/news2.png">
                             </div>
                         </div>
                         <div class="news-details">
-                            <h3>Launch of the new NICU section in the development phase of the hospital</h3>
-                            <div class="news-description">
-                                Lorem Ipsum, a fictitious text with the inaudible simplicity of the printing
-                                industry
-                                                                     And using graphic designers. Printers and
-                                texts, as well as newspapers and magazines in the column
-                                                                     The line is as needed for the current
-                                requirements of the technology required and diverse applications
-                                                                     Improved application tools. A lot of books in
-                                sixty three percent of the past, present and future
-                                                                     It requires a lot of knowledge of the community
-                                and experts.
+                            <h3>تعرفه جدید بستری وزارت بهداشت به بیمارستان ها ابلاغ شد</h3>
+                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
+                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
+                                شناخت فراوان جامعه و متخصصان را می طلبد.
                                 <div class="overlay"></div>
                             </div>
                         </div>
@@ -812,29 +809,48 @@
                         </div>
                         <div class="news-image">
                             <div class="news-image-inner">
-                                <img src="../uploads/news3.png">
+                                <img src="uploads/news3.png">
                             </div>
                         </div>
                         <div class="news-details">
-                            <h3>Launch of the new NICU section in the development phase of the hospital</h3>
-                            <div class="news-description">
-                                Lorem Ipsum, a fictitious text with the inaudible simplicity of the printing
-                                industry
-                                                                     And using graphic designers. Printers and
-                                texts, as well as newspapers and magazines in the column
-                                                                     The line is as needed for the current
-                                requirements of the technology required and diverse applications
-                                                                     Improved application tools. A lot of books in
-                                sixty three percent of the past, present and future
-                                                                     It requires a lot of knowledge of the community
-                                and experts.
+                            <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
+                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
+                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
+                                شناخت فراوان جامعه و متخصصان را می طلبد.
                                 <div class="overlay"></div>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
-
+            <div class="news-item">
+                <div class="news-item-inner">
+                    <a href="#">
+                        <div class="statics-row">
+                            <span class="comments-count text-right">49<i class="comment-icon"></i></span>
+                            <span class="view-count text-center">105<i class="eye-icon"></i></span>
+                            <span class="news-date text-left">1397/7/11<i class="calendar-icon"></i></span>
+                        </div>
+                        <div class="news-image">
+                            <div class="news-image-inner">
+                                <img src="uploads/news1.png">
+                            </div>
+                        </div>
+                        <div class="news-details">
+                            <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
+                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
+                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
+                                شناخت فراوان جامعه و متخصصان را می طلبد.
+                                <div class="overlay"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -842,18 +858,17 @@
     <div class="container">
         <div class="row gallery-tabs">
             <ul class="pull-left nav nav-tabs">
-                <li><a href="#" data-toggle="tab" data-target="#gallery-category-1">Doctors</a></li>
-                <li><a href="#" data-toggle="tab" data-target="#gallery-category-2">Internal Environment</a></li>
-                <li><a href="#" data-toggle="tab" data-target="#gallery-category-3">External Environment</a></li>
-                <li class="active"><a href="#" data-toggle="tab" data-target="#gallery-category-4">Equipment</a>
-                </li>
-                <li><a href="#" data-toggle="tab" data-target="#gallery-category-5">Rooms</a></li>
+                <li><a href="#" data-toggle="tab" data-target="#gallery-category-1">پزشکان</a></li>
+                <li><a href="#" data-toggle="tab" data-target="#gallery-category-2">محیط داخلی</a></li>
+                <li><a href="#" data-toggle="tab" data-target="#gallery-category-3">محیط بیرونی</a></li>
+                <li class="active"><a href="#" data-toggle="tab" data-target="#gallery-category-4">تجهیزات</a></li>
+                <li><a href="#" data-toggle="tab" data-target="#gallery-category-5">اتاق ها</a></li>
             </ul>
         </div>
         <div class="row gallery-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
                 <div class="gallery-icon"></div>
-                <h3 class="section-title">Photo Gallery</h3>
+                <h3 class="section-title">گالری تصاویر</h3>
             </div>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 gallery-left-box">
                 <div class="tab-content row">
@@ -869,55 +884,55 @@
                                 <div class="gallery-item active">
                                     <a href="#" data-toggle="tab" data-target="#gallery-details-1">
                                         <div class="item-image">
-                                            <img src="../uploads/gallery1.png">
+                                            <img src="uploads/gallery1.png">
                                         </div>
                                         <div class="item-details">
-                                            <h4 class="with-small">Anesthetic room</h4>
-                                            <p>Local and complete anesthetic</p>
+                                            <h4 class="with-small">اتاق بیهوشی</h4>
+                                            <p>بیهوشی موضعی و کامل</p>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="gallery-item">
                                     <a href="#" data-toggle="tab" data-target="#gallery-details-2">
                                         <div class="item-image">
-                                            <img src="../uploads/gallery2.png">
+                                            <img src="uploads/gallery2.png">
                                         </div>
                                         <div class="item-details">
-                                            <h4 class="with-small">Recovery Room</h4>
-                                            <p>Separate and full room with 10 beds</p>
+                                            <h4 class="with-small">اتاق ریکاوری</h4>
+                                            <p>اتاق مجزا و کامل با 10 تخت</p>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="gallery-item">
                                     <a href="#" data-toggle="tab" data-target="#gallery-details-3">
                                         <div class="item-image">
-                                            <img src="../uploads/gallery3.png">
+                                            <img src="uploads/gallery3.png">
                                         </div>
                                         <div class="item-details">
-                                            <h4 class="with-small">Surgery Room</h4>
-                                            <p>Includes 5 operating rooms equipped</p>
+                                            <h4 class="with-small">اتاق عمل</h4>
+                                            <p>شامل 5 اتاق عمل مجهز</p>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="gallery-item">
                                     <a href="#" data-toggle="tab" data-target="#gallery-details-4">
                                         <div class="item-image">
-                                            <img src="../uploads/gallery1.png">
+                                            <img src="uploads/gallery1.png">
                                         </div>
                                         <div class="item-details">
-                                            <h4 class="with-small">Recovery Room</h4>
-                                            <p>To prepare for surgery</p>
+                                            <h4 class="with-small">اتاق ریکاوری</h4>
+                                            <p>جهت آماده سازی برای عمل</p>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="gallery-item">
                                     <a href="#" data-toggle="tab" data-target="#gallery-details-5">
                                         <div class="item-image">
-                                            <img src="../uploads/gallery1.png">
+                                            <img src="uploads/gallery1.png">
                                         </div>
                                         <div class="item-details">
-                                            <h4 class="with-small">Recovery Room</h4>
-                                            <p>To prepare for surgery</p>
+                                            <h4 class="with-small">اتاق ریکاوری</h4>
+                                            <p>جهت آماده سازی برای عمل</p>
                                         </div>
                                     </a>
                                 </div>
@@ -928,22 +943,17 @@
                                 <div class="tab-pane fade in active" id="gallery-details-1">
                                     <div class="gallery-item-details">
                                         <div class="item-image-big">
-                                            <img src="../uploads/gallery-big-1.png">
+                                            <img src="uploads/gallery-big-1.png">
                                         </div>
                                         <div class="gallery-details">
-                                            <h3>Anesthetic room</h3>
-                                            <p>Local and complete anesthetic</p>
-                                            <div class="font-light">
-                                                Lorem Ipsum is a fabricated text with inaudible simplicity
-                                                The printingindustry is using graphic designers. Printers and texts
-                                                but also
-                                                Newspaper andmagazine in columns and lines as needed for the current
-                                                situation
-                                                Technologyneeded and diverse applications with the goal of improving
-                                                tools
-                                                is. A lot ofbooks in sixty three percent of the past, present and
-                                                future ofcognition
-                                                It requires alot of community and specialists.
+                                            <h3>اتاق بیهوشی</h3>
+                                            <p>بیهوشی موضعی و کامل</p>
+                                            <div class="font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
+                                                روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
+                                                می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
+                                                فراوان جامعه و متخصصان را می طلبد.
                                             </div>
                                         </div>
                                     </div>
@@ -951,19 +961,17 @@
                                 <div class="tab-pane fade" id="gallery-details-2">
                                     <div class="gallery-item-details">
                                         <div class="item-image-big">
-                                            <img src="../uploads/gallery-big-1.png">
+                                            <img src="uploads/gallery-big-1.png">
                                         </div>
                                         <div class="gallery-details">
-                                            <h3>Recovery Room</h3>
-                                            <p>Separate and full room with 10 beds</p>
-                                            <div class="font-light">
-                                                Lorem Ipsum is a fabricated text with inaudible simplicity
-                                                The printingindustry is using graphic designers. Printers and texts
-                                                but also
-                                                Newspaper andmagazine in columns and lines as needed for the current
-                                                situation
-                                                Technologyneeded and diverse applications with the goal of improving
-                                                toolsis. A lot of
+                                            <h3>اتاق ریکاوری</h3>
+                                            <p>اتاق مجزا و کامل با 10 تخت</p>
+                                            <div class="font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
+                                                روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
+                                                می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
+                                                فراوان جامعه و متخصصان را می طلبد.
                                             </div>
                                         </div>
                                     </div>
@@ -971,19 +979,17 @@
                                 <div class="tab-pane fade" id="gallery-details-3">
                                     <div class="gallery-item-details">
                                         <div class="item-image-big">
-                                            <img src="../uploads/gallery-big-1.png">
+                                            <img src="uploads/gallery-big-1.png">
                                         </div>
                                         <div class="gallery-details">
-                                            <h3>Recovery Room</h3>
-                                            <p>Separate and full room with 10 beds</p>
-                                            <div class="font-light">
-                                                Lorem Ipsum is a fabricated text with inaudible simplicity
-                                                The printingindustry is using graphic designers. Printers and texts
-                                                but also
-                                                Newspaper andmagazine in columns and lines as needed for the current
-                                                situation
-                                                Technologyneeded and diverse applications with the goal of improving
-                                                toolsis. A lot of
+                                            <h3>اتاق عمل</h3>
+                                            <p>شامل 5 اتاق عمل مجهز</p>
+                                            <div class="font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
+                                                روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
+                                                می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
+                                                فراوان جامعه و متخصصان را می طلبد.
                                             </div>
                                         </div>
                                     </div>
@@ -991,19 +997,17 @@
                                 <div class="tab-pane fade" id="gallery-details-4">
                                     <div class="gallery-item-details">
                                         <div class="item-image-big">
-                                            <img src="../uploads/gallery-big-1.png">
+                                            <img src="uploads/gallery-big-1.png">
                                         </div>
                                         <div class="gallery-details">
-                                            <h3>Recovery Room</h3>
-                                            <p>Separate and full room with 10 beds</p>
-                                            <div class="font-light">
-                                                Lorem Ipsum is a fabricated text with inaudible simplicity
-                                                The printingindustry is using graphic designers. Printers and texts
-                                                but also
-                                                Newspaper andmagazine in columns and lines as needed for the current
-                                                situation
-                                                Technologyneeded and diverse applications with the goal of improving
-                                                toolsis. A lot of
+                                            <h3>اتاق عمل</h3>
+                                            <p>شامل 5 اتاق عمل مجهز</p>
+                                            <div class="font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
+                                                روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
+                                                می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
+                                                فراوان جامعه و متخصصان را می طلبد.
                                             </div>
                                         </div>
                                     </div>
@@ -1011,19 +1015,17 @@
                                 <div class="tab-pane fade" id="gallery-details-5">
                                     <div class="gallery-item-details">
                                         <div class="item-image-big">
-                                            <img src="../uploads/gallery-big-1.png">
+                                            <img src="uploads/gallery-big-1.png">
                                         </div>
                                         <div class="gallery-details">
-                                            <h3>Recovery Room</h3>
-                                            <p>Separate and full room with 10 beds</p>
-                                            <div class="font-light">
-                                                Lorem Ipsum is a fabricated text with inaudible simplicity
-                                                The printingindustry is using graphic designers. Printers and texts
-                                                but also
-                                                Newspaper andmagazine in columns and lines as needed for the current
-                                                situation
-                                                Technologyneeded and diverse applications with the goal of improving
-                                                toolsis. A lot of
+                                            <h3>اتاق عمل</h3>
+                                            <p>شامل 5 اتاق عمل مجهز</p>
+                                            <div class="font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
+                                                روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
+                                                می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
+                                                فراوان جامعه و متخصصان را می طلبد.
                                             </div>
                                         </div>
                                     </div>
