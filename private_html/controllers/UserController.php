@@ -256,6 +256,16 @@ class UserController extends AuthController
     public function actionLogin()
     {
         $this->setTheme('frontend');
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->redirect(['/admin']);
+        }
+
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     public function actionLogout()
@@ -266,7 +276,6 @@ class UserController extends AuthController
     public function actionRegister()
     {
         $this->setTheme('frontend');
-        $this->headerClass = '-blueHeader';
 
         $model= new User();
         $model->setScenario('insert');

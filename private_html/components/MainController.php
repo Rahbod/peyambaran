@@ -72,13 +72,17 @@ abstract class MainController extends Controller
     }
 
 
-    public function setTheme($theme)
+    public function setTheme($theme, $config = [])
     {
         if ($theme) {
             Yii::$app->view->theme = new \yii\base\Theme([
                 'basePath' => '@webroot/themes/' . $theme,
                 'baseUrl' => '@web/themes/' . $theme,
             ]);
+
+            foreach ($config as $key => $value)
+                $this->$key = $value;
+
             return true;
         } else {
             return false;
