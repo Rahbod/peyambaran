@@ -3101,4 +3101,9 @@ section .title-description {
 .videoGallery .gallery__imageContainer:hover .-hoverBox {
     background: #39393acc;
 }
+
 /*#endregion*/
+
+.bg-white {
+    background: #fff;
+}
