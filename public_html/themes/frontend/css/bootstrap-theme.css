@@ -2701,7 +2701,7 @@ section .title-description {
     display: none !important;
 }
 
-.gallery__imageContainer {
+.gallery .gallery__imageContainer {
     width: 31.3333%;
     float: right;
     margin-left: 2%;
@@ -2713,16 +2713,16 @@ section .title-description {
     vertical-align: middle;
 }
 
-.gallery__imageContainer h4 {
+.gallery .gallery__imageContainer h4 {
     color: #fff;
 }
 
-.html5-title {
+.gallery .html5-title {
     text-align: right !important;
     font-family: IRANSans !important;
 }
 
-.gallery__images {
+.gallery .gallery__images {
     max-width: 100%;
     height: auto;
     -webkit-border-radius: 10px;
@@ -2730,11 +2730,11 @@ section .title-description {
     border-radius: 10px;
 }
 
-.gallery__imageContainer {
+.gallery .gallery__imageContainer {
     position: relative;
 }
 
-.-hoverBox {
+.gallery .-hoverBox {
     top: 0;
     width: 100%;
     right: 0;
@@ -2754,7 +2754,7 @@ section .title-description {
     justify-content: center;
 }
 
-.gallery__imageContainer:hover .-hoverBox {
+.gallery .gallery__imageContainer:hover .-hoverBox {
     background: #877ef3cc;
     color: #fff;
     z-index: 1;
