@@ -17,6 +17,7 @@ use app\models\User;
 abstract class MainController extends Controller
 {
     public $bodyClass;
+    public $headerClass;
     public $theme;
     public $tmpDir = 'uploads/temp';
 
@@ -232,8 +233,8 @@ abstract class MainController extends Controller
                 [
                     'label' => '<i class="m-menu__link-icon fa fa-calendar-alt"></i><span class="m-menu__link-text">'.Yii::t('words','Clinic Program').'</span>',
                     'items' => [
-                        ['label' => Yii::t('words', 'Manage Days'), 'url' => ['/clinic-program/index']],
-                        ['label' => Yii::t('words', 'Create New Day'), 'url' => ['/clinic-program/create']],
+                        ['label' => Yii::t('words', 'Manage Days'), 'url' => ['/clinic/index']],
+                        ['label' => Yii::t('words', 'Create New Day'), 'url' => ['/clinic/create']],
                     ]
                 ],
                 [

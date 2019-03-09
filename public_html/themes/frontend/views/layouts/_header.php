@@ -1,12 +1,14 @@
 <?php
 
 use \app\models\Menu;
+use yii\helpers\Url;
+use \yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 
 // echo Yii::getAlias('@web/themes/frontend/images/menu-logo.png')
 ?>
-<header class="<?= Yii::$app->controller->bodyClass?:'' ?>">
+<header class="<?= Yii::$app->controller->headerClass?:'' ?>">
     <div class="container">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
@@ -14,31 +16,31 @@ use \app\models\Menu;
                     <label>Language</label>
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="icon icon-chevron-down"></span>
-                        eng
+                        <?= Yii::t('words', Yii::$app->language); ?>
                         <span class="language-icon"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">فارسی</a></li>
-                        <li><a href="#">العربیة</a></li>
-                        <li><a href="#">English</a></li>
+                        <?php foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
+                            <li><a href="<?= Url::to(["/{$key}"]) ?>"><?= Yii::t('words', $key) ?></a></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
-                <a href="#" class="btn btn-green btn-sm" data-toggle="modal" target="#signup">
+                <a href="<?= Url::to('/user/register') ?>" class="btn btn-green btn-sm" data-toggle="modal" target="#signup">
                     <i class="user-icon"></i>
-                    ثبت نام
+                    <?= Yii::t('words', 'Register') ?>
                 </a>
-                <a href="#" class="btn btn-purple btn-sm" data-toggle="modal" target="#login">
+                <a href="<?= Url::to('/user/login') ?>" class="btn btn-purple btn-sm" data-toggle="modal" target="#login">
                     <i class="user-icon"></i>
-                    ورود
+                    <?= Yii::t('words', 'Login') ?>
                 </a>
-                <form class="search-form">
+                <?= Html::beginForm(['/site/search', 'get', ['class' => 'search-form']])?>
                     <div class="input-group search-container">
                         <input class="form-control" placeholder="متن جستجو">
                         <span class="input-group-addon">
                             <button type="submit" class="search-btn"><i class="search-icon"></i></button>
                         </span>
                     </div>
-                </form>
+                <?= Html::endForm() ?>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
                 <img src="<?= $this->theme->baseUrl.(Yii::$app->controller->bodyClass == 'blueHeader'?"logo-white.png":"/images/logo.png")?>">

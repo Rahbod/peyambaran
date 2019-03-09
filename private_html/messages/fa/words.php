@@ -2,6 +2,9 @@
 
 return [
     'Payambaran Hospital' => 'بیمارستان پیامبران',
+    'fa' => 'فارسی',
+    'en' => 'انگلیسی',
+    'ar' => 'عربی',
     'base.successMsg' => 'اطلاعات با موفقیت ثبت شد.',
     'base.dangerMsg' => 'در ثبت اطلاعات خطایی رخ داده است.',
     'base.deleteSuccessMsg' => 'عملیات حذف با موفقیت انجام شد.',
@@ -353,4 +356,7 @@ return [
     'Start Time' => 'زمان ورود',
     'End Time' => 'زمان خروج',
     'Doctors' => 'لیست پزشکان',
+    'Specialist Doctor' => 'پزشک متخصص',
+    'Week Days' => 'روزهای هفته',
+    'Time' => 'زمان',
 ];

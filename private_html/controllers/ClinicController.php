@@ -2,27 +2,37 @@
 
 namespace app\controllers;
 
+use app\models\ClinicProgramView;
 use Yii;
 use app\models\ClinicProgram;
 use app\models\ClinicProgramSearch;
 use app\components\AuthController;
+use yii\data\ActiveDataProvider;
+use yii\data\SqlDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
- * ClinicProgramController implements the CRUD actions for ClinicProgram model.
+ * ClinicController implements the CRUD actions for ClinicProgram model.
  */
-class ClinicProgramController extends AuthController
+class ClinicController extends AuthController
 {
     /**
-    * for set admin theme
-    */
+     * for set admin theme
+     */
     public function init()
     {
         $this->setTheme('default');
         parent::init();
+    }
+
+    public function getSystemActions()
+    {
+        return [
+            'show'
+        ];
     }
 
     /**
@@ -51,6 +61,33 @@ class ClinicProgramController extends AuthController
 
         return $this->render('index', [
             'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionShow()
+    {
+        $this->setTheme('frontend');
+        $this->headerClass = '-blueHeader';
+
+
+//        $sql = "SELECT * FROM `clinic_program_view` WHERE `date` >= :now";
+//        $countSql = "SELECT COUNT(*) FROM `clinic_program_view` WHERE `date` >= :now";
+//
+//        $now = strtotime(date('Y/m/d 00:00:00',time()));
+//        $count = Yii::$app->db->createCommand($countSql, [':now' => $now])->queryScalar();
+//
+//        $dataProvider = new SqlDataProvider([
+//            'sql' => $sql,
+//            'params' => [':now' => $now],
+//            'totalCount' => $count,
+//
+//        ]);
+
+        $clinicSearchModel = new ClinicProgramView();
+        $dataProvider = $clinicSearchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('show', [
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -84,12 +121,12 @@ class ClinicProgramController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['create']);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -115,12 +152,12 @@ class ClinicProgramController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index']);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 

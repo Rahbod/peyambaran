@@ -15,7 +15,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 $dayID = $model->isNewRecord ? false : $model->id;
 ?>
 <?php $form = CustomActiveForm::begin([
-    'id' => 'clinic-program-form',
+    'id' => 'clinic-form',
     //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
     'enableAjaxValidation' => true,
     'enableClientValidation' => true,

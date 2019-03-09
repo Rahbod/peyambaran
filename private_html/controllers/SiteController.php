@@ -85,6 +85,7 @@ class SiteController extends MainController
             return $this->redirect(Yii::$app->request->getReferrer());
 
         $url = str_replace(["/$language", "$language/"], "", Yii::$app->request->getUrl());
+
         return $this->redirect($url);
     }
 
