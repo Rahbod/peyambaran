@@ -13,6 +13,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language; ?>">
 <head>
+
     <meta charset="<?= Yii::$app->charset; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
@@ -24,6 +25,7 @@ AppAsset::register($this);
     <?php $this->registerCssFile($this->theme->baseUrl.'/css/owl.theme.default.min.css', ['depends' => [BootstrapAsset::className()],'media' => 'all'], 'owl-theme');?>
     <?php $this->registerCssFile($this->theme->baseUrl.'/css/bootstrap-theme.css', ['depends' => [BootstrapAsset::className()],'media' => 'all'], 'bootstrap-theme');?>
     <?php $this->registerCssFile($this->theme->baseUrl.'/css/responsive-theme.css', ['depends' => [BootstrapAsset::className()],'media' => 'all'], 'responsive-theme');?>
+    <?php $this->registerCssFile($this->theme->baseUrl.'/js/vendors/icomoon/style.css', ['depends' => [BootstrapAsset::className()],'media' => 'all'], 'icomoon');?>
     <?php $this->registerJsFile($this->theme->baseUrl.'/js/bootstrap.min.js', ['depends' => [JqueryAsset::className()]], 'bootstrap');?>
     <?php $this->registerJsFile($this->theme->baseUrl.'/js/jquery.nicescroll.min.js', ['depends' => [JqueryAsset::className()]], 'nicescroll');?>
     <?php $this->registerJsFile($this->theme->baseUrl.'/js/owl.carousel.min.js', ['depends' => [JqueryAsset::className()]], 'owl-script');?>

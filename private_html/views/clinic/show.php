@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 ?>
 
-<section class="clinic">
+<section class="clinic-program">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -22,6 +22,7 @@ use yii\widgets\Pjax;
                     </div>
                 </div>
             </div>
+
             <div class="col-xs-12">
                 <div class="table-responsive">
                     <?php Pjax::begin(); ?>

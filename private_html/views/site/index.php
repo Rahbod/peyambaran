@@ -5,6 +5,7 @@ use \yii\helpers\Html;
 /* @var $this yii\web\View */
 ?>
 
+
 <section class="slider-container">
     <div class="slider owl-carousel owl-theme" data-items="1">
         <?php foreach (Slide::find()->valid()->all() as $slide):
