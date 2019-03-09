@@ -2491,7 +2491,7 @@ section .title-description {
 
 /*#endregion*/
 
-/*#region doctors*/
+/*#region authentication*/
 
 .register {
     background: #eef1f7;
@@ -2766,7 +2766,7 @@ section .title-description {
 
 /*#endregion*/
 
-/*#region gallery*/
+/*#region login*/
 .register.login .-blueBg {
     background: #3f8dfa !important;
 }
@@ -3071,4 +3071,34 @@ section .title-description {
     margin-bottom: 20px;
 }
 
+/*#endregion*/
+
+/*#region video gallery*/
+.videoGallery .-hoverBox {
+    background: #3b3b3b;
+}
+
+.videoGallery .gallery__playBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #818c9460;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+}
+
+.videoGallery .gallery__playIcon {
+    margin: auto;
+}
+
+.videoGallery .gallery__imageContainer:hover .gallery__playBox {
+    z-index: -1;
+}
+
+.videoGallery .gallery__imageContainer:hover .-hoverBox {
+    background: #39393acc;
+}
 /*#endregion*/
