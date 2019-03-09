@@ -3063,4 +3063,12 @@ section .title-description {
     color: #7783a2 !important;
 }
 
+.new-show .content {
+    padding-top: 70px;
+}
+
+.new-show .content-header {
+    margin-bottom: 20px;
+}
+
 /*#endregion*/
