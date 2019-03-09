@@ -6,6 +6,8 @@ use Yii;
 
 /**
  * This is the model class for table "item".
+ * @property $image string
+ * @property $link string
  *
  */
 class Slide extends Item

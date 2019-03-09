@@ -116,4 +116,12 @@ class SiteController extends MainController
     {
         return $this->render('about');
     }
+
+    public function actionSearch(){
+        $term = Yii::$app->request->getQueryParam('term');
+        if($term && !empty($term)){
+            return $this->render('search', compact('term'));
+        }else
+            return $this->goBack();
+    }
 }
