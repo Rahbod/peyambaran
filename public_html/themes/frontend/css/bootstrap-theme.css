@@ -1989,5 +1989,96 @@ header {
     transition: all 0.5s;
 }
 
-/*#region Global*/
+/*#region clinic program*/
+
+.clinic-program .table {
+    border-color: #c4c4c4;
+    margin-bottom: 50px;
+    border-collapse: separate;
+}
+
+.clinic-program .table tr td:first-of-type {
+    position: relative;
+    padding-right: 15px;
+    border-radius: 0 6px 6px 0;
+    overflow: hidden;
+}
+
+.clinic-program .table tr td:last-of-type {
+    border-radius: 6px 0 0 6px;
+    overflow: hidden;
+}
+
+.clinic-program .table tr td:first-of-type:before {
+    opacity: 0;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    background: #877ef3;
+    -webkit-transition: width 0.5s;
+    -moz-transition: width 0.5s;
+    -ms-transition: width 0.5s;
+    -o-transition: width 0.5s;
+    transition: width 0.5s;
+}
+
+.clinic-program thead {
+    border-bottom-width: 2px;
+    border-bottom-color: #aaaaaa;
+}
+
+.clinic-program thead th:not(.noPadding) {
+    padding-bottom: 5px !important;
+
+}
+
+.clinic-program thead th {
+    overflow: hidden;
+    color: #535353;
+}
+
+.clinic-program head th:focus {
+    color: #877ef3;
+}
+
+.clinic-program .table-hover > tbody > tr:hover {
+    background-color: #e0e0e0;
+    border-color: #c4c4c4;
+}
+
+.clinic-program .table-hover > tbody > tr:hover td:first-of-type:before {
+    opacity: 1;
+}
+
+.clinic-program tbody tr:last-child {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.clinic-program tbody td {
+    line-height: 34px !important;
+    font-weight: 500 !important;
+    color: #5d5d5d !important;
+}
+
+.clinic-program .doctorImage {
+    border: 2px solid #b8d4f2;
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+    margin-bottom: -10px;
+    vertical-align: middle;
+}
+
+.clinic-program {
+    margin-bottom: 150px;
+}
+
+.clinic-program .content-header {
+    margin-bottom: 90px;
+}
+
 /*#endregion*/
+
