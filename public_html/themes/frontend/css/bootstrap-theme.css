@@ -9,6 +9,8 @@ body {
     overflow-x: hidden;
     font-size: 13px;
     color: #323232;
+    font-weight: 400;
+    line-height: 2;
 }
 
 * {
@@ -296,6 +298,17 @@ header {
     border-top: 5px solid #3f8dfa;
     padding: 30px 0 45px;
     background-color: #fff;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
 header.shadow {
@@ -452,7 +465,7 @@ header .logo img {
 
 .navbar > li > a {
     border-radius: 4px 4px 0 0;
-    padding: 15px;
+    padding: 11px 15px;
     color: #606060;
     font-weight: bold;
 }
@@ -1962,12 +1975,36 @@ section .title-description {
     padding: 30px 0;
 }
 
+/*#region global*/
+
+.my-40 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/*------------------------- header */
+.-blueHeader {
+    background-color: #3f8dfa;
+    color: #fff;
+}
+
+.-blueHeader .logo .logo-right {
+    color: #fff !important;
+}
+
+.-blueHeader .logo .logo-right > * {
+    color: inherit !important;
+}
+
+.-blueHeader header .logo img {
+    background-color: #3f8dfa;
+}
+
 .rounded {
     border-radius: 10px;
 }
 
-.-toggleMainNav {
-    /*top: -100%;*/
+.toggleMainNav {
     -webkit-transform: translateY(-100%);
     -moz-transform: translateY(-100%);
     -ms-transform: translateY(-100%);
@@ -1975,22 +2012,126 @@ section .title-description {
     transform: translateY(-100%);
 }
 
-header {
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    transform: translateY(0);
-
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
+/*-------------------------- navbar*/
+.-blueHeader .navbar > li > a {
+    color: #fff !important;
 }
 
-/*#region clinic program*/
+.-blueHeader .nav > li > a:focus, .nav > li > a:hover {
+    background-color: #85c296 !important;
+}
 
+/*--------------------------- main*/
+.content {
+    padding-top: 70px;
+}
+
+.-btrr {
+    border-top-right-radius: 10px;
+}
+
+.-btlr {
+    border-top-left-radius: 10px;
+}
+
+.-bbrr {
+    border-bottom-right-radius: 10px;
+}
+
+.-bblr {
+    border-bottom-left-radius: 10px;
+}
+
+/*--------------------------- content header*/
+.content-header {
+    display: flex;
+    background: #877ef3;
+    padding: 20px 30px;
+    align-items: center;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.content-header__image {
+    width: 60px;
+    height: 60px;
+}
+
+.content-header__titles {
+    color: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    margin-right: 1rem;
+}
+
+.content-header__subTitle, .content-header__title {
+    color: #fff;
+    font-size: 20px;
+    margin: 0;
+}
+
+.content-header__subTitle {
+    font-weight: 200;
+}
+
+.mirror {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.-more {
+    border: 1px solid;
+    max-width: 160px;
+    max-height: 46px;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 26px;
+    margin: 60px 0 110px;
+}
+
+.-more i {
+    vertical-align: middle !important;
+    font-size: 22px;
+}
+
+.-more.purple {
+    border-color: #c4c2f5;
+    color: #9f99f4;
+}
+
+.-more.purple:hover {
+    border-color: #9f99f4;
+    color: #9f99f4;
+}
+
+.-more.purple i {
+    color: #877ef3;
+}
+
+.-more.gray {
+    border-color: #aeafb1aa;
+    color: #aeafb1;
+}
+
+.-more.gray:hover {
+    border-color: #aeafb1;
+    color: #949597;
+}
+
+.-more.gray i {
+    color: #acadae;
+}
+
+/*#endregion*/
+
+/*#region clinic program*/
 .clinic-program .table {
     border-color: #c4c4c4;
     margin-bottom: 50px;

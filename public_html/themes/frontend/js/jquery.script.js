@@ -75,10 +75,10 @@ var position = $(window).scrollTop();
 $(window).scroll(function () {
     var scroll = $(window).scrollTop();
     if (scroll > position) {
-        $('header').addClass('-toggleMainNav');
+        $('header').addClass('toggleMainNav');
 
     } else {
-        $('header').removeClass('-toggleMainNav');
+        $('header').removeClass('toggleMainNav');
     }
     position = scroll;
 });
