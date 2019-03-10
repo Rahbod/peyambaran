@@ -46,18 +46,35 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'id',
-                    'parentID',
-                    'type',
+                    [
+                        'attribute' => 'lang',
+                        'value' => '<b>'.\app\components\MultiLangActiveRecord::$langArray[$model->lang].'</b>',
+                        'format' => 'raw',
+                    ],
                     'name',
-                    'dyna',
-                    'extra:ntext',
-                    'created',
-                    'status',
-                    'left',
-                    'right',
-                    'depth',
-                    'tree',
+                    [
+                        'attribute' => 'created',
+                        'value' => jDateTime::date('Y/m/d', $model->created)
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'value' => \app\models\Page::getStatusLabels($model->status)
+                    ],
+                    [
+                        'attribute' => 'parentID',
+                        'value' => $model->parent?"<b>{$model->parent->name}</b>":'-',
+                        'format' => 'raw'
+                    ],
+                    [
+                        'attribute' => 'menu_type',
+                        'value' => $model->getMenuTypeLabel(),
+                        'format' => 'raw'
+                    ],
+                    [
+                        'label' => Yii::t('words', 'Link'),
+                        'value' => $model->getUrl()!= "#"?Html::a(Yii::t('words', 'show'), $model->getUrl(), ['target' => '_blank']):'-',
+                        'format' => 'raw'
+                    ],
                 ],
             ]) ?>
         </div>

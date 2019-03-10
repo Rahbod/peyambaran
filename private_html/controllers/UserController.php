@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\AuthController;
+use app\components\customWidgets\CustomCaptchaAction;
 use app\models\LoginForm;
 use app\models\UGroup;
 use app\models\UserSearch;
@@ -67,7 +68,10 @@ class UserController extends AuthController
     {
         return [
             'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
+                'class' => CustomCaptchaAction::className(),
+                'width' => 130,
+                'height' => 40,
+                'transparent' => true
             ],
             // declares "error" action using a class name
             'upload-image' => [

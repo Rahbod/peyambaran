@@ -5,6 +5,7 @@ use \yii\widgets\ActiveForm;
 use \yii\helpers\Url;
 
 /** @var $this \yii\web\View */
+/** @var $model \app\models\LoginForm */
 ?>
 <section class="register">
     <div class="container">
@@ -31,7 +32,8 @@ use \yii\helpers\Url;
                                         'options' => ['class' => 'forms'],
                                         'fieldConfig' => [
                                             'options' => ['class' => '']
-                                        ]
+                                        ],
+                                        'after'
                                     ]); ?>
                                     <?= $form->errorSummary($model) ?>
                                     <div class="form-row">
@@ -47,15 +49,13 @@ use \yii\helpers\Url;
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
-                                            <div class="clearfix">
-                                                <?= $form->field($model, 'verifyCode')->widget(\yii\captcha\Captcha::className()) ?>
-<!--                                                <a class="floatToRight form-control securityCode__image">-->
-<!--                                                    <!--<img src="" alt="">-->
-<!--                                                    RCii7485-->
-<!--                                                </a>-->
-<!--                                                <input class="floatToRight securityCode__input form-control"-->
-<!--                                                       placeholder="تصویر امنیتی"-->
-<!--                                                       type="text">-->
+                                            <div class="clearfix captcha-container">
+                                                <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(),[
+                                                    'captchaAction' => ['/user/captcha'],
+                                                    'template' => '<span class="floatToRight form-control securityCode__image" style="padding: 0 !important;">{image}{url}</span> {input}',
+                                                    'linkOptions' => ['label' => Yii::t('words', 'Refresh')],
+                                                    'options' => ['class' => 'floatToRight securityCode__input form-control', 'placeholder' => Yii::t('words', 'Verify Code')]
+                                                ])->label(false) ?>
                                                 <?= Html::submitButton(Yii::t('words', 'Login'), ['class' => 'btn submitBtn -blueBg', 'tabindex' => 4]) ?>
                                             </div>
                                         </div>

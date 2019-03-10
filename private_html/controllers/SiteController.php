@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\components\MainController;
 use app\models\Category;
 use app\models\Insurance;
+use app\models\OnlineService;
 use app\models\Post;
 use app\models\Slide;
 use Yii;
@@ -74,8 +75,9 @@ class SiteController extends MainController
         $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->all();
         $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();
         $galleryCategories = Category::find()->valid()->andWhere(['type' => Category::TYPE_CATEGORY, Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY])->all();
+        $onlineServices = OnlineService::find()->valid()->all();
 
-        return $this->render('index', compact('slides', 'inpatientInsurances', 'outpatientInsurances', 'posts', 'galleryCategories'));
+        return $this->render('index', compact('slides', 'inpatientInsurances', 'outpatientInsurances', 'posts', 'galleryCategories', 'onlineServices'));
     }
 
     public function actionChangeLang($language = false, $controller = false, $action = false)

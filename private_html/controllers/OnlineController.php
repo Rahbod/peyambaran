@@ -3,11 +3,15 @@
 namespace app\controllers;
 
 use app\models\OnlineService;
+use devgroup\dropzone\RemoveAction;
+use devgroup\dropzone\UploadAction;
+use devgroup\dropzone\UploadedFiles;
 use richardfan\sortable\SortableAction;
 use Yii;
 use app\models\Menu;
 use app\models\OnlineServiceSearch;
 use app\components\AuthController;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -18,6 +22,9 @@ use yii\widgets\ActiveForm;
  */
 class OnlineController extends AuthController
 {
+    public $iconDir = 'uploads/online';
+    private $iconOptions = ['resize' => ['width' => 100,'height' => 100]];
+
     /**
      * for set admin theme
      */
@@ -25,6 +32,16 @@ class OnlineController extends AuthController
     {
         $this->setTheme('default');
         parent::init();
+    }
+
+    public function getSystemActions()
+    {
+        return [
+            'upload-icon',
+            'delete-icon',
+            'upload-icon-hover',
+            'delete-icon-hover',
+        ];
     }
 
     /**
@@ -49,6 +66,36 @@ class OnlineController extends AuthController
                 'class' => SortableAction::className(),
                 'activeRecordClassName' => Menu::className(),
                 'orderColumn' => 'sort',
+            ],
+            'upload-icon' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new OnlineService(), 'icon'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
+            ],
+            'delete-icon' => [
+                'class' => RemoveAction::className(),
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new OnlineService(),
+                'attribute' => 'icon',
+                'upload' => $this->iconDir
+            ],
+            'upload-icon-hover' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new OnlineService(), 'hover_icon'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
+            ],
+            'delete-icon-hover' => [
+                'class' => RemoveAction::className(),
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new OnlineService(),
+                'attribute' => 'hover_icon',
+                'upload' => $this->iconDir
             ],
         ];
     }
@@ -98,16 +145,18 @@ class OnlineController extends AuthController
 
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
+            $icon = new UploadedFiles($this->tmpDir, $model->icon, $this->iconOptions);
+            $hoverIcon = new UploadedFiles($this->tmpDir, $model->hover_icon, $this->iconOptions);
             if ($model->save()) {
+                $icon->move($this->iconDir);
+                $hoverIcon ->move($this->iconDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->render('create', compact('model','icon','hoverIcon'));
     }
 
     /**
@@ -127,18 +176,23 @@ class OnlineController extends AuthController
             return ActiveForm::validate($model);
         }
 
+        $icon = new UploadedFiles($this->iconDir, $model->icon, $this->iconOptions);
+        $hoverIcon = new UploadedFiles($this->iconDir, $model->hover_icon, $this->iconOptions);
+
         if (Yii::$app->request->post()) {
+            $oldIcon = $model->icon;
+            $oldHoverIcon = $model->hover_icon;
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
+                $icon->update($oldIcon,$model->icon,$this->tmpDir);
+                $hoverIcon->update($oldHoverIcon,$model->hover_icon,$this->tmpDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update',  compact('model','icon','hoverIcon'));
     }
 
     /**
@@ -150,10 +204,15 @@ class OnlineController extends AuthController
      */
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete())
-            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
-        else
+        $model = $this->findModel($id);
+        $icon = new UploadedFiles($this->iconDir, $model->icon, $this->iconOptions);
+        $hoverIcon = new UploadedFiles($this->iconDir, $model->hover_icon, $this->iconOptions);
+        $icon->removeAll(true);
+        $hoverIcon->removeAll(true);
+        if ($model->delete())
             Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
+        else
+            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
 
 
         return $this->redirect(['index']);
@@ -168,7 +227,7 @@ class OnlineController extends AuthController
      */
     protected function findModel($id)
     {
-        if (($model = Menu::findOne($id)) !== null) {
+        if (($model = OnlineService::findOne($id)) !== null) {
             return $model;
         }
 

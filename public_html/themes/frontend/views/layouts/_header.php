@@ -26,7 +26,7 @@ use \yii\helpers\Html;
                     </ul>
                 </div>
 
-                <?php if (Yii::$app->user->isGuest || Yii::$app->user->identity->roleID != 'user'): ?>
+                <?php if (Yii::$app->user->isGuest): ?>
                     <a href="<?= Url::to(['/user/register']) ?>" class="btn btn-green btn-sm">
                         <i class="user-icon"></i>
                         <?= Yii::t('words', 'Register') ?>
@@ -49,8 +49,13 @@ use \yii\helpers\Html;
                             </div>
                         </a>
                         <div class="user-header-details">
-                            <a href="<?= Url::to(['/user/dashboard']) ?>"><span
-                                        class="user-header-name"><?= Yii::$app->user->identity->name ?></span></a>
+                            <? if (Yii::$app->user->identity->roleID != 'user'): ?>
+                                <a href="<?= Url::to(['/admin']) ?>"><span
+                                            class="user-header-name"><?= Yii::$app->user->identity->username ?></span></a>
+                            <? else: ?>
+                                <a href="<?= Url::to(['/user/dashboard']) ?>"><span
+                                            class="user-header-name"><?= Yii::$app->user->identity->name ?></span></a>
+                            <? endif; ?>
                             <!--                            <a href="#"><span class="user-header-setting icon-gear"></span></a>-->
                         </div>
                     </div>
@@ -67,11 +72,11 @@ use \yii\helpers\Html;
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
                 <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?>">
                 <div class="logo-right">
-<!--                    <a href="--><?//= Yii::getAlias('@web') ?><!--">-->
-                        <h1>بیمارســتان پیامبران</h1>
-                        <h2>Payambaran</h2>
-                        <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
-<!--                    </a>-->
+                    <!--                    <a href="--><? //= Yii::getAlias('@web') ?><!--">-->
+                    <h1>بیمارســتان پیامبران</h1>
+                    <h2>Payambaran</h2>
+                    <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
+                    <!--                    </a>-->
                 </div>
             </div>
         </div>
