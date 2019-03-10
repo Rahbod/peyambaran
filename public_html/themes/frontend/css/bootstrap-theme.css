@@ -12,8 +12,6 @@ body {
     font-weight: 400;
     line-height: 2;
     position: relative;
-    background: #eef1f7;
-
 }
 
 * {
@@ -1986,20 +1984,24 @@ section .title-description {
 }
 
 /*------------------------- header */
-.-blueHeader {
+.innerPages {
+    background: #eef1f7;
+}
+
+.innerPages header {
     background-color: #3f8dfa;
     color: #fff;
 }
 
-.-blueHeader .logo .logo-right {
+.innerPages header .logo .logo-right {
     color: #fff !important;
 }
 
-.-blueHeader .logo .logo-right > * {
+.innerPages header .logo .logo-right > * {
     color: inherit !important;
 }
 
-.-blueHeader .logo img {
+.innerPages header .logo img {
     background-color: #3f8dfa;
 }
 
@@ -2016,17 +2018,17 @@ section .title-description {
 }
 
 /*-------------------------- navbar*/
-.-blueHeader .navbar > li > a {
+.innerPages header .navbar > li > a {
     color: #fff !important;
 }
 
-.-blueHeader .nav > li > a:focus,.-blueHeader .nav > li > a:hover {
+.innerPages header .nav > li > a:focus, .innerPages header .nav > li > a:hover {
     background-color: #85c296 !important;
 }
 
 /*--------------------------- main*/
 /*.content {*/
-    /*padding-top: 70px;*/
+/*padding-top: 70px;*/
 /*}*/
 
 .-btrr {
@@ -2980,11 +2982,11 @@ section .title-description {
     -webkit-box-orient: vertical;
 }
 
-.new-show .card:hover,.new-show .card:focus {
+.new-show .card:hover, .new-show .card:focus {
     border-color: #31af91;
 }
 
-.new-show .card:hover .card-title,.new-show .card:focus .card-title {
+.new-show .card:hover .card-title, .new-show .card:focus .card-title {
     color: #31af91;
 }
 
@@ -3064,7 +3066,6 @@ section .title-description {
 .new-show .content {
     padding-top: 70px;
 }
-
 
 /*#endregion*/
 

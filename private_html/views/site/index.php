@@ -252,6 +252,7 @@ use \app\models\Category;
         </div>
     </div>
 </section>
+
 <!--End News and Articles-->
 
 <!--Gallery-->
