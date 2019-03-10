@@ -27,13 +27,11 @@ use \yii\helpers\Html;
                 </div>
 
                 <?php if(Yii::$app->user->isGuest || Yii::$app->user->identity->roleID != 'user'): ?>
-                <a href="<?= Url::to(['/user/register']) ?>" class="btn btn-green btn-sm" data-toggle="modal"
-                   target="#signup">
+                <a href="<?= Url::to(['/user/register']) ?>" class="btn btn-green btn-sm">
                     <i class="user-icon"></i>
                     <?= Yii::t('words', 'Register') ?>
                 </a>
-                <a href="<?= Url::to(['/user/login']) ?>" class="btn btn-purple btn-sm" data-toggle="modal"
-                   target="#login">
+                <a href="<?= Url::to(['/user/login']) ?>" class="btn btn-purple btn-sm">
                     <i class="user-icon"></i>
                     <?= Yii::t('words', 'Login') ?>
                 </a>

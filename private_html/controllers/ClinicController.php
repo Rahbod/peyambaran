@@ -67,8 +67,7 @@ class ClinicController extends AuthController
 
     public function actionShow()
     {
-        $this->setTheme('frontend');
-        $this->headerClass = '-blueHeader';
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
 
 
 //        $sql = "SELECT * FROM `clinic_program_view` WHERE `date` >= :now";

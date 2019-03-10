@@ -257,7 +257,7 @@ class UserController extends AuthController
 
     public function actionLogin()
     {
-        $this->setTheme('frontend', ['headerClass' => '-blueHeader']);
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
@@ -278,7 +278,7 @@ class UserController extends AuthController
 
     public function actionRegister()
     {
-        $this->setTheme('frontend', ['headerClass' => '-blueHeader']);
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
 
         $model= new User();
         $model->setScenario('register');
@@ -306,7 +306,7 @@ class UserController extends AuthController
 
     public function actionForgetPassword()
     {
-        $this->setTheme('frontend', ['headerClass' => '-blueHeader']);
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
 
     }
 
