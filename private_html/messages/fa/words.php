@@ -361,9 +361,13 @@ return [
     'Week Days' => 'روزهای هفته',
     'Time' => 'زمان',
     'Search...' => 'متن جستجو...',
+    'Payambaran hospital' => 'بیمارستان پیامبران',
 
     /****** User ******/
     'Create user account' => 'ساخت حساب کاربری',
     'Account information' => 'اطلاعات حساب کاربری',
     'register_text' => 'با ساخت حساب کاربری میتوانید خدمات ارائه شده در بیمارستان مانند : جواب آزمایش، نوبت دهی، تصاویر PACS را به صورت آنلاین پیگیری و دریافت نمایید.',
+    'insurance_title' => '<h3 class="section-title">بیمه های<span class="hidden">طرف قرارداد پیامبران</span></h3><p class="title-description">طرف قرارداد پیامبران</p>',
+    'hospitalization insurances' => '<span>بیمه های</span><small>طرف قرارداد بستری</small>',
+    'Outpatient insurances' => '<span>بیمه های</span><small>طرف قرارداد سرپایی</small>',
 ];

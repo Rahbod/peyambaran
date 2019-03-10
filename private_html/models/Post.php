@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "item".
@@ -50,6 +51,7 @@ class Post extends Item
             'image' => ['CHAR', ''],
             'publish_date' => ['CHAR', ''],
             'summary' => ['CHAR', ''],
+            'seen' => ['INTEGER', ''],
         ]);
     }
 
@@ -61,6 +63,7 @@ class Post extends Item
         return array_merge(parent::rules(), [
             [['body', 'image', 'formCategories'], 'required'],
             [['publish_date', 'summary'], 'string'],
+            ['seen', 'default', 'value' => 0],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }
@@ -90,5 +93,15 @@ class Post extends Item
     public static function validQuery()
     {
         return self::find()->valid()->andWhere(['<=', self::columnGetString('publish_date'), time()]);
+    }
+
+    public function getComments_count()
+    {
+        return 0;
+    }
+
+    public function getUrl()
+    {
+        return Url::to(['/post/']);
     }
 }

@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
  */
 class InsuranceController extends AuthController
 {
-    public $imageDir = 'uploads/pages';
+    public $imageDir = 'uploads/insurance';
     private $imageOptions = [];
 
     /**
