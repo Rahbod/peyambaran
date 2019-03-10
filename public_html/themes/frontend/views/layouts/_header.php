@@ -64,7 +64,7 @@ use \yii\helpers\Html;
                 <?= Html::endForm() ?>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
-                <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->headerClass == '-blueHeader' ? "/images/logo-white.png" : "/images/logo.png") ?>">
+                <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?>">
                 <div class="logo-right">
                     <h1>بیمارســتان پیامبران</h1>
                     <h2>Payambaran</h2>
