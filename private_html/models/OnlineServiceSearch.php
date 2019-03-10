@@ -2,35 +2,33 @@
 
 namespace app\models;
 
-use app\components\Helper;
-use app\components\Setting;
-use Yii;
-use yii\base\Model AS BaseModel;
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\models\OnlineService;
 
 /**
- * UserSearch represents the model behind the search form about `app\models\User`.
+ * OnlineServiceSearch represents the model behind the search form of `app\models\OnlineService`.
  */
-class UserSearch extends User
+class OnlineServiceSearch extends OnlineService
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
-            [['name', 'username', 'password', 'dyna', 'created', 'roleID'], 'safe'],
+            [['id', 'parentID', 'status', 'left', 'right', 'depth', 'tree'], 'integer'],
+            [['type', 'name', 'dyna', 'extra', 'created'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
-        return BaseModel::scenarios();
+        return Model::scenarios();
     }
 
     /**
@@ -42,16 +40,15 @@ class UserSearch extends User
      */
     public function search($params)
     {
-        $query = User::validQuery();
+        $query = OnlineService::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => array('pageSize' => Setting::get('gridSize')?:20)
         ]);
 
-        $this->load($params, 'Search');
+        $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
@@ -62,15 +59,21 @@ class UserSearch extends User
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'parentID' => $this->parentID,
             'created' => $this->created,
             'status' => $this->status,
+            'left' => $this->left,
+            'right' => $this->right,
+            'depth' => $this->depth,
+            'tree' => $this->tree,
         ]);
 
-        $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
-            ->orFilterWhere(['REGEXP', 'username', Helper::persian2Arabic($this->name)])
-            ->orFilterWhere(['REGEXP', 'roleID', Helper::persian2Arabic($this->name)]);
+        $query->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'dyna', $this->dyna])
+            ->andFilterWhere(['like', 'extra', $this->extra]);
 
-        $query->andWhere(['<>', 'roleID', 'superAdmin']);
+        $query->orderBy([self::columnGetString('sort') => SORT_ASC]);
 
         return $dataProvider;
     }

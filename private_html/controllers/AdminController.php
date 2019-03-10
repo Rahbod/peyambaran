@@ -28,7 +28,7 @@ class AdminController extends AuthController
 
     public function actionIndex()
     {
-        if(Yii::$app->user->isGuest)
+        if(Yii::$app->user->isGuest || Yii::$app->user->identity->roleID == 'user')
             return $this->redirect(['login']);
 
         return $this->render('index');
@@ -42,7 +42,7 @@ class AdminController extends AuthController
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest && Yii::$app->user->identity->roleID != 'user') {
             return $this->goHome();
         }
 

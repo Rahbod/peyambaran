@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\AuthController;
+use app\models\LoginForm;
 use app\models\UGroup;
 use app\models\UserSearch;
 use devgroup\dropzone\UploadedFiles;
@@ -42,6 +43,7 @@ class UserController extends AuthController
             'login',
             'register',
             'forget-password',
+            'dashboard',
         ];
     }
 
@@ -255,11 +257,11 @@ class UserController extends AuthController
 
     public function actionLogin()
     {
-        $this->setTheme('frontend');
+        $this->setTheme('frontend', ['headerClass' => '-blueHeader']);
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(['/admin']);
+            return $this->redirect(['/']);
         }
 
         $model->password = '';
@@ -270,15 +272,16 @@ class UserController extends AuthController
 
     public function actionLogout()
     {
-        $this->setTheme('frontend');
+        Yii::$app->user->logout();
+        return $this->goHome();
     }
 
     public function actionRegister()
     {
-        $this->setTheme('frontend');
+        $this->setTheme('frontend', ['headerClass' => '-blueHeader']);
 
         $model= new User();
-        $model->setScenario('insert');
+        $model->setScenario('register');
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -288,6 +291,8 @@ class UserController extends AuthController
 
         if (Yii::$app->request->post()){
             $model->load(Yii::$app->request->post());
+            $model->username = $model->phone;
+            $model->password = $model->nationalCode;
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->refresh();
@@ -296,12 +301,22 @@ class UserController extends AuthController
         }
 
 
-        return $this->render('register');
+        return $this->render('register', compact('model'));
     }
 
     public function actionForgetPassword()
     {
-        $this->setTheme('frontend');
+        $this->setTheme('frontend', ['headerClass' => '-blueHeader']);
+
+    }
+
+    public function actionDashboard()
+    {
+        if(Yii::$app->user->isGuest)
+            return $this->redirect(['/']);
+        $this->setTheme('frontend', ['headerClass' => '-blueHeader']);
+        $user = Yii::$app->user->identity;
+        return $this->render('dashboard', compact('user'));
 
     }
 }

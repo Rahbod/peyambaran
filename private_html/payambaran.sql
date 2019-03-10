@@ -10,7 +10,7 @@ Target Server Type    : MariaDB
 Target Server Version : 100208
 File Encoding         : 65001
 
-Date: 2019-03-09 18:25:27
+Date: 2019-03-09 23:34:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -122,7 +122,7 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `parentID` int(10) DEFAULT NULL,
-  `type` enum('cat','tag','lst','mnu','exp') COLLATE utf8_unicode_ci NOT NULL COMMENT 'ENUM:\r\n''cat'': Category\r\n''tag'': Tag/Taxonomy\r\n''lst'': List ''mnu'': Menu ''exp'': Expertise',
+  `type` enum('cat','tag','lst','mnu','exp','online') COLLATE utf8_unicode_ci NOT NULL COMMENT 'ENUM:\r\n''cat'': Category\r\n''tag'': Tag/Taxonomy\r\n''lst'': List ''mnu'': Menu ''exp'': Expertise',
   `name` varchar(511) COLLATE utf8_unicode_ci NOT NULL,
   `dyna` blob DEFAULT NULL,
   `extra` text COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -422,4 +422,4 @@ CREATE TABLE `user_request` (
 -- View structure for clinic_program_view
 -- ----------------------------
 DROP VIEW IF EXISTS `clinic_program_view`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `clinic_program_view` AS select (select `c`.`name` from `category` `c` where `c`.`id` = column_get(`i`.`dyna`,'expertise' as signed)) AS `exp`,`i`.`name` AS `name`,`cp`.`date` AS `date`,`ppr`.`start_time` AS `start_time`,`ppr`.`end_time` AS `end_time`,`ppr`.`description` AS `description` from ((`clinic_program` `cp` join `person_program_rel` `ppr` on(`cp`.`id` = `ppr`.`dayID`)) join `item` `i` on(`i`.`modelID` = (select `model`.`id` from `model` where `model`.`name` = 'person') and `i`.`id` = `ppr`.`personID`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `clinic_program_view` AS select concat(`ppr`.`dayID`,'-',`ppr`.`personID`) AS `id`,(select `c`.`name` from `category` `c` where `c`.`id` = column_get(`i`.`dyna`,'expertise' as signed)) AS `exp`,`i`.`name` AS `name`,`cp`.`date` AS `date`,`ppr`.`start_time` AS `start_time`,`ppr`.`end_time` AS `end_time`,`ppr`.`description` AS `description` from ((`clinic_program` `cp` join `person_program_rel` `ppr` on(`cp`.`id` = `ppr`.`dayID`)) join `item` `i` on(`i`.`modelID` = (select `model`.`id` from `model` where `model`.`name` = 'person') and `i`.`id` = `ppr`.`personID`)) ;
