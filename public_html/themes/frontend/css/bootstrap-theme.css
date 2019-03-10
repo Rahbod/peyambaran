@@ -2027,9 +2027,9 @@ section .title-description {
 }
 
 /*--------------------------- main*/
-/*.content {*/
-/*padding-top: 70px;*/
-/*}*/
+.innerPages .content-header {
+    padding-top: 70px;
+}
 
 .-btrr {
     border-top-right-radius: 10px;
