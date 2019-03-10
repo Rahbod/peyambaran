@@ -2027,7 +2027,7 @@ section .title-description {
 }
 
 /*--------------------------- main*/
-.innerPages .content-header {
+.innerPages main {
     padding-top: 70px;
 }
 
