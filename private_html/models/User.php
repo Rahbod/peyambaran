@@ -84,8 +84,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['name', 'username', 'status', 'roleID', 'email'], 'required', 'except' => ['change-password', 'manual_insert']],
-            ['groups', 'required', 'on' => ['insert']],
+            [['name', 'username', 'status', 'roleID', 'email'], 'required', 'except' => ['change-password', 'manual_insert', 'register']],
             [['name', 'username', 'status', 'roleID'], 'required', 'on' => 'manual_insert'],
             [['password'], 'required', 'on' => 'insert'],
             [['newPassword', 'repeatPassword'], 'required', 'on' => 'change-password'],
@@ -93,14 +92,18 @@ class User extends DynamicActiveRecord implements IdentityInterface
             [['oldPassword'], 'checkPassword', 'on' => 'change-password'],
             ['repeatPassword', 'compare', 'compareAttribute' => 'password', 'on' => 'insert'],
             ['repeatPassword', 'compare', 'compareAttribute' => 'newPassword', 'on' => 'change-password'],
-            ['created', 'default', 'value' => date(Yii::$app->params['dbDateTimeFormat']), 'on' => ['insert', 'manual_insert']],
-            //['email', 'email'],
+            ['created', 'default', 'value' => date(Yii::$app->params['dbDateTimeFormat']), 'on' => ['insert', 'manual_insert','register']],
             [['dyna', 'address'], 'string'],
             [['created', 'phone', 'text', 'image', 'nationalCode', 'memCode', 'gender', 'address', 'birthDate'], 'safe'],
             [['status', 'nationalCode', 'memCode', 'gender'], 'integer'],
             [['name', 'username', 'password'], 'string', 'max' => 255],
+            [['nationalCode'], 'string', 'max' => 10],
+            [['phone'], 'string', 'min' => 11, 'max' => 11],
             [['username'], 'unique'],
             [['roleID'], 'exist', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['roleID' => 'name']],
+
+            [['name', 'nationalCode', 'phone'], 'required', 'on' => 'register'],
+            [['roleID'], 'default', 'value' => 'user'],
         ];
     }
 
@@ -256,7 +259,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
         if ($this->scenario == 'edit-profile')
             return;
 
-        if (Yii::$app->request->post('User') and $insert)
+        if (Yii::$app->request->post('User') and $insert and isset(Yii::$app->request->post('User')['password']))
             $this->password = Yii::$app->request->post('User')['password'];
 
         if ($this->groups) {

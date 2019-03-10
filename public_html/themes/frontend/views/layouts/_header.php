@@ -25,16 +25,35 @@ use \yii\helpers\Html;
                         <?php endforeach; ?>
                     </ul>
                 </div>
-                <a href="<?= Url::to(['/user/register']) ?>" class="btn btn-green btn-sm" data-toggle="modal"
-                   target="#signup">
+
+                <?php if(Yii::$app->user->isGuest || Yii::$app->user->identity->roleID != 'user'): ?>
+                <a href="<?= Url::to(['/user/register']) ?>" class="btn btn-green btn-sm">
                     <i class="user-icon"></i>
                     <?= Yii::t('words', 'Register') ?>
                 </a>
-                <a href="<?= Url::to(['/user/login']) ?>" class="btn btn-purple btn-sm" data-toggle="modal"
-                   target="#login">
+                <a href="<?= Url::to(['/user/login']) ?>" class="btn btn-purple btn-sm">
                     <i class="user-icon"></i>
                     <?= Yii::t('words', 'Login') ?>
                 </a>
+                <?php else:?>
+                    <div class="user-header-box">
+                        <a href="<?= Url::to(['/user/dashboard']) ?>">
+                            <div class="user-header-pic">
+                                <?php
+                                $src = $this->theme->baseUrl.'/images/user.jpg';
+                                if(Yii::$app->user->identity->avatar &&
+                                    is_file(Yii::getAlias('@webroot/uploads/user/avatars/').Yii::$app->user->identity->avatar))
+                                    $src = Yii::getAlias('@web/uploads/user/avatars/').Yii::$app->user->identity->avatar;
+                                ?>
+                                <img src="<?= $src ?>" alt="<?= Yii::$app->user->identity->name ?>">
+                            </div>
+                        </a>
+                        <div class="user-header-details">
+                            <a href="<?= Url::to(['/user/dashboard']) ?>"><span class="user-header-name"><?= Yii::$app->user->identity->name ?></span></a>
+<!--                            <a href="#"><span class="user-header-setting icon-gear"></span></a>-->
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <?= Html::beginForm(['/site/search'], 'get', ['class' => 'search-form']) ?>
                 <div class="input-group search-container">
                     <?= Html::textInput('term', Yii::$app->request->getQueryParam('term'), ['class' => 'form-control', 'placeholder' => Yii::t('words', 'Search...')]) ?>
@@ -45,7 +64,7 @@ use \yii\helpers\Html;
                 <?= Html::endForm() ?>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
-                <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'blueHeader' ? "logo-white.png" : "/images/logo.png") ?>">
+                <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?>">
                 <div class="logo-right">
                     <h1>بیمارســتان پیامبران</h1>
                     <h2>Payambaran</h2>

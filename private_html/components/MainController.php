@@ -249,6 +249,7 @@ abstract class MainController extends Controller
                     'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . Yii::t('words', 'Items') . '</span>',
                     'items' => [
                         ['label' => Yii::t('words', 'Slides'), 'url' => ['/slide/index']],
+                        ['label' => Yii::t('words', 'Online Services'), 'url' => ['/online/index']],
                         ['label' => Yii::t('words', 'Pages'), 'url' => ['/page/index']],
                         ['label' => Yii::t('words', 'People'), 'url' => ['/person/index']],
                         ['label' => Yii::t('words', 'Posts'), 'url' => ['/post/index']],
@@ -288,7 +289,7 @@ abstract class MainController extends Controller
                 "<li class='m-menu__section'><h4 class='m-menu__section-text'>".Yii::t('words','Categories')."</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
                 [
                     'label' => '<i class="m-menu__link-icon flaticon-imac"></i><span class="m-menu__link-text">'.Yii::t('words','Login').'</span>',
-                    'url' => ['/admin'],
+                    'url' => ['/admin/login'],
                 ]
             ],
 

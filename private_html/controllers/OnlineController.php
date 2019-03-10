@@ -2,22 +2,21 @@
 
 namespace app\controllers;
 
-use app\models\ClinicProgramView;
+use app\models\OnlineService;
+use richardfan\sortable\SortableAction;
 use Yii;
-use app\models\ClinicProgram;
-use app\models\ClinicProgramSearch;
+use app\models\Menu;
+use app\models\OnlineServiceSearch;
 use app\components\AuthController;
-use yii\data\ActiveDataProvider;
-use yii\data\SqlDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
- * ClinicController implements the CRUD actions for ClinicProgram model.
+ * OnlineController implements the CRUD actions for Menu model.
  */
-class ClinicController extends AuthController
+class OnlineController extends AuthController
 {
     /**
      * for set admin theme
@@ -26,13 +25,6 @@ class ClinicController extends AuthController
     {
         $this->setTheme('default');
         parent::init();
-    }
-
-    public function getSystemActions()
-    {
-        return [
-            'show'
-        ];
     }
 
     /**
@@ -50,49 +42,34 @@ class ClinicController extends AuthController
         ];
     }
 
+    public function actions()
+    {
+        return [
+            'sort-item' => [
+                'class' => SortableAction::className(),
+                'activeRecordClassName' => Menu::className(),
+                'orderColumn' => 'sort',
+            ],
+        ];
+    }
+
     /**
-     * Lists all ClinicProgram models.
+     * Lists all Menu models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ClinicProgramSearch();
+        $searchModel = new OnlineServiceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $dataProvider->pagination = false;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
-    public function actionShow()
-    {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
-
-
-//        $sql = "SELECT * FROM `clinic_program_view` WHERE `date` >= :now";
-//        $countSql = "SELECT COUNT(*) FROM `clinic_program_view` WHERE `date` >= :now";
-//
-//        $now = strtotime(date('Y/m/d 00:00:00',time()));
-//        $count = Yii::$app->db->createCommand($countSql, [':now' => $now])->queryScalar();
-//
-//        $dataProvider = new SqlDataProvider([
-//            'sql' => $sql,
-//            'params' => [':now' => $now],
-//            'totalCount' => $count,
-//
-//        ]);
-
-        $clinicSearchModel = new ClinicProgramView();
-        $dataProvider = $clinicSearchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('show', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
     /**
-     * Displays a single ClinicProgram model.
+     * Displays a single Menu model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -105,14 +82,13 @@ class ClinicController extends AuthController
     }
 
     /**
-     * Creates a new ClinicProgram model.
+     * Creates a new Menu model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ClinicProgram();
-        $model->date = $model->getLastDay();
+        $model = new OnlineService();
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -124,7 +100,7 @@ class ClinicController extends AuthController
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['create']);
+                return $this->redirect(['index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -135,7 +111,7 @@ class ClinicController extends AuthController
     }
 
     /**
-     * Updates an existing ClinicProgram model.
+     * Updates an existing Menu model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -155,7 +131,7 @@ class ClinicController extends AuthController
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['index']);
+                return $this->redirect(['view', 'id' => $model->id]);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -166,7 +142,7 @@ class ClinicController extends AuthController
     }
 
     /**
-     * Deletes an existing ClinicProgram model.
+     * Deletes an existing Menu model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -174,21 +150,25 @@ class ClinicController extends AuthController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete())
+            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
+        else
+            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
+
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the ClinicProgram model based on its primary key value.
+     * Finds the Menu model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ClinicProgram the loaded model
+     * @return Menu the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ClinicProgram::findOne($id)) !== null) {
+        if (($model = Menu::findOne($id)) !== null) {
             return $model;
         }
 
