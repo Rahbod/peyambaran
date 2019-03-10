@@ -48,13 +48,14 @@ use \yii\helpers\Url;
                                         </div>
                                         <div class="form-group col-12">
                                             <div class="clearfix">
-                                                <a class="floatToRight form-control securityCode__image">
-                                                    <!--<img src="" alt="">-->
-                                                    RCii7485
-                                                </a>
-                                                <input class="floatToRight securityCode__input form-control"
-                                                       placeholder="تصویر امنیتی"
-                                                       type="text">
+                                                <?= $form->field($model, 'verifyCode')->widget(\yii\captcha\Captcha::className()) ?>
+<!--                                                <a class="floatToRight form-control securityCode__image">-->
+<!--                                                    <!--<img src="" alt="">-->
+<!--                                                    RCii7485-->
+<!--                                                </a>-->
+<!--                                                <input class="floatToRight securityCode__input form-control"-->
+<!--                                                       placeholder="تصویر امنیتی"-->
+<!--                                                       type="text">-->
                                                 <?= Html::submitButton(Yii::t('words', 'Login'), ['class' => 'btn submitBtn -blueBg', 'tabindex' => 4]) ?>
                                             </div>
                                         </div>

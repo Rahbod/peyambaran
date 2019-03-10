@@ -26,7 +26,10 @@ class OnlineService extends Menu
 
     public function rules()
     {
-        return array_merge(parent::rules(), [
+        return array_merge(Category::rules(), [
+            [['menu_type', 'page_id'], 'integer'],
+            [['external_link'], 'url'],
+            [['action_name', 'external_link'], 'string'],
             ['type', 'default', 'value' => self::$typeName],
             ['content', 'default', 'value' => 1]
         ]);

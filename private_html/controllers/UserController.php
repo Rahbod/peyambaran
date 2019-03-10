@@ -44,6 +44,7 @@ class UserController extends AuthController
             'register',
             'forget-password',
             'dashboard',
+            'captcha'
         ];
     }
 
@@ -65,6 +66,9 @@ class UserController extends AuthController
     public function actions()
     {
         return [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+            ],
             // declares "error" action using a class name
             'upload-image' => [
                 'class' => 'devgroup\dropzone\UploadAction',

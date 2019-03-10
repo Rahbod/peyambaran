@@ -26,31 +26,32 @@ use \yii\helpers\Html;
                     </ul>
                 </div>
 
-                <?php if(Yii::$app->user->isGuest || Yii::$app->user->identity->roleID != 'user'): ?>
-                <a href="<?= Url::to(['/user/register']) ?>" class="btn btn-green btn-sm">
-                    <i class="user-icon"></i>
-                    <?= Yii::t('words', 'Register') ?>
-                </a>
-                <a href="<?= Url::to(['/user/login']) ?>" class="btn btn-purple btn-sm">
-                    <i class="user-icon"></i>
-                    <?= Yii::t('words', 'Login') ?>
-                </a>
-                <?php else:?>
+                <?php if (Yii::$app->user->isGuest || Yii::$app->user->identity->roleID != 'user'): ?>
+                    <a href="<?= Url::to(['/user/register']) ?>" class="btn btn-green btn-sm">
+                        <i class="user-icon"></i>
+                        <?= Yii::t('words', 'Register') ?>
+                    </a>
+                    <a href="<?= Url::to(['/user/login']) ?>" class="btn btn-purple btn-sm">
+                        <i class="user-icon"></i>
+                        <?= Yii::t('words', 'Login') ?>
+                    </a>
+                <?php else: ?>
                     <div class="user-header-box">
                         <a href="<?= Url::to(['/user/dashboard']) ?>">
                             <div class="user-header-pic">
                                 <?php
-                                $src = $this->theme->baseUrl.'/images/user.jpg';
-                                if(Yii::$app->user->identity->avatar &&
-                                    is_file(Yii::getAlias('@webroot/uploads/user/avatars/').Yii::$app->user->identity->avatar))
-                                    $src = Yii::getAlias('@web/uploads/user/avatars/').Yii::$app->user->identity->avatar;
+                                $src = $this->theme->baseUrl . '/images/user.jpg';
+                                if (Yii::$app->user->identity->avatar &&
+                                    is_file(Yii::getAlias('@webroot/uploads/user/avatars/') . Yii::$app->user->identity->avatar))
+                                    $src = Yii::getAlias('@web/uploads/user/avatars/') . Yii::$app->user->identity->avatar;
                                 ?>
                                 <img src="<?= $src ?>" alt="<?= Yii::$app->user->identity->name ?>">
                             </div>
                         </a>
                         <div class="user-header-details">
-                            <a href="<?= Url::to(['/user/dashboard']) ?>"><span class="user-header-name"><?= Yii::$app->user->identity->name ?></span></a>
-<!--                            <a href="#"><span class="user-header-setting icon-gear"></span></a>-->
+                            <a href="<?= Url::to(['/user/dashboard']) ?>"><span
+                                        class="user-header-name"><?= Yii::$app->user->identity->name ?></span></a>
+                            <!--                            <a href="#"><span class="user-header-setting icon-gear"></span></a>-->
                         </div>
                     </div>
                 <?php endif; ?>
@@ -66,9 +67,11 @@ use \yii\helpers\Html;
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
                 <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?>">
                 <div class="logo-right">
-                    <h1>بیمارســتان پیامبران</h1>
-                    <h2>Payambaran</h2>
-                    <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
+<!--                    <a href="--><?//= Yii::getAlias('@web') ?><!--">-->
+                        <h1>بیمارســتان پیامبران</h1>
+                        <h2>Payambaran</h2>
+                        <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
+<!--                    </a>-->
                 </div>
             </div>
         </div>
@@ -77,25 +80,38 @@ use \yii\helpers\Html;
         <div class="container">
             <ul class="nav navbar nav-pills">
                 <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
-                    <?php if ($item->children(1)->count() > 0): ?>
+                    <?php
+                    $ic = $item->children(1)->count();
+                    $sic = $item->children(2)->count();
+                    if ($ic > 0): ?>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" data-target='#deps' href="#">
+                            <a class="dropdown-toggle" href="#">
                                 <i class="icon icon-chevron-down"></i>
                                 <?= $item->name ?>
                             </a>
-                            <div class="dropdown-menu" id="deps">
+                            <div class="dropdown-menu">
                                 <div class="container">
-                                    <ul class="menu-part">
-                                        <?php foreach ($item->children(1)->all() as $sub_item): ?>
-                                            <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>><a
-                                                        href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
-                                            <?php foreach ($sub_item->children(1)->all() as $sub_item_child): ?>
-                                                <li>
-                                                    <a href="<?= $sub_item_child->url ?>"><?= $sub_item_child->name ?></a>
-                                                </li>
+                                    <?php if (($sic - $ic) === 0): // one level ?>
+                                        <ul class="menu-part d-inline-block">
+                                            <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                                <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
+                                                    <a href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
                                             <?php endforeach; ?>
+                                        </ul>
+                                    <?php else: // two level ?>
+                                        <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                            <ul class="menu-part d-inline-block">
+                                                <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
+                                                    <a
+                                                            href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
+                                                <?php foreach ($sub_item->children(1)->all() as $sub_item_child): ?>
+                                                    <li>
+                                                        <a href="<?= $sub_item_child->url ?>"><?= $sub_item_child->name ?></a>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
                                         <?php endforeach; ?>
-                                    </ul>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </li>
