@@ -6,7 +6,9 @@ use Yii;
 
 /**
  * This is the model class for table "item".
- *
+ * @property $short_description
+ * @property $body
+ * @property $catID
  */
 class Gallery extends Item
 {

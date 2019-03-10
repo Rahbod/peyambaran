@@ -3,6 +3,10 @@
 namespace app\controllers;
 
 use app\components\MainController;
+use app\models\Category;
+use app\models\Insurance;
+use app\models\Post;
+use app\models\Slide;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Response;
@@ -65,7 +69,13 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $slides = Slide::find()->valid()->all();
+        $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->all();
+        $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->all();
+        $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();
+        $galleryCategories = Category::find()->valid()->andWhere(['type' => Category::TYPE_CATEGORY, Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY])->all();
+
+        return $this->render('index', compact('slides', 'inpatientInsurances', 'outpatientInsurances', 'posts', 'galleryCategories'));
     }
 
     public function actionChangeLang($language = false, $controller = false, $action = false)
@@ -117,11 +127,12 @@ class SiteController extends MainController
         return $this->render('about');
     }
 
-    public function actionSearch(){
+    public function actionSearch()
+    {
         $term = Yii::$app->request->getQueryParam('term');
-        if($term && !empty($term)){
+        if ($term && !empty($term)) {
             return $this->render('search', compact('term'));
-        }else
+        } else
             return $this->goBack();
     }
 }
