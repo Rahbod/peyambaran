@@ -1999,7 +1999,7 @@ section .title-description {
     color: inherit !important;
 }
 
-.-blueHeader header .logo img {
+.-blueHeader .logo img {
     background-color: #3f8dfa;
 }
 
@@ -2020,14 +2020,14 @@ section .title-description {
     color: #fff !important;
 }
 
-.-blueHeader .nav > li > a:focus, .nav > li > a:hover {
+.-blueHeader .nav > li > a:focus,.-blueHeader .nav > li > a:hover {
     background-color: #85c296 !important;
 }
 
 /*--------------------------- main*/
-.content {
-    padding-top: 70px;
-}
+/*.content {*/
+    /*padding-top: 70px;*/
+/*}*/
 
 .-btrr {
     border-top-right-radius: 10px;
@@ -2807,6 +2807,7 @@ section .title-description {
     -webkit-border-radius: 10px !important;
     -moz-border-radius: 10px !important;
     border-radius: 10px !important;
+    background: #31af91;
 }
 
 .news .-more {
@@ -2888,10 +2889,6 @@ section .title-description {
 
 .news .card:hover .card-title, .news .card:focus .card-title {
     color: #31af91;
-}
-
-.news .content-header {
-    background: #31af91;
 }
 
 .news .transparent-bg {
@@ -2983,16 +2980,17 @@ section .title-description {
     -webkit-box-orient: vertical;
 }
 
-.new-show .card:hover, .card:focus {
+.new-show .card:hover,.new-show .card:focus {
     border-color: #31af91;
 }
 
-.new-show .card:hover .card-title, .card:focus .card-title {
+.new-show .card:hover .card-title,.new-show .card:focus .card-title {
     color: #31af91;
 }
 
 .new-show .content-header {
     background: #31af91;
+    margin-bottom: 20px;
 }
 
 .new-show .transparent-bg {
@@ -3067,9 +3065,6 @@ section .title-description {
     padding-top: 70px;
 }
 
-.new-show .content-header {
-    margin-bottom: 20px;
-}
 
 /*#endregion*/
 
