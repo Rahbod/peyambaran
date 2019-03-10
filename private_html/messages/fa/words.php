@@ -362,6 +362,7 @@ return [
     'Week Days' => 'روزهای هفته',
     'Time' => 'زمان',
     'Search...' => 'متن جستجو...',
+    'Payambaran hospital' => 'بیمارستان پیامبران',
     'Create' => 'افزودن',
 
     /****** User ******/
@@ -374,4 +375,7 @@ return [
     'Phone' => 'شماره تماس',
     'Login to account' => 'ورود به حساب کاربری',
     'Forget password?' => 'رمز عبور خود را فراموش کرده ام',
+    'insurance_title' => '<h3 class="section-title">بیمه های<span class="hidden">طرف قرارداد پیامبران</span></h3><p class="title-description">طرف قرارداد پیامبران</p>',
+    'hospitalization insurances' => '<span>بیمه های</span><small>طرف قرارداد بستری</small>',
+    'Outpatient insurances' => '<span>بیمه های</span><small>طرف قرارداد سرپایی</small>',
 ];

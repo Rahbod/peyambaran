@@ -1,23 +1,36 @@
 <?php
+
 use \app\models\Slide;
 use \yii\helpers\Html;
+use \app\models\Insurance;
+use \app\models\Post;
+use \app\models\Category;
 
 /* @var $this yii\web\View */
+/** @var $slides Slide[] */
+/** @var $inpatientInsurances Insurance[] */
+/** @var $outpatientInsurances Insurance[] */
+/** @var $posts Post[] */
+/** @var $galleryCategories Category[] */
 ?>
 
 
 <section class="slider-container">
     <div class="slider owl-carousel owl-theme" data-items="1">
-        <?php foreach (Slide::find()->valid()->all() as $slide):
-        if($slide->image && is_file(Yii::getAlias('@webroot/uploads/slide/').$slide->image)):?>
-            <div class="slide-item relative">
-                <div class="image-container">
-                    <img src="<?= Yii::getAlias('@web/uploads/slide/').$slide->image ?>" alt="<?= Html::encode($slide->name) ?>">
+        <?php foreach ($slides as $slide):
+            if ($slide->image && is_file(Yii::getAlias('@webroot/uploads/slide/') . $slide->image)):?>
+                <div class="slide-item relative">
+                    <div class="image-container">
+                        <img src="<?= Yii::getAlias('@web/uploads/slide/') . $slide->image ?>"
+                             alt="<?= Html::encode($slide->name) ?>">
+                    </div>
                 </div>
-            </div>
-        <?php endif;endforeach; ?>
+            <?php endif;endforeach; ?>
     </div>
 </section>
+
+<!--Online Services-->
+<!--@todo dynamic content -->
 <section class="texture-bg circle-texture">
     <div class="container">
         <div class="row online-services-container">
@@ -132,24 +145,24 @@ use \yii\helpers\Html;
         </div>
     </div>
 </section>
+<!--End  Online Services-->
+
+<!--Insurance-->
 <section class="texture-bg umbrella-texture">
     <div class="container">
         <div class="row insurance-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
                 <div class="umbrella-icon"></div>
-                <h3 class="section-title">بیمه های<span class="hidden">طرف قرارداد پیامبران</span></h3>
-                <p class="title-description">طرف قرارداد پیامبران</p>
+                <?= Yii::t('words', 'insurance_title') ?>
                 <div class="row">
                     <div class="insurance-btn-box">
                         <ul>
                             <li class="active"><a href="#" data-toggle="tab" data-target="#insurance-box-1">
-                                    <span>بیمه های</span>
-                                    <small>طرف قرارداد بستری</small>
+                                    <?= Yii::t('words', 'hospitalization insurances') ?>
                                     <i class="icon icon-chevron-left"></i>
                                 </a></li>
                             <li><a href="#" data-toggle="tab" data-target="#insurance-box-2">
-                                    <span>بیمه های</span>
-                                    <small>طرف قرارداد بستری</small>
+                                    <?= Yii::t('words', 'Outpatient insurances') ?>
                                     <i class="icon icon-chevron-left"></i>
                                 </a></li>
                         </ul>
@@ -159,966 +172,165 @@ use \yii\helpers\Html;
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 text-right">
                 <div class="tab-content insurance-box">
                     <div class="tab-pane fade active in" id="insurance-box-1">
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-1.png">
-                                    </div>
-                                    <h4>بیمه کارآفرین</h4>
-                                </a>
+                        <?php foreach ($inpatientInsurances as $item): ?>
+                            <div class="insurance-item">
+                                <div class="insurance-item-inner">
+                                    <a href="#">
+                                        <div class="item-image">
+                                            <img class="grayscale"
+                                                 src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
+                                        </div>
+                                        <h4><?= $item->name ?></h4>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-2.png">
-                                    </div>
-                                    <h4>بیمه البرز</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-3.png">
-                                    </div>
-                                    <h4>بیمه آسیا</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-4.png">
-                                    </div>
-                                    <h4 class="with-small">بیمه سلامت</h4>
-                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-5.png">
-                                    </div>
-                                    <h4>بیمه ایران</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-1.png">
-                                    </div>
-                                    <h4>بیمه کارآفرین</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-2.png">
-                                    </div>
-                                    <h4>بیمه البرز</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-3.png">
-                                    </div>
-                                    <h4>بیمه آسیا</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-4.png">
-                                    </div>
-                                    <h4 class="with-small">بیمه سلامت</h4>
-                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-5.png">
-                                    </div>
-                                    <h4>بیمه ایران</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-1.png">
-                                    </div>
-                                    <h4>بیمه کارآفرین</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-2.png">
-                                    </div>
-                                    <h4>بیمه البرز</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-3.png">
-                                    </div>
-                                    <h4>بیمه آسیا</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-4.png">
-                                    </div>
-                                    <h4 class="with-small">بیمه سلامت</h4>
-                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-5.png">
-                                    </div>
-                                    <h4>بیمه ایران</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-1.png">
-                                    </div>
-                                    <h4>بیمه کارآفرین</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-2.png">
-                                    </div>
-                                    <h4>بیمه البرز</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-3.png">
-                                    </div>
-                                    <h4>بیمه آسیا</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-4.png">
-                                    </div>
-                                    <h4 class="with-small">بیمه سلامت</h4>
-                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-5.png">
-                                    </div>
-                                    <h4>بیمه ایران</h4>
-                                </a>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                     <div class="tab-pane fade" id="insurance-box-2">
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-2.png">
-                                    </div>
-                                    <h4>بیمه البرز</h4>
-                                </a>
+                        <?php foreach ($outpatientInsurances as $item): ?>
+                            <div class="insurance-item">
+                                <div class="insurance-item-inner">
+                                    <a href="#">
+                                        <div class="item-image">
+                                            <img class="grayscale"
+                                                 src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
+                                        </div>
+                                        <h4><?= $item->name ?></h4>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-3.png">
-                                    </div>
-                                    <h4>بیمه آسیا</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-1.png">
-                                    </div>
-                                    <h4>بیمه کارآفرین</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-4.png">
-                                    </div>
-                                    <h4 class="with-small">بیمه سلامت</h4>
-                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-5.png">
-                                    </div>
-                                    <h4>بیمه ایران</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-2.png">
-                                    </div>
-                                    <h4>بیمه البرز</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-3.png">
-                                    </div>
-                                    <h4>بیمه آسیا</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-1.png">
-                                    </div>
-                                    <h4>بیمه کارآفرین</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-4.png">
-                                    </div>
-                                    <h4 class="with-small">بیمه سلامت</h4>
-                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-5.png">
-                                    </div>
-                                    <h4>بیمه ایران</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-2.png">
-                                    </div>
-                                    <h4>بیمه البرز</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-3.png">
-                                    </div>
-                                    <h4>بیمه آسیا</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-1.png">
-                                    </div>
-                                    <h4>بیمه کارآفرین</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-4.png">
-                                    </div>
-                                    <h4 class="with-small">بیمه سلامت</h4>
-                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-5.png">
-                                    </div>
-                                    <h4>بیمه ایران</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-2.png">
-                                    </div>
-                                    <h4>بیمه البرز</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-3.png">
-                                    </div>
-                                    <h4>بیمه آسیا</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-1.png">
-                                    </div>
-                                    <h4>بیمه کارآفرین</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-4.png">
-                                    </div>
-                                    <h4 class="with-small">بیمه سلامت</h4>
-                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-5.png">
-                                    </div>
-                                    <h4>بیمه ایران</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-2.png">
-                                    </div>
-                                    <h4>بیمه البرز</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-3.png">
-                                    </div>
-                                    <h4>بیمه آسیا</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-1.png">
-                                    </div>
-                                    <h4>بیمه کارآفرین</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-4.png">
-                                    </div>
-                                    <h4 class="with-small">بیمه سلامت</h4>
-                                    <small>(کارمندی_ایرانیان_سایر اقشار)</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="insurance-item">
-                            <div class="insurance-item-inner">
-                                <a href="#">
-                                    <div class="item-image">
-                                        <img class="grayscale" src="uploads/bime-5.png">
-                                    </div>
-                                    <h4>بیمه ایران</h4>
-                                </a>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<!--End Insurance-->
+
+<!--News and Articles-->
 <section class="texture-bg health-texture">
     <div class="container">
         <div class="row insurance-container">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
                 <div class="news-icon"></div>
                 <div class="inline-title">
-                    <h3 class="section-title">اخبار و مقالات</h3>
-                    <p class="title-description">بیمارستان پیامبران</p>
+                    <h3 class="section-title"><?= Yii::t('words', 'News & Articles') ?></h3>
+                    <p class="title-description"><?= Yii::t('words', 'Payambaran hospital') ?></p>
                 </div>
             </div>
         </div>
         <div class="news-carousel owl-carousel owl-theme" data-stagePadding="50" data-rtl="true"
              data-autoWidth="true" data-nav="true" data-items="3" data-margin="15">
-            <div class="news-item">
-                <div class="news-item-inner">
-                    <a href="#">
-                        <div class="statics-row">
-                            <span class="comments-count text-right">49<i class="comment-icon"></i></span>
-                            <span class="view-count text-center">105<i class="eye-icon"></i></span>
-                            <span class="news-date text-left">1397/7/11<i class="calendar-icon"></i></span>
-                        </div>
-                        <div class="news-image">
-                            <div class="news-image-inner">
-                                <img src="uploads/news1.png">
+            <?php foreach ($posts as $item): ?>
+                <div class="news-item">
+                    <div class="news-item-inner">
+                        <a href="<?= $item->url ?>">
+                            <div class="statics-row">
+                                <span class="comments-count text-right"><?= number_format($item->comments_count) ?><i
+                                            class="comment-icon"></i></span>
+                                <span class="view-count text-center"><?= number_format($item->seen) ?><i
+                                            class="eye-icon"></i></span>
+                                <span class="news-date text-left"><?= jDateTime::date('Y/m/d', strtotime($item->publish_date)) ?>
+                                    <i class="calendar-icon"></i></span>
                             </div>
-                        </div>
-                        <div class="news-details">
-                            <h3>راه اندازی بخش جدید NICU در فاز توسعه بیمارستان</h3>
-                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                                شناخت فراوان جامعه و متخصصان را می طلبد.
-                                <div class="overlay"></div>
+                            <div class="news-image">
+                                <div class="news-image-inner">
+                                    <img src="<?= Yii::getAlias('@web/uploads/post/') . $item->image ?>">
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                            <div class="news-details">
+                                <h3><?= $item->name ?></h3>
+                                <div class="news-description"><?= !empty($item->summary) ? $item->summary : mb_substr(strip_tags(nl2br($item->body)), 0, 200) ?>
+                                    <div class="overlay"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="news-item">
-                <div class="news-item-inner">
-                    <a href="#">
-                        <div class="statics-row">
-                            <span class="comments-count text-right">49<i class="comment-icon"></i></span>
-                            <span class="view-count text-center">105<i class="eye-icon"></i></span>
-                            <span class="news-date text-left">1397/7/11<i class="calendar-icon"></i></span>
-                        </div>
-                        <div class="news-image">
-                            <div class="news-image-inner">
-                                <img src="uploads/news2.png">
-                            </div>
-                        </div>
-                        <div class="news-details">
-                            <h3>تعرفه جدید بستری وزارت بهداشت به بیمارستان ها ابلاغ شد</h3>
-                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                                شناخت فراوان جامعه و متخصصان را می طلبد.
-                                <div class="overlay"></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-item-inner">
-                    <a href="#">
-                        <div class="statics-row">
-                            <span class="comments-count text-right">49<i class="comment-icon"></i></span>
-                            <span class="view-count text-center">105<i class="eye-icon"></i></span>
-                            <span class="news-date text-left">1397/7/11<i class="calendar-icon"></i></span>
-                        </div>
-                        <div class="news-image">
-                            <div class="news-image-inner">
-                                <img src="uploads/news3.png">
-                            </div>
-                        </div>
-                        <div class="news-details">
-                            <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
-                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                                شناخت فراوان جامعه و متخصصان را می طلبد.
-                                <div class="overlay"></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-item-inner">
-                    <a href="#">
-                        <div class="statics-row">
-                            <span class="comments-count text-right">49<i class="comment-icon"></i></span>
-                            <span class="view-count text-center">105<i class="eye-icon"></i></span>
-                            <span class="news-date text-left">1397/7/11<i class="calendar-icon"></i></span>
-                        </div>
-                        <div class="news-image">
-                            <div class="news-image-inner">
-                                <img src="uploads/news1.png">
-                            </div>
-                        </div>
-                        <div class="news-details">
-                            <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
-                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                                شناخت فراوان جامعه و متخصصان را می طلبد.
-                                <div class="overlay"></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-item-inner">
-                    <a href="#">
-                        <div class="statics-row">
-                            <span class="comments-count text-right">49<i class="comment-icon"></i></span>
-                            <span class="view-count text-center">105<i class="eye-icon"></i></span>
-                            <span class="news-date text-left">1397/7/11<i class="calendar-icon"></i></span>
-                        </div>
-                        <div class="news-image">
-                            <div class="news-image-inner">
-                                <img src="uploads/news2.png">
-                            </div>
-                        </div>
-                        <div class="news-details">
-                            <h3>تعرفه جدید بستری وزارت بهداشت به بیمارستان ها ابلاغ شد</h3>
-                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                                شناخت فراوان جامعه و متخصصان را می طلبد.
-                                <div class="overlay"></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-item-inner">
-                    <a href="#">
-                        <div class="statics-row">
-                            <span class="comments-count text-right">49<i class="comment-icon"></i></span>
-                            <span class="view-count text-center">105<i class="eye-icon"></i></span>
-                            <span class="news-date text-left">1397/7/11<i class="calendar-icon"></i></span>
-                        </div>
-                        <div class="news-image">
-                            <div class="news-image-inner">
-                                <img src="uploads/news3.png">
-                            </div>
-                        </div>
-                        <div class="news-details">
-                            <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
-                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                                شناخت فراوان جامعه و متخصصان را می طلبد.
-                                <div class="overlay"></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="news-item">
-                <div class="news-item-inner">
-                    <a href="#">
-                        <div class="statics-row">
-                            <span class="comments-count text-right">49<i class="comment-icon"></i></span>
-                            <span class="view-count text-center">105<i class="eye-icon"></i></span>
-                            <span class="news-date text-left">1397/7/11<i class="calendar-icon"></i></span>
-                        </div>
-                        <div class="news-image">
-                            <div class="news-image-inner">
-                                <img src="uploads/news1.png">
-                            </div>
-                        </div>
-                        <div class="news-details">
-                            <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
-                            <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
-                                و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-                                بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                                شناخت فراوان جامعه و متخصصان را می طلبد.
-                                <div class="overlay"></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
+<!--End News and Articles-->
+
+<!--Gallery-->
 <section class="gallery-bg">
     <div class="container">
         <div class="row gallery-tabs">
             <ul class="pull-left nav nav-tabs">
-                <li><a href="#" data-toggle="tab" data-target="#gallery-category-1">پزشکان</a></li>
-                <li><a href="#" data-toggle="tab" data-target="#gallery-category-2">محیط داخلی</a></li>
-                <li><a href="#" data-toggle="tab" data-target="#gallery-category-3">محیط بیرونی</a></li>
-                <li class="active"><a href="#" data-toggle="tab" data-target="#gallery-category-4">تجهیزات</a></li>
-                <li><a href="#" data-toggle="tab" data-target="#gallery-category-5">اتاق ها</a></li>
+                <?php $i = 0;
+                foreach ($galleryCategories as $item): $i++; ?>
+                    <?php if (count($item->catitems) > 0): ?>
+                        <li<?= $i == 1 ? ' class="active"' : '' ?>><a href="#" data-toggle="tab"
+                                                                      data-target="#gallery-category-<?= $item->id ?>"><?= $item->name ?></a>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </ul>
         </div>
         <div class="row gallery-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
                 <div class="gallery-icon"></div>
-                <h3 class="section-title">گالری تصاویر</h3>
+                <h3 class="section-title"><?= Yii::t('words', 'Picture Gallery') ?></h3>
             </div>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 gallery-left-box">
                 <div class="tab-content row">
-                    <div class="tab-pane fade" id="gallery-category-1"></div>
-                    <div class="tab-pane fade" id="gallery-category-2"></div>
-                    <div class="tab-pane fade" id="gallery-category-3"></div>
-                    <div class="tab-pane fade active in" id="gallery-category-4">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right gallery-list-box nicescroll"
-                             data-cursorcolor="#4d82f2" data-cursorborder="none"
-                             data-railpadding='js:{"top":0,"right":-5,"bottom":0,"left":0}'
-                             data-autohidemode="false">
-                            <div class="gallery-list relative">
-                                <div class="gallery-item active">
-                                    <a href="#" data-toggle="tab" data-target="#gallery-details-1">
-                                        <div class="item-image">
-                                            <img src="uploads/gallery1.png">
-                                        </div>
-                                        <div class="item-details">
-                                            <h4 class="with-small">اتاق بیهوشی</h4>
-                                            <p>بیهوشی موضعی و کامل</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="gallery-item">
-                                    <a href="#" data-toggle="tab" data-target="#gallery-details-2">
-                                        <div class="item-image">
-                                            <img src="uploads/gallery2.png">
-                                        </div>
-                                        <div class="item-details">
-                                            <h4 class="with-small">اتاق ریکاوری</h4>
-                                            <p>اتاق مجزا و کامل با 10 تخت</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="gallery-item">
-                                    <a href="#" data-toggle="tab" data-target="#gallery-details-3">
-                                        <div class="item-image">
-                                            <img src="uploads/gallery3.png">
-                                        </div>
-                                        <div class="item-details">
-                                            <h4 class="with-small">اتاق عمل</h4>
-                                            <p>شامل 5 اتاق عمل مجهز</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="gallery-item">
-                                    <a href="#" data-toggle="tab" data-target="#gallery-details-4">
-                                        <div class="item-image">
-                                            <img src="uploads/gallery1.png">
-                                        </div>
-                                        <div class="item-details">
-                                            <h4 class="with-small">اتاق ریکاوری</h4>
-                                            <p>جهت آماده سازی برای عمل</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="gallery-item">
-                                    <a href="#" data-toggle="tab" data-target="#gallery-details-5">
-                                        <div class="item-image">
-                                            <img src="uploads/gallery1.png">
-                                        </div>
-                                        <div class="item-details">
-                                            <h4 class="with-small">اتاق ریکاوری</h4>
-                                            <p>جهت آماده سازی برای عمل</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right">
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active" id="gallery-details-1">
-                                    <div class="gallery-item-details">
-                                        <div class="item-image-big">
-                                            <img src="uploads/gallery-big-1.png">
-                                        </div>
-                                        <div class="gallery-details">
-                                            <h3>اتاق بیهوشی</h3>
-                                            <p>بیهوشی موضعی و کامل</p>
-                                            <div class="font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
-                                                روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                                                می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
-                                                فراوان جامعه و متخصصان را می طلبد.
+                    <?php $i = 0;
+                    foreach ($galleryCategories as $category): $i++; ?>
+                        <?php if (count($category->catitems) > 0): ?>
+                            <div class="tab-pane fade<?= $i == 1 ? ' active in' : '' ?>"
+                                 id="gallery-category-<?= $item->id ?>">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right gallery-list-box nicescroll"
+                                     data-cursorcolor="#4d82f2" data-cursorborder="none"
+                                     data-railpadding='js:{"top":0,"right":-5,"bottom":0,"left":0}'
+                                     data-autohidemode="false">
+                                    <?php $k = 0;
+                                    foreach ($category->items as $item):$k++; ?>
+                                        <div class="gallery-list relative">
+                                            <div class="gallery-item<?= $k === 1 ? " active" : "" ?>">
+                                                <a href="#" data-toggle="tab"
+                                                   data-target="#gallery-details-<?= $item->id ?>">
+                                                    <div class="item-image">
+                                                        <img src="<?= Yii::getAlias('@web/uploads/gallery/') . $item->thumbnail_image ?>"
+                                                             alt="<?= $item->name ?>">
+                                                    </div>
+                                                    <div class="item-details">
+                                                        <h4 class="with-small"><?= $item->name ?></h4>
+                                                        <p><?= $item->short_description ?></p>
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php endforeach; ?>
                                 </div>
-                                <div class="tab-pane fade" id="gallery-details-2">
-                                    <div class="gallery-item-details">
-                                        <div class="item-image-big">
-                                            <img src="uploads/gallery-big-1.png">
-                                        </div>
-                                        <div class="gallery-details">
-                                            <h3>اتاق ریکاوری</h3>
-                                            <p>اتاق مجزا و کامل با 10 تخت</p>
-                                            <div class="font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
-                                                روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                                                می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
-                                                فراوان جامعه و متخصصان را می طلبد.
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right">
+                                    <div class="tab-content">
+                                        <?php $k = 0;
+                                        foreach ($category->items as $item):$k++; ?>
+                                            <div class="tab-pane fade<?= $k === 1 ? " in active" : "" ?>"
+                                                 id="gallery-details-<?= $item->id ?>">
+                                                <div class="gallery-item-details">
+                                                    <div class="item-image-big">
+                                                        <img src="<?= Yii::getAlias('@web/uploads/gallery/') . $item->full_image ?>"
+                                                             alt="<?= $item->name ?>">
+                                                    </div>
+                                                    <div class="gallery-details">
+                                                        <h3><?= $item->name ?></h3>
+                                                        <p><?= $item->short_description ?></p>
+                                                        <div class="font-light"><?= strip_tags(nl2br($item->body)) ?></div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="gallery-details-3">
-                                    <div class="gallery-item-details">
-                                        <div class="item-image-big">
-                                            <img src="uploads/gallery-big-1.png">
-                                        </div>
-                                        <div class="gallery-details">
-                                            <h3>اتاق عمل</h3>
-                                            <p>شامل 5 اتاق عمل مجهز</p>
-                                            <div class="font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
-                                                روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                                                می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
-                                                فراوان جامعه و متخصصان را می طلبد.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="gallery-details-4">
-                                    <div class="gallery-item-details">
-                                        <div class="item-image-big">
-                                            <img src="uploads/gallery-big-1.png">
-                                        </div>
-                                        <div class="gallery-details">
-                                            <h3>اتاق عمل</h3>
-                                            <p>شامل 5 اتاق عمل مجهز</p>
-                                            <div class="font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
-                                                روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                                                می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
-                                                فراوان جامعه و متخصصان را می طلبد.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="gallery-details-5">
-                                    <div class="gallery-item-details">
-                                        <div class="item-image-big">
-                                            <img src="uploads/gallery-big-1.png">
-                                        </div>
-                                        <div class="gallery-details">
-                                            <h3>اتاق عمل</h3>
-                                            <p>شامل 5 اتاق عمل مجهز</p>
-                                            <div class="font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                                صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
-                                                روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                                                می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
-                                                فراوان جامعه و متخصصان را می طلبد.
-                                            </div>
-                                        </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="gallery-category-5"></div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<section class="map-bg">
-    <div class="map"></div>
-</section>
-<section class="bottom-section">
-    <div class="container">
-        <div class="overflow-fix">
-            <div class="form-container">
-                <h3>تماس با ما</h3>
-                <div class="text">در صورتی که مایل به تماس با ما هستید، می توانید از طریق فرم زیر بخش مورد نظر خود
-                    را انتخاب و موضوع خود را مطرح کنید.<br>همچنین می توانید با شماره تماس های درج شده نیز تماس حاصل
-                    فرمایید.
-                </div>
-                <form>
-                    <div class="row">
-                        <div class="form-row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <label for="select">بخش موردنظر</label>
-                                <select id="select">
-                                    <option>مدیریت</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <label for="name">نام و نام خانوادگی</label>
-                                <input id="name" type="text" placeholder="نام و نام خانوادگی">
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <label for="email">پست الکترونیکی</label>
-                                <input id="email" type="text" placeholder="exampel@email.com">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <label for="mobile">شماره تلفن همراه</label>
-                                <input id="mobile" type="text" placeholder="09xxxxxxxx">
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                <label for="text">متن پیام</label>
-                                <textarea id="text" placeholder="بنویسید"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-row last">
-                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 captcha">
-                                <img src="uploads/captcha.png">
-                                <a href="#">کد جدید ایجاد کنید</a>
-                                <input type="text" placeholder="صورة أمنية">
-                            </div>
-                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                                <input type="submit" value="ارسال به بخش مربوطه">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="info-container">
-                <ul>
-                    <li>
-                        <i class="icon point-icon"></i>
-                        <div>آدرس بیمارستان پیامبران<br> تهران - میدان دوم صادقیه - بلوارآیت الله کاشانی - بلوار
-                            اباذر - بیمارستان تخصصی و فوق تخصصی پیامبران
-                        </div>
-                    </li>
-                    <li>
-                        <i class="icon phone-icon"></i>
-                        <div>تلفن و فکس<br> 44079131-41 - 44078392</div>
-                    </li>
-                    <li class="email">
-                        <i class="icon email-icon"></i>
-                        <div>info@payambaranhospital.com</div>
-                    </li>
-                    <li>
-                        <i class="icon share-icon"></i>
-                        <div>
-                            <a href="#" class="icon instagram-icon"></a>
-                            <a href="#" class="icon facebook-icon"></a>
-                            <a href="#" class="icon google-icon"></a>
-                            <a href="#" class="icon twitter-icon"></a>
-                        </div>
-                    </li>
-                </ul>
-                <hr>
-                <div class="certificate-block">
-                    <h3>مدارک معتبر</h3>
-                    <div class="certs">
-                        <div class="cert-item">
-                            <div class="cert-item-inner">
-                                <h4 class="bolder open-sans">ISO 9001:2008</h4>
-                                <p>Professional of medical therapeutic & diginic service</p>
-                            </div>
-                        </div>
-                        <div class="cert-item">
-                            <div class="cert-item-inner">
-                                <h4 class="bolder open-sans">IPD</h4>
-                                <p>International Patient Department</p>
-                            </div>
-                        </div>
-                        <div class="cert-item">
-                            <div class="cert-item-inner">
-                                <h4 class="bolder open-sans">ISO 14001:2004</h4>
-                                <p>Professional of medical therapeutic & diginic service</p>
-                            </div>
-                        </div>
-                        <div class="cert-item">
-                            <div class="cert-item-inner">
-                                <h4 class="bolder open-sans">OHSAS 18001:207</h4>
-                                <p>Professional of medical therapeutic & diginic service</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!--End Galley-->

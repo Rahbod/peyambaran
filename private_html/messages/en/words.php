@@ -264,4 +264,6 @@ return [
     'statistics.authors' => 'Authors',
     'statistics.categories' => 'Subjects',
     'statistics.duplicateItems' => 'Duplicate Books',
+
+    'insurance_title' => '<h3 class="section-title">Insurance<span class="hidden">contracts with Payambaran</span></h3><p class="title-description">contracts with Payambaran</p>'
 ];

@@ -31,6 +31,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property Page[] $pages
  * @property Catitem[] $catitems
+ * @property Item[] $items
  */
 class Category extends MultiLangActiveRecord
 {
@@ -153,6 +154,13 @@ class Category extends MultiLangActiveRecord
     public function getCatitems()
     {
         return $this->hasMany(Catitem::className(), ['catID' => 'id']);
+    }
+
+
+
+    public function getItems() {
+        return $this->hasMany(Item::className(), ['id' => 'itemID'])
+            ->viaTable('catitem', ['catID' => 'id']);
     }
 
     /**
