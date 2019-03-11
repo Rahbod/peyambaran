@@ -46,15 +46,14 @@ use \yii\widgets\ActiveForm;
                                         </div>
 
                                         <div class="form-group col-12">
-                                            <div class="clearfix">
-                                                <a class="floatToRight form-control securityCode__image">
-                                                    <!--<img src="" alt="">-->
-                                                    RCii7485
-                                                </a>
-                                                <input class="floatToRight securityCode__input form-control"
-                                                       placeholder="تصویر امنیتی"
-                                                       type="text">
-                                                <?= Html::submitButton(Yii::t('words', 'Register'), ['class' => 'btn submitBtn', 'tabindex' => 4]) ?>
+                                            <div class="clearfix captcha-container">
+                                                <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
+                                                    'captchaAction' => ['/user/captcha'],
+                                                    'template' => '<span class="floatToRight form-control securityCode__image" style="padding: 0 !important;">{image}{url}</span> {input}',
+                                                    'linkOptions' => ['label' => Yii::t('words', 'Refresh')],
+                                                    'options' => ['class' => 'floatToRight securityCode__input form-control', 'placeholder' => Yii::t('words', 'Verify Code'), 'tabindex' => 4]
+                                                ])->label(false) ?>
+                                                <?= Html::submitButton(Yii::t('words', 'Register'), ['class' => 'btn submitBtn', 'tabindex' => 5]) ?>
                                             </div>
                                         </div>
                                     </div>

@@ -45,18 +45,19 @@ use \yii\helpers\Url;
                                         </div>
                                         <div class="form-group col-12">
                                             <div class="text-left">
-                                                <a class="forgotBtn" href="<?= Url::to(['/user/forget-password']) ?>"><?= Yii::t('words', 'Forget password?') ?></a>
+                                                <a class="forgotBtn"
+                                                   href="<?= Url::to(['/user/forget-password']) ?>"><?= Yii::t('words', 'Forget password?') ?></a>
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
                                             <div class="clearfix captcha-container">
-                                                <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(),[
+                                                <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
                                                     'captchaAction' => ['/user/captcha'],
                                                     'template' => '<span class="floatToRight form-control securityCode__image" style="padding: 0 !important;">{image}{url}</span> {input}',
                                                     'linkOptions' => ['label' => Yii::t('words', 'Refresh')],
-                                                    'options' => ['class' => 'floatToRight securityCode__input form-control', 'placeholder' => Yii::t('words', 'Verify Code')]
+                                                    'options' => ['class' => 'floatToRight securityCode__input form-control', 'placeholder' => Yii::t('words', 'Verify Code'), 'tabindex' => 4]
                                                 ])->label(false) ?>
-                                                <?= Html::submitButton(Yii::t('words', 'Login'), ['class' => 'btn submitBtn -blueBg', 'tabindex' => 4]) ?>
+                                                <?= Html::submitButton(Yii::t('words', 'Login'), ['class' => 'btn submitBtn -blueBg', 'tabindex' => 5]) ?>
                                             </div>
                                         </div>
                                     </div>
