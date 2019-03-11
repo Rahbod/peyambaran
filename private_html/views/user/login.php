@@ -6,7 +6,7 @@ use \yii\helpers\Url;
 
 /** @var $this \yii\web\View */
 ?>
-<section class="register">
+<section class="register login">
     <div class="container">
         <div class="row register-container">
             <div class="col-xs-12 px-0">

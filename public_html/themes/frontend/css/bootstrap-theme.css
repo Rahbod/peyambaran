@@ -276,6 +276,10 @@ a:active {
     background-color: #66bb78;
 }
 
+.d-inline-block {
+    display: inline-block;
+}
+
 .text-green {
     color: #85c296;
 }
@@ -507,7 +511,7 @@ header .search-form {
     -moz-column-gap: 1em;
     column-gap: 1em;
     align-items: start;
-    height: 370px;
+    /*height: 370px;*/
     overflow: hidden;
 }
 
@@ -516,7 +520,7 @@ header .search-form {
 }
 
 .navbar .dropdown-menu .menu-part {
-    display: inline-block;
+    /*display: inline-block;*/
     width: 100%;
     height: auto;
     list-style: none;
