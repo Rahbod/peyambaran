@@ -3105,3 +3105,6 @@ section .title-description {
 .bg-white {
     background: #fff;
 }
+.bg-cyan{
+    background-color: #56bfef;
+}

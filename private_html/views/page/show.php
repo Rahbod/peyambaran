@@ -56,7 +56,7 @@ if($relatedMenu){
                 </nav>
             </div>
             <div class="col-sm-9">
-                <div class="content-header">
+                <div class="content-header bg-cyan">
                     <img src="<?= $this->theme->baseUrl ?>/svg/gallery-white.svg" class="img-fluid content-header__image" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= $model->name ?></h1>
