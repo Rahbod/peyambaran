@@ -33,7 +33,7 @@ use \yii\helpers\Url;
                                         'fieldConfig' => [
                                             'options' => ['class' => '']
                                         ],
-                                        'after'
+
                                     ]); ?>
                                     <?= $form->errorSummary($model) ?>
                                     <div class="form-row">
