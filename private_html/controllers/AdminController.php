@@ -2,11 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\Page;
-use app\models\Slide;
 use Yii;
 use app\components\AuthController;
-use yii\helpers\Url;
 use yii\web\Response;
 use app\models\LoginForm;
 

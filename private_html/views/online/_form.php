@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
 use app\models\OnlineService;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\OnlineService */
@@ -20,12 +21,59 @@ use app\models\OnlineService;
         <?php echo $form->errorSummary($model) ?>
         <div class="row">
             <div class="col-sm-4">
+                <?php echo $form->field($model, 'icon')->widget(\devgroup\dropzone\DropZone::className(), [
+                    'url' => Url::to(['upload-icon']),
+                    'removeUrl' => Url::to(['delete-icon']),
+                    'storedFiles' => isset($icon) ? $icon : [],
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'icon')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 0.1,
+                    ],
+                ])->hint('100x100 pixel')?>
+            </div>
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'hover_icon')->widget(\devgroup\dropzone\DropZone::className(), [
+                    'url' => Url::to(['upload-icon-hover']),
+                    'removeUrl' => Url::to(['delete-icon-hover']),
+                    'storedFiles' => isset($hoverIcon) ? $hoverIcon : [],
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'hover_icon')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 0.1,
+                    ],
+                ])->hint('100x100 pixel')?>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-4">
                 <?= $form->field($model, 'lang')->dropDownList(OnlineService::$langArray, ['class' => 'form-control m-input m-input--solid']) ?>
             </div>
             <div class="col-sm-4">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             </div>
         </div>
+
+        <?= $form->field($model, 'short_description')->textarea(['rows' => 1, 'style' => 'min-height:0']) ?>
 
         <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
 

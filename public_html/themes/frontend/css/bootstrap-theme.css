@@ -1624,6 +1624,7 @@ section .title-description {
     border-bottom: 1px solid #2c2c2c;
     font-weight: bold;
     margin-bottom: 20px;
+    line-height: 1.25;
 }
 
 .footer-section .footer-block ul li a {
@@ -1750,7 +1751,9 @@ section .title-description {
 .cert-item:hover p {
     opacity: 0.8;
 }
-
+.footer-sub-block{
+ line-height: 1;
+}
 .footer-sub-block .menu-part {
     display: inline-block;
     width: 50%;
@@ -3106,4 +3109,7 @@ section .title-description {
 
 .bg-white {
     background: #fff;
+}
+.bg-cyan{
+    background-color: #56bfef;
 }

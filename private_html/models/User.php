@@ -42,6 +42,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public $newPassword;
     public $authKey;
     public $accessToken;
+    public $verifyCode;
 
     public function init()
     {
@@ -104,6 +105,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
 
             [['name', 'nationalCode', 'phone'], 'required', 'on' => 'register'],
             [['roleID'], 'default', 'value' => 'user'],
+            ['verifyCode', 'captcha']
         ];
     }
 
@@ -140,7 +142,8 @@ class User extends DynamicActiveRecord implements IdentityInterface
             'memCode' => Yii::t('words', 'user.memCode'),
             'gender' => Yii::t('words', 'user.gender'),
             'address' => Yii::t('words', 'user.address'),
-            'birthDate' => Yii::t('words', 'user.birthDate')
+            'birthDate' => Yii::t('words', 'user.birthDate'),
+            'verifyCode' => Yii::t('words', 'verifyCode'),
         ];
     }
 

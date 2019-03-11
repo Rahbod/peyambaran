@@ -5,6 +5,7 @@ use \yii\widgets\ActiveForm;
 use \yii\helpers\Url;
 
 /** @var $this \yii\web\View */
+/** @var $model \app\models\LoginForm */
 ?>
 <section class="register login">
     <div class="container">
@@ -31,7 +32,8 @@ use \yii\helpers\Url;
                                         'options' => ['class' => 'forms'],
                                         'fieldConfig' => [
                                             'options' => ['class' => '']
-                                        ]
+                                        ],
+
                                     ]); ?>
                                     <?= $form->errorSummary($model) ?>
                                     <div class="form-row">
@@ -43,19 +45,19 @@ use \yii\helpers\Url;
                                         </div>
                                         <div class="form-group col-12">
                                             <div class="text-left">
-                                                <a class="forgotBtn" href="<?= Url::to(['/user/forget-password']) ?>"><?= Yii::t('words', 'Forget password?') ?></a>
+                                                <a class="forgotBtn"
+                                                   href="<?= Url::to(['/user/forget-password']) ?>"><?= Yii::t('words', 'Forget password?') ?></a>
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
-                                            <div class="clearfix">
-                                                <a class="floatToRight form-control securityCode__image">
-                                                    <!--<img src="" alt="">-->
-                                                    RCii7485
-                                                </a>
-                                                <input class="floatToRight securityCode__input form-control"
-                                                       placeholder="تصویر امنیتی"
-                                                       type="text">
-                                                <?= Html::submitButton(Yii::t('words', 'Login'), ['class' => 'btn submitBtn -blueBg', 'tabindex' => 4]) ?>
+                                            <div class="clearfix captcha-container">
+                                                <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
+                                                    'captchaAction' => ['/user/captcha'],
+                                                    'template' => '<span class="floatToRight form-control securityCode__image" style="padding: 0 !important;">{image}{url}</span> {input}',
+                                                    'linkOptions' => ['label' => Yii::t('words', 'Refresh')],
+                                                    'options' => ['class' => 'floatToRight securityCode__input form-control', 'placeholder' => Yii::t('words', 'Verify Code'), 'tabindex' => 4]
+                                                ])->label(false) ?>
+                                                <?= Html::submitButton(Yii::t('words', 'Login'), ['class' => 'btn submitBtn -blueBg', 'tabindex' => 5]) ?>
                                             </div>
                                         </div>
                                     </div>

@@ -40,6 +40,7 @@ class PageController extends AuthController
             'delete-image',
             'upload-attachment',
             'delete-attachment',
+            'show',
         ];
     }
 
@@ -118,6 +119,18 @@ class PageController extends AuthController
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionShow($id)
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $model = $this->findModel($id);
+        $model->seen++;
+        $model->save(false);
+
+        return $this->render('show', [
+            'model' => $model,
         ]);
     }
 

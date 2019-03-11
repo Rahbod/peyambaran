@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\AuthController;
+use app\components\customWidgets\CustomCaptchaAction;
 use app\models\LoginForm;
 use app\models\UGroup;
 use app\models\UserSearch;
@@ -44,6 +45,7 @@ class UserController extends AuthController
             'register',
             'forget-password',
             'dashboard',
+            'captcha'
         ];
     }
 
@@ -65,6 +67,12 @@ class UserController extends AuthController
     public function actions()
     {
         return [
+            'captcha' => [
+                'class' => CustomCaptchaAction::className(),
+                'width' => 130,
+                'height' => 40,
+                'transparent' => true
+            ],
             // declares "error" action using a class name
             'upload-image' => [
                 'class' => 'devgroup\dropzone\UploadAction',
