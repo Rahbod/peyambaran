@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\MultiLangActiveQuery;
 use creocoder\nestedsets\NestedSetsQueryBehavior;
 use app\components\DynamicActiveQuery;
 
@@ -10,7 +11,7 @@ use app\components\DynamicActiveQuery;
  *
  * @see Category
  */
-class CategoryQuery extends DynamicActiveQuery
+class CategoryQuery extends MultiLangActiveQuery
 {
     protected $_typeName = null;
 
