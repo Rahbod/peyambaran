@@ -37,7 +37,8 @@ class Page extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['body', 'image'], 'required'],
+            [['body'], 'required'],
+            [['image'], 'string'],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\customWidgets\CustomCaptchaAction;
 use Yii;
 use app\components\AuthController;
 use yii\web\Response;
@@ -11,7 +12,18 @@ class AdminController extends AuthController
 {
     public function getSystemActions()
     {
-        return ['index', 'login'];
+        return ['index', 'login', 'captcha'];
+    }
+
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => CustomCaptchaAction::className(),
+                'width' => 130,
+                'height' => 40,
+            ]
+        ];
     }
 
     /**
@@ -46,6 +58,7 @@ class AdminController extends AuthController
         $this->layout='login';
 
         $model = new LoginForm();
+        $model->setScenario('admin');
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->redirect(['/admin']);
         }

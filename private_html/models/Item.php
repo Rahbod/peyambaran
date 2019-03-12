@@ -124,12 +124,14 @@ class Item extends MultiLangActiveRecord
         return $this->hasMany(Catitem::className(), ['itemID' => 'id']);
     }
 
-    public function getCategories() {
+    public function getCategories()
+    {
         return $this->hasMany(Category::className(), ['id' => 'catID'])
             ->viaTable('catitem', ['itemID' => 'id'])->andWhere(['type' => Catitem::TYPE_CATEGORY]);
     }
 
-    public function getTags() {
+    public function getTags()
+    {
         return $this->hasMany(Category::className(), ['id' => 'catID'])
             ->viaTable('catitem', ['itemID' => 'id'])->andWhere(['type' => Catitem::TYPE_TAXONOMY]);
     }
@@ -154,16 +156,20 @@ class Item extends MultiLangActiveRecord
         ];
         return $statusLabels;
     }
-    
+
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
+
+        if($this->scenario =='increase_seen')
+            return true;
+
         // save attachments
         if ($this->gallery) {
             $lastGallery = $this->attachments ? ArrayHelper::map($this->attachments, 'id', 'file') : [];
             if (!is_array($this->gallery)) $this->gallery = [$this->gallery];
             foreach ($this->gallery as $key => $attachment) {
-                if (!in_array($attachment, $lastGallery) && is_file(Attachment::getAttachmentPath() . DIRECTORY_SEPARATOR . $attachment)) {
+                if (!in_array($attachment, $lastGallery) && is_file(Yii::getAlias('@webroot/uploads/temp') . DIRECTORY_SEPARATOR . $attachment)) {
                     $model = new Attachment();
                     $model->userID = Yii::$app->user->id;
                     $model->status = Attachment::STATUS_ACTIVE;
@@ -171,26 +177,24 @@ class Item extends MultiLangActiveRecord
                     $model->file = $attachment;
                     $model->type = pathinfo($attachment, PATHINFO_EXTENSION);
                     $model->itemID = $this->id;
-                    $model->size = @filesize(Attachment::getAttachmentPath() . DIRECTORY_SEPARATOR . $attachment);
+                    $model->size = @filesize(Yii::getAlias('@webroot/uploads/temp') . DIRECTORY_SEPARATOR . $attachment);
                     $model->path = Attachment::getAttachmentRelativePath();
                     if (!@$model->save())
                         $this->addErrors($model->errors);
-                    else
-                        unset($this->gallery[$key]);
                 }
             }
         }
 
         // save categories
         if ($this->formCategories) {
-            $lastTags = $this->categories? ArrayHelper::map($this->categories, 'id', 'name') : [];
+            $lastTags = $this->categories ? ArrayHelper::map($this->categories, 'id', 'name') : [];
             if (!is_array($this->formCategories)) $this->formCategories = [$this->formCategories];
             foreach ($this->formCategories as $id) {
                 if (!array_key_exists($id, $lastTags)) {
                     $model = new Catitem();
                     $model->type = Catitem::TYPE_CATEGORY;
-                    $model->catID= $id;
-                    $model->itemID= $this->id;
+                    $model->catID = $id;
+                    $model->itemID = $this->id;
                     if (!@$model->save())
                         $this->addErrors($model->errors);
                     else
@@ -198,17 +202,17 @@ class Item extends MultiLangActiveRecord
                 }
             }
         }
-        
+
         // save tags
         if ($this->formTags) {
-            $lastTags = $this->tags? ArrayHelper::map($this->tags, 'id', 'name') : [];
+            $lastTags = $this->tags ? ArrayHelper::map($this->tags, 'id', 'name') : [];
             if (!is_array($this->formTags)) $this->formTags = [$this->formTags];
             foreach ($this->formTags as $id) {
                 if (!array_key_exists($id, $lastTags)) {
                     $model = new Catitem();
                     $model->type = Catitem::TYPE_TAXONOMY;
-                    $model->catID= $id;
-                    $model->itemID= $this->id;
+                    $model->catID = $id;
+                    $model->itemID = $this->id;
                     if (!@$model->save())
                         $this->addErrors($model->errors);
                     else
@@ -220,13 +224,14 @@ class Item extends MultiLangActiveRecord
 
     public function afterDelete()
     {
-        if($this->attachments){
+        if ($this->attachments) {
             foreach ($this->attachments as $attachment) {
                 try {
                     $file = new UploadedFiles(Attachment::$attachmentPath, $attachment);
                     $file->removeAll(true);
                     $attachment->delete();
-                }catch (\Exception $exception){}
+                } catch (\Exception $exception) {
+                }
             }
         }
         parent::afterDelete();
@@ -236,6 +241,7 @@ class Item extends MultiLangActiveRecord
     {
         parent::afterFind(); // TODO: Change the autogenerated stub
         $this->formCategories = ArrayHelper::getColumn($this->catitems, 'catID');
+        $this->gallery = $this->attachments ? $this->attachments : [];
     }
 
     /**
