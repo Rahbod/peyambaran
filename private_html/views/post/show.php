@@ -2,7 +2,7 @@
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Post */
 ?>
-<section class="news-show">
+<section class="news news-show">
     <div class="container">
         <div class="row news-show-container">
             <div class="col-xs-12">
@@ -12,7 +12,7 @@
                         <h1 class="media-heading content-header__title"><?= Yii::t('words', 'News & Articles') ?></h1>
                         <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
                     </div>
-                    <div class="newsSearchBox hidden">
+                    <div class="newsSearchBox">
                         <form class="search-form" style="min-width: 400px;">
                             <p style="color: #fff;margin-right: 10px;"
                                class="search-form-label"><?= Yii::t('words', 'Search in news...') ?></p>
