@@ -122,4 +122,9 @@ NULL is system files.',
     {
         return Url::to(['/item/download', 'id' => $this->id]);
     }
+
+    public function __toString()
+    {
+        return (string)$this->file;
+    }
 }
