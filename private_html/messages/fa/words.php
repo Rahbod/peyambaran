@@ -366,6 +366,7 @@ return [
     'Create' => 'افزودن',
     'Hover icon' => 'آیکون هاور',
     'Icon' => 'آیکون',
+    'Show in footer' => 'نمایش در فوتر',
 
     /****** User ******/
     'Create user account' => 'ساخت حساب کاربری',

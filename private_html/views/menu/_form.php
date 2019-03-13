@@ -32,10 +32,16 @@ use app\models\Menu;
             </div>
         </div>
 
-        <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+        <div class="row">
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+            </div>
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'show_in_footer', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+            </div>
+        </div>
 
         <?php echo $form->field($model, 'content', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox(['id' => 'content-trigger'], false) ?>
-
 
         <div class="content-box" style="display: none">
 

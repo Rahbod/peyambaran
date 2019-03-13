@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\Imager;
 use app\models\Attachment;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
@@ -24,7 +25,7 @@ class PageController extends AuthController
 {
     public $imageDir = 'uploads/pages';
     private $imageOptions = [];
-    private $galleryOptions= ['thumbnail' => ['width' => 200, 'height' => 130]];
+    private $galleryOptions= ['thumbnail' => ['width' => 200, 'height' => 200]];
 
     /**
     * for set admin theme
@@ -197,7 +198,6 @@ class PageController extends AuthController
             if ($model->save()) {
                 $image->update($oldImage, $model->image, $this->tmpDir);
                 $gallery->updateAll($oldGallery, $model->gallery, $this->tmpDir, Attachment::getAttachmentRelativePath());
-
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             }else

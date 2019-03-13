@@ -12,7 +12,7 @@ use \yii\helpers\Html;
     <div class="container">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
-                <div class="dropdown language-select">
+                <div class="dropdown language-select" style="opacity: 0;width: 0">
                     <label>Language</label>
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="icon icon-chevron-down"></span>
