@@ -39,6 +39,16 @@ $dayID = $model->isNewRecord ? false : $model->id;
             <div class="col-sm-4">
                 <?php echo $form->field($model, 'is_holiday', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox(['id' => 'content-trigger'], false) ?>
             </div>
+            <?php if ($model->isNewRecord): ?>
+                <div class="col-sm-4 well">
+                    <div class="form-group m-form__group">
+                        <?= Html::label(Yii::t('words', 'Copy from')) ?>
+                        <?= Html::dropDownList('copy', Yii::$app->request->getQueryParam('copy'), \yii\helpers\ArrayHelper::map(\app\models\ClinicProgram::find()->all(), 'id', function ($model) {
+                            return jDateTime::date('l d F Y', $model->date);
+                        })) ?>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
 
         <div class="content-box mt-5" style="display: none">
@@ -103,7 +113,7 @@ $dayID = $model->isNewRecord ? false : $model->id;
                                     $value = '';
                                     if ($dayID) {
                                         $rel = $model->getProgramRel($dayID);
-                                        $value = $rel ? $rel->description: '';
+                                        $value = $rel ? $rel->description : '';
                                     }
                                     return Html::textInput("ClinicProgram[doctors][{$model->id}][description]", $value, ['class' => 'form-control m-input m-input--air']);
                                 },
