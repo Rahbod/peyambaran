@@ -6,41 +6,22 @@ use voime\GoogleMaps\Map;
 /* @var $this \yii\web\View */
 ?>
 <footer>
-    <section class="map-bg">
-        <div class="map"><?= Map::widget([
-                'apiKey' => 'AIzaSyDbhMDAxCreEWc5Due7477QxAVuBAJKdTM',
-                'zoom' => 15,
-                'center' => [Setting::get('map.lat'), Setting::get('map.lng')],
-                'markers' => [
-                    ['position' => [Setting::get('map.lat'), Setting::get('map.lng')]],
-                ],
-                'width' => '100%',
-                'height' => '350px',
-                'mapType' => Map::MAP_TYPE_TERRAIN,
-            ]); ?>
-            <!--            --><? //= \yii2mod\google\maps\markers\GoogleMaps::widget([
-            //                'userLocations' => [
-            //                    [
-            //                        'location' => [
-            //                            'address' => 'Kharkiv',
-            //                            'country' => 'Ukraine',
-            //                        ],
-            //                        'htmlContent' => '<h1>Kharkiv</h1>',
-            //                    ]
-            //                ],
-            //                'googleMapsUrlOptions' => [
-            //                    'key' => 'AIzaSyDbhMDAxCreEWc5Due7477QxAVuBAJKdTM',
-            //                    'language' => 'fa',
-            //                    'version' => '3.1.18',
-            //                ],
-            //                'googleMapsOptions' => [
-            //                    'mapTypeId' => 'roadmap',
-            //                    'tilt' => 45,
-            //                    'zoom' => 15,
-            //                ],
-            //            ]) ?>
-        </div>
-    </section>
+    <?php if (Setting::get('map.enabled')): ?>
+        <section class="map-bg">
+            <div class="map"><?= Map::widget([
+                    'apiKey' => 'AIzaSyDbhMDAxCreEWc5Due7477QxAVuBAJKdTM',
+                    'zoom' => 15,
+                    'center' => [Setting::get('map.lat'), Setting::get('map.lng')],
+                    'markers' => [
+                        ['position' => [Setting::get('map.lat'), Setting::get('map.lng')]],
+                    ],
+                    'width' => '100%',
+                    'height' => '350px',
+                    'mapType' => Map::MAP_TYPE_TERRAIN,
+                ]); ?>
+            </div>
+        </section>
+    <?php endif; ?>
     <div class="bottom-section">
         <div class="container">
             <div class="overflow-fix">

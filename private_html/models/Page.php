@@ -71,6 +71,6 @@ class Page extends Item
 
     public function getUrl()
     {
-        return Url::to(['/page/show', 'id' => $this->id, 'title' => urlencode($this->name)]);
+        return Url::to(['/page/show', 'id' => $this->id, 'title' => self::encodeUrl($this->name)]);
     }
 }
