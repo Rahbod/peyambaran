@@ -8,7 +8,7 @@ use app\models\Menu;
 
 $relatedMenu = Menu::find()->andWhere([Menu::columnGetString('page_id') => $model->id])->one();
 if ($relatedMenu)
-    $root = $relatedMenu->parents()->andWhere('parentID IS NULL')->one();
+    $root = $relatedMenu->parents(1)->one();
 ?>
 
 <section class="gallery">
