@@ -72,6 +72,7 @@ if ($relatedMenu)
                                                      src="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/thumbs/200x200/$item->file") ?>"
                                                      alt="<?= \yii\helpers\Html::encode($model->name) ?>">
                                             </a>
+
                                             <div class="-hoverBox">
                                                 <a href="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file") ?>"
                                                    data-transition="crossfade"
