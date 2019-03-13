@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use function app\components\dd;
 use app\models\ClinicProgramView;
 use Yii;
 use app\models\ClinicProgram;
@@ -112,6 +113,14 @@ class ClinicController extends AuthController
     public function actionCreate()
     {
         $model = new ClinicProgram();
+        if($copy = Yii::$app->request->getQueryParam('copy')){
+            $copyModel = ClinicProgram::findOne($copy);
+            $model = clone $copyModel;
+            $model->isNewRecord = true;
+            $model->id = null;
+            $model->created = (string)time();
+        }
+
         $model->date = $model->getLastDay();
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {

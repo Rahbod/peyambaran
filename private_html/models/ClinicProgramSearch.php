@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use function app\components\dd;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\ClinicProgram;
@@ -65,7 +66,8 @@ class ClinicProgramSearch extends ClinicProgram
             ->andFilterWhere(['like', 'dyna', $this->dyna])
             ->andFilterWhere(['like', 'created', $this->created]);
 
-        $query->andWhere(['>=', 'date', strtotime(date('Y/m/d 00:00:00', time()))]);
+//        $query->andWhere(['>=', 'date', strtotime(date('Y/m/d 00:00:00', time()))]);
+//        dd(date('Y/m/d 00:00:00', time()));
 
         return $dataProvider;
     }

@@ -463,6 +463,7 @@ header .search-form {
     margin-bottom: -2px;
     border: none;
     position: static !important;
+    min-height: 0;
 }
 
 .navbar > li {

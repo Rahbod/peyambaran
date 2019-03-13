@@ -12,11 +12,19 @@ $searchModel = new \app\models\PersonSearch();
 $searchModel->type = Person::TYPE_DOCTOR;
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-$dayID = $model->isNewRecord ? false : $model->id;
+$dayID = $model->isNewRecord ? (Yii::$app->request->getQueryParam('copy')?:false) : $model->id;
+
+
+$this->registerJs('
+    $("body").on("change", "#copy-day", function(){
+        var url = $(this).data("url");
+        var val = $(this).val();
+        window.location = url+"?copy="+val;
+    });
+');
 ?>
 <?php $form = CustomActiveForm::begin([
     'id' => 'clinic-form',
-    //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
     'enableAjaxValidation' => true,
     'enableClientValidation' => true,
     'validateOnSubmit' => true,
@@ -36,6 +44,22 @@ $dayID = $model->isNewRecord ? false : $model->id;
                     <?= Html::textInput('', jDateTime::date('l d F Y', $model->date), ['readonly' => true, 'class' => 'form-control m-input m-input--solid disabled text-danger', 'style' => 'font-weight: bold']) ?>
                 </div>
             </div>
+            <?php if ($model->isNewRecord): ?>
+                <div class="col-sm-4 well">
+                    <div class="form-group m-form__group">
+                        <?= Html::label(Yii::t('words', 'Copy from'),'',['class'=>'col-form-label control-label']) ?>
+                        <?= Html::dropDownList('copy', Yii::$app->request->getQueryParam('copy'), \yii\helpers\ArrayHelper::map(\app\models\ClinicProgram::find()->all(), 'id', function ($model) {
+                            return jDateTime::date('l d F Y', $model->date);
+                        }), [
+                            'data-url' => \yii\helpers\Url::to(['create']),
+                            'class' => 'form-control m-input m-input--solid',
+                            'id' => 'copy-day',
+                            'prompt' => Yii::t('words','Select Day...'),
+                        ]) ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+
             <div class="col-sm-4">
                 <?php echo $form->field($model, 'is_holiday', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox(['id' => 'content-trigger'], false) ?>
             </div>
@@ -103,7 +127,7 @@ $dayID = $model->isNewRecord ? false : $model->id;
                                     $value = '';
                                     if ($dayID) {
                                         $rel = $model->getProgramRel($dayID);
-                                        $value = $rel ? $rel->description: '';
+                                        $value = $rel ? $rel->description : '';
                                     }
                                     return Html::textInput("ClinicProgram[doctors][{$model->id}][description]", $value, ['class' => 'form-control m-input m-input--air']);
                                 },

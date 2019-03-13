@@ -367,6 +367,8 @@ return [
     'Hover icon' => 'آیکون هاور',
     'Icon' => 'آیکون',
     'Show in footer' => 'نمایش در فوتر',
+    'Select Day...' => 'روز را انتخاب کنید...',
+    'Copy from' => 'کپی از',
 
     /****** User ******/
     'Create user account' => 'ساخت حساب کاربری',
