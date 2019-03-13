@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
  * This is the model class for table "clinic_program".
  *
  * @property int $id
- * @property string $date
+ * @property int $date
  * @property resource $dyna
  * @property string $created
  * @property string $userID
@@ -46,7 +46,7 @@ class ClinicProgram extends DynamicActiveRecord
             [['is_holiday'], 'integer'],
             [['doctors'], 'safe'],
             [['is_holiday'], 'default', 'value' => 1],
-            [['date', 'created'], 'string', 'max' => 20],
+            [['created'], 'string', 'max' => 20],
             [['userID'], 'default', 'value' => Yii::$app->user->id],
             [['created'], 'default', 'value' => time()],
         ]);
@@ -71,10 +71,13 @@ class ClinicProgram extends DynamicActiveRecord
     public function getLastDay()
     {
         /** @var $last ClinicProgram */
+        $today = strtotime(date("Y-m-d 00:00:00", time()));
         $last = self::find()->orderBy(['id' => SORT_DESC])->one();
-        if ($last)
-            return '' . strtotime(date("Y-m-d 00:00:00", $last->date) . "+1 day");
-        return '' . strtotime(date("Y-m-d 00:00:00", time()));
+        if ($last) {
+            $lastDate = $last->date > $today ? $last->date : $today;
+            return (string)($lastDate + (24 * 60 * 60));
+        }
+        return (string)$today;
     }
 
     public function getUser()
@@ -82,9 +85,9 @@ class ClinicProgram extends DynamicActiveRecord
         return $this->hasOne(User::className(), ['id' => 'userID']);
     }
 
-    public function getPersonRel()
+    public function getPersonsRel()
     {
-        return $this->hasOne(User::className(), ['id' => 'userID']);
+        return $this->hasMany(PersonProgramRel::className(), ['dayID' => 'id']);
     }
 
     public function afterSave($insert, $changedAttributes)

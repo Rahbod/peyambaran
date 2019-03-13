@@ -366,6 +366,8 @@ return [
     'Create' => 'افزودن',
     'Hover icon' => 'آیکون هاور',
     'Icon' => 'آیکون',
+    'Select Day...' => 'روز را انتخاب کنید...',
+    'Copy from' => 'کپی از',
 
     /****** User ******/
     'Create user account' => 'ساخت حساب کاربری',
