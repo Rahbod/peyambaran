@@ -345,7 +345,7 @@ header .logo img {
     padding-left: 10px;
 }
 
-.logo .logo-right > * {
+.logo .logo-right a > * {
     line-height: 13px;
     color: #3f8dfa;
     margin: 0;
@@ -474,6 +474,7 @@ header .search-form {
     border-radius: 4px 4px 0 0;
     padding: 11px 15px;
     color: #606060;
+    line-height: 2;
     font-weight: bold;
 }
 
@@ -538,6 +539,7 @@ header .search-form {
 
 .navbar .dropdown-menu .menu-part > li > a {
     display: inline-block;
+    line-height: 2;
 }
 
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a {
@@ -719,11 +721,15 @@ section.map-bg {
     height: 350px;
 }
 
-.map {
-    background: url("../uploads/map.png") no-repeat scroll center transparent;
-    background-size: cover;
-    width: 100%;
+.map{
     height: 100%;
+    width:100%;
+    position: relative;
+}
+.map #google-map{
+    width: 100%;
+    height:100%;
+    display: block;
 }
 
 section.gallery-bg {
@@ -918,12 +924,12 @@ section .title-description {
 }
 
 .insurance-box .insurance-item {
-    width: 33.33333%;
+    width: 25%;
     height: 60px;
     display: inline-block;
     float: right;
     margin-bottom: 5px;
-    padding: 0 20px;
+    padding: 0 5px;
 }
 
 .insurance-box .insurance-item-inner {
@@ -939,7 +945,6 @@ section .title-description {
     -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     position: relative;
-    padding-right: 65px;
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
     -ms-transition: all 0.2s;
@@ -962,14 +967,18 @@ section .title-description {
     color: #7166f1;
 }
 
-.insurance-box .insurance-item h4 {
+.insurance-box .insurance-item h5 {
     line-height: 35px;
     margin: 0;
     display: block;
     color: #323232;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
-.insurance-box .insurance-item h4.with-small {
+.insurance-box .insurance-item-inner h5.with-image{
+    padding-right: 50px;
+}
+.insurance-box .insurance-item h5.with-small {
     line-height: 22px;
 }
 
@@ -1817,6 +1826,7 @@ section .title-description {
     color: #fff;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 2;
 }
 
 .user-header-setting {
@@ -2006,8 +2016,8 @@ section .title-description {
     color: #fff !important;
 }
 
-.innerPages header .logo .logo-right > * {
-    color: inherit !important;
+.innerPages header .logo .logo-right a > * {
+    color: #fff !important;
 }
 
 .innerPages header .logo img {
@@ -3087,7 +3097,7 @@ section .title-description {
     margin-bottom: 40px;
 }
 
-.new-show .newsShow__paragraph {
+.new-show .page-text p{
     line-height: 30px;
 }
 

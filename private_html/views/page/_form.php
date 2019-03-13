@@ -42,7 +42,7 @@ use yii\helpers\Url;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'body')->widget(\app\components\customWidgets\CustomTinyMce::className(), [
-        'options' => ['rows' => 6],
+        'options' => ['rows' => 30],
     ]); ?>
 
     <?php echo $form->field($model, 'gallery')->widget(\devgroup\dropzone\DropZone::className(), [

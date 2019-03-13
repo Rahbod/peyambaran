@@ -72,11 +72,11 @@ use \yii\helpers\Html;
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
                 <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?>">
                 <div class="logo-right">
-                    <!--                    <a href="--><? //= Yii::getAlias('@web') ?><!--">-->
-                    <h1>بیمارســتان پیامبران</h1>
-                    <h2>Payambaran</h2>
-                    <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
-                    <!--                    </a>-->
+                    <a href="<?= Yii::getAlias('@web') ?>">
+                        <h1>بیمارســتان پیامبران</h1>
+                        <h2>Payambaran</h2>
+                        <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
+                    </a>
                 </div>
             </div>
         </div>

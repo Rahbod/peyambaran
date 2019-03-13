@@ -6,7 +6,10 @@ use app\models\Menu;
 /** @var $model \app\models\Page */
 /** @var $relatedMenu Menu */
 
-$relatedMenu = Menu::find()->andWhere([Menu::columnGetString('page_id') => $model->id])->one();
+$relatedMenu = Menu::find()->andWhere([
+    Menu::columnGetString('page_id') => $model->id,
+    Menu::columnGetString('content') => 1,
+])->one();
 if ($relatedMenu)
 //    $root = $relatedMenu->parents()->andWhere('parentID IS NULL')->one();
     $root = $relatedMenu->parents(1)->one();
@@ -56,7 +59,7 @@ if ($relatedMenu)
                 <div class="content-body">
                     <div class="mb-5 mt-5 text-justify page-text"><?= $model->body ?></div>
                     <?php if ($model->gallery):
-                        $this->registerJsFile($this->theme->baseUrl . '/js/vendors/html5lightbox/html5lightbox.js');
+                        $this->registerJsFile($this->theme->baseUrl . '/js/vendors/html5lightbox/html5lightbox.js',[],'lightbox');
                         ?>
                         <div class="mt-3 mb-5 page-gallery row">
                             <? foreach ($model->gallery as $item):

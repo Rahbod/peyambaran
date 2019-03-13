@@ -1,14 +1,55 @@
 <?php
+
+use app\components\Setting;
+use voime\GoogleMaps\Map;
+
 /* @var $this \yii\web\View */
 ?>
 <footer>
-    <section class="map-bg"><div class="map"></div></section>
+    <section class="map-bg">
+        <div class="map"><?= Map::widget([
+                'apiKey' => 'AIzaSyDbhMDAxCreEWc5Due7477QxAVuBAJKdTM',
+                'zoom' => 15,
+                'center' => [Setting::get('map.lat'), Setting::get('map.lng')],
+                'markers' => [
+                    ['position' => [Setting::get('map.lat'), Setting::get('map.lng')]],
+                ],
+                'width' => '100%',
+                'height' => '350px',
+                'mapType' => Map::MAP_TYPE_TERRAIN,
+            ]); ?>
+            <!--            --><? //= \yii2mod\google\maps\markers\GoogleMaps::widget([
+            //                'userLocations' => [
+            //                    [
+            //                        'location' => [
+            //                            'address' => 'Kharkiv',
+            //                            'country' => 'Ukraine',
+            //                        ],
+            //                        'htmlContent' => '<h1>Kharkiv</h1>',
+            //                    ]
+            //                ],
+            //                'googleMapsUrlOptions' => [
+            //                    'key' => 'AIzaSyDbhMDAxCreEWc5Due7477QxAVuBAJKdTM',
+            //                    'language' => 'fa',
+            //                    'version' => '3.1.18',
+            //                ],
+            //                'googleMapsOptions' => [
+            //                    'mapTypeId' => 'roadmap',
+            //                    'tilt' => 45,
+            //                    'zoom' => 15,
+            //                ],
+            //            ]) ?>
+        </div>
+    </section>
     <div class="bottom-section">
         <div class="container">
             <div class="overflow-fix">
                 <div class="form-container">
                     <h3>تماس با ما</h3>
-                    <div class="text">در صورتی که مایل به تماس با ما هستید، می توانید از طریق فرم زیر بخش مورد نظر خود را انتخاب و موضوع خود را مطرح کنید.<br>همچنین می توانید با شماره تماس های درج شده نیز تماس حاصل فرمایید.</div>
+                    <div class="text">در صورتی که مایل به تماس با ما هستید، می توانید از طریق فرم زیر بخش مورد نظر خود
+                        را انتخاب و موضوع خود را مطرح کنید.<br>همچنین می توانید با شماره تماس های درج شده نیز تماس حاصل
+                        فرمایید.
+                    </div>
                     <form>
                         <div class="row">
                             <div class="form-row">
@@ -54,11 +95,13 @@
                     <ul>
                         <li>
                             <i class="icon point-icon"></i>
-                            <div>آدرس بیمارستان پیامبران<br> تهران - میدان دوم صادقیه - بلوارآیت الله کاشانی - بلوار اباذر - بیمارستان تخصصی و فوق تخصصی پیامبران</div>
+                            <div>آدرس بیمارستان پیامبران<br> تهران - میدان دوم صادقیه - بلوارآیت الله کاشانی - بلوار
+                                اباذر - بیمارستان تخصصی و فوق تخصصی پیامبران
+                            </div>
                         </li>
                         <li>
                             <i class="icon phone-icon"></i>
-                            <div>تلفن و فکس<br> 44079131-41     -      44078392</div>
+                            <div>تلفن و فکس<br> 44079131-41 - 44078392</div>
                         </li>
                         <li class="email">
                             <i class="icon email-icon"></i>
@@ -114,44 +157,44 @@
                 <h4>بخش های بیمارستان</h4>
                 <div class="footer-sub-block">
                     <ul class="menu-part">
-                        <li><a href="#" >بستری</a></li>
-                        <li><a href="#" >لاله</a></li>
-                        <li><a href="#" >ارکیده</a></li>
-                        <li><a href="#" >یاس</a></li>
-                        <li><a href="#" >شبنم</a></li>
-                        <li><a href="#" >شکوفه</a></li>
-                        <li><a href="#" >نیلوفر</a></li>
-                        <li><a href="#" >شقایق</a></li>
-                        <li><a href="#" >غزال</a></li>
-                        <li><a href="#" >سپیده</a></li>
-                        <li><a href="#" >سوئیت</a></li>
+                        <li><a href="#">بستری</a></li>
+                        <li><a href="#">لاله</a></li>
+                        <li><a href="#">ارکیده</a></li>
+                        <li><a href="#">یاس</a></li>
+                        <li><a href="#">شبنم</a></li>
+                        <li><a href="#">شکوفه</a></li>
+                        <li><a href="#">نیلوفر</a></li>
+                        <li><a href="#">شقایق</a></li>
+                        <li><a href="#">غزال</a></li>
+                        <li><a href="#">سپیده</a></li>
+                        <li><a href="#">سوئیت</a></li>
                     </ul>
                     <ul class="menu-part">
-                        <li><a href="#" >جراحی</a></li>
-                        <li><a href="#" >اتاق عمل قلب</a></li>
-                        <li><a href="#" >اتاق عمل جنرال</a></li>
-                        <li><a href="#" >اتاق عمل قلب</a></li>
-                        <li><a href="#" >اتاق عمل جنرال</a></li>
+                        <li><a href="#">جراحی</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
                     </ul>
                     <ul class="menu-part">
-                        <li><a href="#" >مراقبت های ویژه</a></li>
-                        <li><a href="#" >ICU</a></li>
-                        <li><a href="#" >ICU.OH</a></li>
-                        <li><a href="#" >CCU</a></li>
-                        <li><a href="#" >NICU</a></li>
+                        <li><a href="#">مراقبت های ویژه</a></li>
+                        <li><a href="#">ICU</a></li>
+                        <li><a href="#">ICU.OH</a></li>
+                        <li><a href="#">CCU</a></li>
+                        <li><a href="#">NICU</a></li>
                     </ul>
                     <ul class="menu-part">
-                        <li><a href="#" >سرپایی</a></li>
-                        <li><a href="#" >آندوسکوپی</a></li>
-                        <li><a href="#" >کلینیک پوست لیزر و جراحی</a></li>
-                        <li><a href="#" >کلینیک زخم</a></li>
-                        <li><a href="#" >اورژانس</a></li>
-                        <li><a href="#" >کلینیک</a></li>
+                        <li><a href="#">سرپایی</a></li>
+                        <li><a href="#">آندوسکوپی</a></li>
+                        <li><a href="#">کلینیک پوست لیزر و جراحی</a></li>
+                        <li><a href="#">کلینیک زخم</a></li>
+                        <li><a href="#">اورژانس</a></li>
+                        <li><a href="#">کلینیک</a></li>
                     </ul>
                     <ul class="menu-part">
-                        <li><a href="#" >جراحی</a></li>
-                        <li><a href="#" >اتاق عمل قلب</a></li>
-                        <li><a href="#" >اتاق عمل جنرال</a></li>
+                        <li><a href="#">جراحی</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
                     </ul>
                 </div>
             </div>
@@ -159,24 +202,24 @@
                 <h4>پاراکلینیک ها</h4>
                 <div class="footer-sub-block">
                     <ul class="menu-part">
-                        <li><a href="#" >بستری</a></li>
-                        <li><a href="#" >لاله</a></li>
-                        <li><a href="#" >ارکیده</a></li>
-                        <li><a href="#" >یاس</a></li>
-                        <li><a href="#" >سپیده</a></li>
-                        <li><a href="#" >سوئیت</a></li>
+                        <li><a href="#">بستری</a></li>
+                        <li><a href="#">لاله</a></li>
+                        <li><a href="#">ارکیده</a></li>
+                        <li><a href="#">یاس</a></li>
+                        <li><a href="#">سپیده</a></li>
+                        <li><a href="#">سوئیت</a></li>
                     </ul>
                     <ul class="menu-part">
-                        <li><a href="#" >جراحی</a></li>
-                        <li><a href="#" >اتاق عمل قلب</a></li>
-                        <li><a href="#" >اتاق عمل جنرال</a></li>
-                        <li><a href="#" >اتاق عمل قلب</a></li>
-                        <li><a href="#" >اتاق عمل جنرال</a></li>
+                        <li><a href="#">جراحی</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
                     </ul>
                     <ul class="menu-part">
-                        <li><a href="#" >جراحی</a></li>
-                        <li><a href="#" >اتاق عمل قلب</a></li>
-                        <li><a href="#" >اتاق عمل جنرال</a></li>
+                        <li><a href="#">جراحی</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
                     </ul>
                 </div>
             </div>
@@ -184,26 +227,26 @@
                 <h4>دیگر بخش ها</h4>
                 <div class="footer-sub-block">
                     <ul class="menu-part">
-                        <li><a href="#" >جراحی</a></li>
-                        <li><a href="#" >اتاق عمل قلب</a></li>
-                        <li><a href="#" >اتاق عمل جنرال</a></li>
-                        <li><a href="#" >اتاق عمل قلب</a></li>
-                        <li><a href="#" >اتاق عمل جنرال</a></li>
+                        <li><a href="#">جراحی</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
+                        <li><a href="#">اتاق عمل قلب</a></li>
+                        <li><a href="#">اتاق عمل جنرال</a></li>
                     </ul>
                     <ul class="menu-part">
-                        <li><a href="#" >مراقبت های ویژه</a></li>
-                        <li><a href="#" >ICU</a></li>
-                        <li><a href="#" >ICU.OH</a></li>
-                        <li><a href="#" >CCU</a></li>
-                        <li><a href="#" >NICU</a></li>
+                        <li><a href="#">مراقبت های ویژه</a></li>
+                        <li><a href="#">ICU</a></li>
+                        <li><a href="#">ICU.OH</a></li>
+                        <li><a href="#">CCU</a></li>
+                        <li><a href="#">NICU</a></li>
                     </ul>
                     <ul class="menu-part">
-                        <li><a href="#" >سرپایی</a></li>
-                        <li><a href="#" >آندوسکوپی</a></li>
-                        <li><a href="#" >کلینیک پوست لیزر و جراحی</a></li>
-                        <li><a href="#" >کلینیک زخم</a></li>
-                        <li><a href="#" >اورژانس</a></li>
-                        <li><a href="#" >کلینیک</a></li>
+                        <li><a href="#">سرپایی</a></li>
+                        <li><a href="#">آندوسکوپی</a></li>
+                        <li><a href="#">کلینیک پوست لیزر و جراحی</a></li>
+                        <li><a href="#">کلینیک زخم</a></li>
+                        <li><a href="#">اورژانس</a></li>
+                        <li><a href="#">کلینیک</a></li>
                     </ul>
                 </div>
             </div>

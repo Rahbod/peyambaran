@@ -369,6 +369,7 @@ return [
     'Show in footer' => 'نمایش در فوتر',
     'Select Day...' => 'روز را انتخاب کنید...',
     'Copy from' => 'کپی از',
+    'Search in news...' => 'جستجو در خبرها...',
 
     /****** User ******/
     'Create user account' => 'ساخت حساب کاربری',

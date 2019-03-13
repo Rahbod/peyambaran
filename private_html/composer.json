@@ -24,7 +24,8 @@
         "2amigos/yii2-tinymce-widget": "~1.1",
         "sallar/jdatetime": "dev-master",
         "richardfan1126/yii2-sortable-gridview": "*",
-        "nirvana-msu/yii2-infinite-scroll": "1.0.*@dev"
+        "nirvana-msu/yii2-infinite-scroll": "1.0.*@dev",
+        "voime/yii2-google-maps": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
