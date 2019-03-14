@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\MessageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= Yii::t('words', 'Create Message') ?></span>
@@ -46,14 +48,27 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                       'id',
-                       'name',
-                       'type',
-                       'tel',
-                       'body',
-                        //'dyna',
-                        //'created',
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        'id',
+                        'name',
+                        [
+                            'attribute' => 'type',
+                            'value' => function ($model) {
+                                return \app\models\Message::getStatusLabels($model->type);
+                            },
+                            'filter' => \app\models\Message::getStatusLabels()
+                        ],
+                        [
+                            'attribute' => 'department_id',
+                            'value' => function ($model) {
+                                return $model->department->name;
+                            },
+                            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Department::find()->all(), 'id', 'name')
+                        ],
+                        'tel',
+                        [
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'template' => '{view} {delete}'
+                        ]
                     ],
                 ]); ?>
             </div>

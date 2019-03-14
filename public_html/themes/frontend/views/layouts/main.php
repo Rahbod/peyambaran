@@ -48,6 +48,7 @@ AppAsset::register($this);
     </div>
 </main>
 <?php echo $this->render('_footer'); ?>
+<?php echo $this->render('_public_alert'); ?>
 <?php $this->endBody(); ?>
 </body>
 </html>

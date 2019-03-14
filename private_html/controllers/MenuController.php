@@ -62,6 +62,7 @@ class MenuController extends AuthController
     public function actionIndex()
     {
         $searchModel = new MenuSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination = false;
         return $this->render('index', [

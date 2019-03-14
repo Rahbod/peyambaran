@@ -343,6 +343,8 @@ return [
     'Create Category' => 'دسته بندی جدید',
     'Update Category: {name}' => 'ویرایش دسته بندی: {name}',
     'Categories' => 'دسته بندی ها',
+    'Create Department' => 'افزودن بخش',
+    'Update Department: {name}' => 'ویرایش بخش: {name}',
     'Items' => 'مدیریت آیتم ها',
     'Change Password: {name}' => 'تغییر کلمه عبور: {name}',
     'Clinic Program' => 'برنامه کلینیک',
@@ -395,6 +397,8 @@ return [
     'Facebook' => 'فیسبوک',
     'Google Plus' => 'گوگل پلاس',
     'Linked-in' => 'لینکداین',
+    'message.successMsg' => 'با تشکر! پیام شما با موفقیت ارسال شد.',
+    'message.dangerMsg' => 'در ارسال پیام خطایی بوجود آمده است! لطفا مجددا تلاش فرمایید.',
 
     /****** User ******/
     'Create user account' => 'ساخت حساب کاربری',

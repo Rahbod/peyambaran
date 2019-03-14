@@ -52,6 +52,6 @@ class Department extends Category
      */
     public static function find()
     {
-        return new CategoryQuery(get_called_class());
+        return new DepartmentQuery(get_called_class());
     }
 }

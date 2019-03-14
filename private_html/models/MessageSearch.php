@@ -18,7 +18,7 @@ class MessageSearch extends Message
     {
         return [
             [['id'], 'integer'],
-            [['name', 'type', 'tel', 'body', 'dyna', 'created'], 'safe'],
+            [['name', 'type', 'tel', 'body', 'dyna', 'created', 'department_id'], 'safe'],
         ];
     }
 
@@ -59,6 +59,7 @@ class MessageSearch extends Message
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            self::columnGetString('department_id') => $this->department_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

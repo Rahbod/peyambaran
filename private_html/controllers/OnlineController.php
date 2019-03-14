@@ -107,6 +107,7 @@ class OnlineController extends AuthController
     public function actionIndex()
     {
         $searchModel = new OnlineServiceSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination = false;
         return $this->render('index', [

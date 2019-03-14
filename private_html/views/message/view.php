@@ -22,14 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="m-portlet__head-tools">
             <ul class="m-portlet__nav">
-                <li class="m-portlet__nav-item">
-                    <?= Html::a('<span><i class="far fa-edit"></i><span>'.Yii::t('words', 'Update').'</span></span>', ['update', 'id' => $model->id], [
+                <li class="m-portlet__nav-item hidden">
+                    <?= Html::a('<span><i class="far fa-edit"></i><span>' . Yii::t('words', 'Update') . '</span></span>', ['update', 'id' => $model->id], [
                         'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-success',
                         'encode' => false,
                     ]) ?>
                 </li>
                 <li class="m-portlet__nav-item">
-                    <?= Html::a('<span><i class="far fa-trash-alt"></i><span>'.Yii::t('words', 'Delete').'</span></span>', ['delete', 'id' => $model->id], [
+                    <?= Html::a('<span><i class="far fa-trash-alt"></i><span>' . Yii::t('words', 'Delete') . '</span></span>', ['delete', 'id' => $model->id], [
                         'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-danger',
                         'encode' => false,
                         'data' => [
@@ -47,13 +47,30 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'id',
+                    [
+                        'attribute' => 'type',
+                        'value' => \app\models\Message::getStatusLabels($model->type),
+                        'format' => 'raw'
+                    ],
+                    [
+                        'attribute' => 'department_id',
+                        'value' => $model->department->name,
+                    ],
+                    [
+                        'attribute' => 'created',
+                        'value' => jDateTime::date('Y/m/d', $model->created)
+                    ],
                     'name',
-                    'type',
+                    'email',
                     'tel',
-                    'body',
-                    'dyna',
-                    'created',
+                    [
+                        'attribute' => 'subject',
+                        'value' => function ($model) {
+                            return $model->subject?"<b>{$model->subject}</b>":null;
+                        },
+                        'format' => 'raw'
+                    ],
+                    'body:ntext',
                 ],
             ]) ?>
         </div>

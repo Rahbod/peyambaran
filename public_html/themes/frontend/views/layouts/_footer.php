@@ -4,9 +4,10 @@ use app\components\Setting;
 use voime\GoogleMaps\Map;
 
 /* @var $this \yii\web\View */
+
 use yii\helpers\ArrayHelper;
 use app\models\Department;
-use app\components\Setting;
+use app\models\Menu;
 use app\components\customWidgets\CustomCaptcha;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
@@ -57,23 +58,23 @@ $contactModel = new \app\models\ContactForm();
                         <div class="form-row">
                             <?= $form->field($contactModel, 'tel')->textInput(['placeholder' => '09xxxxxxxx']) ?>
 
-                            <?= $form->field($contactModel, 'body', ['options'=>['class' => 'col-lg-8 col-md-8 col-sm-8 col-xs-12']])->textInput(['placeholder' => '09xxxxxxxx']) ?>
+                            <?= $form->field($contactModel, 'body', ['options' => ['class' => 'col-lg-8 col-md-8 col-sm-8 col-xs-12']])->textInput(['placeholder' => '09xxxxxxxx']) ?>
 
                         </div>
                         <div class="form-row last">
-                                <?= $form->field($contactModel,'verifyCode', ['options'=>['class' => 'col-lg-7 col-md-7 col-sm-7 col-xs-12 captcha']])->widget(\app\components\customWidgets\CustomCaptcha::className(),[
-                                    'captchaAction' => ['site/captcha'],
-                                    'template' => "{image}\n{url}\n{input}",
-                                    'linkOptions' => [
-                                        'label' => Yii::t('words', 'New Code')
-                                    ],
-                                    'options' => [
-                                        'placeholder' => Yii::t('words', 'Verify Code'),
-                                        'autocomplete' => 'off'
-                                    ],
-                                ])->label(false) ?>
+                            <?= $form->field($contactModel, 'verifyCode', ['options' => ['class' => 'col-lg-7 col-md-7 col-sm-7 col-xs-12 captcha']])->widget(\app\components\customWidgets\CustomCaptcha::className(), [
+                                'captchaAction' => ['site/captcha'],
+                                'template' => "{image}\n{url}\n{input}",
+                                'linkOptions' => [
+                                    'label' => Yii::t('words', 'New Code')
+                                ],
+                                'options' => [
+                                    'placeholder' => Yii::t('words', 'Verify Code'),
+                                    'autocomplete' => 'off'
+                                ],
+                            ])->label(false) ?>
                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                                <?php echo Html::input('submit','',Yii::t('words', 'Send Message'));?>
+                                <?php echo Html::input('submit', '', Yii::t('words', 'Send Message')); ?>
                             </div>
                         </div>
                     </div>
@@ -91,15 +92,19 @@ $contactModel = new \app\models\ContactForm();
                         </li>
                         <li class="email">
                             <i class="icon email-icon"></i>
-                            <div>info@payambaranhospital.com</div>
+                            <div><?= Setting::get('email') ?></div>
                         </li>
                         <li>
                             <i class="icon share-icon"></i>
                             <div>
-                                <a href="#" class="icon instagram-icon"></a>
-                                <a href="#" class="icon facebook-icon"></a>
-                                <a href="#" class="icon google-icon"></a>
-                                <a href="#" class="icon twitter-icon"></a>
+                                <?php $val = Setting::get('linkedin');
+                                echo $val && !empty($val) ? '<a href="' . $val . '" class="icon instagram-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('facebook');
+                                echo $val && !empty($val) ? '<a href="' . $val . '" class="icon facebook-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('googleplus');
+                                echo $val && !empty($val) ? '<a href="' . $val . '" class="icon google-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('twitter');
+                                echo $val && !empty($val) ? '<a href="' . $val . '" class="icon twitter-icon"></a>' : ''; ?>
                             </div>
                         </li>
                     </ul>
@@ -139,103 +144,41 @@ $contactModel = new \app\models\ContactForm();
     </div>
     <div class="footer-section">
         <div class="container">
-            <div class="footer-block">
-                <h4>بخش های بیمارستان</h4>
-                <div class="footer-sub-block">
-                    <ul class="menu-part">
-                        <li><a href="#">بستری</a></li>
-                        <li><a href="#">لاله</a></li>
-                        <li><a href="#">ارکیده</a></li>
-                        <li><a href="#">یاس</a></li>
-                        <li><a href="#">شبنم</a></li>
-                        <li><a href="#">شکوفه</a></li>
-                        <li><a href="#">نیلوفر</a></li>
-                        <li><a href="#">شقایق</a></li>
-                        <li><a href="#">غزال</a></li>
-                        <li><a href="#">سپیده</a></li>
-                        <li><a href="#">سوئیت</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">جراحی</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">مراقبت های ویژه</a></li>
-                        <li><a href="#">ICU</a></li>
-                        <li><a href="#">ICU.OH</a></li>
-                        <li><a href="#">CCU</a></li>
-                        <li><a href="#">NICU</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">سرپایی</a></li>
-                        <li><a href="#">آندوسکوپی</a></li>
-                        <li><a href="#">کلینیک پوست لیزر و جراحی</a></li>
-                        <li><a href="#">کلینیک زخم</a></li>
-                        <li><a href="#">اورژانس</a></li>
-                        <li><a href="#">کلینیک</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">جراحی</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-block">
-                <h4>پاراکلینیک ها</h4>
-                <div class="footer-sub-block">
-                    <ul class="menu-part">
-                        <li><a href="#">بستری</a></li>
-                        <li><a href="#">لاله</a></li>
-                        <li><a href="#">ارکیده</a></li>
-                        <li><a href="#">یاس</a></li>
-                        <li><a href="#">سپیده</a></li>
-                        <li><a href="#">سوئیت</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">جراحی</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">جراحی</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-block">
-                <h4>دیگر بخش ها</h4>
-                <div class="footer-sub-block">
-                    <ul class="menu-part">
-                        <li><a href="#">جراحی</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">مراقبت های ویژه</a></li>
-                        <li><a href="#">ICU</a></li>
-                        <li><a href="#">ICU.OH</a></li>
-                        <li><a href="#">CCU</a></li>
-                        <li><a href="#">NICU</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">سرپایی</a></li>
-                        <li><a href="#">آندوسکوپی</a></li>
-                        <li><a href="#">کلینیک پوست لیزر و جراحی</a></li>
-                        <li><a href="#">کلینیک زخم</a></li>
-                        <li><a href="#">اورژانس</a></li>
-                        <li><a href="#">کلینیک</a></li>
-                    </ul>
-                </div>
-            </div>
+            <?php foreach (Menu::find()->roots()->valid()->andWhere([Menu::columnGetString('show_in_footer') => 1])->orderBySort()->all() as $item): ?>
+
+                <?php
+                $ic = $item->children(1)->count();
+                $sic = $item->children(2)->count();
+                if ($ic > 0): ?>
+                    <div class="footer-block">
+                        <h4><?= $item->name ?></h4>
+                        <div class="footer-sub-block">
+                            <?php if (($sic - $ic) === 0): // one level ?>
+                                <ul class="menu-part">
+                                    <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                        <li><a href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else: // two level ?>
+                                <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                    <ul class="menu-part d-inline-block">
+                                        <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
+                                            <a
+                                                    href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
+                                        <?php foreach ($sub_item->children(1)->all() as $sub_item_child): ?>
+                                            <li>
+                                                <a href="<?= $sub_item_child->url ?>"><?= $sub_item_child->name ?></a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <li><a href="<?= $item->url ?>"><?= $item->name ?></a></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
             <div class="copyright">
                 <div class="pull-right">
                     <a href="http://tarsiminc.com" target="_blank">by tarsim.inc</a>

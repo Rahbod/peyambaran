@@ -1630,7 +1630,7 @@ section .title-description {
     overflow: hidden;
 }
 
-.footer-section .footer-block ul li:first-of-type a {
+.footer-section .footer-block ul li.has-child a {
     font-size: 18px;
     border-bottom: 1px solid #2c2c2c;
     font-weight: bold;
@@ -3239,4 +3239,39 @@ section .title-description {
 
 .page-text{
     line-height: 2;
+}
+
+.public-alert{
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    left: 50%;
+    max-width: 100%;
+    min-width: 150px;
+    text-align:center;
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 0;
+    padding: 8px 15px;
+    max-width: 90vw;
+    -webkit-transition: all .42s cubic-bezier(.694, .048, .335, 1) 0s;
+    -moz-transition: all .42s cubic-bezier(.694, .048, .335, 1) 0s;
+    -o-transition: all .42s cubic-bezier(.694, .048, .335, 1) 0s;
+    transition: all .42s cubic-bezier(.694, .048, .335, 1) 0s;
+    text-transform: none;
+}
+
+.public-alert{
+    -webkit-transform: translate(-50%, 30px);
+    -moz-transform: translate(-50%, 30px);
+    -ms-transform: translate(-50%, 30px);
+    -o-transform: translate(-50%, 30px);
+    transform: translate(-50%, 30px);
+    opacity: 1;
+    visibility: visible;
 }

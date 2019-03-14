@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use function app\components\dd;
 use creocoder\nestedsets\NestedSetsBehavior;
 use richardfan\sortable\SortableAction;
 use Yii;
@@ -85,7 +86,9 @@ class Category extends MultiLangActiveRecord
     public function init()
     {
         parent::init();
-        $this->status = 1;
+        preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
+        if(!$matches)
+            $this->status = 1;
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'category_type' => ['CHAR', ''],
             'sort' => ['INTEGER', '']

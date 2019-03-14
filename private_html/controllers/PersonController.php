@@ -90,6 +90,7 @@ class PersonController extends AuthController
     public function actionIndex()
     {
         $searchModel = new PersonSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

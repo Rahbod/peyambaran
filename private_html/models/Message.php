@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use function app\components\dd;
 use Yii;
 use app\components\DynamicActiveRecord;
 
@@ -13,6 +14,9 @@ use app\components\DynamicActiveRecord;
  * @property string $type Enum: cnt: contact us, sgn: suggestions, cmp: complaints
  * @property string $tel
  * @property string $body
+ * @property string $subject
+ * @property string $email
+ * @property string $department_id
  * @property resource $dyna All fields
  * @property string $created
  */
@@ -34,7 +38,9 @@ class Message extends DynamicActiveRecord
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-
+            'subject' => ['CHAR', ''],
+            'email' => ['CHAR', ''],
+            'department_id' => ['CHAR', ''],
         ]);
     }
 
@@ -45,11 +51,13 @@ class Message extends DynamicActiveRecord
     {
         return array_merge(parent::rules(), [
             [['name', 'body'], 'required'],
-            [['type', 'dyna'], 'string'],
+            [['type', 'dyna', 'email', 'subject'], 'string'],
             [['name'], 'string', 'max' => 511],
             [['tel'], 'string', 'max' => 15],
             [['body'], 'string', 'max' => 255],
             [['created'], 'string', 'max' => 20],
+            [['department_id'], 'safe'],
+            [['created'], 'default', 'value' => time()],
         ]);
     }
 
@@ -60,11 +68,14 @@ class Message extends DynamicActiveRecord
     {
         return array_merge(parent::attributeLabels(), [
             'id' => Yii::t('words', 'ID'),
-            'name' => Yii::t('words', 'First and Last Name'),
             'type' => Yii::t('words', 'Type'),
-            'tel' => Yii::t('words', 'Tell'),
-            'body' => Yii::t('words', 'Body'),
             'created' => Yii::t('words', 'Created'),
+            'name' => Yii::t('words', 'Name and Family'),
+            'email' => Yii::t('words', 'Email'),
+            'subject' => Yii::t('words', 'Subject'),
+            'body' => Yii::t('words', 'Body'),
+            'department_id' => Yii::t('words', 'Department ID'),
+            'tel' => Yii::t('words', 'Tel'),
         ]);
     }
 
@@ -78,5 +89,10 @@ class Message extends DynamicActiveRecord
         if (is_null($status))
             return $statusLabels;
         return $statusLabels[$status];
+    }
+
+    public function getDepartment()
+    {
+        return $this->hasOne(Department::className(), ['id' => 'department_id']);
     }
 }

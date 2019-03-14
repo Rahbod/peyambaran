@@ -59,6 +59,7 @@ class CategoryController extends AuthController
     public function actionIndex()
     {
         $searchModel = new CategorySearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination = false;
 
