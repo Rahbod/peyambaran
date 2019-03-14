@@ -41,6 +41,9 @@ class Message extends DynamicActiveRecord
             'email' => ['CHAR', ''],
             'department_id' => ['CHAR', ''],
             'degree' => ['CHAR', ''],
+            'country' => ['CHAR', ''],
+            'city' => ['CHAR', ''],
+            'address' => ['CHAR', ''],
         ]);
     }
 
@@ -51,7 +54,7 @@ class Message extends DynamicActiveRecord
     {
         return array_merge(parent::rules(), [
             [['name', 'body'], 'required'],
-            [['type', 'dyna', 'email', 'subject'], 'string'],
+            [['type', 'dyna', 'email', 'subject', 'country', 'city', 'address'], 'string'],
             [['name'], 'string', 'max' => 511],
             [['tel'], 'string', 'max' => 15],
             [['body'], 'string', 'max' => 255],
@@ -78,6 +81,9 @@ class Message extends DynamicActiveRecord
             'department_id' => Yii::t('words', 'Department ID'),
             'tel' => Yii::t('words', 'Tel'),
             'degree' => Yii::t('words', 'Degree'),
+            'country' => Yii::t('words', 'Country'),
+            'city' => Yii::t('words', 'City'),
+            'address' => Yii::t('words', 'Address'),
         ]);
     }
 

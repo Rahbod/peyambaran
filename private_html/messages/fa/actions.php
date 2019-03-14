@@ -81,4 +81,7 @@ return [
     'read' => 'خواندن',
     'person' => 'ماژول پزشکان',
     'person.list' => 'لیست پزشکان',
+    'site.contact' => 'تماس با ما',
+    'site.suggestion' => 'انتقادات و پیشنهادات',
+    'site.complaint' => 'شکایات',
 ];

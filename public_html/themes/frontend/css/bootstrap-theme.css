@@ -2294,6 +2294,7 @@ section .title-description {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
+    padding: 3px 12px;
 }
 
 .contactUs__form label {
@@ -2670,6 +2671,27 @@ section .title-description {
     font-size: 22px;
 }
 
+.register .submitBtn {
+    float: left;
+    display: inline-block;
+    width: 130px;
+    height: 40px;
+    background: #85c296;
+    color: #fff;
+}
+
+.register .submitBtn:hover, .register .submitBtn:focus {
+    background: #639170;
+    color: #fff;
+
+}
+.-bbrr {
+    border-bottom-right-radius: 10px;
+}
+
+.-bblr {
+    border-bottom-left-radius: 10px;
+}
 /*--------------------- forgot password */
 .register.forgotPassword .submitBtn {
     background: #e82d2d;
