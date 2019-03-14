@@ -1,4 +1,8 @@
 <?php
+
+use app\components\Setting;
+use voime\GoogleMaps\Map;
+
 /* @var $this \yii\web\View */
 use yii\helpers\ArrayHelper;
 use app\models\Department;
@@ -10,9 +14,22 @@ use yii\helpers\Html;
 $contactModel = new \app\models\ContactForm();
 ?>
 <footer>
-    <section class="map-bg">
-        <div class="map"></div>
-    </section>
+    <?php if (Setting::get('map.enabled')): ?>
+        <section class="map-bg">
+            <div class="map"><?= Map::widget([
+                    'apiKey' => 'AIzaSyDbhMDAxCreEWc5Due7477QxAVuBAJKdTM',
+                    'zoom' => 15,
+                    'center' => [Setting::get('map.lat'), Setting::get('map.lng')],
+                    'markers' => [
+                        ['position' => [Setting::get('map.lat'), Setting::get('map.lng')]],
+                    ],
+                    'width' => '100%',
+                    'height' => '350px',
+                    'mapType' => Map::MAP_TYPE_TERRAIN,
+                ]); ?>
+            </div>
+        </section>
+    <?php endif; ?>
     <div class="bottom-section">
         <div class="container">
             <div class="overflow-fix">

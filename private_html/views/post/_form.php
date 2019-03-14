@@ -60,7 +60,7 @@ use app\models\Category;
         <?= $form->field($model, 'summary')->textarea(['rows' => 6]) ?>
 
         <?= $form->field($model, 'body')->widget(\dosamigos\tinymce\TinyMce::className(), [
-            'options' => ['rows' => 6],
+            'options' => ['rows' => 30],
         ]); ?>
 
         <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>

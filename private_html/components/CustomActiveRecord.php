@@ -170,7 +170,7 @@ abstract class CustomActiveRecord extends ActiveRecord
                 $obj->label(false);
             }
 
-            Html::addCssClass($containerOptions, empty($containerCssClass)?$allContainerCssClass:$containerCssClass);
+            Html::addCssClass($containerOptions, empty($containerCssClass) ? $allContainerCssClass : $containerCssClass);
             $fieldHtml = Html::tag('div', $obj, $containerOptions);
             $output .= strtr($template, ['{field}' => $fieldHtml]);
         }
@@ -239,5 +239,10 @@ abstract class CustomActiveRecord extends ActiveRecord
                 return $form->field($model, $attribute, $fieldOptions)->textInput($options);
                 break;
         }
+    }
+
+    public static function encodeUrl($url)
+    {
+        return str_replace(array(' ', '/', '\\'), '-', $url);
     }
 }

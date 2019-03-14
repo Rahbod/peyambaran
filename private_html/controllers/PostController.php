@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\Setting;
 use app\models\PictureGallery;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
@@ -38,6 +39,7 @@ class PostController extends AuthController
         return [
             'upload-image',
             'delete-image',
+            'show',
         ];
     }
 
@@ -102,6 +104,20 @@ class PostController extends AuthController
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionShow($id)
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $model = $this->findModel($id);
+
+        $model->scenario = 'increase_seen';
+        $model->seen++;
+        $model->save(false);
+
+        return $this->render('show', [
+            'model' => $model,
         ]);
     }
 

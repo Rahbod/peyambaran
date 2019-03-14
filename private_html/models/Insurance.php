@@ -47,6 +47,7 @@ class Insurance extends Item
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'image' => ['CHAR', ''],
+            'code' => ['INTEGER', ''],
         ]);
     }
 
@@ -56,7 +57,7 @@ class Insurance extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['image'], 'required'],
+            [['image', 'code'], 'safe'],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }

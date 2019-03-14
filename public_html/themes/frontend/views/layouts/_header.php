@@ -12,7 +12,7 @@ use \yii\helpers\Html;
     <div class="container">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
-                <div class="dropdown language-select">
+                <div class="dropdown language-select" style="opacity: 0;width: 0">
                     <label>Language</label>
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="icon icon-chevron-down"></span>
@@ -72,11 +72,11 @@ use \yii\helpers\Html;
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
                 <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?>">
                 <div class="logo-right">
-                    <!--                    <a href="--><? //= Yii::getAlias('@web') ?><!--">-->
-                    <h1>بیمارســتان پیامبران</h1>
-                    <h2>Payambaran</h2>
-                    <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
-                    <!--                    </a>-->
+                    <a href="<?= Yii::getAlias('@web') ?>">
+                        <h1>بیمارســتان پیامبران</h1>
+                        <h2>Payambaran</h2>
+                        <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
+                    </a>
                 </div>
             </div>
         </div>

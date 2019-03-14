@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "200fb83054759c718aa2846fdfa664fd",
+    "content-hash": "03801532699351f49491263a58e2d820",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -71,7 +71,7 @@
             "version": "v3.4.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:twbs/bootstrap.git",
+                "url": "https://github.com/twbs/bootstrap.git",
                 "reference": "4c547f2175b9a05aa43551f6927da83fe249ce42"
             },
             "dist": {
@@ -169,7 +169,7 @@
             "version": "1.12.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/components/jqueryui.git",
+                "url": "git@github.com:components/jqueryui.git",
                 "reference": "44ecf3794cc56b65954cc19737234a3119d036cc"
             },
             "dist": {
@@ -777,6 +777,46 @@
                 "wysiwyg"
             ],
             "time": "2019-02-21T06:12:21+00:00"
+        },
+        {
+            "name": "voime/yii2-google-maps",
+            "version": "1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/voime/yii2-google-maps.git",
+                "reference": "55771f64fb8ff82419ff4ee13ab7d8a3e67b24f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/voime/yii2-google-maps/zipball/55771f64fb8ff82419ff4ee13ab7d8a3e67b24f4",
+                "reference": "55771f64fb8ff82419ff4ee13ab7d8a3e67b24f4",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "voime\\GoogleMaps\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arvi Võime",
+                    "email": "avoime@gmail.com"
+                }
+            ],
+            "description": "Google Maps Yii2 wrapper",
+            "keywords": [
+                "extension",
+                "yii2"
+            ],
+            "time": "2016-04-13T12:58:11+00:00"
         },
         {
             "name": "yiisoft/yii2",

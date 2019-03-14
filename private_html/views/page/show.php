@@ -6,8 +6,12 @@ use app\models\Menu;
 /** @var $model \app\models\Page */
 /** @var $relatedMenu Menu */
 
-$relatedMenu = Menu::find()->andWhere([Menu::columnGetString('page_id') => $model->id])->one();
+$relatedMenu = Menu::find()->andWhere([
+    Menu::columnGetString('page_id') => $model->id,
+    Menu::columnGetString('content') => 1,
+])->one();
 if ($relatedMenu)
+//    $root = $relatedMenu->parents()->andWhere('parentID IS NULL')->one();
     $root = $relatedMenu->parents(1)->one();
 ?>
 
@@ -33,7 +37,7 @@ if ($relatedMenu)
                                                 </li>
                                             <?php endforeach; ?>
                                         </ul>
-                                    <?php else:?>
+                                    <?php else: ?>
                                         <a class="-hoverBlue text-dark-2<?= $relatedMenu->id === $sub_item->id ? " active" : "" ?>"
                                            href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a>
                                     <?php endif; ?>
@@ -48,25 +52,41 @@ if ($relatedMenu)
                     <div class="content-header__gradient-overlay"></div>
                     <img class="content-header__fade-bg"
                          src="<?= Yii::getAlias('@web/uploads/pages/') . $model->image ?>">
-                    <img src="<?= $this->theme->baseUrl ?>/svg/gallery-white.svg"
-                         class="img-fluid content-header__image" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= $model->name ?></h1>
                     </div>
                 </div>
                 <div class="content-body">
-                    <div class="mb-5 text-justify"><?= $model->body ?></div>
-                    <?php if ($model->gallery): ?>
-                        <div class="mt-5 page-gallery row">
+                    <div class="mb-5 mt-5 text-justify page-text"><?= $model->body ?></div>
+                    <?php if ($model->gallery):
+                        $this->registerJsFile($this->theme->baseUrl . '/js/vendors/html5lightbox/html5lightbox.js',[],'lightbox');
+                        ?>
+                        <div class="mt-3 mb-5 page-gallery row">
                             <? foreach ($model->gallery as $item):
                                 if ($item->file && is_file(Yii::getAlias("@webroot/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file"))):?>
-                                    <div class="col-lg-3 col-sm-4 col-xs-6 mb-5">
-                                        <div class="page-gallery__item">
+                                    <div class="col-sm-3 mb-5">
+                                        <div class="gallery__imageContainer">
                                             <a href="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file") ?>"
-                                               target="_blank">
-                                                <img src="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file") ?>"
+                                               data-transition="crossfade"
+                                               data-thumbnail="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/thumbs/200x200/$item->file") ?>"
+                                               class="html5lightbox"
+                                               data-group="mygroup" >
+                                                <img class="gallery__images"
+                                                     src="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/thumbs/200x200/$item->file") ?>"
                                                      alt="<?= \yii\helpers\Html::encode($model->name) ?>">
                                             </a>
+
+                                            <div class="-hoverBox bg-cyan">
+                                                <a href="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file") ?>"
+                                                   data-transition="crossfade"
+                                                   data-thumbnail="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/thumbs/200x200/$item->file") ?>"
+                                                   class="html5lightbox"
+                                                   data-group="mygroup" data-width="600"
+                                                   data-height="400">
+                                                    <!--                                            <h4>آزمایشگاه پاتولوژی</h4>-->
+                                                    <img src="<?= $this->theme->baseUrl ?>/images/gallery/frame.png">
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 <? endif; ?>

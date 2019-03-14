@@ -102,6 +102,6 @@ class Post extends Item
 
     public function getUrl()
     {
-        return Url::to(['/post/']);
+        return Url::to(['/post/show', 'id' => $this->id, 'title' => self::encodeUrl($this->name)]);
     }
 }

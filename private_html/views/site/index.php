@@ -94,11 +94,15 @@ use app\models\OnlineService;
                             <div class="insurance-item">
                                 <div class="insurance-item-inner">
                                     <a href="#">
-                                        <div class="item-image">
-                                            <img class="grayscale"
-                                                 src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
-                                        </div>
-                                        <h4><?= $item->name ?></h4>
+                                        <?php if ($item->image && is_file(Yii::getAlias('@webroot/uploads/insurance/') . $item->image)): ?>
+                                            <div class="item-image">
+                                                <img class="grayscale"
+                                                     src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
+                                            </div>
+                                            <h5 class="with-image" title="<?= Html::encode($item->name) ?>" ><?= $item->name ?></h5>
+                                        <?php else: ?>
+                                            <h5 title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
+                                        <?php endif; ?>
                                     </a>
                                 </div>
                             </div>
@@ -109,11 +113,15 @@ use app\models\OnlineService;
                             <div class="insurance-item">
                                 <div class="insurance-item-inner">
                                     <a href="#">
-                                        <div class="item-image">
-                                            <img class="grayscale"
-                                                 src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
-                                        </div>
-                                        <h4><?= $item->name ?></h4>
+                                        <?php if ($item->image && is_file(Yii::getAlias('@webroot/uploads/insurance/') . $item->image)): ?>
+                                            <div class="item-image">
+                                                <img class="grayscale"
+                                                     src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
+                                            </div>
+                                            <h5 class="with-image" title="<?= Html::encode($item->name) ?>" ><?= $item->name ?></h5>
+                                        <?php else: ?>
+                                            <h5 title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
+                                        <?php endif; ?>
                                     </a>
                                 </div>
                             </div>

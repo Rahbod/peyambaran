@@ -10,7 +10,6 @@ body {
     font-size: 13px;
     color: #323232;
     font-weight: 400;
-    line-height: 2;
     position: relative;
 }
 
@@ -346,7 +345,7 @@ header .logo img {
     padding-left: 10px;
 }
 
-.logo .logo-right > * {
+.logo .logo-right a > * {
     line-height: 13px;
     color: #3f8dfa;
     margin: 0;
@@ -475,6 +474,7 @@ header .search-form {
     border-radius: 4px 4px 0 0;
     padding: 11px 15px;
     color: #606060;
+    line-height: 2;
     font-weight: bold;
 }
 
@@ -539,6 +539,7 @@ header .search-form {
 
 .navbar .dropdown-menu .menu-part > li > a {
     display: inline-block;
+    line-height: 2;
 }
 
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a {
@@ -720,11 +721,15 @@ section.map-bg {
     height: 350px;
 }
 
-.map {
-    background: url("../uploads/map.png") no-repeat scroll center transparent;
-    background-size: cover;
-    width: 100%;
+.map{
     height: 100%;
+    width:100%;
+    position: relative;
+}
+.map #google-map{
+    width: 100%;
+    height:100%;
+    display: block;
 }
 
 section.gallery-bg {
@@ -919,12 +924,12 @@ section .title-description {
 }
 
 .insurance-box .insurance-item {
-    width: 33.33333%;
+    width: 25%;
     height: 60px;
     display: inline-block;
     float: right;
     margin-bottom: 5px;
-    padding: 0 20px;
+    padding: 0 5px;
 }
 
 .insurance-box .insurance-item-inner {
@@ -940,7 +945,6 @@ section .title-description {
     -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     position: relative;
-    padding-right: 65px;
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
     -ms-transition: all 0.2s;
@@ -963,14 +967,18 @@ section .title-description {
     color: #7166f1;
 }
 
-.insurance-box .insurance-item h4 {
+.insurance-box .insurance-item h5 {
     line-height: 35px;
     margin: 0;
     display: block;
     color: #323232;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
-.insurance-box .insurance-item h4.with-small {
+.insurance-box .insurance-item-inner h5.with-image{
+    padding-right: 50px;
+}
+.insurance-box .insurance-item h5.with-small {
     line-height: 22px;
 }
 
@@ -1818,6 +1826,7 @@ section .title-description {
     color: #fff;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 2;
 }
 
 .user-header-setting {
@@ -2007,8 +2016,8 @@ section .title-description {
     color: #fff !important;
 }
 
-.innerPages header .logo .logo-right > * {
-    color: inherit !important;
+.innerPages header .logo .logo-right a > * {
+    color: #fff !important;
 }
 
 .innerPages header .logo img {
@@ -2068,6 +2077,7 @@ section .title-description {
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    min-height: 100px;
 }
 
 .content-header__image {
@@ -2742,6 +2752,33 @@ section .title-description {
     vertical-align: middle;
 }
 
+.page-gallery .gallery__imageContainer {
+    width: 100%;
+    margin: 0 !important;
+}
+.page-gallery .gallery__imageContainer > a:first-of-type{
+    position: relative;
+    padding-top: 56.25%;
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.page-gallery .gallery__imageContainer > a:first-of-type img{
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.page-gallery .gallery__imageContainer .-hoverBox a img{
+    width: 24px;
+    height: 24px;
+}
+
 .gallery .gallery__imageContainer h4 {
     color: #fff;
 }
@@ -2781,6 +2818,19 @@ section .title-description {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.gallery .-hoverBox a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.gallery .-hoverBox a img{
+    display: inline-block;
+    margin: 0 auto;
 }
 
 .gallery .gallery__imageContainer:hover .-hoverBox {
@@ -2958,13 +3008,17 @@ section .title-description {
 /*#endregion*/
 
 /*#region news show*/
-
-.new-show .search-form {
-    width: 400px !important;
-    /*font-size: 12px;*/
+.news-show .newsSearchForm label {
+    font-size: 11px;
+    color: #fff;
 }
 
-.new-show .card {
+.news-show .search-for {
+    width: 415px !important;
+    font-size: 12px;
+}
+
+.news-show .card {
     background: #fff;
     padding: 20px 35px;
     -webkit-border-radius: 10px;
@@ -2974,7 +3028,7 @@ section .title-description {
     position: relative;
 }
 
-.new-show .card-img-top {
+.news-show .card-img-top {
     width: 100%;
     height: auto;
     max-height: 125px;
@@ -2983,21 +3037,21 @@ section .title-description {
     border-radius: 10px;
 }
 
-.new-show .card-header {
+.news-show .card-header {
     display: flex;
     justify-content: space-between;
 }
 
-.new-show .card-title {
+.news-show .card-title {
     margin: 20px 0;
     color: #000;
 }
 
-.new-show .card-text {
+.news-show .card-text {
     color: #919191;
 }
 
-.new-show .-show4Lines {
+.news-show .-show4Lines {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -3007,20 +3061,19 @@ section .title-description {
     -webkit-box-orient: vertical;
 }
 
-.new-show .card:hover, .new-show .card:focus {
+.news-show .card:hover, .card:focus {
     border-color: #31af91;
 }
 
-.new-show .card:hover .card-title, .new-show .card:focus .card-title {
+.news-show .card:hover .card-title, .card:focus .card-title {
     color: #31af91;
 }
 
-.new-show .content-header {
+.news-show .content-header {
     background: #31af91;
-    margin-bottom: 20px;
 }
 
-.new-show .transparent-bg {
+.news-show .transparent-bg {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -3032,31 +3085,31 @@ section .title-description {
     background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.9));
 }
 
-.new-show .input-group-addon:last-child {
+.news-show .input-group-addon:last-child {
     border-right-width: 1px;
     border-right-style: solid;
     border-left: 0;
 }
 
-.new-show .icomoon-search-solid {
+.news-show .icomoon-search-solid {
     color: #31af91;
 }
 
 /*------------------ news show styles*/
-.new-show .newsShow__title {
+.news-show .newsShow__title {
     margin-bottom: 40px;
 }
 
-.new-show .newsShow__paragraph {
+.news-show .newsShow__paragraph {
     line-height: 30px;
 }
 
-.new-show .simpleGallery__image {
+.news-show .simpleGallery__image {
     max-width: 100%;
     height: auto;
 }
 
-.new-show .imgContainer {
+.news-show .imgContainer {
     width: 32.23333%;
     margin-left: 1%;
     height: auto;
@@ -3065,7 +3118,7 @@ section .title-description {
     margin-bottom: 1%;
 }
 
-.new-show .related-news {
+.news-show .related-news {
     margin-top: 70px;
     border-top: 2px solid #cbd2e3;
     background: #e5e8f0;
@@ -3073,7 +3126,7 @@ section .title-description {
     padding-top: 60px;
 }
 
-.newsShow {
+.news-show .newsShow {
     background: #fff;
     border-top: 8px solid #31af91;
     -webkit-border-radius: 10px;
@@ -3084,12 +3137,8 @@ section .title-description {
     box-shadow: 0px 2px 5px 2px #c9ccd1;
 }
 
-.new-show .section-title {
+.news-show .section-title {
     color: #7783a2 !important;
-}
-
-.new-show .content {
-    padding-top: 70px;
 }
 
 /*#endregion*/
@@ -3186,4 +3235,8 @@ section .title-description {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+.page-text{
+    line-height: 2;
 }

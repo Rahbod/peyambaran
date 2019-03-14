@@ -16,6 +16,7 @@ $config = [
     'name' => 'Payambaran',
     'basePath' => dirname(__DIR__),
     'language' => Setting::get('language'),
+    'timeZone' => Setting::get('timeZone'),
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',

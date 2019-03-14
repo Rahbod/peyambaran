@@ -18,6 +18,7 @@ use yii\widgets\ActiveForm;
  * @property int $page_id
  * @property string $action_name
  * @property string $external_link
+ * @property string $show_in_footer
  *
  */
 class Menu extends Category
@@ -50,7 +51,8 @@ class Menu extends Category
             'menu_type' => ['INTEGER', ''],
             'page_id' => ['INTEGER', ''],
             'action_name' => ['CHAR', ''],
-            'external_link' => ['CHAR', '']
+            'external_link' => ['CHAR', ''],
+            'show_in_footer' => ['INTEGER', '']
         ]);
     }
 
@@ -64,6 +66,8 @@ class Menu extends Category
             [['menu_type', 'page_id'], 'integer'],
             [['external_link'], 'url'],
             [['action_name', 'external_link'], 'string'],
+            [['show_in_footer'], 'safe'],
+            ['show_in_footer', 'default', 'value' => 0],
             ['content', 'default', 'value' => 0]
         ]);
     }
@@ -78,6 +82,7 @@ class Menu extends Category
             'content' => Yii::t('words', 'Content'),
             'page_id' => Yii::t('words', 'Page Name'),
             'action_name' => Yii::t('words', 'Module Name'),
+            'show_in_footer' => Yii::t('words', 'Show in footer'),
             'external_link' => Yii::t('words', 'External Link')
         ]);
     }
