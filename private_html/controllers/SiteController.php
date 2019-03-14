@@ -72,9 +72,6 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
-        Yii::$app->db->createCommand("ALTER TABLE `category` 
-MODIFY COLUMN `type`  enum('cat','tag','lst','mnu','dep') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL AFTER `parentID`;")->execute();
-
         $slides = Slide::find()->valid()->all();
         $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->limit(32)->all();
         $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->limit(32)->all();
