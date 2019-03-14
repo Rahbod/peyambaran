@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use function app\components\dd;
 use app\components\MainController;
 use app\models\Category;
 use app\models\Insurance;
@@ -70,6 +71,9 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
+        Yii::$app->db->createCommand("ALTER TABLE `category` 
+MODIFY COLUMN `type`  enum('cat','tag','lst','mnu','dep') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL AFTER `parentID`;")->execute();
+
         $slides = Slide::find()->valid()->all();
         $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->all();
         $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->all();
@@ -93,11 +97,11 @@ class SiteController extends MainController
             Yii::$app->response->cookies->add($cookie);
         }
 
+        $referrer = Yii::$app->request->getReferrer() ?: ['/'];
         if (!$controller)
-            return $this->redirect(Yii::$app->request->getReferrer());
+            return $this->redirect($referrer);
 
-        $url = str_replace(["/$language", "$language/"], "", Yii::$app->request->getUrl());
-
+        $url = str_replace(["/$language", "$language/"], "", $referrer);
         return $this->redirect($url);
     }
 

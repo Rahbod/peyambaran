@@ -270,13 +270,13 @@ abstract class MainController extends Controller
                 [
                     'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">'.Yii::t('words', 'Messages').'</span>',
                     'items' => [
-                        ['label' => Yii::t('words','Picture Gallery'), 'url' => ['/gallery/index']],
-                        ['label' => Yii::t('words','Video Gallery'), 'url' => ['/gallery/index-video']],
+                        ['label' => Yii::t('words','Messages'), 'url' => ['/message/index']],
+                        ['label' => Yii::t('words','Departments'), 'url' => ['/message/department']],
                     ]
                 ],
                 [
                     'label' => '<i class="m-menu__link-icon fa fa-cogs"></i><span class="m-menu__link-text">'.Yii::t('words','Setting').'</span>',
-                    'url' => ['/admin/setting']
+                    'url' => ['/setting/index']
                 ],
                 [
                     'label' => '<i class="m-menu__link-icon flaticon-logout"></i><span class="m-menu__link-text text-danger">'.Yii::t('words','Logout').'</span>',

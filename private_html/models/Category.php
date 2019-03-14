@@ -43,7 +43,7 @@ class Category extends MultiLangActiveRecord
     const TYPE_TAG = 'tag';
     const TYPE_LIST = 'lst';
     const TYPE_MENU = 'mnu';
-    const TYPE_EXP = 'exp';
+    const TYPE_DEPARTMENT = 'dep';
     const TYPE_ONLINE = 'online';
 
     const CATEGORY_TYPE_NEWS = 'news';
@@ -100,7 +100,7 @@ class Category extends MultiLangActiveRecord
         return array_merge(parent::rules(), [
             [['parentID', 'status', 'left', 'right', 'depth', 'tree', 'sort'], 'integer'],
             [['name'], 'required'],
-            [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
+//            [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
             [['type', 'dyna', 'extra', 'category_type'], 'string'],
             [['created'], 'safe'],
             ['created', 'default', 'value' => time()],

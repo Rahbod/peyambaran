@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Department;
+use app\models\DepartmentSearch;
 use Yii;
 use app\models\Message;
 use app\models\MessageSearch;
@@ -156,5 +158,16 @@ class MessageController extends AuthController
         }
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+    }
+
+    public function actionDepartment()
+    {
+        $searchModel = new DepartmentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('department', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }
