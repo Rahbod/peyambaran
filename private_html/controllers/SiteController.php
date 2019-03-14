@@ -127,6 +127,7 @@ class SiteController extends MainController
             } else
                 Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => Yii::t('words', 'message.dangerMsg')]);
         }
+
         return $this->render('contact', [
             'model' => $model,
         ]);

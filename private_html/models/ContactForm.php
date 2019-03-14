@@ -16,6 +16,7 @@ class ContactForm extends Model
     public $body;
     public $department_id;
     public $tel;
+    public $degree;
     public $verifyCode;
 
 
@@ -29,6 +30,7 @@ class ContactForm extends Model
             [['name', 'email', 'subject', 'body', 'department_id', 'tel'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
+            [['degree'], 'integer', 'max' => 10],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];
@@ -47,6 +49,7 @@ class ContactForm extends Model
             'department_id' => Yii::t('words', 'Department ID'),
             'tel' => Yii::t('words', 'Tel'),
             'verifyCode' => Yii::t('words', 'Verify Code'),
+            'degree' => Yii::t('words', 'Degree'),
         ];
     }
 

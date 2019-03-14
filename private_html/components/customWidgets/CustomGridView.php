@@ -27,5 +27,5 @@ class CustomGridView extends GridView
         'nextPageLabel' => '<i class="la la-angle-left"></i>',
     ];
     public $tableOptions = ['class' => 'table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline collapsed'];
-    public $layout = "<div class='row'><div class='col-sm-12 col-md-5'>{summary}</div><div class='col-sm-12 col-md-7'><div class='dataTables_paginate paging_simple_numbers'>{pager}</div></div></div><div class='row'><div class='col-sm-12'>{items}</div></div><div class='row'><div class='col-sm-12 col-md-5'>{summary}</div><div class='col-sm-12 col-md-7'><div class='dataTables_paginate paging_simple_numbers'>{pager}</div></div></div>";
+    public $layout = "<div class='row'><div class='col-sm-12 col-md-5'>{summary}</div><div class='col-sm-12 col-md-7'><div class='dataTables_paginate paging_simple_numbers'>{pager}</div></div></div><div class='row'><div class='col-sm-12'><div class='table-responsive'>{items}</div></div></div><div class='row'><div class='col-sm-12 col-md-5'>{summary}</div><div class='col-sm-12 col-md-7'><div class='dataTables_paginate paging_simple_numbers'>{pager}</div></div></div>";
 }

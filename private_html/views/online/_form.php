@@ -79,7 +79,7 @@ use yii\helpers\Url;
 
         <div class="content-box">
 
-            <?= $form->field($model, 'menu_type')->radioList(OnlineService::$menuTypeLabels, ['class' => 'menu-type', 'separator' => '<br>']) ?>
+            <?= $form->field($model, 'menu_type')->radioList(OnlineService::$menuTypeLabels, ['class' => 'menu-type', 'separator' => '<br>'])->label(Yii::t('words', 'Content')) ?>
 
             <div class="menu-type-container type-1" style="display: none">
                 <div class="row">
@@ -87,7 +87,7 @@ use yii\helpers\Url;
                         <?= $form->field($model, 'page_id')->dropDownList(\app\models\Page::getList(), ['class' => 'form-control m-input m-input--solid select2', 'data-live-search' => true]) ?>
                     </div>
                     <div class="col-sm-6">
-                        <div class="form-group m-form__group">
+                        <div class="form-group m-form__group mt-5">
                             <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('words', 'Create Page'), ['/page/create', 'return' => Yii::$app->request->url], ['encode' => false, 'class' => 'btn btn-info']) ?>
                         </div>
                     </div>
