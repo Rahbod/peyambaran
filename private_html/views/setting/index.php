@@ -49,7 +49,7 @@ $this->registerJs('
         'enableAjaxValidation' => false,
         'enableClientValidation' => true,
         'validateOnSubmit' => true,
-        'options' => ['class' => 'm-form m-form--label-align-right']
+        'options' => ['class' => 'm-form m-form--label-align-left']
     ]); ?>
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
@@ -73,7 +73,8 @@ $this->registerJs('
 
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[tell]', $settings['tell'], [
-                        'class' => 'form-control m-input m-input__solid'
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'ltr',
                     ]); ?>
                 </div>
             </div>
@@ -83,7 +84,8 @@ $this->registerJs('
 
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[fax]', $settings['fax'], [
-                        'class' => 'form-control m-input m-input__solid'
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'ltr',
                     ]); ?>
                 </div>
             </div>
@@ -93,7 +95,8 @@ $this->registerJs('
 
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[email]', $settings['email'], [
-                        'class' => 'form-control m-input m-input__solid'
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'ltr',
                     ]); ?>
                 </div>
             </div>
@@ -103,7 +106,8 @@ $this->registerJs('
 
                 <div class="col-lg-6">
                     <?php echo Html::textarea('Setting[address]', $settings['address'], [
-                        'class' => 'form-control m-input m-input__solid',
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'ltr',
                         'rows' => 3
                     ]); ?>
                 </div>
@@ -135,7 +139,8 @@ $this->registerJs('
                     <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Latitude') ?></label>
                     <div class="col-lg-6">
                         <?php echo Html::textInput('Setting[map][lat]', $settings['map']['lat'], [
-                            'class' => 'form-control m-input m-input__solid'
+                            'class' => 'form-control m-input m-input__solid text-left',
+                            'dir' => 'ltr',
                         ]); ?>
                     </div>
                 </div>
@@ -143,7 +148,8 @@ $this->registerJs('
                     <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Longitude') ?></label>
                     <div class="col-lg-6">
                         <?php echo Html::textInput('Setting[map][lng]', $settings['map']['lng'], [
-                            'class' => 'form-control m-input m-input__solid'
+                            'class' => 'form-control m-input m-input__solid text-left',
+                            'dir' => 'ltr',
                         ]); ?>
                     </div>
                 </div>
@@ -157,7 +163,7 @@ $this->registerJs('
                 <?php echo Html::label(Yii::t('words', 'Twitter'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[socialNetworks][twitter]', $settings['socialNetworks']['twitter'], [
-                        'class' => 'form-control m-input m-input__solid text-left',
+                        'class' => 'form-control m-input m-input__solid text-right',
                         'dir' => 'ltr',
                     ]); ?>
                 </div>
@@ -166,7 +172,7 @@ $this->registerJs('
                 <?php echo Html::label(Yii::t('words', 'Facebook'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[socialNetworks][googleplus]', $settings['socialNetworks']['googleplus'], [
-                        'class' => 'form-control m-input m-input__solid text-left',
+                        'class' => 'form-control m-input m-input__solid text-right',
                         'dir' => 'ltr',
                     ]); ?>
                 </div>
@@ -175,7 +181,7 @@ $this->registerJs('
                 <?php echo Html::label(Yii::t('words', 'Google Plus'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[socialNetworks][facebook]', $settings['socialNetworks']['facebook'], [
-                        'class' => 'form-control m-input m-input__solid text-left',
+                        'class' => 'form-control m-input m-input__solid text-right',
                         'dir' => 'ltr',
                     ]); ?>
                 </div>
@@ -184,7 +190,7 @@ $this->registerJs('
                 <?php echo Html::label(Yii::t('words', 'Linked-in'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[socialNetworks][linkedin]', $settings['socialNetworks']['linkedin'], [
-                        'class' => 'form-control m-input m-input__solid text-left',
+                        'class' => 'form-control m-input m-input__solid text-right',
                         'dir' => 'ltr',
                     ]); ?>
                 </div>

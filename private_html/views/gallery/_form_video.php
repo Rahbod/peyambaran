@@ -37,7 +37,7 @@ use app\models\Category;
                 'maxFiles' => 1,
                 'maxFileSize' => 0.2,
             ],
-        ]) ?>
+        ])->hint('270x190 pixel') ?>
 
         <?php echo $form->field($model, 'video')->widget(\devgroup\dropzone\DropZone::className(), [
             'url' => Url::to(['upload-video']),

@@ -36,7 +36,7 @@ use yii\helpers\Url;
                 'maxFiles' => 1,
                 'maxFileSize' => 0.5,
             ],
-        ]) ?>
+        ])->hint('34x34 pixel') ?>
         
         <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
 
