@@ -54,8 +54,13 @@ use \yii\helpers\Url;
                                                 <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
                                                     'captchaAction' => ['/user/captcha'],
                                                     'template' => '<span class="floatToRight form-control securityCode__image" style="padding: 0 !important;">{image}{url}</span> {input}',
-                                                    'linkOptions' => ['label' => Yii::t('words', 'Refresh')],
-                                                    'options' => ['class' => 'floatToRight securityCode__input form-control', 'placeholder' => Yii::t('words', 'Verify Code'), 'tabindex' => 4]
+                                                    'linkOptions' => ['label' => Yii::t('words', 'New Code')],
+                                                    'options' => [
+                                                        'class' => 'floatToRight securityCode__input form-control',
+                                                        'placeholder' => Yii::t('words', 'Verify Code'),
+                                                        'tabindex' => 4,
+                                                        'autocomplete' => 'off'
+                                                    ],
                                                 ])->label(false) ?>
                                                 <?= Html::submitButton(Yii::t('words', 'Login'), ['class' => 'btn submitBtn -blueBg', 'tabindex' => 5]) ?>
                                             </div>

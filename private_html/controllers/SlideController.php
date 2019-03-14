@@ -83,6 +83,7 @@ class SlideController extends AuthController
     public function actionIndex()
     {
         $searchModel = new SlideSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

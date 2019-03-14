@@ -24,8 +24,9 @@ class Attachment extends DynamicActiveRecord
 
     public function init()
     {
-        $this->status = 1;
         parent::init();
+        if ($this->scenario != 'search')
+            $this->status = 1;
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'itemID' => ['INTEGER', ''], //Item that is attached to
             'fieldID' => ['INTEGER', ''], //Field the file is attached to

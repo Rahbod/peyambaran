@@ -86,6 +86,7 @@ class PostController extends AuthController
     public function actionIndex()
     {
         $searchModel = new PostSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

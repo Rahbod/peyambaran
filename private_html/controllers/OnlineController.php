@@ -72,7 +72,7 @@ class OnlineController extends AuthController
                 'fileName' => Html::getInputName(new OnlineService(), 'icon'),
                 'rename' => UploadAction::RENAME_UNIQUE,
                 'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg', 'svg')
                 )
             ],
             'delete-icon' => [
@@ -87,7 +87,7 @@ class OnlineController extends AuthController
                 'fileName' => Html::getInputName(new OnlineService(), 'hover_icon'),
                 'rename' => UploadAction::RENAME_UNIQUE,
                 'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg', 'svg')
                 )
             ],
             'delete-icon-hover' => [
@@ -107,6 +107,7 @@ class OnlineController extends AuthController
     public function actionIndex()
     {
         $searchModel = new OnlineServiceSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination = false;
         return $this->render('index', [

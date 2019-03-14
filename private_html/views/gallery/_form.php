@@ -36,7 +36,7 @@ use \yii\helpers\Url;
                 'maxFiles' => 1,
                 'maxFileSize' => 0.2,
             ],
-        ]) ?>
+        ])->hint('270x190 pixel') ?>
 
         <?php echo $form->field($model, 'full_image')->widget(\devgroup\dropzone\DropZone::className(), [
             'url' => Url::to(['upload-full-image']),

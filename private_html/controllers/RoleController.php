@@ -44,6 +44,7 @@ class RoleController extends MainController
     public function actionIndex()
     {
         $searchModel = new RoleSearch();
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

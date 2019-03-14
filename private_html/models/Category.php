@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use function app\components\dd;
 use creocoder\nestedsets\NestedSetsBehavior;
 use richardfan\sortable\SortableAction;
 use Yii;
@@ -43,7 +44,7 @@ class Category extends MultiLangActiveRecord
     const TYPE_TAG = 'tag';
     const TYPE_LIST = 'lst';
     const TYPE_MENU = 'mnu';
-    const TYPE_EXP = 'exp';
+    const TYPE_DEPARTMENT = 'dep';
     const TYPE_ONLINE = 'online';
 
     const CATEGORY_TYPE_NEWS = 'news';
@@ -85,7 +86,9 @@ class Category extends MultiLangActiveRecord
     public function init()
     {
         parent::init();
-        $this->status = 1;
+        preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
+        if(!$matches)
+            $this->status = 1;
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'category_type' => ['CHAR', ''],
             'sort' => ['INTEGER', '']
@@ -100,7 +103,7 @@ class Category extends MultiLangActiveRecord
         return array_merge(parent::rules(), [
             [['parentID', 'status', 'left', 'right', 'depth', 'tree', 'sort'], 'integer'],
             [['name'], 'required'],
-            [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
+//            [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
             [['type', 'dyna', 'extra', 'category_type'], 'string'],
             [['created'], 'safe'],
             ['created', 'default', 'value' => time()],

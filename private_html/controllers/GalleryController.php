@@ -141,6 +141,7 @@ class GalleryController extends AuthController
     public function actionIndex()
     {
         $searchModel = new GallerySearch();
+
         $searchModel->type = Gallery::TYPE_PICTURE_GALLERY;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -246,6 +247,7 @@ class GalleryController extends AuthController
     public function actionIndexVideo()
     {
         $searchModel = new GallerySearch();
+
         $searchModel->type = Gallery::TYPE_VIDEO_GALLERY;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

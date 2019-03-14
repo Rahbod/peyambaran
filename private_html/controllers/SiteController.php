@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
+use function app\components\dd;
 use app\components\MainController;
 use app\models\Category;
 use app\models\Insurance;
+use app\models\Message;
 use app\models\OnlineService;
 use app\models\Post;
 use app\models\Slide;
@@ -93,11 +95,11 @@ class SiteController extends MainController
             Yii::$app->response->cookies->add($cookie);
         }
 
+        $referrer = Yii::$app->request->getReferrer() ?: ['/'];
         if (!$controller)
-            return $this->redirect(Yii::$app->request->getReferrer());
+            return $this->redirect($referrer);
 
-        $url = str_replace(["/$language", "$language/"], "", Yii::$app->request->getUrl());
-
+        $url = str_replace(["/$language", "$language/"], "", $referrer);
         return $this->redirect($url);
     }
 
@@ -109,10 +111,21 @@ class SiteController extends MainController
     public function actionContact()
     {
         $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
+        if ($model->load(Yii::$app->request->post())) {
+            $message = new  Message();
+            $message->type = Message::TYPE_CONTACT_US;
+            $message->name = $model->name;
+            $message->tel = $model->tel;
+            $message->body = $model->body;
+            $message->subject = $model->subject;
+            $message->email = $model->email;
+            $message->department_id = $model->department_id;
+            if ($message->save()) {
+                $model->contact(Yii::$app->params['adminEmail']);
+                Yii::$app->session->setFlash('public-alert', ['type' => 'success', 'message' => Yii::t('words', 'message.successMsg')]);
+                return $this->goBack();
+            } else
+                Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => Yii::t('words', 'message.dangerMsg')]);
         }
         return $this->render('contact', [
             'model' => $model,

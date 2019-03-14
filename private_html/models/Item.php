@@ -42,8 +42,10 @@ class Item extends MultiLangActiveRecord
 
     public function init()
     {
-        $this->status = 1;
         parent::init();
+        preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
+        if(!$matches)
+            $this->status = 1;
 //        $this->dynaDefaults = array_merge($this->dynaDefaults, [
 //        ]);
     }
@@ -161,7 +163,7 @@ class Item extends MultiLangActiveRecord
     {
         parent::afterSave($insert, $changedAttributes);
 
-        if($this->scenario =='increase_seen')
+        if ($this->scenario == 'increase_seen')
             return true;
 
         // save attachments

@@ -4,116 +4,107 @@ use app\components\Setting;
 use voime\GoogleMaps\Map;
 
 /* @var $this \yii\web\View */
+
+use yii\helpers\ArrayHelper;
+use app\models\Department;
+use app\models\Menu;
+use app\components\customWidgets\CustomCaptcha;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+
+$contactModel = new \app\models\ContactForm();
 ?>
 <footer>
-    <section class="map-bg">
-        <div class="map"><?= Map::widget([
-                'apiKey' => 'AIzaSyDbhMDAxCreEWc5Due7477QxAVuBAJKdTM',
-                'zoom' => 15,
-                'center' => [Setting::get('map.lat'), Setting::get('map.lng')],
-                'markers' => [
-                    ['position' => [Setting::get('map.lat'), Setting::get('map.lng')]],
-                ],
-                'width' => '100%',
-                'height' => '350px',
-                'mapType' => Map::MAP_TYPE_TERRAIN,
-            ]); ?>
-            <!--            --><? //= \yii2mod\google\maps\markers\GoogleMaps::widget([
-            //                'userLocations' => [
-            //                    [
-            //                        'location' => [
-            //                            'address' => 'Kharkiv',
-            //                            'country' => 'Ukraine',
-            //                        ],
-            //                        'htmlContent' => '<h1>Kharkiv</h1>',
-            //                    ]
-            //                ],
-            //                'googleMapsUrlOptions' => [
-            //                    'key' => 'AIzaSyDbhMDAxCreEWc5Due7477QxAVuBAJKdTM',
-            //                    'language' => 'fa',
-            //                    'version' => '3.1.18',
-            //                ],
-            //                'googleMapsOptions' => [
-            //                    'mapTypeId' => 'roadmap',
-            //                    'tilt' => 45,
-            //                    'zoom' => 15,
-            //                ],
-            //            ]) ?>
-        </div>
-    </section>
+    <?php if (Setting::get('map.enabled')): ?>
+        <section class="map-bg">
+            <div class="map"><?= Map::widget([
+                    'apiKey' => 'AIzaSyDbhMDAxCreEWc5Due7477QxAVuBAJKdTM',
+                    'zoom' => 15,
+                    'center' => [Setting::get('map.lat'), Setting::get('map.lng')],
+                    'markers' => [
+                        ['position' => [Setting::get('map.lat'), Setting::get('map.lng')]],
+                    ],
+                    'width' => '100%',
+                    'height' => '350px',
+                    'mapType' => Map::MAP_TYPE_TERRAIN,
+                ]); ?>
+            </div>
+        </section>
+    <?php endif; ?>
     <div class="bottom-section">
         <div class="container">
             <div class="overflow-fix">
                 <div class="form-container">
-                    <h3>تماس با ما</h3>
-                    <div class="text">در صورتی که مایل به تماس با ما هستید، می توانید از طریق فرم زیر بخش مورد نظر خود
-                        را انتخاب و موضوع خود را مطرح کنید.<br>همچنین می توانید با شماره تماس های درج شده نیز تماس حاصل
-                        فرمایید.
-                    </div>
-                    <form>
-                        <div class="row">
-                            <div class="form-row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <label for="select">بخش موردنظر</label>
-                                    <select id="select">
-                                        <option>مدیریت</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <label for="name">نام و نام خانوادگی</label>
-                                    <input id="name" type="text" placeholder="نام و نام خانوادگی">
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <label for="email">پست الکترونیکی</label>
-                                    <input id="email" type="text" placeholder="exampel@email.com">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                    <label for="mobile">شماره تلفن همراه</label>
-                                    <input id="mobile" type="text" placeholder="09xxxxxxxx">
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                    <label for="text">متن پیام</label>
-                                    <textarea id="text" placeholder="بنویسید"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-row last">
-                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 captcha">
-                                    <img src="uploads/captcha.png">
-                                    <a href="#">کد جدید ایجاد کنید</a>
-                                    <input type="text" placeholder="صورة أمنية">
-                                </div>
-                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                                    <input type="submit" value="ارسال به بخش مربوطه">
-                                </div>
+                    <h3><?= Yii::t('words', 'Contact us') ?></h3>
+                    <div class="text"><?= Yii::t('words', 'contact_footer_text') ?></div>
+                    <?php $form = ActiveForm::begin([
+                        'action' => ['/site/contact'],
+                        'enableClientValidation' => true,
+                        'validateOnSubmit' => true,
+                        'fieldConfig' => [
+                            'options' => ['class' => 'col-lg-4 col-md-4 col-sm-4 col-xs-12'],
+                            'labelOptions' => ['class' => ''],
+                            'inputOptions' => ['class' => ''],
+                        ],
+                    ]) ?>
+                    <div class="row">
+                        <div class="form-row">
+                            <?= $form->field($contactModel, 'department_id')->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', 'name')) ?>
+
+                            <?= $form->field($contactModel, 'name')->textInput() ?>
+
+                            <?= $form->field($contactModel, 'email')->textInput(['placeholder' => 'exampel@email.com']) ?>
+                        </div>
+                        <div class="form-row">
+                            <?= $form->field($contactModel, 'tel')->textInput(['placeholder' => '09xxxxxxxx']) ?>
+
+                            <?= $form->field($contactModel, 'body', ['options' => ['class' => 'col-lg-8 col-md-8 col-sm-8 col-xs-12']])->textInput(['placeholder' => '09xxxxxxxx']) ?>
+
+                        </div>
+                        <div class="form-row last">
+                            <?= $form->field($contactModel, 'verifyCode', ['options' => ['class' => 'col-lg-7 col-md-7 col-sm-7 col-xs-12 captcha']])->widget(\app\components\customWidgets\CustomCaptcha::className(), [
+                                'captchaAction' => ['site/captcha'],
+                                'template' => "{image}\n{url}\n{input}",
+                                'linkOptions' => [
+                                    'label' => Yii::t('words', 'New Code')
+                                ],
+                                'options' => [
+                                    'placeholder' => Yii::t('words', 'Verify Code'),
+                                    'autocomplete' => 'off'
+                                ],
+                            ])->label(false) ?>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                <?php echo Html::input('submit', '', Yii::t('words', 'Send Message')); ?>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                    <?php ActiveForm::end() ?>
                 </div>
                 <div class="info-container">
                     <ul>
                         <li>
                             <i class="icon point-icon"></i>
-                            <div>آدرس بیمارستان پیامبران<br> تهران - میدان دوم صادقیه - بلوارآیت الله کاشانی - بلوار
-                                اباذر - بیمارستان تخصصی و فوق تخصصی پیامبران
-                            </div>
+                            <div><?= Setting::get('address') ?></div>
                         </li>
                         <li>
                             <i class="icon phone-icon"></i>
-                            <div>تلفن و فکس<br> 44079131-41 - 44078392</div>
+                            <div>تلفن و فکس<br> <?= Setting::get('tell') ?> - <?= Setting::get('fax') ?></div>
                         </li>
                         <li class="email">
                             <i class="icon email-icon"></i>
-                            <div>info@payambaranhospital.com</div>
+                            <div><?= Setting::get('email') ?></div>
                         </li>
                         <li>
                             <i class="icon share-icon"></i>
                             <div>
-                                <a href="#" class="icon instagram-icon"></a>
-                                <a href="#" class="icon facebook-icon"></a>
-                                <a href="#" class="icon google-icon"></a>
-                                <a href="#" class="icon twitter-icon"></a>
+                                <?php $val = Setting::get('socialNetworks.linkedin');
+                                echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon instagram-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('socialNetworks.facebook');
+                                echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon facebook-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('socialNetworks.googleplus');
+                                echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon google-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('socialNetworks.twitter');
+                                echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon twitter-icon"></a>' : ''; ?>
                             </div>
                         </li>
                     </ul>
@@ -153,103 +144,41 @@ use voime\GoogleMaps\Map;
     </div>
     <div class="footer-section">
         <div class="container">
-            <div class="footer-block">
-                <h4>بخش های بیمارستان</h4>
-                <div class="footer-sub-block">
-                    <ul class="menu-part">
-                        <li><a href="#">بستری</a></li>
-                        <li><a href="#">لاله</a></li>
-                        <li><a href="#">ارکیده</a></li>
-                        <li><a href="#">یاس</a></li>
-                        <li><a href="#">شبنم</a></li>
-                        <li><a href="#">شکوفه</a></li>
-                        <li><a href="#">نیلوفر</a></li>
-                        <li><a href="#">شقایق</a></li>
-                        <li><a href="#">غزال</a></li>
-                        <li><a href="#">سپیده</a></li>
-                        <li><a href="#">سوئیت</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">جراحی</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">مراقبت های ویژه</a></li>
-                        <li><a href="#">ICU</a></li>
-                        <li><a href="#">ICU.OH</a></li>
-                        <li><a href="#">CCU</a></li>
-                        <li><a href="#">NICU</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">سرپایی</a></li>
-                        <li><a href="#">آندوسکوپی</a></li>
-                        <li><a href="#">کلینیک پوست لیزر و جراحی</a></li>
-                        <li><a href="#">کلینیک زخم</a></li>
-                        <li><a href="#">اورژانس</a></li>
-                        <li><a href="#">کلینیک</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">جراحی</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-block">
-                <h4>پاراکلینیک ها</h4>
-                <div class="footer-sub-block">
-                    <ul class="menu-part">
-                        <li><a href="#">بستری</a></li>
-                        <li><a href="#">لاله</a></li>
-                        <li><a href="#">ارکیده</a></li>
-                        <li><a href="#">یاس</a></li>
-                        <li><a href="#">سپیده</a></li>
-                        <li><a href="#">سوئیت</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">جراحی</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">جراحی</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-block">
-                <h4>دیگر بخش ها</h4>
-                <div class="footer-sub-block">
-                    <ul class="menu-part">
-                        <li><a href="#">جراحی</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                        <li><a href="#">اتاق عمل قلب</a></li>
-                        <li><a href="#">اتاق عمل جنرال</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">مراقبت های ویژه</a></li>
-                        <li><a href="#">ICU</a></li>
-                        <li><a href="#">ICU.OH</a></li>
-                        <li><a href="#">CCU</a></li>
-                        <li><a href="#">NICU</a></li>
-                    </ul>
-                    <ul class="menu-part">
-                        <li><a href="#">سرپایی</a></li>
-                        <li><a href="#">آندوسکوپی</a></li>
-                        <li><a href="#">کلینیک پوست لیزر و جراحی</a></li>
-                        <li><a href="#">کلینیک زخم</a></li>
-                        <li><a href="#">اورژانس</a></li>
-                        <li><a href="#">کلینیک</a></li>
-                    </ul>
-                </div>
-            </div>
+            <?php foreach (Menu::find()->roots()->valid()->andWhere([Menu::columnGetString('show_in_footer') => 1])->orderBySort()->all() as $item): ?>
+
+                <?php
+                $ic = $item->children(1)->count();
+                $sic = $item->children(2)->count();
+                if ($ic > 0): ?>
+                    <div class="footer-block">
+                        <h4><?= $item->name ?></h4>
+                        <div class="footer-sub-block">
+                            <?php if (($sic - $ic) === 0): // one level ?>
+                                <ul class="menu-part">
+                                    <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                        <li><a href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else: // two level ?>
+                                <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                    <ul class="menu-part d-inline-block">
+                                        <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
+                                            <a
+                                                    href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
+                                        <?php foreach ($sub_item->children(1)->all() as $sub_item_child): ?>
+                                            <li>
+                                                <a href="<?= $sub_item_child->url ?>"><?= $sub_item_child->name ?></a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <li><a href="<?= $item->url ?>"><?= $item->name ?></a></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
             <div class="copyright">
                 <div class="pull-right">
                     <a href="http://tarsiminc.com" target="_blank">by tarsim.inc</a>

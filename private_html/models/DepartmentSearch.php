@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Message;
+use app\models\Menu;
 
 /**
- * MessageSearch represents the model behind the search form of `app\models\Message`.
+ * MenuSearch represents the model behind the search form of `app\models\Menu`.
  */
-class MessageSearch extends Message
+class DepartmentSearch extends Department
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class MessageSearch extends Message
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name', 'type', 'tel', 'body', 'dyna', 'created', 'department_id'], 'safe'],
+            [['id', 'parentID', 'status', 'left', 'right', 'depth', 'tree'], 'integer'],
+            [['type', 'name', 'dyna', 'extra', 'created'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class MessageSearch extends Message
      */
     public function search($params)
     {
-        $query = Message::find();
+        $query = Department::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +59,21 @@ class MessageSearch extends Message
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            self::columnGetString('department_id') => $this->department_id,
+            'parentID' => $this->parentID,
+            'created' => $this->created,
+            'status' => $this->status,
+            'left' => $this->left,
+            'right' => $this->right,
+            'depth' => $this->depth,
+            'tree' => $this->tree,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'tel', $this->tel])
-            ->andFilterWhere(['like', 'body', $this->body])
+        $query->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'dyna', $this->dyna])
-            ->andFilterWhere(['like', 'created', $this->created]);
+            ->andFilterWhere(['like', 'extra', $this->extra]);
+
+        $query->orderBy([self::columnGetString('sort') => SORT_ASC]);
 
         return $dataProvider;
     }

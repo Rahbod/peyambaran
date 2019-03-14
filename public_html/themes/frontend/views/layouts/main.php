@@ -28,16 +28,18 @@ AppAsset::register($this);
     <?php $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme'); ?>
     <!--    --><?php //$this->registerCssFile($this->theme->baseUrl.'/css/responsive-theme.css', ['depends' => [BootstrapAsset::className()],'media' => 'all'], 'responsive-theme');?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/js/vendors/icomoon/style.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'icomoon'); ?>
+    <?php $this->registerCss('.news-item {
+            width: 100%
+        }'); ?>
+
     <?php $this->registerJsFile($this->theme->baseUrl . '/js/bootstrap.min.js', ['depends' => [JqueryAsset::className()]], 'bootstrap'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/js/jquery.nicescroll.min.js', ['depends' => [JqueryAsset::className()]], 'nicescroll'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/js/owl.carousel.min.js', ['depends' => [JqueryAsset::className()]], 'owl-script'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/js/jquery.script.js', ['depends' => [JqueryAsset::className()]], 'script'); ?>
+    <?php $this->registerJs('
+        $(".captcha a").trigger("click");
+    ', \yii\web\View::POS_LOAD, 'captcha-refresh'); ?>
     <?php $this->head(); ?>
-    <style>
-        .news-item {
-            width: 100%
-        }
-    </style>
 </head>
 <body class="<?= Yii::$app->controller->bodyClass ?: '' ?>">
 <?php $this->beginBody(); ?>
@@ -48,6 +50,7 @@ AppAsset::register($this);
     </div>
 </main>
 <?php echo $this->render('_footer'); ?>
+<?php echo $this->render('_public_alert'); ?>
 <?php $this->endBody(); ?>
 </body>
 </html>
