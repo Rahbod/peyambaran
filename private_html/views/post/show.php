@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row news-show-container">
             <div class="col-xs-12">
-                <div class="content-header ">
+                <div class="content-header px-3">
                     <img src="./images/news/news-header-image.png" class="img-fluid content-header__image" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= Yii::t('words', 'News & Articles') ?></h1>
