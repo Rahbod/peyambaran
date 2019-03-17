@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use function app\components\dd;
 use app\components\Setting;
 use app\models\PictureGallery;
 use devgroup\dropzone\RemoveAction;
@@ -117,8 +118,11 @@ class PostController extends AuthController
         $model->seen++;
         $model->save(false);
 
+        $relatedPosts = Post::find()->select('item.*')->innerJoinWith('catitems')->andWhere(['catitem.catID' => $model->categories[0]->id])->valid()->all();
+
         return $this->render('show', [
             'model' => $model,
+            'relatedPosts' => $relatedPosts
         ]);
     }
 

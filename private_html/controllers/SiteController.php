@@ -81,7 +81,7 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
-        $slides = Slide::find()->valid()->all();
+        $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
         $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->limit(32)->all();
         $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->limit(32)->all();
         $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();
