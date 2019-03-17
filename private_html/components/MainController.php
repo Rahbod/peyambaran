@@ -131,7 +131,7 @@ abstract class MainController extends Controller
                         $actions[lcfirst(substr($className, 0, strpos($className, 'Controller')))][] = $key;
                     continue;
                 }
-
+                var_dump($class);
                 if (!($class instanceof AuthController))
                     continue;
 
@@ -183,6 +183,7 @@ abstract class MainController extends Controller
                         $actions[lcfirst(substr($className, 0, strpos($className, 'Controller')))][] = lcfirst(substr($method->name, 6));
                     }
                 }
+                exit;
             }
         }
 

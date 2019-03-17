@@ -44,7 +44,7 @@ AppAsset::register($this);
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/demo/default/base/scripts.bundle.js', [], 'scripts'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js', [], 'full-calendar'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/app/js/dashboard.js', [], 'dashboard'); ?>
-    <?php $this->head(); ?>
+    <?php $this->head();?>
 </head>
 
 <!-- begin::Body -->
