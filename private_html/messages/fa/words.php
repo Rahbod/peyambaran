@@ -438,4 +438,5 @@ return [
     'get_visit' => 'دریافت نوبت',
     'more information' => 'اطلاعات بیشتر',
     'show_time' => '{start_time} الی {end_time}',
+    'Load more' => 'بارگذاری بیشتر',
 ];

@@ -65,7 +65,7 @@ $expertiseID = Yii::$app->request->getQueryParam('expertise')?:0;
                 <div class="content-footer text-center">
                     <a href="void:;" class="btn text-purple -more purple">
                         <i class="icomoon-ellipsis-h-solid"></i>
-                        بارگزاری بیشتر
+                        <?= Yii::t('words', 'Load more') ?>
                     </a>
                 </div>
             </div>
