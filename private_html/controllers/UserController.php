@@ -42,8 +42,10 @@ class UserController extends AuthController
             'upload-image',
             'delete-image',
             'login',
+            'logout',
             'register',
-            'forget-password',
+            'forgetPassword',
+            'changePassword',
             'dashboard',
             'captcha'
         ];
@@ -79,7 +81,7 @@ class UserController extends AuthController
                 'upload' => $this->avatarPath,
                 'fileName' => Html::getInputName(new User(), 'image')
             ],
-            'remove-image' => [
+            'delete-image' => [
                 'class' => 'devgroup\dropzone\RemoveAction',
                 'upload' => $this->avatarPath,
             ],
@@ -93,13 +95,17 @@ class UserController extends AuthController
     public function actionIndex()
     {
         $searchModel = new UserSearch();
-
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionView($id)
+    {
+        return $this->render('view', ['model' => $this->findModel($id)]);
     }
 
     /**
@@ -119,7 +125,8 @@ class UserController extends AuthController
         }
 
         if (Yii::$app->request->post()) {
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->load(Yii::$app->request->post());
+            if ($model->save()) {
                 $auth = Yii::$app->authManager;
                 $role = $auth->getRole($model->roleID);
                 $auth->assign($role, $model->id);
@@ -289,7 +296,7 @@ class UserController extends AuthController
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
 
-        $model= new User();
+        $model = new User();
         $model->setScenario('register');
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
@@ -298,14 +305,14 @@ class UserController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             $model->username = $model->phone;
             $model->password = $model->nationalCode;
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->refresh();
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -316,12 +323,12 @@ class UserController extends AuthController
     public function actionForgetPassword()
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
-
+        \app\components\dd(1);
     }
 
     public function actionDashboard()
     {
-        if(Yii::$app->user->isGuest)
+        if (Yii::$app->user->isGuest)
             return $this->redirect(['/']);
         $this->setTheme('frontend', ['headerClass' => '-blueHeader']);
         $user = Yii::$app->user->identity;

@@ -20,8 +20,15 @@ use yii\filters\VerbFilter;
 /**
  * RoleController implements the CRUD actions for Role model.
  */
-class RoleController extends MainController
+class RoleController extends AuthController
 {
+
+    public function init()
+    {
+        $this->setTheme('default');
+        parent::init();
+    }
+
     /**
      * @inheritdoc
      */
@@ -44,7 +51,6 @@ class RoleController extends MainController
     public function actionIndex()
     {
         $searchModel = new RoleSearch();
-
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -61,6 +67,7 @@ class RoleController extends MainController
     public function actionCreate()
     {
         $model = new Role();
+        $model->name = substr(uniqid(), 0, 64);
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -72,7 +79,7 @@ class RoleController extends MainController
             $auth = Yii::$app->authManager;
             $data = Yii::$app->request->post('Role');
             $actions = Yii::$app->request->post('actions');
-            $role = $auth->createRole(substr(uniqid(),0,64));
+            $role = $auth->createRole($data['name']);
             $role->description = $data['description'];
             if ($auth->add($role)) {
                 if ($actions) {
@@ -106,7 +113,7 @@ class RoleController extends MainController
         $auth = Yii::$app->authManager;
         $roles = $auth->getRoles();
         unset($roles['superAdmin']);
-        $roles = ArrayHelper::map($roles, 'name', function($model){
+        $roles = ArrayHelper::map($roles, 'name', function ($model) {
             return ($model->description == 'Guest Role' ? Yii::t('words', 'base.guestRole') : $model->description);
         });
 
@@ -174,11 +181,10 @@ class RoleController extends MainController
                         $auth->addChild($parent, $childRole);
                     }
                 }
-
-                if (Yii::$app->request->post('submitType') == 'submitAndExit')
-                    Yii::$app->session->setFlash('public-alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                else
-                    Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                $model->load(Yii::$app->request->post());
+                $model->save();
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->refresh();
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -203,41 +209,23 @@ class RoleController extends MainController
      * Deletes an existing Role model.
      * @return mixed
      */
-    public function actionDelete()
+    public function actionDelete($id)
     {
         $result = false;
-        if (Yii::$app->request->post('Delete')) {
-            $data = Yii::$app->request->post('Delete');
-            $auth = Yii::$app->authManager;
-            switch ($data['type']) {
-                case 'single':
-                    if ($data['id'] == 'superAdmin')
-                        $result = true;
-                    else {
-                        $role = $auth->getRole($data['id']);
-                        $result = $auth->remove($role);
-                    }
-                    break;
-
-                case 'multiple':
-                    foreach (Json::decode($data['id']) as $item) {
-                        if ($item == 'superAdmin')
-                            $result = true;
-                        else {
-                            $role = $auth->getRole($item);
-                            $result = $auth->remove($role);
-                        }
-                    }
-                    break;
-            }
+        $auth = Yii::$app->authManager;
+        if ($id == 'superAdmin' || $id == 'admin')
+            $result = true;
+        else {
+            $role = $auth->getRole($id);
+            $result = $auth->remove($role);
         }
 
         if ($result === false)
-            Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
-        else
-            Yii::$app->session->setFlash('public-alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
-
-        return $this->actionIndex();
+            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
+        else {
+            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
+            $this->redirect(['/role/index']);
+        }
     }
 
     /**
@@ -256,8 +244,9 @@ class RoleController extends MainController
         }
     }
 
-    public function actionSetDefault($id){
-        Setting::set('defaultRole',$id);
+    public function actionSetDefault($id)
+    {
+        Setting::set('defaultRole', $id);
         $this->actionIndex();
     }
 }

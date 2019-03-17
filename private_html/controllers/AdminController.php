@@ -12,7 +12,7 @@ class AdminController extends AuthController
 {
     public function getSystemActions()
     {
-        return ['index', 'login', 'captcha'];
+        return ['index', 'login', 'captcha', 'logout'];
     }
 
     public function actions()

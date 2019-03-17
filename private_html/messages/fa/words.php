@@ -314,8 +314,10 @@ return [
     'Login' => 'ورود',
     'Register' => 'ثبت نام',
     'Logout' => 'خروج',
+    'Guest' => 'میهمان',
     'Dashboard' => 'داشبورد',
     'Management Menu' => 'منوی مدیریت',
+    'Operator Menu' => 'منوی اپراتور',
     'Create Menu' => 'منو جدید',
     'Update Menu: {name}' => 'ویرایش منو: {name}',
     'Menus' => 'مدیریت منو',
@@ -415,4 +417,5 @@ return [
     'Outpatient insurances' => '<span>بیمه های</span><small>طرف قرارداد سرپایی</small>',
     'Verify Code' => 'عبارت امنیتی',
     'Refresh' => 'عبارت جدید',
+    'Permissions' => 'مجوزهای دسترسی',
 ];
