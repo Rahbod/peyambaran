@@ -9,7 +9,8 @@
         <div class="row news-show-container">
             <div class="col-xs-12">
                 <div class="content-header ">
-                    <img src="<?= $this->theme->baseUrl?>/images/news/news-header-image.png" class="img-fluid content-header__image" alt="">
+                    <img src="<?= $this->theme->baseUrl ?>/images/news/news-header-image.png"
+                         class="img-fluid content-header__image" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= Yii::t('words', 'News & Articles') ?></h1>
                         <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
@@ -49,50 +50,34 @@
                                     </div>
                                     <div class="card-body">
                                         <a title="" href="#" class="card-link">
-                                            <img class="card-img-top" src="<?= Yii::getAlias('@web/uploads/post/').$model->image ?>" alt="">
+                                            <img class="card-img-top"
+                                                 src="<?= Yii::getAlias('@web/uploads/post/') . $model->image ?>"
+                                                 alt="">
                                             <h4 class="card-title"><?= $model->name ?></h4>
                                         </a>
                                     </div>
+                                    <?php if ($model->gallery): ?>
                                     <hr>
                                     <div class="clearfix">
                                         <p style="color: #7a7a7a;">تصاویر خبری</p>
-                                        <div class="imgContainer">
-                                            <a class="simpleGallery__link" href="<?= $this->theme->baseUrl?>/images/gallery/gallery-2.jpg">
-                                                <img class="simpleGallery__image" src="<?= $this->theme->baseUrl?>/images/gallery/gallery-2.jpg"
-                                                     alt="">
-                                                <!--<div class="-hoverShowBox purple rounded">-->
-                                                <!--<div>-->
-                                                <!--<h4>آزمایشگاه پاتولوژی</h4>-->
-                                                <!--<div class="zoom-icon"><i></i></div>-->
-                                                <!--</div>-->
-                                                <!--</div>-->
-                                            </a>
-                                        </div>
-                                        <div class="imgContainer">
-                                            <a class="simpleGallery__link" href="images/gallery/gallery-2.jpg">
-                                                <img class="simpleGallery__image" src="images/gallery/gallery-2.jpg"
-                                                     alt="">
-                                                <!--<div class="-hoverShowBox purple rounded">-->
-                                                <!--<div>-->
-                                                <!--<h4>آزمایشگاه پاتولوژی</h4>-->
-                                                <!--<div class="zoom-icon"><i></i></div>-->
-                                                <!--</div>-->
-                                                <!--</div>-->
-                                            </a>
-                                        </div>
-                                        <div class="imgContainer">
-                                            <a class="simpleGallery__link" href="images/gallery/gallery-2.jpg">
-                                                <img class="simpleGallery__image" src="images/gallery/gallery-2.jpg"
-                                                     alt="">
-                                                <!--<div class="-hoverShowBox purple rounded">-->
-                                                <!--<div>-->
-                                                <!--<h4>آزمایشگاه پاتولوژی</h4>-->
-                                                <!--<div class="zoom-icon"><i></i></div>-->
-                                                <!--</div>-->
-                                                <!--</div>-->
-                                            </a>
-                                        </div>
+                                        <?php foreach ($model->gallery as $item): if(!$item->file OR !is_file(Yii::getAlias('@webroot/uploads/post/') . $item->file)) continue; ?>
+                                            <div class="imgContainer">
+                                                <a class="simpleGallery__link"
+                                                   href="<?= Yii::getAlias('@webroot/uploads/post/') . $item->file ?>">
+                                                    <img class="simpleGallery__image"
+                                                         src="<?= Yii::getAlias('@webroot/uploads/post/thumbs/100x100/') . $item->file ?>"
+                                                         alt="">
+                                                    <!--<div class="-hoverShowBox purple rounded">-->
+                                                    <!--<div>-->
+                                                    <!--<h4>آزمایشگاه پاتولوژی</h4>-->
+                                                    <!--<div class="zoom-icon"><i></i></div>-->
+                                                    <!--</div>-->
+                                                    <!--</div>-->
+                                                </a>
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="col-xs-8  px-0">

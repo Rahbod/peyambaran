@@ -4,6 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
+/* @var $image \devgroup\dropzone\UploadedFiles */
+/* @var $gallery \devgroup\dropzone\UploadedFiles */
 
 $this->title = Yii::t('words', 'Update Post: {name}', [
     'name' => $model->name,
@@ -29,8 +31,9 @@ $this->params['breadcrumbs'][] = Yii::t('words', 'Update');
     </div>
     <!--begin::Form-->
     <?= $this->render('_form', [
-    'model' => $model,
+        'model' => $model,
         'image' => $image,
+        'gallery' => $gallery,
     ]) ?>
     <!--end::Form-->
 </div>
