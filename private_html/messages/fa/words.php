@@ -432,4 +432,10 @@ return [
     'Verify Code' => 'عبارت امنیتی',
     'Refresh' => 'عبارت جدید',
     'Permissions' => 'مجوزهای دسترسی',
+
+
+    'Payambaran Medical team' => 'تیم پزشکی بیمارستان پیامبران',
+    'get_visit' => 'دریافت نوبت',
+    'more information' => 'اطلاعات بیشتر',
+    'show_time' => '{start_time} الی {end_time}',
 ];

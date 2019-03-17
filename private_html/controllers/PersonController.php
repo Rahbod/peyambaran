@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\ClinicProgram;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
@@ -59,6 +60,7 @@ class PersonController extends AuthController
         return [
             'upload-avatar',
             'delete-avatar',
+            'show'
         ];
     }
 
@@ -99,6 +101,22 @@ class PersonController extends AuthController
         ]);
     }
 
+
+
+    public function actionList()
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+
+        $searchModel = new PersonSearch();
+        $searchModel->type = Person::TYPE_DOCTOR;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('list', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays a single Person model.
      * @param integer $id
@@ -109,6 +127,27 @@ class PersonController extends AuthController
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionShow($id)
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $model = $this->findModel($id);
+
+        $now = strtotime(date('Y/m/d 00:00:00', time()));
+        $aweek = $now + 7 * 24 * 60 * 60;
+
+        $days = ClinicProgram::find()
+            ->innerJoinWith('personsRel')
+            ->andWhere(['person_program_rel.personID' => $model->id])
+            ->andWhere(['>=', 'date', $now])
+            ->andWhere(['<=', 'date', $aweek])
+            ->all();
+
+        return $this->render('show', [
+            'model' => $model,
+            'days' => $days
         ]);
     }
 
@@ -127,14 +166,14 @@ class PersonController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             $avatar = new UploadedFiles($this->tmpDir, $model->avatar, $this->avatarOptions);
             if ($model->save()) {
                 $avatar->move($this->avatarDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -162,14 +201,14 @@ class PersonController extends AuthController
 
         $avatar = new UploadedFiles($this->avatarDir, $model->avatar, $this->avatarOptions);
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $oldImage = $model->avatar;
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 $avatar->update($oldImage, $model->avatar, $this->tmpDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
