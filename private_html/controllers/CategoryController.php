@@ -120,6 +120,61 @@ class CategoryController extends AuthController
         ]);
     }
 
+public function actionCreateGallery()
+    {
+        $parent = \app\models\Category::findOne(162);
+        var_dump($parent->children()->count());exit;
+        /*$newParent = new Category();
+        $newParent->name = $parent->name;
+        $newParent->category_type = 'image_gallery';
+        if($newParent->makeRoot()){
+            foreach($parent->children(1)->all() as $child){
+                $newChild = new Category();
+                $newChild->name = $child->name;
+                $newChild->category_type = 'image_gallery';
+                $newChild->parentID = $newParent->id;
+                if($newChild->prependTo($newParent)){
+                    foreach($child->children(1)->all() as $schild){
+                        
+                    $newSChild = new Category();
+                $newSChild->name = $schild->name;
+                $newSChild->category_type = 'image_gallery';
+                $newSChild->parentID = $newChild->id;
+                $newSChild->prependTo($newChild);
+                    }
+                }
+                
+            }
+        }
+        */
+
+
+
+        if (Yii::$app->request->post()){
+            $model->load(Yii::$app->request->post());
+            $saveResult = false;
+            $parentID = $model->parentID;
+            if ($parentID == '') {
+                $saveResult = $model->makeRoot();
+                $model->parentID = null;
+            } else {
+                $parent = Category::findOne($parentID);
+                $saveResult = $model->prependTo($parent);
+            }
+            if ($saveResult) {
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->redirect(['view', 'id' => $model->id]);
+            }else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+
+
     /**
      * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -160,7 +215,14 @@ class CategoryController extends AuthController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $result = $this->findModel($id);
+        $result = $result->deleteWithChildren();
+
+        if ($result === false)
+            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
+        else
+            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
+
 
         return $this->redirect(['index']);
     }
