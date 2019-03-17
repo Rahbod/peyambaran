@@ -3067,7 +3067,6 @@ section .title-description {
 .news-show .card-img-top {
     width: 100%;
     height: auto;
-    max-height: 125px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;

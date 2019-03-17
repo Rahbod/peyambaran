@@ -224,6 +224,8 @@ class PageController extends AuthController
         $model = $this->findModel($id);
         $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
         $image->removeAll(true);
+        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, $this->galleryOptions);
+        $gallery->removeAll(true);
         $model->delete();
 
         return $this->redirect(['index']);

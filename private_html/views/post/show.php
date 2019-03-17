@@ -2,13 +2,14 @@
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Post */
 /** @var $relatedPosts \app\models\Post[] */
+
 ?>
 <section class="news-show">
     <div class="container">
         <div class="row news-show-container">
             <div class="col-xs-12">
                 <div class="content-header ">
-                    <img src="./images/news/news-header-image.png" class="img-fluid content-header__image" alt="">
+                    <img src="<?= $this->theme->baseUrl?>/images/news/news-header-image.png" class="img-fluid content-header__image" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= Yii::t('words', 'News & Articles') ?></h1>
                         <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
@@ -48,7 +49,7 @@
                                     </div>
                                     <div class="card-body">
                                         <a title="" href="#" class="card-link">
-                                            <img class="card-img-top" src="images/news/news-3.png" alt="">
+                                            <img class="card-img-top" src="<?= Yii::getAlias('@web/uploads/post/').$model->image ?>" alt="">
                                             <h4 class="card-title"><?= $model->name ?></h4>
                                         </a>
                                     </div>
@@ -56,8 +57,8 @@
                                     <div class="clearfix">
                                         <p style="color: #7a7a7a;">تصاویر خبری</p>
                                         <div class="imgContainer">
-                                            <a class="simpleGallery__link" href="images/gallery/gallery-2.jpg">
-                                                <img class="simpleGallery__image" src="images/gallery/gallery-2.jpg"
+                                            <a class="simpleGallery__link" href="<?= $this->theme->baseUrl?>/images/gallery/gallery-2.jpg">
+                                                <img class="simpleGallery__image" src="<?= $this->theme->baseUrl?>/images/gallery/gallery-2.jpg"
                                                      alt="">
                                                 <!--<div class="-hoverShowBox purple rounded">-->
                                                 <!--<div>-->
@@ -113,7 +114,7 @@
             <div class="row insurance-container">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
                     <div class="inline-title">
-                        <h3 class="section-title">اخبار مرتبط</h3>
+                        <h3 class="section-title"><?= Yii::t('words', 'Related News & Articles') ?></h3>
                     </div>
                 </div>
             </div>

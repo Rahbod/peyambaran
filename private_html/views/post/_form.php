@@ -63,6 +63,28 @@ use app\models\Category;
             'options' => ['rows' => 30],
         ]); ?>
 
+
+
+        <?php echo $form->field($model, 'gallery')->widget(\devgroup\dropzone\DropZone::className(), [
+            'url' => Url::to(['upload-attachment']),
+            'removeUrl' => Url::to(['delete-attachment']),
+            'storedFiles' => isset($gallery) ? $gallery: [],
+            'sortable' => false, // sortable flag
+            'sortableOptions' => [], // sortable options
+            'htmlOptions' => ['class' => '', 'id' => Html::getInputId($model, 'gallery')],
+            'options' => [
+                'createImageThumbnails' => true,
+                'addRemoveLinks' => true,
+                'dictRemoveFile' => 'حذف',
+                'addViewLinks' => true,
+                'dictViewFile' => '',
+                'dictDefaultMessage' => 'جهت آپلود تصاویر کلیک کنید',
+                'acceptedFiles' => 'png, jpeg, jpg',
+                'maxFiles' => 10,
+                'maxFileSize' => 0.5,
+            ],
+        ])?>
+
         <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
 
     </div>

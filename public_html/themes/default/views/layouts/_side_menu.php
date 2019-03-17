@@ -1,5 +1,5 @@
 <?php
-$menuItems = \app\components\MainController::getMenu(Yii::$app->user->identity->roleID);
+$menuItems = \app\components\MainController::getMenu(Yii::$app->user->isGuest?false:Yii::$app->user->identity->roleID);
 ?>
 
 <div id="m_ver_menu" class="m-aside-menu m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark m-scroller ps ps--active-y" m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500"
