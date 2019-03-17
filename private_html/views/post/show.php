@@ -31,7 +31,7 @@
                 <div>
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-4">
+                            <div class="col-xs-4 pr-0">
                                 <div class="card m-0">
                                     <div class="card-header">
                                         <p>

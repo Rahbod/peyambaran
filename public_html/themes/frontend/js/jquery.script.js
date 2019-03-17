@@ -10,6 +10,11 @@ $(function () {
 
     $(".owl-carousel").each(function () {
         var options = $(this).data();
+        if (typeof options.autoheight !== undefined) {
+            options.autoHeight = true;
+            delete options.autoheight
+        }
+
         if ($(this).hasClass('news-carousel'))
             options['navText'] = ["<i class='icon icon-chevron-right'></i>", "<i class='icon icon-chevron-left'></i>"];
         $(this).owlCarousel(options);

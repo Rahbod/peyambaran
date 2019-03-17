@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </h3>
                 </div>
             </div>
-            <div class="m-portlet__head-tools">
+            <div class="m-portlet__head-tools fade">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
                         <a href="<?= \yii\helpers\Url::to(['create']) ?>"

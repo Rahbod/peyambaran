@@ -14,7 +14,7 @@ use app\models\ContactForm;
 use app\models\Department;
 use app\models\Message;
 
-$this->title = Yii::t('words', 'Contact us');
+$this->title = Yii::t('words', 'Criticism and Suggestion');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="contactUsPage">

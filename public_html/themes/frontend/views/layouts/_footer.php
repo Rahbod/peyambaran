@@ -58,7 +58,7 @@ $contactModel = new \app\models\ContactForm();
                         <div class="form-row">
                             <?= $form->field($contactModel, 'tel')->textInput(['placeholder' => '09xxxxxxxx']) ?>
 
-                            <?= $form->field($contactModel, 'body', ['options' => ['class' => 'col-lg-8 col-md-8 col-sm-8 col-xs-12']])->textInput(['placeholder' => '09xxxxxxxx']) ?>
+                            <?= $form->field($contactModel, 'body', ['options' => ['class' => 'col-lg-8 col-md-8 col-sm-8 col-xs-12']])->textInput() ?>
 
                         </div>
                         <div class="form-row last">
@@ -97,14 +97,14 @@ $contactModel = new \app\models\ContactForm();
                         <li>
                             <i class="icon share-icon"></i>
                             <div>
-                                <?php $val = Setting::get('linkedin');
-                                echo $val && !empty($val) ? '<a href="' . $val . '" class="icon instagram-icon"></a>' : ''; ?>
-                                <?php $val = Setting::get('facebook');
-                                echo $val && !empty($val) ? '<a href="' . $val . '" class="icon facebook-icon"></a>' : ''; ?>
-                                <?php $val = Setting::get('googleplus');
-                                echo $val && !empty($val) ? '<a href="' . $val . '" class="icon google-icon"></a>' : ''; ?>
-                                <?php $val = Setting::get('twitter');
-                                echo $val && !empty($val) ? '<a href="' . $val . '" class="icon twitter-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('socialNetworks.linkedin');
+                                echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon instagram-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('socialNetworks.facebook');
+                                echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon facebook-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('socialNetworks.googleplus');
+                                echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon google-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('socialNetworks.twitter');
+                                echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon twitter-icon"></a>' : ''; ?>
                             </div>
                         </li>
                     </ul>

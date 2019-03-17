@@ -37,9 +37,9 @@ use app\models\Category;
             'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
             'acceptedFiles' => 'png, jpeg, jpg',
             'maxFiles' => 1,
-            'maxFileSize' => 0.5,
+            'maxFileSize' => 0.2,
         ],
-    ]) ?>
+    ])->hint('100x100 pixel') ?>
 
 <!--            --><?//= $form->field($model, 'type')->dropDownList(\app\models\Person::getTypeLabels()) ?>
 

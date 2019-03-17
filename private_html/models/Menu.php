@@ -140,8 +140,9 @@ class Menu extends Category
     public static function renderMenuActionsSelect($context, $model, $attribute, $options = [], $form = false)
     {
         $validControllers = [
-            'app\controllers\PostController',
             'app\controllers\PersonController',
+            'app\controllers\SiteController',
+            'app\controllers\PostController',
         ];
         $controllers = $context->getAllActions($validControllers, [], true);
         $controllers = $context->prepareForSelect($controllers);
