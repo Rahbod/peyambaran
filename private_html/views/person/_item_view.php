@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 /* @var $model app\models\Person */
 ?>
-<div class="panel panel-default">
+<div class="panel panel-default mb-3">
     <div class="panel-heading">
         <div class="container-fluid">
             <div class="row">
@@ -17,7 +17,7 @@
                                 <?= $model->getExpertiseLabel()->name ?>
                             </p>
                             <div class="panel-title__more">
-                                <img src="<?= $this->theme->baseUrl ?>/images/doctors/more-info.png" alt="">
+                                <img src="<?= $this->theme->baseUrl.'/images/doctors/more-info.png' ?>" alt="">
                                 <?= Yii::t('words', 'more information') ?>
                             </div>
                         </a>

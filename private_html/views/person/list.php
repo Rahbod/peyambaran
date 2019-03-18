@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Url;
+
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Person */
 
@@ -10,10 +12,10 @@ $expertiseMenu = \app\models\Category::find()
     ])
     ->all();
 
-$expertiseID = Yii::$app->request->getQueryParam('expertise')?:0;
+$expertiseID = Yii::$app->request->getQueryParam('expertise') ?: 0;
 ?>
 
-<section class="gallery">
+<section class="doctors">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -27,16 +29,16 @@ $expertiseID = Yii::$app->request->getQueryParam('expertise')?:0;
                                 <?php if ($sc > 0): ?>
                                     <a href="void:;" class="text-purple"><?= $item->name ?></a>
                                     <ul class="list-unstyled submenu">
-                                        <?php foreach ($item->children(1)->all() as $item_child): ?>
+                                        <?php foreach ($item->children(1)->all() as $item_child): $url = Url::to(['/person/list', 'expertise' => $item_child->id]); ?>
                                             <li>
                                                 <a class="-hoverBlue text-dark-2<?= $expertiseID == $item_child->id ? " active" : "" ?>"
-                                                   href="<?= $item_child->url ?>"><?= $item_child->name ?></a>
+                                                   href="<?= $url ?>"><?= $item_child->name ?></a>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
-                                <?php else: ?>
+                                <?php else: $url = Url::to(['/person/list', 'expertise' => $item->id]); ?>
                                     <a class="-hoverBlue text-dark-2<?= $expertiseID == $item->id ? " active" : "" ?>"
-                                       href="<?= $item->url ?>"><?= $item->name ?></a>
+                                       href="<?= $url ?>"><?= $item->name ?></a>
                                 <?php endif; ?>
                             </li>
                         <?php endforeach; ?>
@@ -46,18 +48,21 @@ $expertiseID = Yii::$app->request->getQueryParam('expertise')?:0;
             <div class="col-md-9">
                 <div class="content-header bg-purple">
                     <div class="content-header__gradient-overlay"></div>
-                    <img src="<?= $this->theme->baseUrl ?>/images/doctors/avatar.png" class="img-fluid content-header__image" alt="">
+                    <img src="<?= $this->theme->baseUrl ?>/images/doctors/avatar.png"
+                         class="img-fluid content-header__image" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= Yii::t('words', 'Doctors') ?></h1>
                         <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
                     </div>
-                    <img src="<?= $this->theme->baseUrl ?>/images/doctors/avatar-24.png" class="content-header__fade-bg">
+                    <img src="<?= $this->theme->baseUrl ?>/images/doctors/avatar-24.png"
+                         class="content-header__fade-bg">
 
                 </div>
                 <div class="content-body">
-                    <div class="panel-group" id="accordion">
+                    <div class="panel-group mt-5" id="accordion">
                         <?php echo \yii\widgets\ListView::widget([
                             'dataProvider' => $dataProvider,
+                            'layout' => '{items}',
                             'itemView' => '_item_view'
                         ]); ?>
                     </div>
