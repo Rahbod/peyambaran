@@ -11,7 +11,7 @@ use app\models\Person;
 $searchModel = new \app\models\PersonSearch();
 $searchModel->type = Person::TYPE_DOCTOR;
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+$dataProvider->pagination=false;
 $dayID = $model->isNewRecord ? (Yii::$app->request->getQueryParam('copy')?:false) : $model->id;
 
 
