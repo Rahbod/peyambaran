@@ -83,9 +83,9 @@ use yii\widgets\Pjax;
             </div>
             <div class="col-xs-12">
                 <div class="content-footer text-center mb-5">
-                    <a href="void:;" class="btn -more gray">
+                    <a href="void:;" class="btn -more gray" disabled="">
                         <i class="icomoon-ellipsis-h-solid"></i>
-                        بارگزاری بیشتر
+                        <?= Yii::t('words', 'Load more') ?>
                     </a>
                 </div>
             </div>

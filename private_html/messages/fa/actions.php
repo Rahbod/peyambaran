@@ -100,4 +100,5 @@ return [
     'site.contact' => 'تماس با ما',
     'site.suggestion' => 'انتقادات و پیشنهادات',
     'site.complaint' => 'شکایات',
+    'clinic.show' => 'نمایش برنامه کلینیک',
 ];

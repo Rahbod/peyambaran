@@ -95,7 +95,7 @@ use app\models\OnlineService;
                         <?php foreach ($inpatientInsurances as $item): ?>
                             <div class="insurance-item">
                                 <div class="insurance-item-inner">
-                                    <a href="#">
+                                    <a>
                                         <?php if ($item->image && is_file(Yii::getAlias('@webroot/uploads/insurance/') . $item->image)): ?>
                                             <div class="item-image">
                                                 <img class="grayscale"

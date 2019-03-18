@@ -63,7 +63,7 @@ $expertiseID = Yii::$app->request->getQueryParam('expertise')?:0;
                     </div>
                 </div>
                 <div class="content-footer text-center">
-                    <a href="void:;" class="btn text-purple -more purple">
+                    <a href="void:;" class="btn text-purple -more purple" disabled="">
                         <i class="icomoon-ellipsis-h-solid"></i>
                         <?= Yii::t('words', 'Load more') ?>
                     </a>

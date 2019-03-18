@@ -29,6 +29,13 @@ class ClinicController extends AuthController
         parent::init();
     }
 
+    public function getMenuActions()
+    {
+        return [
+            'show'
+        ];
+    }
+
     public function getSystemActions()
     {
         return [
@@ -69,20 +76,6 @@ class ClinicController extends AuthController
     public function actionShow()
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
-
-
-//        $sql = "SELECT * FROM `clinic_program_view` WHERE `date` >= :now";
-//        $countSql = "SELECT COUNT(*) FROM `clinic_program_view` WHERE `date` >= :now";
-//
-//        $now = strtotime(date('Y/m/d 00:00:00',time()));
-//        $count = Yii::$app->db->createCommand($countSql, [':now' => $now])->queryScalar();
-//
-//        $dataProvider = new SqlDataProvider([
-//            'sql' => $sql,
-//            'params' => [':now' => $now],
-//            'totalCount' => $count,
-//
-//        ]);
 
         $clinicSearchModel = new ClinicProgramView();
         $dataProvider = $clinicSearchModel->search(Yii::$app->request->queryParams);
