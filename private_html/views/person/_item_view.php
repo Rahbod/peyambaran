@@ -31,7 +31,7 @@
                         $rel = $day->getPersonsRel()->andWhere(['personID' => $model->id])->one();
                         ?>
                         <div class="panel-title__doctorTimes">
-                            <span class="icomoon-success"><?= jDateTime::date('l', $day->date) ?></span>
+                            <span><i class="icomoon-success ml-3" style="margin-bottom: -5px;"></i><?= jDateTime::date('l', $day->date) ?></span>
                             <span><?= Yii::t('words', 'show_time', [
                                     'start_time' => $rel->start_time,
                                     'end_time' => $rel->end_time,
