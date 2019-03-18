@@ -122,4 +122,21 @@ class Person extends Item
             $this->programRelModel = $this->hasOne(PersonProgramRel::className(), ['personID' => 'id'])->andWhere(['dayID' => $dayID])->one();
         return $this->programRelModel;
     }
+
+    /**
+     * @param int $until
+     * @return array|ClinicProgram[]
+     */
+    public function getVisitDays($until = 7)
+    {
+        $now = strtotime(date('Y/m/d 00:00:00', time()));
+        $aweek = $now + $until * 24 * 60 * 60;
+
+        return ClinicProgram::find()
+            ->innerJoinWith('personsRel')
+            ->andWhere(['person_program_rel.personID' => $this->id])
+            ->andWhere(['>=', 'date', $now])
+            ->andWhere(['<=', 'date', $aweek])
+            ->all();
+    }
 }

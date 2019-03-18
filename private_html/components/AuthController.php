@@ -27,7 +27,7 @@ abstract class AuthController extends MainController
         /* @var $role \yii\rbac\Role */
         $roles = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
         foreach ($roles as $role)
-            if ($role->name == 'superAdmin')
+            if ($role->name == 'superAdmin' || $role->name == 'admin')
                 return true;
 
         // Check same permissions

@@ -76,7 +76,7 @@ class ItemQuery extends MultiLangActiveQuery
 
     public function valid()
     {
-        $this->andWhere(['status' => Item::STATUS_PUBLISHED]);
+        $this->andWhere(['item.status' => Item::STATUS_PUBLISHED])->orderBy(['item.id' => SORT_DESC]);
         return $this;
     }
 }

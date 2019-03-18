@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use function app\components\dd;
 use Yii;
 use app\components\DynamicActiveRecord;
 
@@ -41,6 +40,10 @@ class Message extends DynamicActiveRecord
             'subject' => ['CHAR', ''],
             'email' => ['CHAR', ''],
             'department_id' => ['CHAR', ''],
+            'degree' => ['CHAR', ''],
+            'country' => ['CHAR', ''],
+            'city' => ['CHAR', ''],
+            'address' => ['CHAR', ''],
         ]);
     }
 
@@ -51,12 +54,13 @@ class Message extends DynamicActiveRecord
     {
         return array_merge(parent::rules(), [
             [['name', 'body'], 'required'],
-            [['type', 'dyna', 'email', 'subject'], 'string'],
+            [['type', 'dyna', 'email', 'subject', 'country', 'city', 'address'], 'string'],
             [['name'], 'string', 'max' => 511],
             [['tel'], 'string', 'max' => 15],
             [['body'], 'string', 'max' => 255],
             [['created'], 'string', 'max' => 20],
             [['department_id'], 'safe'],
+            [['degree'], 'integer', 'max' => 10],
             [['created'], 'default', 'value' => time()],
         ]);
     }
@@ -76,6 +80,10 @@ class Message extends DynamicActiveRecord
             'body' => Yii::t('words', 'Body'),
             'department_id' => Yii::t('words', 'Department ID'),
             'tel' => Yii::t('words', 'Tel'),
+            'degree' => Yii::t('words', 'Degree'),
+            'country' => Yii::t('words', 'Country'),
+            'city' => Yii::t('words', 'City'),
+            'address' => Yii::t('words', 'Address'),
         ]);
     }
 
@@ -94,5 +102,20 @@ class Message extends DynamicActiveRecord
     public function getDepartment()
     {
         return $this->hasOne(Department::className(), ['id' => 'department_id']);
+    }
+
+    public static function getDegree($id = null)
+    {
+        $degrees = [
+            1 => Yii::t('words', 'Diploma'),
+            2 => Yii::t('words', 'Associate Degree'),
+            3 => Yii::t('words', 'Bachelor'),
+            4 => Yii::t('words', 'Senior'),
+            5 => Yii::t('words', 'PhD Degree'),
+            6 => Yii::t('words', 'Professor'),
+        ];
+        if (is_null($id))
+            return $degrees;
+        return $degrees[$id];
     }
 }

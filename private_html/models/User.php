@@ -63,6 +63,14 @@ class User extends DynamicActiveRecord implements IdentityInterface
         ]);
     }
 
+    public function formAttributes()
+    {
+        return [
+            'name' => ['type' => self::FORM_FIELD_TYPE_TEXT],
+            'email' => ['type' => self::FORM_FIELD_TYPE_TEXT],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -85,7 +93,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['name', 'username', 'status', 'roleID', 'email'], 'required', 'except' => ['change-password', 'manual_insert', 'register']],
+            [['name', 'username', 'status', 'roleID'], 'required', 'except' => ['change-password', 'manual_insert', 'register']],
             [['name', 'username', 'status', 'roleID'], 'required', 'on' => 'manual_insert'],
             [['password'], 'required', 'on' => 'insert'],
             [['newPassword', 'repeatPassword'], 'required', 'on' => 'change-password'],
@@ -105,7 +113,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
 
             [['name', 'nationalCode', 'phone'], 'required', 'on' => 'register'],
             [['roleID'], 'default', 'value' => 'user'],
-            ['verifyCode', 'captcha']
+            ['verifyCode', 'captcha', 'on' => 'register']
         ];
     }
 

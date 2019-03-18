@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use function app\components\dd;
 use app\components\MainController;
 use app\models\Category;
 use app\models\Insurance;
@@ -18,6 +17,16 @@ use app\models\ContactForm;
 
 class SiteController extends MainController
 {
+
+    public function getMenuActions()
+    {
+        return [
+            'contact',
+            'suggestion',
+            'complaint',
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -72,7 +81,7 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
-        $slides = Slide::find()->valid()->all();
+        $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
         $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->limit(32)->all();
         $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->limit(32)->all();
         $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();
@@ -110,10 +119,26 @@ class SiteController extends MainController
      */
     public function actionContact()
     {
+        return $this->ContactProcess();
+    }
+
+    public function actionSuggestion()
+    {
+        return $this->ContactProcess('suggestion', Message::TYPE_SUGGESTIONS);
+    }
+
+    public function actionComplaint()
+    {
+        return $this->ContactProcess('complaint', Message::TYPE_COMPLAINTS);
+    }
+
+    public function ContactProcess($view = 'contact', $type = Message::TYPE_CONTACT_US)
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post())) {
             $message = new  Message();
-            $message->type = Message::TYPE_CONTACT_US;
+            $message->type = $type;
             $message->name = $model->name;
             $message->tel = $model->tel;
             $message->body = $model->body;
@@ -127,7 +152,8 @@ class SiteController extends MainController
             } else
                 Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => Yii::t('words', 'message.dangerMsg')]);
         }
-        return $this->render('contact', [
+
+        return $this->render($view, [
             'model' => $model,
         ]);
     }

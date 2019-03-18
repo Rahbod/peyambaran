@@ -11,14 +11,27 @@ $this->title = 'Create Role';
 $this->params['breadcrumbs'][] = ['label' => 'Roles', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="role-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
+<div class="m-portlet m-portlet--tab">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+						<span class="m-portlet__head-icon m--hide">
+						<i class="la la-gear"></i>
+						</span>
+                <h3 class="m-portlet__head-text">
+                    <?= Html::encode($this->title) ?>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <!--begin::Form-->
     <?= $this->render('_form', [
         'model' => $model,
         'roles' => $roles,
         'actions' => $actions,
     ]) ?>
-
+    <!--end::Form-->
 </div>
+

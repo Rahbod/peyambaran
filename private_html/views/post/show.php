@@ -1,13 +1,16 @@
 <?php
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Post */
+/** @var $relatedPosts \app\models\Post[] */
+
 ?>
 <section class="news-show">
     <div class="container">
         <div class="row news-show-container">
             <div class="col-xs-12">
-                <div class="content-header px-3">
-                    <img src="./images/news/news-header-image.png" class="img-fluid content-header__image" alt="">
+                <div class="content-header ">
+                    <img src="<?= $this->theme->baseUrl ?>/images/news/news-header-image.png"
+                         class="img-fluid content-header__image" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= Yii::t('words', 'News & Articles') ?></h1>
                         <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
@@ -47,50 +50,34 @@
                                     </div>
                                     <div class="card-body">
                                         <a title="" href="#" class="card-link">
-                                            <img class="card-img-top" src="images/news/news-3.png" alt="">
+                                            <img class="card-img-top"
+                                                 src="<?= Yii::getAlias('@web/uploads/post/') . $model->image ?>"
+                                                 alt="">
                                             <h4 class="card-title"><?= $model->name ?></h4>
                                         </a>
                                     </div>
+                                    <?php if ($model->gallery): ?>
                                     <hr>
                                     <div class="clearfix">
                                         <p style="color: #7a7a7a;">تصاویر خبری</p>
-                                        <div class="imgContainer">
-                                            <a class="simpleGallery__link" href="images/gallery/gallery-2.jpg">
-                                                <img class="simpleGallery__image" src="images/gallery/gallery-2.jpg"
-                                                     alt="">
-                                                <!--<div class="-hoverShowBox purple rounded">-->
-                                                <!--<div>-->
-                                                <!--<h4>آزمایشگاه پاتولوژی</h4>-->
-                                                <!--<div class="zoom-icon"><i></i></div>-->
-                                                <!--</div>-->
-                                                <!--</div>-->
-                                            </a>
-                                        </div>
-                                        <div class="imgContainer">
-                                            <a class="simpleGallery__link" href="images/gallery/gallery-2.jpg">
-                                                <img class="simpleGallery__image" src="images/gallery/gallery-2.jpg"
-                                                     alt="">
-                                                <!--<div class="-hoverShowBox purple rounded">-->
-                                                <!--<div>-->
-                                                <!--<h4>آزمایشگاه پاتولوژی</h4>-->
-                                                <!--<div class="zoom-icon"><i></i></div>-->
-                                                <!--</div>-->
-                                                <!--</div>-->
-                                            </a>
-                                        </div>
-                                        <div class="imgContainer">
-                                            <a class="simpleGallery__link" href="images/gallery/gallery-2.jpg">
-                                                <img class="simpleGallery__image" src="images/gallery/gallery-2.jpg"
-                                                     alt="">
-                                                <!--<div class="-hoverShowBox purple rounded">-->
-                                                <!--<div>-->
-                                                <!--<h4>آزمایشگاه پاتولوژی</h4>-->
-                                                <!--<div class="zoom-icon"><i></i></div>-->
-                                                <!--</div>-->
-                                                <!--</div>-->
-                                            </a>
-                                        </div>
+                                        <?php foreach ($model->gallery as $item): if(!$item->file OR !is_file(Yii::getAlias('@webroot/uploads/post/') . $item->file)) continue; ?>
+                                            <div class="imgContainer">
+                                                <a class="simpleGallery__link"
+                                                   href="<?= Yii::getAlias('@webroot/uploads/post/') . $item->file ?>">
+                                                    <img class="simpleGallery__image"
+                                                         src="<?= Yii::getAlias('@webroot/uploads/post/thumbs/100x100/') . $item->file ?>"
+                                                         alt="">
+                                                    <!--<div class="-hoverShowBox purple rounded">-->
+                                                    <!--<div>-->
+                                                    <!--<h4>آزمایشگاه پاتولوژی</h4>-->
+                                                    <!--<div class="zoom-icon"><i></i></div>-->
+                                                    <!--</div>-->
+                                                    <!--</div>-->
+                                                </a>
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="col-xs-8  px-0">
@@ -112,222 +99,39 @@
             <div class="row insurance-container">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
                     <div class="inline-title">
-                        <h3 class="section-title">اخبار مرتبط</h3>
+                        <h3 class="section-title"><?= Yii::t('words', 'Related News & Articles') ?></h3>
                     </div>
                 </div>
             </div>
             <div class="news-carousel owl-carousel owl-theme" data-stagePadding="50" data-rtl="true"
                  data-autoWidth="true" data-nav="true" data-items="3" data-margin="15">
-                <div class="news-item">
-                    <div class="news-item-inner">
-                        <a href="#">
-                            <div class="statics-row">
-                                                    <span class="comments-count text-right">49<i
-                                                                class="comment-icon"></i></span>
-                                <span class="view-count text-center">105<i
-                                            class="eye-icon"></i></span>
-                                <span class="news-date text-left">1397/7/11<i
-                                            class="calendar-icon"></i></span>
-                            </div>
-                            <div class="news-image">
-                                <div class="news-image-inner">
-                                    <img src="uploads/news1.png">
+                <?php foreach ($relatedPosts as $item): ?>
+                    <div class="news-item">
+                        <div class="news-item-inner">
+                            <a href="<?= $item->url ?>">
+                                <div class="statics-row">
+                                <span class="comments-count text-right"><?= number_format($item->comments_count) ?><i
+                                            class="comment-icon"></i></span>
+                                    <span class="view-count text-center"><?= number_format($item->seen) ?><i
+                                                class="eye-icon"></i></span>
+                                    <span class="news-date text-left"><?= jDateTime::date('Y/m/d', strtotime($item->publish_date)) ?>
+                                        <i class="calendar-icon"></i></span>
                                 </div>
-                            </div>
-                            <div class="news-details">
-                                <h3>راه اندازی بخش جدید NICU در فاز توسعه بیمارستان</h3>
-                                <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای
-                                    شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
-                                    ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
-                                    حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد.
-                                    <div class="overlay"></div>
+                                <div class="news-image">
+                                    <div class="news-image-inner">
+                                        <img src="<?= Yii::getAlias('@web/uploads/post/') . $item->image ?>">
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                                <div class="news-details">
+                                    <h3><?= $item->name ?></h3>
+                                    <div class="news-description"><?= !empty($item->summary) ? $item->summary : mb_substr(strip_tags(nl2br($item->body)), 0, 200) ?>
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-item-inner">
-                        <a href="#">
-                            <div class="statics-row">
-                                                    <span class="comments-count text-right">49<i
-                                                                class="comment-icon"></i></span>
-                                <span class="view-count text-center">105<i
-                                            class="eye-icon"></i></span>
-                                <span class="news-date text-left">1397/7/11<i
-                                            class="calendar-icon"></i></span>
-                            </div>
-                            <div class="news-image">
-                                <div class="news-image-inner">
-                                    <img src="uploads/news2.png">
-                                </div>
-                            </div>
-                            <div class="news-details">
-                                <h3>تعرفه جدید بستری وزارت بهداشت به بیمارستان ها ابلاغ شد</h3>
-                                <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای
-                                    شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
-                                    ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
-                                    حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد.
-                                    <div class="overlay"></div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-item-inner">
-                        <a href="#">
-                            <div class="statics-row">
-                                                    <span class="comments-count text-right">49<i
-                                                                class="comment-icon"></i></span>
-                                <span class="view-count text-center">105<i
-                                            class="eye-icon"></i></span>
-                                <span class="news-date text-left">1397/7/11<i
-                                            class="calendar-icon"></i></span>
-                            </div>
-                            <div class="news-image">
-                                <div class="news-image-inner">
-                                    <img src="uploads/news3.png">
-                                </div>
-                            </div>
-                            <div class="news-details">
-                                <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
-                                <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای
-                                    شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
-                                    ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
-                                    حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد.
-                                    <div class="overlay"></div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-item-inner">
-                        <a href="#">
-                            <div class="statics-row">
-                                                    <span class="comments-count text-right">49<i
-                                                                class="comment-icon"></i></span>
-                                <span class="view-count text-center">105<i
-                                            class="eye-icon"></i></span>
-                                <span class="news-date text-left">1397/7/11<i
-                                            class="calendar-icon"></i></span>
-                            </div>
-                            <div class="news-image">
-                                <div class="news-image-inner">
-                                    <img src="uploads/news1.png">
-                                </div>
-                            </div>
-                            <div class="news-details">
-                                <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
-                                <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای
-                                    شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
-                                    ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
-                                    حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد.
-                                    <div class="overlay"></div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-item-inner">
-                        <a href="#">
-                            <div class="statics-row">
-                                                    <span class="comments-count text-right">49<i
-                                                                class="comment-icon"></i></span>
-                                <span class="view-count text-center">105<i
-                                            class="eye-icon"></i></span>
-                                <span class="news-date text-left">1397/7/11<i
-                                            class="calendar-icon"></i></span>
-                            </div>
-                            <div class="news-image">
-                                <div class="news-image-inner">
-                                    <img src="uploads/news2.png">
-                                </div>
-                            </div>
-                            <div class="news-details">
-                                <h3>تعرفه جدید بستری وزارت بهداشت به بیمارستان ها ابلاغ شد</h3>
-                                <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای
-                                    شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
-                                    ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
-                                    حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد.
-                                    <div class="overlay"></div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-item-inner">
-                        <a href="#">
-                            <div class="statics-row">
-                                                    <span class="comments-count text-right">49<i
-                                                                class="comment-icon"></i></span>
-                                <span class="view-count text-center">105<i
-                                            class="eye-icon"></i></span>
-                                <span class="news-date text-left">1397/7/11<i
-                                            class="calendar-icon"></i></span>
-                            </div>
-                            <div class="news-image">
-                                <div class="news-image-inner">
-                                    <img src="uploads/news3.png">
-                                </div>
-                            </div>
-                            <div class="news-details">
-                                <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
-                                <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای
-                                    شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
-                                    ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
-                                    حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد.
-                                    <div class="overlay"></div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-item-inner">
-                        <a href="#">
-                            <div class="statics-row">
-                                                    <span class="comments-count text-right">49<i
-                                                                class="comment-icon"></i></span>
-                                <span class="view-count text-center">105<i
-                                            class="eye-icon"></i></span>
-                                <span class="news-date text-left">1397/7/11<i
-                                            class="calendar-icon"></i></span>
-                            </div>
-                            <div class="news-image">
-                                <div class="news-image-inner">
-                                    <img src="uploads/news1.png">
-                                </div>
-                            </div>
-                            <div class="news-details">
-                                <h3>استفاده از تجهیزات جدید جلوگیری از پیری پوست</h3>
-                                <div class="news-description">لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای
-                                    شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود
-                                    ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
-                                    حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد.
-                                    <div class="overlay"></div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

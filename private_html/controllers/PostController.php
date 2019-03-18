@@ -2,8 +2,7 @@
 
 namespace app\controllers;
 
-use app\components\Setting;
-use app\models\PictureGallery;
+use app\models\Attachment;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
@@ -11,6 +10,7 @@ use Yii;
 use app\models\Post;
 use app\models\PostSearch;
 use app\components\AuthController;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,6 +24,7 @@ class PostController extends AuthController
 {
     public $imageDir = 'uploads/post';
     private $imageOptions = ['thumbnail' => ['width' => 340, 'height' => 130]];
+    private $galleryOptions = ['thumbnail' => ['width' => 100, 'height' => 100]];
 
     /**
      * for set admin theme
@@ -39,6 +40,8 @@ class PostController extends AuthController
         return [
             'upload-image',
             'delete-image',
+            'upload-attachment',
+            'delete-attachment',
             'show',
         ];
     }
@@ -75,7 +78,20 @@ class PostController extends AuthController
                 'model' => new Post(),
                 'attribute' => 'image',
                 'upload' => $this->imageDir
-            ]
+            ],
+            'upload-attachment' => [
+                'class' => UploadAction::className(),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'model' => new Post(),
+                'modelName' => 'Page'
+            ],
+            'delete-attachment' => [
+                'class' => RemoveAction::className(),
+                'upload' => Attachment::$attachmentPath,
+                'storedMode' => RemoveAction::STORED_RECORD_MODE,
+                'model' => new Attachment(),
+                'attribute' => 'file'
+            ],
         ];
     }
 
@@ -117,8 +133,15 @@ class PostController extends AuthController
         $model->seen++;
         $model->save(false);
 
+        $relatedPosts = Post::find()->select('item.*')
+            ->innerJoinWith('catitems')
+            ->andWhere(['catitem.catID' => $model->categories[0]->id])
+            ->andWhere('item.id <> :id', [':id' => $id])
+            ->valid()->all();
+
         return $this->render('show', [
             'model' => $model,
+            'relatedPosts' => $relatedPosts
         ]);
     }
 
@@ -137,14 +160,16 @@ class PostController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
+            $gallery = new UploadedFiles($this->tmpDir, $model->gallery, $this->galleryOptions);
             if ($model->save()) {
                 $image->move($this->imageDir);
+                $gallery->move(Attachment::getAttachmentPath());
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -171,21 +196,25 @@ class PostController extends AuthController
         }
 
         $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
+        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, $this->galleryOptions);
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $oldImage = $model->image;
+            $oldGallery = ArrayHelper::map($model->gallery, 'id', 'file');
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 $image->update($oldImage, $model->image, $this->tmpDir);
+                $gallery->updateAll($oldGallery, $model->gallery, $this->tmpDir, Attachment::getAttachmentRelativePath());
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [
             'model' => $model,
             'image' => $image,
+            'gallery' => $gallery,
         ]);
     }
 
@@ -201,6 +230,8 @@ class PostController extends AuthController
         $model = $this->findModel($id);
         $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
         $image->removeAll(true);
+        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, $this->galleryOptions);
+        $gallery->removeAll(true);
         $model->delete();
 
         return $this->redirect(['index']);

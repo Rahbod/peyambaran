@@ -114,13 +114,13 @@ abstract class MainController extends Controller
             if (!in_array($className, $excludeClasses)) {
                 $methods = (new \ReflectionClass($className))->getMethods(\ReflectionMethod::IS_PUBLIC);
 
+                preg_match('/(app\\\\controllers\\\\)(\w*)(Controller)/', $className, $matches);
+                if (!$matches)
+                    continue;
+
+                $class = Yii::$app->createControllerByID(strtolower($matches[2]));
+
                 if ($menuActions) {
-                    preg_match('/(app\\\\controllers\\\\)(\w*)(Controller)/', $className, $matches);
-                    if (!$matches)
-                        continue;
-
-                    $class = Yii::$app->createControllerByID(strtolower($matches[2]));
-
                     if (!method_exists($className, 'getMenuActions'))
                         continue;
 
@@ -131,6 +131,9 @@ abstract class MainController extends Controller
                         $actions[lcfirst(substr($className, 0, strpos($className, 'Controller')))][] = $key;
                     continue;
                 }
+                var_dump($class);
+                if (!($class instanceof AuthController))
+                    continue;
 
                 $unusableClasses = ['yii\web\Controller', 'yii\base\Controller', 'app\components\MainController'];
                 foreach ($methods as $method) {
@@ -180,6 +183,7 @@ abstract class MainController extends Controller
                         $actions[lcfirst(substr($className, 0, strpos($className, 'Controller')))][] = lcfirst(substr($method->name, 6));
                     }
                 }
+                exit;
             }
         }
 
@@ -225,76 +229,107 @@ abstract class MainController extends Controller
 
     public static function getMenu($roleID)
     {
-        $roleID = $roleID == 'superAdmin' ? 'admin' : $roleID;
-        $menu = [
-            /* ADMIN MENU */
-            'admin' => [
-                [
-                    'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">'.Yii::t('words','Dashboard').'</span>',
-                    'url' => ['/admin'],
-                ],
-                "<li class='m-menu__section'><h4 class='m-menu__section-text'>".Yii::t('words','Management Menu')."</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
-                [
-                    'label' => '<i class="m-menu__link-icon fa fa-calendar-alt"></i><span class="m-menu__link-text">'.Yii::t('words','Clinic Program').'</span>',
-                    'items' => [
-                        ['label' => Yii::t('words', 'Manage Days'), 'url' => ['/clinic/index']],
-                        ['label' => Yii::t('words', 'Create New Day'), 'url' => ['/clinic/create']],
-                    ]
-                ],
-                [
-                    'label' => '<i class="m-menu__link-icon fa fa-bars"></i><span class="m-menu__link-text">'.Yii::t('words','Menus').'</span>',
-                    'url' => ['/menu/index']
-                ],
-                [
-                    'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . Yii::t('words', 'Items') . '</span>',
-                    'items' => [
-                        ['label' => Yii::t('words', 'Slides'), 'url' => ['/slide/index']],
-                        ['label' => Yii::t('words', 'Online Services'), 'url' => ['/online/index']],
-                        ['label' => Yii::t('words', 'Pages'), 'url' => ['/page/index']],
-                        ['label' => Yii::t('words', 'People'), 'url' => ['/person/index']],
-                        ['label' => Yii::t('words', 'Posts'), 'url' => ['/post/index']],
-                        ['label' => Yii::t('words', 'Insurances'), 'url' => ['/insurance/index']],
-                    ]
-                ],
-                [
-                    'label' => '<i class="m-menu__link-icon fa fa-images"></i><span class="m-menu__link-text">'.Yii::t('words', 'Gallery').'</span>',
-                    'items' => [
-                        ['label' => Yii::t('words','Picture Gallery'), 'url' => ['/gallery/index']],
-                        ['label' => Yii::t('words','Video Gallery'), 'url' => ['/gallery/index-video']],
-                    ]
-                ],
-                [
-                    'label' => '<i class="m-menu__link-icon fa fa-th"></i><span class="m-menu__link-text">'.Yii::t('words','Categories').'</span>',
-                    'url' => ['/category/index']
-                ],
-                [
-                    'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">'.Yii::t('words', 'Messages').'</span>',
-                    'items' => [
-                        ['label' => Yii::t('words','Messages'), 'url' => ['/message/index']],
-                        ['label' => Yii::t('words','Departments'), 'url' => ['/message/department']],
-                    ]
-                ],
-                [
-                    'label' => '<i class="m-menu__link-icon fa fa-cogs"></i><span class="m-menu__link-text">'.Yii::t('words','Setting').'</span>',
-                    'url' => ['/setting/index']
-                ],
-                [
-                    'label' => '<i class="m-menu__link-icon flaticon-logout"></i><span class="m-menu__link-text text-danger">'.Yii::t('words','Logout').'</span>',
-                    'url' => ['/admin/logout']
-                ]
-            ],
+        $roleID = !$roleID ? 'guest' : $roleID;
 
-            /* GUEST MENU */
-            'guest' => [
-                "<li class='m-menu__section'><h4 class='m-menu__section-text'>".Yii::t('words','Categories')."</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
-                [
-                    'label' => '<i class="m-menu__link-icon flaticon-imac"></i><span class="m-menu__link-text">'.Yii::t('words','Login').'</span>',
-                    'url' => ['/admin/login'],
-                ]
-            ],
+        switch ($roleID) {
+            case 'operator':
+                $permissions = [
+                    'clinic' => true,
+                    'items' => [
+                        'person' => true
+                    ]
+                ];
+                $menuName = 'Operator Menu';
+                break;
+            case 'admin':
+            case 'superAdmin':
+                $permissions = true;
+                $menuName = 'Management Menu';
+                break;
+            case 'guest':
+            default:
+                $permissions = [];
+                $menuName = 'Guest';
+                break;
+        }
 
+        return [
+            [
+                'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">' . Yii::t('words', 'Dashboard') . '</span>',
+                'url' => ['/admin']
+            ],
+            "<li class='m-menu__section'><h4 class='m-menu__section-text'>" . Yii::t('words', $menuName) . "</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-calendar-alt"></i><span class="m-menu__link-text">' . Yii::t('words', 'Clinic Program') . '</span>',
+                'items' => [
+                    ['label' => Yii::t('words', 'Manage Days'), 'url' => ['/clinic/index']],
+                    ['label' => Yii::t('words', 'Create New Day'), 'url' => ['/clinic/create']],
+                ],
+                'visible' => $permissions === true or isset($permissions['clinic'])
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-bars"></i><span class="m-menu__link-text">' . Yii::t('words', 'Menus') . '</span>',
+                'url' => ['/menu/index'],
+                'visible' => $permissions === true or isset($permissions['menu'])
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . Yii::t('words', 'Items') . '</span>',
+                'items' => [
+                    ['label' => Yii::t('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions === true or isset($permissions['items']['slide'])],
+                    ['label' => Yii::t('words', 'Online Services'), 'url' => ['/online/index'], 'visible' => $permissions === true or isset($permissions['items']['online'])],
+                    ['label' => Yii::t('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions === true or isset($permissions['items']['page'])],
+                    ['label' => Yii::t('words', 'People'), 'url' => ['/person/index'], 'visible' => $permissions === true or isset($permissions['items']['person'])],
+                    ['label' => Yii::t('words', 'Posts'), 'url' => ['/post/index'], 'visible' => $permissions === true or isset($permissions['items']['post'])],
+                    ['label' => Yii::t('words', 'Insurances'), 'url' => ['/insurance/index'], 'visible' => $permissions === true or isset($permissions['items']['insurance'])],
+                ],
+                'visible' => $permissions === true or isset($permissions['items'])
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-images"></i><span class="m-menu__link-text">' . Yii::t('words', 'Gallery') . '</span>',
+                'items' => [
+                    ['label' => Yii::t('words', 'Picture Gallery'), 'url' => ['/gallery/index'], 'visible' => $permissions === true or isset($permissions['gallery']['picture'])],
+                    ['label' => Yii::t('words', 'Video Gallery'), 'url' => ['/gallery/index-video'], 'visible' => $permissions === true or isset($permissions['gallery']['video'])],
+                ],
+                'visible' => $permissions === true or isset($permissions['gallery'])
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-th"></i><span class="m-menu__link-text">' . Yii::t('words', 'Categories') . '</span>',
+                'url' => ['/category/index'],
+                'visible' => $permissions === true or isset($permissions['category'])
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . Yii::t('words', 'Messages') . '</span>',
+                'items' => [
+                    ['label' => Yii::t('words', 'Messages'), 'url' => ['/message/index']],
+                    ['label' => Yii::t('words', 'Departments'), 'url' => ['/message/department']],
+                ],
+                'visible' => $permissions === true or isset($permissions['message'])
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">کاربران</span>',
+                'items' => [
+                    ['label' => 'مدیریت کاربران', 'url' => ['/user/index']],
+                    ['label' => 'افزودن کاربر', 'url' => ['/user/create']],
+                    ['label' => 'مدیریت نقش های کاربری', 'url' => ['/role/index'], 'visible' => $permissions === true or isset($permissions['user']['role'])],
+                ],
+                'visible' => $permissions === true or isset($permissions['user'])
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-cogs"></i><span class="m-menu__link-text">' . Yii::t('words', 'Setting') . '</span>',
+                'url' => ['/setting/index'],
+                'visible' => $permissions === true or isset($permissions['setting'])
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon flaticon-logout"></i><span class="m-menu__link-text text-danger">' . Yii::t('words', 'Logout') . '</span>',
+                'url' => ['/admin/logout'],
+                'visible' => !Yii::$app->user->isGuest
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon flaticon-imac"></i><span class="m-menu__link-text">'.Yii::t('words','Login').'</span>',
+                'url' => ['/admin/login'],
+                'visible' => !$permissions
+            ]
         ];
-        return isset($menu[$roleID]) ? $menu[$roleID] : $menu['guest'];
     }
 }
 

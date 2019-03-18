@@ -12,7 +12,7 @@ class AdminController extends AuthController
 {
     public function getSystemActions()
     {
-        return ['index', 'login', 'captcha'];
+        return ['index', 'login', 'captcha', 'logout'];
     }
 
     public function actions()
@@ -39,7 +39,6 @@ class AdminController extends AuthController
     {
         if(Yii::$app->user->isGuest || Yii::$app->user->identity->roleID == 'user')
             return $this->redirect(['login']);
-
         return $this->render('index');
     }
 
@@ -64,6 +63,7 @@ class AdminController extends AuthController
         }
 
         $model->password = '';
+
         return $this->render('login', [
             'model' => $model,
         ]);

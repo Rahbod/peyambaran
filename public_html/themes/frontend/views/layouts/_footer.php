@@ -58,7 +58,7 @@ $contactModel = new \app\models\ContactForm();
                         <div class="form-row">
                             <?= $form->field($contactModel, 'tel')->textInput(['placeholder' => '09xxxxxxxx']) ?>
 
-                            <?= $form->field($contactModel, 'body', ['options' => ['class' => 'col-lg-8 col-md-8 col-sm-8 col-xs-12']])->textInput(['placeholder' => '09xxxxxxxx']) ?>
+                            <?= $form->field($contactModel, 'body', ['options' => ['class' => 'col-lg-8 col-md-8 col-sm-8 col-xs-12']])->textInput() ?>
 
                         </div>
                         <div class="form-row last">

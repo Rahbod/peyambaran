@@ -14,10 +14,10 @@ use app\models\ContactForm;
 use app\models\Department;
 use app\models\Message;
 
-$this->title = Yii::t('words', 'Contact us');
+$this->title = Yii::t('words', 'Complaints');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<section class="contactUsPage">
+<section class="register forgotPassword">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 ">

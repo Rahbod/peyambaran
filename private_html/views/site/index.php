@@ -32,37 +32,39 @@ use app\models\OnlineService;
 </section>
 
 <!--Online Services-->
-<section class="texture-bg circle-texture">
-    <div class="container">
-        <div class="row online-services-container">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right">
-                <div class="online-services-icon"></div>
-                <h3 class="section-title"><?= Yii::t('words', 'Online Services') ?></h3>
-                <p class="title-description"><?= Yii::t('words', 'Payambaran hospital') ?></p>
-            </div>
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 text-right">
-                <?php foreach ($onlineServices as $onlineService): ?>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 online-item">
-                        <div class="online-item-inner">
-                            <a href="<?= $onlineService->url ?>">
-                                <div class="item-image">
-                                    <div class="item-image-circle">
-                                        <div class="clock-icon online-services-icons"></div>
-                                        <div class="clock-icon-white -hover-show"></div>
+<?php if ($onlineServices): ?>
+    <section class="texture-bg circle-texture">
+        <div class="container">
+            <div class="row online-services-container">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right">
+                    <div class="online-services-icon"></div>
+                    <h3 class="section-title"><?= Yii::t('words', 'Online Services') ?></h3>
+                    <p class="title-description"><?= Yii::t('words', 'Payambaran hospital') ?></p>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 text-right">
+                    <?php foreach ($onlineServices as $onlineService): ?>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 online-item">
+                            <div class="online-item-inner">
+                                <a href="<?= $onlineService->url ?>">
+                                    <div class="item-image">
+                                        <div class="item-image-circle">
+                                            <div class="clock-icon online-services-icons"></div>
+                                            <div class="clock-icon-white -hover-show"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="item-details">
-                                    <h4 class="item-title"><?= $onlineService->name ?></h4>
-                                    <p class="item-description"><?= nl2br($onlineService->short_description) ?></p>
-                                </div>
-                            </a>
+                                    <div class="item-details">
+                                        <h4 class="item-title"><?= $onlineService->name ?></h4>
+                                        <p class="item-description"><?= nl2br($onlineService->short_description) ?></p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 <!--End  Online Services-->
 
 <!--Insurance-->
@@ -99,7 +101,8 @@ use app\models\OnlineService;
                                                 <img class="grayscale"
                                                      src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
                                             </div>
-                                            <h5 class="with-image" title="<?= Html::encode($item->name) ?>" ><?= $item->name ?></h5>
+                                            <h5 class="with-image"
+                                                title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
                                         <?php else: ?>
                                             <h5 title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
                                         <?php endif; ?>
@@ -118,7 +121,8 @@ use app\models\OnlineService;
                                                 <img class="grayscale"
                                                      src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
                                             </div>
-                                            <h5 class="with-image" title="<?= Html::encode($item->name) ?>" ><?= $item->name ?></h5>
+                                            <h5 class="with-image"
+                                                title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
                                         <?php else: ?>
                                             <h5 title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
                                         <?php endif; ?>

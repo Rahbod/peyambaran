@@ -53,6 +53,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'name',
                         [
+                            'attribute' => 'type',
+                            'value' => function ($model) {
+                                return $model->getTypeLabel();
+                            }
+                        ],
+                        [
                             'attribute' => 'status',
                             'value' => function($model){
                                 return \app\models\Page::getStatusLabels($model->status);
