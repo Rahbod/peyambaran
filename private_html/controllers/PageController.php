@@ -25,11 +25,11 @@ class PageController extends AuthController
 {
     public $imageDir = 'uploads/pages';
     private $imageOptions = [];
-    private $galleryOptions= ['thumbnail' => ['width' => 200, 'height' => 200]];
+    private $galleryOptions = ['thumbnail' => ['width' => 200, 'height' => 200]];
 
     /**
-    * for set admin theme
-    */
+     * for set admin theme
+     */
     public function init()
     {
         $this->setTheme('default');
@@ -154,7 +154,7 @@ class PageController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
             $gallery = new UploadedFiles($this->tmpDir, $model->gallery, $this->galleryOptions);
@@ -162,8 +162,8 @@ class PageController extends AuthController
                 $image->move($this->imageDir);
                 $gallery->move(Attachment::getAttachmentPath());
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(isset($_GET['return'])?$_GET['return']:['view', 'id' => $model->id]);
-            }else
+                return $this->redirect(isset($_GET['return']) ? $_GET['return'] : ['view', 'id' => $model->id]);
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -192,7 +192,7 @@ class PageController extends AuthController
         $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
         $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, $this->galleryOptions);
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $oldImage = $model->image;
             $oldGallery = ArrayHelper::map($model->gallery, 'id', 'file');
             $model->load(Yii::$app->request->post());
@@ -201,7 +201,7 @@ class PageController extends AuthController
                 $gallery->updateAll($oldGallery, $model->gallery, $this->tmpDir, Attachment::getAttachmentRelativePath());
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 

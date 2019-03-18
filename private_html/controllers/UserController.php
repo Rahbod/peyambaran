@@ -7,6 +7,8 @@ use app\components\customWidgets\CustomCaptchaAction;
 use app\models\LoginForm;
 use app\models\UGroup;
 use app\models\UserSearch;
+use devgroup\dropzone\RemoveAction;
+use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
 use app\models\User;
@@ -77,13 +79,19 @@ class UserController extends AuthController
             ],
             // declares "error" action using a class name
             'upload-image' => [
-                'class' => 'devgroup\dropzone\UploadAction',
-                'upload' => $this->avatarPath,
-                'fileName' => Html::getInputName(new User(), 'image')
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new User(), 'image'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
             ],
             'delete-image' => [
-                'class' => 'devgroup\dropzone\RemoveAction',
-                'upload' => $this->avatarPath,
+                'class' => RemoveAction::className(),
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new User(),
+                'attribute' => 'image',
+                'upload' => $this->avatarPath
             ],
         ];
     }
@@ -156,7 +164,7 @@ class UserController extends AuthController
         $model = $this->findModel($id);
         $model->groups = ArrayHelper::map($model->ugroups, 'id', 'name');
 
-        $storedFiles = new UploadedFiles($this->avatarPath, [$model->image]);
+        $storedFiles = new UploadedFiles($this->avatarPath, $model->image);
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -170,10 +178,10 @@ class UserController extends AuthController
             $oldImage = $model->image;
             // load post values in model
             $model->load(Yii::$app->request->post());
-            // check image changed or not and update stored files object
-            $model->image = $storedFiles->update($oldImage, $model->image);
 
             if ($model->save()) {
+                $storedFiles->update($oldImage, $model->image, $this->tmpDir);
+
                 $auth = Yii::$app->authManager;
                 if ($oldRole != $model->roleID) {
                     $auth->revoke($auth->getRole($oldRole), $model->id);

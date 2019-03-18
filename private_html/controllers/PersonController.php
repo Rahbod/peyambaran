@@ -60,7 +60,8 @@ class PersonController extends AuthController
         return [
             'upload-avatar',
             'delete-avatar',
-            'show'
+            'show',
+            'list'
         ];
     }
 
