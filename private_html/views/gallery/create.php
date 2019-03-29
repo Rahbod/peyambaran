@@ -26,6 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <!--begin::Form-->
     <?= $this->render('_form', [
         'model' => $model,
+        'thumb' => $thumb?:[],
+        'fullImage' => $fullImage?:[],
     ]) ?>
     <!--end::Form-->
 </div>

@@ -58,7 +58,8 @@ $expertiseID = Yii::$app->request->getQueryParam('expertise')?:0;
                     <div class="panel-group" id="accordion">
                         <?php echo \yii\widgets\ListView::widget([
                             'dataProvider' => $dataProvider,
-                            'itemView' => '_item_view'
+                            'itemView' => '_item_view',
+                            'layout' => '{items}'
                         ]); ?>
                     </div>
                 </div>

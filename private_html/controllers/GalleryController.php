@@ -194,6 +194,8 @@ class GalleryController extends AuthController
 
         return $this->render('create', [
             'model' => $model,
+            'thumb' => $thumb?:[],
+            'fullImage' => $fullImage?:[],
         ]);
     }
 

@@ -252,8 +252,8 @@ class Category extends MultiLangActiveRecord
         $name = $this->name;
         $parent = $this->getParent()->one();
         while ($parent) {
-            $name .= "$parent->name/$name";
-            $parent = $this->getParent();
+            $name = "$parent->name/$name";
+            $parent = $parent->getParent()->one();
         }
         return $name;
     }

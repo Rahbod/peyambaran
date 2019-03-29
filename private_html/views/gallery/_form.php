@@ -18,10 +18,13 @@ use \yii\helpers\Url;
 ]); ?>
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+        <?php
+        echo $form->errorSummary($model)
+        ?>
         <?php echo $form->field($model, 'thumbnail_image')->widget(\devgroup\dropzone\DropZone::className(), [
             'url' => Url::to(['upload-thumb']),
             'removeUrl' => Url::to(['delete-thumb']),
-            'storedFiles' => isset($image) ? $image : [],
+            'storedFiles' => isset($thumb) ? $thumb: [],
             'sortable' => false, // sortable flag
             'sortableOptions' => [], // sortable options
             'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'thumbnail_image')],
@@ -36,12 +39,12 @@ use \yii\helpers\Url;
                 'maxFiles' => 1,
                 'maxFileSize' => 0.2,
             ],
-        ])->hint('270x190 pixel') ?>
+        ])->hint('160x90 pixel') ?>
 
         <?php echo $form->field($model, 'full_image')->widget(\devgroup\dropzone\DropZone::className(), [
             'url' => Url::to(['upload-full-image']),
             'removeUrl' => Url::to(['delete-full-image']),
-            'storedFiles' => isset($image) ? $image : [],
+            'storedFiles' => isset($fullImage) ? $fullImage: [],
             'sortable' => false, // sortable flag
             'sortableOptions' => [], // sortable options
             'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'full_image')],
