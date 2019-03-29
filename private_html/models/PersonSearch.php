@@ -51,6 +51,9 @@ class PersonSearch extends Person
 
         $this->load($params);
 
+        if($expertiseID = \Yii::$app->request->getQueryParam('expertise'))
+            $this->expertise = $expertiseID;
+
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
@@ -64,12 +67,15 @@ class PersonSearch extends Person
             'modelID' => $this->modelID,
             'type' => $this->type,
             'status' => $this->status,
+            self::columnGetString('expertise') => $this->expertise
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'dyna', $this->dyna])
             ->andFilterWhere(['like', 'extra', $this->extra])
             ->andFilterWhere(['like', 'created', $this->created]);
+
+        $query->orderBy(['name' => SORT_ASC]);
 
         return $dataProvider;
     }

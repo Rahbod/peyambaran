@@ -109,6 +109,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
             [['nationalCode'], 'string', 'max' => 10],
             [['phone'], 'string', 'min' => 11, 'max' => 11],
             [['username'], 'unique'],
+            [['email'], 'email'],
             [['roleID'], 'exist', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['roleID' => 'name']],
 
             [['name', 'nationalCode', 'phone'], 'required', 'on' => 'register'],
@@ -307,8 +308,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
     {
         $query = self::find()
             ->orderBy(['id' => SORT_DESC])
-            ->where('username != "guest"')
-            ->andWhere(['status' => self::STATUS_ENABLE]);
+            ->where('username != "guest"');
 
         if ($withSuper)
             return $query;
