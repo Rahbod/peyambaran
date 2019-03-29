@@ -1266,6 +1266,19 @@ section .title-description {
     border-radius: 10px;
 }
 
+.gallery-item .item-image img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    display: inline-block;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
 .gallery-item .item-details {
     display: inline-block;
     overflow: hidden;
