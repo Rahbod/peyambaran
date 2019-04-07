@@ -36,7 +36,8 @@ class PersonProgramRel extends CustomActiveRecord
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['dayID', 'personID', 'start_time', 'end_time'], 'required'],
+            [['personID', 'start_time', 'end_time'], 'required'],
+//            [['dayID'], 'required', 'except' => 'ajax'],
             [['dayID', 'personID', 'alternative_personID'], 'integer'],
             [['start_time', 'end_time'], 'safe'],
             [['description'], 'string', 'max' => 1024],

@@ -155,26 +155,41 @@ $this->registerJs('
 
     <div class="modal fade" id="add-doctor" rel="dialog">
         <div class="modal-dialog">
+            <?php
+            $relModel = new \app\models\PersonProgramRel();
+            $doctorForm = CustomActiveForm::begin([
+                'id' => 'add-doctor-form',
+                'action' => ['add-doctor'],
+                'enableAjaxValidation' => true,
+                'enableClientValidation' => true,
+                'validateOnSubmit' => true,
+            ]);
+            echo $doctorForm->field($relModel, 'dayID', ['value' => $model->isNewRecord?null:$dayID]);
+            ?>
             <div class="modal-content">
                 <div class="modal-header">
                     <h3><?= Yii::t('words', 'Add Doctor') ?></h3>
                 </div>
                 <div class="modal-body">
-                    <?php
-                    $relModel = new \app\models\PersonProgramRel();
-                    $doctorForm = CustomActiveForm::begin([
-                        'id' => 'add-doctor-form',
-                        'action' => ['add-doctor'],
-                        'enableAjaxValidation' => true,
-                        'enableClientValidation' => true,
-                        'validateOnSubmit' => true,
-                    ]); ?>
+                    <?= $doctorForm->field($relModel, 'personID')->dropDownList(\yii\helpers\ArrayHelper::map(Person::find()->valid()->all(), 'id', 'name'))->label(Yii::t('words', 'Doctor Name')) ?>
 
-                    <?php echo $form->field($relModel, 'personID')->dropDownList(\yii\helpers\ArrayHelper::map(Person::find()->valid()->all(), 'id', 'name')) ?>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <?= $doctorForm->field($relModel, 'start_time')->textInput() ?>
+                        </div>
+                        <div class="col-sm-6">
+                            <?= $doctorForm->field($relModel, 'end_time')->textInput() ?>
+                        </div>
+                    </div>
 
-                    <?php CustomActiveForm::end(); ?>
+                    <?= $doctorForm->field($relModel, 'description')->textarea(['rows' => 3]) ?>
+                </div>
+                <div class="modal-footer">
+                    <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
+                    <button type="reset" class="btn btn-secondary" data-dismiss="modal"><?= Yii::t('words', 'Cancel') ?></button>
                 </div>
             </div>
+            <?php CustomActiveForm::end(); ?>
         </div>
     </div>
 
