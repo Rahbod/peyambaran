@@ -22,6 +22,7 @@ use app\components\CustomActiveRecord;
  */
 class PersonProgramRel extends CustomActiveRecord
 {
+    public $doctor_name;
     /**
      * {@inheritdoc}
      */
@@ -39,7 +40,7 @@ class PersonProgramRel extends CustomActiveRecord
             [['personID', 'start_time', 'end_time'], 'required'],
 //            [['dayID'], 'required', 'except' => 'ajax'],
             [['dayID', 'personID', 'alternative_personID'], 'integer'],
-            [['start_time', 'end_time'], 'safe'],
+            [['start_time', 'end_time', 'doctor_name'], 'safe'],
             [['description'], 'string', 'max' => 1024],
             [['dayID'], 'exist', 'skipOnError' => true, 'targetClass' => ClinicProgram::className(), 'targetAttribute' => ['dayID' => 'id']],
             [['personID'], 'exist', 'skipOnError' => true, 'targetClass' => Item::className(), 'targetAttribute' => ['personID' => 'id']],

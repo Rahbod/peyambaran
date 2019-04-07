@@ -80,7 +80,7 @@ class ClinicController extends AuthController
 
         $clinicSearchModel = new ClinicProgramView();
         $dataProvider = $clinicSearchModel->search(Yii::$app->request->queryParams);
-
+        $dataProvider->pagination= false;
         return $this->render('show', [
             'dataProvider' => $dataProvider,
         ]);
@@ -127,7 +127,7 @@ class ClinicController extends AuthController
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['create']);
+                return $this->redirect($copy?['update', 'id' => $model->id]:['create']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -158,7 +158,7 @@ class ClinicController extends AuthController
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['index']);
+                return $this->refresh();
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -202,35 +202,26 @@ class ClinicController extends AuthController
     public function actionAddDoctor()
     {
         $model = new PersonProgramRel();
-        $dayID = Yii::$app->request->getBodyParam('dayID');
+        $model->load(Yii::$app->request->post());
 
-        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
-            $model->setScenario('ajax');
-            $model->load(Yii::$app->request->post());
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-
-        if ($dayID)
-            $model->dayID = $dayID;
-        else {
+        $dayID = $model->dayID;
+        if (!$dayID) {
             $cmodel = new ClinicProgram();
             $cmodel->date = $cmodel->getLastDay();
+            $cmodel->is_holiday = 0;
             if ($cmodel->save())
                 $model->dayID = $cmodel->id;
             else {
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
-                return $this->goBack();
+                return $this->redirect(['create']);
             }
         }
 
-        if (Yii::$app->request->post()) {
-            $model->load(Yii::$app->request->post());
-            if ($model->save()) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['create']);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
-        }
+        if ($model->save())
+            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+        else
+            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+
+        return $this->redirect(['update', 'id' => $model->dayID]);
     }
 }

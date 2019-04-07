@@ -31,6 +31,8 @@ AppAsset::register($this);
         });
     </script>
 
+    <?php $this->registerAssetBundle(yii\web\JqueryAsset::className(), \yii\web\View::POS_HEAD); ?>
+
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css', [], 'fullcalendar'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/base/fontiran.css', [], 'fontiran'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/base/flag-icon.css', [], 'flag-icon'); ?>
@@ -38,12 +40,14 @@ AppAsset::register($this);
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/custom/datatables/datatables.bundle.rtl.css', [], 'datatables'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/custom/fullcalendar/fullcalendar.bundle.rtl.css', [], 'full-calendar'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/demo/default/base/style.bundle.rtl.css', [], 'style'); ?>
+    <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/base/selectize.bootstrap3.css', [], 'selectize-css'); ?>
 
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/vendors/base/vendors.bundle.js', [], 'vendors'); ?>
-    <?php $this->registerJsFile($this->theme->baseUrl . '/assets/app/js/bootstrap.min.js', ['depends' => [JqueryAsset::className()]], 'bootstrap'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/demo/default/base/scripts.bundle.js', [], 'scripts'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js', [], 'full-calendar'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/app/js/dashboard.js', [], 'dashboard'); ?>
+
+    <?php $this->registerJsFile($this->theme->baseUrl . '/assets/vendors/base/selectize.js', [], 'selectize'); ?>
     <?php $this->head();?>
 </head>
 

@@ -106,7 +106,7 @@ class ClinicProgram extends DynamicActiveRecord
             if (!$this->isNewRecord)
                 PersonProgramRel::deleteAll(['dayID' => $this->id]);
             // save news
-            foreach ($this->doctors as $id => $doctor) {
+            foreach ($this->doctors as $relID => $doctor) {
                 if (!isset($doctor['personID']))
                     continue;
 
@@ -118,7 +118,7 @@ class ClinicProgram extends DynamicActiveRecord
                 $model->description = $doctor['description'];
                 $model->alternative_personID = $doctor['alternative_personID'];
                 if (@$model->save())
-                    unset($this->doctors[$id]);
+                    unset($this->doctors[$relID]);
                 else
                     $this->addErrors($model->errors);
             }

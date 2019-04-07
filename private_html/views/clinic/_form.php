@@ -3,18 +3,27 @@
 use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
 use app\models\Person;
+use yii\helpers\ArrayHelper;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ClinicProgram */
 /* @var $form app\components\customWidgets\CustomActiveForm */
 
+$filterModel = new \app\models\PersonProgramRel();
+
 $dayID = $model->isNewRecord ? (Yii::$app->request->getQueryParam('copy') ?: false) : $model->id;
 $cmodel = \app\models\ClinicProgram::findOne($dayID);
-$ids = \yii\helpers\ArrayHelper::getColumn($cmodel->personsRel, 'personID');
+$ids = $cmodel && $cmodel->personsRel ? \yii\helpers\ArrayHelper::getColumn($cmodel->personsRel, 'personID') : [];
 
-$searchModel = new \app\models\PersonSearch();
-$searchModel->type = Person::TYPE_DOCTOR;
-$dataProvider = $searchModel->search(Yii::$app->request->queryParams, $ids);
+
+$query = \app\models\PersonProgramRel::find();
+$query->andFilterWhere(['dayID' => $dayID])
+    ->orderBy(['start_time' => SORT_ASC]);
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+    'pagination' => false
+]);
 
 $this->registerJs('
     $("body").on("change", "#copy-day", function(){
@@ -70,30 +79,38 @@ $this->registerJs('
             <div class="container-fluid">
                 <div class="container-fluid">
                     <h5><?= Yii::t('words', 'Doctors') ?>
-                        <button type="button" data-toggle="modal" data-target="#add-doctor"
-                                class="btn btn-sm btn-primary"><?= Yii::t('words', 'Add Doctor') ?></button>
+                        <?php if (!isset($_GET['copy'])): ?>
+                            <button type="button" data-toggle="modal" data-target="#add-doctor"
+                                    class="btn btn-sm btn-primary"><?= Yii::t('words', 'Add Doctor') ?></button>
+                        <?php else: ?>
+                            <p>
+                                <small class="text-warning">پس از ویرایش لیست زیر و ذخیره میتوانید پزشک جدید اضافه
+                                    کنید
+                                </small>
+                            </p>
+                        <?php endif; ?>
                     </h5>
-                    <?= \yii\grid\GridView::widget([
+                    <? /*\yii\grid\GridView::widget([
                         'dataProvider' => $dataProvider,
                         'layout' => '{items}',
                         'columns' => [
-//                            [
-//                                'class' => \app\components\customWidgets\CustomCheckboxColumn::className(),
-//                                'header' => Yii::t('words', 'Presence Status'),
-//                                'checkboxOptions' => function ($model, $key, $index, $column) use ($dayID) {
-//                                    $checked = false;
-//                                    if ($dayID) {
-//                                        $rel = $model->getProgramRel($dayID);
-//                                        $checked = !is_null($rel);
-//                                    }
-//                                    return [
-//                                        'name' => "ClinicProgram[doctors][{$model->id}][personID]",
-//                                        'value' => $model->personID,
-//                                        'checked' => $checked
-//                                    ];
-//                                },
-//                                'options' => ['width' => '5%']
-//                            ],
+                            [
+                                'class' => \app\components\customWidgets\CustomCheckboxColumn::className(),
+                                'header' => Yii::t('words', 'Presence Status'),
+                                'checkboxOptions' => function ($model, $key, $index, $column) use ($dayID) {
+                                    $checked = false;
+                                    if ($dayID) {
+                                        $rel = $model->getProgramRel($dayID);
+                                        $checked = !is_null($rel);
+                                    }
+                                    return [
+                                        'name' => "ClinicProgram[doctors][{$model->id}][personID]",
+                                        'value' => $model->personID,
+                                        'checked' => $checked
+                                    ];
+                                },
+                                'options' => ['width' => '5%']
+                            ],
                             [
                                 'attribute' => 'name',
                                 'header' => Yii::t('words', 'Doctor Name'),
@@ -138,6 +155,62 @@ $this->registerJs('
                                 'format' => 'raw'
                             ]
                         ],
+                    ]);*/ ?>
+
+                    <div class="row mt-5 mb-3">
+                        <div class="col-sm-2">
+                            <label class="col-form-label control-label">جستجوی نام پزشک:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <?= Html::textInput('doctor_name','', ['class' => 'form-control m-input m-input--solid', 'id' => 'doctor-filter']) ?>
+                        </div>
+                    </div>
+
+                    <?= \yii\grid\GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'layout' => '{items}',
+                        'columns' => [
+                            [
+                                'class' => \app\components\customWidgets\CustomCheckboxColumn::className(),
+                                'header' => Yii::t('words', 'Presence Status'),
+                                'checkboxOptions' => function ($model, $key, $index, $column) {
+                                    return [
+                                        'name' => "ClinicProgram[doctors][{$model->id}][personID]",
+                                        'value' => $model->personID,
+                                        'checked' => true
+                                    ];
+                                },
+                                'options' => ['width' => '5%']
+                            ],
+                            [
+                                'attribute' => 'personID',
+                                'header' => Yii::t('words', 'Doctor Name'),
+                                'value' => function ($model) {
+                                    return $model->person->name;
+                                }
+                            ],
+                            [
+                                'header' => Yii::t('words', 'Start Time'),
+                                'value' => function ($model){
+                                    return Html::textInput("ClinicProgram[doctors][{$model->id}][start_time]", $model->start_time, ['class' => 'form-control m-input m-input--air']);
+                                },
+                                'format' => 'raw'
+                            ],
+                            [
+                                'header' => Yii::t('words', 'End Time'),
+                                'value' => function ($model){
+                                    return Html::textInput("ClinicProgram[doctors][{$model->id}][end_time]", $model->end_time, ['class' => 'form-control m-input m-input--air']);
+                                },
+                                'format' => 'raw'
+                            ],
+                            [
+                                'header' => Yii::t('words', 'Description'),
+                                'value' => function ($model){
+                                    return Html::textInput("ClinicProgram[doctors][{$model->id}][description]", $model->description, ['class' => 'form-control m-input m-input--air']);
+                                },
+                                'format' => 'raw'
+                            ]
+                        ],
                     ]); ?>
                 </div>
             </div>
@@ -157,21 +230,23 @@ $this->registerJs('
         <div class="modal-dialog">
             <?php
             $relModel = new \app\models\PersonProgramRel();
+            $relModel->dayID = $model->isNewRecord ? null : $dayID;
             $doctorForm = CustomActiveForm::begin([
                 'id' => 'add-doctor-form',
                 'action' => ['add-doctor'],
-                'enableAjaxValidation' => true,
+                'enableAjaxValidation' => false,
                 'enableClientValidation' => true,
                 'validateOnSubmit' => true,
             ]);
-            echo $doctorForm->field($relModel, 'dayID', ['value' => $model->isNewRecord?null:$dayID]);
+            echo $doctorForm->field($relModel, 'dayID')->hiddenInput()->label(false);
             ?>
             <div class="modal-content">
                 <div class="modal-header">
                     <h3><?= Yii::t('words', 'Add Doctor') ?></h3>
                 </div>
                 <div class="modal-body">
-                    <?= $doctorForm->field($relModel, 'personID')->dropDownList(\yii\helpers\ArrayHelper::map(Person::find()->valid()->all(), 'id', 'name'))->label(Yii::t('words', 'Doctor Name')) ?>
+                    <?= $doctorForm->field($relModel, 'personID')->dropDownList(ArrayHelper::map(Person::find()->valid()->all(), 'id', 'name'), ['prompt' => 'نام پزشک را تایپ کنید...'])
+                        ->label(Yii::t('words', 'Doctor Name')) ?>
 
                     <div class="row">
                         <div class="col-sm-6">
@@ -186,7 +261,8 @@ $this->registerJs('
                 </div>
                 <div class="modal-footer">
                     <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-                    <button type="reset" class="btn btn-secondary" data-dismiss="modal"><?= Yii::t('words', 'Cancel') ?></button>
+                    <button type="reset" class="btn btn-secondary"
+                            data-dismiss="modal"><?= Yii::t('words', 'Cancel') ?></button>
                 </div>
             </div>
             <?php CustomActiveForm::end(); ?>
@@ -203,5 +279,20 @@ $this->registerJs('
             $(".content-box").show();
         else
             $(".content-box").hide();
+    }).on("keyup", "#doctor-filter", function(e){
+        e.preventDefault();
+        var $table = $(".grid-view").find(\'table\');
+        var rex = new RegExp($(this).val(), \'i\');
+        $table.find(\'tbody tr\').hide();
+        $table.find(\'tbody tr\').filter(function() {
+            return rex.test($(this).text());
+        }).show();
+        if ( $table.find(\'tbody tr:visible\').length === 0 ) {
+            $table.find(\'tbody\').next(\'tfoot\').show();
+        } else {
+            $table.find(\'tbody\').next(\'tfoot\').hide();
+        }
     });
+    
+    $("select").selectize();
 ', \yii\web\View::POS_READY, 'content-trigger');
