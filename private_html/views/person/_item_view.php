@@ -11,13 +11,13 @@
                         <a data-toggle="collapse" data-parent="#accordion"
                            href="#collapse-<?= $model->id ?>">
                             <img class="panel-title__doctorAvatar"
-                                 src="<?= Yii::getAlias('@web/uploads/person/').$model->avatar ?>" alt="">
+                                 src="<?= Yii::getAlias('@web/uploads/person/') . $model->avatar ?>" alt="">
                             <h4 class="panel-title__doctorName"><?= $model->name ?></h4>
                             <p class="panel-title__doctorExpertise">
-                                <?= $model->getExpertiseLabel()->name ?>
+                                <?= $model->getExpertiseLabel() ? $model->getExpertiseLabel()->name : '-' ?>
                             </p>
                             <div class="panel-title__more">
-                                <img src="<?= $this->theme->baseUrl.'/images/doctors/more-info.png' ?>" alt="">
+                                <img src="<?= $this->theme->baseUrl . '/images/doctors/more-info.png' ?>" alt="">
                                 <?= Yii::t('words', 'more information') ?>
                             </div>
                         </a>
@@ -28,16 +28,18 @@
                 </div>
                 <div class="col-lg-4">
                     <?php foreach ($model->getVisitDays() as $day):
-                        $rel = $day->getPersonsRel()->andWhere(['personID' => $model->id])->one();
-                        ?>
-                        <div class="panel-title__doctorTimes">
-                            <span><i class="icomoon-success ml-2" style="margin-bottom: -5px;"></i><?= jDateTime::date('l', $day->date) ?></span>
-                            <span><?= Yii::t('words', 'show_time', [
-                                    'start_time' => $rel->start_time,
-                                    'end_time' => $rel->end_time,
-                                ]) ?></span>
-                        </div>
-                    <?php endforeach;?>
+                        $rels = $day->getPersonsRel()->andWhere(['personID' => $model->id])->all();
+                        foreach ($rels as $rel):
+                            ?>
+                            <div class="panel-title__doctorTimes">
+                                <span><i class="icomoon-success ml-2"
+                                         style="margin-bottom: -5px;"></i><?= jDateTime::date('l', $day->date) ?></span>
+                                <span><?= Yii::t('words', 'show_time', [
+                                        'start_time' => $rel->start_time,
+                                        'end_time' => $rel->end_time,
+                                    ]) ?></span>
+                            </div>
+                        <?php endforeach;endforeach; ?>
                 </div>
             </div>
         </div>

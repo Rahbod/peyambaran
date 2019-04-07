@@ -41,7 +41,7 @@ $expertiseID = Yii::$app->request->getQueryParam('expertise') ?: 0;
                                        href="<?= $url ?>"><?= $item->name ?></a>
                                 <?php endif; ?>
                             </li>
-                        <?php endforeach; ?>
+                        <?php endforeach;?>
                     </ul>
                 </nav>
             </div>

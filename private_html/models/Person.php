@@ -133,8 +133,10 @@ class Person extends Item
         $aweek = $now + $until * 24 * 60 * 60;
 
         return ClinicProgram::find()
+            ->alias('t')
+            ->select(['t.*'])
             ->innerJoinWith('personsRel')
-            ->andWhere(['person_program_rel.personID' => $this->id])
+            ->andWhere(['person_program_rel_.personID' => $this->id])
             ->andWhere(['>=', 'date', $now])
             ->andWhere(['<=', 'date', $aweek])
             ->all();

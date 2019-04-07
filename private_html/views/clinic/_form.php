@@ -87,6 +87,7 @@ $this->registerJs('
                                 <small class="text-warning">پس از ویرایش لیست زیر و ذخیره میتوانید پزشک جدید اضافه
                                     کنید
                                 </small>
+                                <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success btn-sm']) ?>
                             </p>
                         <?php endif; ?>
                     </h5>
