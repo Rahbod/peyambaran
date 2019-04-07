@@ -8,12 +8,13 @@ use app\models\Person;
 /* @var $model app\models\ClinicProgram */
 /* @var $form app\components\customWidgets\CustomActiveForm */
 
+$dayID = $model->isNewRecord ? (Yii::$app->request->getQueryParam('copy') ?: false) : $model->id;
+$cmodel = \app\models\ClinicProgram::findOne($dayID);
+$ids = \yii\helpers\ArrayHelper::getColumn($cmodel->personsRel, 'personID');
+
 $searchModel = new \app\models\PersonSearch();
 $searchModel->type = Person::TYPE_DOCTOR;
-$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-$dataProvider->pagination=false;
-$dayID = $model->isNewRecord ? (Yii::$app->request->getQueryParam('copy')?:false) : $model->id;
-
+$dataProvider = $searchModel->search(Yii::$app->request->queryParams, $ids);
 
 $this->registerJs('
     $("body").on("change", "#copy-day", function(){
@@ -47,14 +48,14 @@ $this->registerJs('
             <?php if ($model->isNewRecord): ?>
                 <div class="col-sm-4 well">
                     <div class="form-group m-form__group">
-                        <?= Html::label(Yii::t('words', 'Copy from'),'',['class'=>'col-form-label control-label']) ?>
+                        <?= Html::label(Yii::t('words', 'Copy from'), '', ['class' => 'col-form-label control-label']) ?>
                         <?= Html::dropDownList('copy', Yii::$app->request->getQueryParam('copy'), \yii\helpers\ArrayHelper::map(\app\models\ClinicProgram::find()->all(), 'id', function ($model) {
                             return jDateTime::date('l d F Y', $model->date);
                         }), [
                             'data-url' => \yii\helpers\Url::to(['create']),
                             'class' => 'form-control m-input m-input--solid',
                             'id' => 'copy-day',
-                            'prompt' => Yii::t('words','Select Day...'),
+                            'prompt' => Yii::t('words', 'Select Day...'),
                         ]) ?>
                     </div>
                 </div>
@@ -68,28 +69,31 @@ $this->registerJs('
         <div class="content-box mt-5" style="display: none">
             <div class="container-fluid">
                 <div class="container-fluid">
-                    <h5><?= Yii::t('words', 'Doctors') ?></h5>
+                    <h5><?= Yii::t('words', 'Doctors') ?>
+                        <button type="button" data-toggle="modal" data-target="#add-doctor"
+                                class="btn btn-sm btn-primary"><?= Yii::t('words', 'Add Doctor') ?></button>
+                    </h5>
                     <?= \yii\grid\GridView::widget([
                         'dataProvider' => $dataProvider,
                         'layout' => '{items}',
                         'columns' => [
-                            [
-                                'class' => \app\components\customWidgets\CustomCheckboxColumn::className(),
-                                'header' => Yii::t('words', 'Presence Status'),
-                                'checkboxOptions' => function ($model, $key, $index, $column) use ($dayID) {
-                                    $checked = false;
-                                    if ($dayID) {
-                                        $rel = $model->getProgramRel($dayID);
-                                        $checked = !is_null($rel);
-                                    }
-                                    return [
-                                        'name' => "ClinicProgram[doctors][{$model->id}][personID]",
-                                        'value' => $model->personID,
-                                        'checked' => $checked
-                                    ];
-                                },
-                                'options' => ['width' => '5%']
-                            ],
+//                            [
+//                                'class' => \app\components\customWidgets\CustomCheckboxColumn::className(),
+//                                'header' => Yii::t('words', 'Presence Status'),
+//                                'checkboxOptions' => function ($model, $key, $index, $column) use ($dayID) {
+//                                    $checked = false;
+//                                    if ($dayID) {
+//                                        $rel = $model->getProgramRel($dayID);
+//                                        $checked = !is_null($rel);
+//                                    }
+//                                    return [
+//                                        'name' => "ClinicProgram[doctors][{$model->id}][personID]",
+//                                        'value' => $model->personID,
+//                                        'checked' => $checked
+//                                    ];
+//                                },
+//                                'options' => ['width' => '5%']
+//                            ],
                             [
                                 'attribute' => 'name',
                                 'header' => Yii::t('words', 'Doctor Name'),
@@ -148,6 +152,31 @@ $this->registerJs('
     </div>
 <?php CustomActiveForm::end(); ?>
 
+
+    <div class="modal fade" id="add-doctor" rel="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><?= Yii::t('words', 'Add Doctor') ?></h3>
+                </div>
+                <div class="modal-body">
+                    <?php
+                    $relModel = new \app\models\PersonProgramRel();
+                    $doctorForm = CustomActiveForm::begin([
+                        'id' => 'add-doctor-form',
+                        'action' => ['add-doctor'],
+                        'enableAjaxValidation' => true,
+                        'enableClientValidation' => true,
+                        'validateOnSubmit' => true,
+                    ]); ?>
+
+                    <?php echo $form->field($relModel, 'personID')->dropDownList(\yii\helpers\ArrayHelper::map(Person::find()->valid()->all(), 'id', 'name')) ?>
+
+                    <?php CustomActiveForm::end(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <?php
 $this->registerJs('
