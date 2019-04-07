@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use function app\components\dd;
 use app\models\ClinicProgramView;
+use app\models\PersonProgramRel;
 use Yii;
 use app\models\ClinicProgram;
 use app\models\ClinicProgramSearch;
@@ -106,7 +107,7 @@ class ClinicController extends AuthController
     public function actionCreate()
     {
         $model = new ClinicProgram();
-        if($copy = Yii::$app->request->getQueryParam('copy')){
+        if ($copy = Yii::$app->request->getQueryParam('copy')) {
             $copyModel = ClinicProgram::findOne($copy);
             $model = clone $copyModel;
             $model->isNewRecord = true;
@@ -195,5 +196,41 @@ class ClinicController extends AuthController
         }
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+    }
+
+
+    public function actionAddDoctor()
+    {
+        $model = new PersonProgramRel();
+        $dayID = Yii::$app->request->getBodyParam('dayID');
+
+        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
+            $model->setScenario('ajax');
+            $model->load(Yii::$app->request->post());
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if ($dayID)
+            $model->dayID = $dayID;
+        else {
+            $cmodel = new ClinicProgram();
+            $cmodel->date = $cmodel->getLastDay();
+            if ($cmodel->save())
+                $model->dayID = $cmodel->id;
+            else {
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                return $this->goBack();
+            }
+        }
+
+        if (Yii::$app->request->post()) {
+            $model->load(Yii::$app->request->post());
+            if ($model->save()) {
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->redirect(['create']);
+            } else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+        }
     }
 }
