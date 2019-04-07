@@ -262,7 +262,7 @@ class UserController extends AuthController
 
     public function actionChangePassword()
     {
-        $model = User::findOne(Yii::$app->user->id);
+        $model = $this->findModel(Yii::$app->user->id);
         $model->setScenario('change-password');
 
         if (Yii::$app->request->post()) {
