@@ -29,6 +29,7 @@ use yii\helpers\ArrayHelper;
  * @property int $right
  * @property int $depth
  * @property int $tree
+ * @property string $fullName
  *
  * @property Page[] $pages
  * @property Catitem[] $catitems

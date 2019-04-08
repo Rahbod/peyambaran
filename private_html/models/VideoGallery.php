@@ -27,6 +27,7 @@ class VideoGallery extends Gallery
     public function rules()
     {
         return array_merge(parent::rules(), [
+            ['type', 'default', 'value' => self::$typeName],
             [['image', 'video'], 'required'],
         ]);
     }

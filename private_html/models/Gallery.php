@@ -63,7 +63,7 @@ class Gallery extends Item
         return array_merge(parent::rules(), [
             [['short_description'], 'required'],
             [['short_description'], 'string', 'max' => 255],
-            [['body'], 'string', 'max' => 255],
+            [['body'], 'string', 'max' => 1024],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
 //            [['catID'], 'exist', 'skipOnError' => false, 'targetClass' => Category::className(), 'targetAttribute' => ['catID' => 'id']],
         ]);

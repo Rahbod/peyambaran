@@ -223,7 +223,7 @@ use app\models\OnlineService;
                                                 <a href="#" data-toggle="tab"
                                                    data-target="#gallery-details-<?= $item->id ?>">
                                                     <div class="item-image">
-                                                        <img src="<?= Yii::getAlias('@web/uploads/gallery/thumbs/160x90/') . $item->thumbnail_image ?>"
+                                                        <img src="<?= Yii::getAlias('@web/uploads/gallery/') . $item->thumbnail_image ?>"
                                                              alt="<?= $item->name ?>">
                                                     </div>
                                                     <div class="item-details">
@@ -243,7 +243,7 @@ use app\models\OnlineService;
                                                  id="gallery-details-<?= $item->id ?>">
                                                 <div class="gallery-item-details">
                                                     <div class="item-image-big">
-                                                        <img src="<?= Yii::getAlias('@web/uploads/gallery/') . $item->full_image ?>"
+                                                        <img src="<?= Yii::getAlias('@web/uploads/gallery/thumbs/280x380/') . $item->full_image ?>"
                                                              alt="<?= $item->name ?>">
                                                     </div>
                                                     <div class="gallery-details">

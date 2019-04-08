@@ -77,7 +77,8 @@ class PostController extends AuthController
                 'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
                 'model' => new Post(),
                 'attribute' => 'image',
-                'upload' => $this->imageDir
+                'upload' => $this->imageDir,
+                'options' => $this->imageOptions
             ],
             'upload-attachment' => [
                 'class' => UploadAction::className(),
@@ -90,7 +91,8 @@ class PostController extends AuthController
                 'upload' => Attachment::$attachmentPath,
                 'storedMode' => RemoveAction::STORED_RECORD_MODE,
                 'model' => new Attachment(),
-                'attribute' => 'file'
+                'attribute' => 'file',
+                'options' => $this->galleryOptions
             ],
         ];
     }

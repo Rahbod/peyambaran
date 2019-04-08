@@ -1258,6 +1258,7 @@ section .title-description {
 }
 
 .gallery-item .item-image {
+    position: relative;
     display: block;
     overflow: hidden;
     width: 115px;
