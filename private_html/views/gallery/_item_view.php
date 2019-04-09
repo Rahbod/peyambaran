@@ -11,8 +11,8 @@
            data-transition="crossfade"
            data-thumbnail="<?= Yii::getAlias('@web/uploads/gallery/') . $model->thumbnail_image ?>"
            class="html5lightbox"
-           data-group="mygroup" data-width="600"
-           data-height="400" title="Mountain">
+           data-group="mygroup"
+           title="<?= $model->name ?>">
             <h4><?= $model->name ?></h4>
             <img src="<?= $this->theme->baseUrl ?>/images/gallery/frame.png">
         </a>

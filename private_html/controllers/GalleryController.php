@@ -50,6 +50,7 @@ class GalleryController extends AuthController
             'delete-thumb',
             'upload-full-image',
             'delete-full-image',
+            'show',
         ];
     }
 

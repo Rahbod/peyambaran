@@ -441,4 +441,5 @@ return [
     'Load more' => 'بارگذاری بیشتر',
     'Alternative Person ID' => 'پزشک جایگزین',
     'Add Doctor' => 'افزودن پزشک',
+    'Payambaran Hospital Gallery' => 'گالری بیمارستان پیامبران',
 ];

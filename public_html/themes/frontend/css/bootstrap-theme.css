@@ -2275,7 +2275,10 @@ section .title-description {
 .submitBtn {
     width: 285px;
     background: #3f8dfa;
-    /*height: 40px;*/
+    float: left;
+    display: inline-block;
+    height: 40px;
+    color: #fff;
 }
 
 .securityCode__image {

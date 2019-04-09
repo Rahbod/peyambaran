@@ -211,7 +211,7 @@ use app\models\OnlineService;
                     foreach ($galleryCategories as $category): ?>
                         <?php if (count($category->catitems) > 0): $i++; ?>
                             <div class="tab-pane fade<?= $i == 1 ? ' active in' : '' ?>"
-                                 id="gallery-category-<?= $item->id ?>">
+                                 id="gallery-category-<?= $category->id ?>">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right gallery-list-box nicescroll"
                                      data-cursorcolor="#4d82f2" data-cursorborder="none"
                                      data-railpadding='js:{"top":0,"right":-5,"bottom":0,"left":0}'

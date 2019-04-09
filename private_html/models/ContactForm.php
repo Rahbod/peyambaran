@@ -30,7 +30,7 @@ class ContactForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body', 'department_id', 'tel'], 'required'],
+            [['name', 'email', 'body', 'department_id', 'tel'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
             [['degree'], 'integer', 'max' => 10],
