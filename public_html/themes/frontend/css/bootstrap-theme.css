@@ -2309,6 +2309,7 @@ section .title-description {
     /*height: 40px !important;*/
 }
 
+
 .submitBtn:hover, .submitBtn:focus {
     background: #316fc4;
     color: #fff;
@@ -2584,7 +2585,7 @@ section .title-description {
     float: left;
     display: inline-block;
     width: 130px;
-    height: 40px;
+    height: 34px;
     background: #85c296;
     color: #fff;
 }
@@ -2679,7 +2680,7 @@ section .title-description {
     float: left;
     display: inline-block;
     width: 130px;
-    height: 40px;
+    height: 34px;
     background: #85c296;
     color: #fff;
 }
