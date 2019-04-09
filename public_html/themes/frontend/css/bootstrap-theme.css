@@ -2258,24 +2258,23 @@ section .title-description {
 /*#endregion*/
 
 /*#region contact us*/
-.submitBtn {
+.contactUsPage .submitBtn {
     width: 285px;
     background: #3f8dfa;
-    /*height: 40px;*/
 }
 
-.securityCode__image {
+.contactUsPage .securityCode__image {
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.securityCode__input {
+.contactUsPage .securityCode__input {
     background: #fff;
     margin-right: 10px;
     margin-left: 50px;
 }
 
-.contactUs__container {
+.contactUsPage .contactUs__container {
     padding: 75px 75px 30px 90px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;

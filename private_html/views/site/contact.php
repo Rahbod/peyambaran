@@ -78,12 +78,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="form-group col-lg-12">
                             <div class="clearfix captcha-container">
+                                <button tabindex="11" type="submit" class="btn submitBtn">ارسال به بخش مربوطه</button>
+
                                 <?= \app\components\customWidgets\CustomCaptcha::widget([
                                     'model' => $model,
                                     'attribute' => 'verifyCode',
                                     'captchaAction' => ['/site/captcha'],
-                                    'template' => '{input} <a class="floatToLeft form-control securityCode__image">{image}</a>',
+                                    'template' => '{input} {image}',
                                     'linkOptions' => ['label' => Yii::t('words', 'New Code')],
+                                    'imageOptions' => ['class' => 'floatToLeft form-control securityCode__image'],
                                     'options' => [
                                         'class' => 'floatToLeft securityCode__input form-control',
                                         'placeholder' => Yii::t('words', 'Verify Code'),
@@ -91,7 +94,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'autocomplete' => 'off'
                                     ],
                                 ]) ?>
-                                <button tabindex="11" type="submit" class="btn submitBtn">ارسال به بخش مربوطه</button>
                             </div>
                         </div>
                     </div>
