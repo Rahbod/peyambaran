@@ -44,7 +44,7 @@ class Item extends MultiLangActiveRecord
     {
         parent::init();
         preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
-        if(!$matches)
+        if (!$matches)
             $this->status = 1;
 //        $this->dynaDefaults = array_merge($this->dynaDefaults, [
 //        ]);
@@ -189,19 +189,20 @@ class Item extends MultiLangActiveRecord
 
         // save categories
         if ($this->formCategories) {
-            $lastTags = $this->categories ? ArrayHelper::map($this->categories, 'id', 'name') : [];
+            // multiple categories
+//            $lastTags = $this->categories ? ArrayHelper::map($this->categories, 'id', 'name') : [];
             if (!is_array($this->formCategories)) $this->formCategories = [$this->formCategories];
+            if(!$this->isNewRecord)
+                Catitem::deleteAll(['itemID' => $this->id]);
             foreach ($this->formCategories as $id) {
-                if (!array_key_exists($id, $lastTags)) {
-                    $model = new Catitem();
-                    $model->type = Catitem::TYPE_CATEGORY;
-                    $model->catID = $id;
-                    $model->itemID = $this->id;
-                    if (!@$model->save())
-                        $this->addErrors($model->errors);
-                    else
-                        unset($this->formCategories[$id]);
-                }
+                $model = new Catitem();
+                $model->type = Catitem::TYPE_CATEGORY;
+                $model->catID = $id;
+                $model->itemID = $this->id;
+                if (!@$model->save())
+                    $this->addErrors($model->errors);
+                else
+                    unset($this->formCategories[$id]);
             }
         }
 

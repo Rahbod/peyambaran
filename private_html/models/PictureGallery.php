@@ -27,6 +27,7 @@ class PictureGallery extends Gallery
     public function rules()
     {
         return array_merge(parent::rules(), [
+            ['type', 'default', 'value' => self::$typeName],
             [['thumbnail_image', 'full_image'], 'required'],
         ]);
     }

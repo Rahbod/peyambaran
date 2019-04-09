@@ -439,4 +439,7 @@ return [
     'more information' => 'اطلاعات بیشتر',
     'show_time' => '{start_time} الی {end_time}',
     'Load more' => 'بارگذاری بیشتر',
+    'Alternative Person ID' => 'پزشک جایگزین',
+    'Add Doctor' => 'افزودن پزشک',
+    'Payambaran Hospital Gallery' => 'گالری بیمارستان پیامبران',
 ];

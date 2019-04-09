@@ -1258,12 +1258,26 @@ section .title-description {
 }
 
 .gallery-item .item-image {
+    position: relative;
     display: block;
     overflow: hidden;
     width: 115px;
     height: 85px;
     float: right;
     border-radius: 10px;
+}
+
+.gallery-item .item-image img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    display: inline-block;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .gallery-item .item-details {
@@ -2261,6 +2275,10 @@ section .title-description {
 .contactUsPage .submitBtn {
     width: 285px;
     background: #3f8dfa;
+    float: left;
+    display: inline-block;
+    height: 34px;
+    color: #fff;
 }
 
 .contactUsPage .securityCode__image {

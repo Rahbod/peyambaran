@@ -22,11 +22,13 @@ use yii\widgets\ActiveForm;
  */
 class GalleryController extends AuthController
 {
+    public $defaultAction = 'show';
+
     public $imageDir = 'uploads/gallery';
     public $videoDir = 'uploads/gallery/video';
-    private $posterOptions = ['thumbnail' => ['width' => 270, 'height' => 190]];
-    private $thumbOptions = ['thumbnail' => ['width' => 160, 'height' => 90]];
-    private $fullImageOptions = [];
+    private $posterOptions = ['thumbnail' => ['width' => 270, 'height' => 190, 'replaceOrigin' => true]];
+    private $thumbOptions = ['thumbnail' => ['width' => 160, 'height' => 90, 'replaceOrigin' => true]];
+    private $fullImageOptions = ['thumbnail' => ['width' => 280, 'height' => 380]];
 
     /**
      * for set admin theme
@@ -48,6 +50,7 @@ class GalleryController extends AuthController
             'delete-thumb',
             'upload-full-image',
             'delete-full-image',
+            'show',
         ];
     }
 
@@ -83,7 +86,8 @@ class GalleryController extends AuthController
                 'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
                 'model' => new VideoGallery(),
                 'attribute' => 'image',
-                'upload' => $this->imageDir
+                'upload' => $this->imageDir,
+                'options' => $this->posterOptions
             ],
             'upload-video' => [
                 'class' => UploadAction::className(),
@@ -114,7 +118,8 @@ class GalleryController extends AuthController
                 'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
                 'model' => new PictureGallery(),
                 'attribute' => 'thumbnail_image',
-                'upload' => $this->imageDir
+                'upload' => $this->imageDir,
+                'options' => $this->thumbOptions
             ],
             'upload-full-image' => [
                 'class' => UploadAction::className(),
@@ -129,7 +134,8 @@ class GalleryController extends AuthController
                 'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
                 'model' => new PictureGallery(),
                 'attribute' => 'full_image',
-                'upload' => $this->imageDir
+                'upload' => $this->imageDir,
+                'options' => $this->fullImageOptions
             ]
         ];
     }
@@ -146,6 +152,20 @@ class GalleryController extends AuthController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionShow()
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $searchModel = new GallerySearch();
+
+        $searchModel->type = Gallery::TYPE_PICTURE_GALLERY;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('show', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -194,6 +214,8 @@ class GalleryController extends AuthController
 
         return $this->render('create', [
             'model' => $model,
+            'thumb' => $thumb?:[],
+            'fullImage' => $fullImage?:[],
         ]);
     }
 
@@ -299,7 +321,7 @@ class GalleryController extends AuthController
      */
     public function actionUpdateVideo($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findVideoModel($id);
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -355,12 +377,28 @@ class GalleryController extends AuthController
      * Finds the Gallery model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Gallery the loaded model
+     * @return PictureGallery the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Gallery::findOne($id)) !== null) {
+        if (($model = PictureGallery::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(Yii::t('words', 'The requested gallery does not exist.'));
+    }
+
+    /**
+     * Finds the Gallery model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return VideoGallery the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findVideoModel($id)
+    {
+        if (($model = VideoGallery::findOne($id)) !== null) {
             return $model;
         }
 

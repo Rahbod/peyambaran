@@ -14,6 +14,8 @@ use yii\helpers\ArrayHelper;
  * @property resource $dyna
  * @property string $created
  * @property string $userID
+ *
+ * @property PersonProgramRel $day
  */
 class ClinicProgram extends DynamicActiveRecord
 {
@@ -87,7 +89,7 @@ class ClinicProgram extends DynamicActiveRecord
 
     public function getPersonsRel()
     {
-        return $this->hasMany(PersonProgramRel::className(), ['dayID' => 'id']);
+        return $this->hasMany(PersonProgramRel::className(), ['dayID' => 'id'])->orderBy(['start_time' => SORT_ASC]);
     }
 
     public function afterSave($insert, $changedAttributes)
@@ -104,7 +106,7 @@ class ClinicProgram extends DynamicActiveRecord
             if (!$this->isNewRecord)
                 PersonProgramRel::deleteAll(['dayID' => $this->id]);
             // save news
-            foreach ($this->doctors as $id => $doctor) {
+            foreach ($this->doctors as $relID => $doctor) {
                 if (!isset($doctor['personID']))
                     continue;
 
@@ -114,8 +116,9 @@ class ClinicProgram extends DynamicActiveRecord
                 $model->start_time = $doctor['start_time'];
                 $model->end_time = $doctor['end_time'];
                 $model->description = $doctor['description'];
+                $model->alternative_personID = $doctor['alternative_personID'];
                 if (@$model->save())
-                    unset($this->doctors[$id]);
+                    unset($this->doctors[$relID]);
                 else
                     $this->addErrors($model->errors);
             }

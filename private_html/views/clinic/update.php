@@ -25,6 +25,19 @@ $this->params['breadcrumbs'][] = Yii::t('words', 'Update');
                 </h3>
             </div>
         </div>
+        <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+                <li class="m-portlet__nav-item">
+                    <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                       class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+						<span>
+							<i class="la la-plus"></i>
+							<span><?= Yii::t('words', 'Create New Day') ?></span>
+						</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
     <!--begin::Form-->
     <?= $this->render('_form', [

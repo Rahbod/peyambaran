@@ -37,9 +37,10 @@ class PersonSearch extends Person
      *
      * @param array $params
      *
+     * @param $ids
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $ids = null)
     {
         $query = Person::find();
 
@@ -47,6 +48,7 @@ class PersonSearch extends Person
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => false
         ]);
 
         $this->load($params);
@@ -74,6 +76,9 @@ class PersonSearch extends Person
             ->andFilterWhere(['like', 'dyna', $this->dyna])
             ->andFilterWhere(['like', 'extra', $this->extra])
             ->andFilterWhere(['like', 'created', $this->created]);
+
+        if($ids !== null)
+            $query->andWhere(['IN', 'id', $ids]);
 
         $query->orderBy(['name' => SORT_ASC]);
 

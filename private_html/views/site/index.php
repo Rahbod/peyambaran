@@ -191,8 +191,8 @@ use app\models\OnlineService;
         <div class="row gallery-tabs">
             <ul class="pull-left nav nav-tabs">
                 <?php $i = 0;
-                foreach ($galleryCategories as $item): $i++; ?>
-                    <?php if (count($item->catitems) > 0): ?>
+                foreach ($galleryCategories as $item): ?>
+                    <?php if (count($item->catitems) > 0): $i++; ?>
                         <li<?= $i == 1 ? ' class="active"' : '' ?>><a href="#" data-toggle="tab"
                                                                       data-target="#gallery-category-<?= $item->id ?>"><?= $item->name ?></a>
                         </li>
@@ -208,10 +208,10 @@ use app\models\OnlineService;
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 gallery-left-box">
                 <div class="tab-content row">
                     <?php $i = 0;
-                    foreach ($galleryCategories as $category): $i++; ?>
-                        <?php if (count($category->catitems) > 0): ?>
+                    foreach ($galleryCategories as $category): ?>
+                        <?php if (count($category->catitems) > 0): $i++; ?>
                             <div class="tab-pane fade<?= $i == 1 ? ' active in' : '' ?>"
-                                 id="gallery-category-<?= $item->id ?>">
+                                 id="gallery-category-<?= $category->id ?>">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right gallery-list-box nicescroll"
                                      data-cursorcolor="#4d82f2" data-cursorborder="none"
                                      data-railpadding='js:{"top":0,"right":-5,"bottom":0,"left":0}'
@@ -243,7 +243,7 @@ use app\models\OnlineService;
                                                  id="gallery-details-<?= $item->id ?>">
                                                 <div class="gallery-item-details">
                                                     <div class="item-image-big">
-                                                        <img src="<?= Yii::getAlias('@web/uploads/gallery/') . $item->full_image ?>"
+                                                        <img src="<?= Yii::getAlias('@web/uploads/gallery/thumbs/280x380/') . $item->full_image ?>"
                                                              alt="<?= $item->name ?>">
                                                     </div>
                                                     <div class="gallery-details">

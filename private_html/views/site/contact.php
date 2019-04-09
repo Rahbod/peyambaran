@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-xs-12 ">
                 <div class="content-header">
-                    <img src="./images/call.png" class="img-fluid content-header__image"
+                    <img src="<?= $this->theme->baseUrl ?>/images/call.png" class="img-fluid content-header__image"
                          alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= Html::encode($this->title) ?></h1>
@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <?= $form->field($model, 'address', ['options' => ['class' => 'form-group col-lg-3']])->textInput(['tabindex' => 8]) ?>
 
-                        <?= $form->field($model, 'body', ['options' => ['class' => 'form-group col-lg-12', 'template' => '{label} <span class="-required">(الزامی)</span> {input} {error}']])->textarea(['tabindex' => 9, 'rows' => 8]) ?>
+                        <?= $form->field($model, 'body', ['options' => ['class' => 'form-group col-lg-12'], 'template' => '{label} <span class="-required">(الزامی)</span> {input} {error}'])->textarea(['tabindex' => 9, 'rows' => 8]) ?>
 
                         <div class="form-group col-lg-12">
                             <div class="clearfix captcha-container">

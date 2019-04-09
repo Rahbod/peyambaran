@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\components\MainController;
 use app\models\Category;
 use app\models\Insurance;
+use app\models\Menu;
 use app\models\Message;
 use app\models\OnlineService;
 use app\models\Post;
@@ -82,8 +83,8 @@ class SiteController extends MainController
     public function actionIndex()
     {
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
-        $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->limit(32)->all();
-        $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->limit(32)->all();
+        $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->all();
+        $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->all();
         $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();
         $galleryCategories = Category::find()->valid()->andWhere(['type' => Category::TYPE_CATEGORY, Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY])->all();
         $onlineServices = OnlineService::find()->valid()->all();
@@ -258,4 +259,9 @@ class SiteController extends MainController
             @$model->save();
         }
     }*/
+
+    public function actionTest()
+    {
+//        Menu::findOne()
+    }
 }

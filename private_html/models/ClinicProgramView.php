@@ -15,6 +15,7 @@ use yii\data\ActiveDataProvider;
  * @property string $date
  * @property string $start_time
  * @property string $end_time
+ * @property string $alternative_personID
  * @property string $description
  */
 class ClinicProgramView extends CustomActiveRecord
@@ -59,6 +60,7 @@ class ClinicProgramView extends CustomActiveRecord
             'start_time' => Yii::t('words', 'Start Time'),
             'end_time' => Yii::t('words', 'End Time'),
             'description' => Yii::t('words', 'Description'),
+            'alternative_personID' => Yii::t('words', 'Alternative Person ID'),
         ]);
     }
 
@@ -114,5 +116,10 @@ class ClinicProgramView extends CustomActiveRecord
     public function getTime()
     {
         return substr($this->start_time,0,5) .' - '. substr($this->end_time,0,5);
+    }
+
+    public function getAlternativePerson()
+    {
+        return $this->hasOne(Item::className(), ['id' => 'alternative_personID']);
     }
 }

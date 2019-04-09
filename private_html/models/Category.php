@@ -29,6 +29,7 @@ use yii\helpers\ArrayHelper;
  * @property int $right
  * @property int $depth
  * @property int $tree
+ * @property string $fullName
  *
  * @property Page[] $pages
  * @property Catitem[] $catitems
@@ -252,8 +253,8 @@ class Category extends MultiLangActiveRecord
         $name = $this->name;
         $parent = $this->getParent()->one();
         while ($parent) {
-            $name .= "$parent->name/$name";
-            $parent = $this->getParent();
+            $name = "$parent->name/$name";
+            $parent = $parent->getParent()->one();
         }
         return $name;
     }

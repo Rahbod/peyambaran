@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use function app\components\dd;
 use app\models\ClinicProgramView;
+use app\models\PersonProgramRel;
 use Yii;
 use app\models\ClinicProgram;
 use app\models\ClinicProgramSearch;
@@ -79,7 +80,7 @@ class ClinicController extends AuthController
 
         $clinicSearchModel = new ClinicProgramView();
         $dataProvider = $clinicSearchModel->search(Yii::$app->request->queryParams);
-
+        $dataProvider->pagination= false;
         return $this->render('show', [
             'dataProvider' => $dataProvider,
         ]);
@@ -106,7 +107,7 @@ class ClinicController extends AuthController
     public function actionCreate()
     {
         $model = new ClinicProgram();
-        if($copy = Yii::$app->request->getQueryParam('copy')){
+        if ($copy = Yii::$app->request->getQueryParam('copy')) {
             $copyModel = ClinicProgram::findOne($copy);
             $model = clone $copyModel;
             $model->isNewRecord = true;
@@ -126,7 +127,7 @@ class ClinicController extends AuthController
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['create']);
+                return $this->redirect($copy?['update', 'id' => $model->id]:['create']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -157,7 +158,7 @@ class ClinicController extends AuthController
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['index']);
+                return $this->refresh();
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -195,5 +196,32 @@ class ClinicController extends AuthController
         }
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+    }
+
+
+    public function actionAddDoctor()
+    {
+        $model = new PersonProgramRel();
+        $model->load(Yii::$app->request->post());
+
+        $dayID = $model->dayID;
+        if (!$dayID) {
+            $cmodel = new ClinicProgram();
+            $cmodel->date = $cmodel->getLastDay();
+            $cmodel->is_holiday = 0;
+            if ($cmodel->save())
+                $model->dayID = $cmodel->id;
+            else {
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                return $this->redirect(['create']);
+            }
+        }
+
+        if ($model->save())
+            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+        else
+            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+
+        return $this->redirect(['update', 'id' => $model->dayID]);
     }
 }

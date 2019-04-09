@@ -11,7 +11,7 @@
             <div class="m-stack__item m-brand  m-brand--skin-dark ">
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                        <a href="<?= Yii::$app->request->getBaseUrl() ?>" class="m-brand__logo-wrapper" target="_blank">
+                        <a href="<?= Yii::$app->getHomeUrl() ?>" class="m-brand__logo-wrapper" target="_blank">
                             <!--                            <img alt="" src="assets/demo/default/media/img/logo/logo_default_dark.png"/>-->
                             <h4 class="text-white"><?= Yii::$app->name ?></h4>
                         </a>
