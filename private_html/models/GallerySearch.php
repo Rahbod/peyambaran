@@ -19,7 +19,7 @@ class GallerySearch extends Gallery
         return [
             [['id', 'userID', 'modelID', 'status'], 'integer'],
             [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created'], 'safe'],
+            [['name', 'dyna', 'extra', 'created', 'status'], 'safe'],
         ];
     }
 
@@ -65,6 +65,7 @@ class GallerySearch extends Gallery
             'type' => $this->type,
             'status' => $this->status,
         ]);
+
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'dyna', $this->dyna])
