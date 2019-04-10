@@ -2712,6 +2712,7 @@ section .title-description {
 /*--------------------- forgot password */
 .register.forgotPassword .submitBtn {
     background: #e82d2d;
+    width: 285px;
 }
 
 .register.forgotPassword .-orangeBg {
