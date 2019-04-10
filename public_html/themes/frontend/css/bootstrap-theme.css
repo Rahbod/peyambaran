@@ -1267,7 +1267,7 @@ section .title-description {
     border-radius: 10px;
 }
 
-.gallery-item .item-image img{
+.gallery-item .item-image img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -2322,7 +2322,6 @@ section .title-description {
     /*height: 40px !important;*/
 }
 
-
 .submitBtn:hover, .submitBtn:focus {
     background: #316fc4;
     color: #fff;
@@ -2542,6 +2541,10 @@ section .title-description {
 /*#endregion*/
 
 /*#region authentication*/
+
+.register.forgotPassword {
+    margin-bottom: 100px;
+}
 
 .register {
     background: #eef1f7;
