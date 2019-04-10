@@ -1268,7 +1268,7 @@ section .title-description {
     border-radius: 10px;
 }
 
-.gallery-item .item-image img{
+.gallery-item .item-image img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -2273,7 +2273,7 @@ section .title-description {
 /*#endregion*/
 
 /*#region contact us*/
-.contactUsPage .submitBtn {
+.submitBtn {
     width: 285px;
     background: #3f8dfa;
     float: left;
@@ -2282,18 +2282,13 @@ section .title-description {
     color: #fff;
 }
 
-.contactUsPage .securityCode__image {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.contactUsPage .securityCode__input {
+.securityCode__input {
     background: #fff;
     margin-right: 10px;
     margin-left: 50px;
 }
 
-.contactUsPage .contactUs__container {
+.contactUs__container {
     padding: 75px 75px 30px 90px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -2327,7 +2322,6 @@ section .title-description {
     width: 130px;
     /*height: 40px !important;*/
 }
-
 
 .submitBtn:hover, .submitBtn:focus {
     background: #316fc4;
@@ -2549,6 +2543,10 @@ section .title-description {
 
 /*#region authentication*/
 
+.register.forgotPassword {
+    margin-bottom: 100px;
+}
+
 .register {
     background: #eef1f7;
     top: 68px;
@@ -2589,12 +2587,6 @@ section .title-description {
     height: 40px;
 }
 
-.register .securityCode__image {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    text-align: center;
-}
-
 .register .securityCode__input {
     background: #85c296;
     margin-right: 5px;
@@ -2603,7 +2595,7 @@ section .title-description {
 .register .submitBtn {
     float: left;
     display: inline-block;
-    width: 130px;
+    width: 285px;
     height: 34px;
     background: #85c296;
     color: #fff;
@@ -2721,6 +2713,7 @@ section .title-description {
 /*--------------------- forgot password */
 .register.forgotPassword .submitBtn {
     background: #e82d2d;
+    width: 285px;
 }
 
 .register.forgotPassword .-orangeBg {

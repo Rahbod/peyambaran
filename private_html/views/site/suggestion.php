@@ -5,14 +5,12 @@
 
 /* @var $model app\models\ContactForm */
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
 use app\components\Setting;
-use yii\helpers\ArrayHelper;
-use app\models\ContactForm;
 use app\models\Department;
 use app\models\Message;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 $this->title = Yii::t('words', 'Criticism and Suggestion');
 $this->params['breadcrumbs'][] = $this->title;
@@ -78,12 +76,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="form-group col-lg-12">
                             <div class="clearfix captcha-container">
+                                <button tabindex="11" type="submit" class="btn submitBtn">ارسال به بخش مربوطه</button>
+
                                 <?= \app\components\customWidgets\CustomCaptcha::widget([
                                     'model' => $model,
                                     'attribute' => 'verifyCode',
                                     'captchaAction' => ['/site/captcha'],
-                                    'template' => '{input} <a class="floatToLeft form-control securityCode__image">{image}</a>',
+                                    'template' => '{input} {image}',
                                     'linkOptions' => ['label' => Yii::t('words', 'New Code')],
+                                    'imageOptions' => ['class' => 'floatToLeft form-control securityCode__image'],
                                     'options' => [
                                         'class' => 'floatToLeft securityCode__input form-control',
                                         'placeholder' => Yii::t('words', 'Verify Code'),
@@ -91,7 +92,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'autocomplete' => 'off'
                                     ],
                                 ]) ?>
-                                <button tabindex="11" type="submit" class="btn submitBtn">ارسال به بخش مربوطه</button>
                             </div>
                         </div>
                     </div>

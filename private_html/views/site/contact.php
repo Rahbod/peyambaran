@@ -77,7 +77,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $form->field($model, 'body', ['options' => ['class' => 'form-group col-lg-12'], 'template' => '{label} <span class="-required">(الزامی)</span> {input} {error}'])->textarea(['tabindex' => 9, 'rows' => 8]) ?>
 
                         <div class="form-group col-lg-12">
+
                             <div class="clearfix captcha-container">
+
                                 <button tabindex="11" type="submit" class="btn submitBtn">ارسال به بخش مربوطه</button>
 
                                 <?= \app\components\customWidgets\CustomCaptcha::widget([
