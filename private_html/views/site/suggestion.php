@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'linkOptions' => ['label' => Yii::t('words', 'New Code')],
                                     'imageOptions' => ['class' => 'floatToLeft form-control securityCode__image'],
                                     'options' => [
-                                        'class' => 'floatToLeft form-control securityCode__image',
+                                        'class' => 'floatToLeft securityCode__input form-control',
                                         'placeholder' => Yii::t('words', 'Verify Code'),
                                         'tabindex' => 10,
                                         'autocomplete' => 'off'
