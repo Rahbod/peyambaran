@@ -2591,7 +2591,7 @@ section .title-description {
 .register .submitBtn {
     float: left;
     display: inline-block;
-    width: 130px;
+    width: 285px;
     height: 34px;
     background: #85c296;
     color: #fff;
