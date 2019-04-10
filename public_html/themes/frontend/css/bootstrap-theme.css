@@ -2281,11 +2281,6 @@ section .title-description {
     color: #fff;
 }
 
-.securityCode__image {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 .securityCode__input {
     background: #fff;
     margin-right: 10px;
@@ -2586,12 +2581,6 @@ section .title-description {
     display: inline-block;
     width: 130px;
     height: 40px;
-}
-
-.register .securityCode__image {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    text-align: center;
 }
 
 .register .securityCode__input {
