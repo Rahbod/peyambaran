@@ -17,7 +17,7 @@ use app\models\Message;
 $this->title = Yii::t('words', 'Complaints');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<section class="register forgotPassword">
+<section class="compliant">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 ">

@@ -2272,9 +2272,9 @@ section .title-description {
 /*#endregion*/
 
 /*#region contact us*/
-.submitBtn {
+.contactUsPage .submitBtn {
     width: 285px;
-    background: #3f8dfa;
+    background: #85c296;
     float: left;
     display: inline-block;
     height: 34px;
@@ -2322,8 +2322,8 @@ section .title-description {
     /*height: 40px !important;*/
 }
 
-.submitBtn:hover, .submitBtn:focus {
-    background: #316fc4;
+.contactUsPage .submitBtn:hover, .contactUsPage .submitBtn:focus {
+    background: #659372;
     color: #fff;
 }
 
@@ -2366,7 +2366,7 @@ section .title-description {
 }
 
 .contactUsPage .content-header {
-    background: #3f8dfa;
+    background: #85c296;
 }
 
 /*#endregion*/
@@ -2540,6 +2540,26 @@ section .title-description {
 
 /*#endregion*/
 
+/*#region compliant*/
+.compliant .submitBtn {
+    width: 285px;
+    background: #877ef3;
+    float: left;
+    display: inline-block;
+    height: 34px;
+    color: #fff;
+}
+
+.compliant .submitBtn:hover, .compliant .submitBtn:focus {
+    background: #6b64c1;
+}
+
+.compliant .contactUs__container {
+    margin-bottom: 100px;
+}
+
+/*#endregion*/
+
 /*#region authentication*/
 
 .register.forgotPassword {
@@ -2684,15 +2704,6 @@ section .title-description {
 
 .register .content-header__title {
     font-size: 22px;
-}
-
-.register .submitBtn {
-    float: left;
-    display: inline-block;
-    width: 130px;
-    height: 34px;
-    background: #85c296;
-    color: #fff;
 }
 
 .register .submitBtn:hover, .register .submitBtn:focus {
