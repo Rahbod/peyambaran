@@ -35,6 +35,14 @@ class PostController extends AuthController
         parent::init();
     }
 
+    public function getMenuActions()
+    {
+        return [
+            'news',
+            'articles'
+        ];
+    }
+
     public function getSystemActions()
     {
         return [
@@ -42,7 +50,8 @@ class PostController extends AuthController
             'delete-image',
             'upload-attachment',
             'delete-attachment',
-            'show',
+            'news',
+            'articles',
         ];
     }
 
@@ -123,27 +132,6 @@ class PostController extends AuthController
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
-    }
-
-    public function actionShow($id)
-    {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
-        $model = $this->findModel($id);
-
-        $model->scenario = 'increase_seen';
-        $model->seen++;
-        $model->save(false);
-
-        $relatedPosts = Post::find()->select('item.*')
-            ->innerJoinWith('catitems')
-            ->andWhere(['catitem.catID' => $model->categories[0]->id])
-            ->andWhere('item.id <> :id', [':id' => $id])
-            ->valid()->all();
-
-        return $this->render('show', [
-            'model' => $model,
-            'relatedPosts' => $relatedPosts
         ]);
     }
 
@@ -253,5 +241,56 @@ class PostController extends AuthController
         }
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+    }
+
+    public function actionShow($id)
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $model = $this->findModel($id);
+
+        $model->scenario = 'increase_seen';
+        $model->seen++;
+        $model->save(false);
+
+        $relatedPosts = Post::find()->select('item.*')
+            ->innerJoinWith('catitems')
+            ->andWhere(['catitem.catID' => $model->categories[0]->id])
+            ->andWhere('item.id <> :id', [':id' => $id])
+            ->valid()->all();
+
+        return $this->render('show', [
+            'model' => $model,
+            'relatedPosts' => $relatedPosts
+        ]);
+    }
+
+    public function actionNews()
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $searchModel = new PostSearch();
+
+        $searchModel->type = Post::TYPE_NEWS;
+        $searchModel->status = Post::STATUS_PUBLISHED;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('list', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionArticles()
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $searchModel = new PostSearch();
+
+        $searchModel->type = Post::TYPE_ARTICLE;
+        $searchModel->status = Post::STATUS_PUBLISHED;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('list', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

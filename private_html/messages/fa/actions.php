@@ -101,4 +101,8 @@ return [
     'site.suggestion' => 'انتقادات و پیشنهادات',
     'site.complaint' => 'شکایات',
     'clinic.show' => 'نمایش برنامه کلینیک',
+    'gallery.show' => 'نمایش گالری تصاویر',
+    'post.news' => 'اخبار و رویدادها',
+    'post.articles' => 'مطالب آموزشی',
+    'gallery.video' => 'نمایش گالری ویدئو',
 ];

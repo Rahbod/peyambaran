@@ -39,6 +39,14 @@ class GalleryController extends AuthController
         parent::init();
     }
 
+    public function getMenuActions()
+    {
+        return [
+            'show',
+//            'video',
+        ];
+    }
+
     public function getSystemActions()
     {
         return [
@@ -51,6 +59,7 @@ class GalleryController extends AuthController
             'upload-full-image',
             'delete-full-image',
             'show',
+            'video',
         ];
     }
 
@@ -163,6 +172,21 @@ class GalleryController extends AuthController
         $searchModel = new GallerySearch();
 
         $searchModel->type = Gallery::TYPE_PICTURE_GALLERY;
+//        $searchModel->status = Gallery::STATUS_PUBLISHED;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('show', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionVideo()
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $searchModel = new GallerySearch();
+
+        $searchModel->type = Gallery::TYPE_VIDEO_GALLERY;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('show', [

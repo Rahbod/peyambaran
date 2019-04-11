@@ -186,6 +186,7 @@ use app\models\OnlineService;
 <!--End News and Articles-->
 
 <!--Gallery-->
+<?php if(\app\models\PictureGallery::find()->valid()->count()>0): ?>
 <section class="gallery-bg">
     <div class="container">
         <div class="row gallery-tabs">
@@ -264,4 +265,5 @@ use app\models\OnlineService;
         </div>
     </div>
 </section>
+<?php endif;?>
 <!--End Galley-->

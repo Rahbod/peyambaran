@@ -25,12 +25,10 @@ AppAsset::register($this);
     <?php $this->registerCssFile($this->theme->baseUrl . '/css/font-awesome.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'font-awesome'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/css/owl.carousel.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'owl-carousel'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/css/owl.theme.default.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'owl-theme'); ?>
-    <?php $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme'); ?>
-    <!--    --><?php //$this->registerCssFile($this->theme->baseUrl.'/css/responsive-theme.css', ['depends' => [BootstrapAsset::className()],'media' => 'all'], 'responsive-theme');?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/js/vendors/icomoon/style.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'icomoon'); ?>
-    <?php $this->registerCss('.news-item {
-            width: 100%
-        }'); ?>
+    <?php $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme'); ?>
+    <?php $this->registerCssFile($this->theme->baseUrl.'/css/responsive-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'responsive-theme');?>
+    <?php if(Yii::$app->language == 'en') $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme-ltr.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme-en'); ?>
 
     <?php $this->registerJsFile($this->theme->baseUrl . '/js/bootstrap.min.js', ['depends' => [JqueryAsset::className()]], 'bootstrap'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/js/jquery.nicescroll.min.js', ['depends' => [JqueryAsset::className()]], 'nicescroll'); ?>
