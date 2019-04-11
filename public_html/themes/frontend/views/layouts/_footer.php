@@ -46,7 +46,9 @@ $contactModel = new \app\models\ContactForm();
                             'labelOptions' => ['class' => ''],
                             'inputOptions' => ['class' => ''],
                         ],
-                    ]) ?>
+                    ]);
+                    echo Html::hiddenInput('return',Yii::$app->request->url);
+                    ?>
                     <div class="row">
                         <div class="form-row">
                             <?= $form->field($contactModel, 'department_id')->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', 'name')) ?>
@@ -144,13 +146,13 @@ $contactModel = new \app\models\ContactForm();
     </div>
     <div class="footer-section">
         <div class="container">
-            <?php foreach (Menu::find()->roots()->valid()->andWhere([Menu::columnGetString('show_in_footer') => 1])->orderBySort()->all() as $item): ?>
-
+            <div class="row">
+            <?php $i=0;foreach (Menu::find()->roots()->valid()->andWhere([Menu::columnGetString('show_in_footer') => 1])->orderBySort()->all() as $item): ?>
                 <?php
                 $ic = $item->children(1)->count();
                 $sic = $item->children(2)->count();
-                if ($ic > 0): ?>
-                    <div class="footer-block">
+                if ($ic > 0):$i++;?>
+                    <div class="footer-block col-xs-12 <?= $i==1?'col-sm-12':'col-sm-3' ?>">
                         <h4><?= $item->name ?></h4>
                         <div class="footer-sub-block">
                             <?php if (($sic - $ic) === 0): // one level ?>
@@ -179,6 +181,7 @@ $contactModel = new \app\models\ContactForm();
                     <li><a href="<?= $item->url ?>"><?= $item->name ?></a></li>
                 <?php endif; ?>
             <?php endforeach; ?>
+            </div>
             <div class="copyright">
                 <div class="pull-right">
                     <a href="http://tarsiminc.com" target="_blank">by tarsim.inc</a>

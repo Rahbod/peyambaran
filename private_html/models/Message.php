@@ -18,6 +18,7 @@ use app\components\DynamicActiveRecord;
  * @property string $department_id
  * @property resource $dyna All fields
  * @property string $created
+ * @property int $degree
  */
 class Message extends DynamicActiveRecord
 {
@@ -57,10 +58,10 @@ class Message extends DynamicActiveRecord
             [['type', 'dyna', 'email', 'subject', 'country', 'city', 'address'], 'string'],
             [['name'], 'string', 'max' => 511],
             [['tel'], 'string', 'max' => 15],
-            [['body'], 'string', 'max' => 255],
+            [['body'], 'string'],
             [['created'], 'string', 'max' => 20],
             [['department_id'], 'safe'],
-            [['degree'], 'integer', 'max' => 10],
+            [['degree'], 'string'],
             [['created'], 'default', 'value' => time()],
         ]);
     }
@@ -104,7 +105,7 @@ class Message extends DynamicActiveRecord
         return $this->hasOne(Department::className(), ['id' => 'department_id']);
     }
 
-    public static function getDegree($id = null)
+    public static function getDegrees($id = null)
     {
         $degrees = [
             1 => Yii::t('words', 'Diploma'),
@@ -117,5 +118,16 @@ class Message extends DynamicActiveRecord
         if (is_null($id))
             return $degrees;
         return $degrees[$id];
+    }
+
+    public static function getSubjects($id = null)
+    {
+        $subjects = [
+            1 => Yii::t('words', 'Suggestions'),
+            2 => Yii::t('words', 'Critics'),
+        ];
+        if (is_null($id))
+            return $subjects;
+        return $subjects[$id];
     }
 }

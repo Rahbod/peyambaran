@@ -163,7 +163,10 @@ $this->registerJs('
                             <label class="col-form-label control-label">جستجوی نام پزشک:</label>
                         </div>
                         <div class="col-sm-6">
-                            <?= Html::textInput('doctor_name','', ['class' => 'form-control m-input m-input--solid', 'id' => 'doctor-filter']) ?>
+                            <?= Html::textInput('doctor_name', '', ['class' => 'form-control m-input m-input--solid', 'id' => 'doctor-filter']) ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= Html::submitButton('ذخیره تغییرات', ['class' => 'btn btn-success pull-left']) ?>
                         </div>
                     </div>
 
@@ -192,21 +195,21 @@ $this->registerJs('
                             ],
                             [
                                 'header' => Yii::t('words', 'Start Time'),
-                                'value' => function ($model){
+                                'value' => function ($model) {
                                     return Html::textInput("ClinicProgram[doctors][{$model->id}][start_time]", $model->start_time, ['class' => 'form-control m-input m-input--air']);
                                 },
                                 'format' => 'raw'
                             ],
                             [
                                 'header' => Yii::t('words', 'End Time'),
-                                'value' => function ($model){
+                                'value' => function ($model) {
                                     return Html::textInput("ClinicProgram[doctors][{$model->id}][end_time]", $model->end_time, ['class' => 'form-control m-input m-input--air']);
                                 },
                                 'format' => 'raw'
                             ],
                             [
                                 'header' => Yii::t('words', 'Description'),
-                                'value' => function ($model){
+                                'value' => function ($model) {
                                     return Html::textInput("ClinicProgram[doctors][{$model->id}][description]", $model->description, ['class' => 'form-control m-input m-input--air']);
                                 },
                                 'format' => 'raw'

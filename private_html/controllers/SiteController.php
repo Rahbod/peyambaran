@@ -137,19 +137,28 @@ class SiteController extends MainController
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
         $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post())) {
-            $message = new  Message();
-            $message->type = $type;
-            $message->name = $model->name;
-            $message->tel = $model->tel;
-            $message->body = $model->body;
-            $message->subject = $model->subject;
-            $message->email = $model->email;
-            $message->department_id = $model->department_id;
-            if ($message->save()) {
-                $model->contact(Yii::$app->params['adminEmail']);
-                Yii::$app->session->setFlash('public-alert', ['type' => 'success', 'message' => Yii::t('words', 'message.successMsg')]);
-                return $this->goBack();
+        $model->scenario = $type=='cnt'?'default':"$type-scenario";
+        if (Yii::$app->request->post()) {
+            $model->load(Yii::$app->request->post());
+            if ($model->validate()) {
+                $message = new  Message();
+                $message->scenario = $type=='cnt'?'default':"$type-scenario";
+                $message->type = $type;
+                $message->name = $model->name;
+                $message->tel = $model->tel;
+                $message->body = $model->body;
+                $message->degree = $model->degree;
+                $message->subject = $model->subject;
+                $message->email = $model->email;
+                $message->department_id = $model->department_id;
+                if ($message->save()) {
+                    $model->contact(Yii::$app->params['adminEmail']);
+                    Yii::$app->session->setFlash('public-alert', ['type' => 'success', 'message' => Yii::t('words', 'message.successMsg')]);
+                    if($return = Yii::$app->request->getBodyParam('return'))
+                        return $this->redirect([$return]);
+                    return $this->refresh();
+                } else
+                    Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => Yii::t('words', 'message.dangerMsg')]);
             } else
                 Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => Yii::t('words', 'message.dangerMsg')]);
         }

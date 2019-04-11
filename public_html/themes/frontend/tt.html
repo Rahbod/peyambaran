@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>تست</title>
+
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-rtl.min.css">
+    <link type="text/css" rel="stylesheet" href="css/fontiran-fa-num.css">
+    <style>
+        .rashapay.main {
+            background-color: #f4f5f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 0;
+            font-family: IRANSans;
+        }
+
+        .rashapay .card {
+            display: inline-block;
+            vertical-align: middle;
+            background-color: #333;
+            color: #ffde00;
+            padding: 0;
+            height: auto;
+            border-radius: 10px;
+            overflow: hidden;
+            -webkit-box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
+            box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .rashapay .card form > * {
+            display: block;
+            overflow: hidden;
+        }
+
+        .rashapay .card .title {
+            text-align: center;
+            font-weight: bolder;
+        }
+
+        .rashapay .card .description {
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .rashapay hr {
+            border-color: #222;
+            border-width: 3px;
+        }
+
+        .rashapay .card-body {
+            color: #fff;
+            padding: 30px 0;
+        }
+
+        .rashapay .btn-gold {
+            background-color: #ffde00;
+            border: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            width: 100%;
+            border-radius: 0;
+            color: #333;
+            font-weight: bold;
+            font-size: 2.5rem;
+            padding: 10px 15px;
+            cursor: pointer !important;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .rashapay .btn-gold:hover {
+            background-color: #d4b900;
+        }
+
+        .rashapay .amount {
+            display: block;
+            text-align: center;
+        }
+
+        .rashapay .amount-number {
+            margin-bottom: 30px;
+            font-size: 5rem;
+        }
+
+        .rashapay .amount-number span {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .rashapay .control-label {
+            line-height: 42px;
+            color: #555;
+        }
+
+        .rashapay .form-control {
+            height: 42px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            background-color: #555;
+            border-color: #222;
+            color: #eee;
+            font-weight: normal;
+        }
+
+        .rashapay .form-control:focus {
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #ffee2b90;
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #ffee2b90;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #ffee2b90;
+        }
+
+        .no-mg {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="main rashapay">
+    <div class="card col-lg-6 col-md-6 col-sm-6 col-xs-10">
+        <form>
+            <div class="card-header">
+                <h1 class="title">هماتز</h1>
+                <h5 class="description">http://homatez.com</h5>
+            </div>
+            <hr class="no-mg">
+            <div class="card-body">
+                <div class="amount">
+                    <h1 class="amount-number">87,000<span>تومان</span></h1>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-4"><label class="control-label">پست الکترونیک</label></div>
+                    <div class="col-sm-8"><input type="email" placeholder="example@test.com" class="form-control text-right" dir="auto"></div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-4"><label class="control-label">عبارت امنیتی</label></div>
+                    <div class="col-sm-8"><input type="tel" placeholder="عدد 84 را تایپ کنید" class="form-control"></div>
+                </div>
+            </div>
+            <hr class="no-mg">
+            <div class="card-footer">
+                <button type="submit" class="btn btn-gold">پرداخت</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

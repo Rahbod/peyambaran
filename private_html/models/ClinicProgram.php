@@ -76,8 +76,11 @@ class ClinicProgram extends DynamicActiveRecord
         $today = strtotime(date("Y-m-d 00:00:00", time()));
         $last = self::find()->orderBy(['id' => SORT_DESC])->one();
         if ($last) {
-            $lastDate = $last->date > $today ? $last->date : $today;
-            return (string)($lastDate + (24 * 60 * 60));
+            if ($last->date >= $today) {
+                $lastDate = $last->date;
+                return (string)($lastDate + (24 * 60 * 60));
+            } else
+                return $today;
         }
         return (string)$today;
     }

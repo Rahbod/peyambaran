@@ -12,7 +12,7 @@ use \yii\helpers\Html;
     <div class="container">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
-                <div class="dropdown language-select" style="opacity: 0;width: 0">
+                <div class="dropdown language-select" style="display:none;">
                     <label>Language</label>
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="icon icon-chevron-down"></span>
@@ -89,13 +89,13 @@ use \yii\helpers\Html;
                     $ic = $item->children(1)->count();
                     $sic = $item->children(2)->count();
                     if ($ic > 0): ?>
-                        <li class="dropdown">
+                        <li class="dropdown<?php if (($sic - $ic) === 0) echo ' relative'; // one level ?>">
                             <a class="dropdown-toggle" href="#">
                                 <i class="icon icon-chevron-down"></i>
                                 <?= $item->name ?>
                             </a>
-                            <div class="dropdown-menu">
-                                <div class="container">
+                            <div class="dropdown-menu<?php if (($sic - $ic) !== 0) echo ' wide'; // multi level ?>">
+                                <div class="<?= ($sic - $ic) !== 0?'container':'container-fluid'; ?>">
                                     <?php if (($sic - $ic) === 0): // one level ?>
                                         <ul class="menu-part d-inline-block">
                                             <?php foreach ($item->children(1)->all() as $sub_item): ?>

@@ -30,7 +30,10 @@ class ContactForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'body', 'department_id', 'tel'], 'required'],
+            [['name', 'email', 'body', 'tel'], 'required'],
+            [['department_id'], 'required', 'on' => 'default'],
+            [['subject'], 'required', 'on' => 'sgn-scenario'],
+            [['department_id'], 'default', 'value' => Department::find()->one()->id, 'except' => 'default'],
             // email has to be a valid email address
             ['email', 'email'],
             [['degree'], 'integer', 'max' => 10],

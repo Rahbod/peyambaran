@@ -331,7 +331,13 @@ class UserController extends AuthController
     public function actionForgetPassword()
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
-        \app\components\dd(1);
+
+        if(Yii::$app->request->post()){
+            $mobile = Yii::$app->request->getBodyParam('mobile');
+            \app\components\dd($mobile);
+        }
+
+        return $this->render('forget_password');
     }
 
     public function actionDashboard()

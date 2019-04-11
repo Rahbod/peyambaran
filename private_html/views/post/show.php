@@ -16,18 +16,18 @@
                         <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
                     </div>
                     <div class="newsSearchBox">
-                        <form class="search-form" style="min-width: 400px;">
+                        <form class="search-form" action="<?= \yii\helpers\Url::to(['/post/news']) ?>" method="get"
+                              style="min-width: 400px;">
                             <p style="color: #fff;margin-right: 10px;"
-                               class="search-form-label"><?= Yii::t('words', 'Search in news...') ?></p>
+                               class="search-form-label"><?= Yii::t('words', $model->type == \app\models\Post::TYPE_NEWS ? 'Search in news...' : 'Search in articles...') ?></p>
                             <div class="input-group search-container">
-                                <input class="form-control" placeholder="<?= Yii::t('words', 'Search...') ?>">
-                                <span class="input-group-addon">
-                            <button type="submit" class="search-btn"><i class="search-icon"></i></button>
-                        </span>
+                                <input class="form-control" placeholder="<?= Yii::t('words', 'Search...') ?>"
+                                       name="term" value="<?= Yii::$app->request->getQueryParam('term') ?>">
+                                <span class="input-group-addon"><button type="submit" class="search-btn"><i
+                                                class="search-icon"></i></button></span>
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
             <div class="col-xs-12">
@@ -37,16 +37,24 @@
                             <div class="col-xs-4 pr-0">
                                 <div class="card m-0">
                                     <div class="card-header">
-                                        <p>
-                                            <i class="icomoon-comment-alt-regular"> <?= number_format($model->comments_count) ?> </i>
-                                        </p>
-
-                                        <p>
-                                            <i class="icomoon-eye-regular"> <?= number_format($model->seen) ?> </i>
-                                        </p>
-                                        <p>
-                                            <i class="icomoon-calendar-alt-regular"> <?= $model->publish_date ?> </i>
-                                        </p>
+                                        <div class="statics-row">
+                                            <span class="comments-count text-right"><?= number_format($model->comments_count) ?><i
+                                                class="comment-icon"></i></span>
+                                            <span class="view-count text-center"><?= number_format($model->seen) ?><i
+                                                class="eye-icon"></i></span>
+                                            <span class="news-date text-left"><?= jDateTime::date('Y/m/d', strtotime($model->publish_date)) ?><i
+                                                class="calendar-icon"></i></span>
+                                        </div>
+                                        <!--                                        <p>-->
+                                        <!--                                            <i class="icomoon-comment-alt-regular"></i> --><? //= number_format($model->comments_count) ?>
+                                        <!--                                        </p>-->
+                                        <!---->
+                                        <!--                                        <p>-->
+                                        <!--                                            <i class="icomoon-eye-regular"></i> --><? //= number_format($model->seen) ?>
+                                        <!--                                        </p>-->
+                                        <!--                                        <p>-->
+                                        <!--                                            <i class="icomoon-calendar-alt-regular"></i> --><? //= $model->publish_date ?>
+                                        <!--                                        </p>-->
                                     </div>
                                     <div class="card-body">
                                         <a title="" href="#" class="card-link">
@@ -57,26 +65,26 @@
                                         </a>
                                     </div>
                                     <?php if ($model->gallery): ?>
-                                    <hr>
-                                    <div class="clearfix">
-                                        <p style="color: #7a7a7a;">تصاویر خبری</p>
-                                        <?php foreach ($model->gallery as $item): if(!$item->file OR !is_file(Yii::getAlias('@webroot/uploads/post/') . $item->file)) continue; ?>
-                                            <div class="imgContainer">
-                                                <a class="simpleGallery__link"
-                                                   href="<?= Yii::getAlias('@webroot/uploads/post/') . $item->file ?>">
-                                                    <img class="simpleGallery__image"
-                                                         src="<?= Yii::getAlias('@webroot/uploads/post/thumbs/100x100/') . $item->file ?>"
-                                                         alt="">
-                                                    <!--<div class="-hoverShowBox purple rounded">-->
-                                                    <!--<div>-->
-                                                    <!--<h4>آزمایشگاه پاتولوژی</h4>-->
-                                                    <!--<div class="zoom-icon"><i></i></div>-->
-                                                    <!--</div>-->
-                                                    <!--</div>-->
-                                                </a>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
+                                        <hr>
+                                        <div class="clearfix">
+                                            <p style="color: #7a7a7a;">تصاویر خبری</p>
+                                            <?php foreach ($model->gallery as $item): if (!$item->file OR !is_file(Yii::getAlias('@webroot/uploads/post/') . $item->file)) continue; ?>
+                                                <div class="imgContainer">
+                                                    <a class="simpleGallery__link"
+                                                       href="<?= Yii::getAlias('@webroot/uploads/post/') . $item->file ?>">
+                                                        <img class="simpleGallery__image"
+                                                             src="<?= Yii::getAlias('@webroot/uploads/post/thumbs/100x100/') . $item->file ?>"
+                                                             alt="">
+                                                        <!--<div class="-hoverShowBox purple rounded">-->
+                                                        <!--<div>-->
+                                                        <!--<h4>آزمایشگاه پاتولوژی</h4>-->
+                                                        <!--<div class="zoom-icon"><i></i></div>-->
+                                                        <!--</div>-->
+                                                        <!--</div>-->
+                                                    </a>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
                                     <?php endif; ?>
                                 </div>
                             </div>
