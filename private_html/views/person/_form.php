@@ -45,6 +45,12 @@ use app\models\Category;
 
     <div class="row">
         <div class="col-sm-4">
+            <?= $form->field($model, 'medical_number')->textInput() ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-sm-4">

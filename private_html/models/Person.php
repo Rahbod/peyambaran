@@ -61,6 +61,7 @@ class Person extends Item
             'experience' => ['INTEGER', ''],
             'resume' => ['CHAR', ''],
             'link' => ['CHAR', ''],
+            'medical_number' => ['CHAR', ''],
         ]);
     }
 
@@ -72,7 +73,7 @@ class Person extends Item
         return array_merge(parent::rules(), [
             [['expertise'], 'required'],
             [['expertise', 'experience'], 'integer'],
-            [['avatar', 'link', 'resume', 'firstname', 'surename'], 'string'],
+            [['avatar', 'link', 'resume', 'firstname', 'surename', 'medical_number'], 'string'],
             [['type'], 'default', 'value' => self::TYPE_DOCTOR],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
@@ -92,6 +93,7 @@ class Person extends Item
             'experience' => Yii::t('words', 'Experience'),
             'resume' => Yii::t('words', 'Resume'),
             'link' => Yii::t('words', 'Link'),
+            'medical_number' => Yii::t('words', 'Medical system number'),
         ]);
     }
 

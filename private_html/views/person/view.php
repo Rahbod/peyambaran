@@ -44,12 +44,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
         <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+            <?php if($model->avatar && is_file(Yii::getAlias("@webroot/{$this->context->avatarDir}/$model->avatar"))): ?>
             <div class="text-center mb-4" style="display: block;overflow: hidden">
                 <img class="rounded-circle" style="display: inline-block;overflow: hidden" width="160" height="160" src="<?= Yii::getAlias("@web/{$this->context->avatarDir}/$model->avatar") ?>">
             </div>
+            <?php endif; ?>
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
+                    'medical_number',
                     [
                         'attribute' => 'userID',
                         'value' => $model->user->username

@@ -450,4 +450,5 @@ return [
     'Send to department' => 'ارسال به بخش مربوطه',
     'Suggestions' => 'پیشنهادات',
     'Critics' => 'انتقادات',
+    'Medical system number' => 'شماره نظام پزشکی',
 ];
