@@ -9,8 +9,11 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap-rtl.min.css">
     <link type="text/css" rel="stylesheet" href="css/fontiran-fa-num.css">
     <style>
+        *{
+            direction:rtl;
+        }
         .rashapay.main {
-            background-color: #f4f5f0;
+            background-color: #4b3585;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -22,8 +25,8 @@
         .rashapay .card {
             display: inline-block;
             vertical-align: middle;
-            background-color: #333;
-            color: #ffde00;
+            background-color: #fff;
+            color: #333;
             padding: 0;
             height: auto;
             border-radius: 10px;
@@ -49,24 +52,23 @@
         }
 
         .rashapay hr {
-            border-color: #222;
+            border-color: #ddd;
             border-width: 3px;
         }
 
         .rashapay .card-body {
-            color: #fff;
+            color: #333;
             padding: 30px 0;
         }
 
-        .rashapay .btn-gold {
-            background-color: #ffde00;
+        .rashapay .btn-success {
+            /*background-color: #4b3585;*/
             border: none;
             -webkit-box-shadow: none;
             -moz-box-shadow: none;
             box-shadow: none;
             width: 100%;
             border-radius: 0;
-            color: #333;
             font-weight: bold;
             font-size: 2.5rem;
             padding: 10px 15px;
@@ -79,7 +81,7 @@
         }
 
         .rashapay .btn-gold:hover {
-            background-color: #d4b900;
+            /*background-color: #6648b5;*/
         }
 
         .rashapay .amount {
@@ -99,23 +101,32 @@
 
         .rashapay .control-label {
             line-height: 42px;
-            color: #555;
+            color: #333;
         }
 
         .rashapay .form-control {
             height: 42px;
             padding: 10px 15px;
             border-radius: 6px;
-            background-color: #555;
-            border-color: #222;
-            color: #eee;
+            background-color: #eee;
+            border-color: transparent;
+            color: #333;
             font-weight: normal;
+            box-shadow:none;
         }
 
-        .rashapay .form-control:focus {
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #ffee2b90;
-            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #ffee2b90;
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #ffee2b90;
+        .rashapay .form-control:not([readonly]):focus {
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #4b3585cc;
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #4b3585cc;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px #4b3585cc;
+        }
+
+        .ltr{
+            direction:ltr !important;;
+        }
+
+        .text-right{
+            text-align:right !important;;
         }
 
         .no-mg {
@@ -137,17 +148,21 @@
                     <h1 class="amount-number">87,000<span>تومان</span></h1>
                 </div>
                 <div class="form-group col-sm-12">
-                    <div class="col-sm-4"><label class="control-label">پست الکترونیک</label></div>
-                    <div class="col-sm-8"><input type="email" placeholder="example@test.com" class="form-control text-right" dir="auto"></div>
+                    <div class="col-sm-4"><label class="control-label">آدرس ایمیل خریدار</label></div>
+                    <div class="col-sm-8"><input autofocus type="email" placeholder="آدرس ایمیل خود را اینجا تایپ کنید" class="form-control text-right ltr"></div>
                 </div>
                 <div class="form-group col-sm-12">
-                    <div class="col-sm-4"><label class="control-label">عبارت امنیتی</label></div>
-                    <div class="col-sm-8"><input type="tel" placeholder="عدد 84 را تایپ کنید" class="form-control"></div>
+                    <div class="col-sm-4"><label class="control-label">کد امنیتی (تشخیص ربات از انسان)</label></div>
+                    <div class="col-sm-8"><input type="tel" placeholder="عدد 84 را اینجا تایپ کنید" class="form-control"></div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-4"><label class="control-label">درگاه پرداخت</label></div>
+                    <div class="col-sm-8"><input type="text" class="form-control" readonly value="آقای پرداخت"></div>
                 </div>
             </div>
             <hr class="no-mg">
             <div class="card-footer">
-                <button type="submit" class="btn btn-gold">پرداخت</button>
+                <button type="submit" class="btn btn-success">پرداخت</button>
             </div>
         </form>
     </div>
