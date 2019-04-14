@@ -5,7 +5,6 @@ namespace app\controllers;
 use app\components\MainController;
 use app\models\Category;
 use app\models\Insurance;
-use app\models\Menu;
 use app\models\Message;
 use app\models\OnlineService;
 use app\models\Post;
@@ -138,12 +137,12 @@ class SiteController extends MainController
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
         $model = new ContactForm();
-        $model->scenario = $type=='cnt'?'default':"$type-scenario";
+        $model->scenario = $type == 'cnt' ? 'default' : "$type-scenario";
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->validate()) {
                 $message = new  Message();
-                $message->scenario = $type=='cnt'?'default':"$type-scenario";
+                $message->scenario = $type == 'cnt' ? 'default' : "$type-scenario";
                 $message->type = $type;
                 $message->name = $model->name;
                 $message->tel = $model->tel;
@@ -155,7 +154,7 @@ class SiteController extends MainController
                 if ($message->save()) {
                     $model->contact(Yii::$app->params['adminEmail']);
                     Yii::$app->session->setFlash('public-alert', ['type' => 'success', 'message' => Yii::t('words', 'message.successMsg')]);
-                    if($return = Yii::$app->request->getBodyParam('return'))
+                    if ($return = Yii::$app->request->getBodyParam('return'))
                         return $this->redirect([$return]);
                     return $this->refresh();
                 } else
@@ -269,9 +268,4 @@ class SiteController extends MainController
             @$model->save();
         }
     }*/
-
-    public function actionTest()
-    {
-//        Menu::findOne()
-    }
 }

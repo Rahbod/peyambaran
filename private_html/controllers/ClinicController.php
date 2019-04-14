@@ -2,15 +2,20 @@
 
 namespace app\controllers;
 
-use function app\components\dd;
+use app\components\Helper;
 use app\models\ClinicProgramView;
+use app\models\Person;
 use app\models\PersonProgramRel;
+use devgroup\dropzone\RemoveAction;
+use devgroup\dropzone\UploadAction;
+use devgroup\dropzone\UploadedFiles;
+use ruskid\csvimporter\CSVImporter;
+use ruskid\csvimporter\CSVReader;
 use Yii;
 use app\models\ClinicProgram;
 use app\models\ClinicProgramSearch;
 use app\components\AuthController;
-use yii\data\ActiveDataProvider;
-use yii\data\SqlDataProvider;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -40,6 +45,8 @@ class ClinicController extends AuthController
     public function getSystemActions()
     {
         return [
+            'upload-csv',
+            'delete-csv',
             'show'
         ];
     }
@@ -55,6 +62,23 @@ class ClinicController extends AuthController
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'upload-csv' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new ClinicProgram(), 'csv_file'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('csv')
+                )
+            ],
+            'delete-csv' => [
+                'class' => RemoveAction::className(),
             ],
         ];
     }
@@ -80,7 +104,7 @@ class ClinicController extends AuthController
 
         $clinicSearchModel = new ClinicProgramView();
         $dataProvider = $clinicSearchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->pagination= false;
+        $dataProvider->pagination = false;
         return $this->render('show', [
             'dataProvider' => $dataProvider,
         ]);
@@ -127,7 +151,7 @@ class ClinicController extends AuthController
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect($copy?['update', 'id' => $model->id]:['create']);
+                return $this->redirect($copy ? ['update', 'id' => $model->id] : ['create']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -198,7 +222,6 @@ class ClinicController extends AuthController
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
     }
 
-
     public function actionAddDoctor()
     {
         $model = new PersonProgramRel();
@@ -223,5 +246,56 @@ class ClinicController extends AuthController
             Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
 
         return $this->redirect(['update', 'id' => $model->dayID]);
+    }
+
+    public function actionImportCsvProgram()
+    {
+        $model = new ClinicProgram();
+
+        if (Yii::$app->request->post()) {
+            $model->load(Yii::$app->request->post());
+            $model->date = Helper::jDateTotoGregorian($model->date);
+
+            $file = new UploadedFiles($this->tmpDir, $model->csv_file);
+
+            // process csv file
+            $importer = new CSVImporter();
+            $importer->setData(new CSVReader([
+                'filename' => Yii::getAlias("@webroot/$this->tmpDir/$model->csv_file"),
+                'fgetcsvOptions' => [
+                    'delimiter' => ','
+                ]
+            ]));
+            $rows = $importer->getData();
+            foreach ($rows as $key => $data) {
+                /** @var $person Person */
+                $medical_number = $data[0];
+                $person = Person::find()->valid()->andWhere([Person::columnGetString('medical_number') => $medical_number])->one();
+                if (!$person)
+                    continue;
+
+                $st = Helper::strToTime($data[1]);
+                $et = Helper::strToTime($data[2]);
+                $fellowship = $person->fellowship == 1 ? Helper::parseDoctorStatus('f') : '';
+                $status = Helper::parseDoctorStatus($data[3]);
+                $description = !empty($data[4]) ? "$fellowship&nbsp;$status&nbsp;$data[4]" : "$fellowship&nbsp;$status";
+
+                $model->doctors[] = [
+                    'personID' => $person->id,
+                    'start_time' => $st,
+                    'end_time' => $et,
+                    'description' => $description,
+                    'alternative_personID' => null // alternative doctor
+                ];
+            }
+\app\components\dd($model->doctors);
+            if ($model->save()) {
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->redirect(['update', 'id' => $model->id]);
+            } else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+        }
+
+        return $this->render('csv_import', compact('model', 'file'));
     }
 }

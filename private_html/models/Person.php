@@ -13,6 +13,8 @@ use Yii;
  * @property int $experience
  * @property string $resume
  * @property string $link
+ * @property string $fellowship
+ * @property string $medical_number
  *
  */
 class Person extends Item

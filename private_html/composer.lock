@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03801532699351f49491263a58e2d820",
+    "content-hash": "6290db7f0ac1394de53cc3b2bb8ff39f",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -426,6 +426,49 @@
             "time": "2018-02-23T01:58:20+00:00"
         },
         {
+            "name": "faravaghi/yii2-jalali-datepicker",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/faravaghi/yii2-jalali-datepicker.git",
+                "reference": "65d5ca3d0f8b29ccc706fafe5ddfde774349c81a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/faravaghi/yii2-jalali-datepicker/zipball/65d5ca3d0f8b29ccc706fafe5ddfde774349c81a",
+                "reference": "65d5ca3d0f8b29ccc706fafe5ddfde774349c81a",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "faravaghi\\jalaliDatePicker\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mohammd Ebrahim Amini",
+                    "email": "faravaghi@gmail.com"
+                }
+            ],
+            "description": "Bootstrap Date Picker for Yii2 Extension",
+            "keywords": [
+                "Jalali",
+                "date picker",
+                "extension",
+                "persian calendar",
+                "yii2"
+            ],
+            "time": "2016-02-06T07:18:41+00:00"
+        },
+        {
             "name": "kartik-v/yii2-krajee-base",
             "version": "v2.0.4",
             "source": {
@@ -623,6 +666,48 @@
                 "yii2"
             ],
             "time": "2018-08-29T06:16:07+00:00"
+        },
+        {
+            "name": "ruskid/yii2-csv-importer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ruskid/yii2-csv-importer.git",
+                "reference": "40adb0ded8ac078d4d19d7b56c855222fce6d6c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ruskid/yii2-csv-importer/zipball/40adb0ded8ac078d4d19d7b56c855222fce6d6c2",
+                "reference": "40adb0ded8ac078d4d19d7b56c855222fce6d6c2",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "ruskid\\csvimporter\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Victor Demin",
+                    "email": "demin@trabeja.com"
+                }
+            ],
+            "description": "Helper to import csv files into database",
+            "keywords": [
+                "csv",
+                "excel",
+                "importer",
+                "yii2"
+            ],
+            "time": "2018-04-27T09:04:46+00:00"
         },
         {
             "name": "sallar/jdatetime",
@@ -3892,7 +3977,8 @@
     "stability-flags": {
         "kartik-v/yii2-widget-select2": 20,
         "sallar/jdatetime": 20,
-        "nirvana-msu/yii2-infinite-scroll": 20
+        "nirvana-msu/yii2-infinite-scroll": 20,
+        "ruskid/yii2-csv-importer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

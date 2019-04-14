@@ -451,7 +451,6 @@ return [
     'Suggestions' => 'پیشنهادات',
     'Critics' => 'انتقادات',
     'Medical system number' => 'شماره نظام پزشکی',
-    'Fellowship' => 'فلوشیپ',
     'Authorize mobile' => 'اعتبارسنجی موبایل',
     'register_authorize_text' => 'کد پیامکی اعتبارسنجی برای شما پیامک شده است، لطفا عدد موردنظر را وارد کنید.',
     'forget_password_text' => 'شماره تماس خود را جهت فعالسازی مجدد وارد نمایید.',
@@ -464,4 +463,9 @@ return [
     'Old password' => 'کلمه عبور قدیم',
     'New password' => 'کلمه عبور جدید',
     'Repeat password' => 'تکرار کلمه عبور',
+    'Fellowship' => 'فلوشیپ',
+    'Absenteeism' => 'عدم حضور',
+    'Alternative' => 'جایگزین',
+    'Import csv' => 'ایمپورت فایل csv',
+    'Csv File' => 'فایل csv',
 ];
