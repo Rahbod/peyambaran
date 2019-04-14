@@ -26,16 +26,18 @@ use \yii\helpers\Url;
                         <div class="row">
                             <div class="col-xs-6 vertical-separator-line">
                                 <div class="register-form-container">
+                                    <?= $this->render('//layouts/_flash_message') ?>
                                     <h4 class="register-form-container__title"><?= Yii::t('words', 'Login to account') ?></h4>
                                     <p class="register-form-container__description"><?= Yii::t('words', 'login_text') ?></p>
                                     <?php $form = ActiveForm::begin([
                                         'options' => ['class' => 'forms'],
+                                        'enableClientValidation' => true,
+                                        'validateOnSubmit' => true,
                                         'fieldConfig' => [
                                             'options' => ['class' => '']
                                         ],
 
                                     ]); ?>
-                                    <?= $form->errorSummary($model) ?>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <?= $form->field($model, 'username')->textInput(['class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 1, 'placeholder' => Yii::t('words', 'Phone')])->label(false) ?>

@@ -65,6 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return $model->getStatusLabels($model->status);
                             },
                         ],
+                        'verification_code',
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
                 ]); ?>

@@ -2391,7 +2391,10 @@ section .title-description {
 }
 
 .contactUsPage .content-header {
-    background: #85c296;
+    background: #3f8dfa;
+}
+.contactUsPage .submitBtn{
+    background: #3f8dfa;
 }
 .contactUsPage.green-theme  .content-header {
     background: #85c296;
@@ -2689,6 +2692,7 @@ section .title-description {
 
 .register .vertical-separator-line {
     border-left: 2px solid #85c296;
+    min-height: 320px;
 }
 
 .register .social-accounts-container {

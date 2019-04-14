@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\customWidgets\CustomCaptchaAction;
 use Yii;
 use yii\base\Model;
 
@@ -16,9 +17,9 @@ class LoginForm extends Model
     public $username;
     public $password;
     public $rememberMe = true;
+    public $verifyCode;
 
     private $_user = false;
-    public $verifyCode;
 
 
     /**
@@ -27,15 +28,19 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
             [['username', 'password'], 'required'],
-            // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
+            ['verifyCode', 'captcha', 'skipOnEmpty'=>false, 'captchaAction' => '/user/captcha', 'except' => 'admin'],
             ['password', 'validatePassword'],
-            ['verifyCode', 'captcha', 'except' => 'admin']
         ];
     }
+
+//    public function captchaCheck($attribute, $params)
+//    {
+//        if (!$this->hasErrors()) {
+//            $this->addError($attribute, );
+//        }
+//    }
 
     /**
      * Validates the password.

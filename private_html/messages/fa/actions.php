@@ -97,6 +97,7 @@ return [
     'updateDepartment' => 'ویرایش بخش',
     'deleteDepartment' => 'حذف بخش',
     'slide' => 'اسلایدشو',
+    'site.index' => 'صفحه اصلی',
     'site.contact' => 'تماس با ما',
     'site.suggestion' => 'انتقادات و پیشنهادات',
     'site.complaint' => 'شکایات',

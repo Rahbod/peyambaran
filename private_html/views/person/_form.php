@@ -47,6 +47,9 @@ use app\models\Category;
         <div class="col-sm-4">
             <?= $form->field($model, 'medical_number')->textInput() ?>
         </div>
+        <div class="col-sm-4">
+            <?php echo $form->field($model, 'fellowship', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+        </div>
     </div>
 
     <div class="row">

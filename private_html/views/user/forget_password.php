@@ -7,11 +7,11 @@ use \yii\helpers\Url;
 /** @var $this \yii\web\View */
 /** @var $model \app\models\LoginForm */
 ?>
-<section class="register forgotPassword">
+<section class="register">
     <div class="container">
         <div class="row register-container">
             <div class="col-xs-12 px-0">
-                <div class="content-header -blueBg">
+                <div class="content-header">
                     <img src="<?= $this->theme->baseUrl ?>/svg/user.svg" class="img-fluid content-header__image"
                          alt="">
                     <div class="titles">
@@ -24,52 +24,38 @@ use \yii\helpers\Url;
                 <div class="register-form">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-6 vertical-separator-line">
+                            <div class="col-sm-6 col-xs-12 vertical-separator-line">
                                 <div class="register-form-container">
-                                    <h4 class="register-form-container__title"><?= Yii::t('words', 'Login to account') ?></h4>
-                                    <p class="register-form-container__description"><?= Yii::t('words', 'login_text') ?></p>
-                                    <?php $form = ActiveForm::begin([
+                                    <?= $this->render('//layouts/_flash_message') ?>
+                                    <h4 class="register-form-container__title"><?= Yii::t('words', 'Forget password') ?></h4>
+                                    <p class="register-form-container__description"><?= Yii::t('words', 'forget_password_text') ?></p>
+                                    <?= Html::beginForm(['/user/forget-password'], 'post', [
                                         'options' => ['class' => 'forms'],
                                         'fieldConfig' => [
                                             'options' => ['class' => '']
-                                        ],
+                                        ]
+                                    ]);
+                                    ?>
 
-                                    ]); ?>
-                                    <?= $form->errorSummary($model) ?>
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <?= $form->field($model, 'username')->textInput(['class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 1, 'placeholder' => Yii::t('words', 'Phone')])->label(false) ?>
+                                            <?= Html::textInput('username', Yii::$app->request->getBodyParam('username'), [
+                                                'class' => 'form-control',
+                                                'spellcheck' => false,
+                                                'tabindex' => 1,
+                                                'placeholder' => Yii::t('words', 'user.phone')
+                                            ]) ?>
                                         </div>
                                         <div class="form-group col-12">
-                                            <?= $form->field($model, 'password')->passwordInput(['class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 2, 'placeholder' => Yii::t('words', 'Password')])->label(false) ?>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <div class="text-left">
-                                                <a class="forgotBtn"
-                                                   href="<?= Url::to(['/user/forget-password']) ?>"><?= Yii::t('words', 'Forget password?') ?></a>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <div class="clearfix captcha-container">
-                                                <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
-                                                    'captchaAction' => ['/user/captcha'],
-                                                    'template' => '<span class="floatToRight form-control securityCode__image" style="padding: 0 !important;">{image}{url}</span> {input}',
-                                                    'linkOptions' => ['label' => Yii::t('words', 'Refresh')],
-                                                    'options' => [
-                                                        'class' => 'floatToRight securityCode__input form-control',
-                                                        'placeholder' => Yii::t('words', 'Verify Code'),
-                                                        'tabindex' => 4,
-                                                        'autocomplete' => 'off'
-                                                    ],
-                                                ])->label(false) ?>
-                                                <?= Html::submitButton(Yii::t('words', 'Login'), ['class' => 'btn submitBtn -blueBg', 'tabindex' => 5]) ?>
+                                            <div class="clearfix">
+                                                <?= Html::submitButton(Yii::t('words', 'Send'), ['class' => 'btn submitBtn', 'tabindex' => 5]) ?>
                                             </div>
                                         </div>
                                     </div>
-                                    <?php ActiveForm::end() ?>
+                                    <?= Html::endForm() ?>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-sm-6 col-xs-12">
                                 <div class="social-accounts-container">
                                     <div class="social-accounts login-with-google">
                                         <a href="void:;">

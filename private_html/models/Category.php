@@ -104,7 +104,7 @@ class Category extends MultiLangActiveRecord
         return array_merge(parent::rules(), [
             [['parentID', 'status', 'left', 'right', 'depth', 'tree', 'sort'], 'integer'],
             [['name'], 'required'],
-//            [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
+            [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
             [['type', 'dyna', 'extra', 'category_type'], 'string'],
             [['created'], 'safe'],
             ['created', 'default', 'value' => time()],

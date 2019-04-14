@@ -33,16 +33,15 @@ use \yii\widgets\ActiveForm;
                                             'options' => ['class' => '']
                                         ]
                                     ]); ?>
-                                    <?= $form->errorSummary($model) ?>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <?= $form->field($model, 'name')->textInput(['class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 1, 'placeholder' => Yii::t('words', 'Name and Family')])->label(false) ?>
                                         </div>
                                         <div class="form-group col-12">
-                                            <?= $form->field($model, 'nationalCode')->textInput(['class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 2, 'placeholder' => Yii::t('words', 'National Code')])->label(false) ?>
+                                            <?= $form->field($model, 'nationalCode')->textInput(['maxLength' => 10,'class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 2, 'placeholder' => Yii::t('words', 'National Code')])->label(false) ?>
                                         </div>
                                         <div class="form-group col-12">
-                                            <?= $form->field($model, 'phone')->textInput(['class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 3, 'placeholder' => Yii::t('words', 'Phone')])->label(false) ?>
+                                            <?= $form->field($model, 'phone')->textInput(['maxLength' => 11,'class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 3, 'placeholder' => Yii::t('words', 'Phone')])->label(false) ?>
                                         </div>
 
                                         <div class="form-group col-12">
@@ -50,7 +49,7 @@ use \yii\widgets\ActiveForm;
                                                 <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
                                                     'captchaAction' => ['/user/captcha'],
                                                     'template' => '<span class="floatToRight form-control securityCode__image" style="padding: 0 !important;">{image}{url}</span> {input}',
-                                                    'linkOptions' => ['label' => Yii::t('words', 'Refresh')],
+                                                    'linkOptions' => ['label' => Yii::t('words', '')],
                                                     'options' => ['class' => 'floatToRight securityCode__input form-control', 'placeholder' => Yii::t('words', 'Verify Code'), 'tabindex' => 4]
                                                 ])->label(false) ?>
                                                 <?= Html::submitButton(Yii::t('words', 'Register'), ['class' => 'btn submitBtn', 'tabindex' => 5]) ?>

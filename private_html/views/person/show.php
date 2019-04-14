@@ -15,7 +15,7 @@ $expertiseMenu = \app\models\Category::find()
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <nav id="sidebar">
+                <nav>
                     <div class="sidebar-header mt-5">
                         <h4><?= Yii::t('words', 'Payambaran Medical team') ?></h4>
                     </div>

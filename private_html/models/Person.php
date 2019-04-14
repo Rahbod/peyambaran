@@ -62,6 +62,7 @@ class Person extends Item
             'resume' => ['CHAR', ''],
             'link' => ['CHAR', ''],
             'medical_number' => ['CHAR', ''],
+            'fellowship' => ['INTEGER', ''],
         ]);
     }
 
@@ -75,6 +76,8 @@ class Person extends Item
             [['expertise', 'experience'], 'integer'],
             [['avatar', 'link', 'resume', 'firstname', 'surename', 'medical_number'], 'string'],
             [['type'], 'default', 'value' => self::TYPE_DOCTOR],
+            [['fellowship'], 'safe'],
+            [['fellowship'], 'default', 'value' => 0],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }
@@ -94,6 +97,7 @@ class Person extends Item
             'resume' => Yii::t('words', 'Resume'),
             'link' => Yii::t('words', 'Link'),
             'medical_number' => Yii::t('words', 'Medical system number'),
+            'fellowship' => Yii::t('words', 'Fellowship'),
         ]);
     }
 

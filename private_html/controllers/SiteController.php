@@ -22,6 +22,7 @@ class SiteController extends MainController
     public function getMenuActions()
     {
         return [
+            'index',
             'contact',
             'suggestion',
             'complaint',

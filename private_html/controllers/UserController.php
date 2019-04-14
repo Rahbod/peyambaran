@@ -49,6 +49,7 @@ class UserController extends AuthController
             'forgetPassword',
             'changePassword',
             'dashboard',
+            'authorize',
             'captcha'
         ];
     }
@@ -73,6 +74,7 @@ class UserController extends AuthController
         return [
             'captcha' => [
                 'class' => CustomCaptchaAction::className(),
+                'setTheme' => true,
                 'width' => 130,
                 'height' => 40,
                 'transparent' => true
@@ -208,40 +210,16 @@ class UserController extends AuthController
      * Deletes an existing User model.
      * @return mixed
      */
-    public function actionDelete()
+    public function actionDelete($id)
     {
-        $result = false;
-        if (Yii::$app->request->post('Delete')) {
-            $data = Yii::$app->request->post('Delete');
-            switch ($data['type']) {
-                case 'single':
-//                    'delete-user'
-                    $model = $this->findModel($data['id']);
-                    if ($model) {
-                        if ($model->status)
-                            $model->scenario = 'delete-user';
-                        $model->status = User::STATUS_DELETED;
-                        $result = $model->save(false);
-                    }
-                    break;
+        $model = $this->findModel($id);
+        $avatar = new UploadedFiles($this->avatarPath, $model->avatar);
+        $avatar->removeAll(true);
+        $model->delete();
 
-                case 'multiple':
-                    $result = true;
-                    foreach (User::findAll(['id' => Json::decode($data['id'])]) as $model) {
-                        $model->scenario = 'delete-user';
-                        $model->status = User::STATUS_DELETED;
-                        @$model->save(false);
-                    }
-                    break;
-            }
-        }
+        Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
 
-        if ($result === false)
-            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
-        else
-            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
-
-        return $this->actionIndex();
+        return $this->redirect(['index']);
     }
 
     /**
@@ -265,17 +243,20 @@ class UserController extends AuthController
         $model = $this->findModel(Yii::$app->user->id);
         $model->setScenario('change-password');
 
+        if($model->roleID == 'user')
+            $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                $this->redirect(['/admin/index']);
+                $this->redirect([$model->roleID == 'user'?'/dashboard':'/admin/index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
 
         }
 
-        return $this->render('change_pass', compact('model'));
+        return $this->render($model->roleID == 'user'?'user_change_pass':'change_pass', compact('model'));
     }
 
 
@@ -285,7 +266,7 @@ class UserController extends AuthController
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(['/']);
+            return $this->redirect(['/dashboard']);
         }
 
         $model->password = '';
@@ -317,9 +298,16 @@ class UserController extends AuthController
             $model->load(Yii::$app->request->post());
             $model->username = $model->phone;
             $model->password = $model->nationalCode;
+            $model->roleID = 'user';
+            $model->status = 0;
+            $model->verification_code = rand(12315, 98879);
             if ($model->save()) {
+
+                //@todo send sms to user
+
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->refresh();
+                $hash = base64_encode($model->id);
+                return $this->redirect(['/user/authorize', 'hash' => urlencode($hash)]);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -328,13 +316,71 @@ class UserController extends AuthController
         return $this->render('register', compact('model'));
     }
 
+    public function actionAuthorize()
+    {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+
+        if (!Yii::$app->request->isPost && !($hash = urldecode(Yii::$app->request->getQueryParam('hash'))))
+            return $this->redirect(['/user/register']);
+
+        $forgetMode = false;
+        if (!Yii::$app->request->isPost && Yii::$app->request->getQueryParam('forget') !== null)
+            $forgetMode = true;
+
+        if (Yii::$app->request->post()) {
+            $code = Yii::$app->request->getBodyParam('code');
+            $hash = Yii::$app->request->getBodyParam('hash');
+            $forgetMode = Yii::$app->request->getBodyParam('forget');
+            $id = base64_decode($hash);
+            $model = User::findOne($id);
+            if ($model) {
+                if ((int)$code === $model->verification_code) {
+                    $model->verification_code = null;
+                    if ($forgetMode) {
+                        $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->nationalCode);
+                    } else {
+                        $model->status = User::STATUS_ENABLE;
+                    }
+
+                    if ($model->save()) {
+                        if($forgetMode)
+                            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'user.recoverySuccessMsg')]);
+                        else
+                            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'user.verifySuccessMsg')]);
+                        return $this->redirect(['/user/login']);
+                    } else
+                        Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                } else
+                    Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'user.verification_code_invalid')]);
+            } else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'user.hash_invalid')]);
+
+        }
+
+        return $this->render('authorize', compact('hash', 'forgetMode'));
+    }
+
     public function actionForgetPassword()
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
 
-        if(Yii::$app->request->post()){
-            $mobile = Yii::$app->request->getBodyParam('mobile');
-            \app\components\dd($mobile);
+        if (Yii::$app->request->post()) {
+            $username = Yii::$app->request->getBodyParam('username');
+            $model = User::findByUsername($username);
+            if ($model === null) {
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'user.username_invalid')]);
+                return $this->refresh();
+            }
+
+            $model->verification_code = rand(12315, 98879);
+            if ($model->save()) {
+
+                //@todo send sms to user
+
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'user.forgetSuccessMsg')]);
+                $hash = base64_encode($model->id);
+                return $this->redirect(['/user/authorize', 'hash' => urlencode($hash), 'forget' => true]);
+            }
         }
 
         return $this->render('forget_password');
@@ -342,9 +388,9 @@ class UserController extends AuthController
 
     public function actionDashboard()
     {
-        if (Yii::$app->user->isGuest)
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity->roleID != 'user')
             return $this->redirect(['/']);
-        $this->setTheme('frontend', ['headerClass' => '-blueHeader']);
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
         $user = Yii::$app->user->identity;
         return $this->render('dashboard', compact('user'));
 
