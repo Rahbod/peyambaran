@@ -49,7 +49,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'placement' => 'right',
                     ),
                     'htmlOptions' => [
-                        'class' => 'form-control m-input m-input--solid'
+                        'class' => 'form-control m-input m-input--solid',
+                        'autocomplete' => 'off'
                     ]
                 ]); ?>
             </div>

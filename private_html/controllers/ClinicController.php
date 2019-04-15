@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use function app\components\dd;
 use app\components\Helper;
 use app\models\ClinicProgramView;
 use app\models\Person;
@@ -255,6 +256,8 @@ class ClinicController extends AuthController
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             $model->date = Helper::jDateTotoGregorian($model->date);
+            $model->is_holiday = 0;
+
 
             $file = new UploadedFiles($this->tmpDir, $model->csv_file);
 
@@ -276,9 +279,8 @@ class ClinicController extends AuthController
 
                 $st = Helper::strToTime($data[1]);
                 $et = Helper::strToTime($data[2]);
-                $fellowship = $person->fellowship == 1 ? Helper::parseDoctorStatus('f') : '';
-                $status = Helper::parseDoctorStatus($data[3]);
-                $description = !empty($data[4]) ? "$fellowship&nbsp;$status&nbsp;$data[4]" : "$fellowship&nbsp;$status";
+                $status = $data[3];
+                $description = !empty($data[4]) ? "$status $data[4]" : $status;
 
                 $model->doctors[] = [
                     'personID' => $person->id,
@@ -288,8 +290,9 @@ class ClinicController extends AuthController
                     'alternative_personID' => null // alternative doctor
                 ];
             }
-\app\components\dd($model->doctors);
+
             if ($model->save()) {
+                $file->removeAll(true);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['update', 'id' => $model->id]);
             } else
