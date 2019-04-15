@@ -25,6 +25,9 @@ class Helper
      */
     public static function jDateTotoGregorian($date, $delimiter = '/')
     {
+        if(($gtime = strtotime($date))>0)
+            return $gtime;
+
         list($y, $m, $d) = explode($delimiter, $date);
         $date = \jDateTime::toGregorian($y, $m, $d);
         return strtotime("{$date[0]}/{$date[1]}/{$date[2]}");

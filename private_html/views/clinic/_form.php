@@ -169,7 +169,10 @@ $this->registerJs('
                             <?= Html::submitButton('ذخیره تغییرات', ['class' => 'btn btn-success pull-left']) ?>
                         </div>
                     </div>
-
+                    <p class="text-info" style="white-space: pre-line"><i class="fa fa-info-circle"></i>در بخش توضیحات علامت های زیر مجاز هستند:
+                        *: عدم حضور پزشک
+                        -: حضوز پزشک جایگزین
+                    </p>
                     <?= \yii\grid\GridView::widget([
                         'dataProvider' => $dataProvider,
                         'layout' => '{items}',

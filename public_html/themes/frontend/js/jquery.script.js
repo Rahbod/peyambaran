@@ -110,7 +110,8 @@ $(function () {
 })(jQuery);
 
 // hide or show the main navbar base on page scroll : start
-var position = 300;
+var header_height = $('header').height();
+console.log(header_height);
 $(window).scroll(function () {
     var scroll = $(window).scrollTop();
     if (scroll > position) {

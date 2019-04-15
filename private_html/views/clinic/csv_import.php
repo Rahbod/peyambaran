@@ -38,10 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $this->render('//layouts/_flash_message') ?>
         </div>
 
-        <?= $form->errorSummary($model) ?>
-
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <?= $form->field($model, 'date')->widget(jalaliDatePicker::className(), [
                     'options' => array(
                         'format' => 'yyyy/mm/dd',
@@ -49,7 +47,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'placement' => 'right',
                     ),
                     'htmlOptions' => [
-                        'class' => 'form-control m-input m-input--solid'
+                        'class' => 'form-control m-input m-input--solid',
+                        'autocomplete' => 'off'
                     ]
                 ]); ?>
             </div>
@@ -73,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'maxFiles' => 1,
                 'maxFileSize' => 10,
             ],
-        ]) ?>
+        ])->hint(Html::a(Yii::t('words', 'Get sample file'),Yii::getAlias('@web/uploads/sample-csv/').\app\components\Setting::get('sampleCsv'),['class' => 'btn btn-primary btn-sm'])) ?>
         
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
