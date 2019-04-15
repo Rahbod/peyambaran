@@ -12,7 +12,7 @@ use \yii\helpers\Url;
         <div class="row register-container">
             <div class="col-xs-12 px-0">
                 <div class="content-header -blueBg">
-                    <img src="./svg/user.svg" class="img-fluid content-header__image"
+                    <img src="<?= $this->theme->baseUrl ?>/svg/user.svg" class="img-fluid content-header__image"
                          alt="">
                     <div class="titles">
                         <h1 class="media-heading content-header__title galleryHeader__title"><?= Yii::t('words', 'Login') ?></h1>
@@ -26,16 +26,18 @@ use \yii\helpers\Url;
                         <div class="row">
                             <div class="col-xs-6 vertical-separator-line">
                                 <div class="register-form-container">
+                                    <?= $this->render('//layouts/_flash_message') ?>
                                     <h4 class="register-form-container__title"><?= Yii::t('words', 'Login to account') ?></h4>
                                     <p class="register-form-container__description"><?= Yii::t('words', 'login_text') ?></p>
                                     <?php $form = ActiveForm::begin([
                                         'options' => ['class' => 'forms'],
+                                        'enableClientValidation' => true,
+                                        'validateOnSubmit' => true,
                                         'fieldConfig' => [
                                             'options' => ['class' => '']
                                         ],
 
                                     ]); ?>
-                                    <?= $form->errorSummary($model) ?>
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <?= $form->field($model, 'username')->textInput(['class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 1, 'placeholder' => Yii::t('words', 'Phone')])->label(false) ?>
@@ -50,19 +52,23 @@ use \yii\helpers\Url;
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
-                                            <div class="clearfix captcha-container">
-                                                <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
-                                                    'captchaAction' => ['/user/captcha'],
-                                                    'template' => '<span class="floatToRight form-control securityCode__image" style="padding: 0 !important;">{image}{url}</span> {input}',
-                                                    'linkOptions' => ['label' => Yii::t('words', 'New Code')],
-                                                    'options' => [
-                                                        'class' => 'floatToRight securityCode__input form-control',
-                                                        'placeholder' => Yii::t('words', 'Verify Code'),
-                                                        'tabindex' => 4,
-                                                        'autocomplete' => 'off'
-                                                    ],
-                                                ])->label(false) ?>
-                                                <?= Html::submitButton(Yii::t('words', 'Login'), ['class' => 'btn submitBtn -blueBg', 'tabindex' => 5]) ?>
+                                            <div class="row">
+                                                <div class="clearfix col-sm-9 captcha-container">
+                                                    <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
+                                                        'captchaAction' => ['/user/captcha'],
+                                                        'template' => '<span class="floatToRight form-control securityCode__image" style="padding: 0 !important;">{image}{url}</span> {input}',
+                                                        'linkOptions' => ['label' => ''],
+                                                        'options' => [
+                                                            'class' => 'floatToRight securityCode__input form-control',
+                                                            'placeholder' => Yii::t('words', 'Verify Code'),
+                                                            'tabindex' => 4,
+                                                            'autocomplete' => 'off'
+                                                        ],
+                                                    ])->label(false)->hint(false) ?>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <?= Html::submitButton(Yii::t('words', 'Login'), ['class' => 'btn submitBtn -blueBg', 'tabindex' => 5]) ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -74,19 +80,19 @@ use \yii\helpers\Url;
                                     <div class="social-accounts login-with-google">
                                         <a href="void:;">
                                             ورود با حساب گوگل
-                                            <img src="./images/register/google.png" alt="">
+                                            <img src="<?= $this->theme->baseUrl ?>/images/register/google.png" alt="">
                                         </a>
                                     </div>
                                     <div class="social-accounts login-with-facebook">
                                         <a href="void:;">
                                             ورود با حساب فیسبوک
-                                            <img src="./images/register/facebook.png" alt="">
+                                            <img src="<?= $this->theme->baseUrl ?>/images/register/facebook.png" alt="">
                                         </a>
                                     </div>
                                     <div class="social-accounts login-with-twitter">
                                         <a href="void:;">
                                             ورود با حساب تویتتر
-                                            <img src="./images/register/twitter.png" alt="">
+                                            <img src="<?= $this->theme->baseUrl ?>/images/register/twitter.png" alt="">
                                         </a>
                                     </div>
                                 </div>

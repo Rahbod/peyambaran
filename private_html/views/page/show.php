@@ -20,7 +20,7 @@ if ($relatedMenu)
         <div class="row">
             <?php if ($root): ?>
                 <div class="col-md-3">
-                    <nav id="sidebar">
+                    <nav>
                         <div class="sidebar-header mt-5">
                             <h4><?= $root->name ?></h4>
                         </div>

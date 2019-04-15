@@ -21,6 +21,8 @@ use yii\web\IdentityInterface;
  * @property resource $dyna
  * @property string $created
  * @property integer $status
+ * @property integer $verification_code
+ * @property integer $nationalCode
  */
 class User extends DynamicActiveRecord implements IdentityInterface
 {
@@ -57,6 +59,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
             'gender' => ['INTEGER', ''],
             'address' => ['CHAR', ''],
             'birthDate' => ['DATETIME', ''],
+            'verification_code' => ['CHAR', ''],
 
             'updated' => ['DATETIME', ''],
             'lastLogin' => ['DATETIME', ''],
@@ -101,7 +104,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
             [['oldPassword'], 'checkPassword', 'on' => 'change-password'],
             ['repeatPassword', 'compare', 'compareAttribute' => 'password', 'on' => 'insert'],
             ['repeatPassword', 'compare', 'compareAttribute' => 'newPassword', 'on' => 'change-password'],
-            ['created', 'default', 'value' => date(Yii::$app->params['dbDateTimeFormat']), 'on' => ['insert', 'manual_insert','register']],
+            ['created', 'default', 'value' => date(Yii::$app->params['dbDateTimeFormat']), 'on' => ['insert', 'manual_insert', 'register']],
             [['dyna', 'address'], 'string'],
             [['created', 'phone', 'text', 'image', 'nationalCode', 'memCode', 'gender', 'address', 'birthDate'], 'safe'],
             [['status', 'nationalCode', 'memCode', 'gender'], 'integer'],
@@ -113,8 +116,13 @@ class User extends DynamicActiveRecord implements IdentityInterface
             [['roleID'], 'exist', 'skipOnError' => true, 'targetClass' => Role::className(), 'targetAttribute' => ['roleID' => 'name']],
 
             [['name', 'nationalCode', 'phone'], 'required', 'on' => 'register'],
-            [['roleID'], 'default', 'value' => 'user'],
-            ['verifyCode', 'captcha', 'on' => 'register']
+            [['nationalCode'], 'string', 'min' => 10, 'on' => 'register'],
+            [['phone'], 'string', 'min' => 11, 'on' => 'register'],
+            [['roleID'], 'default', 'value' => 'user', 'on' => 'register'],
+            [['status'], 'default', 'value' => 0, 'on' => 'register'],
+            ['verifyCode', 'captcha', 'skipOnEmpty' => false, 'captchaAction' => '/user/captcha', 'on' => 'register'],
+
+            [['verification_code'], 'integer', 'on' => 'authorize'],
         ];
     }
 
@@ -153,6 +161,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
             'address' => Yii::t('words', 'user.address'),
             'birthDate' => Yii::t('words', 'user.birthDate'),
             'verifyCode' => Yii::t('words', 'verifyCode'),
+            'verification_code' => Yii::t('words', 'Verification code'),
         ];
     }
 

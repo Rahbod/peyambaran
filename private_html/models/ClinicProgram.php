@@ -20,7 +20,7 @@ use yii\helpers\ArrayHelper;
 class ClinicProgram extends DynamicActiveRecord
 {
     public $doctors = [];
-
+    public $csv_file;
     /**
      * {@inheritdoc}
      */
@@ -44,11 +44,13 @@ class ClinicProgram extends DynamicActiveRecord
     {
         return array_merge(parent::rules(), [
             [['date'], 'required'],
+            [['date'], 'unique'],
             [['dyna'], 'string'],
             [['is_holiday'], 'integer'],
             [['doctors'], 'safe'],
             [['is_holiday'], 'default', 'value' => 1],
             [['created'], 'string', 'max' => 20],
+            [['csv_file'], 'string'],
             [['userID'], 'default', 'value' => Yii::$app->user->id],
             [['created'], 'default', 'value' => time()],
         ]);
@@ -67,6 +69,7 @@ class ClinicProgram extends DynamicActiveRecord
             'is_holiday' => Yii::t('words', 'Holiday'),
             'userID' => Yii::t('words', 'Creator'),
             'doctors' => Yii::t('words', 'Doctors'),
+            'csv_file' => Yii::t('words', 'Csv File'),
         ]);
     }
 
@@ -76,8 +79,11 @@ class ClinicProgram extends DynamicActiveRecord
         $today = strtotime(date("Y-m-d 00:00:00", time()));
         $last = self::find()->orderBy(['id' => SORT_DESC])->one();
         if ($last) {
-            $lastDate = $last->date > $today ? $last->date : $today;
-            return (string)($lastDate + (24 * 60 * 60));
+            if ($last->date >= $today) {
+                $lastDate = $last->date;
+                return (string)($lastDate + (24 * 60 * 60));
+            } else
+                return $today;
         }
         return (string)$today;
     }

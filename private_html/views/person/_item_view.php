@@ -8,10 +8,17 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion"
-                           href="#collapse-<?= $model->id ?>">
-                            <img class="panel-title__doctorAvatar"
-                                 src="<?= Yii::getAlias('@web/uploads/person/') . $model->avatar ?>" alt="">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-<?= $model->id ?>">
+                            <div class="panel-title__doctorAvatar">
+                                <?php if ($model->avatar && is_file(Yii::getAlias("@webroot/uploads/person/$model->avatar"))): ?>
+                                    <img src="<?= Yii::getAlias('@web/uploads/person/') . $model->avatar ?>"
+                                         alt="<?= $model->name ?>">
+                                <?php else: ?>
+                                    <img class="panel-title__doctorAvatar-default"
+                                         src="<?= $this->theme->baseUrl ?>/images/doctors/avatar-gray.png"
+                                         alt="<?= $model->name ?>">
+                                <?php endif; ?>
+                            </div>
                             <h4 class="panel-title__doctorName"><?= $model->name ?></h4>
                             <p class="panel-title__doctorExpertise">
                                 <?= $model->getExpertiseLabel() ? $model->getExpertiseLabel()->name : '-' ?>

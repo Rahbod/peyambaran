@@ -13,6 +13,8 @@ use Yii;
  * @property int $experience
  * @property string $resume
  * @property string $link
+ * @property string $fellowship
+ * @property string $medical_number
  *
  */
 class Person extends Item
@@ -61,6 +63,8 @@ class Person extends Item
             'experience' => ['INTEGER', ''],
             'resume' => ['CHAR', ''],
             'link' => ['CHAR', ''],
+            'medical_number' => ['CHAR', ''],
+            'fellowship' => ['INTEGER', ''],
         ]);
     }
 
@@ -72,8 +76,10 @@ class Person extends Item
         return array_merge(parent::rules(), [
             [['expertise'], 'required'],
             [['expertise', 'experience'], 'integer'],
-            [['avatar', 'link', 'resume', 'firstname', 'surename'], 'string'],
+            [['avatar', 'link', 'resume', 'firstname', 'surename', 'medical_number'], 'string'],
             [['type'], 'default', 'value' => self::TYPE_DOCTOR],
+            [['fellowship'], 'safe'],
+            [['fellowship'], 'default', 'value' => 0],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }
@@ -92,6 +98,8 @@ class Person extends Item
             'experience' => Yii::t('words', 'Experience'),
             'resume' => Yii::t('words', 'Resume'),
             'link' => Yii::t('words', 'Link'),
+            'medical_number' => Yii::t('words', 'Medical system number'),
+            'fellowship' => Yii::t('words', 'Fellowship'),
         ]);
     }
 

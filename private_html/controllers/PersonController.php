@@ -208,7 +208,7 @@ class PersonController extends AuthController
             if ($model->save()) {
                 $avatar->update($oldImage, $model->avatar, $this->tmpDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }

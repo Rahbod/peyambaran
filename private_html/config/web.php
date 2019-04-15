@@ -93,6 +93,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'dashboard'=>'user/dashboard',
                 '<language:\w{2}>'=>'site/change-lang',
                 '<language:\w{2}>/<controller:\w+>' => 'site/change-lang',
                 '<language:\w+>/<controller:\w+>/<action:\w+>' => 'site/change-lang',

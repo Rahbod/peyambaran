@@ -50,6 +50,7 @@ class PostController extends AuthController
             'delete-image',
             'upload-attachment',
             'delete-attachment',
+            'show',
             'news',
             'articles',
         ];
@@ -271,9 +272,11 @@ class PostController extends AuthController
 
         $searchModel->type = Post::TYPE_NEWS;
         $searchModel->status = Post::STATUS_PUBLISHED;
+        if ($term = Yii::$app->request->getQueryParam('term'))
+            $searchModel->name = $term;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('list', [
+        $dataProvider->pagination = false;
+        return $this->render('news', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -286,9 +289,11 @@ class PostController extends AuthController
 
         $searchModel->type = Post::TYPE_ARTICLE;
         $searchModel->status = Post::STATUS_PUBLISHED;
+        if ($term = Yii::$app->request->getQueryParam('term'))
+            $searchModel->name = $term;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('list', [
+        $dataProvider->pagination = false;
+        return $this->render('articles', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

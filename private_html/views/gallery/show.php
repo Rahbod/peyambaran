@@ -22,7 +22,7 @@ $this->registerJsFile($baseUrl.'/js/vendors/html5lightbox/html5lightbox.js',[], 
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <nav id="sidebar">
+                <nav>
                     <div class="sidebar-header mt-3">
                         <h4 class="text-purple"><?= Yii::t('words', 'Payambaran Hospital Gallery') ?></h4>
                     </div>

@@ -10,6 +10,7 @@ $expertiseMenu = \app\models\Category::find()
         'type' => \app\models\Category::TYPE_CATEGORY,
         'category_type' => \app\models\Category::CATEGORY_TYPE_EXPERTISE,
     ])
+    ->valid()
     ->all();
 
 $expertiseID = Yii::$app->request->getQueryParam('expertise') ?: 0;
@@ -19,7 +20,7 @@ $expertiseID = Yii::$app->request->getQueryParam('expertise') ?: 0;
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <nav id="sidebar">
+                <nav>
                     <div class="sidebar-header mt-3">
                         <h4 class="text-purple"><?= Yii::t('words', 'Payambaran Medical team') ?></h4>
                     </div>

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\Helper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Post;
@@ -66,7 +67,7 @@ class PostSearch extends Post
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
             ->andFilterWhere(['like', 'dyna', $this->dyna])
             ->andFilterWhere(['like', 'extra', $this->extra])
             ->andFilterWhere(['like', 'created', $this->created]);
