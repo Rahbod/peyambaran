@@ -15,8 +15,16 @@ $(function () {
             delete options.autoheight
         }
 
+        if (typeof options.autoplayspeed !== undefined) {
+            options.autoplaySpeed = true;
+            delete options.autoplayspeed
+        }
+
         if ($(this).hasClass('news-carousel'))
             options['navText'] = ["<i class='icon icon-chevron-right'></i>", "<i class='icon icon-chevron-left'></i>"];
+        else
+            options['navText'] = ["<i class='fa-icon-angle-left'></i>", "<i class='fa-icon-angle-right'></i>"];
+
         $(this).owlCarousel(options);
     });
 
