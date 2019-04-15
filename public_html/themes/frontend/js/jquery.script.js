@@ -102,16 +102,31 @@ $(function () {
 })(jQuery);
 
 // hide or show the main navbar base on page scroll : start
-var header_height = $('header').height();
-console.log(header_height);
+// var header_height = $('header').height();
+var header_height = 160;
+var headerTag = $('header');
+
 $(window).scroll(function () {
     var scroll = $(window).scrollTop();
-    if (scroll > position) {
-        $('header').addClass('toggleMainNav');
-        $('li.dropdown').removeClass("open");
-    } else {
-        $('header').removeClass('toggleMainNav');
+    if (scroll > header_height) {
+        console.log(scroll);
+        $('header > .container').hide();
+        $('header .navbar > li > a').addClass('text-white');
+        // $('.navbar > li > a').on('mouseenter',function (e) {
+        //     $(e.target).addClass('greyBackground');
+        // });
+        headerTag.addClass('smallHeader');
+        // $('.navbar > li > a').on('mouseenter',function (e) {
+        //     $(e.target).removeClass('greyBackground');
+        // });
+        // $('li.dropdown').removeClass("open");
     }
-    position = scroll;
+    else {
+        $('header > .container').show();
+        headerTag.removeClass('smallHeader');
+        $('header .navbar > li > a').removeClass('text-white');
+
+    }
+    // header_height = scroll;
 });
 // hide or show the main navbar base on page scroll : end
