@@ -117,16 +117,9 @@ var headerTag = $('header');
 $(window).scroll(function () {
     var scroll = $(window).scrollTop();
     if (scroll > header_height) {
-        console.log(scroll);
         $('header > .container').hide();
         $('header .navbar > li > a').addClass('text-white');
-        // $('.navbar > li > a').on('mouseenter',function (e) {
-        //     $(e.target).addClass('greyBackground');
-        // });
         headerTag.addClass('smallHeader');
-        // $('.navbar > li > a').on('mouseenter',function (e) {
-        //     $(e.target).removeClass('greyBackground');
-        // });
         // $('li.dropdown').removeClass("open");
     }
     else {

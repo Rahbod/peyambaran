@@ -19,6 +19,7 @@
 }
 
 @media screen and (max-width: 991.98px) {
+    /*#region insurance*/
     .insurance--header--desktop {
         display: none;
     }
@@ -39,10 +40,6 @@
 
     .insurance-box .insurance-item {
         width: 100%;
-    }
-
-    .insurance-box .insurance-item {
-        width: 100%;
         height: auto;
     }
 
@@ -50,10 +47,89 @@
         padding: 0px 15px;
     }
 
-    .tab-content.insurance-box {
+    .tab-pane {
         height: 85vh;
         overflow-y: scroll;
+        padding: 0 0 0 10px;
     }
+
+    .tab-pane::after, .tab-pane::before {
+        clear: both;
+        display: table;
+        content: '';
+    }
+
+    .tab-content.insurance-box {
+        position: relative;
+        width: 85%;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 0;
+        padding-left: 1rem;
+    }
+
+    .insurance-box .scrollButton {
+        position: absolute;
+        bottom: 0;
+        left: 5px;
+        right: 5px;
+        display: block;
+        background: linear-gradient(transparent, #c9c7c2);
+    }
+
+    .insurance-box .scrollButton a {
+        display: block;
+        padding: 10px 0;
+
+    }
+
+    .insurance-box .scrollButton a i {
+        -webkit-animation: moreInsuranceItem 1s ease-in-out;
+        -o-animation: moreInsuranceItem 1s ease-in-out;
+        animation: moreInsuranceItem 1s ease-in-out;
+        -webkit-animation-fill-mode: forwards;
+        -moz-animation-fill-mode: forwards;
+        -o-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        -webkit-animation-duration: 1s;
+        -moz-animation-duration: 1s;
+        -o-animation-duration: 1s;
+        animation-duration: 1s;
+    }
+
+    @keyframes moreInsuranceItem {
+        0% {
+            -webkit-transform: translate(0);
+            -moz-transform: translate(0);
+            -ms-transform: translate(0);
+            -o-transform: translate(0);
+            transform: translate(0);
+        }
+
+        100% {
+            -webkit-transform: translate(-5px);
+            -moz-transform: translate(-5px);
+            -ms-transform: translate(-5px);
+            -o-transform: translate(-5px);
+            transform: translate(-5px);
+        }
+    }
+    /*#endregion*/
+    /*#region*/
+    .news-icon {
+        margin-left: 5px;
+    }
+
+    .news-carousel {
+        padding-top: 1rem;
+    }
+
+    .statics-row > span {
+        width: 30.33333%;
+    }
+
+    /*endregion*/
 }
 
 @media (min-width: 768px) {
@@ -62,6 +138,10 @@
 @media (min-width: 992px) {
     .insurance--header--desktop {
         display: block;
+    }
+
+    .insurance--header--mobile {
+        display: none;
     }
 }
 

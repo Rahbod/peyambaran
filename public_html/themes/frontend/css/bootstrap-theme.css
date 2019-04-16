@@ -3458,23 +3458,6 @@ section .title-description {
     background-color: #606060;
 }
 
-.tab-content.insurance-box {
-    position: relative;
-}
 
-.insurance-box .scrollButton {
-    position: absolute;
-    bottom: 0;
-    left: 5px;
-    right: 5px;
-    display: block;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
-}
-
-.insurance-box .scrollButton a {
-    display: block;
-    padding: 10px 0;
-
-}
 
 /*#endregion*/

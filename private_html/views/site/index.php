@@ -1,11 +1,11 @@
 <?php
 
-use \app\models\Slide;
-use \yii\helpers\Html;
-use \app\models\Insurance;
-use \app\models\Post;
-use \app\models\Category;
+use app\models\Category;
+use app\models\Insurance;
 use app\models\OnlineService;
+use app\models\Post;
+use app\models\Slide;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /** @var $slides Slide[] */
@@ -105,24 +105,26 @@ use app\models\OnlineService;
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 text-right">
                 <div class="tab-content insurance-box">
                     <div class="tab-pane fade active in" id="insurance-box-1">
-                        <?php foreach ($inpatientInsurances as $item): ?>
-                            <div class="insurance-item">
-                                <div class="insurance-item-inner">
-                                    <a>
-                                        <?php if ($item->image && is_file(Yii::getAlias('@webroot/uploads/insurance/') . $item->image)): ?>
-                                            <div class="item-image">
-                                                <img class="grayscale"
-                                                     src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
-                                            </div>
-                                            <h5 class="with-image"
-                                                title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
-                                        <?php else: ?>
-                                            <h5 title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
-                                        <?php endif; ?>
-                                    </a>
+                        <div class="">
+                            <?php foreach ($inpatientInsurances as $item): ?>
+                                <div class="insurance-item">
+                                    <div class="insurance-item-inner">
+                                        <a>
+                                            <?php if ($item->image && is_file(Yii::getAlias('@webroot/uploads/insurance/') . $item->image)): ?>
+                                                <div class="item-image">
+                                                    <img class="grayscale"
+                                                         src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
+                                                </div>
+                                                <h5 class="with-image"
+                                                    title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
+                                            <?php else: ?>
+                                                <h5 title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
+                                            <?php endif; ?>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
                         <div class="scrollButton text-center">
                             <a title="مشاهده بیشتر" href="void:;" class="">
                                 <i class="icon icon-chevron-down"></i>
@@ -176,8 +178,17 @@ use app\models\OnlineService;
                 </div>
             </div>
         </div>
-        <div class="news-carousel owl-carousel owl-theme" data-stagePadding="50" data-rtl="true"
-             data-autoWidth="true" data-nav="true" data-items="3" data-margin="15">
+        <div class="news-carousel owl-carousel owl-theme"
+             data-stagePadding="50"
+             data-rtl="true"
+             data-autoWidth="true"
+             data-nav="true"
+             data-items="1"
+             data-margin="15"
+             data-loop="true"
+             data-autoplayspeed="1000"
+             data-autoHeight="true"
+             data-responsive='{"786" :{ "items": 2 }, "992" :{ "items": 3 }}'>
             <?php foreach ($posts as $item): ?>
                 <div class="news-item">
                     <div class="news-item-inner">
@@ -212,84 +223,84 @@ use app\models\OnlineService;
 <!--End News and Articles-->
 
 <!--Gallery-->
-<?php if(\app\models\PictureGallery::find()->valid()->count()>0): ?>
-<section class="gallery-bg">
-    <div class="container">
-        <div class="row gallery-tabs">
-            <ul class="pull-left nav nav-tabs">
-                <?php $i = 0;
-                foreach ($galleryCategories as $item): ?>
-                    <?php if (count($item->catitems) > 0): $i++; ?>
-                        <li<?= $i == 1 ? ' class="active"' : '' ?>><a href="#" data-toggle="tab"
-                                                                      data-target="#gallery-category-<?= $item->id ?>"><?= $item->name ?></a>
-                        </li>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-        <div class="row gallery-container">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
-                <div class="gallery-icon"></div>
-                <h3 class="section-title"><?= Yii::t('words', 'Picture Gallery') ?></h3>
-            </div>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 gallery-left-box">
-                <div class="tab-content row">
+<?php if (\app\models\PictureGallery::find()->valid()->count() > 0): ?>
+    <section class="gallery-bg">
+        <div class="container">
+            <div class="row gallery-tabs">
+                <ul class="pull-left nav nav-tabs">
                     <?php $i = 0;
-                    foreach ($galleryCategories as $category): ?>
-                        <?php if (count($category->catitems) > 0): $i++; ?>
-                            <div class="tab-pane fade<?= $i == 1 ? ' active in' : '' ?>"
-                                 id="gallery-category-<?= $category->id ?>">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right gallery-list-box nicescroll"
-                                     data-cursorcolor="#4d82f2" data-cursorborder="none"
-                                     data-railpadding='js:{"top":0,"right":-5,"bottom":0,"left":0}'
-                                     data-autohidemode="false">
-                                    <?php $k = 0;
-                                    foreach ($category->items as $item):$k++; ?>
-                                        <div class="gallery-list relative">
-                                            <div class="gallery-item<?= $k === 1 ? " active" : "" ?>">
-                                                <a href="#" data-toggle="tab"
-                                                   data-target="#gallery-details-<?= $item->id ?>">
-                                                    <div class="item-image">
-                                                        <img src="<?= Yii::getAlias('@web/uploads/gallery/') . $item->thumbnail_image ?>"
-                                                             alt="<?= $item->name ?>">
-                                                    </div>
-                                                    <div class="item-details">
-                                                        <h4 class="with-small"><?= $item->name ?></h4>
-                                                        <p><?= $item->short_description ?></p>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right">
-                                    <div class="tab-content">
+                    foreach ($galleryCategories as $item): ?>
+                        <?php if (count($item->catitems) > 0): $i++; ?>
+                            <li<?= $i == 1 ? ' class="active"' : '' ?>><a href="#" data-toggle="tab"
+                                                                          data-target="#gallery-category-<?= $item->id ?>"><?= $item->name ?></a>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="row gallery-container">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
+                    <div class="gallery-icon"></div>
+                    <h3 class="section-title"><?= Yii::t('words', 'Picture Gallery') ?></h3>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 gallery-left-box">
+                    <div class="tab-content row">
+                        <?php $i = 0;
+                        foreach ($galleryCategories as $category): ?>
+                            <?php if (count($category->catitems) > 0): $i++; ?>
+                                <div class="tab-pane fade<?= $i == 1 ? ' active in' : '' ?>"
+                                     id="gallery-category-<?= $category->id ?>">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right gallery-list-box nicescroll"
+                                         data-cursorcolor="#4d82f2" data-cursorborder="none"
+                                         data-railpadding='js:{"top":0,"right":-5,"bottom":0,"left":0}'
+                                         data-autohidemode="false">
                                         <?php $k = 0;
                                         foreach ($category->items as $item):$k++; ?>
-                                            <div class="tab-pane fade<?= $k === 1 ? " in active" : "" ?>"
-                                                 id="gallery-details-<?= $item->id ?>">
-                                                <div class="gallery-item-details">
-                                                    <div class="item-image-big">
-                                                        <img src="<?= Yii::getAlias('@web/uploads/gallery/thumbs/280x380/') . $item->full_image ?>"
-                                                             alt="<?= $item->name ?>">
-                                                    </div>
-                                                    <div class="gallery-details">
-                                                        <h3><?= $item->name ?></h3>
-                                                        <p><?= $item->short_description ?></p>
-                                                        <div class="font-light"><?= strip_tags(nl2br($item->body)) ?></div>
-                                                    </div>
+                                            <div class="gallery-list relative">
+                                                <div class="gallery-item<?= $k === 1 ? " active" : "" ?>">
+                                                    <a href="#" data-toggle="tab"
+                                                       data-target="#gallery-details-<?= $item->id ?>">
+                                                        <div class="item-image">
+                                                            <img src="<?= Yii::getAlias('@web/uploads/gallery/') . $item->thumbnail_image ?>"
+                                                                 alt="<?= $item->name ?>">
+                                                        </div>
+                                                        <div class="item-details">
+                                                            <h4 class="with-small"><?= $item->name ?></h4>
+                                                            <p><?= $item->short_description ?></p>
+                                                        </div>
+                                                    </a>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right">
+                                        <div class="tab-content">
+                                            <?php $k = 0;
+                                            foreach ($category->items as $item):$k++; ?>
+                                                <div class="tab-pane fade<?= $k === 1 ? " in active" : "" ?>"
+                                                     id="gallery-details-<?= $item->id ?>">
+                                                    <div class="gallery-item-details">
+                                                        <div class="item-image-big">
+                                                            <img src="<?= Yii::getAlias('@web/uploads/gallery/thumbs/280x380/') . $item->full_image ?>"
+                                                                 alt="<?= $item->name ?>">
+                                                        </div>
+                                                        <div class="gallery-details">
+                                                            <h3><?= $item->name ?></h3>
+                                                            <p><?= $item->short_description ?></p>
+                                                            <div class="font-light"><?= strip_tags(nl2br($item->body)) ?></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<?php endif;?>
+    </section>
+<?php endif; ?>
 <!--End Galley-->
