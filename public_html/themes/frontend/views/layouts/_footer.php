@@ -1,16 +1,14 @@
 <?php
 
 use app\components\Setting;
-use voime\GoogleMaps\Map;
-
-/* @var $this \yii\web\View */
-
-use yii\helpers\ArrayHelper;
 use app\models\Department;
 use app\models\Menu;
-use app\components\customWidgets\CustomCaptcha;
-use yii\widgets\ActiveForm;
+use voime\GoogleMaps\Map;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/* @var $this \yii\web\View */
 
 $contactModel = new \app\models\ContactForm();
 ?>
@@ -47,7 +45,7 @@ $contactModel = new \app\models\ContactForm();
                             'inputOptions' => ['class' => ''],
                         ],
                     ]);
-                    echo Html::hiddenInput('return',Yii::$app->request->url);
+                    echo Html::hiddenInput('return', Yii::$app->request->url);
                     ?>
                     <div class="row">
                         <div class="form-row">
@@ -64,17 +62,20 @@ $contactModel = new \app\models\ContactForm();
 
                         </div>
                         <div class="form-row last">
-                            <?= $form->field($contactModel, 'verifyCode', ['options' => ['class' => 'col-lg-7 col-md-7 col-sm-7 col-xs-12 captcha']])->widget(\app\components\customWidgets\CustomCaptcha::className(), [
-                                'captchaAction' => ['site/captcha'],
-                                'template' => "{image}\n{url}\n{input}",
-                                'linkOptions' => [
-                                    'label' => Yii::t('words', 'New Code')
-                                ],
-                                'options' => [
-                                    'placeholder' => Yii::t('words', 'Verify Code'),
-                                    'autocomplete' => 'off'
-                                ],
-                            ])->label(false) ?>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                                <?= $form->field($contactModel, 'verifyCode', ['options' => ['class' => 'captcha']])->widget(\app\components\customWidgets\CustomCaptcha::className(), [
+                                    'captchaAction' => ['site/captcha'],
+                                    'template' => "{image}\n{url}\n{input}",
+                                    'linkOptions' => [
+                                        'label' => Yii::t('words', 'New Code')
+                                    ],
+                                    'options' => [
+                                        'placeholder' => Yii::t('words', 'Verify Code'),
+                                        'autocomplete' => 'off'
+                                    ],
+                                ])->label(false) ?>
+                            </div>
+
                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                 <?php echo Html::input('submit', '', Yii::t('words', 'Send Message')); ?>
                             </div>
@@ -85,8 +86,10 @@ $contactModel = new \app\models\ContactForm();
                 <div class="info-container">
                     <ul>
                         <li>
-                            <i class="icon point-icon"></i>
-                            <div><?= Setting::get('address') ?></div>
+                            <div class="addressContainer">
+                                <i class="icon point-icon"></i>
+                                <div><?= Setting::get('address') ?></div>
+                            </div>
                         </li>
                         <li>
                             <i class="icon phone-icon"></i>
@@ -147,40 +150,41 @@ $contactModel = new \app\models\ContactForm();
     <div class="footer-section">
         <div class="container">
             <div class="row">
-            <?php $i=0;foreach (Menu::find()->roots()->valid()->andWhere([Menu::columnGetString('show_in_footer') => 1])->orderBySort()->all() as $item): ?>
-                <?php
-                $ic = $item->children(1)->count();
-                $sic = $item->children(2)->count();
-                if ($ic > 0):$i++;?>
-                    <div class="footer-block col-xs-12 <?= $i==1?'col-sm-12':'col-sm-3' ?>">
-                        <h4><?= $item->name ?></h4>
-                        <div class="footer-sub-block">
-                            <?php if (($sic - $ic) === 0): // one level ?>
-                                <ul class="menu-part">
-                                    <?php foreach ($item->children(1)->all() as $sub_item): ?>
-                                        <li><a href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php else: // two level ?>
-                                <?php foreach ($item->children(1)->all() as $sub_item): ?>
-                                    <ul class="menu-part d-inline-block">
-                                        <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
-                                            <a
-                                                    href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
-                                        <?php foreach ($sub_item->children(1)->all() as $sub_item_child): ?>
-                                            <li>
-                                                <a href="<?= $sub_item_child->url ?>"><?= $sub_item_child->name ?></a>
-                                            </li>
+                <?php $i = 0;
+                foreach (Menu::find()->roots()->valid()->andWhere([Menu::columnGetString('show_in_footer') => 1])->orderBySort()->all() as $item): ?>
+                    <?php
+                    $ic = $item->children(1)->count();
+                    $sic = $item->children(2)->count();
+                    if ($ic > 0):$i++; ?>
+                        <div class="footer-block col-xs-12 <?= $i == 1 ? 'col-sm-12' : 'col-sm-3' ?>">
+                            <h4><?= $item->name ?></h4>
+                            <div class="footer-sub-block">
+                                <?php if (($sic - $ic) === 0): // one level ?>
+                                    <ul class="menu-part">
+                                        <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                            <li><a href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
                                         <?php endforeach; ?>
                                     </ul>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
+                                <?php else: // two level ?>
+                                    <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                        <ul class="menu-part d-inline-block">
+                                            <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
+                                                <a
+                                                        href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
+                                            <?php foreach ($sub_item->children(1)->all() as $sub_item_child): ?>
+                                                <li>
+                                                    <a href="<?= $sub_item_child->url ?>"><?= $sub_item_child->name ?></a>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
                         </div>
-                    </div>
-                <?php else: ?>
-                    <li><a href="<?= $item->url ?>"><?= $item->name ?></a></li>
-                <?php endif; ?>
-            <?php endforeach; ?>
+                    <?php else: ?>
+                        <li><a href="<?= $item->url ?>"><?= $item->name ?></a></li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </div>
             <div class="copyright">
                 <div class="pull-right">

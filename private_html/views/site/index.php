@@ -18,11 +18,14 @@ use yii\helpers\Html;
 
 
 <section class="slider-container">
-    <div class="slider owl-carousel owl-theme"
+    <div class="slider header-slider owl-carousel owl-theme"
          data-loop="true"
+         data-rtl="true"
          data-nav="true"
-         data-autoplayspeed="1000"
-         data-items="1" data-autoHeight="true" data-responsive='{ "992" :{ "nav": false }}'>
+         data-autoplayspeed="9000"
+         data-items="1"
+         data-autoHeight="true"
+         data-responsive='{ "992" :{ "nav": false }}'>
         <?php foreach ($slides as $slide):
             if ($slide->image && is_file(Yii::getAlias('@webroot/uploads/slide/') . $slide->image)):?>
                 <div class="slide-item relative">
@@ -37,7 +40,7 @@ use yii\helpers\Html;
 
 <!--Online Services-->
 <?php if ($onlineServices): ?>
-    <section class="texture-bg circle-texture">
+    <section class="texture-bg circle-texture online-services">
         <div class="container">
             <div class="row online-services-container">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right">
@@ -72,7 +75,7 @@ use yii\helpers\Html;
 <!--End  Online Services-->
 
 <!--Insurance-->
-<section class="texture-bg umbrella-texture">
+<section class="texture-bg umbrella-texture insurance">
     <div class="container">
         <div class="row insurance-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
@@ -167,7 +170,7 @@ use yii\helpers\Html;
 <!--End Insurance-->
 
 <!--News and Articles-->
-<section class="texture-bg health-texture">
+<section class="texture-bg health-texture new-articles">
     <div class="container">
         <div class="row insurance-container">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
@@ -186,7 +189,7 @@ use yii\helpers\Html;
              data-items="1"
              data-margin="15"
              data-loop="true"
-             data-autoplayspeed="1000"
+             data-autoplayspeed="9000"
              data-autoHeight="true"
              data-responsive='{"786" :{ "items": 2 }, "992" :{ "items": 3 }}'>
             <?php foreach ($posts as $item): ?>

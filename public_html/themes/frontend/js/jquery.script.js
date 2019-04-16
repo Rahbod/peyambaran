@@ -12,16 +12,16 @@ $(function () {
         var options = $(this).data();
         if (typeof options.autoheight !== undefined) {
             options.autoHeight = true;
-            delete options.autoheight
+            delete options.autoheight;
         }
 
         if (typeof options.autoplayspeed !== undefined) {
-            options.autoplaySpeed = true;
-            delete options.autoplayspeed
+            options.autoPlaySpeed = true;
+            delete options.autoplayspeed;
         }
 
-        if ($(this).hasClass('news-carousel'))
-            options['navText'] = ["<i class='icon icon-chevron-right'></i>", "<i class='icon icon-chevron-left'></i>"];
+        if ($(this).hasClass('news-carousel') || $(this).hasClass('header-slider') )
+            options['navText'] = ["<i class='icon icon-chevron-left'></i>","<i class='icon icon-chevron-right'></i>"];
         else
             options['navText'] = ["<i class='fa-icon-angle-left'></i>", "<i class='fa-icon-angle-right'></i>"];
 
