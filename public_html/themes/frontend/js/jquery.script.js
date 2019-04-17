@@ -12,11 +12,19 @@ $(function () {
         var options = $(this).data();
         if (typeof options.autoheight !== undefined) {
             options.autoHeight = true;
-            delete options.autoheight
+            delete options.autoheight;
         }
 
-        if ($(this).hasClass('news-carousel'))
-            options['navText'] = ["<i class='icon icon-chevron-right'></i>", "<i class='icon icon-chevron-left'></i>"];
+        if (typeof options.autoplayspeed !== undefined) {
+            options.autoPlaySpeed = true;
+            delete options.autoplayspeed;
+        }
+
+        if ($(this).hasClass('news-carousel') || $(this).hasClass('header-slider') )
+            options['navText'] = ["<i class='icon icon-chevron-left'></i>","<i class='icon icon-chevron-right'></i>"];
+        else
+            options['navText'] = ["<i class='fa-icon-angle-left'></i>", "<i class='fa-icon-angle-right'></i>"];
+
         $(this).owlCarousel(options);
     });
 
@@ -102,15 +110,24 @@ $(function () {
 })(jQuery);
 
 // hide or show the main navbar base on page scroll : start
-var position = 300;
+// var header_height = $('header').height();
+var header_height = 160;
+var headerTag = $('header');
+
 $(window).scroll(function () {
     var scroll = $(window).scrollTop();
-    if (scroll > position) {
-        $('header').addClass('toggleMainNav');
-        $('li.dropdown').removeClass("open");
-    } else {
-        $('header').removeClass('toggleMainNav');
+    if (scroll > header_height) {
+        $('header > .container').hide();
+        $('header .navbar > li > a').addClass('text-white');
+        headerTag.addClass('smallHeader');
+        // $('li.dropdown').removeClass("open");
     }
-    position = scroll;
+    else {
+        $('header > .container').show();
+        headerTag.removeClass('smallHeader');
+        $('header .navbar > li > a').removeClass('text-white');
+
+    }
+    // header_height = scroll;
 });
 // hide or show the main navbar base on page scroll : end

@@ -507,7 +507,8 @@ header .search-form {
     padding: 15px;
     text-align: right;
 }
-.navbar .dropdown-menu.wide{
+
+.navbar .dropdown-menu.wide {
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
@@ -537,14 +538,17 @@ header .search-form {
     padding: 0;
     margin: 0 0 1em;
 }
-.navbar .dropdown-menu.wide .menu-part{
+
+.navbar .dropdown-menu.wide .menu-part {
     width: 20%;
     float: right;
 }
+
 .navbar .dropdown-menu .menu-part > li {
     display: inline-block;
     width: 100%;
 }
+
 .navbar .dropdown-menu.wide .menu-part > li {
     padding: 0 15px;
 }
@@ -1068,9 +1072,10 @@ section .title-description {
     box-shadow: 0 0 8px rgba(49, 175, 145, 0.5);
 }
 
-.statics-row{
+.statics-row {
     width: 100%;
 }
+
 .statics-row > span {
     display: inline-block;
     width: 33.33333%;
@@ -1630,15 +1635,15 @@ section .title-description {
 /*column-gap:1em;*/
 /*}*/
 /*.footer-section .footer-block:first-of-type {*/
-    /*width: 50%;*/
+/*width: 50%;*/
 /*}*/
 
 /*.footer-section .footer-block:first-child {*/
-    /*padding-right: 0;*/
+/*padding-right: 0;*/
 /*}*/
 
 /*.footer-section .footer-block:last-child {*/
-    /*padding-left: 0;*/
+/*padding-left: 0;*/
 /*}*/
 
 .footer-section .footer-block h4 {
@@ -2316,9 +2321,10 @@ section .title-description {
     display: table;
 }
 
-.contactUs__form .form-group{
+.contactUs__form .form-group {
     margin: 0;
 }
+
 .contactUs__form .form-control {
     /*height: 40px;*/
     -webkit-border-radius: 8px;
@@ -2379,10 +2385,11 @@ section .title-description {
     margin-bottom: 100px;
 }
 
-.contactUsPage .texts{
+.contactUsPage .texts {
     padding: 30px;
 }
-.contactUsPage .texts h4{
+
+.contactUsPage .texts h4 {
     margin-bottom: 15px;
 }
 
@@ -2393,31 +2400,40 @@ section .title-description {
 .contactUsPage .content-header {
     background: #3f8dfa;
 }
-.contactUsPage .submitBtn{
+
+.contactUsPage .submitBtn {
     background: #3f8dfa;
 }
-.contactUsPage.green-theme  .content-header {
+
+.contactUsPage.green-theme .content-header {
     background: #85c296;
 }
-.contactUsPage.green-theme  .submitBtn{
+
+.contactUsPage.green-theme .submitBtn {
     background-color: #85c296;
 }
-.contactUsPage.green-theme  .submitBtn:hover{
+
+.contactUsPage.green-theme .submitBtn:hover {
     background-color: #659472;
 }
-.contactUsPage.red-theme  .content-header {
+
+.contactUsPage.red-theme .content-header {
     background: #e82d2d;
 }
-.contactUsPage.red-theme  .submitBtn{
+
+.contactUsPage.red-theme .submitBtn {
     background-color: #e82d2d;
 }
-.contactUsPage.red-theme  .submitBtn:hover{
+
+.contactUsPage.red-theme .submitBtn:hover {
     background-color: #e82d2d;
 }
-.-green{
+
+.-green {
     color: #85c296;
 }
-.-red{
+
+.-red {
     color: #e82d2d;
 }
 
@@ -2504,11 +2520,13 @@ section .title-description {
     overflow: hidden;
     display: inline-block;
 }
-.doctors .panel-title__doctorAvatar img{
+
+.doctors .panel-title__doctorAvatar img {
     width: 100px;
     height: 100px;
 }
-.doctors .panel-title__doctorAvatar img.panel-title__doctorAvatar-default{
+
+.doctors .panel-title__doctorAvatar img.panel-title__doctorAvatar-default {
     width: 70px;
     height: 70px;
     margin: 15px;
@@ -2606,20 +2624,20 @@ section .title-description {
 
 /*#region compliant*/
 /*.compliant .submitBtn {*/
-    /*width: 285px;*/
-    /*background: #877ef3;*/
-    /*float: left;*/
-    /*display: inline-block;*/
-    /*height: 34px;*/
-    /*color: #fff;*/
+/*width: 285px;*/
+/*background: #877ef3;*/
+/*float: left;*/
+/*display: inline-block;*/
+/*height: 34px;*/
+/*color: #fff;*/
 /*}*/
 
 /*.compliant .submitBtn:hover, .compliant .submitBtn:focus {*/
-    /*background: #6b64c1;*/
+/*background: #6b64c1;*/
 /*}*/
 
 /*.compliant .contactUs__container {*/
-    /*margin-bottom: 100px;*/
+/*margin-bottom: 100px;*/
 /*}*/
 
 /*#endregion*/
@@ -3104,7 +3122,6 @@ section .title-description {
     background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.9));
 }
 
-
 .news .icomoon-search-solid {
     color: #31af91;
 }
@@ -3410,14 +3427,37 @@ section .title-description {
     visibility: visible;
 }
 
-.help-block{
+.help-block {
     clear: both;
 }
-.captcha-container .form-control{
+
+.captcha-container .form-control {
     height: 40px;
 }
-.empty{
+
+.empty {
     padding: 30px 15px;
     text-align: center;
     font-size: 22px;
 }
+
+/*#region newely added styles  : 4/15/2019*/
+
+.smallHeader {
+    border-top: none;
+    padding: 0 0 45px;
+    background-color: #3f8dfa;
+    color: #fff;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+.greyBackground {
+    background-color: #606060;
+}
+
+
+
+/*#endregion*/
