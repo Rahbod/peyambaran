@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PersonSearch */
@@ -13,9 +14,6 @@ $this->title = Yii::t('words', 'People');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="person-index">
-
-    <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__head">
@@ -37,9 +35,19 @@ $this->params['breadcrumbs'][] = $this->title;
 						</span>
                         </a>
                     </li>
+                    <li class="m-portlet__nav-item">
+                        <a href="<?= \yii\helpers\Url::to(['export-csv']) ?>"
+                           class="btn btn-dark m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+						<span>
+							<i class="la la-file-text"></i>
+							<span><?= Yii::t('words', 'Export doctors list') ?></span>
+						</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
+        <?php Pjax::begin(); ?>
         <div class="m-portlet__body">
             <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
             <!--begin: Datatable -->
@@ -49,6 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
+                        'medical_number',
                         'name',
 //                        [
 //                            'attribute' => 'type',
@@ -59,8 +68,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'expertise',
                             'value' => function ($model) {
-                                return $model->getExpertiseLabel()?$model->getExpertiseLabel()->name:null;
-                            }
+                                return $model->getExpertiseLabel() ? $model->getExpertiseLabel()->name : null;
+                            },
+                            'filter' => Category::getWithType(Category::CATEGORY_TYPE_EXPERTISE)
                         ],
                         [
                             'attribute' => 'created',
@@ -80,6 +90,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]); ?>
             </div>
         </div>
+        <?php Pjax::end(); ?>
     </div>
-    <?php Pjax::end(); ?>
 </div>

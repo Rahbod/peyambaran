@@ -103,7 +103,6 @@ class PersonController extends AuthController
     }
 
 
-
     public function actionList()
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
@@ -250,5 +249,26 @@ class PersonController extends AuthController
         }
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+    }
+
+    public function actionExportCsv()
+    {
+        $doctors = Person::find()->valid()->all();
+
+        $date = date("Y-m-d-H-i-s");
+        $filename = "doctors-$date.csv";
+        $file = fopen(Yii::getAlias('@webroot/uploads/temp/') . $filename, "w");
+
+        $line = "نام پزشک,شماره نظام پزشکی";
+        fputcsv($file, explode(',', $line));
+
+        foreach ($doctors as $doctor) {
+            if (!empty($doctor->medical_number)) {
+                $line = "$doctor->name,$doctor->medical_number";
+                fputcsv($file, explode(',', $line));
+            }
+        }
+        fclose($file);
+        return Yii::$app->response->sendFile(Yii::getAlias('@webroot/uploads/temp/') . $filename, 'doctors.csv')->send();
     }
 }

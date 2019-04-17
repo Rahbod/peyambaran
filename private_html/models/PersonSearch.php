@@ -19,7 +19,7 @@ class PersonSearch extends Person
         return [
             [['id', 'userID', 'modelID', 'status'], 'integer'],
             [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created'], 'safe'],
+            [['name', 'dyna', 'extra', 'created', 'medical_number', 'expertise'], 'safe'],
         ];
     }
 
@@ -69,12 +69,13 @@ class PersonSearch extends Person
             'modelID' => $this->modelID,
             'type' => $this->type,
             'status' => $this->status,
-            self::columnGetString('expertise') => $this->expertise
+            self::columnGetString('expertise') => $this->expertise,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'dyna', $this->dyna])
             ->andFilterWhere(['like', 'extra', $this->extra])
+            ->andFilterWhere(['like', static::columnGetString('medical_number'), $this->medical_number])
             ->andFilterWhere(['like', 'created', $this->created]);
 
         if($ids !== null)

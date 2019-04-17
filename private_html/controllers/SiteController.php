@@ -7,6 +7,7 @@ use app\models\Category;
 use app\models\Insurance;
 use app\models\Message;
 use app\models\OnlineService;
+use app\models\Person;
 use app\models\Post;
 use app\models\Slide;
 use Yii;
