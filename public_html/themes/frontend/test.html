@@ -7,8 +7,37 @@
 
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap-rtl.min.css">
-    <link type="text/css" rel="stylesheet" href="css/fontiran-fa-num.css">
     <style>
+        @font-face {
+            font-family: IRANSans;
+            font-style: normal;
+            font-weight: bold;
+            src: url('fonts/IranSans/ttf/fa-num/IRANSansWeb_Bold.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: IRANSans;
+            font-style: normal;
+            font-weight: 500;
+            src: url('fonts/IranSans/ttf/fa-num/IRANSansWeb_Medium.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: IRANSans;
+            font-style: normal;
+            font-weight: 300;
+            src: url('fonts/IranSans/ttf/fa-num/IRANSansWeb_Light.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: IRANSans;
+            font-style: normal;
+            font-weight: 200;
+            src: url('fonts/IranSans/ttf/fa-num/IRANSansWeb_UltraLight.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: IRANSans;
+            font-style: normal;
+            font-weight: normal;
+            src: url('fonts/IranSans/ttf/fa-num/IRANSansWeb.ttf') format('truetype');
+        }
         *{
             direction:rtl;
         }
@@ -70,7 +99,7 @@
             width: 100%;
             border-radius: 0;
             font-weight: bold;
-            font-size: 2.5rem;
+            font-size: 25px;
             padding: 10px 15px;
             cursor: pointer !important;
             -webkit-transition: all 0.3s;
@@ -78,25 +107,6 @@
             -ms-transition: all 0.3s;
             -o-transition: all 0.3s;
             transition: all 0.3s;
-        }
-
-        .rashapay .btn-gold:hover {
-            /*background-color: #6648b5;*/
-        }
-
-        .rashapay .amount {
-            display: block;
-            text-align: center;
-        }
-
-        .rashapay .amount-number {
-            margin-bottom: 30px;
-            font-size: 5rem;
-        }
-
-        .rashapay .amount-number span {
-            font-size: 2.5rem;
-            margin-right: 15px;
         }
 
         .rashapay .control-label {
@@ -144,8 +154,13 @@
             </div>
             <hr class="no-mg">
             <div class="card-body">
-                <div class="amount">
-                    <h1 class="amount-number">87,000<span>تومان</span></h1>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-4"><label class="control-label">مبلغ قابل پرداخت</label></div>
+                    <div class="col-sm-8"><label class="control-label">87,000 تومان</label></div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-4"><label class="control-label">کد محصول</label></div>
+                    <div class="col-sm-8"><label class="control-label">54653</label></div>
                 </div>
                 <div class="form-group col-sm-12">
                     <div class="col-sm-4"><label class="control-label">آدرس ایمیل خریدار</label></div>
@@ -154,10 +169,6 @@
                 <div class="form-group col-sm-12">
                     <div class="col-sm-4"><label class="control-label">کد امنیتی (تشخیص ربات از انسان)</label></div>
                     <div class="col-sm-8"><input type="tel" placeholder="عدد 84 را اینجا تایپ کنید" class="form-control"></div>
-                </div>
-                <div class="form-group col-sm-12">
-                    <div class="col-sm-4"><label class="control-label">درگاه پرداخت</label></div>
-                    <div class="col-sm-8"><input type="text" class="form-control" readonly value="آقای پرداخت"></div>
                 </div>
             </div>
             <hr class="no-mg">

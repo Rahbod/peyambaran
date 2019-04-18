@@ -470,4 +470,5 @@ return [
     'Import csv program' => 'ایمپورت فایل csv برنامه',
     'Get sample file' => 'دریافت فایل نمونه',
     'Csv File' => 'فایل csv',
+    'Export doctors list' => 'دریافت لیست پزشکان',
 ];
