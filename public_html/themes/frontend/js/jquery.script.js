@@ -21,7 +21,7 @@ $(function () {
         }
 
         if ($(this).hasClass('news-carousel') || $(this).hasClass('header-slider') )
-            options['navText'] = ["<i class='icon icon-chevron-left'></i>","<i class='icon icon-chevron-right'></i>"];
+            options['navText'] = ["<i class='icon icon-chevron-right'></i>","<i class='icon icon-chevron-left'></i>"];
         else
             options['navText'] = ["<i class='fa-icon-angle-left'></i>", "<i class='fa-icon-angle-right'></i>"];
 

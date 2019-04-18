@@ -24,8 +24,7 @@ use yii\helpers\Html;
          data-nav="true"
          data-autoplayspeed="9000"
          data-items="1"
-         data-autoHeight="true"
-         data-responsive='{ "992" :{ "nav": false }}'>
+         data-autoHeight="true">
         <?php foreach ($slides as $slide):
             if ($slide->image && is_file(Yii::getAlias('@webroot/uploads/slide/') . $slide->image)):?>
                 <div class="slide-item relative">
@@ -78,7 +77,7 @@ use yii\helpers\Html;
 <section class="texture-bg umbrella-texture insurance">
     <div class="container">
         <div class="row insurance-container">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 text-right">
                 <div class="insurance--header--desktop">
                     <div class="umbrella-icon"></div>
                     <?= Yii::t('words', 'insurance_title') ?>
@@ -105,7 +104,7 @@ use yii\helpers\Html;
                     </div>
                 </div>
             </div>
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 text-right">
+            <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12 text-right">
                 <div class="tab-content insurance-box">
                     <div class="tab-pane fade active in" id="insurance-box-1">
                         <div class="">
@@ -188,7 +187,6 @@ use yii\helpers\Html;
              data-nav="true"
              data-items="1"
              data-margin="15"
-             data-loop="true"
              data-autoplayspeed="9000"
              data-autoHeight="true"
              data-responsive='{"786" :{ "items": 2 }, "992" :{ "items": 3 }}'>

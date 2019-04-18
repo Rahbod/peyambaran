@@ -35,52 +35,53 @@ $contactModel = new \app\models\ContactForm();
                 <div class="form-container">
                     <h3><?= Yii::t('words', 'Contact us') ?></h3>
                     <div class="text"><?= Yii::t('words', 'contact_footer_text') ?></div>
+                    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12"></div>
                     <?php $form = ActiveForm::begin([
                         'action' => ['/site/contact'],
                         'enableClientValidation' => true,
                         'validateOnSubmit' => true,
                         'fieldConfig' => [
-                            'options' => ['class' => 'col-lg-4 col-md-4 col-sm-4 col-xs-12'],
+                            'options' => ['class' => ''],
                             'labelOptions' => ['class' => ''],
                             'inputOptions' => ['class' => ''],
                         ],
                     ]);
                     echo Html::hiddenInput('return', Yii::$app->request->url);
                     ?>
-                    <div class="row">
-                        <div class="form-row">
-                            <?= $form->field($contactModel, 'department_id')->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', 'name')) ?>
+                    <!--                    <div class="row">-->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <?= $form->field($contactModel, 'department_id')->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', 'name')) ?>
 
-                            <?= $form->field($contactModel, 'name')->textInput() ?>
+                        <?= $form->field($contactModel, 'name')->textInput() ?>
 
-                            <?= $form->field($contactModel, 'email')->textInput(['placeholder' => 'exampel@email.com']) ?>
-                        </div>
-                        <div class="form-row">
-                            <?= $form->field($contactModel, 'tel')->textInput(['placeholder' => '09xxxxxxxx']) ?>
+                        <?= $form->field($contactModel, 'email')->textInput(['placeholder' => 'exampel@email.com']) ?>
+                        <!--                        </div>-->
+                        <!--                        <div class="form-row">-->
+                        <?= $form->field($contactModel, 'tel')->textInput(['placeholder' => '09xxxxxxxx']) ?>
 
-                            <?= $form->field($contactModel, 'body', ['options' => ['class' => 'col-lg-8 col-md-8 col-sm-8 col-xs-12']])->textInput() ?>
+                        <?= $form->field($contactModel, 'body', ['options' => ['class' => '']])->textInput() ?>
 
-                        </div>
-                        <div class="form-row last">
-                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-                                <?= $form->field($contactModel, 'verifyCode', ['options' => ['class' => 'captcha']])->widget(\app\components\customWidgets\CustomCaptcha::className(), [
-                                    'captchaAction' => ['site/captcha'],
-                                    'template' => "{image}\n{url}\n{input}",
-                                    'linkOptions' => [
-                                        'label' => Yii::t('words', 'New Code')
-                                    ],
-                                    'options' => [
-                                        'placeholder' => Yii::t('words', 'Verify Code'),
-                                        'autocomplete' => 'off'
-                                    ],
-                                ])->label(false) ?>
-                            </div>
-
-                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                                <?php echo Html::input('submit', '', Yii::t('words', 'Send Message')); ?>
-                            </div>
-                        </div>
                     </div>
+                    <!--                        <div class="form-row last">-->
+                    <div class="col-lg-12 col-md-12 col-sm-7 col-xs-12">
+                        <?= $form->field($contactModel, 'verifyCode', ['options' => ['class' => 'captcha']])->widget(\app\components\customWidgets\CustomCaptcha::className(), [
+                            'captchaAction' => ['site/captcha'],
+                            'template' => "{image}\n{url}\n{input}",
+                            'linkOptions' => [
+                                'label' => Yii::t('words', 'New Code')
+                            ],
+                            'options' => [
+                                'placeholder' => Yii::t('words', 'Verify Code'),
+                                'autocomplete' => 'off'
+                            ],
+                        ])->label(false) ?>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-5 col-xs-12">
+                        <?php echo Html::input('submit', '', Yii::t('words', 'Send Message')); ?>
+                    </div>
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                     <?php ActiveForm::end() ?>
                 </div>
                 <div class="info-container">
@@ -156,7 +157,7 @@ $contactModel = new \app\models\ContactForm();
                     $ic = $item->children(1)->count();
                     $sic = $item->children(2)->count();
                     if ($ic > 0):$i++; ?>
-                        <div class="footer-block col-xs-12 <?= $i == 1 ? 'col-sm-12' : 'col-sm-3' ?>">
+                        <div class="footer-block col-xs-12 <?= $i == 1 ? 'col-sm-12' : 'col-sm-6 col-lg-3' ?>">
                             <h4><?= $item->name ?></h4>
                             <div class="footer-sub-block">
                                 <?php if (($sic - $ic) === 0): // one level ?>
@@ -190,7 +191,8 @@ $contactModel = new \app\models\ContactForm();
                 <div class="pull-right">
                     <a href="http://tarsiminc.com" target="_blank">by tarsim.inc</a>
                 </div>
-                <div class="pull-left text hidden-xs"><b>PAYAMBARAN HOSPITAL</b> . ALL RIGHTS RESERVED © 2018</div>
+                <div class="pull-left text hidden-xs"><b>PAYAMBARAN HOSPITAL</b> . ALL RIGHTS RESERVED
+                    © <?= date('Y') ?></div>
             </div>
         </div>
     </div>
