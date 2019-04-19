@@ -35,13 +35,13 @@ $contactModel = new \app\models\ContactForm();
                 <div class="form-container">
                     <h3><?= Yii::t('words', 'Contact us') ?></h3>
                     <div class="text"><?= Yii::t('words', 'contact_footer_text') ?></div>
-                    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12"></div>
+                    <div class=""></div>
                     <?php $form = ActiveForm::begin([
                         'action' => ['/site/contact'],
                         'enableClientValidation' => true,
                         'validateOnSubmit' => true,
                         'fieldConfig' => [
-                            'options' => ['class' => ''],
+                            'options' => ['class' => 'col-lg-6 col-md-6 col-sm-4 col-xs-12'],
                             'labelOptions' => ['class' => ''],
                             'inputOptions' => ['class' => ''],
                         ],

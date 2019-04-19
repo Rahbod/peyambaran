@@ -210,7 +210,28 @@
     }
 
     /*#endregion*/
+    .content {
+        margin-top: 80px;
+    }
 
+    .gallery-sidebar-menu {
+        display: none;
+    }
+
+    .sideMenuIcon {
+        float: left;
+        background: transparent;
+    }
+
+    .sideMenuIcon:after {
+        content: '\2807';
+        font-size: 2em;
+        color: #fff;
+    }
+
+    section.gallery {
+        margin-bottom:5rem;
+    }
 }
 
 @media screen and (max-width: 1199.98px) {
@@ -257,7 +278,10 @@
     }
 
     /*#endregion*/
-
+    .content {
+        margin-top: 150px;
+        min-height: 700px;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -342,3 +366,9 @@
     margin-left: 5px;
 }
 
+/*#region clinic program*/
+.clinic-program .table > thead > tr > th {
+    white-space: nowrap;
+}
+
+/*#endregion*/

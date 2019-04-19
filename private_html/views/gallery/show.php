@@ -21,8 +21,8 @@ $this->registerJsFile($baseUrl.'/js/vendors/html5lightbox/html5lightbox.js',[], 
 <section class="gallery">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <nav>
+            <div class="col-xs-12 col-md-3">
+                <nav class="gallery-sidebar-menu">
                     <div class="sidebar-header mt-3">
                         <h4 class="text-purple"><?= Yii::t('words', 'Payambaran Hospital Gallery') ?></h4>
                     </div>
@@ -53,7 +53,7 @@ $this->registerJsFile($baseUrl.'/js/vendors/html5lightbox/html5lightbox.js',[], 
                 </nav>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-xs-12 col-md-9">
                 <div class="content-header">
                     <div class="content-header__gradient-overlay"></div>
                     <img src="<?= $this->theme->baseUrl ?>/svg/gallery-white.svg" class="img-fluid content-header__image" alt="">
@@ -61,6 +61,8 @@ $this->registerJsFile($baseUrl.'/js/vendors/html5lightbox/html5lightbox.js',[], 
                         <h1 class="media-heading content-header__title"><?= Yii::t('words', 'Gallery') ?></h1>
                         <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
                     </div>
+                    <a class="sideMenuIcon"></a>
+
 <!--                    <img src="--><?//= $this->theme->baseUrl ?><!--/images/doctors/avatar-24.png"-->
 <!--                         class="content-header__fade-bg">-->
 

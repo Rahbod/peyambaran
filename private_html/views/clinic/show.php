@@ -7,6 +7,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ClinicProgramSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
 ?>
 
 <section class="clinic-program">
@@ -14,7 +15,8 @@ use yii\widgets\Pjax;
         <div class="row">
             <div class="col-xs-12">
                 <div class="content-header">
-                    <img src="./svg/gallery-white.svg" class="img-fluid content-header__image mirror" alt="">
+                    <img src="<?= Yii::getAlias('@web/themes/frontend/svg/gallery-white.svg') ?>"
+                         class="img-fluid content-header__image mirror" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title">برنامه کلینیک ها</h1>
 
