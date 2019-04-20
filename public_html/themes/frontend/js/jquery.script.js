@@ -131,3 +131,10 @@ $(window).scroll(function () {
     // header_height = scroll;
 });
 // hide or show the main navbar base on page scroll : end
+
+//gallery sidebar menu
+// $('#sidebarCollapse').on('click', function () {
+//     $('#sidebar').addClass('active');
+//     $('.collapse.in').toggleClass('in');
+//     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+// });

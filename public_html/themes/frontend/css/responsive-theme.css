@@ -5,7 +5,9 @@
     }
 
     /*#endregion*/
-
+    .content-header {
+        padding: 20px 10px;
+    }
 }
 
 @media screen and (max-width: 575.98px) {
@@ -211,14 +213,16 @@
 
     /*#endregion*/
     .content {
-        margin-top: 80px;
+        margin-top: 200px
     }
 
-    .gallery-sidebar-menu {
+    /*#region gallery*/
+    .gallery .gallery-sidebar-menu {
         display: none;
     }
 
     .sideMenuIcon {
+        z-index: 2;
         float: left;
         background: transparent;
     }
@@ -230,8 +234,43 @@
     }
 
     section.gallery {
-        margin-bottom:5rem;
+        margin-bottom: 5rem;
     }
+
+    #myModal ul li ul {
+        padding-right: 10px;
+    }
+
+    #myModal ul li a {
+        display: block;
+        padding: 10px 5px;
+    }
+
+    #myModal ul li a:hover, #myModal ul li a:focus {
+        color: #fff;
+    }
+
+    #myModal ul li ul li a {
+        display: block;
+        padding: 5px;
+    }
+
+    #myModal ul li ul li a:hover, #myModal ul li ul li a:focus {
+        color: #877ef3;
+    }
+
+    #myModal .modal-header {
+        position: relative;
+    }
+
+    #myModal .modal-header .close {
+        left: 15px;
+        position: absolute;
+        top: 40%;
+    }
+
+    /*#endregion*/
+
 }
 
 @media screen and (max-width: 1199.98px) {
@@ -282,6 +321,26 @@
         margin-top: 150px;
         min-height: 700px;
     }
+
+    /*#region gallery*/
+    .sideMenuIcon {
+        display: none;
+    }
+
+    .gallery-sidebar-menu ul li ul {
+        padding-right: 10px;
+    }
+
+    .gallery-sidebar-menu ul li ul li {
+        padding: 10px 0;
+    }
+
+    .gallery-sidebar-menu ul li ul li:hover > a, .gallery-sidebar-menu ul li ul li:focus > a {
+        color: #877ef3;
+    }
+
+    /*#endregion*/
+
 }
 
 @media screen and (min-width: 1200px) {
@@ -372,3 +431,7 @@
 }
 
 /*#endregion*/
+
+.pr-0 {
+    padding-right: 0 !important;
+}

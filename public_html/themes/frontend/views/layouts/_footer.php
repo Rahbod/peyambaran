@@ -41,7 +41,7 @@ $contactModel = new \app\models\ContactForm();
                         'enableClientValidation' => true,
                         'validateOnSubmit' => true,
                         'fieldConfig' => [
-                            'options' => ['class' => 'col-lg-6 col-md-6 col-sm-4 col-xs-12'],
+                            'options' => ['class' => 'col-lg-6 col-md-6 col-sm-6 col-xs-12 pr-0'],
                             'labelOptions' => ['class' => ''],
                             'inputOptions' => ['class' => ''],
                         ],
@@ -63,7 +63,7 @@ $contactModel = new \app\models\ContactForm();
 
                     </div>
                     <!--                        <div class="form-row last">-->
-                    <div class="col-lg-12 col-md-12 col-sm-7 col-xs-12">
+                    <div class="col-lg-7 col-md-12 col-sm-7 col-xs-12">
                         <?= $form->field($contactModel, 'verifyCode', ['options' => ['class' => 'captcha']])->widget(\app\components\customWidgets\CustomCaptcha::className(), [
                             'captchaAction' => ['site/captcha'],
                             'template' => "{image}\n{url}\n{input}",
@@ -77,7 +77,7 @@ $contactModel = new \app\models\ContactForm();
                         ])->label(false) ?>
                     </div>
 
-                    <div class="col-lg-12 col-md-12 col-sm-5 col-xs-12">
+                    <div class="col-lg-5 col-md-12 col-sm-5 col-xs-12">
                         <?php echo Html::input('submit', '', Yii::t('words', 'Send Message')); ?>
                     </div>
                     <!--                        </div>-->
