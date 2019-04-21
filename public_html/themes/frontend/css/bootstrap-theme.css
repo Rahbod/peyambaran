@@ -2705,10 +2705,6 @@ section .title-description {
 
 }
 
-.register .vertical-separator-line {
-    border-left: 2px solid #85c296;
-    min-height: 320px;
-}
 
 .register .social-accounts-container {
     padding: 25px 55px 25px 25px;
@@ -2774,9 +2770,6 @@ section .title-description {
     padding: 20px 40px;
 }
 
-.register .register-form-container {
-    padding: 0 0 0 65px;
-}
 
 .register .content-header__subTitle {
     font-size: 18px;
