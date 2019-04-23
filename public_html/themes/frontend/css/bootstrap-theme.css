@@ -2647,8 +2647,8 @@ section .title-description {
 
 .register {
     background: #eef1f7;
-    top: 68px;
-    bottom: 89px;
+    margin-top: 50px;
+    margin-bottom: 100px;
 }
 
 .register .content-header {

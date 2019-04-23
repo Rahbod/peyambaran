@@ -1,17 +1,15 @@
 <?php
 
-use \yii\helpers\Html;
-use \yii\widgets\ActiveForm;
-use \yii\helpers\Url;
+use yii\helpers\Html;
 
 /** @var $this \yii\web\View */
 /** @var $model \app\models\LoginForm */
 ?>
-<section class="register">
+<section class="register forgotPassword">
     <div class="container">
         <div class="row register-container">
-            <div class="col-xs-12 px-0">
-                <div class="content-header">
+            <div class="col-xs-12 px-md-0">
+                <div class="content-header -orangeBg">
                     <img src="<?= $this->theme->baseUrl ?>/svg/user.svg" class="img-fluid content-header__image"
                          alt="">
                     <div class="titles">
@@ -20,11 +18,11 @@ use \yii\helpers\Url;
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 px-0 bg-white -bbrr -bblr">
-                <div class="register-form">
+            <div class="col-xs-12 px-md-0 -bbrr -bblr">
+                <div class="register-form bg-md-white">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-sm-6 col-xs-12 vertical-separator-line">
+                            <div class="col-xs-12 col-md-6 vertical-separator-line bg-white bg-md-transparent">
                                 <div class="register-form-container">
                                     <?= $this->render('//layouts/_flash_message') ?>
                                     <h4 class="register-form-container__title"><?= Yii::t('words', 'Forget password') ?></h4>
@@ -38,7 +36,7 @@ use \yii\helpers\Url;
                                     ?>
 
                                     <div class="form-row">
-                                        <div class="form-group col-12">
+                                        <div class="form-group col-xs-12 col-sm-6 col-md-12 px-0 mb-4">
                                             <?= Html::textInput('username', Yii::$app->request->getBodyParam('username'), [
                                                 'class' => 'form-control',
                                                 'spellcheck' => false,
@@ -46,8 +44,8 @@ use \yii\helpers\Url;
                                                 'placeholder' => Yii::t('words', 'user.phone')
                                             ]) ?>
                                         </div>
-                                        <div class="form-group col-12">
-                                            <div class="clearfix">
+                                        <div class="form-group col-xs-12 col-sm-6 col-md-12 px-0">
+                                            <div class="clearfix text-left">
                                                 <?= Html::submitButton(Yii::t('words', 'Send'), ['class' => 'btn submitBtn', 'tabindex' => 5]) ?>
                                             </div>
                                         </div>
@@ -55,7 +53,7 @@ use \yii\helpers\Url;
                                     <?= Html::endForm() ?>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-xs-12">
+                            <div class="col-xs-12 col-md-6 bg-white bg-md-transparent">
                                 <div class="social-accounts-container">
                                     <div class="social-accounts login-with-google">
                                         <a href="void:;">
