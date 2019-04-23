@@ -21,7 +21,7 @@ $(function () {
         }
 
         if ($(this).hasClass('news-carousel') || $(this).hasClass('header-slider') )
-            options['navText'] = ["<i class='icon icon-chevron-left'></i>","<i class='icon icon-chevron-right'></i>"];
+            options['navText'] = ["<i class='icon icon-chevron-right'></i>","<i class='icon icon-chevron-left'></i>"];
         else
             options['navText'] = ["<i class='fa-icon-angle-left'></i>", "<i class='fa-icon-angle-right'></i>"];
 
@@ -131,3 +131,10 @@ $(window).scroll(function () {
     // header_height = scroll;
 });
 // hide or show the main navbar base on page scroll : end
+
+//gallery sidebar menu
+// $('#sidebarCollapse').on('click', function () {
+//     $('#sidebar').addClass('active');
+//     $('.collapse.in').toggleClass('in');
+//     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+// });

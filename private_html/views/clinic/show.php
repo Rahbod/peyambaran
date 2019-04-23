@@ -8,9 +8,6 @@ use app\models\Category;
 /* @var $this yii\web\View */
 /* @var $clinicSearchModel app\models\ClinicProgramSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
-//if(isset($_GET['debug']))
-//    \app\components\dd($clinicSearchModel);
 ?>
 
 <section class="clinic-program">
@@ -18,7 +15,8 @@ use app\models\Category;
         <div class="row">
             <div class="col-xs-12">
                 <div class="content-header">
-                    <img src="./svg/gallery-white.svg" class="img-fluid content-header__image mirror" alt="">
+                    <img src="<?= Yii::getAlias('@web/themes/frontend/svg/gallery-white.svg') ?>"
+                         class="img-fluid content-header__image mirror" alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= Yii::t('words', 'Clinic Program') ?></h1>
                         <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran Hospital') ?></h3>
