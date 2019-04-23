@@ -93,8 +93,10 @@ class PostController extends AuthController
             'upload-attachment' => [
                 'class' => UploadAction::className(),
                 'rename' => UploadAction::RENAME_UNIQUE,
-                'model' => new Post(),
-                'modelName' => 'Page'
+                'fileName' => Html::getInputName(new Post(), 'gallery'),
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
             ],
             'delete-attachment' => [
                 'class' => RemoveAction::className(),

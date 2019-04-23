@@ -473,7 +473,8 @@ header .search-form {
 
 .navbar > li > a {
     border-radius: 4px 4px 0 0;
-    padding: 11px 15px;
+    /*padding: 11px 15px;*/
+    padding: 11px 0 11px 7px;
     color: #606060;
     line-height: 2;
     font-weight: 500;
@@ -2233,7 +2234,9 @@ section .title-description {
     -o-transition: width 0.5s;
     transition: width 0.5s;
 }
-
+#clinic-table-filters td:first-of-type{
+    padding: 5px !important;
+}
 .clinic-program thead {
     border-bottom-width: 2px;
     border-bottom-color: #aaaaaa;
@@ -2325,6 +2328,7 @@ section .title-description {
     margin: 0;
 }
 
+#clinic-table .form-control,
 .contactUs__form .form-control {
     /*height: 40px;*/
     -webkit-border-radius: 8px;
@@ -2650,8 +2654,8 @@ section .title-description {
 
 .register {
     background: #eef1f7;
-    top: 68px;
-    bottom: 89px;
+    margin-top: 50px;
+    margin-bottom: 100px;
 }
 
 .register .content-header {
@@ -2962,11 +2966,11 @@ section .title-description {
 }
 
 .gallery .-hoverBox a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
     margin: 0 auto;
 }
 
@@ -3461,3 +3465,9 @@ section .title-description {
 
 
 /*#endregion*/
+
+.time-filter{
+    display: inline-block;
+    width: 70px;
+    direction: ltr;
+}

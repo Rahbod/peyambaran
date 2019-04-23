@@ -106,9 +106,7 @@ class ClinicController extends AuthController
         $clinicSearchModel = new ClinicProgramView();
         $dataProvider = $clinicSearchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination = false;
-        return $this->render('show', [
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('show', compact('clinicSearchModel', 'dataProvider'));
     }
 
     /**
@@ -255,6 +253,7 @@ class ClinicController extends AuthController
 
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
+            $date = $model->date;
             $model->date = Helper::jDateTotoGregorian($model->date);
             $model->is_holiday = 0;
 
@@ -269,13 +268,17 @@ class ClinicController extends AuthController
                     'delimiter' => ','
                 ]
             ]));
+
+            $notDefined = [];
             $rows = $importer->getData();
             foreach ($rows as $key => $data) {
                 /** @var $person Person */
                 $medical_number = $data[0];
                 $person = Person::find()->valid()->andWhere([Person::columnGetString('medical_number') => $medical_number])->one();
-                if (!$person)
+                if (!$person) {
+                    $notDefined[] = $medical_number;
                     continue;
+                }
 
                 $st = Helper::strToTime($data[1]);
                 $et = Helper::strToTime($data[2]);
@@ -291,12 +294,18 @@ class ClinicController extends AuthController
                 ];
             }
 
-            if ($model->save()) {
-                $file->removeAll(true);
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['update', 'id' => $model->id]);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            if ($notDefined)
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => "شماره نظام پزشکی های زیر تعریف نشده اند:\n" . implode("\n", $notDefined)]);
+            else {
+                if ($model->save()) {
+                    $file->removeAll(true);
+                    Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                    return $this->redirect(['update', 'id' => $model->id]);
+                } else
+                    Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            }
+
+            $model->date = $date;
         }
 
         return $this->render('csv_import', compact('model', 'file'));
