@@ -133,16 +133,14 @@ $(window).scroll(function () {
 // hide or show the main navbar base on page scroll : end
 
 
-$('#dismiss, .overlay').on('click', function () {
-    console.log($(this));
-    console.log($('nav#sidebar'));
+$('#dismiss, .screen-overlay').on('click', function () {
     $('nav#sidebar').removeClass('active');
-    $('.overlay').removeClass('active');
+    $('.screen-overlay').removeClass('active');
 });
 
 $('#sidebarCollapse').on('click', function () {
     $('#sidebar').addClass('active');
-    $('.overlay').addClass('active');
+    $('.screen-overlay').addClass('active');
     $('.collapse.in').toggleClass('in');
     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
 });

@@ -52,7 +52,7 @@
     line-height: 35px;
     text-align: center;
     border: 1px solid #fff;
-    background: #32b4d8;
+    background: #3f8dfa;
     position: absolute;
     top: 20px;
     left: 10px;
@@ -65,10 +65,10 @@
 
 #dismiss:hover {
     background: #fff;
-    color: #278ca8;
+    color: #307cfa;
 }
 
-.overlay {
+.screen-overlay {
     display: none;
     position: absolute;
     left: 0;
@@ -81,7 +81,7 @@
     transition: all 0.5s ease-in-out;
 }
 
-.overlay.active {
+.screen-overlay.active {
     display: block;
     opacity: 1;
 }
@@ -89,7 +89,7 @@
 #sidebar .sidebar-header {
     color: #fff;
     padding: 20px;
-    background: #32b4d8;
+    background: #3f8dfa;
 }
 
 #sidebar ul.components {
@@ -104,14 +104,13 @@
 }
 
 #sidebar ul li a:hover {
-    color: #32b4d8;
-    background: #fff;
+    background: #3f8dfaa3;
 }
 
 #sidebar ul li.active > a,
 #sidebar a[aria-expanded="true"] {
     color: #fff;
-    background: #32b4d8;
+    background: #3f8dfa;
 }
 
 #sidebar a[data-toggle="collapse"] {
@@ -129,7 +128,7 @@
 #sidebar ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #32b4d8;
+    background: #3f8dfa;
     color: #fff !important;
 }
 
@@ -158,6 +157,6 @@
 
 a.article,
 a.article:hover {
-    background: #32b4d8 !important;
+    background: #3f8dfa !important;
     color: #fff !important;
 }

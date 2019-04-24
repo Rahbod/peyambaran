@@ -127,12 +127,6 @@ use yii\helpers\Html;
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                        <div class="scrollButton text-center">
-                            <a title="مشاهده بیشتر" href="void:;" class="">
-                                <i class="icon icon-chevron-down"></i>
-                                مشاهده بیشتر
-                            </a>
-                        </div>
                     </div>
                     <div class="tab-pane fade" id="insurance-box-2">
                         <?php foreach ($outpatientInsurances as $item): ?>
