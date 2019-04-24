@@ -1,8 +1,8 @@
 <?php
 
-use \app\models\Menu;
+use app\models\Menu;
+use yii\helpers\Html;
 use yii\helpers\Url;
-use \yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 
@@ -83,6 +83,11 @@ use \yii\helpers\Html;
     </div>
     <div class="navbar-container">
         <div class="container">
+            <button id="sidebarCollapse" class="navbar-toggler" type="button">
+                <span class="navbar-toggler-lines"></span>
+                <span class="navbar-toggler-lines"></span>
+                <span class="navbar-toggler-lines"></span>
+            </button>
             <ul class="nav navbar nav-pills">
                 <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
                     <?php
@@ -95,7 +100,7 @@ use \yii\helpers\Html;
                                 <?= $item->name ?>
                             </a>
                             <div class="dropdown-menu<?php if (($sic - $ic) !== 0) echo ' wide'; // multi level ?>">
-                                <div class="<?= ($sic - $ic) !== 0?'container':'container-fluid'; ?>">
+                                <div class="<?= ($sic - $ic) !== 0 ? 'container' : 'container-fluid'; ?>">
                                     <?php if (($sic - $ic) === 0): // one level ?>
                                         <ul class="menu-part d-inline-block">
                                             <?php foreach ($item->children(1)->all() as $sub_item): ?>
@@ -128,3 +133,41 @@ use \yii\helpers\Html;
         </div>
     </div>
 </header>
+
+<nav id="sidebar">
+    <div id="dismiss">
+        x
+        <!--        <i class="fas fa-arrow-left"></i>-->
+    </div>
+    <div class="sidebar-header">
+        <h4 class="">پیامبران</h4>
+        <p>بیمارستان پیامبران</p>
+    </div>
+    <ul class="list-unstyled components">
+        <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
+            <?php
+            $ic = $item->children(1)->count();
+            $sic = $item->children(2)->count();
+            if ($ic > 0): ?>
+                <li>
+                    <div class="d-flex">
+                        <a href="void:;" class="flex-fill menu-item"><?= $item->name ?></a>
+                        <a class="submenu" href="#<?= $item->id ?>" data-toggle="collapse"
+                           aria-expanded="false"></a>
+                    </div>
+                    <ul class="collapse list-unstyled" id="<?= $item->id ?>">
+                        <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                            <li>
+                                <a class="menu-item" href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a class="menu-item" href="<?= $item->url ?>"><?= $item->name ?></a>
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</nav>

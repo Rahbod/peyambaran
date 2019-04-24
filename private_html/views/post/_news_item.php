@@ -2,7 +2,7 @@
 /** @var $model \app\models\Post */
 ?>
 
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-1 mb-4">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-4">
     <div class="news-item">
         <div class="news-item-inner">
             <a href="<?= $model->url ?>">

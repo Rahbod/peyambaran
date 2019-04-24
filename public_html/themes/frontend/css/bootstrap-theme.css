@@ -291,6 +291,10 @@ a:active {
     font-size: 11px;
 }
 
+.content {
+    margin-top: 150px;
+    min-height: 700px;
+}
 
 header {
     display: inline-block;
@@ -2231,6 +2235,10 @@ section .title-description {
     transition: width 0.5s;
 }
 
+#clinic-table-filters td:first-of-type {
+    padding: 5px !important;
+}
+
 .clinic-program thead {
     border-bottom-width: 2px;
     border-bottom-color: #aaaaaa;
@@ -2322,6 +2330,7 @@ section .title-description {
     margin: 0;
 }
 
+#clinic-table .form-control,
 .contactUs__form .form-control {
     /*height: 40px;*/
     -webkit-border-radius: 8px;
@@ -2705,6 +2714,10 @@ section .title-description {
 
 }
 
+.register .vertical-separator-line {
+    border-left: 2px solid #85c296;
+    min-height: 320px;
+}
 
 .register .social-accounts-container {
     padding: 25px 55px 25px 25px;
@@ -2770,6 +2783,9 @@ section .title-description {
     padding: 20px 40px;
 }
 
+.register .register-form-container {
+    padding: 0 0 0 65px;
+}
 
 .register .content-header__subTitle {
     font-size: 18px;
@@ -3144,8 +3160,9 @@ section .title-description {
 }
 
 .news-show .card-img-top {
-    width: 100%;
+    max-width: 100%;
     height: auto;
+    max-height: 500px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -3449,3 +3466,33 @@ section .title-description {
 }
 
 /*#endregion*/
+
+.time-filter {
+    display: inline-block;
+    width: 70px;
+    direction: ltr;
+}
+
+.navbar-toggler-lines:first-child {
+    margin-top: 6px;
+}
+
+.navbar-toggler-lines {
+    display: block;
+    width: 40px;
+    height: 7px;
+    background: #747779;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-fill {
+    -ms-flex: 1 1 auto !important;
+    flex: 1 1 auto !important;
+}

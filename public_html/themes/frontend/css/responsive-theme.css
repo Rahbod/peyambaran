@@ -5,7 +5,6 @@
     }
 
     /*#endregion*/
-
 }
 
 @media screen and (max-width: 575.98px) {
@@ -38,12 +37,15 @@
     }
 
     /*#endregion*/
+    /*#region contact us*/
     .contactUsPage .submitBtn {
         width: 100%;
         float: none;
         margin-top: 10px;
     }
 
+    /*#endregion*/
+    /*#region register-login-forgot password*/
     .submitBtn {
         float: none !important;
         display: block !important;
@@ -57,6 +59,14 @@
         margin-left: 0;
         width: 100px;
     }
+
+    /*#endregion*/
+    /*#region news and articles*/
+    .statics-row > span {
+        width: 30.33333%;
+    }
+
+    /*#endregion*/
 }
 
 @media screen and (max-width: 767.98px) {
@@ -193,9 +203,6 @@
 
     /*#endregion*/
     /*#region news-slider*/
-    .news-image {
-        width: 100%;
-    }
 
     .new-articles .news-carousel {
         padding-top: 1rem;
@@ -233,7 +240,9 @@
     .content {
         margin-top: 200px
     }
-
+    #sidebarCollapse {
+        display: block;
+    }
     /*#region gallery*/
     .gallery .gallery-sidebar-menu {
         display: none;
@@ -288,10 +297,13 @@
     }
 
     /*#endregion*/
+    /*#region contact us*/
     .contactUs__container {
         padding: 2rem 0 !important;
     }
 
+    /*#endregion*/
+    /*#region register/login/forgot password*/
     .social-accounts-container {
         padding: 0 !important;
     }
@@ -335,10 +347,76 @@
         clear: both;
     }
 
+    /*#endregion*/
     .content-header {
         padding: 20px 10px;
         margin-bottom: 15px;
     }
+
+    /*#region news and articles*/
+    .news-show .content-header {
+        display: block;
+    }
+
+    .content-header--titlesContainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .news-show .card {
+        padding: 15px;
+    }
+
+    .news-show .newsShow {
+        padding: 15px;
+        margin-bottom: 1.5rem;
+    }
+
+    .content-header__subTitle, .content-header__title {
+        font-size: 18px;
+    }
+
+    .content-header__image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .news-show .newsShow__title, .news-show .card-title {
+        font-size: 16px;
+    }
+
+    /*#endregion*/
+    /*#region doctors*/
+    .doctors .content-header img {
+        display: none;
+    }
+
+    .doctors .panel-title__takeTurn {
+        margin: 2rem auto;
+    }
+
+    .doctors .panel-title__more {
+        opacity: 1;
+    }
+
+    .doctors .panel-title__doctorAvatar {
+        float: none;
+        width: 76px;
+        height: 76px;
+        margin-left: 0;
+    }
+
+    .doctors .panel-title__doctorAvatar img.panel-title__doctorAvatar-default {
+        width: 50px;
+        height: 50px;
+        margin: 13px;
+    }
+
+    .doctors .panel-default > .panel-heading {
+        text-align: center;
+    }
+
+    /*#endregion*/
 }
 
 @media screen and (max-width: 1199.98px) {
@@ -346,9 +424,12 @@
 }
 
 @media screen and (min-width: 576px) {
+    /*#region captcha*/
     .field-user-verifycode, .field-loginform-verifycode {
         display: inline-block !important;
     }
+
+    /*#endregion*/
 }
 
 @media screen and (min-width: 768px) {
@@ -392,6 +473,20 @@
         background: transparent;
     }
 
+    /*#region news and articles*/
+    .statics-row > span {
+        width: 33.33333%;
+    }
+
+    /*#endregion*/
+    /*#region doctors*/
+    .doctors .panel-heading .row {
+        display: flex;
+        align-items: center;
+    }
+
+    /*#endregion*/
+
 }
 
 @media screen and (min-width: 992px) {
@@ -411,7 +506,9 @@
         margin-top: 150px;
         min-height: 700px;
     }
-
+    #sidebarCollapse {
+        display: none;
+    }
     /*#region gallery*/
     .sideMenuIcon {
         display: none;
@@ -434,11 +531,38 @@
         background: #fff;
     }
 
+    /*#region register/login/forgot password*/
     .vertical-separator-line {
         border-left: 2px solid #85c296;
         min-height: 320px;
     }
 
+    /*#endregion*/
+    /*#region news and articles*/
+    .newsSearchBox {
+        width: 400px;
+    }
+
+    .news-show .newsShow {
+        margin-bottom: 1.5rem;
+    }
+
+    .content-header--titlesContainer {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .news .statics-row > span {
+        width: 30.33333%;
+    }
+    /*#endregion*/
+    /*#region doctors*/
+    .doctors .content-header img {
+        display: inline;
+    }
+
+    /*#endregion*/
 }
 
 @media screen and (min-width: 1200px) {
@@ -446,9 +570,12 @@
         padding: 11px 15px;
     }
 
+    /*#region register/login/forgot password*/
     .register-form-container {
         padding: 0px 23px 0 52px;
     }
+
+    /*#endregion*/
 }
 
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
@@ -456,6 +583,7 @@
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199.98px) {
+    /*#region register/login/forgot password*/
     .securityCode__input {
         width: 100px;
         margin: 0;
@@ -472,6 +600,14 @@
     .register .social-accounts-container {
         padding: 25px 25px 25px 0px !important;
     }
+
+    /*#endregion*/
+    /*#region doctors*/
+    .doctors .panel-title__doctorAvatar {
+        float: none;
+    }
+
+    /*#endregion*/
 }
 
 /*#region navbar*/
@@ -556,7 +692,30 @@
 .d-none {
     display: none;
 }
+
+/*#region news and articles*/
+.news-show.gallery .-hoverBox a {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+
+.news-show.gallery .-hoverBox a img {
+    width: 20%;
+}
+.news-image {
+    width: 100%;
+}
+
+/*#endregion*/
+/*#region register*/
 .register.forgotPassword .submitBtn {
     background: #e82d2d;
     width: 120px;
 }
+
+/*#endregion*/
+
+

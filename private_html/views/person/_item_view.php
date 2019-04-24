@@ -6,7 +6,7 @@
     <div class="panel-heading">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-sm-4 col-lg-6">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse-<?= $model->id ?>">
                             <div class="panel-title__doctorAvatar">
@@ -30,10 +30,10 @@
                         </a>
                     </h4>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-sm-3 col-lg-2 text-center">
                     <a class="btn panel-title__takeTurn" href="void:;"><?= Yii::t('words', 'get_visit') ?></a>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-sm-5 col-lg-4">
                     <?php foreach ($model->getVisitDays() as $day):
                         $rels = $day->getPersonsRel()->andWhere(['personID' => $model->id])->all();
                         foreach ($rels as $rel):
