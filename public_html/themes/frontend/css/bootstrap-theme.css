@@ -2573,10 +2573,6 @@ section .title-description {
     font-weight: 600;
 }
 
-.doctors .panel-heading .row {
-    display: flex;
-    align-items: center;
-}
 
 .doctors .doctors-image {
     flex-grow: 1;
