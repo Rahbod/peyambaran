@@ -54,10 +54,11 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </main>
+<div class="overlay"></div>
+
 <?php echo $this->render('_footer'); ?>
 <?php echo $this->render('_public_alert'); ?>
 <?php $this->endBody(); ?>
-<div class="overlay"></div>
 
 </body>
 </html>

@@ -134,7 +134,9 @@ $(window).scroll(function () {
 
 
 $('#dismiss, .overlay').on('click', function () {
-    $('#sidebar').removeClass('active');
+    console.log($(this));
+    console.log($('nav#sidebar'));
+    $('nav#sidebar').removeClass('active');
     $('.overlay').removeClass('active');
 });
 
