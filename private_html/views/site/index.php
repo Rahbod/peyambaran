@@ -147,12 +147,6 @@ use yii\helpers\Html;
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                        <div class="scrollButton text-center">
-                            <a title="مشاهده بیشتر" href="void:;" class="">
-                                <i class="icon icon-chevron-down"></i>
-                                مشاهده بیشتر
-                            </a>
-                        </div>
                     </div>
 
                 </div>

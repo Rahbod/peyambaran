@@ -8,8 +8,8 @@ use yii\helpers\Url;
 
 // echo Yii::getAlias('@web/themes/frontend/images/menu-logo.png')
 ?>
-<header class="d-none d-sm-block <?= Yii::$app->controller->headerClass ?: '' ?>">
-    <div class="container">
+<header class="navbar-default <?= Yii::$app->controller->headerClass ?: '' ?>">
+    <div class="container d-none d-sm-block">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
                 <div class="dropdown language-select" style="display:none;">
@@ -81,7 +81,7 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
-    <div class="navbar-container">
+    <div class="navbar-container d-none d-sm-block">
         <div class="container">
             <ul class="nav navbar nav-pills">
                 <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
@@ -127,9 +127,7 @@ use yii\helpers\Url;
             </ul>
         </div>
     </div>
-</header>
-<header class="navbar-default d-sm-none">
-    <div class="container-fluid">
+    <div class="container-fluid d-sm-none">
         <nav class="navbar">
             <a class="navbar-brand" href="<?= Url::to(['/']) ?>">
                 <!--                <img  class="siteLogo__image img-fluid" src="-->
@@ -146,7 +144,6 @@ use yii\helpers\Url;
         </nav>
     </div>
 </header>
-
 
 <nav id="sidebar">
     <div id="dismiss">
