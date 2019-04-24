@@ -25,7 +25,7 @@ class Helper
      */
     public static function jDateTotoGregorian($date, $delimiter = '/')
     {
-        if(($gtime = strtotime($date))>0)
+        if (($gtime = strtotime($date)) > 0)
             return $gtime;
 
         list($y, $m, $d) = explode($delimiter, $date);
@@ -65,7 +65,12 @@ class Helper
      */
     public static function strToTime($str)
     {
-        if (strlen($str) > 4)
+        $len = strlen($str);
+//        if ($len < 4) {
+//            $str = $len <= 2? "{$str}00" : $str;
+//            $str = strlen($str) == 5 ? "$str:00" : $str;
+//        } else
+            if ($len > 4)
             $str = substr($str, 0, 4);
         $th = strlen($str) === 3 ? substr($str, 0, 1) : substr($str, 0, 2);
         $tm = strlen($str) === 3 ? substr($str, 1) : substr($str, 2);

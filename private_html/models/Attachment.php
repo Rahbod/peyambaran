@@ -29,7 +29,7 @@ class Attachment extends DynamicActiveRecord
             $this->status = 1;
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'itemID' => ['INTEGER', ''], //Item that is attached to
-            'fieldID' => ['INTEGER', ''], //Field the file is attached to
+            'receptionID' => ['INTEGER', ''], //Field the file is attached to
             'file' => ['CHAR', ''], //Filename
             'path' => ['CHAR', ''], //Directory
             'type' => ['CHAR', ''], //Extention in lowercase
@@ -62,7 +62,7 @@ class Attachment extends DynamicActiveRecord
             [['userID', 'created', 'status'], 'required'],
             [['userID', 'status'], 'integer'],
             [['dyna'], 'string'],
-            [['created'], 'safe'],
+            [['created','itemID', 'receptionID'], 'safe'],
         ];
     }
 

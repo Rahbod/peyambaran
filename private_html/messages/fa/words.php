@@ -471,4 +471,6 @@ return [
     'Get sample file' => 'دریافت فایل نمونه',
     'Csv File' => 'فایل csv',
     'Export doctors list' => 'دریافت لیست پزشکان',
+    'Hospitalization Request' => 'درخواست پذیرش بستری',
+    'All' => 'همه',
 ];

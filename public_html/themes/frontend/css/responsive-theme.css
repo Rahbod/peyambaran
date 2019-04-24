@@ -45,9 +45,9 @@
     }
 
     .submitBtn {
-        float: none;
-        display: block;
-        width: 100%;
+        float: none !important;
+        display: block !important;
+        width: 100% !important;
         margin-top: 15px;
 
     }
@@ -177,6 +177,7 @@
     }
 
     /*#endregion*/
+
 }
 
 @media screen and (max-width: 991.98px) {
@@ -302,19 +303,30 @@
 
     .social-accounts a {
         line-height: 45px;
-        padding: 15px;
+        padding: 15px !important;
     }
 
     .social-accounts img {
-        left: 0;
-        top: 20px;
+        left: 0 !important;
+        top: 20px !important;
         transform: scale(0.6);
     }
 
     .register-form-container form {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #85c296;
         padding-bottom: 4rem;
         margin-bottom: 4rem;
+
+    }
+
+    .register.forgotPassword .register-form-container form {
+        border-bottom: 1px solid #e82d2d;
+
+    }
+
+    .register.login .register-form-container form {
+        border-bottom: 1px solid #3f8dfa;
+
     }
 
     .register-form-container form::after, .register-form-container form::before {
@@ -331,6 +343,12 @@
 
 @media screen and (max-width: 1199.98px) {
 
+}
+
+@media screen and (min-width: 576px) {
+    .field-user-verifycode, .field-loginform-verifycode {
+        display: inline-block !important;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -358,6 +376,22 @@
     }
 
     /*#endregion*/
+    .d-md-block {
+        display: block;
+    }
+
+    .d-md-none {
+        display: none;
+    }
+
+    .bg-md-white {
+        background: #fff;
+    }
+
+    .bg-md-transparent {
+        background: transparent;
+    }
+
 }
 
 @media screen and (min-width: 992px) {
@@ -396,7 +430,7 @@
     }
 
     /*#endregion*/
-    .bg-md-white {
+    .bg-white {
         background: #fff;
     }
 
@@ -405,15 +439,15 @@
         min-height: 320px;
     }
 
-    .register-form-container {
-        padding: 0 0 0 65px;
-    }
-
 }
 
 @media screen and (min-width: 1200px) {
     .navbar > li > a {
         padding: 11px 15px;
+    }
+
+    .register-form-container {
+        padding: 0px 23px 0 52px;
     }
 }
 
@@ -424,10 +458,19 @@
 @media screen and (min-width: 992px) and (max-width: 1199.98px) {
     .securityCode__input {
         width: 100px;
+        margin: 0;
     }
 
     .submitBtn {
         width: 100px;
+    }
+
+    .register-form-container {
+        padding: 0 0 0 25px !important;
+    }
+
+    .register .social-accounts-container {
+        padding: 25px 25px 25px 0px !important;
     }
 }
 
@@ -508,4 +551,12 @@
 
 .pr-0 {
     padding-right: 0 !important;
+}
+
+.d-none {
+    display: none;
+}
+.register.forgotPassword .submitBtn {
+    background: #e82d2d;
+    width: 120px;
 }

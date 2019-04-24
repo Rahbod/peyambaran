@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
     <div class="container">
         <div class="row register-container">
             <div class="col-xs-12 px-md-0">
-                <div class="content-header">
+                <div class="content-header -blueBg">
                     <img src="<?= $this->theme->baseUrl ?>/svg/user.svg"
                          class="img-fluid content-header__image"
                          alt="">
@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
                 <div class="register-form bg-md-white">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-12 col-md-6 vertical-separator-line">
+                            <div class="col-xs-12 col-md-6 vertical-separator-line bg-white bg-md-transparent">
                                 <div class="register-form-container">
                                     <?= $this->render('//layouts/_flash_message') ?>
                                     <h4 class="register-form-container__title"><?= Yii::t('words', 'Login to account') ?></h4>
@@ -46,8 +46,8 @@ use yii\widgets\ActiveForm;
                                         <div class="form-group col-sm-12 px-0">
                                             <?= $form->field($model, 'password')->passwordInput(['class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 2, 'placeholder' => Yii::t('words', 'Password')])->label(false) ?>
                                         </div>
-                                        <div class="form-group col-sm-12 px-0">
-                                            <div class="text-left">
+                                        <div class="form-group col-sm-12 px-0 d-none d-md-block">
+                                            <div class="text-right text-lg-left my-5">
                                                 <a class="forgotBtn"
                                                    href="<?= Url::to(['/user/forget-password']) ?>"><?= Yii::t('words', 'Forget password?') ?></a>
                                             </div>
@@ -69,11 +69,18 @@ use yii\widgets\ActiveForm;
 
                                             </div>
                                         </div>
+
+                                        <div class="form-group col-sm-12 px-0 d-md-none">
+                                            <div class="text-center mt-5">
+                                                <a class="forgotBtn"
+                                                   href="<?= Url::to(['/user/forget-password']) ?>"><?= Yii::t('words', 'Forget password?') ?></a>
+                                            </div>
+                                        </div>
                                     </div>
                                     <?php ActiveForm::end() ?>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-md-6">
+                            <div class="col-xs-12 col-md-6 bg-white bg-md-transparent">
                                 <div class="social-accounts-container">
                                     <div class="social-accounts login-with-google">
                                         <a href="void:;">

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\Helper;
 use Yii;
 use app\components\CustomActiveRecord;
 use yii\data\ActiveDataProvider;
@@ -11,6 +12,7 @@ use yii\data\ActiveDataProvider;
  *
  * @property string $id
  * @property string $exp
+ * @property string $exp_id
  * @property string $name
  * @property string $date
  * @property string $start_time
@@ -20,6 +22,10 @@ use yii\data\ActiveDataProvider;
  */
 class ClinicProgramView extends CustomActiveRecord
 {
+    public $week = null;
+    public $fromtime = null;
+    public $totime = null;
+
     /**
      * {@inheritdoc}
      */
@@ -34,14 +40,15 @@ class ClinicProgramView extends CustomActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['date', 'dyna', 'created'], 'safe'],
+            [['name','fromtime','totime'], 'string'],
+            [['exp', 'week'], 'integer'],
+            [['exp'], 'safe'],
         ];
     }
-//
-//    /**
-//     * {@inheritdoc}
-//     */
+
+    /**
+     * {@inheritdoc}
+     */
 //    public function scenarios()
 //    {
 //        // bypass scenarios() implementation in the parent class
@@ -106,7 +113,30 @@ class ClinicProgramView extends CustomActiveRecord
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'exp_id' => $this->exp,
+//            'exp_id' => $this->exp,
         ]);
+
+        $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)]);
+
+        if ($this->week) {
+            $week = $this->week < 3 ? $this->week + 4 : $this->week - 3;
+            $query->andWhere("WEEKDAY(DATE_FORMAT(FROM_UNIXTIME(`date`),'%Y-%m-%d')) = :week", [':week' => $week]);
+        }
+
+        if ($this->fromtime) {
+            $this->fromtime= strpos($this->fromtime,':') === false?"$this->fromtime:00":$this->fromtime;
+            $this->fromtime= strpos($this->fromtime,':') === 1?"0$this->fromtime":$this->fromtime;
+            $this->fromtime= Helper::strToTime(str_replace(':','',$this->fromtime));
+            $query->andWhere("TIME_FORMAT(`start_time`, '%H:%i') >= :stime", [':stime' => $this->fromtime]);
+        }
+
+        if ($this->totime) {
+            $this->totime= strpos($this->totime,':') === false?"$this->totime:00":$this->totime;
+            $this->totime= strpos($this->totime,':') === 1?"0$this->totime":$this->totime;
+            $this->totime= Helper::strToTime(str_replace(':','',$this->totime));
+            $query->andWhere("TIME_FORMAT(`end_time`, '%H:%i') <= :etime", [':etime' => $this->totime]);
+        }
 
         $query->andWhere(['>=', 'date', strtotime(date('Y/m/d 00:00:00', time()))]);
 
@@ -115,11 +145,25 @@ class ClinicProgramView extends CustomActiveRecord
 
     public function getTime()
     {
-        return substr($this->start_time,0,5) .' - '. substr($this->end_time,0,5);
+        return substr($this->start_time, 0, 5) . ' - ' . substr($this->end_time, 0, 5);
     }
 
     public function getAlternativePerson()
     {
         return $this->hasOne(Item::className(), ['id' => 'alternative_personID']);
+    }
+
+    public static function getDayNames()
+    {
+        $days = array(
+            1 => 'شنبه',
+            2 => 'یکشنبه',
+            3 => 'دوشنبه',
+            4 => 'سه شنبه',
+            5 => 'چهارشنبه',
+            6 => 'پنجشنبه',
+            7 => 'جمعه'
+        );
+        return $days;
     }
 }

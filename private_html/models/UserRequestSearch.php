@@ -2,35 +2,34 @@
 
 namespace app\models;
 
-use app\components\Helper;
-use app\components\Setting;
-use Yii;
-use yii\base\Model AS BaseModel;
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\models\UserRequest;
 
 /**
- * UserSearch represents the model behind the search form about `app\models\User`.
+ * UserRequestSearch represents the model behind the search form of `app\models\UserRequest`.
  */
-class UserSearch extends User
+class UserRequestSearch extends UserRequest
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
-            [['name', 'username', 'password', 'dyna', 'created', 'roleID'], 'safe'],
+            [['id', 'userID', 'status'], 'integer'],
+            [['type'], 'number'],
+            [['name', 'dyna', 'extra', 'created'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
-        return BaseModel::scenarios();
+        return Model::scenarios();
     }
 
     /**
@@ -42,13 +41,12 @@ class UserSearch extends User
      */
     public function search($params)
     {
-        $query = User::validQuery();
+        $query = UserRequest::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => array('pageSize' => Setting::get('gridSize')?:20)
         ]);
 
         $this->load($params);
@@ -62,16 +60,15 @@ class UserSearch extends User
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'userID' => $this->userID,
+            'type' => $this->type,
             'created' => $this->created,
             'status' => $this->status,
-            'roleID' => $this->roleID,
         ]);
 
-        $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
-            ->orFilterWhere(['REGEXP', 'username', Helper::persian2Arabic($this->name)])
-            ->orFilterWhere(['REGEXP', 'roleID', Helper::persian2Arabic($this->name)]);
-
-        $query->andWhere(['<>', 'roleID', 'superAdmin']);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'dyna', $this->dyna])
+            ->andFilterWhere(['like', 'extra', $this->extra]);
 
         return $dataProvider;
     }

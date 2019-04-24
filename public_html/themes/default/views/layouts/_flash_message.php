@@ -17,7 +17,7 @@ if(Yii::$app->session->hasFlash($flashName)):
             <i class="la la-warning"></i>
         </div>
         <div class="m-alert__text">
-            <?= $message ?>
+            <?= nl2br($message) ?>
         </div>
         <div class="m-alert__close">
             <button type="button" class="close" data-close="alert" aria-label="Close">
