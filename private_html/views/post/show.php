@@ -1,7 +1,4 @@
 <?php
-
-use app\models\Attachment;
-
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Post */
 /** @var $relatedPosts \app\models\Post[] */

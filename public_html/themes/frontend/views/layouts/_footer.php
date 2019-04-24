@@ -16,7 +16,7 @@ $contactModel = new \app\models\ContactForm();
     <?php if (Setting::get('map.enabled')): ?>
         <section class="map-bg">
             <div class="map"><?= Map::widget([
-                    'apiKey' => 'AIzaSyDbhMDAxCreEWc5Due7477QxAVuBAJKdTM',
+                    'apiKey' => 'AIzaSyAosC6bTYYziiqWxM5lhIHkwLECdkv26vY',
                     'zoom' => 15,
                     'center' => [Setting::get('map.lat'), Setting::get('map.lng')],
                     'markers' => [

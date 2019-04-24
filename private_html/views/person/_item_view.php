@@ -42,8 +42,8 @@
                                 <span><i class="icomoon-success ml-2"
                                          style="margin-bottom: -5px;"></i><?= jDateTime::date('l', $day->date) ?></span>
                                 <span><?= Yii::t('words', 'show_time', [
-                                        'start_time' => $rel->start_time,
-                                        'end_time' => $rel->end_time,
+                                        'start_time' => substr($rel->start_time,0,5),
+                                        'end_time' => substr($rel->end_time,0,5),
                                     ]) ?></span>
                             </div>
                         <?php endforeach;endforeach; ?>

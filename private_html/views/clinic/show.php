@@ -3,11 +3,11 @@
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+use app\models\Category;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ClinicProgramSearch */
+/* @var $clinicSearchModel app\models\ClinicProgramSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
 ?>
 
 <section class="clinic-program">
@@ -18,40 +18,47 @@ use yii\widgets\Pjax;
                     <img src="<?= Yii::getAlias('@web/themes/frontend/svg/gallery-white.svg') ?>"
                          class="img-fluid content-header__image mirror" alt="">
                     <div class="content-header__titles">
-                        <h1 class="media-heading content-header__title">برنامه کلینیک ها</h1>
-
-                        <h3 class="content-header__subTitle">بیمارستان پیامبران</h3>
+                        <h1 class="media-heading content-header__title"><?= Yii::t('words', 'Clinic Program') ?></h1>
+                        <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran Hospital') ?></h3>
                     </div>
                 </div>
             </div>
 
             <div class="col-xs-12">
                 <div class="table-responsive">
-                    <?php Pjax::begin(); ?>
+                    <?php Pjax::begin(['enablePushState' => false]); ?>
                     <?= CustomGridView::widget([
                         'id' => 'clinic-table',
                         'dataProvider' => $dataProvider,
+                        'filterModel' => $clinicSearchModel,
                         'tableOptions' => ['class' => 'table table-hover table-condensed'],
                         'layout' => "<div class='items'>{items}</div>\n{pager}",
-                        'pager' => [
-                            'class' => \nirvana\infinitescroll\InfiniteScrollPager::className(),
-                            'widgetId' => 'clinic-table',
-                            'itemsCssClass' => 'items',
-//                            'contentLoadedCallback' => 'afterAjaxListViewUpdate',
-                            'nextPageLabel' => 'Load more items',
-                            'linkOptions' => [
-                                'class' => 'btn btn-lg btn-block',
-                            ],
-                            'pluginOptions' => [
-                                'loading' => [
-                                    'msgText' => "<em>Loading next set of items...</em>",
-                                    'finishedMsg' => "<em>No more items to load</em>",
-                                ],
-                                'behavior' => \nirvana\infinitescroll\InfiniteScrollPager::BEHAVIOR_TWITTER,
-                            ],
-                        ],
+//                        'pager' => [
+//                            'class' => \nirvana\infinitescroll\InfiniteScrollPager::className(),
+//                            'widgetId' => 'clinic-table',
+//                            'itemsCssClass' => 'items',
+////                            'contentLoadedCallback' => 'afterAjaxListViewUpdate',
+//                            'nextPageLabel' => 'Load more items',
+//                            'linkOptions' => [
+//                                'class' => 'btn btn-lg btn-block',
+//                            ],
+//                            'pluginOptions' => [
+//                                'loading' => [
+//                                    'msgText' => "<em>Loading next set of items...</em>",
+//                                    'finishedMsg' => "<em>No more items to load</em>",
+//                                ],
+//                                'behavior' => \nirvana\infinitescroll\InfiniteScrollPager::BEHAVIOR_TWITTER,
+//                            ],
+//                        ],
                         'columns' => [
-                            'exp',
+                            [
+                                'attribute' => 'exp',
+                                'filter' => Html::activeDropDownList($clinicSearchModel, 'exp', Category::getWithType(Category::CATEGORY_TYPE_EXPERTISE), [
+                                    'class' => 'form-control',
+                                    'prompt' => Yii::t('words', 'All')
+                                ]),
+                                'options' => ['width' => '150px']
+                            ],
                             'name',
                             [
                                 'attribute' => 'date',
@@ -59,6 +66,10 @@ use yii\widgets\Pjax;
                                 'value' => function ($model) {
                                     return "<span dir='ltr'>" . jDateTime::date('l', $model->date) . "</span>";
                                 },
+                                'filter' => Html::activeDropDownList($clinicSearchModel, 'week', \app\models\ClinicProgramView::getDayNames(), [
+                                    'class' => 'form-control',
+                                    'prompt' => Yii::t('words', 'All')
+                                ]),
                                 'format' => 'raw',
                             ],
                             [
@@ -74,10 +85,15 @@ use yii\widgets\Pjax;
                                 'value' => function ($model) {
                                     return "<span>{$model->time}</span>";
                                 },
+                                'filter' => Html::activeTextInput($clinicSearchModel, 'fromtime', [
+                                        'class' => 'form-control time-filter',
+                                    ]) . ' - ' . Html::activeTextInput($clinicSearchModel, 'totime', [
+                                        'class' => 'form-control time-filter',
+                                    ]),
                                 'format' => 'raw',
                             ],
                             'description:ntext',
-                            ['class' => 'app\components\customWidgets\CustomActionColumn',]
+//                            ['class' => 'app\components\customWidgets\CustomActionColumn',]
                         ],
                     ]); ?>
                     <?php Pjax::end(); ?>
