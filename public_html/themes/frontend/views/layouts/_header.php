@@ -9,7 +9,7 @@ use yii\helpers\Url;
 // echo Yii::getAlias('@web/themes/frontend/images/menu-logo.png')
 ?>
 <header class="<?= Yii::$app->controller->headerClass ?: '' ?>">
-    <div class="container">
+    <div class="container d-none d-md-block">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
                 <div class="dropdown language-select" style="display:none;">
@@ -81,13 +81,8 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
-    <div class="navbar-container">
+    <div class="navbar-container d-none d-md-block">
         <div class="container">
-            <button id="sidebarCollapse" class="navbar-toggler" type="button">
-                <span class="navbar-toggler-lines"></span>
-                <span class="navbar-toggler-lines"></span>
-                <span class="navbar-toggler-lines"></span>
-            </button>
             <ul class="nav navbar nav-pills">
                 <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
                     <?php
@@ -132,7 +127,31 @@ use yii\helpers\Url;
             </ul>
         </div>
     </div>
+    <div class="container d-md-none">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button id="sidebarCollapse" class="navbar-toggler" type="button">
+                        <span class="navbar-toggler-lines"></span>
+                        <span class="navbar-toggler-lines"></span>
+                        <span class="navbar-toggler-lines"></span>
+                    </button>
+                    <!--            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
+                    <!--                <span class="sr-only">Toggle navigation</span>-->
+                    <!--                <span class="icon-bar"></span>-->
+                    <!--                <span class="icon-bar"></span>-->
+                    <!--                <span class="icon-bar"></span>-->
+                    <!--            </button>-->
+                    <a class="navbar-brand" href="<?= Url::to(['/']) ?>">
+
+                    </a>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
 </header>
+
 
 <nav id="sidebar">
     <div id="dismiss">
