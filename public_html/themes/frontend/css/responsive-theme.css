@@ -203,7 +203,6 @@
 
     /*#endregion*/
     /*#region news-slider*/
-
     .new-articles .news-carousel {
         padding-top: 1rem;
     }
@@ -240,9 +239,11 @@
     .content {
         margin-top: 200px
     }
+
     #sidebarCollapse {
         display: block;
     }
+
     /*#region gallery*/
     .gallery .gallery-sidebar-menu {
         display: none;
@@ -506,9 +507,15 @@
         margin-top: 150px;
         min-height: 700px;
     }
+
     #sidebarCollapse {
         display: none;
     }
+
+    #sidebar {
+        display: none;
+    }
+
     /*#region gallery*/
     .sideMenuIcon {
         display: none;
@@ -556,6 +563,7 @@
     .news .statics-row > span {
         width: 30.33333%;
     }
+
     /*#endregion*/
     /*#region doctors*/
     .doctors .content-header img {
@@ -705,6 +713,7 @@
 .news-show.gallery .-hoverBox a img {
     width: 20%;
 }
+
 .news-image {
     width: 100%;
 }
