@@ -1,4 +1,7 @@
 <?php
+
+use app\models\Attachment;
+
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Post */
 /** @var $relatedPosts \app\models\Post[] */
@@ -9,15 +12,16 @@
         <div class="row news-show-container">
             <div class="col-xs-12">
                 <div class="content-header ">
-                    <img src="<?= $this->theme->baseUrl ?>/images/news/news-header-image.png"
-                         class="img-fluid content-header__image" alt="">
-                    <div class="content-header__titles">
-                        <h1 class="media-heading content-header__title"><?= Yii::t('words', 'News & Articles') ?></h1>
-                        <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
+                    <div class="content-header--titlesContainer">
+                        <img src="<?= $this->theme->baseUrl ?>/images/news/news-header-image.png"
+                             class="img-fluid content-header__image" alt="">
+                        <div class="content-header__titles">
+                            <h1 class="media-heading content-header__title"><?= Yii::t('words', 'News & Articles') ?></h1>
+                            <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
+                        </div>
                     </div>
-                    <div class="newsSearchBox">
-                        <form class="search-form" action="<?= \yii\helpers\Url::to(['/post/news']) ?>" method="get"
-                              style="min-width: 400px;">
+                    <div class="newsSearchBox mt-4 mt-lg-0">
+                        <form class="search-form" action="<?= \yii\helpers\Url::to(['/post/news']) ?>" method="get">
                             <p style="color: #fff;margin-right: 10px;"
                                class="search-form-label"><?= Yii::t('words', $model->type == \app\models\Post::TYPE_NEWS ? 'Search in news...' : 'Search in articles...') ?></p>
                             <div class="input-group search-container">
@@ -34,16 +38,18 @@
                 <div>
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-4 pr-0">
-                                <div class="card m-0">
+                            <div class="col-xs-12 col-md-4 px-0 pr-lg-0">
+                                <div class="card mb-3 m-lg-0">
                                     <div class="card-header">
                                         <div class="statics-row">
-                                            <span class="comments-count text-right"><?= number_format($model->comments_count) ?><i
-                                                class="comment-icon"></i></span>
+                                            <span class="comments-count text-right"><?= number_format($model->comments_count) ?>
+                                                <i
+                                                        class="comment-icon"></i></span>
                                             <span class="view-count text-center"><?= number_format($model->seen) ?><i
-                                                class="eye-icon"></i></span>
-                                            <span class="news-date text-left"><?= jDateTime::date('Y/m/d', strtotime($model->publish_date)) ?><i
-                                                class="calendar-icon"></i></span>
+                                                        class="eye-icon"></i></span>
+                                            <span class="news-date text-left"><?= jDateTime::date('Y/m/d', strtotime($model->publish_date)) ?>
+                                                <i
+                                                        class="calendar-icon"></i></span>
                                         </div>
                                         <!--                                        <p>-->
                                         <!--                                            <i class="icomoon-comment-alt-regular"></i> --><? //= number_format($model->comments_count) ?>
@@ -56,7 +62,7 @@
                                         <!--                                            <i class="icomoon-calendar-alt-regular"></i> --><? //= $model->publish_date ?>
                                         <!--                                        </p>-->
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body text-center">
                                         <a title="" href="#" class="card-link">
                                             <img class="card-img-top"
                                                  src="<?= Yii::getAlias('@web/uploads/post/') . $model->image ?>"
@@ -67,13 +73,14 @@
                                     <?php if ($model->gallery): ?>
                                         <hr>
                                         <div class="clearfix">
-                                            <p style="color: #7a7a7a;">تصاویر خبری</p>
-                                            <?php foreach ($model->gallery as $item): if (!$item->file OR !is_file(Yii::getAlias('@webroot/uploads/post/') . $item->file)) continue; ?>
+                                            <p style="color: #7a7a7a;"><?= Yii::t('words', 'News pictures') ?></p>
+                                            <?php foreach ($model->gallery as $item):
+                                                if (!$item->file OR !is_file(Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file)) continue; ?>
                                                 <div class="imgContainer">
                                                     <a class="simpleGallery__link"
-                                                       href="<?= Yii::getAlias('@webroot/uploads/post/') . $item->file ?>">
+                                                       href="<?= Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file ?>">
                                                         <img class="simpleGallery__image"
-                                                             src="<?= Yii::getAlias('@webroot/uploads/post/thumbs/100x100/') . $item->file ?>"
+                                                             src="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/'). $item->file ?>"
                                                              alt="">
                                                         <!--<div class="-hoverShowBox purple rounded">-->
                                                         <!--<div>-->
@@ -88,7 +95,7 @@
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            <div class="col-xs-8  px-0">
+                            <div class="col-xs-12 col-md-8 px-0">
                                 <div class="newsShow">
                                     <div class="newsShow__content">
                                         <h4 class="newsShow__title"><?= $model->name ?></h4>
@@ -102,7 +109,7 @@
             </div>
         </div>
     </div>
-    <section class="related-news">
+    <section class="related-news d-none">
         <div class="container">
             <div class="row insurance-container">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">

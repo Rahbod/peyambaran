@@ -473,4 +473,5 @@ return [
     'Export doctors list' => 'دریافت لیست پزشکان',
     'Hospitalization Request' => 'درخواست پذیرش بستری',
     'All' => 'همه',
+    'News pictures' => 'تصاویر خبری',
 ];
