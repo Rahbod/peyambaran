@@ -451,22 +451,6 @@ header .search-form {
     border-radius: 0 7px 7px 0;
 }
 
-.navbar-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: inline-block;
-}
-
-.navbar {
-    float: right;
-    margin: 0;
-    border: none;
-    position: static !important;
-    min-height: 0;
-}
-
 .navbar > li:not(.relative) {
     position: static !important;
 }
@@ -2573,7 +2557,6 @@ section .title-description {
     font-weight: 600;
 }
 
-
 .doctors .doctors-image {
     flex-grow: 1;
     height: 130px;
@@ -3467,21 +3450,6 @@ section .title-description {
     display: inline-block;
     width: 70px;
     direction: ltr;
-}
-
-.navbar-toggler-lines:first-child {
-    margin-top: 6px;
-}
-
-.navbar-toggler-lines {
-    display: block;
-    width: 40px;
-    height: 7px;
-    background: #747779;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    margin-bottom: 5px;
 }
 
 .d-flex {

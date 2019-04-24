@@ -57,6 +57,8 @@ AppAsset::register($this);
 <?php echo $this->render('_footer'); ?>
 <?php echo $this->render('_public_alert'); ?>
 <?php $this->endBody(); ?>
+<div class="overlay"></div>
+
 </body>
 </html>
 <?php $this->endPage(); ?>
