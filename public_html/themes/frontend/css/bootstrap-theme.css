@@ -3436,6 +3436,10 @@ section .title-description {
     color: #fff;
 }
 
+.smallHeader .top {
+    display:none
+}
+
 .text-white {
     color: #fff !important;
 }

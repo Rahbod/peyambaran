@@ -562,10 +562,7 @@
     }
 
     /*#endregion*/
-    .content {
-        margin-top: 150px;
-        min-height: 700px;
-    }
+
 
     #sidebarCollapse {
         display: none;
