@@ -474,4 +474,5 @@ return [
     'Hospitalization Request' => 'درخواست پذیرش بستری',
     'All' => 'همه',
     'News pictures' => 'تصاویر خبری',
+    'Translate Management' => 'مدیریت ترجمه ها',
 ];

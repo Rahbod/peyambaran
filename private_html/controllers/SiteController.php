@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\AuthController;
 use app\components\MainController;
 use app\models\Category;
 use app\models\Insurance;
@@ -16,7 +17,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\ContactForm;
 
-class SiteController extends MainController
+class SiteController extends AuthController
 {
 
     public function getMenuActions()
@@ -83,7 +84,7 @@ class SiteController extends MainController
      */
     public function actionIndex()
     {
-        $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
+        $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->setLanguageConditionDisable()->all();
         $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->all();
         $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->all();
         $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();

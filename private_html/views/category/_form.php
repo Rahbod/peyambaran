@@ -22,14 +22,22 @@ use app\models\Category;
             <div class="col-sm-4">
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             </div>
+
+            <div class="col-sm-4">
+                <?= $form->field($model, 'en_name')->textInput(['maxlength' => true]) ?>
+            </div>
+
+            <div class="col-sm-4">
+                <?= $form->field($model, 'ar_name')->textInput(['maxlength' => true]) ?>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-sm-4">
                 <?= $form->field($model, 'parentID')->dropDownList(Category::parentsList(), [
                     'prompt' => 'بدون والد'
                 ]) ?>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-4">
                 <?= $form->field($model, 'category_type')->dropDownList(Category::getCategoryTypeLabels()) ?>
             </div>

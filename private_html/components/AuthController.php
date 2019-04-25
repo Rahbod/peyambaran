@@ -23,12 +23,17 @@ abstract class AuthController extends MainController
     public function beforeAction($action)
     {
         parent::beforeAction($action);
+        $superAdmin = false;
+        Yii::$app->session['translate'] = true;
+
+        if ($this->id=='site')
+            return true;
 
         /* @var $role \yii\rbac\Role */
         $roles = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
         foreach ($roles as $role)
             if ($role->name == 'superAdmin' || $role->name == 'admin')
-                return true;
+                $superAdmin = true;
 
         // Check same permissions
         $samePermissions = $this->getSamePermissions();
@@ -62,9 +67,15 @@ abstract class AuthController extends MainController
             $actionMethod = lcfirst(str_replace('action', '', $action->id));
         $systemActions = $this->getSystemActions();
 
+        if (!in_array($actionMethod, $systemActions) || $this->id=='admin')
+            Yii::$app->session['translate'] = false;
+
         if (in_array($actionMethod, $systemActions) || Yii::$app->user->can($permissionName))
             return true;
         else {
+            if ($superAdmin)
+                return true;
+
             if (in_array($action->id, $limitedActions)) {
                 if (method_exists($this, 'findModel')) {
                     $model = $this->findModel(Yii::$app->request->get('id'));

@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use function app\components\dd;
 use creocoder\nestedsets\NestedSetsBehavior;
 use richardfan\sortable\SortableAction;
 use Yii;
@@ -92,6 +91,8 @@ class Category extends MultiLangActiveRecord
             $this->status = 1;
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'category_type' => ['CHAR', ''],
+            'en_name' => ['CHAR', ''],
+            'ar_name' => ['CHAR', ''],
             'sort' => ['INTEGER', '']
         ]);
     }
@@ -104,6 +105,8 @@ class Category extends MultiLangActiveRecord
         return array_merge(parent::rules(), [
             [['parentID', 'status', 'left', 'right', 'depth', 'tree', 'sort'], 'integer'],
             [['name'], 'required'],
+            [['en_name', 'ar_name'], 'required'],
+            [['en_name', 'ar_name'], 'string'],
             [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
             [['type', 'dyna', 'extra', 'category_type'], 'string'],
             [['created'], 'safe'],
@@ -133,6 +136,8 @@ class Category extends MultiLangActiveRecord
             'right' => Yii::t('words', 'Right'),
             'depth' => Yii::t('words', 'Depth'),
             'tree' => Yii::t('words', 'Tree'),
+            'en_name' => Yii::t('words', 'En Name'),
+            'ar_name' => Yii::t('words', 'Ar Name'),
         ]);
     }
 

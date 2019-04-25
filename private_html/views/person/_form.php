@@ -62,6 +62,16 @@ use app\models\Category;
         <div class="col-sm-4">
             <?= $form->field($model, 'surename')->textInput(['maxlength' => true]) ?>
         </div>
+
+
+        <div class="col-sm-4">
+            <?= $form->field($model, 'en_name')->textInput(['maxlength' => true]) ?>
+        </div>
+
+        <div class="col-sm-4">
+            <?= $form->field($model, 'ar_name')->textInput(['maxlength' => true]) ?>
+        </div>
+
         <div class="col-sm-4">
             <?= $form->field($model, 'type')->dropDownList(\app\models\Person::getTypeLabels(), ['prompt' => Yii::t('words', 'Select Type')]) ?>
         </div>

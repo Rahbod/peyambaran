@@ -80,4 +80,25 @@ class AdminController extends AuthController
 
         return $this->goHome();
     }
+
+
+    public function actionTranslate()
+    {
+        if(!Yii::$app->request->getQueryParam('dest'))
+            $this->render('translate');
+
+        $baseLang = 'fa';
+        $currLang = Yii::$app->request->getQueryParam('dest');
+        $baseMessagePath = Yii::getAlias("@app/messages/{$baseLang}/words.php");
+        $basePhrases = include_once $baseMessagePath;
+        \app\components\dd($basePhrases);
+        $destMessagePath = Yii::getAlias("@app/messages/{$currLang}/words.php");
+        $destPhrases = include_once $destMessagePath;
+
+        if(Yii::$app->request->post()){
+            \app\components\dd(Yii::$app->request->post());
+        }
+
+        return $this->render('translate',compact('basePhrases', 'destPhrases'));
+    }
 }
