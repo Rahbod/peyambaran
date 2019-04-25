@@ -142,7 +142,7 @@ class Item extends MultiLangActiveRecord
             ->viaTable('catitem', ['itemID' => 'id'])->andWhere(['type' => Catitem::TYPE_TAXONOMY]);
     }
 
-    public static function getStatusLabels($status = null)
+    public static function getStatusLabels($status = null, $html = false)
     {
         $statusLabels = [
             self::STATUS_DELETED => 'حذف شده',
@@ -151,6 +151,25 @@ class Item extends MultiLangActiveRecord
         ];
         if (is_null($status))
             return $statusLabels;
+
+        if($html)
+        {
+            switch ($status){
+                case self::STATUS_PUBLISHED:
+                    $class = 'success';
+                    $icon = '<i class="fa fa-check-circle"></i>';
+                    break;
+                case self::STATUS_DISABLED:
+                    $class = 'warning';
+                    $icon = '<i class="fa fa-times-circle"></i>';
+                    break;
+                case self::STATUS_DELETED:
+                    $class = 'danger';
+                    $icon = '<i class="fa fa-times-circle"></i>';
+                    break;
+            }
+            return "<span class='text-{$class}'>$icon</span>";
+        }
         return $statusLabels[$status];
     }
 

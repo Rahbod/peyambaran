@@ -73,16 +73,29 @@ $this->params['breadcrumbs'][] = $this->title;
                             'filter' => Category::getWithType(Category::CATEGORY_TYPE_EXPERTISE)
                         ],
                         [
-                            'attribute' => 'created',
-                            'value' => function ($model) {
-                                return jDateTime::date('Y/m/d', $model->created);
-                            }
-                        ],
-                        [
                             'attribute' => 'status',
                             'value' => function ($model) {
-                                return \app\models\Page::getStatusLabels($model->status);
+                                return \app\models\Page::getStatusLabels($model->status,true);
                             },
+                            'format' => 'raw',
+                            'filter' => \app\models\Page::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'en_status',
+                            'value' => function ($model) {
+                                $model->en_status = $model->en_status ?: 0;
+                                return \app\models\Page::getStatusLabels($model->en_status,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Page::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'ar_status',
+                            'value' => function ($model) {
+                                $model->ar_status = $model->ar_status ?: 0;
+                                return \app\models\Page::getStatusLabels($model->ar_status,true);
+                            },
+                            'format' => 'raw',
                             'filter' => \app\models\Page::getStatusFilter()
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']

@@ -19,7 +19,7 @@ use Yii;
  */
 class Person extends Item
 {
-    protected $multiLanguage = false;
+    public static $multiLanguage = false;
 
     const TYPE_DOCTOR = 1;
     const TYPE_PERSONAL = 2;

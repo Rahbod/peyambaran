@@ -62,16 +62,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'status',
                             'value' => function($model){
-                                return \app\models\Page::getStatusLabels($model->status);
+                                return \app\models\Gallery::getStatusLabels($model->status, true);
                             },
-                            'filter'=>\app\models\Page::getStatusFilter()
+                            'format' => 'raw',
+                            'filter'=>\app\models\Gallery::getStatusFilter()
                         ],
                         [
                             'attribute' => 'lang',
                             'value' => function($model){
-                                return \app\models\Page::$langArray[$model->lang];
+                                return \app\models\Gallery::$langArray[$model->lang];
                             },
-                            'filter'=>\app\models\Page::$langArray
+                            'filter'=>\app\models\Gallery::$langArray
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],

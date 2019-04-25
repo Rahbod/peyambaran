@@ -9,5 +9,5 @@ namespace app\models;
  */
 class PersonQuery extends ItemQuery
 {
-    protected $languageCondition = false;
+    public static $languageCondition = false;
 }

@@ -10,11 +10,8 @@ $expertiseMenu = \app\models\Category::find()
         'type' => \app\models\Category::TYPE_CATEGORY,
         'category_type' => \app\models\Category::CATEGORY_TYPE_EXPERTISE,
     ])
-
+    ->valid()
     ->all();
-if(isset($_GET['debug'])){
-    \app\components\dd($expertiseMenu);
-}
 $expertiseID = Yii::$app->request->getQueryParam('expertise') ?: 0;
 ?>
 

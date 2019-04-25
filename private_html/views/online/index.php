@@ -74,10 +74,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         [
                             'attribute' => 'status',
-                            'value' => function($model){
-                                return $model->getStatusLabel();
+                            'value' => function ($model) {
+                                return \app\models\OnlineService::getStatusLabels($model->status,true);
                             },
-                            'filter' => \app\models\Menu::getStatusFilter()
+                            'format' => 'raw',
+                            'filter' => \app\models\OnlineService::getStatusFilter()
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],

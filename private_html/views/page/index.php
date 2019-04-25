@@ -61,10 +61,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         [
                             'attribute' => 'status',
-                            'value' => function($model){
-                                return \app\models\Page::getStatusLabels($model->status);
+                            'value' => function ($model) {
+                                return \app\models\Page::getStatusLabels($model->status,true);
                             },
-                            'filter'=>\app\models\Page::getStatusFilter()
+                            'format' => 'raw',
+                            'filter' => \app\models\Page::getStatusFilter()
                         ],
                         [
                             'attribute' => 'lang',

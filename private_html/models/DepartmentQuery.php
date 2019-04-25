@@ -7,5 +7,5 @@ namespace app\models;
  */
 class DepartmentQuery extends CategoryQuery
 {
-    protected $languageCondition = false;
+    public static $languageCondition = false;
 }

@@ -10,7 +10,7 @@ namespace app\components;
  */
 class MultiLangActiveQuery extends DynamicActiveQuery
 {
-    protected $languageCondition = true;
+    public static $languageCondition = true;
 
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class MultiLangActiveQuery extends DynamicActiveQuery
      */
     public function all($db = null)
     {
-        if ($this->languageCondition) {
+        if (static::$languageCondition) {
             $class = $this->modelClass;
             $field = $class::columnGetString('lang');
             $this->andWhere([
@@ -30,7 +30,7 @@ class MultiLangActiveQuery extends DynamicActiveQuery
 
     public function count($q = '*', $db = null)
     {
-        if ($this->languageCondition) {
+        if (static::$languageCondition) {
             $class = $this->modelClass;
             $field = $class::columnGetString('lang');
             $this->andWhere([
@@ -56,7 +56,7 @@ class MultiLangActiveQuery extends DynamicActiveQuery
 
     public function setLanguageConditionDisable()
     {
-        $this->languageCondition = false;
+        self::$languageCondition = false;
         return $this;
     }
 }

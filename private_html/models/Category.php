@@ -36,7 +36,7 @@ use yii\helpers\ArrayHelper;
  */
 class Category extends MultiLangActiveRecord
 {
-    protected $multiLanguage = false;
+    public static $multiLanguage = false;
 
     const STATUS_DELETED = -1;
     const STATUS_DISABLED = 0;
@@ -206,12 +206,43 @@ class Category extends MultiLangActiveRecord
     public function getStatusLabel($status = null)
     {
         $statusLabels = [
+            self::STATUS_DELETED => 'Deleted',
+            self::STATUS_DISABLED => 'Disabled',
+            self::STATUS_PUBLISHED => 'Published',
+        ];
+        if (!$status)
+            $status = $this->status;
+        return Yii::t('words', ucfirst($statusLabels[$status]));
+    }
+
+    public static function getStatusLabels($status = null, $html = false)
+    {
+        $statusLabels = [
             self::STATUS_DELETED => 'حذف شده',
             self::STATUS_DISABLED => 'غیرفعال',
             self::STATUS_PUBLISHED => 'منتشر شده',
         ];
-        if (!$status)
-            $status = $this->status;
+        if (is_null($status))
+            return $statusLabels;
+
+        if($html)
+        {
+            switch ($status){
+                case self::STATUS_PUBLISHED:
+                    $class = 'success';
+                    $icon = '<i class="fa fa-check-circle"></i>';
+                    break;
+                case self::STATUS_DISABLED:
+                    $class = 'warning';
+                    $icon = '<i class="fa fa-times-circle"></i>';
+                    break;
+                case self::STATUS_DELETED:
+                    $class = 'danger';
+                    $icon = '<i class="fa fa-times-circle"></i>';
+                    break;
+            }
+            return "<span class='text-{$class}'>$icon</span>";
+        }
         return Yii::t('words', ucfirst($statusLabels[$status]));
     }
 

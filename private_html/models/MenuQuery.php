@@ -12,8 +12,9 @@ use app\components\DynamicActiveQuery;
  *
  * @see Category
  */
-class CategoryQuery extends MultiLangActiveQuery
+class MenuQuery extends MultiLangActiveQuery
 {
+    public static $languageCondition = true;
     protected $_typeName = null;
 
     public function behaviors()
@@ -77,7 +78,7 @@ class CategoryQuery extends MultiLangActiveQuery
             if ($lang == 'fa')
                 $this->andWhere(['status' => Category::STATUS_PUBLISHED]);
             else
-                $this->andWhere([Category::columnGetString("{$lang}_status", 'category', 'CHAR') => Category::STATUS_PUBLISHED]);
+                $this->andWhere([Category::columnGetString("{$lang}_status") => Category::STATUS_PUBLISHED]);
         }
         $this->orderBySort();
         return $this;
