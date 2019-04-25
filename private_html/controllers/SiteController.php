@@ -6,6 +6,7 @@ use app\components\AuthController;
 use app\components\MainController;
 use app\models\Category;
 use app\models\Insurance;
+use app\models\Item;
 use app\models\Message;
 use app\models\OnlineService;
 use app\models\Person;
@@ -84,7 +85,7 @@ class SiteController extends AuthController
      */
     public function actionIndex()
     {
-        $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->setLanguageConditionDisable()->all();
+        $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
         $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->all();
         $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->all();
         $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();
@@ -270,4 +271,16 @@ class SiteController extends AuthController
             @$model->save();
         }
     }*/
+
+    public function actionTest(){
+        $all = Slide::find()->all();
+        foreach ($all as $item){
+            if(!$item->en_status)
+            $item->en_status = 0;
+            if(!$item->ar_status)
+            $item->ar_status = 0;
+            $item->save();
+        }
+
+    }
 }

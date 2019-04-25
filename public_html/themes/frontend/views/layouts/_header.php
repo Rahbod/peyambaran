@@ -12,7 +12,7 @@ use yii\helpers\Url;
     <div class="container d-none d-sm-block">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
-                <div class="dropdown language-select" style="display:none;">
+                <div class="dropdown language-select">
                     <label>Language</label>
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="icon icon-chevron-down"></span>
@@ -20,9 +20,11 @@ use yii\helpers\Url;
                         <span class="language-icon"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <?php foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
-                            <li><a href="<?= Url::to(["/{$key}"]) ?>"><?= Yii::t('words', $key) ?></a></li>
-                        <?php endforeach; ?>
+                        <li><a href="<?= Url::to(["/fa"]) ?>"><?= Yii::t('words', 'fa') ?></a></li>
+                        <li><a href="<?= Url::to(["/en"]) ?>"><?= Yii::t('words', 'en') ?></a></li>
+<!--                        --><?php //foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
+<!--                            <li><a href="--><?//= Url::to(["/{$key}"]) ?><!--">--><?//= Yii::t('words', $key) ?><!--</a></li>-->
+<!--                        --><?php //endforeach; ?>
                     </ul>
                 </div>
 

@@ -18,7 +18,7 @@ class CategorySearch extends Category
     {
         return [
             [['id', 'parentID', 'status', 'left', 'right', 'depth', 'tree'], 'integer'],
-            [['category_type', 'type', 'name', 'dyna', 'extra', 'created'], 'safe'],
+            [['category_type', 'type', 'name', 'dyna', 'extra', 'created', 'en_status', 'ar_status'], 'safe'],
         ];
     }
 
@@ -65,6 +65,8 @@ class CategorySearch extends Category
             'right' => $this->right,
             'depth' => $this->depth,
             'tree' => $this->tree,
+            self::columnGetString('en_status', 'category', 'INTEGER') => $this->en_status,
+            self::columnGetString('ar_status', 'category', 'INTEGER') => $this->ar_status,
             'category_type' => $this->category_type,
         ]);
 

@@ -49,9 +49,11 @@ if ($relatedMenu)
             <?php endif; ?>
             <div class="<?= $root ? 'col-sm-9' : 'col-sm-10 col-sm-offset-1' ?>">
                 <div class="content-header bg-cyan">
-                    <div class="content-header__gradient-overlay"></div>
-                    <img class="content-header__fade-bg"
-                         src="<?= Yii::getAlias('@web/uploads/pages/') . $model->image ?>">
+                    <?php if (is_file(Yii::getAlias('@webroot/uploads/pages/') . $model->image)): ?>
+                        <div class="content-header__gradient-overlay"></div>
+                        <img class="content-header__fade-bg"
+                             src="<?= Yii::getAlias('@web/uploads/pages/') . $model->image ?>">
+                    <?php endif; ?>
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= $model->name ?></h1>
                     </div>
@@ -59,7 +61,7 @@ if ($relatedMenu)
                 <div class="content-body">
                     <div class="mb-5 mt-5 text-justify page-text"><?= $model->body ?></div>
                     <?php if ($model->gallery):
-                        $this->registerJsFile($this->theme->baseUrl . '/js/vendors/html5lightbox/html5lightbox.js',[],'lightbox');
+                        $this->registerJsFile($this->theme->baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [], 'lightbox');
                         ?>
                         <div class="mt-3 mb-5 page-gallery row">
                             <? foreach ($model->gallery as $item):
@@ -70,7 +72,7 @@ if ($relatedMenu)
                                                data-transition="crossfade"
                                                data-thumbnail="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/thumbs/200x200/$item->file") ?>"
                                                class="html5lightbox"
-                                               data-group="mygroup" >
+                                               data-group="mygroup">
                                                 <img class="gallery__images"
                                                      src="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/thumbs/200x200/$item->file") ?>"
                                                      alt="<?= \yii\helpers\Html::encode($model->name) ?>">

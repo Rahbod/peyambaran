@@ -89,8 +89,7 @@ class Category extends MultiLangActiveRecord
     {
         parent::init();
         preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
-        if (!$matches)
-        {
+        if (!$matches) {
             $this->status = 1;
             $this->en_status = 1;
             $this->ar_status = 1;
@@ -171,8 +170,8 @@ class Category extends MultiLangActiveRecord
     }
 
 
-
-    public function getItems() {
+    public function getItems()
+    {
         return $this->hasMany(Item::className(), ['id' => 'itemID'])
             ->viaTable('catitem', ['catID' => 'id']);
     }
@@ -225,9 +224,8 @@ class Category extends MultiLangActiveRecord
         if (is_null($status))
             return $statusLabels;
 
-        if($html)
-        {
-            switch ($status){
+        if ($html) {
+            switch ($status) {
                 case self::STATUS_PUBLISHED:
                     $class = 'success';
                     $icon = '<i class="fa fa-check-circle"></i>';
@@ -306,5 +304,16 @@ class Category extends MultiLangActiveRecord
         if ($return == 'array')
             return ArrayHelper::map($models, 'id', 'fullName');
         return $models;
+    }
+
+    public function getName()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa')
+                return $this->name;
+            else
+                return $this->{Yii::$app->language . '_name'};
+        }
+        return $this->name;
     }
 }

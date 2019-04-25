@@ -19,7 +19,7 @@ class PersonSearch extends Person
         return [
             [['id', 'userID', 'modelID', 'status'], 'integer'],
             [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created', 'medical_number', 'expertise'], 'safe'],
+            [['name', 'dyna', 'extra', 'created', 'medical_number', 'expertise','en_status','ar_status'], 'safe'],
         ];
     }
 
@@ -72,6 +72,8 @@ class PersonSearch extends Person
             'modelID' => $this->modelID,
             'type' => $this->type,
             'status' => $this->status,
+            self::columnGetString('en_status', 'item', 'INTEGER') => $this->en_status,
+            self::columnGetString('ar_status', 'item', 'INTEGER') => $this->ar_status,
             self::columnGetString('expertise') => $this->expertise,
         ]);
 

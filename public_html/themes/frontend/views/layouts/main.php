@@ -31,7 +31,7 @@ AppAsset::register($this);
     $this->registerCssFile($this->theme->baseUrl . '/css/sidebar.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'sidebar');
     $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme');
     if (Yii::$app->language == 'en') {
-        $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme-ltr.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme-en');
+        $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme-ltr.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme-en');
         $this->registerCssFile($this->theme->baseUrl . '/css/responsive-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'responsive-theme');
     }else
         $this->registerCssFile($this->theme->baseUrl . '/css/responsive-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'responsive-theme');

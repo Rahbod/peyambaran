@@ -19,7 +19,7 @@ class SlideSearch extends Slide
         return [
             [['id', 'userID', 'modelID', 'status'], 'integer'],
             [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created'], 'safe'],
+            [['name', 'dyna', 'extra', 'created','en_status','ar_status'], 'safe'],
         ];
     }
 
@@ -64,6 +64,8 @@ class SlideSearch extends Slide
             'modelID' => $this->modelID,
             'type' => $this->type,
             'status' => $this->status,
+            self::columnGetString('en_status', 'item', 'INTEGER') => $this->en_status,
+            self::columnGetString('ar_status', 'item', 'INTEGER') => $this->ar_status,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

@@ -9,6 +9,7 @@ use Yii;
  */
 class Department extends Category
 {
+    public static $multiLanguage = false;
     public static $typeName = self::TYPE_DEPARTMENT;
 
     /**
@@ -23,7 +24,8 @@ class Department extends Category
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-
+            'en_name' => ['CHAR', ''],
+            'ar_name' => ['CHAR', ''],
         ]);
     }
 
@@ -33,6 +35,7 @@ class Department extends Category
     public function rules()
     {
         return array_merge(parent::rules(), [
+            [['en_name','ar_name'], 'string'],
             ['type', 'default', 'value' => self::$typeName],
         ]);
     }
@@ -43,6 +46,8 @@ class Department extends Category
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
+            'en_name' => Yii::t('words', 'En Name'),
+            'ar_name' => Yii::t('words', 'Ar Name'),
         ]);
     }
 

@@ -1,7 +1,7 @@
 /*----------------------------- header*/
 header div[class^="col-"] {
     float: right !important;
-    text-align: left;
+    text-align: right;
 }
 
 header .row.top {
@@ -91,7 +91,7 @@ body {
 }
 
 .navbar {
-    float: left;
+    float: left !important;
 }
 
 .navbar > li > a {
@@ -101,6 +101,9 @@ body {
 
 .navbar .dropdown-menu {
     text-align: left;
+    left: 0 !important;
+    right: auto !important;
+    min-width: 300px;
 }
 
 .navbar .dropdown-menu .menu-part {
@@ -112,7 +115,10 @@ body {
     left: -15px;
     right: 0;
 }
-
+.navbar .dropdown-menu .menu-part > li:not(.has-child) > a:before {
+    content: "\f054";
+    right: -15px;
+}
 .slider {
     direction: ltr;
 }
@@ -369,7 +375,7 @@ body {
     -ms-transform: rotateY(180deg);
     -o-transform: rotateY(180deg);
     transform: rotateY(180deg);
-
+}
 /*!*----------------------------- clinic program *!*/
 
 .table tr td:first-of-type:before {
@@ -455,4 +461,41 @@ body {
 .news .search-container .form-control {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+.content-header__gradient-overlay {
+    left: auto !important;
+    right: 0 !important;
+}
+
+.bg-cyan .content-header__gradient-overlay {
+    background: rgba(86, 191, 239, 0);
+    background: -moz-linear-gradient(right, rgba(86, 191, 239, 0) 0%, rgba(86, 191, 239, 1) 100%);
+    background: -webkit-gradient(right top, left top, color-stop(0%, rgba(86, 191, 239, 0)), color-stop(100%, rgba(86, 191, 239, 1)));
+    background: -webkit-linear-gradient(right, rgba(86, 191, 239, 0) 0%, rgba(86, 191, 239, 1) 100%);
+    background: -o-linear-gradient(right, rgba(86, 191, 239, 0) 0%, rgba(86, 191, 239, 1) 100%);
+    background: -ms-linear-gradient(right, rgba(86, 191, 239, 0) 0%, rgba(86, 191, 239, 1) 100%);
+    background: linear-gradient(to left, rgba(86, 191, 239, 0) 0%, rgba(86, 191, 239, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56bfef', endColorstr='#56bfef', GradientType=1);
+}
+
+.bg-purple .content-header__gradient-overlay {
+    background: rgba(135, 126, 243, 0);
+    background: -moz-linear-gradient(right, rgba(135, 126, 243, 0) 0%, rgba(135, 126, 243, 1) 100%);
+    background: -webkit-gradient(right top, left top, color-stop(0%, rgba(135, 126, 243, 0)), color-stop(100%, rgba(135, 126, 243, 1)));
+    background: -webkit-linear-gradient(right, rgba(135, 126, 243, 0) 0%, rgba(135, 126, 243, 1) 100%);
+    background: -o-linear-gradient(right, rgba(135, 126, 243, 0) 0%, rgba(135, 126, 243, 1) 100%);
+    background: -ms-linear-gradient(right, rgba(135, 126, 243, 0) 0%, rgba(135, 126, 243, 1) 100%);
+    background: linear-gradient(to left, rgba(135, 126, 243, 0) 0%, rgba(135, 126, 243, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#56bfef', endColorstr='#56bfef', GradientType=1);
+}
+
+.content-header__fade-bg {
+    left: auto;
+    right: 0;
+}
+
+.pr-0{
+    padding-right: 15px;
+    padding-left: 0;
 }

@@ -319,4 +319,15 @@ class Item extends MultiLangActiveRecord
     {
         return $this->hasOne(Attachment::className(), [Attachment::columnGetString('itemID', 'attachment') => 'id']);
     }
+
+    public function getName()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa')
+                return $this->name;
+            else
+                return $this->{Yii::$app->language . '_name'};
+        }
+        return $this->name;
+    }
 }

@@ -77,7 +77,7 @@ class ItemQuery extends MultiLangActiveQuery
 
     public function valid()
     {
-        if (static::$languageCondition)
+        if (self::$languageCondition)
             $this->andWhere(['item.status' => Item::STATUS_PUBLISHED]);
         else {
             $lang = \Yii::$app->language;

@@ -62,9 +62,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'status',
                             'value' => function ($model) {
-                                return \app\models\Page::getStatusLabels($model->status);
+                                return \app\models\Post::getStatusLabels($model->status,true);
                             },
-                            'filter' => \app\models\Page::getStatusFilter()
+                            'format' => 'raw',
+                            'filter' => \app\models\Post::getStatusFilter()
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],

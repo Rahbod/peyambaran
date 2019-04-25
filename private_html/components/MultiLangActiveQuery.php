@@ -56,7 +56,7 @@ class MultiLangActiveQuery extends DynamicActiveQuery
 
     public function setLanguageConditionDisable()
     {
-        self::$languageCondition = false;
+        static::$languageCondition = false;
         return $this;
     }
 }

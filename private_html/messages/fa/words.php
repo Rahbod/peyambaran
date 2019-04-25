@@ -480,4 +480,8 @@ return [
     'Deleted' => 'حذف شده',
     'Disabled' => 'غیرفعال',
     'Published' => 'منتشر شده',
+    'Tell & Fax' => 'تلفن و فکس',
+    'En Address' => 'آدرس انگلیسی',
+    'Ar Address' => 'آدرس عربی',
+    'Valid certificates' => 'مدارک معتبر',
 ];
