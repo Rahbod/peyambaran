@@ -139,7 +139,7 @@ class ClinicProgramView extends CustomActiveRecord
         }
 
         $today = strtotime(date('Y/m/d 00:00:00', time()));
-        $endweek = $today + 7 * 24 * 60 * 60;
+        $endweek = $today + 8 * 24 * 60 * 60;
         $query->andWhere(['>=', 'date',$today]);
         $query->andWhere(['<=', 'date', $endweek]);
 

@@ -57,6 +57,12 @@ use app\models\Category;
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-sm-4">
+            <?= $form->field($model, 'en_name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'ar_name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-4">
             <?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-sm-4">

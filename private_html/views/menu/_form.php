@@ -18,6 +18,8 @@ use app\models\Menu;
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
+        <?= $form->errorSummary($model) ?>
+
         <div class="row">
             <div class="col-sm-4">
                 <?= $form->field($model, 'lang')->dropDownList(Menu::$langArray, ['class' => 'form-control m-input m-input--solid']) ?>

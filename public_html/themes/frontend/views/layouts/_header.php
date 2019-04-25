@@ -98,13 +98,13 @@ use yii\helpers\Url;
                                 <div class="<?= ($sic - $ic) !== 0 ? 'container' : 'container-fluid'; ?>">
                                     <?php if (($sic - $ic) === 0): // one level ?>
                                         <ul class="menu-part d-inline-block">
-                                            <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                            <?php foreach ($item->children(1)->valid()->orderBySort()->all() as $sub_item): ?>
                                                 <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
                                                     <a href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
                                             <?php endforeach; ?>
                                         </ul>
                                     <?php else: // two level ?>
-                                        <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                        <?php foreach ($item->children(1)->valid()->orderBySort()->all() as $sub_item): ?>
                                             <ul class="menu-part d-inline-block">
                                                 <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
                                                     <a

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use function app\components\dd;
 use app\components\MultiLangActiveQuery;
 
 /**
@@ -13,8 +14,6 @@ class ItemQuery extends MultiLangActiveQuery
 {
     protected $_modelName = null;
     protected $_typeName = null;
-
-    protected $multiLanguage = true;
 
     public function __construct($modelClass, array $config = [])
     {
@@ -78,14 +77,14 @@ class ItemQuery extends MultiLangActiveQuery
 
     public function valid()
     {
-        if ($this->multiLanguage)
+        if ($this->languageCondition)
             $this->andWhere(['item.status' => Item::STATUS_PUBLISHED]);
         else {
             $lang = \Yii::$app->language;
             if ($lang == 'fa')
                 $this->andWhere(['item.status' => Item::STATUS_PUBLISHED]);
             else
-                $this->andWhere(["item.{$lang}_status" => Item::STATUS_PUBLISHED]);
+                $this->andWhere([Item::columnGetString("{$lang}_status", "item") => Item::STATUS_PUBLISHED]);
         }
         $this->orderBy(['item.id' => SORT_DESC]);
         return $this;
