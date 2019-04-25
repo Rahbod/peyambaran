@@ -11,8 +11,9 @@ use yii\data\ActiveDataProvider;
  * This is the model class for table "clinic_program_view".
  *
  * @property string $id
+ * @property string $personID
  * @property string $exp
- * @property string $exp_id
+ * @property string $expID
  * @property string $name
  * @property string $date
  * @property string $start_time
@@ -113,11 +114,13 @@ class ClinicProgramView extends CustomActiveRecord
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'exp_id' => $this->exp,
-//            'exp_id' => $this->exp,
+            'expID' => $this->exp
         ]);
 
-        $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)]);
+        if (Yii::$app->language == 'fa')
+            $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)]);
+        else
+            $query->andFilterWhere(['REGEXP', Item::columnGetString(Yii::$app->language . '_name', 'person', 'CHAR'), Helper::persian2Arabic($this->name)]);
 
         if ($this->week) {
             $week = $this->week < 3 ? $this->week + 4 : $this->week - 3;
@@ -140,7 +143,7 @@ class ClinicProgramView extends CustomActiveRecord
 
         $today = strtotime(date('Y/m/d 00:00:00', time()));
         $endweek = $today + 8 * 24 * 60 * 60;
-        $query->andWhere(['>=', 'date',$today]);
+        $query->andWhere(['>=', 'date', $today]);
         $query->andWhere(['<=', 'date', $endweek]);
 
         return $dataProvider;
@@ -159,14 +162,24 @@ class ClinicProgramView extends CustomActiveRecord
     public static function getDayNames()
     {
         $days = array(
-            1 => 'شنبه',
-            2 => 'یکشنبه',
-            3 => 'دوشنبه',
-            4 => 'سه شنبه',
-            5 => 'چهارشنبه',
-            6 => 'پنجشنبه',
-            7 => 'جمعه'
+            1 => Yii::t('words', 'Saturday'),
+            2 => Yii::t('words', 'Sunday'),
+            3 => Yii::t('words', 'Monday'),
+            4 => Yii::t('words', 'Tuesday'),
+            5 => Yii::t('words', 'Wednesday'),
+            6 => Yii::t('words', 'Thursday'),
+            7 => Yii::t('words', 'Friday'),
         );
         return $days;
+    }
+
+    public function getPerson()
+    {
+        return $this->hasOne(Person::className(), ['id' => 'personID']);
+    }
+
+    public function getExpertise()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'expID']);
     }
 }

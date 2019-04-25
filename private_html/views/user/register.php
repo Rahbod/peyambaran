@@ -62,20 +62,20 @@ use yii\widgets\ActiveForm;
                             <div class="col-xs-12 col-md-6">
                                 <div class="social-accounts-container">
                                     <div class="social-accounts login-with-google">
-                                        <a href="void:;">
-                                            ورود با حساب گوگل
+                                        <a>
+                                            <?= Yii::t('words', 'Login with google') ?>
                                             <img src="<?= $this->theme->baseUrl ?>/images/register/google.png" alt="">
                                         </a>
                                     </div>
                                     <div class="social-accounts login-with-facebook">
-                                        <a href="void:;">
-                                            ورود با حساب فیسبوک
+                                        <a>
+                                            <?= Yii::t('words', 'Login with facebook') ?>
                                             <img src="<?= $this->theme->baseUrl ?>/images/register/facebook.png" alt="">
                                         </a>
                                     </div>
                                     <div class="social-accounts login-with-twitter">
-                                        <a href="void:;">
-                                            ورود با حساب تویتتر
+                                        <a>
+                                            <?= Yii::t('words', 'Login with twitter') ?>
                                             <img src="<?= $this->theme->baseUrl ?>/images/register/twitter.png" alt="">
                                         </a>
                                     </div>

@@ -33,9 +33,10 @@ $contactModel = new \app\models\ContactForm();
         <div class="container">
             <div class="overflow-fix">
                 <div class="form-container">
-                    <h3><?= Yii::t('words', 'Contact us') ?></h3>
-                    <div class="text"><?= Yii::t('words', 'contact_footer_text') ?></div>
-                    <div class=""></div>
+                    <div class="row">
+                        <h3><?= Yii::t('words', 'Contact us') ?></h3>
+                        <div class="text"><?= Yii::t('words', 'contact_footer_text') ?></div>
+                    </div>
                     <?php $form = ActiveForm::begin([
                         'action' => ['/site/contact'],
                         'enableClientValidation' => true,
@@ -50,17 +51,17 @@ $contactModel = new \app\models\ContactForm();
                     ?>
                     <div class="row">
                         <div class="row">
-                                <?= $form->field($contactModel, 'department_id')->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', function ($model) {
-                                    return $model->getName();
-                                })) ?>
+                            <?= $form->field($contactModel, 'department_id')->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', function ($model) {
+                                return $model->getName();
+                            })) ?>
 
-                                <?= $form->field($contactModel, 'name')->textInput() ?>
+                            <?= $form->field($contactModel, 'name')->textInput() ?>
 
-                                <?= $form->field($contactModel, 'email')->textInput(['placeholder' => 'exampel@email.com']) ?>
+                            <?= $form->field($contactModel, 'email')->textInput(['placeholder' => 'exampel@email.com']) ?>
 
-                                <?= $form->field($contactModel, 'tel')->textInput(['placeholder' => '09xxxxxxxx']) ?>
+                            <?= $form->field($contactModel, 'tel')->textInput(['placeholder' => '09xxxxxxxx']) ?>
 
-                                <?= $form->field($contactModel, 'body', ['options' => ['class' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12']])->textInput() ?>
+                            <?= $form->field($contactModel, 'body', ['options' => ['class' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12']])->textInput() ?>
                         </div>
                         <div class="row">
                             <div class="col-lg-7 col-md-12 col-sm-7 col-xs-12">

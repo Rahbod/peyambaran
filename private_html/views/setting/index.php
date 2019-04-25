@@ -59,7 +59,7 @@ $this->registerJs('
                 <h3 class="m-form__heading-title"><?= Yii::t('words', 'General') ?></h3>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(Yii::t('words', 'setting.timeZone'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(Yii::t('words', 'Time Zone'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::dropDownList('Setting[timeZone]', $settings['timeZone'], Setting::$_timeZones, [
                         'class' => 'form-control m-input m-input__solid'

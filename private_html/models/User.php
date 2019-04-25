@@ -382,8 +382,8 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public static function getGenderLabels($gender = null)
     {
         $labels = [
-            0 => Yii::t('words', 'user.male'),
-            1 => Yii::t('words', 'user.female')
+            0 => Yii::t('words', 'Male'),
+            1 => Yii::t('words', 'Female')
         ];
         if (is_null($gender))
             return $labels;

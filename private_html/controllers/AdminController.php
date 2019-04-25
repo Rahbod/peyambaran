@@ -84,16 +84,19 @@ class AdminController extends AuthController
 
     public function actionTranslate()
     {
-        if(!Yii::$app->request->getQueryParam('dest'))
-            $this->render('translate');
+        if(!Yii::$app->request->getQueryParam('lang'))
+            return $this->render('translate');
 
         $baseLang = 'fa';
-        $currLang = Yii::$app->request->getQueryParam('dest');
+        $currLang = Yii::$app->request->getQueryParam('lang');
         $baseMessagePath = Yii::getAlias("@app/messages/{$baseLang}/words.php");
-        $basePhrases = include_once $baseMessagePath;
-        \app\components\dd($basePhrases);
+        $basePhrases = include $baseMessagePath;
         $destMessagePath = Yii::getAlias("@app/messages/{$currLang}/words.php");
-        $destPhrases = include_once $destMessagePath;
+        if(!is_dir(Yii::getAlias("@app/messages/{$currLang}")))
+            mkdir(Yii::getAlias("@app/messages/{$currLang}/"),0755, true);
+        if(!is_file($destMessagePath))
+            file_put_contents($destMessagePath,"<?=\n\nreturn [];");
+        $destPhrases = include $destMessagePath;
 
         if(Yii::$app->request->post()){
             \app\components\dd(Yii::$app->request->post());

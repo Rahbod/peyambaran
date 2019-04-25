@@ -29,35 +29,69 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    <!--begin::Form-->
-    <?php $form = CustomActiveForm::begin([
-        'id' => 'translate-form',
-        //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
-        'enableAjaxValidation' => false,
-        'enableClientValidation' => true,
-        'validateOnSubmit' => true,
-        'options' => ['class' => 'm-form m-form--label-align-left']
-    ]); ?>
+
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
-        <?php foreach ($basePhrases as $key => $phrase): ?>
-            <div class="form-group m-form__group row">
-                <?php echo Html::label($phrase, '', ['class' => 'col-lg-2 col-form-label']) ?>
-                <div class="col-lg-6">
-                    <?php echo Html::dropDownList("new_phrases[$key]", '', Setting::$_timeZones, [
-                        'class' => 'form-control m-input m-input__solid'
-                    ]); ?>
+        <div class="m-form__section m-form__section--first">
+            <form method="get">
+                <div class="form-group m-form-group row">
+                    <div class="col-sm-4">
+                        <?= Html::dropDownList('lang', Yii::$app->request->getQueryParam('lang'), [
+                            'en' => 'انگلیسی',
+                            'ar' => 'عربی',
+                        ], ['class' => 'form-control', 'prompt' => 'زبان موردنظر را انتخاب کنید']) ?>
+                    </div>
+                    <div class="col-sm-4">
+                        <?= Html::submitButton('انتخاب زبان', ['class' => 'btn btn-success btn-sm mt-1']) ?>
+                    </div>
                 </div>
-            </div>
-        <?php
-        endforeach;
-        ?>
-    </div>
-    <div class="m-portlet__foot m-portlet__foot--fit">
-        <div class="m-form__actions">
-            <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel') ?></button>
+            </form>
         </div>
+
+        <?php if ($basePhrases && $destPhrases): ?>
+            <div class="m-form__section m-form__section--last">
+                <div class="m-form__heading">
+                    <h3 class="m-form__heading-title">عبارات</h3>
+                </div>
+
+                <?php $form = CustomActiveForm::begin([
+                    'id' => 'translate-form',
+                    //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
+                    'enableAjaxValidation' => false,
+                    'enableClientValidation' => true,
+                    'validateOnSubmit' => true,
+                    'options' => ['class' => 'm-form m-form--label-align-left']
+                ]); ?>
+                <?php foreach ($basePhrases as $key => $phrase):
+                    $value = '';
+                    if (isset($destPhrases[$key]))
+                        $value = $destPhrases[$key];
+                    elseif (Yii::$app->request->getQueryParam('lang') == 'en')
+                        $value = $key;
+                    ?>
+                    <div class="form-group m-form__group row">
+                        <?php echo Html::label($phrase, '', ['class' => 'col-lg-2 col-form-label']) ?>
+                        <div class="col-lg-6">
+                            <?php echo Html::textarea("new_phrases[$key]", $value, [
+                                'class' => 'form-control m-input m-input__solid',
+                                'rows' => 1
+                            ]); ?>
+                        </div>
+                    </div>
+                <?php
+                endforeach;
+                ?>
+                <div class="m-form__actions">
+                    <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
+                    <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel') ?></button>
+                </div>
+                <?php CustomActiveForm::end(); ?>
+            </div>
+        <?php endif; ?>
     </div>
-    <?php CustomActiveForm::end(); ?>
 </div>
+<style>
+    textarea.form-control {
+        min-height: 50px;
+    }
+</style>

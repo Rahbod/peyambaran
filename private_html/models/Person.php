@@ -79,7 +79,6 @@ class Person extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['en_name','ar_name'], 'required'],
             [['en_name','ar_name'], 'string'],
             [['expertise'], 'required'],
             [['expertise', 'experience'], 'integer'],

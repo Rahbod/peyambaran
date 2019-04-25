@@ -326,7 +326,7 @@ class Item extends MultiLangActiveRecord
             if (Yii::$app->language == 'fa')
                 return $this->name;
             else
-                return $this->{Yii::$app->language . '_name'};
+                return $this->{Yii::$app->language . '_name'}?:$this->name;
         }
         return $this->name;
     }

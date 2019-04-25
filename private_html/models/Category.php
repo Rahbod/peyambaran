@@ -287,9 +287,9 @@ class Category extends MultiLangActiveRecord
     public function getFullName()
     {
         if (!$this->parentID)
-            return $this->name;
+            return $this->getName();
 
-        $name = $this->name;
+        $name = $this->getName();
         $parent = $this->getParent()->one();
         while ($parent) {
             $name = "$parent->name/$name";
@@ -300,7 +300,7 @@ class Category extends MultiLangActiveRecord
 
     public static function getWithType($type, $return = 'array')
     {
-        $models = self::find()->valid()->andWhere([self::columnGetString('category_type') => $type])->all();
+        $models = self::find()->andWhere([self::columnGetString('category_type') => $type])->all();
         if ($return == 'array')
             return ArrayHelper::map($models, 'id', 'fullName');
         return $models;
@@ -312,7 +312,7 @@ class Category extends MultiLangActiveRecord
             if (Yii::$app->language == 'fa')
                 return $this->name;
             else
-                return $this->{Yii::$app->language . '_name'};
+                return $this->{Yii::$app->language . '_name'}?:$this->name;
         }
         return $this->name;
     }
