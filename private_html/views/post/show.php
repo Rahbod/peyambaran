@@ -1,13 +1,11 @@
 <?php
-
-use app\models\Attachment;
-
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Post */
 /** @var $relatedPosts \app\models\Post[] */
-
+$baseUrl = $this->theme->baseUrl;
+$this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [], 'html5lightbox');
 ?>
-<section class="news-show">
+<section class="news-show gallery">
     <div class="container">
         <div class="row news-show-container">
             <div class="col-xs-12">
@@ -73,22 +71,26 @@ use app\models\Attachment;
                                     <?php if ($model->gallery): ?>
                                         <hr>
                                         <div class="clearfix">
-                                            <p style="color: #7a7a7a;"><?= Yii::t('words', 'News pictures') ?></p>
+                                            <p style="color: #7a7a7a;"><?= Yii::t('words', 'News gallery') ?></p>
                                             <?php foreach ($model->gallery as $item):
                                                 if (!$item->file OR !is_file(Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file)) continue; ?>
-                                                <div class="imgContainer">
+                                                <div class="gallery__imageContainer">
                                                     <a class="simpleGallery__link"
                                                        href="<?= Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file ?>">
-                                                        <img class="simpleGallery__image"
-                                                             src="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/'). $item->file ?>"
-                                                             alt="">
-                                                        <!--<div class="-hoverShowBox purple rounded">-->
-                                                        <!--<div>-->
-                                                        <!--<h4>آزمایشگاه پاتولوژی</h4>-->
-                                                        <!--<div class="zoom-icon"><i></i></div>-->
-                                                        <!--</div>-->
-                                                        <!--</div>-->
+                                                        <img class="gallery__images"
+                                                             src="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/') . $item->file ?>">
                                                     </a>
+                                                    <div class="-hoverBox">
+                                                        <a href="<?= Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file ?>"
+                                                           data-transition="crossfade"
+                                                           data-thumbnail="<?= Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file ?>"
+                                                           class="html5lightbox"
+                                                           data-group="mygroup"
+                                                           title="<?= $item->name ?>">
+                                                            <h4><?= $item->name ?></h4>
+                                                            <img src="<?= $this->theme->baseUrl ?>/images/gallery/frame.png">
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
@@ -109,7 +111,7 @@ use app\models\Attachment;
             </div>
         </div>
     </div>
-    <section class="related-news d-none">
+    <section class="related-news" style="overflow-x: hidden;">
         <div class="container">
             <div class="row insurance-container">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
@@ -118,8 +120,16 @@ use app\models\Attachment;
                     </div>
                 </div>
             </div>
-            <div class="news-carousel owl-carousel owl-theme" data-stagePadding="50" data-rtl="true"
-                 data-autoWidth="true" data-nav="true" data-items="3" data-margin="15">
+            <div class="news-carousel owl-carousel owl-theme"
+                 data-stagePadding="50"
+                 data-rtl="true"
+                 data-autoWidth="true"
+                 data-nav="true"
+                 data-items="1"
+                 data-margin="15"
+                 data-autoplayspeed="9000"
+                 data-autoHeight="true"
+                 data-responsive='{"786" :{ "items": 2 }, "992" :{ "items": 3 }}'>
                 <?php foreach ($relatedPosts as $item): ?>
                     <div class="news-item">
                         <div class="news-item-inner">

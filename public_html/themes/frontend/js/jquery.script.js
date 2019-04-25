@@ -8,25 +8,27 @@ $(function () {
 
     $(".nicescroll").niceScrollTrigger();
 
-    $(".owl-carousel").each(function () {
-        var options = $(this).data();
-        if (typeof options.autoheight !== undefined) {
-            options.autoHeight = true;
-            delete options.autoheight;
-        }
+    // $(window).on("load resize scroll", function () {
+        $(".owl-carousel").each(function () {
+            var options = $(this).data();
+            if (typeof options.autoheight !== undefined) {
+                options.autoHeight = true;
+                delete options.autoheight;
+            }
 
-        if (typeof options.autoplayspeed !== undefined) {
-            options.autoPlaySpeed = true;
-            delete options.autoplayspeed;
-        }
+            if (typeof options.autoplayspeed !== undefined) {
+                options.autoPlaySpeed = true;
+                delete options.autoplayspeed;
+            }
 
-        if ($(this).hasClass('news-carousel') || $(this).hasClass('header-slider') )
-            options['navText'] = ["<i class='icon icon-chevron-right'></i>","<i class='icon icon-chevron-left'></i>"];
-        else
-            options['navText'] = ["<i class='fa-icon-angle-left'></i>", "<i class='fa-icon-angle-right'></i>"];
+            if ($(this).hasClass('news-carousel') || $(this).hasClass('header-slider'))
+                options['navText'] = ["<i class='icon icon-chevron-right'></i>", "<i class='icon icon-chevron-left'></i>"];
+            else
+                options['navText'] = ["<i class='fa-icon-angle-left'></i>", "<i class='fa-icon-angle-right'></i>"];
 
-        $(this).owlCarousel(options);
-    });
+            $(this).owlCarousel(options);
+        });
+    // });
 
     // news carousel initialize
     if ($(".news-carousel").length) {
@@ -114,27 +116,37 @@ $(function () {
 var header_height = 160;
 var headerTag = $('header');
 
-$(window).scroll(function () {
-    var scroll = $(window).scrollTop();
-    if (scroll > header_height) {
-        $('header > .container').hide();
-        $('header .navbar > li > a').addClass('text-white');
-        headerTag.addClass('smallHeader');
-        // $('li.dropdown').removeClass("open");
-    }
-    else {
-        $('header > .container').show();
-        headerTag.removeClass('smallHeader');
-        $('header .navbar > li > a').removeClass('text-white');
+$(window).on("load resize scroll", function () {
+    var width = $(this).width();
+    console.log(width);
+    if (width > 992) {
+        var scroll = $(window).scrollTop();
+        if (scroll > header_height) {
+            $('header > .container').hide();
+            $('header .navbar > li > a').addClass('text-white');
+            headerTag.addClass('smallHeader');
+            // $('li.dropdown').removeClass("open");
+        }
+        else {
+            $('header > .container').show();
+            headerTag.removeClass('smallHeader');
+            $('header .navbar > li > a').removeClass('text-white');
 
+        }
     }
     // header_height = scroll;
 });
 // hide or show the main navbar base on page scroll : end
 
-//gallery sidebar menu
-// $('#sidebarCollapse').on('click', function () {
-//     $('#sidebar').addClass('active');
-//     $('.collapse.in').toggleClass('in');
-//     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-// });
+
+$('#dismiss, .screen-overlay').on('click', function () {
+    $('nav#sidebar').removeClass('active');
+    $('.screen-overlay').removeClass('active');
+});
+
+$('#sidebarCollapse').on('click', function () {
+    $('#sidebar').addClass('active');
+    $('.screen-overlay').addClass('active');
+    $('.collapse.in').toggleClass('in');
+    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+});

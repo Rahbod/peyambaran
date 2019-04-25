@@ -1,15 +1,15 @@
 <?php
 
-use \app\models\Menu;
+use app\models\Menu;
+use yii\helpers\Html;
 use yii\helpers\Url;
-use \yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 
 // echo Yii::getAlias('@web/themes/frontend/images/menu-logo.png')
 ?>
-<header class="<?= Yii::$app->controller->headerClass ?: '' ?>">
-    <div class="container">
+<header class="navbar-default <?= Yii::$app->controller->headerClass ?: '' ?>">
+    <div class="container d-none d-sm-block">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
                 <div class="dropdown language-select" style="display:none;">
@@ -81,7 +81,7 @@ use \yii\helpers\Html;
             </div>
         </div>
     </div>
-    <div class="navbar-container">
+    <div class="navbar-container d-none d-sm-block">
         <div class="container">
             <ul class="nav navbar nav-pills">
                 <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
@@ -95,16 +95,16 @@ use \yii\helpers\Html;
                                 <?= $item->name ?>
                             </a>
                             <div class="dropdown-menu<?php if (($sic - $ic) !== 0) echo ' wide'; // multi level ?>">
-                                <div class="<?= ($sic - $ic) !== 0?'container':'container-fluid'; ?>">
+                                <div class="<?= ($sic - $ic) !== 0 ? 'container' : 'container-fluid'; ?>">
                                     <?php if (($sic - $ic) === 0): // one level ?>
                                         <ul class="menu-part d-inline-block">
-                                            <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                            <?php foreach ($item->children(1)->valid()->orderBySort()->all() as $sub_item): ?>
                                                 <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
                                                     <a href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
                                             <?php endforeach; ?>
                                         </ul>
                                     <?php else: // two level ?>
-                                        <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                        <?php foreach ($item->children(1)->valid()->orderBySort()->all() as $sub_item): ?>
                                             <ul class="menu-part d-inline-block">
                                                 <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
                                                     <a
@@ -127,4 +127,58 @@ use \yii\helpers\Html;
             </ul>
         </div>
     </div>
+    <div class="container-fluid d-sm-none">
+        <nav class="navbar">
+            <a class="navbar-brand" href="<?= Url::to(['/']) ?>">
+                <!--                <img  class="siteLogo__image img-fluid" src="-->
+                <? //= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?><!--">-->
+                <h1>بیمارســتان پیامبران</h1>
+            </a>
+
+            <button id="sidebarCollapse" class="navbar-toggler" type="button">
+                <span class="navbar-toggler-lines"></span>
+                <span class="navbar-toggler-lines"></span>
+                <span class="navbar-toggler-lines"></span>
+            </button>
+
+        </nav>
+    </div>
 </header>
+
+<nav id="sidebar">
+    <div id="dismiss">
+        x
+        <!--        <i class="fas fa-arrow-left"></i>-->
+    </div>
+    <div class="sidebar-header">
+        <h4 class="">بیمارستان پیامبران</h4>
+<!--        <p>بیمارستان پیامبران</p>-->
+    </div>
+    <ul class="list-unstyled components">
+        <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
+            <?php
+            $ic = $item->children(1)->count();
+            $sic = $item->children(2)->count();
+            if ($ic > 0): ?>
+                <li>
+                    <div class="d-flex">
+                        <a href="void:;" class="flex-fill menu-item"><?= $item->name ?></a>
+                        <a class="submenu" href="#<?= $item->id ?>" data-toggle="collapse"
+                           aria-expanded="false"></a>
+                    </div>
+                    <ul class="collapse list-unstyled" id="<?= $item->id ?>">
+                        <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                            <li>
+                                <a class="menu-item" href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a class="menu-item" href="<?= $item->url ?>"><?= $item->name ?></a>
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</nav>

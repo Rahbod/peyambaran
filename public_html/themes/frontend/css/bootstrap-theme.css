@@ -451,22 +451,6 @@ header .search-form {
     border-radius: 0 7px 7px 0;
 }
 
-.navbar-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: inline-block;
-}
-
-.navbar {
-    float: right;
-    margin: 0;
-    border: none;
-    position: static !important;
-    min-height: 0;
-}
-
 .navbar > li:not(.relative) {
     position: static !important;
 }
@@ -2234,9 +2218,11 @@ section .title-description {
     -o-transition: width 0.5s;
     transition: width 0.5s;
 }
-#clinic-table-filters td:first-of-type{
+
+#clinic-table-filters td:first-of-type {
     padding: 5px !important;
 }
+
 .clinic-program thead {
     border-bottom-width: 2px;
     border-bottom-color: #aaaaaa;
@@ -2569,11 +2555,6 @@ section .title-description {
 
 .doctors .panel-title__doctorTimes .icomoon-success {
     font-weight: 600;
-}
-
-.doctors .panel-heading .row {
-    display: flex;
-    align-items: center;
 }
 
 .doctors .doctors-image {
@@ -3158,8 +3139,9 @@ section .title-description {
 }
 
 .news-show .card-img-top {
-    width: 100%;
+    max-width: 100%;
     height: auto;
+    max-height: 500px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -3454,6 +3436,10 @@ section .title-description {
     color: #fff;
 }
 
+.smallHeader .top {
+    display:none
+}
+
 .text-white {
     color: #fff !important;
 }
@@ -3464,8 +3450,17 @@ section .title-description {
 
 /*#endregion*/
 
-.time-filter{
+.time-filter {
     display: inline-block;
     width: 70px;
     direction: ltr;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-fill {
+    -ms-flex: 1 1 auto !important;
+    flex: 1 1 auto !important;
 }

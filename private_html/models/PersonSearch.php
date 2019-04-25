@@ -38,11 +38,14 @@ class PersonSearch extends Person
      * @param array $params
      *
      * @param $ids
+     * @param bool $valid
      * @return ActiveDataProvider
      */
-    public function search($params, $ids = null)
+    public function search($params, $ids = null,$valid = false)
     {
         $query = Person::find();
+        if($valid)
+            $query->valid();
 
         // add conditions that should always apply here
 

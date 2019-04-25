@@ -40,7 +40,7 @@ class ClinicProgramView extends CustomActiveRecord
     public function rules()
     {
         return [
-            [['name','fromtime','totime'], 'string'],
+            [['name', 'fromtime', 'totime'], 'string'],
             [['exp', 'week'], 'integer'],
             [['exp'], 'safe'],
         ];
@@ -125,20 +125,23 @@ class ClinicProgramView extends CustomActiveRecord
         }
 
         if ($this->fromtime) {
-            $this->fromtime= strpos($this->fromtime,':') === false?"$this->fromtime:00":$this->fromtime;
-            $this->fromtime= strpos($this->fromtime,':') === 1?"0$this->fromtime":$this->fromtime;
-            $this->fromtime= Helper::strToTime(str_replace(':','',$this->fromtime));
+            $this->fromtime = strpos($this->fromtime, ':') === false ? "$this->fromtime:00" : $this->fromtime;
+            $this->fromtime = strpos($this->fromtime, ':') === 1 ? "0$this->fromtime" : $this->fromtime;
+            $this->fromtime = Helper::strToTime(str_replace(':', '', $this->fromtime));
             $query->andWhere("TIME_FORMAT(`start_time`, '%H:%i') >= :stime", [':stime' => $this->fromtime]);
         }
 
         if ($this->totime) {
-            $this->totime= strpos($this->totime,':') === false?"$this->totime:00":$this->totime;
-            $this->totime= strpos($this->totime,':') === 1?"0$this->totime":$this->totime;
-            $this->totime= Helper::strToTime(str_replace(':','',$this->totime));
+            $this->totime = strpos($this->totime, ':') === false ? "$this->totime:00" : $this->totime;
+            $this->totime = strpos($this->totime, ':') === 1 ? "0$this->totime" : $this->totime;
+            $this->totime = Helper::strToTime(str_replace(':', '', $this->totime));
             $query->andWhere("TIME_FORMAT(`end_time`, '%H:%i') <= :etime", [':etime' => $this->totime]);
         }
 
-        $query->andWhere(['>=', 'date', strtotime(date('Y/m/d 00:00:00', time()))]);
+        $today = strtotime(date('Y/m/d 00:00:00', time()));
+        $endweek = $today + 8 * 24 * 60 * 60;
+        $query->andWhere(['>=', 'date',$today]);
+        $query->andWhere(['<=', 'date', $endweek]);
 
         return $dataProvider;
     }
