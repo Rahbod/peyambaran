@@ -70,7 +70,16 @@ class CategoryQuery extends MultiLangActiveQuery
 
     public function valid()
     {
-        $this->andWhere(['status' => Category::STATUS_PUBLISHED])->orderBySort();
+        if ($this->languageCondition)
+            $this->andWhere(['status' => Category::STATUS_PUBLISHED]);
+        else {
+            $lang = \Yii::$app->language;
+            if ($lang == 'fa')
+                $this->andWhere(['status' => Category::STATUS_PUBLISHED]);
+            else
+                $this->andWhere([Category::columnGetString("{$lang}_status") => Category::STATUS_PUBLISHED]);
+        }
+        $this->orderBySort();
         return $this;
     }
 

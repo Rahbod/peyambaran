@@ -21,9 +21,9 @@ use yii\helpers\ArrayHelper;
  * @property resource $dyna
  * @property string $extra
  * @property string $created
- * @property int $status -1: Suspended
- * 0: Unpublished
- * 1: Published
+ * @property int $status
+ * @property int $en_status
+ * @property int $ar_status
  * @property int $left
  * @property int $right
  * @property int $depth
@@ -36,6 +36,8 @@ use yii\helpers\ArrayHelper;
  */
 class Category extends MultiLangActiveRecord
 {
+    protected $multiLanguage = false;
+
     const STATUS_DELETED = -1;
     const STATUS_DISABLED = 0;
     const STATUS_PUBLISHED = 1;
@@ -87,8 +89,12 @@ class Category extends MultiLangActiveRecord
     {
         parent::init();
         preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
-        if(!$matches)
+        if (!$matches)
+        {
             $this->status = 1;
+            $this->en_status = 1;
+            $this->ar_status = 1;
+        }
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'category_type' => ['CHAR', ''],
             'en_name' => ['CHAR', ''],
@@ -105,7 +111,6 @@ class Category extends MultiLangActiveRecord
         return array_merge(parent::rules(), [
             [['parentID', 'status', 'left', 'right', 'depth', 'tree', 'sort'], 'integer'],
             [['name'], 'required'],
-            [['en_name', 'ar_name'], 'required'],
             [['en_name', 'ar_name'], 'string'],
             [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
             [['type', 'dyna', 'extra', 'category_type'], 'string'],

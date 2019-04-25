@@ -41,8 +41,17 @@ use app\models\Category;
             <div class="col-sm-4">
                 <?= $form->field($model, 'category_type')->dropDownList(Category::getCategoryTypeLabels()) ?>
             </div>
+        </div>
+
+        <div class="row">
             <div class="col-sm-4">
                 <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+            </div>
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'en_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+            </div>
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'ar_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
             </div>
         </div>
     </div>
@@ -50,7 +59,7 @@ use app\models\Category;
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
             <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel')?></button>
+            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel') ?></button>
         </div>
     </div>
 <?php CustomActiveForm::end(); ?>

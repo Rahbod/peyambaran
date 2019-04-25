@@ -52,10 +52,6 @@ class Item extends MultiLangActiveRecord
             $this->en_status = 1;
             $this->ar_status = 1;
         }
-        $this->dynaDefaults = array_merge($this->dynaDefaults, [
-            'en_status' => ['INTEGER', ''],
-            'ar_status' => ['INTEGER', ''],
-        ]);
     }
 
     /**
@@ -84,8 +80,6 @@ class Item extends MultiLangActiveRecord
             [['formCategories', 'formTags'], 'safe'],
             ['userID', 'default', 'value' => Yii::$app->user->getId()],
             ['status', 'default', 'value' => self::STATUS_PUBLISHED],
-            ['en_status', 'default', 'value' => self::STATUS_PUBLISHED],
-            ['ar_status', 'default', 'value' => self::STATUS_PUBLISHED],
             [['userID'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userID' => 'id']],
             [['modelID'], 'exist', 'skipOnError' => true, 'targetClass' => Model::className(), 'targetAttribute' => ['modelID' => 'id']],
         ]);
@@ -106,8 +100,6 @@ class Item extends MultiLangActiveRecord
             'extra' => Yii::t('words', 'Extra'),
             'created' => Yii::t('words', 'Created'),
             'status' => Yii::t('words', 'Status'),
-            'en_status' => Yii::t('words', 'En Status'),
-            'ar_status' => Yii::t('words', 'Ar Status'),
             'gallery' => Yii::t('words', 'Picture Gallery'),
             'formCategories' => Yii::t('words', 'Category'),
             'formTags' => Yii::t('words', 'Tags'),

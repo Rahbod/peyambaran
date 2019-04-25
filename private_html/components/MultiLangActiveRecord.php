@@ -43,23 +43,36 @@ abstract class MultiLangActiveRecord extends DynamicActiveRecord
     public function init()
     {
         parent::init();
-        if ($this->multiLanguage)
+        if ($this->multiLanguage) {
             $this->lang = Yii::$app->language;
+        } else {
+            $this->dynaDefaults = array_merge($this->dynaDefaults, [
+                'en_status' => ['INTEGER', ''],
+                'ar_status' => ['INTEGER', ''],
+            ]);
+        }
     }
 
     public function rules()
     {
         if ($this->multiLanguage)
             return [
-                [['lang'], 'required']
+                [['lang'], 'required'],
             ];
-        return [];
+        return [
+            [['en_status', 'ar_status'], 'safe'],
+        ];
     }
 
     public function attributeLabels()
     {
+        if ($this->multiLanguage)
+            return [
+                'lang' => Yii::t('words', 'Lang')
+            ];
         return [
-            'lang' => Yii::t('words', 'Lang')
+            'en_status' => Yii::t('words', 'En Status'),
+            'ar_status' => Yii::t('words', 'Ar Status'),
         ];
     }
 }

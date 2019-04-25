@@ -23,6 +23,8 @@ use yii\widgets\ActiveForm;
  */
 class Menu extends Category
 {
+    protected $multiLanguage = true;
+
     const MENU_TYPE_PAGE_LINK = 1;
     const MENU_TYPE_ACTION = 2;
     const MENU_TYPE_EXTERNAL_LINK = 3;
