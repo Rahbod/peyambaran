@@ -14,6 +14,8 @@ class ItemQuery extends MultiLangActiveQuery
     protected $_modelName = null;
     protected $_typeName = null;
 
+    protected $multiLanguage = true;
+
     public function __construct($modelClass, array $config = [])
     {
         $this->_modelName = $modelClass::$modelName;
@@ -76,7 +78,16 @@ class ItemQuery extends MultiLangActiveQuery
 
     public function valid()
     {
-        $this->andWhere(['item.status' => Item::STATUS_PUBLISHED])->orderBy(['item.id' => SORT_DESC]);
+        if ($this->multiLanguage)
+            $this->andWhere(['item.status' => Item::STATUS_PUBLISHED]);
+        else {
+            $lang = \Yii::$app->language;
+            if ($lang == 'fa')
+                $this->andWhere(['item.status' => Item::STATUS_PUBLISHED]);
+            else
+                $this->andWhere(["item.{$lang}_status" => Item::STATUS_PUBLISHED]);
+        }
+        $this->orderBy(['item.id' => SORT_DESC]);
         return $this;
     }
 }

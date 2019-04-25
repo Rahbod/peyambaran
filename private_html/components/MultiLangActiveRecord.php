@@ -13,6 +13,8 @@ use yii\widgets\ActiveForm;
  */
 abstract class MultiLangActiveRecord extends DynamicActiveRecord
 {
+    protected $multiLanguage = true;
+
     public static $langArray = [
         'fa' => 'فارسی',
         'ar' => 'عربی',
@@ -41,14 +43,17 @@ abstract class MultiLangActiveRecord extends DynamicActiveRecord
     public function init()
     {
         parent::init();
-        $this->lang = Yii::$app->language;
+        if ($this->multiLanguage)
+            $this->lang = Yii::$app->language;
     }
 
     public function rules()
     {
-        return [
-            [['lang'], 'required']
-        ];
+        if ($this->multiLanguage)
+            return [
+                [['lang'], 'required']
+            ];
+        return [];
     }
 
     public function attributeLabels()
