@@ -477,4 +477,5 @@ return [
     'En Status' => 'وضعیت در انگلیسی',
     'Ar Status' => 'وضعیت در عربی',
     'Translate Management' => 'مدیریت ترجمه ها',
+
 ];
