@@ -86,8 +86,8 @@ class SiteController extends AuthController
     public function actionIndex()
     {
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
-        $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->all();
-        $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->all();
+        $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->orderBy(['id' => SORT_ASC])->all();
+        $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->orderBy(['id' => SORT_ASC])->all();
         $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();
         $galleryCategories = Category::find()->valid()->andWhere(['type' => Category::TYPE_CATEGORY, Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY])->all();
         $onlineServices = OnlineService::find()->valid()->all();
