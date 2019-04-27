@@ -15,7 +15,7 @@
 
     section .title-description {
         margin: 0;
-        margin-right: 5px;
+        margin-left: 5px;
         font-size: 17px;
     }
 
@@ -27,8 +27,8 @@
     /*#endregion*/
     /*#region footer*/
     .bottom-section .form-container .captcha input {
-        margin-right: 0 !important;
-        float: left;
+        margin-left: 0 !important;
+        float: right;
         width: 100px !important;
     }
 
@@ -55,8 +55,8 @@
     }
 
     .securityCode__input {
-        float: left;
-        margin-left: 0;
+        float: right;
+        margin-right: 0;
         width: 100px;
     }
 
@@ -78,7 +78,7 @@
     .insurance .umbrella-icon {
         width: 50px;
         height: 50px;
-        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .insurance .insurance-btn-box {
@@ -181,17 +181,17 @@
     }
 
     .copyright .pull-right {
-        float: left !important;
+        float: right !important;
     }
 
     /*#endregion*/
     .insurance-btn-box ul > li {
         width: 45%;
-        float: right;
+        float: left;
     }
 
     .insurance-btn-box ul > li.active {
-        margin-left: 9.99%;
+        margin-right: 9.99%;
     }
 }
 
@@ -216,19 +216,19 @@
     /*region footer*/
     .bottom-section .form-container {
         width: 100%;
-        padding-left: 0;
+        padding-right: 0;
     }
 
     .bottom-section .form-container .captcha input {
-        margin-right: 85px;
-        float: left;
+        margin-left: 85px;
+        float: right;
         width: 150px;
     }
 
     .bottom-section .info-container {
-        border-right: none;
+        border-left: none;
         width: 100%;
-        padding-right: 0;
+        padding-left: 0;
     }
 
     .addressContainer {
@@ -256,7 +256,7 @@
 
     .sideMenuIcon {
         z-index: 2;
-        float: left;
+        float: right;
         background: transparent;
     }
 
@@ -271,7 +271,7 @@
     }
 
     #myModal ul li ul {
-        padding-right: 10px;
+        padding-left: 10px;
     }
 
     #myModal ul li a {
@@ -297,7 +297,7 @@
     }
 
     #myModal .modal-header .close {
-        left: 15px;
+        right: 15px;
         position: absolute;
         top: 40%;
     }
@@ -325,7 +325,7 @@
     }
 
     .social-accounts img {
-        left: 0 !important;
+        right: 0 !important;
         top: 20px !important;
         transform: scale(0.6);
     }
@@ -409,7 +409,7 @@
         float: none;
         width: 76px;
         height: 76px;
-        margin-left: 0;
+        margin-right: 0;
     }
 
     .doctors .panel-title__doctorAvatar img.panel-title__doctorAvatar-default {
@@ -585,7 +585,7 @@
     }
 
     .gallery-sidebar-menu ul li ul {
-        padding-right: 10px;
+        padding-left: 10px;
     }
 
     .gallery-sidebar-menu ul li ul li {
@@ -603,7 +603,7 @@
 
     /*#region register/login/forgot password*/
     .vertical-separator-line {
-        border-left: 2px solid #85c296;
+        border-right: 2px solid #85c296;
         min-height: 320px;
     }
 
@@ -741,7 +741,7 @@
 }
 
 .slider .owl-dots {
-    left: calc(50% - 40px);
+    right: calc(50% - 40px);
     bottom: 0;
 }
 
@@ -754,12 +754,12 @@
 }
 
 .header-slider .owl-prev {
-    right: 0;
+    left: 0;
     background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.2)) !important;
 }
 
 .header-slider .owl-next {
-    left: 0;
+    right: 0;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent) !important;
 }
 
@@ -772,7 +772,7 @@
 /*#endregion*/
 
 .new-articles .news-icon {
-    margin-left: 5px;
+    margin-right: 5px;
 }
 
 /*#region clinic program*/
@@ -788,6 +788,10 @@
 
 .d-none {
     display: none;
+}
+
+.navbar {
+    float: none;
 }
 
 /*#region news and articles*/
