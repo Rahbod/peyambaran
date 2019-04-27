@@ -754,12 +754,12 @@
 }
 
 .header-slider .owl-prev {
-    left: 0;
+    right: 0;
     background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.2)) !important;
 }
 
 .header-slider .owl-next {
-    right: 0;
+    left: 0;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent) !important;
 }
 
