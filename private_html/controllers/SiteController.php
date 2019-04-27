@@ -3,13 +3,11 @@
 namespace app\controllers;
 
 use app\components\AuthController;
-use app\components\MainController;
+use app\components\customWidgets\CustomCaptchaAction;
 use app\models\Category;
 use app\models\Insurance;
-use app\models\Item;
 use app\models\Message;
 use app\models\OnlineService;
-use app\models\Person;
 use app\models\Post;
 use app\models\Slide;
 use Yii;
@@ -67,8 +65,13 @@ class SiteController extends AuthController
                 'class' => 'yii\web\ErrorAction',
             ],
             'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'class' => CustomCaptchaAction::className(),
+                'transparent' => true,
+                'onlyNumber' => true,
+                'foreColor' => 0x2040A0,
+                'minLength'=>3,
+                'maxLength'=>3,
+                'fontFile' => '@webroot/themes/default/assets/vendors/base/fonts/IranSans/ttf/fa-num/IRANSansWeb.ttf'
             ],
         ];
     }

@@ -74,7 +74,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                     <?php if ($model->gallery): ?>
                                         <hr>
                                         <div class="clearfix">
-                                            <p style="color: #7a7a7a;"><?= Yii::t('words', 'News gallery') ?></p>
+                                            <p style="color: #7a7a7a;"><?= Yii::t('words', 'News pictures') ?></p>
                                             <?php foreach ($model->gallery as $item):
                                                 if (!$item->file OR !is_file(Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file)) continue; ?>
                                                 <div class="gallery__imageContainer">
