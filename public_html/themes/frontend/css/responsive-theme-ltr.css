@@ -561,7 +561,9 @@
 
     /*#endregion*/
     /*#region footer*/
-
+    .footer-block:first-of-type .footer-sub-block .menu-part {
+        width: 24.999%;
+    }
 
     /*#endregion*/
     .content {
@@ -703,9 +705,6 @@
     }
 
     /*#endregion*/
-    .footer-block:first-of-type .footer-sub-block .menu-part {
-        width: 24.999%;
-    }
 }
 
 /*#region navbar*/
