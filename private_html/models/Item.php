@@ -19,6 +19,8 @@ use yii\helpers\ArrayHelper;
  * @property string $extra JSON array keeps all other options
  * @property string $created
  * @property int $status
+ * @property int $en_status
+ * @property int $ar_status
  *
  * @property Catitem[] $catitems
  * @property Attachment[] $attachments
@@ -45,9 +47,11 @@ class Item extends MultiLangActiveRecord
         parent::init();
         preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
         if (!$matches)
+        {
             $this->status = 1;
-//        $this->dynaDefaults = array_merge($this->dynaDefaults, [
-//        ]);
+            $this->en_status = 1;
+            $this->ar_status = 1;
+        }
     }
 
     /**
@@ -138,7 +142,7 @@ class Item extends MultiLangActiveRecord
             ->viaTable('catitem', ['itemID' => 'id'])->andWhere(['type' => Catitem::TYPE_TAXONOMY]);
     }
 
-    public static function getStatusLabels($status = null)
+    public static function getStatusLabels($status = null, $html = false)
     {
         $statusLabels = [
             self::STATUS_DELETED => 'حذف شده',
@@ -147,6 +151,25 @@ class Item extends MultiLangActiveRecord
         ];
         if (is_null($status))
             return $statusLabels;
+
+        if($html)
+        {
+            switch ($status){
+                case self::STATUS_PUBLISHED:
+                    $class = 'success';
+                    $icon = '<i class="fa fa-check-circle"></i>';
+                    break;
+                case self::STATUS_DISABLED:
+                    $class = 'warning';
+                    $icon = '<i class="fa fa-times-circle"></i>';
+                    break;
+                case self::STATUS_DELETED:
+                    $class = 'danger';
+                    $icon = '<i class="fa fa-times-circle"></i>';
+                    break;
+            }
+            return "<span class='text-{$class}'>$icon</span>";
+        }
         return $statusLabels[$status];
     }
 
@@ -295,5 +318,16 @@ class Item extends MultiLangActiveRecord
     public function getAttachmentRel()
     {
         return $this->hasOne(Attachment::className(), [Attachment::columnGetString('itemID', 'attachment') => 'id']);
+    }
+
+    public function getName()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa')
+                return $this->name;
+            else
+                return $this->{Yii::$app->language . '_name'}?:$this->name;
+        }
+        return $this->name;
     }
 }

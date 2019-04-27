@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use function app\components\dd;
 use app\components\MultiLangActiveQuery;
 use creocoder\nestedsets\NestedSetsQueryBehavior;
 use app\components\DynamicActiveQuery;
@@ -14,6 +15,7 @@ use app\components\DynamicActiveQuery;
 class CategoryQuery extends MultiLangActiveQuery
 {
     protected $_typeName = null;
+    public static $languageCondition = false;
 
     public function behaviors()
     {
@@ -69,7 +71,16 @@ class CategoryQuery extends MultiLangActiveQuery
 
     public function valid()
     {
-        $this->andWhere(['status' => Category::STATUS_PUBLISHED])->orderBySort();
+        if (self::$languageCondition)
+            $this->andWhere(['status' => Category::STATUS_PUBLISHED]);
+        else {
+            $lang = \Yii::$app->language;
+            if ($lang == 'fa')
+                $this->andWhere(['status' => Category::STATUS_PUBLISHED]);
+            else
+                $this->andWhere([Category::columnGetString("{$lang}_status", 'category', 'INTEGER') => Category::STATUS_PUBLISHED]);
+        }
+        $this->orderBySort();
         return $this;
     }
 

@@ -35,8 +35,8 @@ use app\components\customWidgets\CustomActiveForm;
             'sortableOptions' => [], // sortable options
             'htmlOptions' => ['class' => 'single'], // container html options
             'options' => [ // dropzone js options
-                'dictRemoveFile' => Yii::t('words', 'base.delete'),
-                'dictDefaultMessage' => Yii::t('words', 'base.addImage'),
+                'dictRemoveFile' => Yii::t('words', 'Delete'),
+                'dictDefaultMessage' => Yii::t('words', 'Add Image'),
                 'addRemoveLinks' => true,
                 'acceptedFiles' => array('jpg', 'jpeg', 'png'),
                 'maxFiles' => 1,

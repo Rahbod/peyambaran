@@ -7,7 +7,7 @@ namespace app\models;
  *
  * @see Item
  */
-class PersonQuery extends ItemQuery
+class SlideQuery extends ItemQuery
 {
     public static $languageCondition = false;
 }

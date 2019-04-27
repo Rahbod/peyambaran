@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use function app\components\dd;
 use creocoder\nestedsets\NestedSetsBehavior;
 use richardfan\sortable\SortableAction;
 use Yii;
@@ -22,9 +21,9 @@ use yii\helpers\ArrayHelper;
  * @property resource $dyna
  * @property string $extra
  * @property string $created
- * @property int $status -1: Suspended
- * 0: Unpublished
- * 1: Published
+ * @property int $status
+ * @property int $en_status
+ * @property int $ar_status
  * @property int $left
  * @property int $right
  * @property int $depth
@@ -37,6 +36,8 @@ use yii\helpers\ArrayHelper;
  */
 class Category extends MultiLangActiveRecord
 {
+    public static $multiLanguage = false;
+
     const STATUS_DELETED = -1;
     const STATUS_DISABLED = 0;
     const STATUS_PUBLISHED = 1;
@@ -88,10 +89,15 @@ class Category extends MultiLangActiveRecord
     {
         parent::init();
         preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
-        if(!$matches)
+        if (!$matches) {
             $this->status = 1;
+            $this->en_status = 1;
+            $this->ar_status = 1;
+        }
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'category_type' => ['CHAR', ''],
+            'en_name' => ['CHAR', ''],
+            'ar_name' => ['CHAR', ''],
             'sort' => ['INTEGER', '']
         ]);
     }
@@ -104,6 +110,7 @@ class Category extends MultiLangActiveRecord
         return array_merge(parent::rules(), [
             [['parentID', 'status', 'left', 'right', 'depth', 'tree', 'sort'], 'integer'],
             [['name'], 'required'],
+            [['en_name', 'ar_name'], 'string'],
             [['sort'], 'required', 'on' => SortableAction::SORTING_SCENARIO],
             [['type', 'dyna', 'extra', 'category_type'], 'string'],
             [['created'], 'safe'],
@@ -133,6 +140,8 @@ class Category extends MultiLangActiveRecord
             'right' => Yii::t('words', 'Right'),
             'depth' => Yii::t('words', 'Depth'),
             'tree' => Yii::t('words', 'Tree'),
+            'en_name' => Yii::t('words', 'En Name'),
+            'ar_name' => Yii::t('words', 'Ar Name'),
         ]);
     }
 
@@ -161,8 +170,8 @@ class Category extends MultiLangActiveRecord
     }
 
 
-
-    public function getItems() {
+    public function getItems()
+    {
         return $this->hasMany(Item::className(), ['id' => 'itemID'])
             ->viaTable('catitem', ['catID' => 'id']);
     }
@@ -196,12 +205,42 @@ class Category extends MultiLangActiveRecord
     public function getStatusLabel($status = null)
     {
         $statusLabels = [
+            self::STATUS_DELETED => 'Deleted',
+            self::STATUS_DISABLED => 'Disabled',
+            self::STATUS_PUBLISHED => 'Published',
+        ];
+        if (!$status)
+            $status = $this->status;
+        return Yii::t('words', ucfirst($statusLabels[$status]));
+    }
+
+    public static function getStatusLabels($status = null, $html = false)
+    {
+        $statusLabels = [
             self::STATUS_DELETED => 'حذف شده',
             self::STATUS_DISABLED => 'غیرفعال',
             self::STATUS_PUBLISHED => 'منتشر شده',
         ];
-        if (!$status)
-            $status = $this->status;
+        if (is_null($status))
+            return $statusLabels;
+
+        if ($html) {
+            switch ($status) {
+                case self::STATUS_PUBLISHED:
+                    $class = 'success';
+                    $icon = '<i class="fa fa-check-circle"></i>';
+                    break;
+                case self::STATUS_DISABLED:
+                    $class = 'warning';
+                    $icon = '<i class="fa fa-times-circle"></i>';
+                    break;
+                case self::STATUS_DELETED:
+                    $class = 'danger';
+                    $icon = '<i class="fa fa-times-circle"></i>';
+                    break;
+            }
+            return "<span class='text-{$class}'>$icon</span>";
+        }
         return Yii::t('words', ucfirst($statusLabels[$status]));
     }
 
@@ -248,9 +287,9 @@ class Category extends MultiLangActiveRecord
     public function getFullName()
     {
         if (!$this->parentID)
-            return $this->name;
+            return $this->getName();
 
-        $name = $this->name;
+        $name = $this->getName();
         $parent = $this->getParent()->one();
         while ($parent) {
             $name = "$parent->name/$name";
@@ -261,9 +300,20 @@ class Category extends MultiLangActiveRecord
 
     public static function getWithType($type, $return = 'array')
     {
-        $models = self::find()->valid()->andWhere([self::columnGetString('category_type') => $type])->all();
+        $models = self::find()->andWhere([self::columnGetString('category_type') => $type])->all();
         if ($return == 'array')
             return ArrayHelper::map($models, 'id', 'fullName');
         return $models;
+    }
+
+    public function getName()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa')
+                return $this->name;
+            else
+                return $this->{Yii::$app->language . '_name'}?:$this->name;
+        }
+        return $this->name;
     }
 }

@@ -52,9 +52,28 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'status',
                             'value' => function ($model) {
-                                return $model->getStatusLabel();
+                                return \app\models\Department::getStatusLabels($model->status, true);
                             },
-                            'filter' => \app\models\Menu::getStatusFilter()
+                            'format' => 'raw',
+                            'filter' => \app\models\Department::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'en_status',
+                            'value' => function ($model) {
+                                $model->en_status = $model->en_status ?: 0;
+                                return \app\models\Department::getStatusLabels($model->en_status,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Department::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'ar_status',
+                            'value' => function ($model) {
+                                $model->ar_status = $model->ar_status ?: 0;
+                                return \app\models\Department::getStatusLabels($model->ar_status,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Department::getStatusFilter()
                         ],
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',

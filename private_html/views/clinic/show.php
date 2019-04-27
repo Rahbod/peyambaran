@@ -53,13 +53,21 @@ use app\models\Category;
                         'columns' => [
                             [
                                 'attribute' => 'exp',
+                                'value' => function ($model) {
+                                    return $model->expertise->getName();
+                                },
                                 'filter' => Html::activeDropDownList($clinicSearchModel, 'exp', Category::getWithType(Category::CATEGORY_TYPE_EXPERTISE), [
                                     'class' => 'form-control',
                                     'prompt' => Yii::t('words', 'All')
                                 ]),
                                 'options' => ['width' => '150px']
                             ],
-                            'name',
+                            [
+                                'attribute' => 'name',
+                                'value' => function ($model) {
+                                    return $model->person->getName();
+                                }
+                            ],
                             [
                                 'attribute' => 'date',
                                 'header' => Yii::t('words', 'Week Days'),
@@ -75,7 +83,7 @@ use app\models\Category;
                             [
                                 'attribute' => 'date',
                                 'value' => function ($model) {
-                                    return "<span dir='ltr'>" . jDateTime::date('y/m/d', $model->date) . "</span>";
+                                    return "<span dir='ltr'>" . jDateTime::date('Y/m/d', $model->date) . "</span>";
                                 },
                                 'format' => 'raw',
                             ],
@@ -92,7 +100,10 @@ use app\models\Category;
                                     ]),
                                 'format' => 'raw',
                             ],
-                            'description:ntext',
+                            [
+                                'attribute' => 'description',
+                                'options' => ['dir' => 'auto']
+                            ],
 //                            ['class' => 'app\components\customWidgets\CustomActionColumn',]
                         ],
                     ]); ?>

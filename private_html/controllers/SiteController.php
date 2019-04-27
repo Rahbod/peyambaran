@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
+use app\components\AuthController;
 use app\components\MainController;
 use app\models\Category;
 use app\models\Insurance;
+use app\models\Item;
 use app\models\Message;
 use app\models\OnlineService;
 use app\models\Person;
@@ -16,7 +18,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\ContactForm;
 
-class SiteController extends MainController
+class SiteController extends AuthController
 {
 
     public function getMenuActions()
@@ -269,4 +271,16 @@ class SiteController extends MainController
             @$model->save();
         }
     }*/
+
+    public function actionTest(){
+        $all = Slide::find()->all();
+        foreach ($all as $item){
+            if(!$item->en_status)
+            $item->en_status = 0;
+            if(!$item->ar_status)
+            $item->ar_status = 0;
+            $item->save();
+        }
+
+    }
 }

@@ -16,12 +16,12 @@
                                 <?php else: ?>
                                     <img class="panel-title__doctorAvatar-default"
                                          src="<?= $this->theme->baseUrl ?>/images/doctors/avatar-gray.png"
-                                         alt="<?= $model->name ?>">
+                                         alt="<?= $model->getName() ?>">
                                 <?php endif; ?>
                             </div>
-                            <h4 class="panel-title__doctorName"><?= $model->name ?></h4>
+                            <h4 class="panel-title__doctorName"><?= $model->getName() ?></h4>
                             <p class="panel-title__doctorExpertise">
-                                <?= $model->getExpertiseLabel() ? $model->getExpertiseLabel()->name : '-' ?>
+                                <?= $model->getExpertiseLabel() ? $model->getExpertiseLabel()->getName() : '-' ?>
                             </p>
                             <div class="panel-title__more">
                                 <img src="<?= $this->theme->baseUrl . '/images/doctors/more-info.png' ?>" alt="">

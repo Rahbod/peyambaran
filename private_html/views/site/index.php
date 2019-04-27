@@ -74,44 +74,66 @@ use yii\helpers\Html;
 <!--End  Online Services-->
 
 <!--Insurance-->
-<section class="texture-bg umbrella-texture insurance">
-    <div class="container">
-        <div class="row insurance-container">
-            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 text-right">
-                <div class="insurance--header--desktop">
-                    <div class="umbrella-icon"></div>
-                    <?= Yii::t('words', 'insurance_title') ?>
-                </div>
-                <div class="insurance--header--mobile">
-                    <div class="umbrella-icon"></div>
-                    <div class="flex-fill">
-                        <h3 class="section-title">بیمه های<span class="hidden">طرف قرارداد پیامبران</span></h3>
-                        <p class="title-description">طرف قرارداد پیامبران</p>
+<?php if ($inpatientInsurances || $outpatientInsurances): ?>
+    <section class="texture-bg umbrella-texture insurance">
+        <div class="container">
+            <div class="row insurance-container">
+                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 text-right">
+                    <div class="insurance--header--desktop">
+                        <div class="umbrella-icon"></div>
+                        <?= Yii::t('words', 'insurance_title') ?>
+                    </div>
+                    <div class="insurance--header--mobile">
+                        <div class="umbrella-icon"></div>
+                        <div class="flex-fill">
+                            <h3 class="section-title">بیمه های<span class="hidden">طرف قرارداد پیامبران</span></h3>
+                            <p class="title-description">طرف قرارداد پیامبران</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="insurance-btn-box">
+                            <ul>
+                                <li class="active"><a href="#" data-toggle="tab" data-target="#insurance-box-1">
+                                        <?= Yii::t('words', 'hospitalization insurances') ?>
+                                        <i class="icon icon-chevron-left"></i>
+                                    </a></li>
+                                <li><a href="#" data-toggle="tab" data-target="#insurance-box-2">
+                                        <?= Yii::t('words', 'Outpatient insurances') ?>
+                                        <i class="icon icon-chevron-left"></i>
+                                    </a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="insurance-btn-box">
-                        <ul>
-                            <li class="active"><a href="#" data-toggle="tab" data-target="#insurance-box-1">
-                                    <?= Yii::t('words', 'hospitalization insurances') ?>
-                                    <i class="icon icon-chevron-left"></i>
-                                </a></li>
-                            <li><a href="#" data-toggle="tab" data-target="#insurance-box-2">
-                                    <?= Yii::t('words', 'Outpatient insurances') ?>
-                                    <i class="icon icon-chevron-left"></i>
-                                </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12 text-right">
-                <div class="tab-content insurance-box">
-                    <div class="tab-pane fade active in" id="insurance-box-1">
-                        <div class="">
-                            <?php foreach ($inpatientInsurances as $item): ?>
+                <div class="col-lg-10 col-md-8 col-sm-8 col-xs-12 text-right">
+                    <div class="tab-content insurance-box">
+                        <div class="tab-pane fade active in" id="insurance-box-1">
+                            <div class="">
+                                <?php foreach ($inpatientInsurances as $item): ?>
+                                    <div class="insurance-item">
+                                        <div class="insurance-item-inner">
+                                            <a>
+                                                <?php if ($item->image && is_file(Yii::getAlias('@webroot/uploads/insurance/') . $item->image)): ?>
+                                                    <div class="item-image">
+                                                        <img class="grayscale"
+                                                             src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
+                                                    </div>
+                                                    <h5 class="with-image"
+                                                        title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
+                                                <?php else: ?>
+                                                    <h5 title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
+                                                <?php endif; ?>
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="insurance-box-2">
+                            <?php foreach ($outpatientInsurances as $item): ?>
                                 <div class="insurance-item">
                                     <div class="insurance-item-inner">
-                                        <a>
+                                        <a href="#">
                                             <?php if ($item->image && is_file(Yii::getAlias('@webroot/uploads/insurance/') . $item->image)): ?>
                                                 <div class="item-image">
                                                     <img class="grayscale"
@@ -127,88 +149,70 @@ use yii\helpers\Html;
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="insurance-box-2">
-                        <?php foreach ($outpatientInsurances as $item): ?>
-                            <div class="insurance-item">
-                                <div class="insurance-item-inner">
-                                    <a href="#">
-                                        <?php if ($item->image && is_file(Yii::getAlias('@webroot/uploads/insurance/') . $item->image)): ?>
-                                            <div class="item-image">
-                                                <img class="grayscale"
-                                                     src="<?= Yii::getAlias('@web/uploads/insurance/') . $item->image ?>">
-                                            </div>
-                                            <h5 class="with-image"
-                                                title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
-                                        <?php else: ?>
-                                            <h5 title="<?= Html::encode($item->name) ?>"><?= $item->name ?></h5>
-                                        <?php endif; ?>
-                                    </a>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+<?php endif; ?>
 <!--End Insurance-->
 
 <!--News and Articles-->
-<section class="texture-bg health-texture new-articles">
-    <div class="container">
-        <div class="row insurance-container">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
-                <div class="news-icon"></div>
-                <div class="inline-title">
-                    <h3 class="section-title"><?= Yii::t('words', 'News & Articles') ?></h3>
-                    <p class="title-description"><?= Yii::t('words', 'Payambaran hospital') ?></p>
-                </div>
-            </div>
-        </div>
-        <div class="news-carousel owl-carousel owl-theme"
-             data-stagePadding="50"
-             data-rtl="true"
-             data-autoWidth="true"
-             data-nav="true"
-             data-items="1"
-             data-margin="15"
-             data-autoplayspeed="9000"
-             data-autoHeight="true"
-             data-responsive='{"786" :{ "items": 2 }, "992" :{ "items": 3 }}'>
-            <?php foreach ($posts as $item): ?>
-                <div class="news-item">
-                    <div class="news-item-inner">
-                        <a href="<?= $item->url ?>">
-                            <div class="statics-row">
-                                <span class="comments-count text-right"><?= number_format($item->comments_count) ?><i
-                                            class="comment-icon"></i></span>
-                                <span class="view-count text-center"><?= number_format($item->seen) ?><i
-                                            class="eye-icon"></i></span>
-                                <span class="news-date text-left"><?= jDateTime::date('Y/m/d', strtotime($item->publish_date)) ?>
-                                    <i class="calendar-icon"></i></span>
-                            </div>
-                            <div class="news-image">
-                                <div class="news-image-inner">
-                                    <img src="<?= Yii::getAlias('@web/uploads/post/') . $item->image ?>">
-                                </div>
-                            </div>
-                            <div class="news-details">
-                                <h3><?= $item->name ?></h3>
-                                <div class="news-description"><?= !empty($item->summary) ? $item->summary : mb_substr(strip_tags(nl2br($item->body)), 0, 200) ?>
-                                    <div class="overlay"></div>
-                                </div>
-                            </div>
-                        </a>
+<?php if ($posts): ?>
+    <section class="texture-bg health-texture new-articles">
+        <div class="container">
+            <div class="row insurance-container">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+                    <div class="news-icon"></div>
+                    <div class="inline-title">
+                        <h3 class="section-title"><?= Yii::t('words', 'News & Articles') ?></h3>
+                        <p class="title-description"><?= Yii::t('words', 'Payambaran hospital') ?></p>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            </div>
+            <div class="news-carousel owl-carousel owl-theme"
+                 data-stagePadding="50"
+                 <?= Yii::$app->language == 'fa'?'data-rtl="true"':'data-rtl="false"'?>
+                 data-autoWidth="true"
+                 data-nav="true"
+                 data-items="1"
+                 data-margin="15"
+                 data-autoplayspeed="9000"
+                 data-autoHeight="true"
+                 data-responsive='{"786" :{ "items": 2 }, "992" :{ "items": 3 }}'>
+                <?php foreach ($posts as $item): ?>
+                    <div class="news-item">
+                        <div class="news-item-inner">
+                            <a href="<?= $item->url ?>">
+                                <div class="statics-row">
+                                <span class="comments-count text-right"><?= number_format($item->comments_count) ?><i
+                                            class="comment-icon"></i></span>
+                                    <span class="view-count text-center"><?= number_format($item->seen) ?><i
+                                                class="eye-icon"></i></span>
+                                    <span class="news-date text-left"><?= jDateTime::date('Y/m/d', strtotime($item->publish_date)) ?>
+                                        <i class="calendar-icon"></i></span>
+                                </div>
+                                <div class="news-image">
+                                    <div class="news-image-inner">
+                                        <img src="<?= Yii::getAlias('@web/uploads/post/') . $item->image ?>">
+                                    </div>
+                                </div>
+                                <div class="news-details">
+                                    <h3><?= $item->name ?></h3>
+                                    <div class="news-description"><?= !empty($item->summary) ? $item->summary : mb_substr(strip_tags(nl2br($item->body)), 0, 200) ?>
+                                        <div class="overlay"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
-    </div>
-</section>
-
+    </section>
+<?php endif; ?>
 <!--End News and Articles-->
 
 <!--Gallery-->

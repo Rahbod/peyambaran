@@ -12,7 +12,6 @@ $expertiseMenu = \app\models\Category::find()
     ])
     ->valid()
     ->all();
-
 $expertiseID = Yii::$app->request->getQueryParam('expertise') ?: 0;
 ?>
 

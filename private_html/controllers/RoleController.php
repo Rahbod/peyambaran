@@ -114,7 +114,7 @@ class RoleController extends AuthController
         $roles = $auth->getRoles();
         unset($roles['superAdmin']);
         $roles = ArrayHelper::map($roles, 'name', function ($model) {
-            return ($model->description == 'Guest Role' ? Yii::t('words', 'base.guestRole') : $model->description);
+            return ($model->description == 'Guest Role' ? Yii::t('words', 'Guest Role') : $model->description);
         });
 
         return $this->render('create', [

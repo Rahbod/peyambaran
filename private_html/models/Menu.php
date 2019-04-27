@@ -23,6 +23,8 @@ use yii\widgets\ActiveForm;
  */
 class Menu extends Category
 {
+    public static $multiLanguage = true;
+
     const MENU_TYPE_PAGE_LINK = 1;
     const MENU_TYPE_ACTION = 2;
     const MENU_TYPE_EXTERNAL_LINK = 3;
@@ -93,7 +95,7 @@ class Menu extends Category
      */
     public static function find()
     {
-        return new CategoryQuery(get_called_class());
+        return new MenuQuery(get_called_class());
     }
 
     public static function parentsList()

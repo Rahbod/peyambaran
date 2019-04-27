@@ -59,7 +59,7 @@ $this->registerJs('
                 <h3 class="m-form__heading-title"><?= Yii::t('words', 'General') ?></h3>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(Yii::t('words', 'setting.timeZone'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(Yii::t('words', 'Time Zone'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::dropDownList('Setting[timeZone]', $settings['timeZone'], Setting::$_timeZones, [
                         'class' => 'form-control m-input m-input__solid'
@@ -112,6 +112,28 @@ $this->registerJs('
                     ]); ?>
                 </div>
             </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'En Address') ?></label>
+
+                <div class="col-lg-6">
+                    <?php echo Html::textarea('Setting[en_address]', $settings['en_address'], [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'ltr',
+                        'rows' => 3
+                    ]); ?>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Ar Address') ?></label>
+
+                <div class="col-lg-6">
+                    <?php echo Html::textarea('Setting[ar_address]', $settings['ar_address'], [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'ltr',
+                        'rows' => 3
+                    ]); ?>
+                </div>
+            </div>
 
         </div>
 
@@ -120,7 +142,7 @@ $this->registerJs('
                 <h3 class="m-form__heading-title"><?= Yii::t('words', 'Map') ?></h3>
             </div>
             <div class="form-group m-form__group row">
-                    <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Status') ?></label>
+                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Status') ?></label>
 
                 <div class="col-lg-6">
                     <label class="switch">
@@ -155,7 +177,7 @@ $this->registerJs('
                 </div>
             </div>
         </div>
-            <div class="m-form__section m-form__section--last">
+        <div class="m-form__section m-form__section--last">
             <div class="m-form__heading">
                 <h3 class="m-form__heading-title"><?= Yii::t('words', 'Social Networks') ?></h3>
             </div>

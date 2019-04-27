@@ -19,7 +19,7 @@ class PersonSearch extends Person
         return [
             [['id', 'userID', 'modelID', 'status'], 'integer'],
             [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created', 'medical_number', 'expertise'], 'safe'],
+            [['name', 'dyna', 'extra', 'created', 'medical_number', 'expertise','en_status','ar_status'], 'safe'],
         ];
     }
 
@@ -38,11 +38,14 @@ class PersonSearch extends Person
      * @param array $params
      *
      * @param $ids
+     * @param bool $valid
      * @return ActiveDataProvider
      */
-    public function search($params, $ids = null)
+    public function search($params, $ids = null,$valid = false)
     {
         $query = Person::find();
+        if($valid)
+            $query->valid();
 
         // add conditions that should always apply here
 
@@ -69,6 +72,8 @@ class PersonSearch extends Person
             'modelID' => $this->modelID,
             'type' => $this->type,
             'status' => $this->status,
+            self::columnGetString('en_status', 'item', 'INTEGER') => $this->en_status,
+            self::columnGetString('ar_status', 'item', 'INTEGER') => $this->ar_status,
             self::columnGetString('expertise') => $this->expertise,
         ]);
 

@@ -73,12 +73,32 @@ $this->params['breadcrumbs'][] = $this->title;
                             'filter' => \app\models\Category::parentsList(),
                             'format' => 'raw'
                         ],
+
                         [
                             'attribute' => 'status',
-                            'value' => function($model){
-                                return $model->getStatusLabel();
+                            'value' => function ($model) {
+                                return \app\models\Page::getStatusLabels($model->status,true);
                             },
-                            'filter' => \app\models\Category::getStatusFilter()
+                            'format' => 'raw',
+                            'filter' => \app\models\Page::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'en_status',
+                            'value' => function ($model) {
+                                $model->en_status = $model->en_status ?: 0;
+                                return \app\models\Page::getStatusLabels($model->en_status,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Page::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'ar_status',
+                            'value' => function ($model) {
+                                $model->ar_status = $model->ar_status ?: 0;
+                                return \app\models\Page::getStatusLabels($model->ar_status,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Page::getStatusFilter()
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],

@@ -22,7 +22,6 @@ AppAsset::register($this);
     <?php if (Yii::$app->language != 'en')
         $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-rtl.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-rtl'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-4-classes.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-4-classes'); ?>
-    <?php $this->registerCssFile($this->theme->baseUrl . '/css/fontiran-fa-num.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'fontiran-fa-num'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/css/font-awesome.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'font-awesome'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/css/owl.carousel.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'owl-carousel'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/css/owl.theme.default.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'owl-theme'); ?>
@@ -31,10 +30,13 @@ AppAsset::register($this);
     $this->registerCssFile($this->theme->baseUrl . '/css/sidebar.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'sidebar');
     $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme');
     if (Yii::$app->language == 'en') {
-        $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme-ltr.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme-en');
+        $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme-ltr.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme-en');
         $this->registerCssFile($this->theme->baseUrl . '/css/responsive-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'responsive-theme');
-    }else
+        $this->registerCssFile($this->theme->baseUrl . '/css/fontiran.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'fontiran-fa-num');
+    }else {
+        $this->registerCssFile($this->theme->baseUrl . '/css/fontiran-fa-num.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'fontiran-fa-num');
         $this->registerCssFile($this->theme->baseUrl . '/css/responsive-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'responsive-theme');
+    }
     ?>
 
     <?php $this->registerJsFile($this->theme->baseUrl . '/js/bootstrap.min.js', ['depends' => [JqueryAsset::className()]], 'bootstrap'); ?>

@@ -118,7 +118,6 @@ var headerTag = $('header');
 
 $(window).on("load resize scroll", function () {
     var width = $(this).width();
-    console.log(width);
     if (width > 992) {
         var scroll = $(window).scrollTop();
         if (scroll > header_height) {

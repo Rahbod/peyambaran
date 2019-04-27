@@ -12,7 +12,7 @@ use yii\helpers\Url;
     <div class="container">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
-                <div class="dropdown language-select" style="display:none;">
+                <div class="dropdown language-select">
                     <label>Language</label>
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="icon icon-chevron-down"></span>
@@ -20,9 +20,11 @@ use yii\helpers\Url;
                         <span class="language-icon"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <?php foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
-                            <li><a href="<?= Url::to(["/{$key}"]) ?>"><?= Yii::t('words', $key) ?></a></li>
-                        <?php endforeach; ?>
+                        <li><a href="<?= Url::to(["/fa"]) ?>"><?= Yii::t('words', 'fa') ?></a></li>
+                        <li><a href="<?= Url::to(["/en"]) ?>"><?= Yii::t('words', 'en') ?></a></li>
+<!--                        --><?php //foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
+<!--                            <li><a href="--><?//= Url::to(["/{$key}"]) ?><!--">--><?//= Yii::t('words', $key) ?><!--</a></li>-->
+<!--                        --><?php //endforeach; ?>
                     </ul>
                 </div>
 
@@ -98,13 +100,13 @@ use yii\helpers\Url;
                                 <div class="<?= ($sic - $ic) !== 0 ? 'container' : 'container-fluid'; ?>">
                                     <?php if (($sic - $ic) === 0): // one level ?>
                                         <ul class="menu-part d-inline-block">
-                                            <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                            <?php foreach ($item->children(1)->valid()->orderBySort()->all() as $sub_item): ?>
                                                 <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
                                                     <a href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
                                             <?php endforeach; ?>
                                         </ul>
                                     <?php else: // two level ?>
-                                        <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                        <?php foreach ($item->children(1)->valid()->orderBySort()->all() as $sub_item): ?>
                                             <ul class="menu-part d-inline-block">
                                                 <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
                                                     <a

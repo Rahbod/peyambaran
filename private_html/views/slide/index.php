@@ -62,16 +62,35 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'status',
                             'value' => function($model){
-                                return \app\models\Page::getStatusLabels($model->status);
+                                return \app\models\Slide::getStatusLabels($model->status);
                             },
-                            'filter'=>\app\models\Page::getStatusFilter()
+                            'filter'=>\app\models\Slide::getStatusFilter()
                         ],
                         [
-                            'attribute' => 'lang',
-                            'value' => function($model){
-                                return \app\models\Page::$langArray[$model->lang];
+                            'attribute' => 'status',
+                            'value' => function ($model) {
+                                return \app\models\Slide::getStatusLabels($model->status,true);
                             },
-                            'filter'=>\app\models\Page::$langArray
+                            'format' => 'raw',
+                            'filter' => \app\models\Slide::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'en_status',
+                            'value' => function ($model) {
+                                $model->en_status = $model->en_status ?: 0;
+                                return \app\models\Slide::getStatusLabels($model->en_status,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Slide::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'ar_status',
+                            'value' => function ($model) {
+                                $model->ar_status = $model->ar_status ?: 0;
+                                return \app\models\Slide::getStatusLabels($model->ar_status,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Slide::getStatusFilter()
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],

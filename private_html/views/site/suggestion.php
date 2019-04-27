@@ -6,10 +6,8 @@
 /* @var $model app\models\ContactForm */
 
 use app\components\Setting;
-use app\models\Department;
 use app\models\Message;
 use yii\bootstrap\ActiveForm;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 $this->title = Yii::t('words', 'Criticism and Suggestion');

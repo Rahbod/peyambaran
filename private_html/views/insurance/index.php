@@ -60,17 +60,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         [
                             'attribute' => 'status',
-                            'value' => function($model){
-                                return \app\models\Page::getStatusLabels($model->status);
+                            'value' => function ($model) {
+                                return \app\models\Insurance::getStatusLabels($model->status,true);
                             },
-                            'filter'=>\app\models\Page::getStatusFilter()
+                            'format' => 'raw',
+                            'filter' => \app\models\Insurance::getStatusFilter()
                         ],
                         [
                             'attribute' => 'lang',
                             'value' => function($model){
-                                return \app\models\Page::$langArray[$model->lang];
+                                return \app\models\Insurance::$langArray[$model->lang];
                             },
-                            'filter'=>\app\models\Page::$langArray
+                            'filter'=>\app\models\Insurance::$langArray
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],

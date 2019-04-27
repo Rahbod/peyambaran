@@ -448,7 +448,7 @@ header .search-form {
     font-size: 11px;
     background-color: #e7e7e7;
     box-shadow: none;
-    border-radius: 0 7px 7px 0;
+    border-radius: 0 7px 7px 0 !important;
 }
 
 .navbar > li:not(.relative) {
@@ -2117,6 +2117,9 @@ section .title-description {
     flex-direction: column;
     justify-content: right;
     margin-right: 1rem;
+    position: relative;
+    max-width: 60%;
+    z-index: 1;
 }
 
 .content-header__subTitle, .content-header__title {
@@ -3434,6 +3437,10 @@ section .title-description {
     padding: 0 0 45px;
     background-color: #3f8dfa;
     color: #fff;
+}
+
+.smallHeader .top {
+    display:none
 }
 
 .text-white {

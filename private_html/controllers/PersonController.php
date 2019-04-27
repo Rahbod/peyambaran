@@ -109,7 +109,7 @@ class PersonController extends AuthController
 
         $searchModel = new PersonSearch();
         $searchModel->type = Person::TYPE_DOCTOR;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, null, true);
 
         return $this->render('list', [
             'searchModel' => $searchModel,

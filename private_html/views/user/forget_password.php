@@ -41,7 +41,7 @@ use yii\helpers\Html;
                                                 'class' => 'form-control',
                                                 'spellcheck' => false,
                                                 'tabindex' => 1,
-                                                'placeholder' => Yii::t('words', 'user.phone')
+                                                'placeholder' => Yii::t('words', 'Phone')
                                             ]) ?>
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-6 col-md-12 px-0">
@@ -57,19 +57,19 @@ use yii\helpers\Html;
                                 <div class="social-accounts-container">
                                     <div class="social-accounts login-with-google">
                                         <a href="void:;">
-                                            ورود با حساب گوگل
+                                            <?= Yii::t('words', 'Login with google') ?>
                                             <img src="<?= $this->theme->baseUrl ?>/images/register/google.png" alt="">
                                         </a>
                                     </div>
                                     <div class="social-accounts login-with-facebook">
                                         <a href="void:;">
-                                            ورود با حساب فیسبوک
+                                            <?= Yii::t('words', 'Login with facebook') ?>
                                             <img src="<?= $this->theme->baseUrl ?>/images/register/facebook.png" alt="">
                                         </a>
                                     </div>
                                     <div class="social-accounts login-with-twitter">
                                         <a href="void:;">
-                                            ورود با حساب تویتتر
+                                            <?= Yii::t('words', 'Login with twitter') ?>
                                             <img src="<?= $this->theme->baseUrl ?>/images/register/twitter.png" alt="">
                                         </a>
                                     </div>

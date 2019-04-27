@@ -57,11 +57,18 @@ use app\models\Category;
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-sm-4">
+            <?= $form->field($model, 'en_name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'ar_name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-4">
             <?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-sm-4">
             <?= $form->field($model, 'surename')->textInput(['maxlength' => true]) ?>
         </div>
+
         <div class="col-sm-4">
             <?= $form->field($model, 'type')->dropDownList(\app\models\Person::getTypeLabels(), ['prompt' => Yii::t('words', 'Select Type')]) ?>
         </div>
@@ -75,7 +82,17 @@ use app\models\Category;
 
     <?= $form->field($model, 'resume')->textarea(['rows' => 6]); ?>
 
-    <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+    <div class="row">
+        <div class="col-sm-4">
+            <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+        </div>
+        <div class="col-sm-4">
+            <?php echo $form->field($model, 'en_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+        </div>
+        <div class="col-sm-4">
+            <?php echo $form->field($model, 'ar_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+        </div>
+    </div>
 
 </div>
 <div class="m-portlet__foot m-portlet__foot--fit">
