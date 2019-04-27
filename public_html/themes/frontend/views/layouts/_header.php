@@ -75,7 +75,7 @@ use yii\helpers\Url;
                 <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?>">
                 <div class="logo-right">
                     <a href="<?= Url::to(['/']) ?>">
-                        <h1>بیمارســتان پیامبران</h1>
+                        <h1><?= Yii::t('words','logo_title')?></h1>
                         <h2>Payambaran</h2>
                         <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
                     </a>
