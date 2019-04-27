@@ -331,15 +331,13 @@ body {
 }
 
 .user-side-details {
-
-    padding-left: 125px;
+    padding-left: 85px;
     padding-right: 0;
 }
 
 .user-side-setting {
-
+    left: auto;
     right: 0;
-
 }
 
 .sidebar-user-menu .content-section > ul > li {

@@ -1916,7 +1916,7 @@ section .title-description {
 .user-side-details {
     display: block;
     overflow: hidden;
-    padding-right: 125px;
+    padding-right: 85px;
 }
 
 .user-side-details h3 {

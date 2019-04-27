@@ -1,203 +1,6 @@
-@media screen and (max-width: 400px) {
-    .new-articles .statics-row > span {
-        width: 30.33333%;
-    }
+@media screen and (max-width: 1199.98px) {
 
-    /*#region footer*/
-    .addressContainer i {
-        width: 64px !important;
-    }
-
-    /*#endregion*/
 }
-
-@media screen and (max-width: 575.98px) {
-
-    section .section-title {
-        font-size: 21px;
-    }
-
-    section .title-description {
-        margin: 0;
-        margin-left: 5px;
-        font-size: 17px;
-    }
-
-    /*#region insurance*/
-    .insurance-btn-box ul > li a span {
-        font-size: 17px;
-    }
-
-    /*#endregion*/
-    /*#region footer*/
-    /*#endregion*/
-    /*#region contact us*/
-    .contactUsPage .submitBtn {
-        width: 100%;
-        float: none;
-        margin-top: 10px;
-    }
-
-    /*#endregion*/
-    /*#region register-login-forgot password*/
-    .submitBtn {
-        float: none !important;
-        display: block !important;
-        width: 100% !important;
-        margin-top: 15px;
-
-    }
-
-    .securityCode__input {
-        float: right;
-        margin-right: 0;
-        width: 100px;
-    }
-
-    /*#endregion*/
-    /*#region news and articles*/
-    /*.statics-row > span {*/
-    /*width: 30.33333%;*/
-    /*}*/
-    .bottom-section .form-container .captcha input {
-        margin-left: 0 !important;
-        float: right;
-        width: 100px !important;
-    }
-
-    /*#endregion*/
-}
-
-@media screen and (max-width: 767.98px) {
-    /*#region insurance*/
-    .insurance .insurance--header--desktop {
-        display: none;
-    }
-
-    .insurance .umbrella-icon {
-        width: 50px;
-        height: 50px;
-        margin-right: 10px;
-    }
-
-    .insurance .insurance-btn-box {
-        margin-top: 13px;
-        margin-bottom: 13px;
-        margin-right: 18px;
-        margin-left: 18px;
-        position: relative;
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .insurance .insurance-box {
-        padding: 0;
-    }
-
-    .insurance .insurance-box .insurance-item {
-        width: 100%;
-        height: auto;
-    }
-
-    .insurance .insurance-box .insurance-item:last-child .insurance-item-inner {
-        margin-bottom: 40px;
-    }
-
-    .insurance .insurance-box .insurance-item-inner {
-        padding: 0px 15px;
-    }
-
-    .insurance .tab-pane {
-        height: 85vh;
-        overflow-y: scroll;
-        padding: 0;
-    }
-
-    .insurance .tab-pane::after, .tab-pane::before {
-        clear: both;
-        display: table;
-        content: '';
-    }
-
-    /*.insurance .tab-content.insurance-box {*/
-    /*position: relative;*/
-    /*width: 85%;*/
-    /*margin-right: auto;*/
-    /*margin-left: auto;*/
-    /*padding-right: 0;*/
-    /*padding-left: 1rem;*/
-    /*}*/
-    .insurance .insurance-box .scrollButton {
-        position: absolute;
-        bottom: 0;
-        left: 5px;
-        right: 5px;
-        display: block;
-        background: linear-gradient(transparent, #c9c7c2);
-        color: #1d2124;
-    }
-
-    .insurance .insurance-box .scrollButton a {
-        display: block;
-        padding: 10px 0;
-
-    }
-
-    .insurance .insurance-box .scrollButton a i {
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-        animation-fill-mode: both;
-        animation-direction: alternate;
-
-        -webkit-animation-name: vertical-move;
-        -moz-animation-name: vertical-move;
-        -o-animation-name: vertical-move;
-        animation-name: vertical-move;
-        animation-duration: 1s;
-    }
-
-    @keyframes vertical-move {
-        0% {
-            -webkit-transform: translateY(0);
-            -moz-transform: translateY(0);
-            -ms-transform: translateY(0);
-            -o-transform: translateY(0);
-            transform: translateY(0);
-        }
-
-        100% {
-            -webkit-transform: translateY(10px);
-            -moz-transform: translateY(10px);
-            -ms-transform: translateY(10px);
-            -o-transform: translateY(10px);
-            transform: translateY(10px);
-        }
-    }
-    /*#endregion*/
-    /*#region footer*/
-    .footer-block:first-of-type .footer-sub-block .menu-part {
-        width: 100% !important;
-    }
-
-    .copyright .pull-right {
-        float: right !important;
-    }
-
-    /*#endregion*/
-    .insurance-btn-box ul > li {
-        width: 45%;
-        float: left;
-    }
-
-    .insurance-btn-box ul > li.active {
-        margin-right: 9.99%;
-    }
-
-    .new-articles .statics-row > span {
-        width: 33.33333%;
-    }
-}
-
 @media screen and (max-width: 991.98px) {
     /*#region insurance*/
     .insurance--header--mobile {
@@ -490,78 +293,233 @@
     .navbar-default > .container, .navbar-default > .navbar-container {
         display: none;
     }
+
+    /*#region dashboard*/
+    .sidebar-user-menu .top-section {
+        height: 107px;
+    }
+
+    .sidebar-user-menu .user-side-pic {
+        width: 75px;
+        height: 75px;
+    }
+
+    .sidebar-user-menu .content-section > ul > li {
+        padding: 5px 15px 5px 15px;
+    }
+    /*#endregion*/
 }
+@media screen and (max-width: 767.98px) {
+    /*#region insurance*/
+    .insurance .insurance--header--desktop {
+        display: none;
+    }
 
-@media screen and (max-width: 1199.98px) {
+    .insurance .umbrella-icon {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
 
-}
+    .insurance .insurance-btn-box {
+        margin-top: 13px;
+        margin-bottom: 13px;
+        margin-right: 18px;
+        margin-left: 18px;
+        position: relative;
+        padding-left: 0;
+        padding-right: 0;
+    }
 
-@media screen and (min-width: 576px) {
-    /*#region captcha*/
-    .field-user-verifycode, .field-loginform-verifycode {
-        display: inline-block !important;
+    .insurance .insurance-box {
+        padding: 0;
+    }
+
+    .insurance .insurance-box .insurance-item {
+        width: 100%;
+        height: auto;
+    }
+
+    .insurance .insurance-box .insurance-item:last-child .insurance-item-inner {
+        margin-bottom: 40px;
+    }
+
+    .insurance .insurance-box .insurance-item-inner {
+        padding: 0px 15px;
+    }
+
+    .insurance .tab-pane {
+        height: 85vh;
+        overflow-y: scroll;
+        padding: 0;
+    }
+
+    .insurance .tab-pane::after, .tab-pane::before {
+        clear: both;
+        display: table;
+        content: '';
+    }
+
+    /*.insurance .tab-content.insurance-box {*/
+    /*position: relative;*/
+    /*width: 85%;*/
+    /*margin-right: auto;*/
+    /*margin-left: auto;*/
+    /*padding-right: 0;*/
+    /*padding-left: 1rem;*/
+    /*}*/
+    .insurance .insurance-box .scrollButton {
+        position: absolute;
+        bottom: 0;
+        left: 5px;
+        right: 5px;
+        display: block;
+        background: linear-gradient(transparent, #c9c7c2);
+        color: #1d2124;
+    }
+
+    .insurance .insurance-box .scrollButton a {
+        display: block;
+        padding: 10px 0;
+
+    }
+
+    .insurance .insurance-box .scrollButton a i {
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-direction: alternate;
+
+        -webkit-animation-name: vertical-move;
+        -moz-animation-name: vertical-move;
+        -o-animation-name: vertical-move;
+        animation-name: vertical-move;
+        animation-duration: 1s;
+    }
+
+    @keyframes vertical-move {
+        0% {
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -o-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        100% {
+            -webkit-transform: translateY(10px);
+            -moz-transform: translateY(10px);
+            -ms-transform: translateY(10px);
+            -o-transform: translateY(10px);
+            transform: translateY(10px);
+        }
+    }
+    /*#endregion*/
+    /*#region footer*/
+    .footer-block:first-of-type .footer-sub-block .menu-part {
+        width: 100% !important;
+    }
+
+    .copyright .pull-right {
+        float: right !important;
     }
 
     /*#endregion*/
-}
-
-@media screen and (min-width: 768px) {
-    /*#region insurance*/
-    .scrollButton {
-        display: none;
+    .insurance-btn-box ul > li {
+        width: 45%;
+        float: left;
     }
 
-    .insurance--header--mobile {
-        display: none;
+    .insurance-btn-box ul > li.active {
+        margin-right: 9.99%;
+    }
+
+    .new-articles .statics-row > span {
+        width: 33.33333%;
+    }
+}
+@media screen and (max-width: 575.98px) {
+
+    section .section-title {
+        font-size: 21px;
+    }
+
+    section .title-description {
+        margin: 0;
+        margin-left: 5px;
+        font-size: 17px;
+    }
+
+    /*#region insurance*/
+    .insurance-btn-box ul > li a span {
+        font-size: 17px;
     }
 
     /*#endregion*/
     /*#region footer*/
-    .footer-section .footer-block:nth-child(3) {
-        min-height: 283px;
-    }
-
-    /*.bottom-section .info-container {*/
-        /*padding-top: 39px;*/
-    /*}*/
-
-    .certificate-block h3 {
+    /*#endregion*/
+    /*#region contact us*/
+    .contactUsPage .submitBtn {
         width: 100%;
+        float: none;
+        margin-top: 10px;
     }
 
     /*#endregion*/
-    .d-md-block {
-        display: block;
+    /*#region register-login-forgot password*/
+    .submitBtn {
+        float: none !important;
+        display: block !important;
+        width: 100% !important;
+        margin-top: 15px;
+
     }
 
-    .d-md-none {
-        display: none;
+    .securityCode__input {
+        float: right;
+        margin-right: 0;
+        width: 100px;
     }
 
-    .bg-md-white {
-        background: #fff;
-    }
-
-    .bg-md-transparent {
-        background: transparent;
-    }
-
+    /*#endregion*/
     /*#region news and articles*/
-    .statics-row > span {
-        width: 33.33333%;
+    /*.statics-row > span {*/
+    /*width: 30.33333%;*/
+    /*}*/
+    .bottom-section .form-container .captcha input {
+        margin-left: 0 !important;
+        float: right;
+        width: 100px !important;
     }
 
     /*#endregion*/
-    /*#region doctors*/
-    .doctors .panel-heading .row {
-        display: flex;
-        align-items: center;
+}
+@media screen and (max-width: 400px) {
+    .new-articles .statics-row > span {
+        width: 30.33333%;
+    }
+
+    /*#region footer*/
+    .addressContainer i {
+        width: 64px !important;
     }
 
     /*#endregion*/
-
 }
 
+
+@media screen and (min-width: 1200px) {
+    .navbar > li > a {
+        padding: 11px 15px;
+    }
+
+    /*#region register/login/forgot password*/
+    .register-form-container {
+        padding: 0px 23px 0 52px;
+    }
+
+    /*#endregion*/
+}
 @media screen and (min-width: 992px) {
     /*#region insurance*/
     .insurance--header--mobile {
@@ -670,23 +628,71 @@
     /*display: none;*/
     /*}*/
 }
-
-@media screen and (min-width: 1200px) {
-    .navbar > li > a {
-        padding: 11px 15px;
+@media screen and (min-width: 768px) {
+    /*#region insurance*/
+    .scrollButton {
+        display: none;
     }
 
-    /*#region register/login/forgot password*/
-    .register-form-container {
-        padding: 0px 23px 0 52px;
+    .insurance--header--mobile {
+        display: none;
+    }
+
+    /*#endregion*/
+    /*#region footer*/
+    .footer-section .footer-block:nth-child(3) {
+        min-height: 283px;
+    }
+
+    /*.bottom-section .info-container {*/
+    /*padding-top: 39px;*/
+    /*}*/
+
+    .certificate-block h3 {
+        width: 100%;
+    }
+
+    /*#endregion*/
+    .d-md-block {
+        display: block;
+    }
+
+    .d-md-none {
+        display: none;
+    }
+
+    .bg-md-white {
+        background: #fff;
+    }
+
+    .bg-md-transparent {
+        background: transparent;
+    }
+
+    /*#region news and articles*/
+    .statics-row > span {
+        width: 33.33333%;
+    }
+
+    /*#endregion*/
+    /*#region doctors*/
+    .doctors .panel-heading .row {
+        display: flex;
+        align-items: center;
+    }
+
+    /*#endregion*/
+
+}
+@media screen and (min-width: 576px) {
+    /*#region captcha*/
+    .field-user-verifycode, .field-loginform-verifycode {
+        display: inline-block !important;
     }
 
     /*#endregion*/
 }
 
-@media screen and (min-width: 768px) and (max-width: 991.98px) {
-
-}
 
 @media screen and (min-width: 992px) and (max-width: 1199.98px) {
     /*#region register/login/forgot password*/
@@ -715,6 +721,10 @@
 
     /*#endregion*/
 }
+@media screen and (min-width: 768px) and (max-width: 991.98px) {
+
+}
+
 
 /*#region navbar*/
 .smallHeader .nav .open > a,
