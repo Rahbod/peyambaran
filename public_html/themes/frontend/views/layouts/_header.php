@@ -9,7 +9,7 @@ use yii\helpers\Url;
 // echo Yii::getAlias('@web/themes/frontend/images/menu-logo.png')
 ?>
 <header class="navbar-default <?= Yii::$app->controller->headerClass ?: '' ?>">
-    <div class="container d-none d-sm-block">
+    <div class="container">
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
                 <div class="dropdown language-select">
@@ -83,7 +83,7 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
-    <div class="navbar-container d-none d-sm-block">
+    <div class="navbar-container">
         <div class="container">
             <ul class="nav navbar nav-pills">
                 <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
@@ -129,7 +129,7 @@ use yii\helpers\Url;
             </ul>
         </div>
     </div>
-    <div class="container-fluid d-sm-none">
+    <div class="container-fluid">
         <nav class="navbar">
             <a class="navbar-brand" href="<?= Url::to(['/']) ?>">
                 <!--                <img  class="siteLogo__image img-fluid" src="-->
@@ -154,7 +154,7 @@ use yii\helpers\Url;
     </div>
     <div class="sidebar-header">
         <h4 class="">بیمارستان پیامبران</h4>
-<!--        <p>بیمارستان پیامبران</p>-->
+        <!--        <p>بیمارستان پیامبران</p>-->
     </div>
     <ul class="list-unstyled components">
         <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
@@ -163,19 +163,36 @@ use yii\helpers\Url;
             $sic = $item->children(2)->count();
             if ($ic > 0): ?>
                 <li>
-                    <div class="d-flex">
-                        <a href="void:;" class="flex-fill menu-item"><?= $item->name ?></a>
-                        <a class="submenu" href="#<?= $item->id ?>" data-toggle="collapse"
-                           aria-expanded="false"></a>
-                    </div>
+                    <a class="submenu menu-item" href="#<?= $item->id ?>" data-toggle="collapse"
+                       aria-expanded="false"><?= $item->name ?></a>
                     <ul class="collapse list-unstyled" id="<?= $item->id ?>">
                         <?php foreach ($item->children(1)->all() as $sub_item): ?>
-                            <li>
-                                <a class="menu-item" href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a>
-                            </li>
+                            <?php
+                            $sic = $sub_item->children(1)->count();
+                            $ssic = $sub_item->children(2)->count();
+                            if ($sic > 0): ?>
+                                <li>
+                                    <a class="submenu menu-item" href="#<?= $sub_item->id ?>" data-toggle="collapse"
+                                       aria-expanded="false"><?= $sub_item->name ?></a>
+                                    <ul class="collapse list-unstyled" id="<?= $sub_item->id ?>">
+                                        <?php foreach ($sub_item->children(1)->all() as $sub_sub_item): ?>
+                                            <li>
+                                                <a class="menu-item"
+                                                   href="<?= $sub_sub_item->url ?>"><?= $sub_sub_item->name ?></a>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </li>
+
+                            <?php else: ?>
+                                <li>
+                                    <a class="menu-item" href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a>
+                                </li>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </ul>
                 </li>
+
             <?php else: ?>
                 <li>
                     <a class="menu-item" href="<?= $item->url ?>"><?= $item->name ?></a>

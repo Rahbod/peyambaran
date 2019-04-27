@@ -127,6 +127,7 @@ $(window).on("load resize scroll", function () {
             // $('li.dropdown').removeClass("open");
         }
         else {
+
             $('header > .container').show();
             headerTag.removeClass('smallHeader');
             $('header .navbar > li > a').removeClass('text-white');

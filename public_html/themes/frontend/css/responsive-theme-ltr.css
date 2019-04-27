@@ -1,4 +1,8 @@
 @media screen and (max-width: 400px) {
+    .new-articles .statics-row > span {
+        width: 30.33333%;
+    }
+
     /*#region footer*/
     .addressContainer i {
         width: 64px !important;
@@ -15,7 +19,7 @@
 
     section .title-description {
         margin: 0;
-        margin-right: 5px;
+        margin-left: 5px;
         font-size: 17px;
     }
 
@@ -26,16 +30,6 @@
 
     /*#endregion*/
     /*#region footer*/
-    .bottom-section .form-container .captcha input {
-        margin-right: 0 !important;
-        float: left;
-        width: 100px !important;
-    }
-
-    .new-articles .statics-row > span {
-        width: 30.33333%;
-    }
-
     /*#endregion*/
     /*#region contact us*/
     .contactUsPage .submitBtn {
@@ -55,15 +49,20 @@
     }
 
     .securityCode__input {
-        float: left;
-        margin-left: 0;
+        float: right;
+        margin-right: 0;
         width: 100px;
     }
 
     /*#endregion*/
     /*#region news and articles*/
-    .statics-row > span {
-        width: 30.33333%;
+    /*.statics-row > span {*/
+    /*width: 30.33333%;*/
+    /*}*/
+    .bottom-section .form-container .captcha input {
+        margin-left: 0 !important;
+        float: right;
+        width: 100px !important;
     }
 
     /*#endregion*/
@@ -78,7 +77,7 @@
     .insurance .umbrella-icon {
         width: 50px;
         height: 50px;
-        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .insurance .insurance-btn-box {
@@ -181,17 +180,21 @@
     }
 
     .copyright .pull-right {
-        float: left !important;
+        float: right !important;
     }
 
     /*#endregion*/
     .insurance-btn-box ul > li {
         width: 45%;
-        float: right;
+        float: left;
     }
 
     .insurance-btn-box ul > li.active {
-        margin-left: 9.99%;
+        margin-right: 9.99%;
+    }
+
+    .new-articles .statics-row > span {
+        width: 33.33333%;
     }
 }
 
@@ -209,7 +212,7 @@
     /*#endregion*/
     /*#region news-slider*/
     .new-articles .news-carousel {
-        margin-top: 0;
+        margin-top: 15px;
         padding-top: 1rem;
     }
 
@@ -217,25 +220,28 @@
     /*region footer*/
     .bottom-section .form-container {
         width: 100%;
+        padding-right: 15px;
         padding-left: 15px;
-        padding-right:15px;
     }
 
     .bottom-section .form-container .captcha input {
-        margin-right: 85px;
-        float: left;
+        margin-left: 85px;
+        float: right;
         width: 150px;
     }
 
     .bottom-section .info-container {
-        border-right: none;
+        border-left: none;
         width: 100%;
-        padding-right: 0;
+        padding-left: 0;
+        padding-top: 15px;
+
     }
 
     .addressContainer {
         display: flex;
         align-items: center;
+        justify-content: space-between;
     }
 
     .footer-block:first-of-type .footer-sub-block .menu-part {
@@ -258,7 +264,7 @@
 
     .sideMenuIcon {
         z-index: 2;
-        float: left;
+        float: right;
         background: transparent;
     }
 
@@ -273,7 +279,7 @@
     }
 
     #myModal ul li ul {
-        padding-right: 10px;
+        padding-left: 10px;
     }
 
     #myModal ul li a {
@@ -299,7 +305,7 @@
     }
 
     #myModal .modal-header .close {
-        left: 15px;
+        right: 15px;
         position: absolute;
         top: 40%;
     }
@@ -327,7 +333,7 @@
     }
 
     .social-accounts img {
-        left: 0 !important;
+        right: 0 !important;
         top: 20px !important;
         transform: scale(0.6);
     }
@@ -411,7 +417,7 @@
         float: none;
         width: 76px;
         height: 76px;
-        margin-left: 0;
+        margin-right: 0;
     }
 
     .doctors .panel-title__doctorAvatar img.panel-title__doctorAvatar-default {
@@ -433,7 +439,7 @@
         color: #fff;
         border-color: transparent;
         padding: 0;
-        float: left;
+        float: right;
         background: transparent;
         margin: 0;
     }
@@ -469,6 +475,7 @@
     .navbar {
         margin: 0;
         padding: 5px 0;
+        float: none;
     }
 
     .navbar-default {
@@ -514,9 +521,9 @@
         min-height: 283px;
     }
 
-    .bottom-section .info-container {
-        padding-top: 39px;
-    }
+    /*.bottom-section .info-container {*/
+        /*padding-top: 39px;*/
+    /*}*/
 
     .certificate-block h3 {
         width: 100%;
@@ -563,7 +570,16 @@
 
     /*#endregion*/
     /*#region footer*/
+    .footer-block:first-of-type .footer-sub-block .menu-part {
+        width: 24.999%;
+    }
+
     /*#endregion*/
+    .content {
+        margin-top: 150px;
+        min-height: 700px;
+    }
+
     #sidebarCollapse {
         display: none;
     }
@@ -578,7 +594,7 @@
     }
 
     .gallery-sidebar-menu ul li ul {
-        padding-right: 10px;
+        padding-left: 10px;
     }
 
     .gallery-sidebar-menu ul li ul li {
@@ -596,7 +612,7 @@
 
     /*#region register/login/forgot password*/
     .vertical-separator-line {
-        border-left: 2px solid #85c296;
+        border-right: 2px solid #85c296;
         min-height: 320px;
     }
 
@@ -636,7 +652,7 @@
     }
 
     .navbar {
-        float: right;
+        float: left; !important;
         margin: 0;
         border: none;
         position: static !important;
@@ -698,9 +714,6 @@
     }
 
     /*#endregion*/
-    .footer-block:first-of-type .footer-sub-block .menu-part {
-        width: 24.999%;
-    }
 }
 
 /*#region navbar*/
@@ -737,7 +750,8 @@
 }
 
 .slider .owl-dots {
-    left: calc(50% - 40px);
+    left: auto;
+    right: calc(50% - 40px);
     bottom: 0;
 }
 
@@ -768,7 +782,8 @@
 /*#endregion*/
 
 .new-articles .news-icon {
-    margin-left: 5px;
+    margin-right: 5px;
+    margin-left: auto;
 }
 
 /*#region clinic program*/
@@ -779,11 +794,16 @@
 /*#endregion*/
 
 .pr-0 {
-    padding-right: 0 !important;
+    padding-right: auto !important;
+    padding-left: 0 !important;
 }
 
 .d-none {
     display: none;
+}
+
+.navbar {
+    float: none;
 }
 
 /*#region news and articles*/
@@ -801,6 +821,14 @@
 
 .news-image {
     width: 100%;
+}
+
+.comments-count.text-right {
+    text-align: left !important;
+}
+
+.news-date.text-left {
+    text-align: right !important;
 }
 
 /*#endregion*/
