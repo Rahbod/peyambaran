@@ -209,6 +209,7 @@
     /*#endregion*/
     /*#region news-slider*/
     .new-articles .news-carousel {
+        margin-top: 0;
         padding-top: 1rem;
     }
 
@@ -216,7 +217,8 @@
     /*region footer*/
     .bottom-section .form-container {
         width: 100%;
-        padding-left: 0;
+        padding-left: 15px;
+        padding-right:15px;
     }
 
     .bottom-section .form-container .captcha input {
@@ -561,11 +563,7 @@
 
     /*#endregion*/
     /*#region footer*/
-
-
     /*#endregion*/
-
-
     #sidebarCollapse {
         display: none;
     }

@@ -1,4 +1,8 @@
 @media screen and (max-width: 400px) {
+    .new-articles .statics-row > span {
+        width: 30.33333%;
+    }
+
     /*#region footer*/
     .addressContainer i {
         width: 64px !important;
@@ -26,16 +30,6 @@
 
     /*#endregion*/
     /*#region footer*/
-    .bottom-section .form-container .captcha input {
-        margin-left: 0 !important;
-        float: right;
-        width: 100px !important;
-    }
-
-    .new-articles .statics-row > span {
-        width: 30.33333%;
-    }
-
     /*#endregion*/
     /*#region contact us*/
     .contactUsPage .submitBtn {
@@ -62,8 +56,13 @@
 
     /*#endregion*/
     /*#region news and articles*/
-    .statics-row > span {
-        width: 30.33333%;
+    /*.statics-row > span {*/
+    /*width: 30.33333%;*/
+    /*}*/
+    .bottom-section .form-container .captcha input {
+        margin-left: 0 !important;
+        float: right;
+        width: 100px !important;
     }
 
     /*#endregion*/
@@ -193,6 +192,10 @@
     .insurance-btn-box ul > li.active {
         margin-right: 9.99%;
     }
+
+    .new-articles .statics-row > span {
+        width: 33.33333%;
+    }
 }
 
 @media screen and (max-width: 991.98px) {
@@ -209,6 +212,7 @@
     /*#endregion*/
     /*#region news-slider*/
     .new-articles .news-carousel {
+        margin-top: 15px;
         padding-top: 1rem;
     }
 
@@ -216,7 +220,8 @@
     /*region footer*/
     .bottom-section .form-container {
         width: 100%;
-        padding-right: 0;
+        padding-right: 15px;
+        padding-left: 15px;
     }
 
     .bottom-section .form-container .captcha input {
@@ -229,11 +234,14 @@
         border-left: none;
         width: 100%;
         padding-left: 0;
+        padding-top: 15px;
+
     }
 
     .addressContainer {
         display: flex;
         align-items: center;
+        justify-content: space-between;
     }
 
     .footer-block:first-of-type .footer-sub-block .menu-part {
@@ -431,7 +439,7 @@
         color: #fff;
         border-color: transparent;
         padding: 0;
-        float: left;
+        float: right;
         background: transparent;
         margin: 0;
     }
@@ -467,6 +475,7 @@
     .navbar {
         margin: 0;
         padding: 5px 0;
+        float: none;
     }
 
     .navbar-default {
@@ -512,9 +521,9 @@
         min-height: 283px;
     }
 
-    .bottom-section .info-container {
-        padding-top: 39px;
-    }
+    /*.bottom-section .info-container {*/
+        /*padding-top: 39px;*/
+    /*}*/
 
     .certificate-block h3 {
         width: 100%;
@@ -643,7 +652,7 @@
     }
 
     .navbar {
-        float: right;
+        float: left; !important;
         margin: 0;
         border: none;
         position: static !important;
@@ -741,6 +750,7 @@
 }
 
 .slider .owl-dots {
+    left: auto;
     right: calc(50% - 40px);
     bottom: 0;
 }
@@ -773,6 +783,7 @@
 
 .new-articles .news-icon {
     margin-right: 5px;
+    margin-left: auto;
 }
 
 /*#region clinic program*/
@@ -783,7 +794,8 @@
 /*#endregion*/
 
 .pr-0 {
-    padding-right: 0 !important;
+    padding-right: auto !important;
+    padding-left: 0 !important;
 }
 
 .d-none {
@@ -809,6 +821,14 @@
 
 .news-image {
     width: 100%;
+}
+
+.comments-count.text-right {
+    text-align: left !important;
+}
+
+.news-date.text-left {
+    text-align: right !important;
 }
 
 /*#endregion*/
