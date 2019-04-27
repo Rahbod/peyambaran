@@ -218,7 +218,7 @@
     .bottom-section .form-container {
         width: 100%;
         padding-left: 15px;
-        padding-right:15px;
+        padding-right: 15px;
     }
 
     .bottom-section .form-container .captcha input {
@@ -319,6 +319,19 @@
     .register-form {
         background: #fff;
         padding: 20px 0 !important;
+    }
+
+    .register .register-form-container {
+        padding: 0;
+    }
+
+    .register .vertical-separator-line {
+        border-left: none;
+
+    }
+
+    .register.login .vertical-separator-line {
+        border-left: none;
     }
 
     .social-accounts a {
@@ -563,6 +576,11 @@
 
     /*#endregion*/
     /*#region footer*/
+    .bottom-section .form-container {
+        padding-left: 70px;
+        padding-right: 15px;
+    }
+
     /*#endregion*/
     #sidebarCollapse {
         display: none;
@@ -699,7 +717,7 @@
 
     /*#endregion*/
     .footer-block:first-of-type .footer-sub-block .menu-part {
-        width: 24.999%;
+        width: 19.999%;
     }
 }
 
