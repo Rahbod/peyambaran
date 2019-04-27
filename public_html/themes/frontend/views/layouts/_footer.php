@@ -159,7 +159,7 @@ $contactModel = new \app\models\ContactForm();
                     $ic = $item->children(1)->count();
                     $sic = $item->children(2)->count();
                     if ($ic > 0):$i++; ?>
-                        <div class="footer-block col-xs-12 <?= $i == 1 ? 'col-sm-12' : 'col-sm-6 col-lg-3' ?>">
+                        <div class="footer-block col-xs-12 <?= $i == 1 ? 'col-sm-12' : 'col-sm-6 col-md-4' ?>">
                             <h4><?= $item->name ?></h4>
                             <div class="footer-sub-block">
                                 <?php if (($sic - $ic) === 0): // one level ?>

@@ -3,7 +3,10 @@
 /* @var $model app\models\PictureGallery */
 ?>
 <div class="gallery__imageContainer">
-    <a class="" href="<?= Yii::getAlias('@web/uploads/gallery/') . $model->full_image ?>">
+    <a href="<?= Yii::getAlias('@web/uploads/gallery/') . $model->full_image ?>"
+       data-transition="crossfade"
+       class="html5lightbox"
+       data-group="mygroup" >
         <img class="gallery__images" src="<?= Yii::getAlias('@web/uploads/gallery/thumbs/280x380/') . $model->full_image ?>" alt="<?= $model->name ?>">
     </a>
     <div class="-hoverBox">
