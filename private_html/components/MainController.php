@@ -315,6 +315,11 @@ abstract class MainController extends Controller
                 'visible' => $permissions === true or isset($permissions['user'])
             ],
             [
+                'label' => '<i class="m-menu__link-icon fa fa-language"></i><span class="m-menu__link-text">مدیریت ترجمه ها</span>',
+                'url' => ['/admin/translate'],
+                'visible' => $permissions === true or isset($permissions['setting'])
+            ],
+            [
                 'label' => '<i class="m-menu__link-icon fa fa-cogs"></i><span class="m-menu__link-text">' . Yii::t('words', 'Setting') . '</span>',
                 'url' => ['/setting/index'],
                 'visible' => $permissions === true or isset($permissions['setting'])

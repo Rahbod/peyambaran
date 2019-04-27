@@ -12,7 +12,7 @@ $relatedMenu = Menu::find()->andWhere([
 ])->one();
 if ($relatedMenu)
 //    $root = $relatedMenu->parents()->andWhere('parentID IS NULL')->one();
-    $root = $relatedMenu->parents(1)->one();
+    $root = $relatedMenu->parents(1)->valid()->one();
 ?>
 
 <section class="gallery staticPages">
@@ -25,12 +25,12 @@ if ($relatedMenu)
                             <h4><?= $root->name ?></h4>
                         </div>
                         <ul class="list-unstyled mt-5">
-                            <?php foreach ($root->children(1)->all() as $sub_item):$sc = $sub_item->children(1)->count(); ?>
+                            <?php foreach ($root->children(1)->valid()->all() as $sub_item):$sc = $sub_item->children(1)->valid()->count(); ?>
                                 <li class="mb-3">
                                     <?php if ($sc > 0): ?>
                                         <a href="void:;" class="text-purple"><?= $sub_item->name ?></a>
                                         <ul class="list-unstyled submenu">
-                                            <?php foreach ($sub_item->children(1)->all() as $sub_item_child): ?>
+                                            <?php foreach ($sub_item->children(1)->valid()->all() as $sub_item_child): ?>
                                                 <li>
                                                     <a class="-hoverBlue text-dark-2<?= $relatedMenu->id === $sub_item_child->id ? " active" : "" ?>"
                                                        href="<?= $sub_item_child->url ?>"><?= $sub_item_child->name ?></a>
