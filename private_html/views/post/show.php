@@ -78,15 +78,16 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                             <?php foreach ($model->gallery as $item):
                                                 if (!$item->file OR !is_file(Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file)) continue; ?>
                                                 <div class="gallery__imageContainer">
-                                                    <a class="simpleGallery__link html5lightbox" data-transition="crossfade" data-group="mygroup"
-                                                       href="<?= Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file ?>">
+                                                    <a class="simpleGallery__link html5lightbox"
+                                                       data-transition="crossfade" data-group="mygroup"
+                                                       href="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/') . $item->file ?>">
                                                         <img class="gallery__images"
-                                                             src="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/') . $item->file ?>">
+                                                                src="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/') . $item->file ?>">
                                                     </a>
                                                     <div class="-hoverBox">
-                                                        <a href="<?= Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file ?>"
+                                                        <a href="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/') . $item->file ?>"
                                                            data-transition="crossfade"
-                                                           data-thumbnail="<?= Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file ?>"
+                                                           data-thumbnail="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/') . $item->file ?>"
                                                            class="html5lightbox"
                                                            data-group="mygroup"
                                                            title="<?= $item->name ?>">
