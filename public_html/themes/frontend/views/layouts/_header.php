@@ -22,9 +22,10 @@ use yii\helpers\Url;
                     <ul class="dropdown-menu">
                         <li><a href="<?= Url::to(["/fa"]) ?>"><?= Yii::t('words', 'fa') ?></a></li>
                         <li><a href="<?= Url::to(["/en"]) ?>"><?= Yii::t('words', 'en') ?></a></li>
-<!--                        --><?php //foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
-<!--                            <li><a href="--><?//= Url::to(["/{$key}"]) ?><!--">--><?//= Yii::t('words', $key) ?><!--</a></li>-->
-<!--                        --><?php //endforeach; ?>
+                        <!--                        --><?php //foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
+                        <!--                            <li><a href="--><? //= Url::to(["/{$key}"]) ?><!--">-->
+                        <? //= Yii::t('words', $key) ?><!--</a></li>-->
+                        <!--                        --><?php //endforeach; ?>
                     </ul>
                 </div>
 
@@ -75,7 +76,7 @@ use yii\helpers\Url;
                 <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?>">
                 <div class="logo-right">
                     <a href="<?= Url::to(['/']) ?>">
-                        <h1><?= Yii::t('words','logo_title')?></h1>
+                        <h1><?= Yii::t('words', 'logo_title') ?></h1>
                         <h2>Payambaran</h2>
                         <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
                     </a>
@@ -150,13 +151,54 @@ use yii\helpers\Url;
 <nav id="sidebar">
     <div id="dismiss">
         x
-        <!--        <i class="fas fa-arrow-left"></i>-->
+<!--        <img width="20" height="20" src="--><?//= Yii::getAlias('@webroot/themes/frontend/images/times-solid.svg') ?><!--" alt="">-->
     </div>
     <div class="sidebar-header">
         <h4 class="">بیمارستان پیامبران</h4>
         <!--        <p>بیمارستان پیامبران</p>-->
     </div>
     <ul class="list-unstyled components">
+        <?php if (Yii::$app->user->isGuest): ?>
+            <li>
+                <a href="<?= Url::to(['/user/register']) ?>" class="menu-item">
+                    <?= Yii::t('words', 'Register') ?>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?= Url::to(['/user/login']) ?>" class="menu-item">
+                    <?= Yii::t('words', 'Login') ?>
+                </a>
+            </li>
+
+        <?php else: ?>
+            <li>
+                <a class="submenu menu-item" href="#register" data-toggle="collapse"
+                   aria-expanded="false">
+                    <div class="user-header-pic">
+                        <?php
+                        $src = $this->theme->baseUrl . '/images/user.jpg';
+                        if (Yii::$app->user->identity->avatar &&
+                            is_file(Yii::getAlias('@webroot/uploads/user/avatars/') . Yii::$app->user->identity->avatar))
+                            $src = Yii::getAlias('@web/uploads/user/avatars/') . Yii::$app->user->identity->avatar;
+                        ?>
+                        <img src="<?= $src ?>" alt="<?= Yii::$app->user->identity->name ?>">
+                    </div>
+                </a>
+                <ul class="collapse list-unstyled user-header-details" id="register">
+                    <li>
+                        <? if (Yii::$app->user->identity->roleID != 'user'): ?>
+                            <a href="<?= Url::to(['/admin']) ?>"><span
+                                        class="user-header-name menu-item"><?= Yii::$app->user->identity->username ?></span></a>
+                        <? else: ?>
+                            <a href="<?= Url::to(['/user/dashboard']) ?>"><span
+                                        class="user-header-name menu-item"><?= Yii::$app->user->identity->name ?></span></a>
+                        <? endif; ?>
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
+
         <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
             <?php
             $ic = $item->children(1)->count();

@@ -15,7 +15,7 @@ if ($relatedMenu)
     $root = $relatedMenu->parents(1)->valid()->one();
 ?>
 
-<section class="gallery">
+<section class="gallery staticPages">
     <div class="container">
         <div class="row">
             <?php if ($root): ?>
