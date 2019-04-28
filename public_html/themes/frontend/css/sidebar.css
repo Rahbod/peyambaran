@@ -104,13 +104,13 @@
 }
 
 #sidebar ul li a:hover {
-    background: #3f8dfaa3;
+    background: #dfdfdf;
 }
 
 #sidebar ul li.active > a,
 #sidebar a[aria-expanded="true"] {
     color: #fff;
-    background: #3f8dfa;
+    background: #dadada;
 }
 
 #sidebar a[data-toggle="collapse"] {
@@ -128,8 +128,8 @@
 #sidebar ul ul a {
     font-size: 0.9em !important;
     padding-right: 30px !important;
-    background: #3f8dfa;
-    color: #fff !important;
+    background: #dadada;
+    color: #333 !important;
 }
 
 #sidebar ul ul ul a {

@@ -13,7 +13,7 @@ use yii\helpers\Url;
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
                 <div class="dropdown language-select">
-                    <label>Language</label>
+                    <label class="text-right"><?= Yii::t('words', 'Language') ?></label>
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="icon icon-chevron-down"></span>
                         <?= Yii::t('words', Yii::$app->language); ?>

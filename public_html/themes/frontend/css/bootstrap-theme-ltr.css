@@ -1,3 +1,17 @@
+@import "open-sans.css";
+body *{
+    font-family: "Open Sans";
+}
+
+.section-title,
+h1{
+    font-weight: 800 !important;
+    text-transform: uppercase;
+}
+
+.title-description{
+    text-transform: uppercase;
+}
 /*----------------------------- header*/
 header div[class^="col-"] {
     float: right !important;
@@ -63,9 +77,17 @@ body {
     padding-right: 0;
     padding-left: 10px;
 }
-
+.logo .logo-right h1 {
+    font-weight: 800;
+    font-size: 22px;
+    margin-top: 13px;
+    margin-bottom: 3px;
+}
 .logo .logo-right > * {
     text-align: left;
+}
+.logo .logo-right h2 {
+    display: none;
 }
 
 .language-select label {
@@ -94,10 +116,11 @@ body {
 /*}*/
 
 .navbar > li > a {
+    text-transform: uppercase;
     border-radius: 4px 4px 0 0;
     direction: rtl;
+    font-weight: 500;
 }
-
 .navbar .dropdown-menu {
     text-align: left;
     left: 0 !important;
