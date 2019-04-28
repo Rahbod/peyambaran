@@ -1,8 +1,11 @@
 @media screen and (max-width: 1199.98px) {
+    /*#region footer*/
     .bottom-section .info-container {
         padding-top: 76px;
 
     }
+
+    /*#endregion*/
 }
 
 @media screen and (max-width: 991.98px) {
@@ -56,14 +59,6 @@
     }
 
     /*#endregion*/
-    .content {
-        margin-top: 55px
-    }
-
-    #sidebarCollapse {
-        display: block;
-    }
-
     /*#region gallery*/
     .gallery .gallery-sidebar-menu {
         display: none;
@@ -180,11 +175,6 @@
     }
 
     /*#endregion*/
-    .content-header {
-        padding: 20px 10px;
-        margin-bottom: 15px;
-    }
-
     /*#region news and articles*/
     .news-show .content-header {
         display: block;
@@ -249,6 +239,7 @@
     }
 
     /*#endregion*/
+    /*#region navbar*/
     header {
         padding: 0;
     }
@@ -302,14 +293,11 @@
         border-color: #316bfa;
     }
 
-    section.texture-bg {
-        padding: 20px 0;
-    }
-
     .navbar-default > .container, .navbar-default > .navbar-container {
         display: none;
     }
 
+    /*#endregion*/
     /*#region static pages*/
     .staticPages #staticPageSidebar {
         display: none;
@@ -318,12 +306,37 @@
     .staticPages .content-header__image {
         display: none;
     }
+
     .gallery.staticPages .gallery__imageContainer {
-        margin-bottom:1.5rem!important;
+        margin-bottom: 1.5rem !important;
     }
 
+    /*#endregion*/
+    /*#region insurance*/
+    .insurance .umbrella-icon, .new-articles .news-icon {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        margin-left: 0;
+    }
 
     /*#endregion*/
+    .content-header {
+        padding: 20px 10px;
+        margin-bottom: 15px;
+    }
+
+    section.texture-bg {
+        padding: 20px 0;
+    }
+
+    .content {
+        margin-top: 55px
+    }
+
+    #sidebarCollapse {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 767.98px) {
@@ -442,6 +455,7 @@
     }
 
     /*#endregion*/
+    /*#region insurance*/
     .insurance-btn-box ul > li {
         width: 45%;
         float: left;
@@ -451,9 +465,14 @@
         margin-right: 9.99%;
     }
 
+    /*#endregion*/
+    /*#region news article page*/
     .new-articles .statics-row > span {
         width: 33.33333%;
     }
+
+    /*#endregion*/
+
 }
 
 @media screen and (max-width: 575.98px) {
@@ -500,7 +519,7 @@
 
     .securityCode__input {
         float: right;
-        margin: 0!important;
+        margin: 0 !important;
         width: 50%;
     }
 
@@ -516,7 +535,6 @@
     }
 
     /*#endregion*/
-
     .gallery.staticPages .gallery__imageContainer {
         width: 100%;
         height: auto;
@@ -527,10 +545,12 @@
     .new-articles .statics-row > span {
         width: 30.33333%;
     }
+
     .gallery.staticPages .gallery__imageContainer {
         width: 100%;
         height: auto;
     }
+
     /*#region footer*/
     .addressContainer i {
         width: 64px !important;
@@ -565,19 +585,29 @@
     }
 
     /*#endregion*/
-    .content {
-        margin-top: 150px;
-        min-height: 700px;
+    /*#region navbar*/
+    .navbar-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: inline-block;
     }
 
-    #sidebarCollapse {
+    .navbar {
+        float: left;
+    !important;
+        margin: 0;
+        border: none;
+        position: static !important;
+        min-height: 0;
+    }
+
+    .navbar-default > .container-fluid {
         display: none;
     }
 
-    #sidebar {
-        display: none;
-    }
-
+    /*#endregion*/
     /*#region gallery*/
     .sideMenuIcon {
         display: none;
@@ -596,10 +626,6 @@
     }
 
     /*#endregion*/
-    .bg-white {
-        background: #fff;
-    }
-
     /*#region register/login/forgot password*/
     .vertical-separator-line {
         border-right: 2px solid #85c296;
@@ -633,33 +659,22 @@
     }
 
     /*#endregion*/
-    .navbar-container {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: inline-block;
+    .content {
+        margin-top: 150px;
+        min-height: 700px;
     }
 
-    .navbar {
-        float: left;
-    !important;
-        margin: 0;
-        border: none;
-        position: static !important;
-        min-height: 0;
+    .bg-white {
+        background: #fff;
     }
 
-    .navbar-default > .container-fluid {
+    #sidebarCollapse {
         display: none;
     }
 
-    /*.d-sm-block {*/
-    /*display: block;*/
-    /*}*/
-    /*.d-sm-none {*/
-    /*display: none;*/
-    /*}*/
+    #sidebar {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -686,6 +701,19 @@
     }
 
     /*#endregion*/
+    /*#region news and articles*/
+    .statics-row > span {
+        width: 33.33333%;
+    }
+
+    /*#endregion*/
+    /*#region doctors*/
+    .doctors .panel-heading .row {
+        display: flex;
+        align-items: center;
+    }
+
+    /*#endregion*/
     .d-md-block {
         display: block;
     }
@@ -701,21 +729,6 @@
     .bg-md-transparent {
         background: transparent;
     }
-
-    /*#region news and articles*/
-    .statics-row > span {
-        width: 33.33333%;
-    }
-
-    /*#endregion*/
-    /*#region doctors*/
-    .doctors .panel-heading .row {
-        display: flex;
-        align-items: center;
-    }
-
-    /*#endregion*/
-
 }
 
 @media screen and (min-width: 576px) {
@@ -769,7 +782,6 @@
 }
 
 /*#endregion*/
-
 /*#region footer*/
 .certificate-block {
     margin: 0;
@@ -781,7 +793,6 @@
 }
 
 /*#endregion*/
-
 /*#region main/header slider*/
 .header-slider .owl-nav {
     /*position: absolute;*/
@@ -823,33 +834,18 @@
 }
 
 /*#endregion*/
-
-.new-articles .news-icon {
-    margin-right: 5px;
-    margin-left: auto;
-}
-
 /*#region clinic program*/
 .clinic-program .table > thead > tr > th {
     white-space: nowrap;
 }
 
 /*#endregion*/
-
-.pr-0 {
-    padding-right: auto !important;
-    padding-left: 0 !important;
-}
-
-.d-none {
-    display: none;
-}
-
-.navbar {
-    float: none;
-}
-
 /*#region news and articles*/
+.new-articles .news-icon {
+    margin-right: 5px;
+    margin-left: auto;
+}
+
 .news-show.gallery .-hoverBox a {
     display: flex;
     align-items: center;
@@ -882,3 +878,15 @@
 }
 
 /*#endregion*/
+.pr-0 {
+    padding-right: auto !important;
+    padding-left: 0 !important;
+}
+
+.d-none {
+    display: none;
+}
+
+.navbar {
+    float: none;
+}
