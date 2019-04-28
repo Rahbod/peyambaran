@@ -1469,6 +1469,7 @@ section .title-description {
     border-radius: 0 10px 10px 0;
     width: 100px;
     height: 46px;
+    background: #fff;
 }
 
 .bottom-section .form-container .captcha a {
@@ -1479,6 +1480,8 @@ section .title-description {
     z-index: 1;
     right: 115px;
     font-size: 1px;
+    border-right: 1px solid #f7f7f7;
+
 }
 
 .bottom-section .form-container .captcha a::before {
@@ -1861,10 +1864,6 @@ section .title-description {
     color: #fff;
 }
 
-.sidebar-user-menu. .top-section {
-    height: 107px;
-}
-
 .sidebar-user-menu {
     display: inline-block;
     overflow: hidden;
@@ -1877,7 +1876,7 @@ section .title-description {
     padding: 15px;
     display: block;
     overflow: hidden;
-    height: 135px;
+    height: 107px;
     position: relative;
     background-color: #85c296;
     color: #fff;
@@ -2521,8 +2520,8 @@ section .title-description {
 }
 
 .doctors .panel-title__doctorAvatar img {
-    width: 100px;
-    height: 100px;
+    max-width: 100%;
+    height: auto;
 }
 
 .doctors .panel-title__doctorAvatar img.panel-title__doctorAvatar-default {
@@ -3437,6 +3436,12 @@ section .title-description {
 }
 
 /*#region newely added styles  : 4/15/2019*/
+
+.html5-nav-thumb img {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
 
 .smallHeader {
     border-top: none;
