@@ -133,12 +133,8 @@
     }
 
     .register .vertical-separator-line {
-        border-left: none;
+        border: none;
 
-    }
-
-    .register.login .vertical-separator-line {
-        border-left: none;
     }
 
     .social-accounts a {
@@ -512,7 +508,6 @@
         height: auto;
         margin: 0 !important;
     }
-
 
 }
 

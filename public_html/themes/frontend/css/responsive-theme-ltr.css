@@ -1,6 +1,10 @@
 @media screen and (max-width: 1199.98px) {
+    .bottom-section .info-container {
+        padding-top: 76px;
 
+    }
 }
+
 @media screen and (max-width: 991.98px) {
     /*#region insurance*/
     .insurance--header--mobile {
@@ -141,6 +145,17 @@
         transform: scale(0.6);
     }
 
+    .register .register-form-container {
+        padding: 0;
+    }
+
+    .register .vertical-separator-line {
+        border: none !important;
+    }
+
+    /*.register.login .vertical-separator-line {*/
+    /*border: none;*/
+    /*}*/
     .register-form-container form {
         border-bottom: 1px solid #85c296;
         padding-bottom: 4rem;
@@ -282,6 +297,7 @@
     }
 
     .navbar-default {
+        padding: 0;
         background-color: #3f8dfa;
         border-color: #316bfa;
     }
@@ -295,6 +311,7 @@
     }
 
 }
+
 @media screen and (max-width: 767.98px) {
     /*#region insurance*/
     .insurance .insurance--header--desktop {
@@ -424,6 +441,7 @@
         width: 33.33333%;
     }
 }
+
 @media screen and (max-width: 575.98px) {
 
     section .section-title {
@@ -461,10 +479,15 @@
 
     }
 
+    .securityCode__image {
+        width: 40%;
+        margin-left: 9%;
+    }
+
     .securityCode__input {
         float: right;
-        margin-right: 0;
-        width: 100px;
+        margin: 0!important;
+        width: 50%;
     }
 
     /*#endregion*/
@@ -480,6 +503,7 @@
 
     /*#endregion*/
 }
+
 @media screen and (max-width: 400px) {
     .new-articles .statics-row > span {
         width: 30.33333%;
@@ -493,7 +517,6 @@
     /*#endregion*/
 }
 
-
 @media screen and (min-width: 1200px) {
     .navbar > li > a {
         padding: 11px 15px;
@@ -506,6 +529,7 @@
 
     /*#endregion*/
 }
+
 @media screen and (min-width: 992px) {
     /*#region insurance*/
     .insurance--header--mobile {
@@ -596,7 +620,8 @@
     }
 
     .navbar {
-        float: left; !important;
+        float: left;
+    !important;
         margin: 0;
         border: none;
         position: static !important;
@@ -614,6 +639,7 @@
     /*display: none;*/
     /*}*/
 }
+
 @media screen and (min-width: 768px) {
     /*#region insurance*/
     .scrollButton {
@@ -633,7 +659,6 @@
     /*.bottom-section .info-container {*/
     /*padding-top: 39px;*/
     /*}*/
-
     .certificate-block h3 {
         width: 100%;
     }
@@ -670,6 +695,7 @@
     /*#endregion*/
 
 }
+
 @media screen and (min-width: 576px) {
     /*#region captcha*/
     .field-user-verifycode, .field-loginform-verifycode {
@@ -678,7 +704,6 @@
 
     /*#endregion*/
 }
-
 
 @media screen and (min-width: 992px) and (max-width: 1199.98px) {
     /*#region register/login/forgot password*/
@@ -707,10 +732,10 @@
 
     /*#endregion*/
 }
+
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
 
 }
-
 
 /*#region navbar*/
 .smallHeader .nav .open > a,
