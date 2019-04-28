@@ -230,12 +230,13 @@ body {
 
 .bottom-section .form-container .captcha img {
     border-radius: 10px 0 0 10px;
-
+    background: #fff;
 }
 
 .bottom-section .form-container .captcha a {
     left: 115px;
     right: 0;
+    border-left: 1px solid #f7f7f7;
 }
 
 .bottom-section .form-container .captcha a::before {
@@ -325,25 +326,30 @@ body {
 /*}*/
 
 .sidebar-user-menu .user-side-pic {
-
+    width: 75px;
+    height: 75px;
     left: 15px;
     right: 0;
 }
 
 .user-side-details {
-
-    padding-left: 125px;
+    padding-left: 85px;
     padding-right: 0;
 }
 
 .user-side-setting {
-
+    left: auto;
     right: 0;
+}
 
+.sidebar-user-menu .top-section {
+    height: 107px;
 }
 
 .sidebar-user-menu .content-section > ul > li {
-    padding: 5px 60px 5px 15px;
+    /*padding: 5px 60px 5px 15px;*/
+    padding: 5px 15px 5px 15px;
+
 }
 
 .sidebar-user-menu .content-section > ul > li > a > i {
@@ -540,4 +546,10 @@ body {
 .clinic-program .table tr td:last-of-type {
     border-radius: 0 6px 6px 0;
     overflow: hidden;
+}
+
+.html5-nav-thumb img {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }

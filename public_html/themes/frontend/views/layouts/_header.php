@@ -151,7 +151,7 @@ use yii\helpers\Url;
 <nav id="sidebar">
     <div id="dismiss">
         x
-<!--        <img width="20" height="20" src="--><?//= Yii::getAlias('@webroot/themes/frontend/images/times-solid.svg') ?><!--" alt="">-->
+        <!--        <i class="fas fa-arrow-left"></i>-->
     </div>
     <div class="sidebar-header">
         <h4 class="">بیمارستان پیامبران</h4>
@@ -171,31 +171,48 @@ use yii\helpers\Url;
                 </a>
             </li>
 
+            <li>
+                <hr>
+            </li>
         <?php else: ?>
             <li>
-                <a class="submenu menu-item" href="#register" data-toggle="collapse"
-                   aria-expanded="false">
-                    <div class="user-header-pic">
+                <? if (Yii::$app->user->identity->roleID != 'user'): ?>
+                    <a href="#user_subitem" class="submenu menu-item username-padding" data-toggle="collapse"
+                       aria-expanded="false">
                         <?php
                         $src = $this->theme->baseUrl . '/images/user.jpg';
                         if (Yii::$app->user->identity->avatar &&
                             is_file(Yii::getAlias('@webroot/uploads/user/avatars/') . Yii::$app->user->identity->avatar))
                             $src = Yii::getAlias('@web/uploads/user/avatars/') . Yii::$app->user->identity->avatar;
                         ?>
-                        <img src="<?= $src ?>" alt="<?= Yii::$app->user->identity->name ?>">
-                    </div>
-                </a>
-                <ul class="collapse list-unstyled user-header-details" id="register">
+                        <img class="user-avatar" src="<?= $src ?>" alt="<?= Yii::$app->user->identity->name ?>">
+                        <?= Yii::$app->user->identity->username ?>
+                    </a>
+                <? else: ?>
+                    <a href="#user_subitem" class="submenu menu-item username-padding" data-toggle="collapse"
+                       aria-expanded="false">
+                        <?php
+                        $src = $this->theme->baseUrl . '/images/user.jpg';
+                        if (Yii::$app->user->identity->avatar &&
+                            is_file(Yii::getAlias('@webroot/uploads/user/avatars/') . Yii::$app->user->identity->avatar))
+                            $src = Yii::getAlias('@web/uploads/user/avatars/') . Yii::$app->user->identity->avatar;
+                        ?>
+                        <img class="user-avatar" src="<?= $src ?>" alt="<?= Yii::$app->user->identity->name ?>">
+                        <?= Yii::$app->user->identity->name ?>
+                    </a>
+                <? endif; ?>
+                <ul class="collapse list-unstyled" id="user_subitem">
                     <li>
                         <? if (Yii::$app->user->identity->roleID != 'user'): ?>
-                            <a href="<?= Url::to(['/admin']) ?>"><span
-                                        class="user-header-name menu-item"><?= Yii::$app->user->identity->username ?></span></a>
+                            <a class="submenu menu-item" href="<?= Url::to(['/admin']) ?>">پروفایل کاربری</a>
                         <? else: ?>
-                            <a href="<?= Url::to(['/user/dashboard']) ?>"><span
-                                        class="user-header-name menu-item"><?= Yii::$app->user->identity->name ?></span></a>
+                            <a class="submenu menu-item" href="<?= Url::to(['/user/dashboard']) ?>">پروفایل کاربری</a>
                         <? endif; ?>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <hr>
             </li>
         <?php endif; ?>
 

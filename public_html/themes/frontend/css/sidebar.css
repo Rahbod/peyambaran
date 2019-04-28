@@ -168,3 +168,23 @@ a.article:hover {
     background: #3f8dfa !important;
     color: #fff !important;
 }
+
+
+#sidebar .user-avatar {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -22px;
+    width: 45px;
+    height: 45px;
+    border: 3px solid #85c296;
+    background-color: #85c296;
+    border-radius: 50%;
+    display: block;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#sidebar .username-padding {
+    padding-right: 60px;
+}

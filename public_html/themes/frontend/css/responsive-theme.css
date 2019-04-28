@@ -1,5 +1,11 @@
 @media screen and (max-width: 1199.98px) {
+    /*#region footer*/
+    .bottom-section .info-container {
+        padding-top: 76px;
 
+    }
+
+    /*#endregion*/
 }
 
 @media screen and (max-width: 991.98px) {
@@ -50,14 +56,6 @@
     }
 
     /*#endregion*/
-    .content {
-        margin-top: 55px
-    }
-
-    #sidebarCollapse {
-        display: block;
-    }
-
     /*#region gallery*/
     .gallery .gallery-sidebar-menu {
         display: none;
@@ -133,12 +131,8 @@
     }
 
     .register .vertical-separator-line {
-        border-left: none;
+        border: none;
 
-    }
-
-    .register.login .vertical-separator-line {
-        border-left: none;
     }
 
     .social-accounts a {
@@ -176,11 +170,6 @@
     }
 
     /*#endregion*/
-    .content-header {
-        padding: 20px 10px !important;
-        margin-bottom: 15px;
-    }
-
     /*#region news and articles*/
     .news-show .content-header {
         display: block;
@@ -255,6 +244,7 @@
     }
 
     /*#endregion*/
+    /*region navbar*/
     header {
         padding: 0;
     }
@@ -306,17 +296,55 @@
         border-color: #316bfa;
     }
 
+    .navbar-default > .container, .navbar-default > .navbar-container {
+        display: none;
+    }
+
+    /*#endregion*/
+    /*#region static pages*/
+    .staticPages #staticPageSidebar {
+        display: none;
+    }
+
+    .staticPages .content-header__image {
+        display: none;
+    }
+
+    .gallery.staticPages .gallery__imageContainer {
+        margin-bottom: 1.5rem !important;
+    }
+
+    /*#endregion*/
+    .content-header {
+        padding: 20px 10px !important;
+        margin-bottom: 15px;
+    }
+
+    .content {
+        margin-top: 55px
+    }
+
     section.texture-bg {
         padding: 20px 0;
     }
 
-    .navbar-default > .container, .navbar-default > .navbar-container {
-        display: none;
+    #sidebarCollapse {
+        display: block;
     }
+
 }
 
 @media screen and (max-width: 767.98px) {
     /*#region insurance*/
+    .insurance-btn-box ul > li {
+        width: 45%;
+        float: right;
+    }
+
+    .insurance-btn-box ul > li.active {
+        margin-left: 9.99%;
+    }
+
     .insurance .insurance--header--desktop {
         display: none;
     }
@@ -425,29 +453,10 @@
     }
 
     /*#endregion*/
-    .insurance-btn-box ul > li {
-        width: 45%;
-        float: right;
-    }
-
-    .insurance-btn-box ul > li.active {
-        margin-left: 9.99%;
-    }
 
 }
 
 @media screen and (max-width: 575.98px) {
-
-    section .section-title {
-        font-size: 21px;
-    }
-
-    section .title-description {
-        margin: 0;
-        margin-right: 5px;
-        font-size: 17px;
-    }
-
     /*#region insurance*/
     .insurance-btn-box ul > li a span {
         font-size: 17px;
@@ -496,6 +505,7 @@
     }
 
     /*#endregion*/
+    /*#region gallery*/
     .gallery .gallery__imageContainer {
         width: 49%;
         height: 280px;
@@ -505,6 +515,23 @@
         width: auto;
         height: auto;
     }
+
+    .gallery.staticPages .gallery__imageContainer {
+        width: 100%;
+        height: auto;
+    }
+
+    /*#endregion*/
+    section .section-title {
+        font-size: 21px;
+    }
+
+    section .title-description {
+        margin: 0;
+        margin-right: 5px;
+        font-size: 17px;
+    }
+
 }
 
 @media screen and (max-width: 400px) {
@@ -514,6 +541,7 @@
     }
 
     /*#endregion*/
+    /*#region gallery*/
     .gallery .gallery__imageContainer {
         width: 100%;
         height: 280px;
@@ -523,6 +551,14 @@
         width: auto;
         height: auto;
     }
+
+    .gallery.staticPages .gallery__imageContainer {
+        width: 100%;
+        height: auto;
+    }
+
+    /*#endregion*/
+
 }
 
 @media screen and (min-width: 1200px) {
@@ -552,14 +588,6 @@
     }
 
     /*#endregion*/
-    #sidebarCollapse {
-        display: none;
-    }
-
-    #sidebar {
-        display: none;
-    }
-
     /*#region gallery*/
     .sideMenuIcon {
         display: none;
@@ -578,10 +606,6 @@
     }
 
     /*#endregion*/
-    .bg-white {
-        background: #fff;
-    }
-
     /*#region register/login/forgot password*/
     .vertical-separator-line {
         border-left: 2px solid #85c296;
@@ -615,6 +639,7 @@
     }
 
     /*#endregion*/
+    /*#region navbar*/
     .navbar-container {
         position: absolute;
         bottom: 0;
@@ -635,12 +660,21 @@
         display: none;
     }
 
-    /*.d-sm-block {*/
-    /*display: block;*/
-    /*}*/
-    /*.d-sm-none {*/
-    /*display: none;*/
-    /*}*/
+    /*#endregion*/
+    /*#region static pages*/
+    .staticPages #myModal {
+        display: none;
+    }
+
+    /*#endregion*/
+    #sidebarCollapse {
+        display: none;
+    }
+
+    .bg-white {
+        background: #fff;
+    }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -668,6 +702,19 @@
     }
 
     /*#endregion*/
+    /*#region news and articles*/
+    .statics-row > span {
+        width: 33.33333%;
+    }
+
+    /*#endregion*/
+    /*#region doctors*/
+    .doctors .panel-heading .row {
+        display: flex;
+        align-items: center;
+    }
+
+    /*#endregion*/
     .d-md-block {
         display: block;
     }
@@ -684,20 +731,6 @@
         background: transparent;
     }
 
-    /*#region news and articles*/
-    .statics-row > span {
-        width: 33.33333%;
-    }
-
-    /*#endregion*/
-    /*#region doctors*/
-    .doctors .panel-heading .row {
-        display: flex;
-        align-items: center;
-    }
-
-    /*#endregion*/
-
 }
 
 @media screen and (min-width: 576px) {
@@ -707,6 +740,7 @@
     }
 
     /*#endregion*/
+    /*#region gallery*/
     .gallery .gallery__imageContainer {
         width: 33%;
         height: 243px;
@@ -716,6 +750,14 @@
         width: auto;
         height: auto;
     }
+
+    .gallery.staticPages .gallery__imageContainer {
+        width: 100%;
+        height: auto;
+    }
+
+    /*#endregion*/
+
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199.98px) {
@@ -763,7 +805,6 @@
 }
 
 /*#endregion*/
-
 /*#region footer*/
 .certificate-block {
     margin: 0;
@@ -775,7 +816,6 @@
 }
 
 /*#endregion*/
-
 /*#region main/header slider*/
 .header-slider .owl-nav {
     /*position: absolute;*/
@@ -816,27 +856,17 @@
 }
 
 /*#endregion*/
-
-.new-articles .news-icon {
-    margin-left: 5px;
-}
-
 /*#region clinic program*/
 .clinic-program .table > thead > tr > th {
     white-space: nowrap;
 }
 
 /*#endregion*/
-
-.pr-0 {
-    padding-right: 0 !important;
-}
-
-.d-none {
-    display: none;
-}
-
 /*#region news and articles*/
+.new-articles .news-icon {
+    margin-left: 5px;
+}
+
 .news-show.gallery .-hoverBox a {
     display: flex;
     align-items: center;
@@ -863,4 +893,12 @@
 /*#endregion*/
 .content-header__titles {
     margin-left: auto;
+}
+
+.pr-0 {
+    padding-right: 0 !important;
+}
+
+.d-none {
+    display: none;
 }
