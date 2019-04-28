@@ -247,8 +247,11 @@ return [
     'Alternative' => 'جایگزین',
     'Import csv' => 'ایمپورت فایل csv',
     'Import csv program' => 'ایمپورت فایل csv برنامه',
+    'Import excel' => 'ایمپورت فایل excel',
+    'Import excel program' => 'ایمپورت فایل excel برنامه',
     'Get sample file' => 'دریافت فایل نمونه',
     'Csv File' => 'فایل csv',
+    'Excel File' => 'فایل excel',
     'Export doctors list' => 'دریافت لیست پزشکان',
     'Hospitalization Request' => 'درخواست پذیرش بستری',
     'All' => 'همه',
@@ -279,4 +282,5 @@ return [
     'Add Image' => 'افزودن تصویر',
     'Time Zone' => 'محدوده زمانی',
     'Sms' => 'تنظیمات پنل پیامک',
+    'Language' => 'زبان',
 ];
