@@ -1597,7 +1597,8 @@ section .title-description {
 
 .footer-section {
     background: #f5f8ff;
-    padding: 70px 0 30px;
+    /*padding: 70px 0 30px;*/
+    padding: 15px;
 }
 
 .footer-section .footer-block {
@@ -1679,7 +1680,8 @@ section .title-description {
 
 .footer-section .copyright {
     text-transform: uppercase;
-    margin-top: 50px;
+    /*margin-top: 50px;*/
+    margin-top: 0;
     display: inline-block;
     width: 100%;
 }

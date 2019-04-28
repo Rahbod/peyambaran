@@ -337,6 +337,20 @@
     #sidebarCollapse {
         display: block;
     }
+
+    .inline-title {
+        line-height: normal;
+    }
+
+    section .section-title {
+        font-size: 21px;
+    }
+
+    section .title-description {
+        margin: 0;
+        margin-left: 5px;
+        font-size: 17px;
+    }
 }
 
 @media screen and (max-width: 767.98px) {
@@ -476,17 +490,6 @@
 }
 
 @media screen and (max-width: 575.98px) {
-
-    section .section-title {
-        font-size: 21px;
-    }
-
-    section .title-description {
-        margin: 0;
-        margin-left: 5px;
-        font-size: 17px;
-    }
-
     /*#region insurance*/
     .insurance-btn-box ul > li a span {
         font-size: 17px;
