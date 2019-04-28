@@ -27,7 +27,8 @@
         "nirvana-msu/yii2-infinite-scroll": "1.0.*@dev",
         "voime/yii2-google-maps": "*",
         "ruskid/yii2-csv-importer": "dev-master",
-        "faravaghi/yii2-jalali-datepicker": "*"
+        "faravaghi/yii2-jalali-datepicker": "*",
+        "moonlandsoft/yii2-phpexcel": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

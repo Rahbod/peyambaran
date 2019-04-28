@@ -264,6 +264,7 @@ abstract class MainController extends Controller
                     ['label' => Yii::t('words', 'Manage Days'), 'url' => ['/clinic/index']],
                     ['label' => Yii::t('words', 'Create New Day'), 'url' => ['/clinic/create']],
                     ['label' => Yii::t('words', 'Import csv'), 'url' => ['/clinic/import-csv-program']],
+                    ['label' => Yii::t('words', 'Import excel'), 'url' => ['/clinic/import-excel-program']],
                 ],
                 'visible' => $permissions === true or isset($permissions['clinic'])
             ],

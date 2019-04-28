@@ -58,7 +58,7 @@ $this->registerJs('
                 <div class="col-sm-4 well">
                     <div class="form-group m-form__group">
                         <?= Html::label(Yii::t('words', 'Copy from'), '', ['class' => 'col-form-label control-label']) ?>
-                        <?= Html::dropDownList('copy', Yii::$app->request->getQueryParam('copy'), \yii\helpers\ArrayHelper::map(\app\models\ClinicProgram::find()->all(), 'id', function ($model) {
+                        <?= Html::dropDownList('copy', Yii::$app->request->getQueryParam('copy'), \yii\helpers\ArrayHelper::map(\app\models\ClinicProgram::find()->limit(7)->orderBy(['id' => SORT_DESC])->all(), 'id', function ($model) {
                             return jDateTime::date('l d F Y', $model->date);
                         }), [
                             'data-url' => \yii\helpers\Url::to(['create']),

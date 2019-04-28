@@ -21,6 +21,7 @@ class ClinicProgram extends DynamicActiveRecord
 {
     public $doctors = [];
     public $csv_file;
+    public $excel_file;
     /**
      * {@inheritdoc}
      */
@@ -50,7 +51,7 @@ class ClinicProgram extends DynamicActiveRecord
             [['doctors'], 'safe'],
             [['is_holiday'], 'default', 'value' => 1],
             [['created'], 'string', 'max' => 20],
-            [['csv_file'], 'string'],
+            [['csv_file', 'excel_file'], 'string'],
             [['userID'], 'default', 'value' => Yii::$app->user->id],
             [['created'], 'default', 'value' => time()],
         ]);
@@ -70,6 +71,7 @@ class ClinicProgram extends DynamicActiveRecord
             'userID' => Yii::t('words', 'Creator'),
             'doctors' => Yii::t('words', 'Doctors'),
             'csv_file' => Yii::t('words', 'Csv File'),
+            'excel_file' => Yii::t('words', 'Excel File'),
         ]);
     }
 

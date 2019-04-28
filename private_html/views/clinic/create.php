@@ -25,11 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="m-portlet__head-tools">
             <ul class="m-portlet__nav">
                 <li class="m-portlet__nav-item">
-                    <a href="<?= \yii\helpers\Url::to(['import-csv-program']) ?>"
+                    <a href="<?= \yii\helpers\Url::to(['import-excel-program']) ?>"
                        class="btn btn-dark m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-file-text"></i>
-							<span><?= Yii::t('words', 'Import csv') ?></span>
+							<span><?= Yii::t('words', 'Import excel') ?></span>
 						</span>
                     </a>
                 </li>

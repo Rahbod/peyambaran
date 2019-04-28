@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'logo_title' => 'Payambaran Hospital',
+    'logo_title' => 'Payambaran',
     'fa' => 'Persian',
     'en' => 'English',
     'ar' => 'Arabic',
