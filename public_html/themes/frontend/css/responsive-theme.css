@@ -314,20 +314,6 @@
         display: none;
     }
 
-    /*#region dashboard*/
-    .sidebar-user-menu .top-section {
-        height: 107px;
-    }
-
-    .sidebar-user-menu .user-side-pic {
-        width: 75px;
-        height: 75px;
-    }
-
-    .sidebar-user-menu .content-section > ul > li {
-        padding: 5px 15px 5px 15px;
-    }
-    /*#endregion*/
 }
 
 @media screen and (max-width: 767.98px) {

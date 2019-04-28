@@ -325,7 +325,8 @@ body {
 /*}*/
 
 .sidebar-user-menu .user-side-pic {
-
+    width: 75px;
+    height: 75px;
     left: 15px;
     right: 0;
 }
@@ -340,8 +341,14 @@ body {
     right: 0;
 }
 
+.sidebar-user-menu .top-section {
+    height: 107px;
+}
+
 .sidebar-user-menu .content-section > ul > li {
-    padding: 5px 60px 5px 15px;
+    /*padding: 5px 60px 5px 15px;*/
+    padding: 5px 15px 5px 15px;
+
 }
 
 .sidebar-user-menu .content-section > ul > li > a > i {

@@ -1861,6 +1861,10 @@ section .title-description {
     color: #fff;
 }
 
+.sidebar-user-menu .top-section {
+    height: 107px;
+}
+
 .sidebar-user-menu {
     display: inline-block;
     overflow: hidden;
@@ -1899,8 +1903,8 @@ section .title-description {
     right: 15px;
     top: 15px;
     bottom: 15px;
-    width: 106px;
-    height: 106px;
+    width: 75px;
+    height: 75px;
     border: 4px solid #73a280;
     background-color: #73a280;
     border-radius: 50%;
@@ -1945,7 +1949,9 @@ section .title-description {
 }
 
 .sidebar-user-menu .content-section > ul > li {
-    padding: 5px 60px 5px 15px;
+    /*padding: 5px 60px 5px 15px;*/
+    padding: 5px 15px 5px 15px;
+
 }
 
 .sidebar-user-menu .content-section > ul > li.active,
@@ -3440,7 +3446,7 @@ section .title-description {
 }
 
 .smallHeader .top {
-    display:none
+    display: none
 }
 
 .text-white {
@@ -3469,25 +3475,44 @@ section .title-description {
 }
 
 /************/
-.page-text table{
-    border:1px solid #ddd;display: inline-block;background-color: #fff;
+.page-text table {
+    border: 1px solid #ddd;
+    display: inline-block;
+    background-color: #fff;
     height: auto !important;
     width: auto !important;
     max-width: 100%;
     border-radius: 8px;
 }
-.page-text table>tbody>tr>td,
-.page-text table>tbody>tr>th,
-.page-text table>tfoot>tr>td,
-.page-text table>tfoot>tr>th,
-.page-text table>thead>tr>td,
-.page-text table>thead>tr>th{border:1px solid #ddd;padding: 0 5px;font-size: 9pt}
-.page-text table>thead>tr>td,
-.page-text table>thead>tr>th{border-bottom-width:2px}
-@media print{
-    .page-text table{border-collapse:collapse!important}
+
+.page-text table > tbody > tr > td,
+.page-text table > tbody > tr > th,
+.page-text table > tfoot > tr > td,
+.page-text table > tfoot > tr > th,
+.page-text table > thead > tr > td,
+.page-text table > thead > tr > th {
+    border: 1px solid #ddd;
+    padding: 0 5px;
+    font-size: 9pt
+}
+
+.page-text table > thead > tr > td,
+.page-text table > thead > tr > th {
+    border-bottom-width: 2px
+}
+
+@media print {
+    .page-text table {
+        border-collapse: collapse !important
+    }
+
     .page-text table td,
-    .page-text table th{background-color:#fff!important}
+    .page-text table th {
+        background-color: #fff !important
+    }
+
     .page-text table td,
-    .page-text table th{border:1px solid #ddd!important}
+    .page-text table th {
+        border: 1px solid #ddd !important
+    }
 }
