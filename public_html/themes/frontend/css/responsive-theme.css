@@ -332,6 +332,15 @@
         display: block;
     }
 
+    section .section-title {
+        font-size: 21px;
+    }
+
+    section .title-description {
+        margin: 0;
+        margin-right: 5px;
+        font-size: 17px;
+    }
 }
 
 @media screen and (max-width: 767.98px) {
@@ -522,15 +531,6 @@
     }
 
     /*#endregion*/
-    section .section-title {
-        font-size: 21px;
-    }
-
-    section .title-description {
-        margin: 0;
-        margin-right: 5px;
-        font-size: 17px;
-    }
 
 }
 

@@ -1,4 +1,4 @@
-/*----------------------------- header*/
+/*#region header*/
 header div[class^="col-"] {
     float: right !important;
 }
@@ -120,18 +120,8 @@ body {
     right: -15px;
 }
 
-.slider {
-    direction: ltr;
-}
-
-.slider .slide-item .over-slide-inner {
-    padding: 0 0 0 80px;
-    text-align: left;
-}
-
-.item-image {
-    text-align: right;
-}
+/*#endregion*/
+/*#region insurance*/
 
 .insurance-btn-box ul > li a {
     padding: 10px 15px;
@@ -154,6 +144,9 @@ body {
 
 }
 
+/*#endregion*/
+/*#region news and articles*/
+
 .news-item-inner .statics-row > span {
 
     float: left;
@@ -173,6 +166,9 @@ body {
     text-align: left;
     margin: 20px 0 0;
 }
+
+/*#endregion*/
+/*#region gallery*/
 
 .gallery-tabs {
     text-align: right;
@@ -212,6 +208,9 @@ body {
     left: 0;
 
 }
+
+/*#endregion*/
+/*#region bottom section*/
 
 .bottom-section .info-container {
     float: right;
@@ -256,10 +255,6 @@ body {
 }
 
 /*---------------- footer */
-.footer-section {
-    padding: 70px 0 30px;
-}
-
 .footer-section .footer-block {
     float: left;
 }
@@ -324,6 +319,8 @@ body {
 /*padding: 4px 30px 4px 30px;*/
 /*float: right;*/
 /*}*/
+/*#endregion*/
+/*#region dashboard*/
 
 .sidebar-user-menu .user-side-pic {
     width: 75px;
@@ -371,7 +368,21 @@ body {
     padding-left: 0;
 }
 
-/*!*-------------------------- section : slider-container*!*/
+/*#endregion*/
+/*#region slider*/
+.slider {
+    direction: ltr;
+}
+
+.slider .slide-item .over-slide-inner {
+    padding: 0 0 0 80px;
+    text-align: left;
+}
+
+.item-image {
+    text-align: right;
+}
+
 .slider .slide-item .over-slide-inner {
     text-align: left;
     margin-left: auto;
@@ -384,7 +395,8 @@ body {
 /*-o-transform: rotateY(180deg);*/
 /*transform: rotateY(180deg);*/
 /*}*/
-/*!*----------------------------- clinic program *!*/
+/*#endregion*/
+/*#region clinic program*/
 
 .table tr td:first-of-type:before {
     right: auto;
@@ -406,13 +418,14 @@ body {
     margin-right: 5px;
 }
 
-/*!*---------------------- contact us*!*/
+/*#endregion*/
 .contactUs__form label {
     margin-right: 0;
     margin-left: 10px;
 }
 
-/*--------------------- doctors*/
+/*#region doctors*/
+
 .doctors .content-header {
     padding: 0 0 0 30px;
 }
@@ -446,7 +459,9 @@ body {
     transform: rotateY(180deg);
 }
 
-/*---------------------- forgot password*/
+/*#endregion*/
+/*#region forgot password*/
+
 .vertical-separator-line {
     border-left: 0;
     border-right: 2px solid #e82d2d;
@@ -465,11 +480,15 @@ body {
     padding: 25px 25px 25px 55px;
 }
 
-/*----------------news*/
+/*#endregion*/
+/*#region news and articles*/
+
 .news .search-container .form-control {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
+
+/*#endregion*/
 
 .content-header__gradient-overlay {
     left: 48% !important;
@@ -512,6 +531,8 @@ body {
     margin-right: 0;
 }
 
+/*#region register*/
+
 .register .vertical-separator-line {
     border-left: none !important;
     border-right: 2px solid #85c296;
@@ -538,6 +559,10 @@ body {
     padding: 25px 25px 25px 55px;
 }
 
+/*#endregion*/
+
+/*#region clinic*/
+
 .clinic-program .table tr td:first-of-type {
     border-radius: 6px 0 0 6px;
     overflow: hidden;
@@ -547,6 +572,8 @@ body {
     border-radius: 0 6px 6px 0;
     overflow: hidden;
 }
+
+/*#endregion*/
 
 .html5-nav-thumb img {
     -webkit-border-radius: 8px;
