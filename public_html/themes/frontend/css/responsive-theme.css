@@ -1,13 +1,336 @@
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 1199.98px) {
     /*#region footer*/
-    .addressContainer i {
-        width: 64px !important;
+    .bottom-section .info-container {
+        padding-top: 76px;
+
     }
 
     /*#endregion*/
 }
 
-@media screen and (max-width: 575.98px) {
+@media screen and (max-width: 991.98px) {
+    /*#region insurance*/
+    .insurance--header--mobile {
+        display: flex;
+        align-items: center;
+    }
+
+    .insurance-box .insurance-item {
+        width: 33.333%;
+    }
+
+    /*#endregion*/
+    /*#region news-slider*/
+    .new-articles .news-carousel {
+        margin-top: 0;
+        padding-top: 1rem;
+    }
+
+    /*endregion*/
+    /*region footer*/
+    .bottom-section .form-container {
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .bottom-section .form-container .captcha input {
+        margin-right: 85px;
+        float: left;
+        width: 150px;
+    }
+
+    .bottom-section .info-container {
+        border-right: none;
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .addressContainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .footer-block:first-of-type .footer-sub-block .menu-part {
+        width: 24.999%;
+    }
+
+    /*#endregion*/
+    /*#region gallery*/
+    .gallery .gallery-sidebar-menu {
+        display: none;
+    }
+
+    .sideMenuIcon {
+        z-index: 2;
+        float: left;
+        background: transparent;
+    }
+
+    .sideMenuIcon:after {
+        content: '\2807';
+        font-size: 2em;
+        color: #fff;
+    }
+
+    section.gallery {
+        margin-bottom: 5rem;
+    }
+
+    #myModal ul li ul {
+        padding-right: 10px;
+    }
+
+    #myModal ul li a {
+        display: block;
+        padding: 10px 5px;
+    }
+
+    #myModal ul li a:hover, #myModal ul li a:focus {
+        color: #fff;
+    }
+
+    #myModal ul li ul li a {
+        display: block;
+        padding: 5px;
+    }
+
+    #myModal ul li ul li a:hover, #myModal ul li ul li a:focus {
+        color: #877ef3;
+    }
+
+    #myModal .modal-header {
+        position: relative;
+    }
+
+    #myModal .modal-header .close {
+        left: 15px;
+        position: absolute;
+        top: 40%;
+    }
+
+    /*#endregion*/
+    /*#region contact us*/
+    .contactUs__container {
+        padding: 2rem 0 !important;
+    }
+
+    /*#endregion*/
+    /*#region register/login/forgot password*/
+    .social-accounts-container {
+        padding: 0 !important;
+    }
+
+    .register-form {
+        background: #fff;
+        padding: 20px 0 !important;
+    }
+
+    .register .register-form-container {
+        padding: 0;
+    }
+
+    .register .vertical-separator-line {
+        border: none;
+
+    }
+
+    .social-accounts a {
+        line-height: 45px;
+        padding: 15px !important;
+    }
+
+    .social-accounts img {
+        left: 0 !important;
+        top: 20px !important;
+        transform: scale(0.6);
+    }
+
+    .register-form-container form {
+        border-bottom: 1px solid #85c296;
+        padding-bottom: 4rem;
+        margin-bottom: 4rem;
+
+    }
+
+    .register.forgotPassword .register-form-container form {
+        border-bottom: 1px solid #e82d2d;
+
+    }
+
+    .register.login .register-form-container form {
+        border-bottom: 1px solid #3f8dfa;
+
+    }
+
+    .register-form-container form::after, .register-form-container form::before {
+        display: table;
+        content: '';
+        clear: both;
+    }
+
+    /*#endregion*/
+    /*#region news and articles*/
+    .news-show .content-header {
+        display: block;
+    }
+
+    .content-header--titlesContainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .news-show .card {
+        padding: 15px;
+    }
+
+    .news-show .newsShow {
+        padding: 15px;
+        margin-bottom: 1.5rem;
+    }
+
+    .content-header__subTitle, .content-header__title {
+        font-size: 18px;
+    }
+
+    .content-header__image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .news-show .newsShow__title, .news-show .card-title {
+        font-size: 16px;
+    }
+
+    .insurance .umbrella-icon, .new-articles .news-icon {
+        width: 50px;
+        height: 50px;
+        margin-left: 10px;
+    }
+
+    .inline-title {
+        line-height: normal;
+    }
+
+    /*#endregion*/
+    /*#region doctors*/
+    .doctors .content-header img {
+        display: none;
+    }
+
+    .doctors .panel-title__takeTurn {
+        margin: 2rem auto;
+    }
+
+    .doctors .panel-title__more {
+        opacity: 1;
+    }
+
+    .doctors .panel-title__doctorAvatar {
+        float: none;
+        width: 76px;
+        height: 76px;
+        margin-left: 0;
+    }
+
+    .doctors .panel-title__doctorAvatar img.panel-title__doctorAvatar-default {
+        width: 50px;
+        height: 50px;
+        margin: 13px;
+    }
+
+    .doctors .panel-default > .panel-heading {
+        text-align: center;
+    }
+
+    /*#endregion*/
+    /*region navbar*/
+    header {
+        padding: 0;
+    }
+
+    .navbar-default .navbar-toggler {
+        color: #fff;
+        border-color: transparent;
+        padding: 0;
+        float: left;
+        background: transparent;
+        margin: 0;
+    }
+
+    .navbar-toggler-lines:first-child {
+        margin-top: 6px;
+    }
+
+    .navbar-toggler-lines {
+        display: block;
+        width: 35px;
+        height: 4px;
+        background: #fff;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        margin-bottom: 5px;
+    }
+
+    .navbar-brand {
+        height: auto;
+        margin-top: 8px;
+        padding: 0;
+        line-height: normal;
+    }
+
+    .navbar-brand h1 {
+        font-size: 17px;
+        color: #fff;
+        margin: auto 0 !important;
+    }
+
+    .navbar {
+        margin: 0;
+        padding: 5px 0;
+    }
+
+    .navbar-default {
+        background-color: #3f8dfa;
+        border-color: #316bfa;
+    }
+
+    .navbar-default > .container, .navbar-default > .navbar-container {
+        display: none;
+    }
+
+    /*#endregion*/
+    /*#region static pages*/
+    .staticPages #staticPageSidebar {
+        display: none;
+    }
+
+    .staticPages .content-header__image {
+        display: none;
+    }
+
+    .gallery.staticPages .gallery__imageContainer {
+        margin-bottom: 1.5rem !important;
+    }
+
+    /*#endregion*/
+    .content-header {
+        padding: 20px 10px !important;
+        margin-bottom: 15px;
+    }
+
+    .content {
+        margin-top: 55px
+    }
+
+    section.texture-bg {
+        padding: 20px 0;
+    }
+
+    #sidebarCollapse {
+        display: block;
+    }
 
     section .section-title {
         font-size: 21px;
@@ -18,67 +341,21 @@
         margin-right: 5px;
         font-size: 17px;
     }
-
-    /*#region insurance*/
-    .insurance-btn-box ul > li a span {
-        font-size: 17px;
-    }
-
-    /*#endregion*/
-    /*#region footer*/
-    .bottom-section .form-container .captcha input {
-        margin-right: 0 !important;
-        float: left;
-        width: 100px !important;
-    }
-
-    .new-articles .statics-row > span {
-        width: 30.33333%;
-    }
-
-    /*#endregion*/
-    /*#region contact us*/
-    .contactUsPage .submitBtn {
-        width: 100%;
-        float: none;
-        margin-top: 10px;
-    }
-
-    /*#endregion*/
-    /*#region register-login-forgot password*/
-    .submitBtn {
-        float: none !important;
-        display: block !important;
-        width: 100% !important;
-        margin-top: 15px;
-
-    }
-
-    .securityCode__input {
-        float: left;
-        margin-left: 0;
-        width: 100px;
-    }
-
-    /*#endregion*/
-    /*#region news and articles*/
-    .statics-row > span {
-        width: 30.33333%;
-    }
-
-    /*#endregion*/
 }
 
 @media screen and (max-width: 767.98px) {
     /*#region insurance*/
-    .insurance .insurance--header--desktop {
-        display: none;
+    .insurance-btn-box ul > li {
+        width: 45%;
+        float: right;
     }
 
-    .insurance .umbrella-icon {
-        width: 50px;
-        height: 50px;
-        margin-left: 10px;
+    .insurance-btn-box ul > li.active {
+        margin-left: 9.99%;
+    }
+
+    .insurance .insurance--header--desktop {
+        display: none;
     }
 
     .insurance .insurance-btn-box {
@@ -109,7 +386,7 @@
     }
 
     .insurance .tab-pane {
-        height: 85vh;
+        height: 100vh;
         overflow-y: scroll;
         padding: 0;
     }
@@ -185,372 +462,116 @@
     }
 
     /*#endregion*/
-    .insurance-btn-box ul > li {
-        width: 45%;
-        float: right;
-    }
 
-    .insurance-btn-box ul > li.active {
-        margin-left: 9.99%;
-    }
 }
 
-@media screen and (max-width: 991.98px) {
+@media screen and (max-width: 575.98px) {
     /*#region insurance*/
-    .insurance--header--mobile {
-        display: flex;
-        align-items: center;
-    }
-
-    .insurance-box .insurance-item {
-        width: 33.333%;
-    }
-
-    /*#endregion*/
-    /*#region news-slider*/
-    .new-articles .news-carousel {
-        padding-top: 1rem;
-    }
-
-    /*endregion*/
-    /*region footer*/
-    .bottom-section .form-container {
-        width: 100%;
-        padding-left: 0;
-    }
-
-    .bottom-section .form-container .captcha input {
-        margin-right: 85px;
-        float: left;
-        width: 150px;
-    }
-
-    .bottom-section .info-container {
-        border-right: none;
-        width: 100%;
-        padding-right: 0;
-    }
-
-    .addressContainer {
-        display: flex;
-        align-items: center;
-    }
-
-    .footer-block:first-of-type .footer-sub-block .menu-part {
-        width: 24.999%;
-    }
-
-    /*#endregion*/
-    .content {
-        margin-top: 55px
-    }
-
-    #sidebarCollapse {
-        display: block;
-    }
-
-    /*#region gallery*/
-    .gallery .gallery-sidebar-menu {
-        display: none;
-    }
-
-    .sideMenuIcon {
-        z-index: 2;
-        float: left;
-        background: transparent;
-    }
-
-    .sideMenuIcon:after {
-        content: '\2807';
-        font-size: 2em;
-        color: #fff;
-    }
-
-    section.gallery {
-        margin-bottom: 5rem;
-    }
-
-    #myModal ul li ul {
-        padding-right: 10px;
-    }
-
-    #myModal ul li a {
-        display: block;
-        padding: 10px 5px;
-    }
-
-    #myModal ul li a:hover, #myModal ul li a:focus {
-        color: #fff;
-    }
-
-    #myModal ul li ul li a {
-        display: block;
-        padding: 5px;
-    }
-
-    #myModal ul li ul li a:hover, #myModal ul li ul li a:focus {
-        color: #877ef3;
-    }
-
-    #myModal .modal-header {
-        position: relative;
-    }
-
-    #myModal .modal-header .close {
-        left: 15px;
-        position: absolute;
-        top: 40%;
-    }
-
-    /*#endregion*/
-    /*#region contact us*/
-    .contactUs__container {
-        padding: 2rem 0 !important;
-    }
-
-    /*#endregion*/
-    /*#region register/login/forgot password*/
-    .social-accounts-container {
-        padding: 0 !important;
-    }
-
-    .register-form {
-        background: #fff;
-        padding: 20px 0 !important;
-    }
-
-    .social-accounts a {
-        line-height: 45px;
-        padding: 15px !important;
-    }
-
-    .social-accounts img {
-        left: 0 !important;
-        top: 20px !important;
-        transform: scale(0.6);
-    }
-
-    .register-form-container form {
-        border-bottom: 1px solid #85c296;
-        padding-bottom: 4rem;
-        margin-bottom: 4rem;
-
-    }
-
-    .register.forgotPassword .register-form-container form {
-        border-bottom: 1px solid #e82d2d;
-
-    }
-
-    .register.login .register-form-container form {
-        border-bottom: 1px solid #3f8dfa;
-
-    }
-
-    .register-form-container form::after, .register-form-container form::before {
-        display: table;
-        content: '';
-        clear: both;
-    }
-
-    /*#endregion*/
-    .content-header {
-        padding: 20px 10px;
-        margin-bottom: 15px;
-    }
-
-    /*#region news and articles*/
-    .news-show .content-header {
-        display: block;
-    }
-
-    .content-header--titlesContainer {
-        display: flex;
-        align-items: center;
-    }
-
-    .news-show .card {
-        padding: 15px;
-    }
-
-    .news-show .newsShow {
-        padding: 15px;
-        margin-bottom: 1.5rem;
-    }
-
-    .content-header__subTitle, .content-header__title {
-        font-size: 18px;
-    }
-
-    .content-header__image {
-        width: 40px;
-        height: 40px;
-    }
-
-    .news-show .newsShow__title, .news-show .card-title {
-        font-size: 16px;
-    }
-
-    /*#endregion*/
-    /*#region doctors*/
-    .doctors .content-header img {
-        display: none;
-    }
-
-    .doctors .panel-title__takeTurn {
-        margin: 2rem auto;
-    }
-
-    .doctors .panel-title__more {
-        opacity: 1;
-    }
-
-    .doctors .panel-title__doctorAvatar {
-        float: none;
-        width: 76px;
-        height: 76px;
-        margin-left: 0;
-    }
-
-    .doctors .panel-title__doctorAvatar img.panel-title__doctorAvatar-default {
-        width: 50px;
-        height: 50px;
-        margin: 13px;
-    }
-
-    .doctors .panel-default > .panel-heading {
-        text-align: center;
-    }
-
-    /*#endregion*/
-    header {
-        padding: 0;
-    }
-
-    .navbar-default .navbar-toggler {
-        color: #fff;
-        border-color: transparent;
-        padding: 0;
-        float: left;
-        background: transparent;
-        margin: 0;
-    }
-
-    .navbar-toggler-lines:first-child {
-        margin-top: 6px;
-    }
-
-    .navbar-toggler-lines {
-        display: block;
-        width: 35px;
-        height: 4px;
-        background: #fff;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
-        border-radius: 4px;
-        margin-bottom: 5px;
-    }
-
-    .navbar-brand {
-        height: auto;
-        margin-top: 8px;
-        padding: 0;
-        line-height: normal;
-    }
-
-    .navbar-brand h1 {
+    .insurance-btn-box ul > li a span {
         font-size: 17px;
-        color: #fff;
-        margin: auto 0 !important;
-    }
-
-    .navbar {
-        margin: 0;
-        padding: 5px 0;
-    }
-
-    .navbar-default {
-        background-color: #3f8dfa;
-        border-color: #316bfa;
-    }
-
-    section.texture-bg {
-        padding: 20px 0;
-    }
-
-    .navbar-default > .container, .navbar-default > .navbar-container {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 1199.98px) {
-
-}
-
-@media screen and (min-width: 576px) {
-    /*#region captcha*/
-    .field-user-verifycode, .field-loginform-verifycode {
-        display: inline-block !important;
-    }
-
-    /*#endregion*/
-}
-
-@media screen and (min-width: 768px) {
-    /*#region insurance*/
-    .scrollButton {
-        display: none;
-    }
-
-    .insurance--header--mobile {
-        display: none;
     }
 
     /*#endregion*/
     /*#region footer*/
-    .footer-section .footer-block:nth-child(3) {
-        min-height: 283px;
+    .bottom-section .form-container .captcha input {
+        margin-right: 0 !important;
+        float: left;
+        width: 100px !important;
     }
 
-    .bottom-section .info-container {
-        padding-top: 39px;
-    }
-
-    .certificate-block h3 {
-        width: 100%;
+    .new-articles .statics-row > span {
+        width: 30.33333%;
     }
 
     /*#endregion*/
-    .d-md-block {
-        display: block;
+    /*#region contact us*/
+    .contactUsPage .submitBtn {
+        width: 100%;
+        float: none;
+        margin-top: 10px;
     }
 
-    .d-md-none {
-        display: none;
+    /*#endregion*/
+    /*#region register-login-forgot password*/
+    .submitBtn {
+        float: none !important;
+        display: block !important;
+        width: 100% !important;
+        margin-top: 15px;
+
     }
 
-    .bg-md-white {
-        background: #fff;
+    .securityCode__input {
+        float: left;
+        margin-left: 0;
+        width: 100px;
     }
 
-    .bg-md-transparent {
-        background: transparent;
-    }
-
+    /*#endregion*/
     /*#region news and articles*/
     .statics-row > span {
-        width: 33.33333%;
+        width: 30.33333%;
     }
 
     /*#endregion*/
-    /*#region doctors*/
-    .doctors .panel-heading .row {
-        display: flex;
-        align-items: center;
+    /*#region gallery*/
+    .gallery .gallery__imageContainer {
+        width: 49%;
+        height: 280px;
+    }
+
+    .news-show.gallery .gallery__imageContainer {
+        width: auto;
+        height: auto;
+    }
+
+    .gallery.staticPages .gallery__imageContainer {
+        width: 100%;
+        height: auto;
     }
 
     /*#endregion*/
 
+}
+
+@media screen and (max-width: 400px) {
+    /*#region footer*/
+    .addressContainer i {
+        width: 64px !important;
+    }
+
+    /*#endregion*/
+    /*#region gallery*/
+    .gallery .gallery__imageContainer {
+        width: 100%;
+        height: 280px;
+    }
+
+    .news-show.gallery .gallery__imageContainer {
+        width: auto;
+        height: auto;
+    }
+
+    .gallery.staticPages .gallery__imageContainer {
+        width: 100%;
+        height: auto;
+    }
+
+    /*#endregion*/
+
+}
+
+@media screen and (min-width: 1200px) {
+    .navbar > li > a {
+        padding: 11px 15px;
+    }
+
+    /*#region register/login/forgot password*/
+    .register-form-container {
+        padding: 0px 23px 0 52px;
+    }
+
+    /*#endregion*/
 }
 
 @media screen and (min-width: 992px) {
@@ -561,19 +582,12 @@
 
     /*#endregion*/
     /*#region footer*/
-
+    .bottom-section .form-container {
+        padding-left: 70px;
+        padding-right: 15px;
+    }
 
     /*#endregion*/
-
-
-    #sidebarCollapse {
-        display: none;
-    }
-
-    #sidebar {
-        display: none;
-    }
-
     /*#region gallery*/
     .sideMenuIcon {
         display: none;
@@ -592,10 +606,6 @@
     }
 
     /*#endregion*/
-    .bg-white {
-        background: #fff;
-    }
-
     /*#region register/login/forgot password*/
     .vertical-separator-line {
         border-left: 2px solid #85c296;
@@ -629,6 +639,7 @@
     }
 
     /*#endregion*/
+    /*#region navbar*/
     .navbar-container {
         position: absolute;
         bottom: 0;
@@ -649,28 +660,103 @@
         display: none;
     }
 
-    /*.d-sm-block {*/
-    /*display: block;*/
-    /*}*/
-    /*.d-sm-none {*/
-    /*display: none;*/
-    /*}*/
-}
-
-@media screen and (min-width: 1200px) {
-    .navbar > li > a {
-        padding: 11px 15px;
-    }
-
-    /*#region register/login/forgot password*/
-    .register-form-container {
-        padding: 0px 23px 0 52px;
+    /*#endregion*/
+    /*#region static pages*/
+    .staticPages #myModal {
+        display: none;
     }
 
     /*#endregion*/
+    #sidebarCollapse {
+        display: none;
+    }
+
+    .bg-white {
+        background: #fff;
+    }
+
 }
 
-@media screen and (min-width: 768px) and (max-width: 991.98px) {
+@media screen and (min-width: 768px) {
+    /*#region insurance*/
+    .scrollButton {
+        display: none;
+    }
+
+    .insurance--header--mobile {
+        display: none;
+    }
+
+    /*#endregion*/
+    /*#region footer*/
+    .footer-section .footer-block:nth-child(3) {
+        min-height: 283px;
+    }
+
+    .bottom-section .info-container {
+        padding-top: 39px;
+    }
+
+    .certificate-block h3 {
+        width: 100%;
+    }
+
+    /*#endregion*/
+    /*#region news and articles*/
+    .statics-row > span {
+        width: 33.33333%;
+    }
+
+    /*#endregion*/
+    /*#region doctors*/
+    .doctors .panel-heading .row {
+        display: flex;
+        align-items: center;
+    }
+
+    /*#endregion*/
+    .d-md-block {
+        display: block;
+    }
+
+    .d-md-none {
+        display: none;
+    }
+
+    .bg-md-white {
+        background: #fff;
+    }
+
+    .bg-md-transparent {
+        background: transparent;
+    }
+
+}
+
+@media screen and (min-width: 576px) {
+    /*#region captcha*/
+    .field-user-verifycode, .field-loginform-verifycode {
+        display: inline-block !important;
+    }
+
+    /*#endregion*/
+    /*#region gallery*/
+    .gallery .gallery__imageContainer {
+        width: 33%;
+        height: 243px;
+    }
+
+    .news-show.gallery .gallery__imageContainer {
+        width: auto;
+        height: auto;
+    }
+
+    .gallery.staticPages .gallery__imageContainer {
+        width: 100%;
+        height: auto;
+    }
+
+    /*#endregion*/
 
 }
 
@@ -701,8 +787,12 @@
 
     /*#endregion*/
     .footer-block:first-of-type .footer-sub-block .menu-part {
-        width: 24.999%;
+        width: 19.999%;
     }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991.98px) {
+
 }
 
 /*#region navbar*/
@@ -715,7 +805,6 @@
 }
 
 /*#endregion*/
-
 /*#region footer*/
 .certificate-block {
     margin: 0;
@@ -727,7 +816,6 @@
 }
 
 /*#endregion*/
-
 /*#region main/header slider*/
 .header-slider .owl-nav {
     /*position: absolute;*/
@@ -768,27 +856,17 @@
 }
 
 /*#endregion*/
-
-.new-articles .news-icon {
-    margin-left: 5px;
-}
-
 /*#region clinic program*/
 .clinic-program .table > thead > tr > th {
     white-space: nowrap;
 }
 
 /*#endregion*/
-
-.pr-0 {
-    padding-right: 0 !important;
-}
-
-.d-none {
-    display: none;
-}
-
 /*#region news and articles*/
+.new-articles .news-icon {
+    margin-left: 5px;
+}
+
 .news-show.gallery .-hoverBox a {
     display: flex;
     align-items: center;
@@ -813,3 +891,14 @@
 }
 
 /*#endregion*/
+.content-header__titles {
+    margin-left: auto;
+}
+
+.pr-0 {
+    padding-right: 0 !important;
+}
+
+.d-none {
+    display: none;
+}

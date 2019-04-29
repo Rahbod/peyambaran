@@ -264,6 +264,7 @@ abstract class MainController extends Controller
                     ['label' => Yii::t('words', 'Manage Days'), 'url' => ['/clinic/index']],
                     ['label' => Yii::t('words', 'Create New Day'), 'url' => ['/clinic/create']],
                     ['label' => Yii::t('words', 'Import csv'), 'url' => ['/clinic/import-csv-program']],
+                    ['label' => Yii::t('words', 'Import excel'), 'url' => ['/clinic/import-excel-program']],
                 ],
                 'visible' => $permissions === true or isset($permissions['clinic'])
             ],
@@ -313,6 +314,11 @@ abstract class MainController extends Controller
                     ['label' => 'مدیریت نقش های کاربری', 'url' => ['/role/index'], 'visible' => $permissions === true or isset($permissions['user']['role'])],
                 ],
                 'visible' => $permissions === true or isset($permissions['user'])
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-language"></i><span class="m-menu__link-text">مدیریت ترجمه ها</span>',
+                'url' => ['/admin/translate'],
+                'visible' => $permissions === true or isset($permissions['setting'])
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-cogs"></i><span class="m-menu__link-text">' . Yii::t('words', 'Setting') . '</span>',

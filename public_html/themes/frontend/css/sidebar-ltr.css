@@ -32,7 +32,7 @@
     width: 250px;
     position: fixed;
     top: 0;
-    right: -250px;
+    left: -250px;
     height: 100vh;
     z-index: 999;
     background: #fff;
@@ -43,7 +43,7 @@
 }
 
 #sidebar.active {
-    right: 0;
+    left: 0;
 }
 
 #dismiss {
@@ -55,7 +55,8 @@
     background: #3f8dfa;
     position: absolute;
     top: 20px;
-    left: 10px;
+    right: 10px;
+    left: auto;
     cursor: pointer;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
@@ -104,13 +105,13 @@
 }
 
 #sidebar ul li a:hover {
-    background: #dfdfdf;
+    background: #3f8dfaa3;
 }
 
 #sidebar ul li.active > a,
 #sidebar a[aria-expanded="true"] {
     color: #fff;
-    background: #dadada;
+    background: #3f8dfa;
 }
 
 #sidebar a[data-toggle="collapse"] {
@@ -121,27 +122,28 @@
     display: block;
     position: absolute;
     top: 50%;
-    right: 20px;
+    left: 20px;
     transform: translateY(-50%);
 }
 
 #sidebar ul ul a {
     font-size: 0.9em !important;
-    padding-right: 30px !important;
-    background: #dadada;
-    color: #333 !important;
+    padding-left: 30px !important;
+    background: #3f8dfa;
+    color: #fff !important;
 }
 
 #sidebar ul ul ul a {
     font-size: 0.7em !important;
-    padding-right: 30px !important;
+    padding-left: 30px !important;
     background: #24acfa;
     color: #fff !important;
 }
 
 #sidebar ul .submenu::after {
     position: absolute;
-    left: 0;
+    right: 0;
+    left: auto;
     top: 0;
     content: '+';
     clear: both;
@@ -169,10 +171,9 @@ a.article:hover {
     color: #fff !important;
 }
 
-
 #sidebar .user-avatar {
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 50%;
     margin-top: -22px;
     width: 45px;
@@ -186,5 +187,5 @@ a.article:hover {
 }
 
 #sidebar .username-padding {
-    padding-right: 60px;
+    padding-left: 60px!important;
 }

@@ -31,7 +31,8 @@ AppAsset::register($this);
     $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme');
     if (Yii::$app->language == 'en') {
         $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme-ltr.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme-en');
-        $this->registerCssFile($this->theme->baseUrl . '/css/responsive-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'responsive-theme');
+        $this->registerCssFile($this->theme->baseUrl . '/css/responsive-theme-ltr.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'responsive-theme-ltr');
+        $this->registerCssFile($this->theme->baseUrl . '/css/sidebar-ltr.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'sidebar-ltr');
         $this->registerCssFile($this->theme->baseUrl . '/css/fontiran.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'fontiran-fa-num');
     }else {
         $this->registerCssFile($this->theme->baseUrl . '/css/fontiran-fa-num.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'fontiran-fa-num');

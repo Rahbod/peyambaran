@@ -10,6 +10,7 @@ use app\models\PersonProgramRel;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
+use moonland\phpexcel\Excel;
 use ruskid\csvimporter\CSVImporter;
 use ruskid\csvimporter\CSVReader;
 use Yii;
@@ -48,6 +49,8 @@ class ClinicController extends AuthController
         return [
             'upload-csv',
             'delete-csv',
+            'upload-excel',
+            'delete-excel',
             'show'
         ];
     }
@@ -79,6 +82,17 @@ class ClinicController extends AuthController
                 )
             ],
             'delete-csv' => [
+                'class' => RemoveAction::className(),
+            ],
+            'upload-excel' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new ClinicProgram(), 'excel_file'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('xlsx', 'xls')
+                )
+            ],
+            'delete-excel' => [
                 'class' => RemoveAction::className(),
             ],
         ];
@@ -309,5 +323,66 @@ class ClinicController extends AuthController
         }
 
         return $this->render('csv_import', compact('model', 'file'));
+    }
+
+    public function actionImportExcelProgram()
+    {
+        $model = new ClinicProgram();
+
+        if (Yii::$app->request->post()) {
+            $model->load(Yii::$app->request->post());
+            $date = $model->date;
+            $model->date = Helper::jDateTotoGregorian($model->date);
+            $model->is_holiday = 0;
+
+
+            $file = new UploadedFiles($this->tmpDir, $model->excel_file);
+
+            // process excel file
+            $rows = (array)Excel::import(Yii::getAlias("@webroot/$this->tmpDir/$model->excel_file"), [
+                'setFirstRecordAsKeys' => false,
+            ]);
+            $keys = $rows[1];
+            unset($rows[1]);
+
+            $notDefined = [];
+            foreach ($rows as $key => $data) {
+                /** @var $person Person */
+                $medical_number = $data['A'];
+                $person = Person::find()->valid()->andWhere([Person::columnGetString('medical_number') => $medical_number])->one();
+                if (!$person) {
+                    $notDefined[] = $medical_number;
+                    continue;
+                }
+
+                $st = Helper::strToTime($data['B']);
+                $et = Helper::strToTime($data['C']);
+                $status = $data['D'];
+                $description = !empty($data['E']) ? "$status {$data['E']}" : $status;
+
+                $model->doctors[] = [
+                    'personID' => $person->id,
+                    'start_time' => $st,
+                    'end_time' => $et,
+                    'description' => trim($description),
+                    'alternative_personID' => null // alternative doctor
+                ];
+            }
+
+            if ($notDefined)
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => "شماره نظام پزشکی های زیر تعریف نشده اند:\n" . implode("\n", $notDefined)]);
+            else {
+                if ($model->save()) {
+                    $file->removeAll(true);
+                    Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                    return $this->redirect(['update', 'id' => $model->id]);
+                } else
+                    Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            }
+
+            $model->date = $date;
+        }
+
+        return $this->render('excel_import', compact('model', 'file'));
     }
 }

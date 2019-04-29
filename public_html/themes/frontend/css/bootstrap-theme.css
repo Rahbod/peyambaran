@@ -1407,7 +1407,7 @@ section .title-description {
     float: left;
     width: 50%;
     padding-right: 70px;
-    padding-top: 86px;
+    padding-top: 75px;
     border-right: 1px solid rgba(255, 255, 255, 0.33);
 }
 
@@ -1469,6 +1469,7 @@ section .title-description {
     border-radius: 0 10px 10px 0;
     width: 100px;
     height: 46px;
+    background: #fff;
 }
 
 .bottom-section .form-container .captcha a {
@@ -1479,6 +1480,8 @@ section .title-description {
     z-index: 1;
     right: 115px;
     font-size: 1px;
+    border-right: 1px solid #f7f7f7;
+
 }
 
 .bottom-section .form-container .captcha a::before {
@@ -1594,7 +1597,8 @@ section .title-description {
 
 .footer-section {
     background: #f5f8ff;
-    padding: 70px 0 30px;
+    /*padding: 70px 0 30px;*/
+    padding: 15px;
 }
 
 .footer-section .footer-block {
@@ -1676,7 +1680,8 @@ section .title-description {
 
 .footer-section .copyright {
     text-transform: uppercase;
-    margin-top: 50px;
+    /*margin-top: 50px;*/
+    margin-top: 0;
     display: inline-block;
     width: 100%;
 }
@@ -1873,7 +1878,7 @@ section .title-description {
     padding: 15px;
     display: block;
     overflow: hidden;
-    height: 135px;
+    height: 107px;
     position: relative;
     background-color: #85c296;
     color: #fff;
@@ -1899,8 +1904,8 @@ section .title-description {
     right: 15px;
     top: 15px;
     bottom: 15px;
-    width: 106px;
-    height: 106px;
+    width: 75px;
+    height: 75px;
     border: 4px solid #73a280;
     background-color: #73a280;
     border-radius: 50%;
@@ -1916,7 +1921,7 @@ section .title-description {
 .user-side-details {
     display: block;
     overflow: hidden;
-    padding-right: 125px;
+    padding-right: 85px;
 }
 
 .user-side-details h3 {
@@ -1945,7 +1950,9 @@ section .title-description {
 }
 
 .sidebar-user-menu .content-section > ul > li {
-    padding: 5px 60px 5px 15px;
+    /*padding: 5px 60px 5px 15px;*/
+    padding: 5px 15px 5px 15px;
+
 }
 
 .sidebar-user-menu .content-section > ul > li.active,
@@ -2515,8 +2522,8 @@ section .title-description {
 }
 
 .doctors .panel-title__doctorAvatar img {
-    width: 100px;
-    height: 100px;
+    max-width: 100%;
+    height: auto;
 }
 
 .doctors .panel-title__doctorAvatar img.panel-title__doctorAvatar-default {
@@ -3432,6 +3439,12 @@ section .title-description {
 
 /*#region newely added styles  : 4/15/2019*/
 
+.html5-nav-thumb img {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
 .smallHeader {
     border-top: none;
     padding: 0 0 45px;
@@ -3440,7 +3453,7 @@ section .title-description {
 }
 
 .smallHeader .top {
-    display:none
+    display: none
 }
 
 .text-white {
@@ -3466,4 +3479,47 @@ section .title-description {
 .flex-fill {
     -ms-flex: 1 1 auto !important;
     flex: 1 1 auto !important;
+}
+
+/************/
+.page-text table {
+    border: 1px solid #ddd;
+    display: inline-block;
+    background-color: #fff;
+    height: auto !important;
+    width: auto !important;
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.page-text table > tbody > tr > td,
+.page-text table > tbody > tr > th,
+.page-text table > tfoot > tr > td,
+.page-text table > tfoot > tr > th,
+.page-text table > thead > tr > td,
+.page-text table > thead > tr > th {
+    border: 1px solid #ddd;
+    padding: 0 5px;
+    font-size: 9pt
+}
+
+.page-text table > thead > tr > td,
+.page-text table > thead > tr > th {
+    border-bottom-width: 2px
+}
+
+@media print {
+    .page-text table {
+        border-collapse: collapse !important
+    }
+
+    .page-text table td,
+    .page-text table th {
+        background-color: #fff !important
+    }
+
+    .page-text table td,
+    .page-text table th {
+        border: 1px solid #ddd !important
+    }
 }

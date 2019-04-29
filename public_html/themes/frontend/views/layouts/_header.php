@@ -13,7 +13,7 @@ use yii\helpers\Url;
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
                 <div class="dropdown language-select">
-                    <label>Language</label>
+                    <label class="text-right"><?= Yii::t('words', 'Language') ?></label>
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="icon icon-chevron-down"></span>
                         <?= Yii::t('words', Yii::$app->language); ?>
@@ -22,9 +22,10 @@ use yii\helpers\Url;
                     <ul class="dropdown-menu">
                         <li><a href="<?= Url::to(["/fa"]) ?>"><?= Yii::t('words', 'fa') ?></a></li>
                         <li><a href="<?= Url::to(["/en"]) ?>"><?= Yii::t('words', 'en') ?></a></li>
-<!--                        --><?php //foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
-<!--                            <li><a href="--><?//= Url::to(["/{$key}"]) ?><!--">--><?//= Yii::t('words', $key) ?><!--</a></li>-->
-<!--                        --><?php //endforeach; ?>
+                        <!--                        --><?php //foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
+                        <!--                            <li><a href="--><? //= Url::to(["/{$key}"]) ?><!--">-->
+                        <? //= Yii::t('words', $key) ?><!--</a></li>-->
+                        <!--                        --><?php //endforeach; ?>
                     </ul>
                 </div>
 
@@ -75,7 +76,7 @@ use yii\helpers\Url;
                 <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?>">
                 <div class="logo-right">
                     <a href="<?= Url::to(['/']) ?>">
-                        <h1>بیمارســتان پیامبران</h1>
+                        <h1><?= Yii::t('words', 'logo_title') ?></h1>
                         <h2>Payambaran</h2>
                         <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
                     </a>
@@ -157,6 +158,64 @@ use yii\helpers\Url;
         <!--        <p>بیمارستان پیامبران</p>-->
     </div>
     <ul class="list-unstyled components">
+        <?php if (Yii::$app->user->isGuest): ?>
+            <li>
+                <a href="<?= Url::to(['/user/register']) ?>" class="menu-item">
+                    <?= Yii::t('words', 'Register') ?>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?= Url::to(['/user/login']) ?>" class="menu-item">
+                    <?= Yii::t('words', 'Login') ?>
+                </a>
+            </li>
+
+            <li>
+                <hr>
+            </li>
+        <?php else: ?>
+            <li>
+                <? if (Yii::$app->user->identity->roleID != 'user'): ?>
+                    <a href="#user_subitem" class="submenu menu-item username-padding" data-toggle="collapse"
+                       aria-expanded="false">
+                        <?php
+                        $src = $this->theme->baseUrl . '/images/user.jpg';
+                        if (Yii::$app->user->identity->avatar &&
+                            is_file(Yii::getAlias('@webroot/uploads/user/avatars/') . Yii::$app->user->identity->avatar))
+                            $src = Yii::getAlias('@web/uploads/user/avatars/') . Yii::$app->user->identity->avatar;
+                        ?>
+                        <img class="user-avatar" src="<?= $src ?>" alt="<?= Yii::$app->user->identity->name ?>">
+                        <?= Yii::$app->user->identity->username ?>
+                    </a>
+                <? else: ?>
+                    <a href="#user_subitem" class="submenu menu-item username-padding" data-toggle="collapse"
+                       aria-expanded="false">
+                        <?php
+                        $src = $this->theme->baseUrl . '/images/user.jpg';
+                        if (Yii::$app->user->identity->avatar &&
+                            is_file(Yii::getAlias('@webroot/uploads/user/avatars/') . Yii::$app->user->identity->avatar))
+                            $src = Yii::getAlias('@web/uploads/user/avatars/') . Yii::$app->user->identity->avatar;
+                        ?>
+                        <img class="user-avatar" src="<?= $src ?>" alt="<?= Yii::$app->user->identity->name ?>">
+                        <?= Yii::$app->user->identity->name ?>
+                    </a>
+                <? endif; ?>
+                <ul class="collapse list-unstyled" id="user_subitem">
+                    <li>
+                        <? if (Yii::$app->user->identity->roleID != 'user'): ?>
+                            <a class="submenu menu-item" href="<?= Url::to(['/admin']) ?>">پروفایل کاربری</a>
+                        <? else: ?>
+                            <a class="submenu menu-item" href="<?= Url::to(['/user/dashboard']) ?>">پروفایل کاربری</a>
+                        <? endif; ?>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <hr>
+            </li>
+        <?php endif; ?>
+
         <?php foreach (Menu::find()->roots()->valid()->orderBySort()->all() as $item): ?>
             <?php
             $ic = $item->children(1)->count();

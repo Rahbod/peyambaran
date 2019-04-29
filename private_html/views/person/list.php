@@ -27,18 +27,18 @@ $expertiseID = Yii::$app->request->getQueryParam('expertise') ?: 0;
                         <?php foreach ($expertiseMenu as $item):$sc = $item->children(1)->count(); ?>
                             <li class="mb-3">
                                 <?php if ($sc > 0): ?>
-                                    <a href="void:;" class="text-purple"><?= $item->name ?></a>
+                                    <a href="void:;" class="text-purple"><?= $item->getName() ?></a>
                                     <ul class="list-unstyled submenu">
                                         <?php foreach ($item->children(1)->all() as $item_child): $url = Url::to(['/person/list', 'expertise' => $item_child->id]); ?>
                                             <li>
                                                 <a class="-hoverBlue text-dark-2<?= $expertiseID == $item_child->id ? " active" : "" ?>"
-                                                   href="<?= $url ?>"><?= $item_child->name ?></a>
+                                                   href="<?= $url ?>"><?= $item_child->getName() ?></a>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php else: $url = Url::to(['/person/list', 'expertise' => $item->id]); ?>
                                     <a class="-hoverBlue text-dark-2<?= $expertiseID == $item->id ? " active" : "" ?>"
-                                       href="<?= $url ?>"><?= $item->name ?></a>
+                                       href="<?= $url ?>"><?= $item->getName() ?></a>
                                 <?php endif; ?>
                             </li>
                         <?php endforeach; ?>

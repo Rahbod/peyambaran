@@ -3,13 +3,11 @@
 namespace app\controllers;
 
 use app\components\AuthController;
-use app\components\MainController;
+use app\components\customWidgets\CustomCaptchaAction;
 use app\models\Category;
 use app\models\Insurance;
-use app\models\Item;
 use app\models\Message;
 use app\models\OnlineService;
-use app\models\Person;
 use app\models\Post;
 use app\models\Slide;
 use Yii;
@@ -67,8 +65,13 @@ class SiteController extends AuthController
                 'class' => 'yii\web\ErrorAction',
             ],
             'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'class' => CustomCaptchaAction::className(),
+                'transparent' => true,
+                'onlyNumber' => true,
+                'foreColor' => 0x2040A0,
+                'minLength'=>3,
+                'maxLength'=>3,
+                'fontFile' => '@webroot/themes/default/assets/vendors/base/fonts/IranSans/ttf/fa-num/IRANSansWeb.ttf'
             ],
         ];
     }
@@ -86,8 +89,8 @@ class SiteController extends AuthController
     public function actionIndex()
     {
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
-        $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->all();
-        $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->all();
+        $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->orderBy(['id' => SORT_ASC])->all();
+        $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->orderBy(['id' => SORT_ASC])->all();
         $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();
         $galleryCategories = Category::find()->valid()->andWhere(['type' => Category::TYPE_CATEGORY, Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY])->all();
         $onlineServices = OnlineService::find()->valid()->all();

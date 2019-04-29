@@ -77,7 +77,12 @@ class UserController extends AuthController
                 'setTheme' => true,
                 'width' => 130,
                 'height' => 40,
-                'transparent' => true
+                'transparent' => true,
+                'onlyNumber' => true,
+                'foreColor' => 0x2040A0,
+                'minLength'=>3,
+                'maxLength'=>3,
+                'fontFile' => '@webroot/themes/default/assets/vendors/base/fonts/IranSans/ttf/fa-num/IRANSansWeb.ttf'
             ],
             // declares "error" action using a class name
             'upload-image' => [

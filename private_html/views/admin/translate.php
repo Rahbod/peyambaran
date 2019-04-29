@@ -49,9 +49,14 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <?php if ($basePhrases && $destPhrases): ?>
+            <hr>
             <div class="m-form__section m-form__section--last">
                 <div class="m-form__heading">
-                    <h3 class="m-form__heading-title">عبارات</h3>
+                    <h5>عبارات</h5>
+                    <p class="text-danger">
+                        ** توجه:
+                        - متغیرهایی که به صورت {...} داخل براکت هستند یا عباراتی که تگ های html دارند را به همان صورت بازنویسی کنید.
+                    </p>
                 </div>
 
                 <?php $form = CustomActiveForm::begin([
@@ -66,15 +71,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     $value = '';
                     if (isset($destPhrases[$key]))
                         $value = $destPhrases[$key];
-                    elseif (Yii::$app->request->getQueryParam('lang') == 'en')
-                        $value = $key;
+                    elseif (Yii::$app->request->getQueryParam('lang') == 'en') {
+                        if(strpos($key,'base.') === false && strpos($key,'user.') === false)
+                            $value = $key;
+                    }
                     ?>
                     <div class="form-group m-form__group row">
                         <?php echo Html::label($phrase, '', ['class' => 'col-lg-2 col-form-label']) ?>
                         <div class="col-lg-6">
                             <?php echo Html::textarea("new_phrases[$key]", $value, [
                                 'class' => 'form-control m-input m-input__solid',
-                                'rows' => 1
+                                'rows' => 1,
+                                'dir' => 'auto'
                             ]); ?>
                         </div>
                     </div>
