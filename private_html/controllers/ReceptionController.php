@@ -3,11 +3,14 @@
 namespace app\controllers;
 
 use app\models\Attachment;
+use devgroup\dropzone\RemoveAction;
+use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
 use app\models\UserRequest;
 use app\models\UserRequestSearch;
 use app\components\AuthController;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -18,19 +21,19 @@ use yii\widgets\ActiveForm;
  */
 class ReceptionController extends AuthController
 {
-    public $attachmentDir = 'uploads/reception';
+    public $attachmentDir = 'uploads/request/reception';
     private $attachmentOptions = [];
 
     public function getSystemActions()
     {
         return [
-            'list'
+            'request'
         ];
     }
 
     /**
-    * for set admin theme
-    */
+     * for set admin theme
+     */
     public function init()
     {
         $this->setTheme('default');
@@ -48,6 +51,28 @@ class ReceptionController extends AuthController
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'upload-attachment' => [
+                'class' => UploadAction::className(),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'fileName' => Html::getInputName(new UserRequest(), 'files'),
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
+            ],
+            'delete-attachment' => [
+                'class' => RemoveAction::className(),
+                'upload' => Attachment::$attachmentPath,
+                'storedMode' => RemoveAction::STORED_RECORD_MODE,
+                'model' => new Attachment(),
+                'attribute' => 'file',
+                'options' => $this->attachmentOptions
             ],
         ];
     }
@@ -85,6 +110,38 @@ class ReceptionController extends AuthController
         ]);
     }
 
+    public function actionRequest()
+    {
+        if (Yii::$app->user->isGuest) {
+            Yii::$app->user->returnUrl = Yii::$app->request->getAbsoluteUrl();
+            return $this->redirect(['/user/login']);
+        }
+
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+
+        $model = new UserRequest();
+        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
+            $model->load(Yii::$app->request->post());
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if (Yii::$app->request->post()) {
+            $model->load(Yii::$app->request->post());
+            $files = new UploadedFiles($this->tmpDir, $model->file, $this->attachmentOptions);
+            if ($model->save()) {
+                $files->move(Attachment::getAttachmentPath());
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+        }
+
+        return $this->render('request', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Displays a single UserRequest model.
      * @param integer $id
@@ -113,12 +170,12 @@ class ReceptionController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -144,12 +201,12 @@ class ReceptionController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -200,14 +257,14 @@ class ReceptionController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             $files = new UploadedFiles($this->tmpDir, $model->files, $this->attachmentOptions);
             if ($model->save()) {
                 $files->move(Attachment::getAttachmentPath());
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 

@@ -396,6 +396,7 @@ class UserController extends AuthController
         if (Yii::$app->user->isGuest || Yii::$app->user->identity->roleID != 'user')
             return $this->redirect(['/']);
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $this->layout = 'dashboard';
         $user = Yii::$app->user->identity;
         return $this->render('dashboard', compact('user'));
 

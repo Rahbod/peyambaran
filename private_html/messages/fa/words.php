@@ -285,4 +285,7 @@ return [
     'Language' => 'انتخاب زبان',
     'pictures' => 'تصاویر   ',
     'Instagram' => 'اینستاگرام',
+    'reception' => 'پذیرش',
+    'cooperation' => 'همکاری',
+    'advice' => 'مشاوره',
 ];

@@ -15,7 +15,6 @@ use yii\helpers\ArrayHelper;
  * @property string $type all user request types
  * @property string $name
  * @property resource $dyna All fields
- * @property string $extra JSON array keeps all other options
  * @property string $created
  * @property int $status Request Status
  * @property [] $files
@@ -25,7 +24,32 @@ use yii\helpers\ArrayHelper;
  */
 class UserRequest extends MultiLangActiveRecord
 {
+    const TYPE_RECEPTION = 1;
+    const TYPE_COOPERATION = 2;
+    const TYPE_ADVICE = 3;
+
     public $files = null;
+
+    public static $typeLabels = [
+        self::TYPE_RECEPTION => 'reception',
+        self::TYPE_COOPERATION => 'cooperation',
+        self::TYPE_ADVICE => 'advice'
+    ];
+
+    public function getTypeLabel($type = false)
+    {
+        if (!$type)
+            $type = $this->type;
+        return Yii::t('words', ucfirst(self::$typeLabels[$type]));
+    }
+
+    public static function getTypeLabels()
+    {
+        $lbs = [];
+        foreach (self::$typeLabels as $key => $label)
+            $lbs[$key] = Yii::t('words', ucfirst($label));
+        return $lbs;
+    }
 
     /**
      * {@inheritdoc}
@@ -56,6 +80,9 @@ class UserRequest extends MultiLangActiveRecord
             [['files'], 'safe'],
             [['created'], 'safe'],
             [['name'], 'string', 'max' => 511],
+            [['status'], 'default', 'value' => 0],
+            [['created'], 'default', 'value' => time()],
+            [['userID'], 'default', 'value' => Yii::$app->user->getId()],
             [['userID'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userID' => 'id']],
         ]);
     }
@@ -67,11 +94,10 @@ class UserRequest extends MultiLangActiveRecord
     {
         return array_merge(parent::attributeLabels(), [
             'id' => Yii::t('words', 'ID'),
-            'userID' => Yii::t('words', 'User I D'),
+            'userID' => Yii::t('words', 'User ID'),
             'type' => Yii::t('words', 'all user request types'),
             'name' => Yii::t('words', 'Name'),
             'dyna' => Yii::t('words', 'All fields'),
-            'extra' => Yii::t('words', 'JSON array keeps all other options'),
             'created' => Yii::t('words', 'Created'),
             'status' => Yii::t('words', 'Request Status'),
             'files' => Yii::t('words', 'Attachments'),
