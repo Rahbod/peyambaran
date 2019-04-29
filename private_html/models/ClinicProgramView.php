@@ -114,6 +114,8 @@ class ClinicProgramView extends CustomActiveRecord
             return $dataProvider;
         }
 
+
+        //
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
