@@ -217,6 +217,16 @@ $this->registerJs('
                     ]); ?>
                 </div>
             </div>
+            
+            <div class="form-group m-form__group row">
+                <?php echo Html::label(Yii::t('words', 'Instagram'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <div class="col-lg-6">
+                    <?php echo Html::textInput('Setting[socialNetworks][instagram]', $settings['socialNetworks']['instagram'], [
+                        'class' => 'form-control m-input m-input__solid text-right',
+                        'dir' => 'ltr',
+                    ]); ?>
+                </div>
+            </div>
         </div>
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
