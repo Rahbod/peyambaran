@@ -142,6 +142,7 @@ $(window).on("load resize scroll", function () {
 $('#dismiss, .screen-overlay').on('click', function () {
     $('nav#sidebar').removeClass('active');
     $('.screen-overlay').removeClass('active');
+    $('body').removeClass('overflow-fix');
 });
 
 $('#sidebarCollapse').on('click', function () {
@@ -149,4 +150,5 @@ $('#sidebarCollapse').on('click', function () {
     $('.screen-overlay').addClass('active');
     $('.collapse.in').toggleClass('in');
     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    $('body').addClass('overflow-fix');
 });

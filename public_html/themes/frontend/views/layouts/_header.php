@@ -135,7 +135,7 @@ use yii\helpers\Url;
             <a class="navbar-brand" href="<?= Url::to(['/']) ?>">
                 <!--                <img  class="siteLogo__image img-fluid" src="-->
                 <? //= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?><!--">-->
-                <h1>بیمارســتان پیامبران</h1>
+                <h1><?= Yii::t('words', 'logo_title')?></h1>
             </a>
 
             <button id="sidebarCollapse" class="navbar-toggler" type="button">
@@ -149,12 +149,10 @@ use yii\helpers\Url;
 </header>
 
 <nav id="sidebar">
-    <div id="dismiss">
-        x
-        <!--        <i class="fas fa-arrow-left"></i>-->
-    </div>
+<!--    <div id="dismiss">&times;</div>-->
     <div class="sidebar-header">
-        <h4 class="">بیمارستان پیامبران</h4>
+        <img src="<?= $this->theme->baseUrl . "/images/logo-white.png" ?>">
+        <h4 class=""><?= Yii::t('words', 'logo_title')?></h4>
         <!--        <p>بیمارستان پیامبران</p>-->
     </div>
     <ul class="list-unstyled components">

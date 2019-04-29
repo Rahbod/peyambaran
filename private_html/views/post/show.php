@@ -115,6 +115,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
             </div>
         </div>
     </div>
+    <?php if($relatedPosts): ?>
     <section class="related-news" style="overflow-x: hidden;">
         <div class="container">
             <div class="row insurance-container">
@@ -164,4 +165,5 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
             </div>
         </div>
     </section>
+    <?php endif; ?>
 </section>

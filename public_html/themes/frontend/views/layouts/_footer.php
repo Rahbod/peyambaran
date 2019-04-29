@@ -69,7 +69,7 @@ $contactModel = new \app\models\ContactForm();
                                     'captchaAction' => ['site/captcha'],
                                     'template' => "{image}\n{url}\n{input}",
                                     'linkOptions' => [
-                                        'label' => Yii::t('words', 'New Code')
+                                        'label' => ''
                                     ],
                                     'options' => [
                                         'placeholder' => Yii::t('words', 'Verify Code'),

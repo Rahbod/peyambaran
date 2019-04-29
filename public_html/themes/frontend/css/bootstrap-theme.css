@@ -2023,6 +2023,9 @@ section .title-description {
     padding-left: 15px;
 }
 
+.content-body {
+    padding: 0 calc(1rem + 30px);
+}
 .tab-pane .content-body {
     padding: 30px 0;
 }
@@ -3353,6 +3356,7 @@ section .title-description {
     left: 0;
     width: 50%;
     height: auto;
+    min-height: 100%;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);

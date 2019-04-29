@@ -51,7 +51,6 @@
     height: 35px;
     line-height: 35px;
     text-align: center;
-    border: 1px solid #fff;
     background: #3f8dfa;
     position: absolute;
     top: 20px;
@@ -187,4 +186,13 @@ a.article:hover {
 
 #sidebar .username-padding {
     padding-right: 60px;
+}
+
+#sidebar .sidebar-header{
+    text-align: center;
+}
+#sidebar .sidebar-header img{
+    width: 70px;
+    height: auto;
+    margin: 0 auto;
 }

@@ -47,7 +47,7 @@ if ($relatedMenu)
                     </nav>
                 </div>
             <?php endif; ?>
-<!--            <div class="--><?//= $root ? 'col-sm-' : 'col-sm-10 col-sm-offset-1' ?><!--">-->
+            <!--            <div class="--><? //= $root ? 'col-sm-' : 'col-sm-10 col-sm-offset-1' ?><!--">-->
             <div class="col-sm-12 col-md-9">
 
                 <div class="content-header bg-cyan">
@@ -68,14 +68,14 @@ if ($relatedMenu)
                     <?php if ($model->gallery):
                         $this->registerJsFile($this->theme->baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [], 'lightbox');
                         ?>
+                        <h4><?= Yii::t('words', 'pictures') ?></h4>
                         <div class="mt-3 mb-5 page-gallery row">
                             <? foreach ($model->gallery as $item):
                                 if ($item->file && is_file(Yii::getAlias("@webroot/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file"))):?>
-                                    <div class="col-sm-3 mb-5">
+                                    <div class="col-sm-3 col-xs-6 mb-3">
                                         <div class="gallery__imageContainer">
                                             <a href="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file") ?>"
                                                data-transition="crossfade"
-                                               data-thumbnail="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/thumbs/200x200/$item->file") ?>"
                                                class="html5lightbox"
                                                data-group="mygroup">
                                                 <img class="gallery__images"
@@ -86,11 +86,10 @@ if ($relatedMenu)
                                             <div class="-hoverBox bg-cyan">
                                                 <a href="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file") ?>"
                                                    data-transition="crossfade"
-                                                   data-thumbnail="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/thumbs/200x200/$item->file") ?>"
                                                    class="html5lightbox"
                                                    data-group="mygroup" data-width="600"
                                                    data-height="400">
-                                                    <!--                                            <h4>آزمایشگاه پاتولوژی</h4>-->
+<!--                                                    <h4>آزمایشگاه پاتولوژی</h4>-->
                                                     <img src="<?= $this->theme->baseUrl ?>/images/gallery/frame.png">
                                                 </a>
                                             </div>
@@ -120,7 +119,7 @@ if ($relatedMenu)
                 <div class="modal-body">
                     <?php if ($root): ?>
                         <nav>
-                            <ul class="list-unstyled mt-5">
+                            <ul class="list-unstyled">
                                 <?php foreach ($root->children(1)->valid()->all() as $sub_item):$sc = $sub_item->children(1)->valid()->count(); ?>
                                     <li class="mb-3">
                                         <?php if ($sc > 0): ?>
@@ -142,9 +141,6 @@ if ($relatedMenu)
                             </ul>
                         </nav>
                     <?php endif; ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
                 </div>
             </div>
 

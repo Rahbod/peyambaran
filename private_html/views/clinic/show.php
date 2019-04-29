@@ -52,6 +52,12 @@ use app\models\Category;
 //                        ],
                         'columns' => [
                             [
+                                'attribute' => 'name',
+                                'value' => function ($model) {
+                                    return $model->person->getName();
+                                }
+                            ],
+                            [
                                 'attribute' => 'exp',
                                 'value' => function ($model) {
                                     return $model->expertise->getName();
@@ -62,12 +68,7 @@ use app\models\Category;
                                 ]),
                                 'options' => ['width' => '150px']
                             ],
-                            [
-                                'attribute' => 'name',
-                                'value' => function ($model) {
-                                    return $model->person->getName();
-                                }
-                            ],
+
                             [
                                 'attribute' => 'date',
                                 'header' => Yii::t('words', 'Week Days'),
