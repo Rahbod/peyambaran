@@ -298,9 +298,12 @@ class Category extends MultiLangActiveRecord
         return $name;
     }
 
-    public static function getWithType($type, $return = 'array')
+    public static function getWithType($type, $return = 'array', $valid = false)
     {
-        $models = self::find()->andWhere([self::columnGetString('category_type') => $type])->all();
+        $models = self::find()->andWhere([self::columnGetString('category_type') => $type]);
+        if ($valid)
+            $models = $models->valid();
+        $models = $models->all();
         if ($return == 'array')
             return ArrayHelper::map($models, 'id', 'fullName');
         return $models;
@@ -312,7 +315,7 @@ class Category extends MultiLangActiveRecord
             if (Yii::$app->language == 'fa')
                 return $this->name;
             else
-                return $this->{Yii::$app->language . '_name'}?:$this->name;
+                return $this->{Yii::$app->language . '_name'} ?: $this->name;
         }
         return $this->name;
     }
