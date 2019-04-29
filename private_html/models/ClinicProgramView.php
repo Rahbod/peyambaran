@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use function app\components\dd;
 use app\components\Helper;
 use Yii;
 use app\components\CustomActiveRecord;
@@ -15,6 +16,8 @@ use yii\data\ActiveDataProvider;
  * @property string $exp
  * @property string $expID
  * @property string $name
+ * @property string $en_name
+ * @property string $ar_name
  * @property string $date
  * @property string $start_time
  * @property string $end_time
@@ -120,7 +123,7 @@ class ClinicProgramView extends CustomActiveRecord
         if (Yii::$app->language == 'fa')
             $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)]);
         else
-            $query->andFilterWhere(['REGEXP', Item::columnGetString(Yii::$app->language . '_name', 'person', 'CHAR'), Helper::persian2Arabic($this->name)]);
+            $query->andFilterWhere(['REGEXP', Yii::$app->language . '_name', Helper::persian2Arabic($this->name)]);
 
         if ($this->week) {
             $week = $this->week < 3 ? $this->week + 4 : $this->week - 3;

@@ -52,21 +52,21 @@ use app\models\Category;
 //                        ],
                         'columns' => [
                             [
-                                'attribute' => 'exp',
-                                'value' => function ($model) {
-                                    return $model->expertise->getName();
-                                },
-                                'filter' => Html::activeDropDownList($clinicSearchModel, 'exp', Category::getWithType(Category::CATEGORY_TYPE_EXPERTISE), [
-                                    'class' => 'form-control',
-                                    'prompt' => Yii::t('words', 'All')
-                                ]),
-                                'options' => ['width' => '150px']
-                            ],
-                            [
                                 'attribute' => 'name',
                                 'value' => function ($model) {
                                     return $model->person->getName();
                                 }
+                            ],
+                            [
+                                'attribute' => 'exp',
+                                'value' => function ($model) {
+                                    return $model->expertise->getName();
+                                },
+                                'filter' => Html::activeDropDownList($clinicSearchModel, 'exp', Category::getWithType(Category::CATEGORY_TYPE_EXPERTISE,'array', true), [
+                                    'class' => 'form-control',
+                                    'prompt' => Yii::t('words', 'All')
+                                ]),
+                                'options' => ['width' => '150px']
                             ],
                             [
                                 'attribute' => 'date',
