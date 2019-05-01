@@ -20,7 +20,6 @@ use yii\widgets\ActiveForm;
  */
 class ReceptionController extends AuthController
 {
-    public $attachmentDir = 'uploads/request/reception';
     public static $attachmentOptions = [];
 
     public function getSystemActions()
@@ -29,6 +28,7 @@ class ReceptionController extends AuthController
             'delete',
             'list',
             'request',
+            'view',
             'upload-attachment',
             'delete-attachment',
         ];
@@ -156,6 +156,9 @@ class ReceptionController extends AuthController
      */
     public function actionView($id)
     {
+        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+        $this->layout = 'dashboard';
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

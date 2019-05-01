@@ -40,22 +40,16 @@ use yii\widgets\Pjax;
                         }
                     ],
                     [
-                        'attribute' => 'reception_type',
+                        'attribute' => 'cooperation_type',
                         'value' => function ($model) {
-                            return $model->getReceptionTypeLabel();
+                            return $model->getCooperationTypeLabel();
                         },
-                        'filter' => \app\models\Reception::getReceptionTypeLabels()
+                        'filter' => \app\models\Cooperation::getCooperationTypeLabels()
                     ],
                     [
                         'attribute' => 'created',
                         'value' => function ($model) {
                             return jDateTime::date('Y/m/d', $model->created);
-                        }
-                    ],
-                    [
-                        'attribute' => 'visit_date',
-                        'value' => function ($model) {
-                            return $model->visit_date?jDateTime::date('Y/m/d', $model->visit_date):null;
                         }
                     ],
                     [
@@ -68,7 +62,7 @@ use yii\widgets\Pjax;
                     ],
                     [
                         'class' => '\yii\grid\ActionColumn',
-                        'template' => '{delete}'
+                        'template' => '{view} {delete}'
                     ],
                 ]
             ]); ?>

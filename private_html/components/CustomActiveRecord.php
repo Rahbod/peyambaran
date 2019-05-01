@@ -152,6 +152,7 @@ abstract class CustomActiveRecord extends ActiveRecord
 
         if (method_exists($this, $method)) {
             $fields = $this->{$method}();
+            $i = 0;
             foreach ($fields as $name => $field) {
 
                 if (isset($field['visible'])) {
@@ -183,6 +184,7 @@ abstract class CustomActiveRecord extends ActiveRecord
                 unset($field['containerCssClass']);
 
                 $field['attribute'] = $name;
+                $field['tabindex'] = isset($field['tabindex']) ? $field['tabindex'] : $i;
                 $obj = $this->fieldRenderer($form, $field);
                 if (!$labelEx) {
                     if (strpos($template, '{label}') === false)
@@ -196,6 +198,7 @@ abstract class CustomActiveRecord extends ActiveRecord
                 Html::addCssClass($containerOptions, empty($containerCssClass) ? ($field['type'] !== static::FORM_SEPARATOR ? $allContainerCssClass : 'col-sm-12') : $containerCssClass);
                 $fieldHtml = Html::tag('div', $obj, $containerOptions);
                 $output .= strtr($template, ['{field}' => $fieldHtml]);
+                $i++;
             }
         }
 
@@ -221,12 +224,16 @@ abstract class CustomActiveRecord extends ActiveRecord
         $items = isset($field['items']) ? $field['items'] : [];
         $attribute = $field['attribute'];
         $type = isset($field['type']) ? $field['type'] : false;
+
+        if (isset($field['tabindex']))
+            $options['tabindex'] = $field['tabindex'];
         switch ($type) {
             case static::FORM_SEPARATOR:
                 Html::addCssClass($options, 'm-form__heading');
                 return Html::tag('hr') .
                     Html::tag('div', Html::tag('h3', $field['label'], ['class' => 'm-form__heading-title']), $options);
             case static::FORM_FIELD_TYPE_DROP_ZONE:
+                unset($options['tabindex']);
                 if (!$model->isNewRecord)
                     $options['options']['storedFiles'] = new UploadedFiles($field['path'], $model->$attribute, $field['filesOptions']);
                 return $form->field($model, $attribute)->widget(DropZone::className(), $options);

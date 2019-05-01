@@ -42,7 +42,8 @@ class CooperationSearch extends Cooperation
      */
     public function search($params)
     {
-        $query = Reception::find();
+        $query = Cooperation::find();
+        $query->andWhere(['type' => Cooperation::$typeName]);
 
         // add conditions that should always apply here
 

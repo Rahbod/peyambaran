@@ -2000,11 +2000,16 @@ section .title-description {
 .custom-table tbody td {
     background-color: #e7e7e7;
     border-top: 4px solid transparent;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .custom-table tbody tr:hover td {
-    background-color: #3f8dfa;
-    color: #fff;
+    background-color: #dadada;
+    color: #333;
 }
 
 .custom-table thead th {
@@ -2026,7 +2031,8 @@ section .title-description {
 .content-body {
     padding: 0 calc(1rem + 30px);
 }
-.dashboard .content-body{
+
+.dashboard .content-body {
     padding: 0;
 }
 
@@ -3695,11 +3701,105 @@ section .title-description {
     opacity: 1 !important;
     visibility: visible !important;
 }
-.help-block{
+
+.help-block {
     font-size: 11px;
 }
 
-.dashboard__form--btn{
+.dashboard__form--btn {
     width: 150px;
     float: left;
+}
+
+.dashboard .card {
+    background-color: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 2px 0 #bbb;
+    -moz-box-shadow: 0 1px 2px 0 #bbb;
+    box-shadow: 0 1px 2px 0 #bbb;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    margin-bottom: 3rem;
+}
+
+.dashboard .card:hover {
+    -webkit-box-shadow: 2px 2px 4px 0 #bbb;
+    -moz-box-shadow: 2px 2px 4px 0 #bbb;
+    box-shadow: 2px 2px 4px 0 #bbb;
+}
+
+.card.bg-success {
+    border-bottom: 4px solid rgb(144, 216, 2);
+}
+
+.card.bg-warning {
+    border-bottom: 4px solid rgb(247, 188, 72);
+}
+
+.card.bg-danger {
+    border-bottom: 4px solid rgb(255, 83, 148);
+}
+
+.card.bg-cyan {
+    border-bottom: 4px solid rgb(25, 137, 172);
+}
+
+.card.bg-pink {
+    border-bottom: 4px solid rgb(243, 129, 129);
+}
+
+.card.bg-blue {
+    border-bottom: 4px solid rgb(165, 233, 219);
+}
+
+.card.bg-warning .card-header,
+.card.bg-warning .card-body {
+    background-color: rgba(247, 188, 72, .07);
+}
+
+.card.bg-success .card-header,
+.card.bg-success .card-body {
+    background-color: rgba(144, 216, 2, .07);
+}
+
+.card.bg-danger .card-header,
+.card.bg-danger .card-body {
+    background-color: rgba(255, 83, 148, .07);
+}
+
+.card.bg-cyan .card-header,
+.card.bg-cyan .card-body {
+    background-color: rgba(25, 137, 172, .07);
+}
+
+.card.bg-pink .card-header,
+.card.bg-pink .card-body {
+    background-color: rgba(243, 129, 129, .07);
+}
+
+.card.bg-blue .card-header,
+.card.bg-blue .card-body {
+    background-color: rgba(165, 233, 219, .07);
+}
+
+.dashboard .card-header,
+.dashboard .card-body {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.dashboard .card-title {
+    margin: 20px 0;
+    color: #777;
+}
+
+.dashboard .card-text {
+    color: #919191;
 }

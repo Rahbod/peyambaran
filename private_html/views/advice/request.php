@@ -28,7 +28,7 @@ use yii\helpers\Html;
             'options' => ['class' => 'contactUs__form']
         ]); ?>
 
-        <p><?= Yii::t('words', 'reception_text') ?></p>
+        <p><?= Yii::t('words', 'advice_text') ?></p>
         <?=  $form->errorSummary($model) ?>
         <div class="row">
             <?= $model->formRenderer($form, '{field}', 'col-sm-6') ?>

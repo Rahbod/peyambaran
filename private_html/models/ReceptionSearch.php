@@ -44,6 +44,7 @@ class ReceptionSearch extends Reception
     public function search($params)
     {
         $query = Reception::find();
+        $query->andWhere(['type' => Reception::$typeName]);
 
         // add conditions that should always apply here
 

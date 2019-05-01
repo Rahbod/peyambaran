@@ -12,7 +12,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property int $id
  * @property int $userID
- * @property string $type all user request types
+ * @property string $type
  * @property string $name
  * @property resource $dyna All fields
  * @property string $created

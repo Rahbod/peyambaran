@@ -28,10 +28,10 @@ use yii\helpers\Html;
             'options' => ['class' => 'contactUs__form']
         ]); ?>
 
-        <p><?= Yii::t('words', 'reception_text') ?></p>
+        <p><?= Yii::t('words', 'cooperation_text') ?></p>
         <?=  $form->errorSummary($model) ?>
         <div class="row">
-            <?= $model->formRenderer($form, '{field}', 'col-sm-6') ?>
+            <?= $model->formRenderer($form, '{field}', 'col-sm-4') ?>
         </div>
 
         <?= Html::submitButton(Yii::t('words', 'Submit'), ['class' => 'btn dashboard__form--btn btn-success']) ?>

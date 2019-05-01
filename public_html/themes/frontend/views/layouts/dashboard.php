@@ -79,24 +79,24 @@ AppAsset::register($this);
                             </div>
                             <div class="content-section">
                                 <ul class="list-unstyled">
-                                    <li class="<?= Yii::$app->request->getUrl() === ''?'active':'' ?>">
-                                        <a class="disabled" href="<?= Url::to(['']) ?>"><i class=""></i><span><?= Yii::t('words', 'Visit request') ?></span></a>
-                                    </li>
                                     <li class="<?= Yii::$app->request->getUrl() === '/reception/list'?'active':'' ?>">
                                         <a href="<?= Url::to(['/reception/list']) ?>"><i
                                                     class=""></i><span><?= Yii::t('words', 'Reception request') ?></span></a>
-                                    </li>
-                                    <li>
-                                        <a class="disabled" href="#user-tab-5"><i class=""></i><span>جوابدهی آزمایشگاه</span></a>
-                                    </li>
-                                    <li>
-                                        <a class="disabled" href="#user-tab-6"><i class=""></i><span>جوابدهی تصویربرداری</span></a>
                                     </li>
                                     <li class="<?= Yii::$app->request->getUrl() === '/cooperation/list'?'active':'' ?>">
                                         <a href="<?= Url::to(['/cooperation/list']) ?>"><i class=""></i><span><?= Yii::t('words', 'Cooperation request') ?></span></a>
                                     </li>
                                     <li class="<?= Yii::$app->request->getUrl() === '/advice/list'?'active':'' ?>">
                                         <a href="<?= Url::to(['/advice/list']) ?>"><i class=""></i><span><?= Yii::t('words', 'Medical advice request') ?></span></a>
+                                    </li>
+                                    <li class="<?= Yii::$app->request->getUrl() === ''?'active':'' ?>">
+                                        <a class="disabled" href="<?= Url::to(['']) ?>"><i class=""></i><span><?= Yii::t('words', 'Visit request') ?></span></a>
+                                    </li>
+                                    <li>
+                                        <a class="disabled" href="#user-tab-5"><i class=""></i><span>جوابدهی آزمایشگاه</span></a>
+                                    </li>
+                                    <li>
+                                        <a class="disabled" href="#user-tab-6"><i class=""></i><span>جوابدهی تصویربرداری</span></a>
                                     </li>
                                     <li class="text-danger"><a href="<?= \yii\helpers\Url::to(['/user/logout']) ?>"><i
                                                     class=""></i><span><?= Yii::t('words', 'Logout') ?></span></a></li>

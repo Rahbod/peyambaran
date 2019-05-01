@@ -68,7 +68,7 @@ use yii\widgets\Pjax;
                     ],
                     [
                         'class' => '\yii\grid\ActionColumn',
-                        'template' => '{delete}'
+                        'template' => '{view} {delete}'
                     ],
                 ]
             ]); ?>
