@@ -39,13 +39,13 @@ use yii\widgets\Pjax;
                             return $model->getPatientName();
                         }
                     ],
-                    [
-                        'attribute' => 'reception_type',
-                        'value' => function ($model) {
-                            return $model->getAdviceTypeLabel();
-                        },
-                        'filter' => \app\models\Advice::getAdviceTypeLabels()
-                    ],
+//                    [
+//                        'attribute' => 'reception_type',
+//                        'value' => function ($model) {
+//                            return $model->getAdviceTypeLabel();
+//                        },
+//                        'filter' => \app\models\Advice::getAdviceTypeLabels()
+//                    ],
                     [
                         'attribute' => 'created',
                         'value' => function ($model) {

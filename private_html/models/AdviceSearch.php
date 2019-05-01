@@ -5,7 +5,6 @@ namespace app\models;
 use app\components\Helper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\UserRequest;
 
 /**
  * UserRequestSearch represents the model behind the search form of `app\models\UserRequest`.
@@ -42,7 +41,8 @@ class AdviceSearch extends Advice
      */
     public function search($params)
     {
-        $query = Reception::find();
+        $query = Advice::find();
+        $query->andWhere(['type' => Advice::$typeName]);
 
         // add conditions that should always apply here
 
