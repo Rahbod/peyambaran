@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\Helper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\UserRequest;
@@ -9,7 +10,7 @@ use app\models\UserRequest;
 /**
  * UserRequestSearch represents the model behind the search form of `app\models\UserRequest`.
  */
-class UserRequestSearch extends UserRequest
+class CooperationSearch extends Cooperation
 {
     /**
      * {@inheritdoc}
@@ -19,7 +20,7 @@ class UserRequestSearch extends UserRequest
         return [
             [['id', 'userID', 'status'], 'integer'],
             [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created'], 'safe'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -41,7 +42,7 @@ class UserRequestSearch extends UserRequest
      */
     public function search($params)
     {
-        $query = UserRequest::find();
+        $query = Reception::find();
 
         // add conditions that should always apply here
 
@@ -66,8 +67,10 @@ class UserRequestSearch extends UserRequest
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'dyna', $this->dyna]);
+        $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
+            ->orFilterWhere(['REGEXP', 'family', Helper::persian2Arabic($this->name)]);
+
+        $query->orderBy(['id' => SORT_DESC]);
 
         return $dataProvider;
     }

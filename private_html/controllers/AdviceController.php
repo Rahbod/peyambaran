@@ -3,12 +3,13 @@
 namespace app\controllers;
 
 use app\models\Attachment;
-use app\models\Reception;
-use app\models\ReceptionSearch;
+use app\models\Advice;
+use app\models\AdviceSearch;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
+use app\models\UserRequest;
 use app\components\AuthController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -16,11 +17,10 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
- * ReceptionController implements the CRUD actions for Reception model.
+ * AdviceController implements the CRUD actions for UserRequest model.
  */
-class ReceptionController extends AuthController
+class AdviceController extends AuthController
 {
-    public $attachmentDir = 'uploads/request/reception';
     public static $attachmentOptions = [];
 
     public function getSystemActions()
@@ -64,8 +64,8 @@ class ReceptionController extends AuthController
             'upload-attachment' => [
                 'class' => UploadAction::className(),
                 'rename' => UploadAction::RENAME_UNIQUE,
-                'modelName' => 'Reception',
-                'model' => new Reception(),
+                'modelName' => 'Advice',
+                'model' => new Advice(),
                 'validateOptions' => array(
                     'acceptedTypes' => array('png', 'jpg', 'jpeg', 'pdf', 'doc', 'docx')
                 )
@@ -82,12 +82,12 @@ class ReceptionController extends AuthController
     }
 
     /**
-     * Lists all Reception models.
+     * Lists all UserRequest models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ReceptionSearch();
+        $searchModel = new AdviceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -97,7 +97,7 @@ class ReceptionController extends AuthController
     }
 
     /**
-     * Lists all Reception models.
+     * Lists all UserRequest models.
      * @return mixed
      */
     public function actionList()
@@ -105,7 +105,7 @@ class ReceptionController extends AuthController
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
         $this->layout = 'dashboard';
 
-        $searchModel = new ReceptionSearch();
+        $searchModel = new AdviceSearch();
         $searchModel->userID = Yii::$app->user->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -125,7 +125,7 @@ class ReceptionController extends AuthController
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
         $this->layout = 'dashboard';
 
-        $model = new Reception();
+        $model = new Advice();
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -149,7 +149,7 @@ class ReceptionController extends AuthController
     }
 
     /**
-     * Displays a single Reception model.
+     * Displays a single UserRequest model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -162,13 +162,13 @@ class ReceptionController extends AuthController
     }
 
     /**
-     * Creates a new Reception model.
+     * Creates a new UserRequest model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Reception();
+        $model = new UserRequest();
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -191,7 +191,7 @@ class ReceptionController extends AuthController
     }
 
     /**
-     * Updates an existing Reception model.
+     * Updates an existing UserRequest model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -222,13 +222,11 @@ class ReceptionController extends AuthController
     }
 
     /**
-     * Deletes an existing Reception model.
+     * Deletes an existing UserRequest model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
-     * @throws \Throwable
-     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
@@ -243,18 +241,44 @@ class ReceptionController extends AuthController
     }
 
     /**
-     * Finds the Reception model based on its primary key value.
+     * Finds the UserRequest model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Reception the loaded model
+     * @return UserRequest the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Reception::findOne($id)) !== null) {
+        if (($model = UserRequest::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+    }
+
+    public function actionHospitalization()
+    {
+        $model = new UserRequest();
+
+        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
+            $model->load(Yii::$app->request->post());
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if (Yii::$app->request->post()) {
+            $model->load(Yii::$app->request->post());
+            $files = new UploadedFiles($this->tmpDir, $model->files, static::$attachmentOptions);
+            if ($model->save()) {
+                $files->move(Attachment::getAttachmentPath());
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 }

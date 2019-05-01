@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
     <img src="<?= $this->theme->baseUrl ?>/svg/gallery-white.svg"
          class="img-fluid content-header__image" alt="">
     <div class="content-header__titles">
-        <h1 class="media-heading content-header__title"><?= Yii::t('words', 'Reception request') ?></h1>
+        <h1 class="media-heading content-header__title"><?= Yii::t('words', 'Advice request') ?></h1>
         <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran Hospital') ?></h3>
     </div>
 </div>
@@ -42,9 +42,9 @@ use yii\widgets\Pjax;
                     [
                         'attribute' => 'reception_type',
                         'value' => function ($model) {
-                            return $model->getReceptionTypeLabel();
+                            return $model->getAdviceTypeLabel();
                         },
-                        'filter' => \app\models\Reception::getReceptionTypeLabels()
+                        'filter' => \app\models\Advice::getAdviceTypeLabels()
                     ],
                     [
                         'attribute' => 'created',

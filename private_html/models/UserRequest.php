@@ -28,6 +28,11 @@ class UserRequest extends MultiLangActiveRecord
     const TYPE_COOPERATION = 2;
     const TYPE_ADVICE = 3;
 
+    const STATUS_REFUSED = -1;
+    const STATUS_PENDING = 0;
+    const STATUS_OPERATOR_CHECK = 1;
+    const STATUS_CONFIRM = 2;
+
     public $files = null;
 
     public static $typeLabels = [
@@ -36,20 +41,12 @@ class UserRequest extends MultiLangActiveRecord
         self::TYPE_ADVICE => 'advice'
     ];
 
-    public function getTypeLabel($type = false)
-    {
-        if (!$type)
-            $type = $this->type;
-        return Yii::t('words', ucfirst(self::$typeLabels[$type]));
-    }
-
-    public static function getTypeLabels()
-    {
-        $lbs = [];
-        foreach (self::$typeLabels as $key => $label)
-            $lbs[$key] = Yii::t('words', ucfirst($label));
-        return $lbs;
-    }
+    public static $statusLabels = [
+        self::STATUS_PENDING => 'Pending',
+        self::STATUS_OPERATOR_CHECK => 'Operator checking',
+        self::STATUS_CONFIRM => 'Confirmed',
+        self::STATUS_REFUSED => 'Refused',
+    ];
 
     /**
      * {@inheritdoc}
@@ -73,7 +70,7 @@ class UserRequest extends MultiLangActiveRecord
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['userID', 'type', 'name', 'created', 'status'], 'required'],
+            [['name'], 'required'],
             [['userID', 'status'], 'integer'],
             [['type'], 'number'],
             [['dyna', 'extra'], 'string'],
@@ -200,5 +197,50 @@ class UserRequest extends MultiLangActiveRecord
     public function getAttachmentRel()
     {
         return $this->hasOne(Attachment::className(), [Attachment::columnGetString('receptionID', 'attachment') => 'id']);
+    }
+
+    public function getTypeLabel($type = false)
+    {
+        if (!$type)
+            $type = $this->type;
+        return Yii::t('words', ucfirst(self::$typeLabels[$type]));
+    }
+
+    public static function getTypeLabels()
+    {
+        $lbs = [];
+        foreach (self::$typeLabels as $key => $label)
+            $lbs[$key] = Yii::t('words', ucfirst($label));
+        return $lbs;
+    }
+
+    public function getStatusLabel($status = false)
+    {
+        if (!$status)
+            $status = $this->status;
+        return Yii::t('words', ucfirst(self::$statusLabels[$status]));
+    }
+
+    public static function getStatusLabels()
+    {
+        $lbs = [];
+        foreach (self::$statusLabels as $key => $label)
+            $lbs[$key] = Yii::t('words', ucfirst($label));
+        return $lbs;
+    }
+
+    public function getStatusCssClass()
+    {
+        switch ($this->status){
+            case static::STATUS_REFUSED:
+                return 'danger';
+            case static::STATUS_CONFIRM:
+                return 'success';
+            case static::STATUS_OPERATOR_CHECK:
+                return 'warning';
+            case static::STATUS_PENDING:
+            default:
+                return 'default';
+        }
     }
 }

@@ -528,6 +528,9 @@
 }
 
 @media screen and (max-width: 575.98px) {
+    .dashboard__form--btn{
+        width: 100%;
+    }
     /*#region insurance*/
     .insurance-btn-box ul > li a span {
         font-size: 17px;

@@ -7,6 +7,7 @@ use app\themes\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\BootstrapAsset;
 use yii\web\JqueryAsset;
+use \yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -78,29 +79,27 @@ AppAsset::register($this);
                             </div>
                             <div class="content-section">
                                 <ul class="list-unstyled">
-                                    <li class="active">
-                                        <a href="#user-tab-1"><i class=""></i><span>درخواست نوبت</span></a>
+                                    <li class="<?= Yii::$app->request->getUrl() === ''?'active':'' ?>">
+                                        <a class="disabled" href="<?= Url::to(['']) ?>"><i class=""></i><span><?= Yii::t('words', 'Visit request') ?></span></a>
+                                    </li>
+                                    <li class="<?= Yii::$app->request->getUrl() === '/reception/list'?'active':'' ?>">
+                                        <a href="<?= Url::to(['/reception/list']) ?>"><i
+                                                    class=""></i><span><?= Yii::t('words', 'Reception request') ?></span></a>
                                     </li>
                                     <li>
-                                        <a href="<?= Url::to(['/reception/list']) ?>"><i class=""></i><span>درخواست پذیرش بستری</span></a>
-                                    </li>
-                                    <li><a href="#user-tab-3"><i class=""></i><span>درخواست پذیرش کلینیک</span></a></li>
-                                    <li><a href="#user-tab-4"><i class=""></i><span>درخواست پذیرش پاراکلینیک</span></a>
+                                        <a class="disabled" href="#user-tab-5"><i class=""></i><span>جوابدهی آزمایشگاه</span></a>
                                     </li>
                                     <li>
-                                        <a href="#user-tab-5"><i class=""></i><span>جوابدهی آزمایشگاه</span></a>
+                                        <a class="disabled" href="#user-tab-6"><i class=""></i><span>جوابدهی تصویربرداری</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#user-tab-6"><i class=""></i><span>جوابدهی تصویربرداری</span></a>
+                                    <li class="<?= Yii::$app->request->getUrl() === '/cooperation/list'?'active':'' ?>">
+                                        <a href="<?= Url::to(['/cooperation/list']) ?>"><i class=""></i><span><?= Yii::t('words', 'Cooperation request') ?></span></a>
                                     </li>
-                                    <li>
-                                        <a href="#user-tab-7"><i class=""></i><span>درخواست همکاری</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#user-tab-8"><i class=""></i><span>درخواست مشاوره پزشکی</span></a>
+                                    <li class="<?= Yii::$app->request->getUrl() === '/advice/list'?'active':'' ?>">
+                                        <a href="<?= Url::to(['/advice/list']) ?>"><i class=""></i><span><?= Yii::t('words', 'Medical advice request') ?></span></a>
                                     </li>
                                     <li class="text-danger"><a href="<?= \yii\helpers\Url::to(['/user/logout']) ?>"><i
-                                                    class=""></i><span>خروج</span></a></li>
+                                                    class=""></i><span><?= Yii::t('words', 'Logout') ?></span></a></li>
                                 </ul>
                             </div>
                             <div class="footer-border"></div>

@@ -4,14 +4,14 @@ use \yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
 /** @var $this \yii\web\View */
-/** @var $model \app\models\Reception */
+/** @var $model \app\models\Advice */
 ?>
 
 <div class="content-header">
     <img src="<?= $this->theme->baseUrl ?>/svg/gallery-white.svg"
          class="img-fluid content-header__image" alt="">
     <div class="content-header__titles">
-        <h1 class="media-heading content-header__title"><?= Yii::t('words', 'Reception request') ?></h1>
+        <h1 class="media-heading content-header__title"><?= Yii::t('words', 'Advice request') ?></h1>
         <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran Hospital') ?></h3>
     </div>
 </div>

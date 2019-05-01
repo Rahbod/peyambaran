@@ -5,6 +5,7 @@ namespace app\components;
 use app\models\Log;
 use app\models\Menu;
 use devgroup\dropzone\DropZone;
+use devgroup\dropzone\UploadedFiles;
 use dosamigos\tinymce\TinyMce;
 use Yii;
 use yii\db\ActiveRecord;
@@ -114,6 +115,7 @@ abstract class CustomActiveRecord extends ActiveRecord
 
 
     /**************************************    Form Renderer    **************************************/
+    const FORM_SEPARATOR = 0;
     const FORM_FIELD_TYPE_TEXT = 1;
     const FORM_FIELD_TYPE_TEXT_AREA = 2;
     const FORM_FIELD_TYPE_SWITCH = 3;
@@ -144,35 +146,57 @@ abstract class CustomActiveRecord extends ActiveRecord
      * @param string $allContainerCssClass
      * @return string
      */
-    public function formRenderer($form, $template = '{field}', $allContainerCssClass = '')
+    public function formRenderer($form, $template = '{field}', $allContainerCssClass = '', $method = 'formAttributes')
     {
         $output = '';
 
-        $fields = $this->formAttributes();
-        foreach ($fields as $name => $field) {
-            $labelEx = true;
-            $label = '';
-            if (isset($field['label'])) {
-                $labelEx = false;
-                $label = $field['label'];
-                unset($field['label']);
+        if (method_exists($this, $method)) {
+            $fields = $this->{$method}();
+            foreach ($fields as $name => $field) {
+
+                if (isset($field['visible'])) {
+                    if ($field['visible'] instanceof \Closure)
+                        $visible = $field['visible']($this);
+                    else
+                        $visible = $field['visible'];
+
+                    if (!$visible)
+                        continue;
+                }
+
+                $labelEx = true;
+                $label = '';
+                if ($field['type'] !== static::FORM_SEPARATOR && isset($field['label'])) {
+                    if ($field['label'] instanceof \Closure)
+                        $label = $field['label']($this);
+                    else
+                        $label = $field['label'];
+
+                    $labelEx = $label === true;
+
+                    unset($field['label']);
+                }
+
+                $containerOptions = isset($field['containerOptions']) ? $field['containerOptions'] : [];
+                unset($field['containerOptions']);
+                $containerCssClass = isset($field['containerCssClass']) ? $field['containerCssClass'] : '';
+                unset($field['containerCssClass']);
+
+                $field['attribute'] = $name;
+                $obj = $this->fieldRenderer($form, $field);
+                if (!$labelEx) {
+                    if (strpos($template, '{label}') === false)
+                        $obj->label($label);
+                    else {
+                        $output .= strtr($template, ['{label}' => $label]);
+                        $obj->label(false);
+                    }
+                }
+
+                Html::addCssClass($containerOptions, empty($containerCssClass) ? ($field['type'] !== static::FORM_SEPARATOR ? $allContainerCssClass : 'col-sm-12') : $containerCssClass);
+                $fieldHtml = Html::tag('div', $obj, $containerOptions);
+                $output .= strtr($template, ['{field}' => $fieldHtml]);
             }
-
-            $containerOptions = isset($field['containerOptions']) ? $field['containerOptions'] : [];
-            unset($field['containerOptions']);
-            $containerCssClass = isset($field['containerCssClass']) ? $field['containerCssClass'] : '';
-            unset($field['containerCssClass']);
-
-            $field['attribute'] = $name;
-            $obj = $this->fieldRenderer($form, $field);
-            if (!$labelEx) {
-                $output .= strtr($template, ['{label}' => $label]);
-                $obj->label(false);
-            }
-
-            Html::addCssClass($containerOptions, empty($containerCssClass) ? $allContainerCssClass : $containerCssClass);
-            $fieldHtml = Html::tag('div', $obj, $containerOptions);
-            $output .= strtr($template, ['{field}' => $fieldHtml]);
         }
 
         return $output;
@@ -184,10 +208,10 @@ abstract class CustomActiveRecord extends ActiveRecord
      * sample: [
      *      'model' => $model, // optional, if not set be $this
      *      'attribute' => ...,
-     *      'type' => self::FORM_FIELD_TYPE_...,
+     *      'type' => static::FORM_FIELD_TYPE_...,
      *      'options' => [...], // field htmlOptions
      * ]
-     * @return \yii\widgets\ActiveField
+     * @return \yii\widgets\ActiveField|string
      */
     public function fieldRenderer($form, $field)
     {
@@ -198,46 +222,41 @@ abstract class CustomActiveRecord extends ActiveRecord
         $attribute = $field['attribute'];
         $type = isset($field['type']) ? $field['type'] : false;
         switch ($type) {
-            case self::FORM_FIELD_TYPE_DROP_ZONE:
+            case static::FORM_SEPARATOR:
+                Html::addCssClass($options, 'm-form__heading');
+                return Html::tag('hr') .
+                    Html::tag('div', Html::tag('h3', $field['label'], ['class' => 'm-form__heading-title']), $options);
+            case static::FORM_FIELD_TYPE_DROP_ZONE:
+                if (!$model->isNewRecord)
+                    $options['options']['storedFiles'] = new UploadedFiles($field['path'], $model->$attribute, $field['filesOptions']);
                 return $form->field($model, $attribute)->widget(DropZone::className(), $options);
-                break;
-            case self::FORM_FIELD_TYPE_CHECKBOX:
+            case static::FORM_FIELD_TYPE_CHECKBOX:
                 return $form->field($model, $attribute)->checkbox($options);
-                break;
-            case self::FORM_FIELD_TYPE_RADIO:
+            case static::FORM_FIELD_TYPE_RADIO:
                 return $form->field($model, $attribute)->radio($options);
-                break;
-            case self::FORM_FIELD_TYPE_CHECKBOX_LIST:
+            case static::FORM_FIELD_TYPE_CHECKBOX_LIST:
                 return $form->field($model, $attribute)->checkboxList($items, $options);
-                break;
-            case self::FORM_FIELD_TYPE_RADIO_LIST:
+            case static::FORM_FIELD_TYPE_RADIO_LIST:
                 return $form->field($model, $attribute)->radioList($items, $options);
-                break;
-            case self::FORM_FIELD_TYPE_SELECT:
+            case static::FORM_FIELD_TYPE_SELECT:
                 return $form->field($model, $attribute)->dropDownList($items, $options);
-                break;
-            case self::FORM_FIELD_TYPE_SWITCH:
+            case static::FORM_FIELD_TYPE_SWITCH:
                 if (!isset($fieldOptions['template']))
                     $fieldOptions['template'] = '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}';
                 return $form->field($model, $attribute, $fieldOptions)->checkbox([], false);
-                break;
-            case self::FORM_FIELD_TYPE_TEXT_EDITOR:
+            case static::FORM_FIELD_TYPE_TEXT_EDITOR:
                 return $form->field($model, $attribute, $fieldOptions)->widget(TinyMce::className(), $options);
-                break;
-            case self::FORM_FIELD_TYPE_TEXT_AREA:
+            case static::FORM_FIELD_TYPE_TEXT_AREA:
                 return $form->field($model, $attribute, $fieldOptions)->textarea($options);
-                break;
-            case self::FORM_FIELD_TYPE_PASSWORD:
+            case static::FORM_FIELD_TYPE_PASSWORD:
                 return $form->field($model, $attribute, $fieldOptions)->passwordInput($options);
-                break;
-            case self::FORM_FIELD_TYPE_TAG:
-            case self::FORM_FIELD_TYPE_TIME:
-            case self::FORM_FIELD_TYPE_DATE:
-            case self::FORM_FIELD_TYPE_DATETIME:
-            case self::FORM_FIELD_TYPE_TEXT:
+            case static::FORM_FIELD_TYPE_TAG:
+            case static::FORM_FIELD_TYPE_TIME:
+            case static::FORM_FIELD_TYPE_DATE:
+            case static::FORM_FIELD_TYPE_DATETIME:
+            case static::FORM_FIELD_TYPE_TEXT:
             default:
                 return $form->field($model, $attribute, $fieldOptions)->textInput($options);
-                break;
         }
     }
 

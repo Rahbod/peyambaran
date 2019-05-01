@@ -149,11 +149,9 @@ use yii\helpers\Url;
 </header>
 
 <nav id="sidebar">
-<!--    <div id="dismiss">&times;</div>-->
     <div class="sidebar-header">
         <img src="<?= $this->theme->baseUrl . "/images/logo-white.png" ?>">
         <h4 class=""><?= Yii::t('words', 'logo_title')?></h4>
-        <!--        <p>بیمارستان پیامبران</p>-->
     </div>
     <ul class="list-unstyled components">
         <?php if (Yii::$app->user->isGuest): ?>
@@ -202,9 +200,9 @@ use yii\helpers\Url;
                 <ul class="collapse list-unstyled" id="user_subitem">
                     <li>
                         <? if (Yii::$app->user->identity->roleID != 'user'): ?>
-                            <a class="submenu menu-item" href="<?= Url::to(['/admin']) ?>">پروفایل کاربری</a>
+                            <a class="menu-item" href="<?= Url::to(['/admin']) ?>">پروفایل کاربری</a>
                         <? else: ?>
-                            <a class="submenu menu-item" href="<?= Url::to(['/user/dashboard']) ?>">پروفایل کاربری</a>
+                            <a class="menu-item" href="<?= Url::to(['/user/dashboard']) ?>">پروفایل کاربری</a>
                         <? endif; ?>
                     </li>
                 </ul>
