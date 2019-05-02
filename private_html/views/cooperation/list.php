@@ -36,7 +36,7 @@ use yii\widgets\Pjax;
                         'attribute' => 'name',
                         'header' => Yii::t('words', 'Patient name'),
                         'value' => function ($model) {
-                            return $model->getPatientName();
+                            return $model->getFullName();
                         }
                     ],
                     [

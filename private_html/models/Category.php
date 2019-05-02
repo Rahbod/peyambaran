@@ -173,7 +173,7 @@ class Category extends MultiLangActiveRecord
     public function getItems()
     {
         return $this->hasMany(Item::className(), ['id' => 'itemID'])
-            ->viaTable('catitem', ['catID' => 'id']);
+            ->viaTable('catitem', ['catID' => 'id'])->andWhere(['status' => Item::STATUS_PUBLISHED]);
     }
 
     /**

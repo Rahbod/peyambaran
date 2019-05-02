@@ -152,7 +152,7 @@ class CooperationController extends AuthController
         }
 
         if (Yii::$app->request->post()) {
-            \app\components\dd(Yii::$app->request->post());
+//            \app\components\dd(Yii::$app->request->post());
             $model->load(Yii::$app->request->post());
             $avatar = new UploadedFiles($this->tmpDir, $model->avatar);
             $files = new UploadedFiles($this->tmpDir, $model->files, static::$attachmentOptions);

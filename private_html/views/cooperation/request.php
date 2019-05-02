@@ -231,11 +231,11 @@ $this->registerJs('
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 mt-4 fields-container fields-type-1">
+            <div class="col-sm-12 mt-4 fields-container fields-type-1 fields-type-2">
                 <h4><?= $model->getAttributeLabel('skills') ?></h4>
                 <?= $form->field($model, 'skills')->textarea(['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('skills'), 'rows' => 3, 'tabindex' => \app\models\Cooperation::$tabindex++])->label(false) ?>
             </div>
-            <div class="col-sm-12 mt-4 fields-container fields-type-1">
+            <div class="col-sm-12 mt-4 fields-container fields-type-1 fields-type-2">
                 <h4><?= $model->getAttributeLabel('activity_requested') ?></h4>
                 <?= $form->field($model, 'activity_requested')->textarea(['class' => 'form-control', 'rows' => 3, 'tabindex' => \app\models\Cooperation::$tabindex++])->label(false) ?>
             </div>

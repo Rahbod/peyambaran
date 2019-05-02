@@ -6,8 +6,6 @@ $(function () {
     //     $(this).niceScroll(options);
     // });
 
-    $(".nicescroll").niceScrollTrigger();
-
     // $(window).on("load resize scroll", function () {
         $(".owl-carousel").each(function () {
             var options = $(this).data();
@@ -89,6 +87,10 @@ $(function () {
         $('#sidebar').removeClass('active');
         // hide overlay
         $('.sidebar--overlay').removeClass('active');
+    });
+
+    $(window).on("load resize", function () {
+        $(".nicescroll").niceScrollTrigger();
     });
 });
 (function () {

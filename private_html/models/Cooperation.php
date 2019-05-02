@@ -72,12 +72,12 @@ class Cooperation extends UserRequest
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
+            'avatar' => ['CHAR', ''],
             'cooperation_type' => ['INTEGER', ''],
             'family' => ['CHAR', ''],
             'father_name' => ['CHAR', ''],
             'gender' => ['CHAR', ''],
             'birth_day' => ['CHAR', ''],
-            'avatar' => ['CHAR', ''],
             'national_code' => ['CHAR', ''],
             'passport_id' => ['CHAR', ''],
             'issued' => ['CHAR', ''],
@@ -338,7 +338,7 @@ class Cooperation extends UserRequest
         return $lbs;
     }
 
-    public function getPatientName()
+    public function getFullName()
     {
         return "$this->name $this->family";
     }

@@ -323,7 +323,7 @@
     }
 
     .content {
-        margin-top: 55px
+        padding-top: 55px
     }
 
     section.texture-bg {
@@ -475,7 +475,7 @@
     }
 
     .innerPages .content {
-        margin-top: 5px;
+        padding-top: 5px;
     }
 
     .innerPages .content > section {
