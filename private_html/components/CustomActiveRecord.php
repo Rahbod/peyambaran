@@ -146,6 +146,7 @@ abstract class CustomActiveRecord extends ActiveRecord
      * @param string $allContainerCssClass
      * @return string
      */
+    public static $tabindex = 0;
     public function formRenderer($form, $template = '{field}', $allContainerCssClass = '', $method = 'formAttributes')
     {
         $output = '';
@@ -184,6 +185,7 @@ abstract class CustomActiveRecord extends ActiveRecord
                 unset($field['containerCssClass']);
 
                 $field['attribute'] = $name;
+                static::$tabindex = $i;
                 $field['tabindex'] = isset($field['tabindex']) ? $field['tabindex'] : $i;
                 $obj = $this->fieldRenderer($form, $field);
                 if (!$labelEx) {
