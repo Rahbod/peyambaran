@@ -17,7 +17,7 @@ use yii\helpers\Html;
 </div>
 <div class="col-sm-12">
     <div class="row mt-5 mb-4">
-        <?= Html::a(Yii::t('words', 'Back'), ['list'], ['class' => 'btn btn-sm btn-primary pull-left']) ?>
+        <?= Html::a(Yii::t('words', 'Back'), Yii::$app->request->referrer, ['class' => 'btn btn-sm btn-primary pull-left']) ?>
     </div>
     <div class="row mb-5 contactUs__container dashboard__form-container">
         <?php $form = ActiveForm::begin([

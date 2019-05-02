@@ -17,7 +17,7 @@ use yii\helpers\Html;
 </div>
 <div class="col-sm-12">
     <div class="row mt-5 mb-4">
-        <?= Html::a(Yii::t('words', 'Back'), ['list'], ['class' => 'btn btn-sm btn-primary pull-left']) ?>
+        <?= Html::a(Yii::t('words', 'Back'), Yii::$app->request->referrer, ['class' => 'btn btn-sm btn-primary pull-left']) ?>
     </div>
     <div class="row mb-5 contactUs__container dashboard__form-container">
         <?php $form = ActiveForm::begin([
@@ -32,6 +32,18 @@ use yii\helpers\Html;
         <?=  $form->errorSummary($model) ?>
         <div class="row">
             <?= $model->formRenderer($form, '{field}', 'col-sm-4') ?>
+
+            <div class="col-sm-12">
+                <?= Html::label($model->getAttributeLabel('job_history')) ?>
+                <table class="table table-striped table-bordred">
+                    <thead>
+                    <tr>
+                        <th>ردیف</th>
+                        <th>محل کار</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
 
         <?= Html::submitButton(Yii::t('words', 'Submit'), ['class' => 'btn dashboard__form--btn btn-success']) ?>

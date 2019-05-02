@@ -79,6 +79,10 @@ AppAsset::register($this);
                             </div>
                             <div class="content-section">
                                 <ul class="list-unstyled">
+                                    <li class="<?= Yii::$app->request->getUrl() === '/user/dashboard'?'active':'' ?>">
+                                        <a href="<?= Url::to(['/user/dashboard']) ?>"><i
+                                                    class=""></i><span><?= Yii::t('words', 'Dashboard') ?></span></a>
+                                    </li>
                                     <li class="<?= Yii::$app->request->getUrl() === '/reception/list'?'active':'' ?>">
                                         <a href="<?= Url::to(['/reception/list']) ?>"><i
                                                     class=""></i><span><?= Yii::t('words', 'Reception request') ?></span></a>
