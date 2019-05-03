@@ -217,7 +217,7 @@ use yii\helpers\Html;
 
 <!--Gallery-->
 <?php if (\app\models\PictureGallery::find()->valid()->count() > 0): ?>
-    <section class="gallery-bg">
+    <section class="gallery-bg hidden-xs">
         <div class="container">
             <div class="row gallery-tabs">
                 <ul class="pull-left nav nav-tabs">
