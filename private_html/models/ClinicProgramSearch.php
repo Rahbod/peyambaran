@@ -68,7 +68,7 @@ class ClinicProgramSearch extends ClinicProgram
 
         $query->orderBy(['date' => SORT_ASC]);
 
-//        $query->andWhere(['>=', 'date', strtotime(date('Y/m/d 00:00:00', time()))]);
+        $query->andWhere(['>=', 'date', strtotime(date('Y/m/d 00:00:00', time()))]);
 //        dd(date('Y/m/d 00:00:00', time()));
 
         return $dataProvider;
