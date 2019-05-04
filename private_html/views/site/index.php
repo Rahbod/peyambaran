@@ -20,7 +20,7 @@ use app\components\Setting;
 
 <section class="slider-container">
     <div class="slider header-slider owl-carousel owl-theme"
-         data-rtl="true"
+         <?= Yii::$app->language == 'en'?'data-rtl="false"':'data-rtl="true"' ?>
          data-owlcarousel='js:<?= \yii\helpers\Json::encode(Setting::get('slider')); ?>'
          data-items="1"
          data-autoHeight="true">

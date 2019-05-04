@@ -51,6 +51,10 @@ class MessageController extends AuthController
     public function actionIndex()
     {
         $searchModel = new MessageSearch();
+
+        if(Yii::$app->request->getQueryParam('id'))
+            $searchModel->department_id = Yii::$app->request->getQueryParam('id');
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

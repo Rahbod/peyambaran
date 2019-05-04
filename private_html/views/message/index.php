@@ -62,7 +62,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             'value' => function ($model) {
                                 return $model->department->name;
                             },
-                            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Department::find()->all(), 'id', 'name')
+                            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Department::find()->all(), 'id', 'name'),
+                            'visible' => !Yii::$app->request->getQueryParam('id')
                         ],
                         'tel',
                         [

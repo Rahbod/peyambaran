@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Attachment;
 use app\models\Cooperation;
 use app\models\CooperationSearch;
+use app\models\UserRequest;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
@@ -178,11 +179,20 @@ class CooperationController extends AuthController
      */
     public function actionView($id)
     {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
-        $this->layout = 'dashboard';
+        $model = $this->findModel($id);
+        if (Yii::$app->user->identity->roleID === 'user') {
+            $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+            $this->layout = 'dashboard';
+            $admin = false;
+        } else {
+            $model->status = $model->status === UserRequest::STATUS_PENDING ? UserRequest::STATUS_OPERATOR_CHECK : $model->status;
+            $model->save();
+            $admin = true;
+        }
 
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'admin' => $admin
         ]);
     }
 

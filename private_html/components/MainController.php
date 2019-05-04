@@ -2,6 +2,7 @@
 
 namespace app\components;
 
+use app\models\Department;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
@@ -252,6 +253,13 @@ abstract class MainController extends Controller
                 break;
         }
 
+        $contactLinks = [];
+        foreach (Department::find()->valid()->all() as $item) {
+            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id]];
+        }
+        $contactLinks[] = ['label' => 'همه پیام ها', 'url' => ['/message/index']];
+        $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department']];
+
         return [
             [
                 'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">' . Yii::t('words', 'Dashboard') . '</span>',
@@ -300,11 +308,17 @@ abstract class MainController extends Controller
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . Yii::t('words', 'Messages') . '</span>',
-                'items' => [
-                    ['label' => Yii::t('words', 'Messages'), 'url' => ['/message/index']],
-                    ['label' => Yii::t('words', 'Departments'), 'url' => ['/message/department']],
-                ],
+                'items' => $contactLinks,
                 'visible' => $permissions === true or isset($permissions['message'])
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">مدیریت درخواست ها</span>',
+                'items' => [
+                    ['label' => 'درخواست پذیرش', 'url' => ['/reception/index']],
+                    ['label' => 'درخواست مشاوره', 'url' => ['/advice/index']],
+                    ['label' => 'درخواست همکاری', 'url' => ['/cooperation/index']],
+                ],
+                'visible' => $permissions === true or isset($permissions['user'])
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">کاربران</span>',
@@ -322,7 +336,10 @@ abstract class MainController extends Controller
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-cogs"></i><span class="m-menu__link-text">' . Yii::t('words', 'Setting') . '</span>',
-                'url' => ['/setting/index'],
+                'items' => [
+                    ['label' => 'تنظیمات عمومی', 'url' => ['/setting/index']],
+                    ['label' => 'تنظیمات اسلایدر', 'url' => ['/slide/setting']],
+                ],
                 'visible' => $permissions === true or isset($permissions['setting'])
             ],
             [
@@ -331,7 +348,7 @@ abstract class MainController extends Controller
                 'visible' => !Yii::$app->user->isGuest
             ],
             [
-                'label' => '<i class="m-menu__link-icon flaticon-imac"></i><span class="m-menu__link-text">'.Yii::t('words','Login').'</span>',
+                'label' => '<i class="m-menu__link-icon flaticon-imac"></i><span class="m-menu__link-text">' . Yii::t('words', 'Login') . '</span>',
                 'url' => ['/admin/login'],
                 'visible' => !$permissions
             ]

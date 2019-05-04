@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UserRequestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= Yii::t('words', 'Create User Request') ?></span>
@@ -46,15 +48,31 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                       'id',
-                       'userID',
-                       'type',
-                       'name',
-                       'dyna',
-                        //'extra:ntext',
-                        //'created',
-                        //'status',
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        [
+                            'attribute' => 'name',
+                            'header' => 'نام و نام خانوادگی',
+                            'value' => function ($model) {
+                                return $model->getPatientName();
+                            }
+                        ],
+                        [
+                            'attribute' => 'created',
+                            'value' => function ($model) {
+                                return jDateTime::date('y/m/d', $model->created);
+                            }
+                        ],
+                        [
+                            'attribute' => 'status',
+                            'value' => function ($model) {
+                                $css = $model->getStatusCssClass();
+                                return "<span class='m-badge m-badge--inline m-badge--pill m-badge--$css'>{$model->getStatusLabel()}</span>";
+                            },
+                            'format' => 'raw'
+                        ],
+                        [
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'template' => '{view} {delete}'
+                        ]
                     ],
                 ]); ?>
             </div>

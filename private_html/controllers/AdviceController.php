@@ -157,11 +157,20 @@ class AdviceController extends AuthController
      */
     public function actionView($id)
     {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
-        $this->layout = 'dashboard';
+        $model = $this->findModel($id);
+        if (Yii::$app->user->identity->roleID === 'user') {
+            $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
+            $this->layout = 'dashboard';
+            $admin = false;
+        } else {
+            $model->status = $model->status === UserRequest::STATUS_PENDING ? UserRequest::STATUS_OPERATOR_CHECK : $model->status;
+            $model->save();
+            $admin = true;
+        }
 
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'admin' => $admin
         ]);
     }
 
