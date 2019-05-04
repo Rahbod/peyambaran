@@ -318,7 +318,7 @@ abstract class MainController extends Controller
                     ['label' => 'درخواست مشاوره', 'url' => ['/advice/index']],
                     ['label' => 'درخواست همکاری', 'url' => ['/cooperation/index']],
                 ],
-                'visible' => $permissions === true or isset($permissions['user'])
+                'visible' => $permissions === true or isset($permissions['user_request'])
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">کاربران</span>',

@@ -166,17 +166,17 @@ $contactModel = new \app\models\ContactForm();
                             <div class="footer-sub-block">
                                 <?php if (($sic - $ic) === 0): // one level ?>
                                     <ul class="menu-part">
-                                        <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                        <?php foreach ($item->children(1)->valid()->all() as $sub_item): ?>
                                             <li><a href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php else: // two level ?>
-                                    <?php foreach ($item->children(1)->all() as $sub_item): ?>
+                                    <?php foreach ($item->children(1)->valid()->all() as $sub_item): ?>
                                         <ul class="menu-part d-inline-block">
-                                            <li<?= $sub_item->children(1)->count() > 0 ? " class='has-child'" : "" ?>>
+                                            <li<?= $sub_item->children(1)->valid()->count() > 0 ? " class='has-child'" : "" ?>>
                                                 <a
                                                         href="<?= $sub_item->url ?>"><?= $sub_item->name ?></a></li>
-                                            <?php foreach ($sub_item->children(1)->all() as $sub_item_child): ?>
+                                            <?php foreach ($sub_item->children(1)->valid()->all() as $sub_item_child): ?>
                                                 <li>
                                                     <a href="<?= $sub_item_child->url ?>"><?= $sub_item_child->name ?></a>
                                                 </li>
