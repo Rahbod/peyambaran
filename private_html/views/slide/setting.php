@@ -81,7 +81,14 @@ $settings = Setting::get('slider');
                     'class' => 'form-control m-input m-input__solid',
                     'size' => 4
                 ]); ?>
+                <small>بر حسب میلی ثانیه</small>
             </div>
+        </div>
+
+    </div>
+    <div class="m-portlet__foot m-portet__foot--fit">
+        <div class="m-form__actions">
+            <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
         </div>
     </div>
     <?= Html::endForm(); ?>
