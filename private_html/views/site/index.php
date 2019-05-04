@@ -6,6 +6,7 @@ use app\models\OnlineService;
 use app\models\Post;
 use app\models\Slide;
 use yii\helpers\Html;
+use app\components\Setting;
 
 /* @var $this yii\web\View */
 /** @var $slides Slide[] */
@@ -19,10 +20,8 @@ use yii\helpers\Html;
 
 <section class="slider-container">
     <div class="slider header-slider owl-carousel owl-theme"
-         data-loop="true"
          data-rtl="true"
-         data-nav="true"
-         data-autoplayspeed="9000"
+         data-owlcarousel='js:<?= \yii\helpers\Json::encode(Setting::get('slider')); ?>'
          data-items="1"
          data-autoHeight="true">
         <?php foreach ($slides as $slide):

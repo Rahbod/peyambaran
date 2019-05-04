@@ -583,7 +583,6 @@ header .search-form {
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a:hover {
     color: #3f8dfa;
     border-bottom-color: #3f8dfa;
-    font-weight: bold;
 }
 
 .navbar .dropdown-menu .menu-part > li.active > a:before,

@@ -106,6 +106,7 @@ return [
     'Create Slide' => 'اسلاید جدید',
     'Update Slide: {name}' => 'ویرایش اسلاید: {name}',
     'Slides' => 'مدیریت اسلایدها',
+    'Slider setting' => 'تنظیمات اسلایدر',
     'Create Person' => 'شخص جدید',
     'Update Person: {name}' => 'ویرایش شخص: {name}',
     'People' => 'مدیریت اشخاص',

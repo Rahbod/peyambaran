@@ -8,21 +8,31 @@ $(function () {
 
     // $(window).on("load resize scroll", function () {
         $(".owl-carousel").each(function () {
-            var options = $(this).data();
+            var options = $(this).data(),
+                allOptions = $(this).data('owlcarousel');
+            delete options.owlcarousel;
+
+            if (typeof allOptions === "string" && allOptions.indexOf("js:") !== -1)
+                allOptions = JSON.parse(allOptions.substr(3));
+
             if (typeof options.autoheight !== undefined) {
                 options.autoHeight = true;
                 delete options.autoheight;
             }
 
-            if (typeof options.autoplayspeed !== undefined) {
-                options.autoPlaySpeed = true;
-                delete options.autoplayspeed;
-            }
+            // if (typeof options.autoplayspeed !== undefined) {
+            //     options.autoPlaySpeed = options.autoplayspeed;
+            //     options.autoplay = true;
+            //     delete options.autoplayspeed;
+            // }
 
             if ($(this).hasClass('news-carousel') || $(this).hasClass('header-slider'))
                 options['navText'] = ["<i class='icon icon-chevron-right'></i>", "<i class='icon icon-chevron-left'></i>"];
             else
                 options['navText'] = ["<i class='fa-icon-angle-left'></i>", "<i class='fa-icon-angle-right'></i>"];
+
+            if(typeof allOptions !== undefined)
+                options = $.extend(options, allOptions);
 
             $(this).owlCarousel(options);
         });

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\Setting;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
@@ -24,8 +25,8 @@ class SlideController extends AuthController
     private $imageOptions = [];
 
     /**
-    * for set admin theme
-    */
+     * for set admin theme
+     */
     public function init()
     {
         $this->setTheme('default');
@@ -120,14 +121,14 @@ class SlideController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
             if ($model->save()) {
                 $image->move($this->imageDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -155,14 +156,14 @@ class SlideController extends AuthController
 
         $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $oldImage = $model->image;
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 $image->update($oldImage, $model->image, $this->tmpDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -203,5 +204,27 @@ class SlideController extends AuthController
         }
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+    }
+
+    public function actionSetting()
+    {
+        if (Yii::$app->request->post()) {
+            $postData = \Yii::$app->request->post('Setting');
+
+            ## region validation post data
+            $config = Setting::getAll();
+            ## endregion validation post data
+
+            Setting::createOrUpdateDefaults($config);
+            $config['slider'] = $postData;
+
+            if (Setting::setAll($config)) {
+                \Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => \Yii::t('words', 'base.successMsg')]);
+                return $this->refresh();
+            } else
+                \Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => \Yii::t('words', 'base.dangerMsg')]);
+        }
+
+        return $this->render('setting');
     }
 }
