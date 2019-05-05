@@ -16,6 +16,7 @@ use yii\helpers\Url;
  * @property string $family
  * @property string $tell
  * @property string $question
+ * @property string $answer
  *
  * @property User $user
  */
@@ -40,6 +41,7 @@ class Advice extends UserRequest
             'family' => ['CHAR', ''],
             'tell' => ['CHAR', ''],
             'question' => ['CHAR', ''],
+            'answer' => ['CHAR', ''],
         ]);
     }
 
@@ -50,7 +52,7 @@ class Advice extends UserRequest
     {
         return array_merge(parent::rules(), [
             [['name', 'family', 'tell', 'question'], 'required'],
-            [['question'], 'string'],
+            [['question', 'answer'], 'string'],
             ['type', 'default', 'value' => self::$typeName],
         ]);
     }
@@ -66,6 +68,7 @@ class Advice extends UserRequest
             'tell' => Yii::t('words', 'Tell'),
             'question' => Yii::t('words', 'Question'),
             'files' => Yii::t('words', 'Tests result files'),
+            'answer' => Yii::t('words', 'Answer'),
         ]);
     }
 

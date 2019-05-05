@@ -8,8 +8,11 @@ use faravaghi\jalaliDatePicker\jalaliDatePicker;
 /* @var $model app\models\Reception */
 
 $this->title = "درخواست پذیرش \"{$model->getPatientName()}\"";
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Reception request'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php if ($admin): ?>
+    <?php \yii\widgets\Pjax::begin() ?>
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
@@ -133,6 +136,7 @@ $this->title = "درخواست پذیرش \"{$model->getPatientName()}\"";
             </div>
         </div>
     </div>
+    <?php \yii\widgets\Pjax::end() ?>
 <?php else: ?>
     <div class="content-header">
         <img src="<?= $this->theme->baseUrl ?>/svg/"
