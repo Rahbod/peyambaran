@@ -119,6 +119,11 @@ NULL is system files.',
         return $subFolder;
     }
 
+    public function getAbsoluteUrl()
+    {
+        return \Yii::getAlias('@web/'.Attachment::getAttachmentPath($this->created).'/').$this->file;
+    }
+
     public function getDownloadUrl()
     {
         return Url::to(['/item/download', 'id' => $this->id]);

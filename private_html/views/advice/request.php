@@ -31,7 +31,7 @@ use yii\helpers\Html;
         <p><?= Yii::t('words', 'advice_text') ?></p>
         <?=  $form->errorSummary($model) ?>
         <div class="row">
-            <?= $model->formRenderer($form, '{field}', 'col-sm-6') ?>
+            <?= $model->formRenderer($form, '{field}', 'col-sm-4') ?>
         </div>
 
         <?= Html::submitButton(Yii::t('words', 'Submit'), ['class' => 'btn dashboard__form--btn btn-success']) ?>

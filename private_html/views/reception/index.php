@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['class' => 'yii\grid\SerialColumn'],
                         [
                             'attribute' => 'name',
-                            'header' => 'نام و نام خانوادگی',
+                            'header' => Yii::t('words', 'Name and Family'),
                             'value' => function ($model) {
                                 return $model->getPatientName();
                             }

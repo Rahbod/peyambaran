@@ -82,7 +82,7 @@ class UserController extends AuthController
                 'foreColor' => 0x2040A0,
                 'minLength'=>3,
                 'maxLength'=>3,
-                'fontFile' => '@webroot/themes/default/assets/vendors/base/fonts/IranSans/ttf/fa-num/IRANSansWeb.ttf'
+//                'fontFile' => '@webroot/themes/default/assets/vendors/base/fonts/IranSans/ttf/fa-num/IRANSansWeb.ttf'
             ],
             // declares "error" action using a class name
             'upload-image' => [

@@ -34,9 +34,9 @@ use yii\widgets\Pjax;
                     ['class' => '\yii\grid\SerialColumn'],
                     [
                         'attribute' => 'name',
-                        'header' => Yii::t('words', 'Patient name'),
+                        'header' => Yii::t('words', 'Name and Family'),
                         'value' => function ($model) {
-                            return $model->getPatientName();
+                            return $model->getFullName();
                         }
                     ],
 //                    [
@@ -50,12 +50,6 @@ use yii\widgets\Pjax;
                         'attribute' => 'created',
                         'value' => function ($model) {
                             return jDateTime::date('Y/m/d', $model->created);
-                        }
-                    ],
-                    [
-                        'attribute' => 'visit_date',
-                        'value' => function ($model) {
-                            return $model->visit_date?jDateTime::date('Y/m/d', $model->visit_date):null;
                         }
                     ],
                     [

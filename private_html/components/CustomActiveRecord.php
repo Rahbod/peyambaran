@@ -146,14 +146,14 @@ abstract class CustomActiveRecord extends ActiveRecord
      * @param string $allContainerCssClass
      * @return string
      */
-    public static $tabindex = 0;
+    public static $tabindex = 1;
     public function formRenderer($form, $template = '{field}', $allContainerCssClass = '', $method = 'formAttributes')
     {
         $output = '';
 
         if (method_exists($this, $method)) {
             $fields = $this->{$method}();
-            $i = 0;
+            $i = 1;
             foreach ($fields as $name => $field) {
 
                 if (isset($field['visible'])) {

@@ -15,6 +15,7 @@ use yii\helpers\Html;
  * @property string $national_code
  * @property string $tell
  * @property string $description
+ * @property string $visit_date
  *
  * @property User $user
  */

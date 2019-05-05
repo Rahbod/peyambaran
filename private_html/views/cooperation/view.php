@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <table class="table table-striped table-bordered detail-view">
                     <tbody>
                     <tr>
-                        <th>نام و نام خانوادگی</th>
+                        <th><?= Yii::t('words', 'Name and Family') ?></th>
                         <td><?= $model->getFullName() ?></td>
                     </tr>
                     <tr>
@@ -122,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="col-sm-12">
         <div class="row mt-5 mb-4">
-            <?= Html::a(Yii::t('words', 'Back'), ['list'], ['class' => 'btn btn-sm btn-primary pull-left']) ?>
+            <?= Html::a(Yii::t('words', 'Back'), Yii::$app->request->referrer, ['class' => 'btn btn-sm btn-primary pull-left']) ?>
             <?= Html::a(Yii::t('words', 'Delete request'), ['delete', 'id' => $model->id], [
                 'data-confirm' => \Yii::t('yii', 'Are you sure you want to delete this item?'),
                 'data-method' => 'post',
@@ -138,7 +138,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <table class="table table-striped table-bordered detail-view">
                 <tbody>
                 <tr>
-                    <th>نام و نام خانوادگی</th>
+                    <th><?= Yii::t('words', 'Name and Family') ?></th>
                     <td><?= $model->getFullName() ?></td>
                 </tr>
                 <tr>
