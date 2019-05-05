@@ -11,6 +11,7 @@ use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
 use app\components\AuthController;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -158,6 +159,9 @@ class AdviceController extends AuthController
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        if(Yii::$app->user->isGuest)
+            throw new ForbiddenHttpException('شما مجوز انجام این عملیات را ندارید.');
+
         if (Yii::$app->user->identity->roleID === 'user') {
             $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
             $this->layout = 'dashboard';

@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use function app\components\dd;
+use app\components\Helper;
 use app\models\Attachment;
 use app\models\Reception;
 use app\models\ReceptionSearch;
@@ -12,6 +12,7 @@ use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
 use app\components\AuthController;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -159,6 +160,9 @@ class ReceptionController extends AuthController
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        if(Yii::$app->user->isGuest)
+            throw new ForbiddenHttpException('شما مجوز انجام این عملیات را ندارید.');
+
         if (Yii::$app->user->identity->roleID === 'user') {
             $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
             $this->layout = 'dashboard';
@@ -223,14 +227,22 @@ class ReceptionController extends AuthController
 
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
+            $date = null;
+            if ($model->visit_date) {
+                $date = $model->visit_date;
+                $model->visit_date = (string)Helper::jDateTotoGregorian($model->visit_date);
+                $model->status = UserRequest::STATUS_CONFIRM;
+            }
+
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            $model->visit_date = $date;
         }
 
-        return $this->render('update', [
+        return $this->render('view', [
             'model' => $model,
         ]);
     }
@@ -253,7 +265,7 @@ class ReceptionController extends AuthController
         } else
             return $this->goBack();
 
-        return $this->redirect([Yii::$app->user->identity->roleID != 'user'?'index':'list']);
+        return $this->redirect([Yii::$app->user->identity->roleID != 'user' ? 'index' : 'list']);
     }
 
     /**

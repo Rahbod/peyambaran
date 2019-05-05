@@ -70,7 +70,7 @@ class AdviceSearch extends Advice
         $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
             ->orFilterWhere(['REGEXP', 'family', Helper::persian2Arabic($this->name)]);
 
-        $query->orderBy(['id' => SORT_DESC]);
+        $query->orderBy(['status' => SORT_ASC,'id' => SORT_DESC]);
 
         return $dataProvider;
     }
