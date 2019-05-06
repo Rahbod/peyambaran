@@ -7,11 +7,12 @@ use app\models\Cooperation;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Cooperation */
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Cooperation'), 'url' => ['index']];
+$this->title = "درخواست همکاری \"{$model->getFullName()}\"";
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Cooperation request'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php if ($admin): ?>
+    <?php \yii\widgets\Pjax::begin() ?>
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
@@ -27,10 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Html::a('<span><i class="far fa-trash-alt"></i><span>' . Yii::t('words', 'Delete') . '</span></span>', ['delete', 'id' => $model->id], [
                             'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-danger',
                             'encode' => false,
-                            'data' => [
-                                'confirm' => Yii::t('words', 'Are you sure you want to delete this item?'),
-                                'method' => 'post',
-                            ],
+                            'data-confirm' => Yii::t('words', 'Are you sure you want to delete this item?'),
+                            'data-method' => 'post',
                         ]) ?>
                     </li>
                 </ul>
@@ -38,11 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="m-portlet__body">
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                <div class="row mt-5 mb-5">
-                    <div class="col-sm-4">
-                        <?= Html::img(Yii::getAlias('@web/' . CooperationController::$avatarPath . '/' . $model->avatar), ['class' => 'rounded-circle', 'style' => 'width:150px;height:150px;']) ?>
+                <?php if ($model->avatar && is_file(Yii::getAlias('@webroot/' . CooperationController::$avatarPath . '/' . $model->avatar))): ?>
+                    <div class="row mt-5 mb-5">
+                        <div class="col-sm-4">
+                            <a href="<?= Yii::getAlias('@web/' . CooperationController::$avatarPath . '/' . $model->avatar) ?>" target="_blank" data-pjax="0">
+                                <?= Html::img(Yii::getAlias('@web/' . CooperationController::$avatarPath . '/' . $model->avatar), ['class' => 'rounded-circle', 'style' => 'width:150px;height:150px;']) ?>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
                 <table class="table table-striped table-bordered detail-view">
                     <tbody>
                     <tr>
@@ -50,11 +53,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= $model->getFullName() ?></td>
                     </tr>
                     <tr>
+                        <th><?= Yii::t('words', 'Tell') ?></th>
+                        <td><b style="font-size: 16px"><?= $model->tell ?></b></td>
+                    </tr>
+                    <tr>
                         <th><?= $model->getAttributeLabel('created') ?></th>
                         <td><?= jDateTime::date('Y/m/d', $model->created) ?></td>
                     </tr>
                     <?php foreach ($model->dynaDefaults as $field => $setting):
-                        if ($field == 'lang' || $field == 'avatar' || $field == 'family'
+                        if ($field == 'lang' || $field == 'tell' || $field == 'avatar' || $field == 'family'
                             || $field == 'edu_history' || $field == 'job_history' || $field == 'job_history')
                             continue;
 
@@ -110,7 +117,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-
+    <?php \yii\widgets\Pjax::end() ?>
 <?php else: ?>
     <div class="content-header">
         <img src="<?= $this->theme->baseUrl ?>/svg/"

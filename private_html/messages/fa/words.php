@@ -370,4 +370,5 @@ return [
     'Language certification' => 'مدرک زبان انگلیسی',
     'Other language certification' => 'مدرک زبان های دیگر',
     'Download attachment' => 'دریافت ضمیمه',
+    'Answer' => 'پاسخ',
 ];

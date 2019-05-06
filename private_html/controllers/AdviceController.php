@@ -5,12 +5,14 @@ namespace app\controllers;
 use app\models\Attachment;
 use app\models\Advice;
 use app\models\AdviceSearch;
+use app\models\User;
 use app\models\UserRequest;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
 use app\components\AuthController;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -158,6 +160,9 @@ class AdviceController extends AuthController
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        if(Yii::$app->user->isGuest)
+            throw new ForbiddenHttpException('شما مجوز انجام این عملیات را ندارید.');
+
         if (Yii::$app->user->identity->roleID === 'user') {
             $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
             $this->layout = 'dashboard';
@@ -222,6 +227,10 @@ class AdviceController extends AuthController
 
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
+
+            if($model->answer)
+                $model->status = UserRequest::STATUS_CONFIRM;
+
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -229,8 +238,9 @@ class AdviceController extends AuthController
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
-        return $this->render('update', [
+        return $this->render('view', [
             'model' => $model,
+            'admin' => true
         ]);
     }
 

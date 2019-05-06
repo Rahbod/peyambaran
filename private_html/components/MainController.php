@@ -2,7 +2,11 @@
 
 namespace app\components;
 
+use app\models\Advice;
+use app\models\Cooperation;
 use app\models\Department;
+use app\models\Reception;
+use app\models\UserRequest;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
@@ -260,6 +264,16 @@ abstract class MainController extends Controller
         $contactLinks[] = ['label' => 'همه پیام ها', 'url' => ['/message/index']];
         $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department']];
 
+        // requests count
+        $total_count = UserRequest::find()->andWhere(['status' => UserRequest::STATUS_PENDING])->count();
+        $total_count = $total_count>0?'<span class="m-badge m-badge--danger">'.$total_count.'</span>':'';
+        $advice_count = Advice::find()->andWhere(['type' => Advice::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
+        $advice_count = $advice_count>0?'<span class="m-badge m-badge--danger">'.$advice_count.'</span>':'';
+        $cooperation_count = Cooperation::find()->andWhere(['type' => Cooperation::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
+        $cooperation_count = $cooperation_count>0?'<span class="m-badge m-badge--danger">'.$cooperation_count.'</span>':'';
+        $reception_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
+        $reception_count = $reception_count>0?'<span class="m-badge m-badge--danger">'.$reception_count.'</span>':'';
+
         return [
             [
                 'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">' . Yii::t('words', 'Dashboard') . '</span>',
@@ -312,11 +326,11 @@ abstract class MainController extends Controller
                 'visible' => $permissions === true or isset($permissions['message'])
             ],
             [
-                'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">مدیریت درخواست ها</span>',
+                'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">مدیریت درخواست ها</span>'.$total_count,
                 'items' => [
-                    ['label' => 'درخواست پذیرش', 'url' => ['/reception/index']],
-                    ['label' => 'درخواست مشاوره', 'url' => ['/advice/index']],
-                    ['label' => 'درخواست همکاری', 'url' => ['/cooperation/index']],
+                    ['label' => 'درخواست پذیرش'.$reception_count, 'url' => ['/reception/index']],
+                    ['label' => 'درخواست مشاوره'.$advice_count, 'url' => ['/advice/index']],
+                    ['label' => 'درخواست همکاری'.$cooperation_count, 'url' => ['/cooperation/index']],
                 ],
                 'visible' => $permissions === true or isset($permissions['user_request'])
             ],

@@ -75,6 +75,7 @@ class Cooperation extends UserRequest
             'avatar' => ['CHAR', ''],
             'cooperation_type' => ['INTEGER', ''],
             'family' => ['CHAR', ''],
+            'tell' => ['CHAR', ''],
             'father_name' => ['CHAR', ''],
             'gender' => ['CHAR', ''],
             'birth_day' => ['CHAR', ''],
@@ -114,10 +115,11 @@ class Cooperation extends UserRequest
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['cooperation_type'], 'required'],
+            [['cooperation_type', 'family', 'tell'], 'required'],
             ['type', 'default', 'value' => self::$typeName],
             ['cooperation_type', 'number'],
             [[
+                'tell',
                 'family',
                 'father_name',
                 'gender',
@@ -154,6 +156,7 @@ class Cooperation extends UserRequest
         return array_merge(parent::attributeLabels(), [
             'cooperation_type' => Yii::t('words', 'Cooperation type'),
             'name' => Yii::t('words', 'First Name'),
+            'tell' => Yii::t('words', 'Tell'),
             'family' => Yii::t('words', 'Sure Name'),
             'father_name' => Yii::t('words', 'Father name'),
             'gender' => Yii::t('words', 'Gender'),
@@ -220,6 +223,7 @@ class Cooperation extends UserRequest
             ],
             'name' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'family' => ['type' => static::FORM_FIELD_TYPE_TEXT],
+            'tell' => ['type' => static::FORM_FIELD_TYPE_TEXT],
 
             'father_name' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'gender' => [
