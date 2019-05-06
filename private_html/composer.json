@@ -28,7 +28,8 @@
         "voime/yii2-google-maps": "*",
         "ruskid/yii2-csv-importer": "dev-master",
         "faravaghi/yii2-jalali-datepicker": "*",
-        "moonlandsoft/yii2-phpexcel": "*"
+        "moonlandsoft/yii2-phpexcel": "*",
+        "linslin/yii2-curl": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 <section class="register login">
     <div class="container">
         <div class="row register-container">
-            <div class="col-xs-12 px-md-0">
+            <div class="col-sm-6 col-sm-offset-3 col-xs-12 px-md-0">
                 <div class="content-header -blueBg">
                     <img src="<?= $this->theme->baseUrl ?>/svg/user.svg"
                          class="img-fluid content-header__image"
@@ -21,11 +21,11 @@ use yii\widgets\ActiveForm;
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 px-md-0 -bbrr -bblr">
+            <div class="col-sm-6 col-sm-offset-3 col-xs-12 px-md-0 -bbrr -bblr">
                 <div class="register-form bg-md-white">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-12 col-md-6 vertical-separator-line bg-white bg-md-transparent">
+                            <div class="col-xs-12 col-md-12 bg-white bg-md-transparent">
                                 <div class="register-form-container">
                                     <?= $this->render('//layouts/_flash_message') ?>
                                     <h4 class="register-form-container__title"><?= Yii::t('words', 'Login to account') ?></h4>
@@ -80,7 +80,7 @@ use yii\widgets\ActiveForm;
                                     <?php ActiveForm::end() ?>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-md-6 bg-white bg-md-transparent">
+                            <div class="col-xs-12 col-md-6 bg-white bg-md-transparent hidden">
                                 <div class="social-accounts-container">
                                     <div class="social-accounts login-with-google">
                                         <a>

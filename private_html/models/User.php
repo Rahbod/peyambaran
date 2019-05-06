@@ -23,6 +23,15 @@ use yii\web\IdentityInterface;
  * @property integer $status
  * @property integer $verification_code
  * @property integer $nationalCode
+ * @property integer $email
+ * @property integer $phone
+ * @property integer $text
+ * @property integer $image
+ * @property integer $memCode
+ * @property integer $gender
+ * @property integer $address
+ * @property integer $birthDate
+ *
  */
 class User extends DynamicActiveRecord implements IdentityInterface
 {

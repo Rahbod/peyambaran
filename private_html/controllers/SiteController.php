@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\components\SmsSender;
 use app\models\Category;
 use app\models\Insurance;
 use app\models\Message;
@@ -276,14 +277,10 @@ class SiteController extends AuthController
     }*/
 
     public function actionTest(){
-        $all = Slide::find()->all();
-        foreach ($all as $item){
-            if(!$item->en_status)
-            $item->en_status = 0;
-            if(!$item->ar_status)
-            $item->ar_status = 0;
-            $item->save();
+        try {
+            \app\components\dd(SmsSender::SendVerification('09358389265', 23121));
+        }catch (\Exception $re){
+            \app\components\dd($re);
         }
-
     }
 }

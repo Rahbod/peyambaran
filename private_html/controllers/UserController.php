@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\components\SmsSender;
 use app\models\LoginForm;
 use app\models\UGroup;
 use app\models\UserSearch;
@@ -308,7 +309,8 @@ class UserController extends AuthController
             $model->verification_code = rand(12315, 98879);
             if ($model->save()) {
 
-                //@todo send sms to user
+                //send sms to user
+                SmsSender::SendVerification($model->phone, $model->verification_code);
 
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 $hash = base64_encode($model->id);
@@ -348,6 +350,9 @@ class UserController extends AuthController
                     }
 
                     if ($model->save()) {
+                        //send sms to user
+                        SmsSender::SendAfterSignup($model->phone,$model->username,$model->nationalCode);
+
                         if($forgetMode)
                             Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'user.recoverySuccessMsg')]);
                         else
@@ -380,7 +385,8 @@ class UserController extends AuthController
             $model->verification_code = rand(12315, 98879);
             if ($model->save()) {
 
-                //@todo send sms to user
+                //send sms to user
+                SmsSender::SendVerification($model->phone, $model->verification_code);
 
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'user.forgetSuccessMsg')]);
                 $hash = base64_encode($model->id);

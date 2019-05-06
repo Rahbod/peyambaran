@@ -8,8 +8,6 @@
 
 namespace app\components;
 
-
-use app\models\Report;
 use linslin\yii2\curl\Curl;
 use yii\base\Component;
 use yii\helpers\Json;
@@ -25,19 +23,11 @@ class RestHelper extends Component
     /**
      * @var string $host
      */
-    protected $host;
+    public $host;
     /**
      * @var string $port
      */
-    protected $port;
-    /**
-     * @var string $token
-     */
-    protected $token;
-    /**
-     * @var Curl $client
-     */
-    protected $client;
+    public $port=80;
     /**
      * @var bool $throwException
      */
@@ -47,26 +37,21 @@ class RestHelper extends Component
      */
     private  $_connectionValid = false;
 
+    private $client;
+
     public function init($throwException = false)
     {
         parent::init();
         $this->throwException = $throwException;
         if(!$this->_connectionValid) {
-            $this->host = Setting::get('server.host');
-            $this->port = Setting::get('server.port');
-            $baseUri = Setting::get('server.baseUri');
-            if (!$this->host || empty($this->host) || !$this->port || empty($this->port) || !$baseUri || empty($baseUri))
+            if (!$this->host || empty($this->host) || !$this->port || empty($this->port))
                 throw new HttpException(500, 'Rest Host IP or Port not been set in config.');
-            if ($socks = @fsockopen($this->host, $this->port, $errno, $errstr, Setting::get('server.timeout') ?: 30))
-                fclose($socks);
-            else
-                Report::CreateBugReport(trim($errno), trim($errstr));
-            $this->token = Setting::get('branch.token');
-            if (!$this->token || empty($this->token))
-                throw new HttpException(500, 'Rest Token not been set in config.');
+//            if ($socks = @fsockopen($this->host, $this->port, $errno, $errstr, Setting::get('server.timeout') ?: 30))
+//                fclose($socks);
+//            else
+//                throw new \Exception(trim($errstr),$errno);
             if (strpos($this->host, '/', strlen($this->host) - 1) === false)
                 $this->host .= '/';
-            $this->host .= "$baseUri/api/";
             $this->_connectionValid = true;
         }
         $this->client = new Curl();
@@ -78,7 +63,6 @@ class RestHelper extends Component
         $this->client
             ->setOption(CURLOPT_ENCODING, 'gzip')
             ->setHeaders([
-                'X-Authorization' => "Basic {$this->token}",
                 'Content-type' => "application/json",
                 'Cache-Control' => "no-cache",
             ]);

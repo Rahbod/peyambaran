@@ -371,4 +371,6 @@ return [
     'Other language certification' => 'مدرک زبان های دیگر',
     'Download attachment' => 'دریافت ضمیمه',
     'Answer' => 'پاسخ',
+    'Password' => 'کلمه عبور',
+    'Username' => 'نام کاربری',
 ];

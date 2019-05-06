@@ -2657,8 +2657,7 @@ section .title-description {
 
 .register {
     background: #eef1f7;
-    margin-top: 50px;
-    margin-bottom: 100px;
+    /*margin-bottom: 100px;*/
 }
 
 .register .content-header {
@@ -2785,7 +2784,8 @@ section .title-description {
 }
 
 .register .register-form-container {
-    padding: 0 0 0 65px;
+    /*padding: 0 0 0 65px;*/
+    padding: 0;
 }
 
 .register .content-header__subTitle {

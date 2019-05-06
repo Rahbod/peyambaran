@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 <section class="register">
     <div class="container">
         <div class="row register-container">
-            <div class="col-xs-12 px-md-0">
+            <div class="col-sm-6 col-sm-offset-3 col-xs-12 px-md-0">
                 <div class="content-header">
                     <img src="<?= $this->theme->baseUrl ?>/svg/user.svg"
                          class="img-fluid content-header__image"
@@ -19,11 +19,11 @@ use yii\widgets\ActiveForm;
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 px-md-0 -bbrr -bblr">
+            <div class="col-sm-6 col-sm-offset-3 col-xs-12 px-md-0 -bbrr -bblr">
                 <div class="register-form bg-md-white">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-12 col-md-6 vertical-separator-line">
+                            <div class="col-xs-12 col-md-12">
                                 <div class="register-form-container">
                                     <h4 class="register-form-container__title"><?= Yii::t('words', 'Account information') ?></h4>
                                     <p class="register-form-container__description"><?= Yii::t('words', 'register_text') ?></p>
@@ -33,6 +33,9 @@ use yii\widgets\ActiveForm;
                                             'options' => ['class' => '']
                                         ]
                                     ]); ?>
+
+                                    <div class="text-danger"><?= $form->errorSummary($model) ?></div>
+
                                     <div class="form-row">
                                         <div class="form-group col-sm-12 px-0">
                                             <?= $form->field($model, 'name')->textInput(['class' => 'toggleLabel form-control', 'spellcheck' => false, 'tabindex' => 1, 'placeholder' => Yii::t('words', 'Name and Family')])->label(false) ?>
@@ -59,7 +62,7 @@ use yii\widgets\ActiveForm;
                                     <?php ActiveForm::end() ?>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-md-6">
+                            <div class="col-xs-12 col-md-6 hidden">
                                 <div class="social-accounts-container">
                                     <div class="social-accounts login-with-google">
                                         <a>

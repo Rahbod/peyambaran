@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\Helper;
+use app\components\SmsSender;
 use app\models\Attachment;
 use app\models\Reception;
 use app\models\ReceptionSearch;
@@ -160,7 +161,7 @@ class ReceptionController extends AuthController
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        if(Yii::$app->user->isGuest)
+        if (Yii::$app->user->isGuest)
             throw new ForbiddenHttpException('شما مجوز انجام این عملیات را ندارید.');
 
         if (Yii::$app->user->identity->roleID === 'user') {
@@ -226,6 +227,7 @@ class ReceptionController extends AuthController
         }
 
         if (Yii::$app->request->post()) {
+            $oldVisit = $model->visit_date;
             $model->load(Yii::$app->request->post());
             $date = null;
             if ($model->visit_date) {
@@ -235,6 +237,16 @@ class ReceptionController extends AuthController
             }
 
             if ($model->save()) {
+
+                if ($model->visit_date) {
+                    if (!$oldVisit)
+                        SmsSender::Send(SmsSender::$afterReceptionTemplate, $model->user->phone, $model->getReceptionTypeLabel(),
+                            \jDateTime::date('Y/m/d', $model->visit_date));
+                    elseif($oldVisit!=$model->visit_date)
+                        SmsSender::Send(SmsSender::$afterChangeReceptionTemplate, $model->user->phone, $model->getReceptionTypeLabel(),
+                            \jDateTime::date('Y/m/d', $model->visit_date));
+                }
+
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
