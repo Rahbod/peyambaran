@@ -3,12 +3,20 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use faravaghi\jalaliDatePicker\jalaliDatePicker;
+use app\models\Reception;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Reception */
 
 $this->title = "درخواست پذیرش \"{$model->getPatientName()}\"";
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Reception request'), 'url' => ['index']];
+switch ($model->reception_type){
+    case Reception::RECEPTION_TYPE_HOSPITALIZATION:
+        $this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Reception request'), 'url' => ['hospitalization']];break;
+    case Reception::RECEPTION_TYPE_CLINIC:
+        $this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Reception request'), 'url' => ['clinic-request']];break;
+    case Reception::RECEPTION_TYPE_PARA_CLINIC:
+        $this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Reception request'), 'url' => ['para-clinic']];break;
+}
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php if ($admin): ?>

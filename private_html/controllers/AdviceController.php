@@ -179,70 +179,70 @@ class AdviceController extends AuthController
         ]);
     }
 
-    /**
-     * Creates a new Advice model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Advice();
-
-        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
-            $model->load(Yii::$app->request->post());
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-
-        if (Yii::$app->request->post()) {
-            $model->load(Yii::$app->request->post());
-            if ($model->save()) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Advice model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
-            $model->load(Yii::$app->request->post());
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-
-        if (Yii::$app->request->post()) {
-            $model->load(Yii::$app->request->post());
-
-            if($model->answer)
-                $model->status = UserRequest::STATUS_CONFIRM;
-
-            if ($model->save()) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
-        }
-
-        return $this->render('view', [
-            'model' => $model,
-            'admin' => true
-        ]);
-    }
+//    /**
+//     * Creates a new Advice model.
+//     * If creation is successful, the browser will be redirected to the 'view' page.
+//     * @return mixed
+//     */
+//    public function actionCreate()
+//    {
+//        $model = new Advice();
+//
+//        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
+//            $model->load(Yii::$app->request->post());
+//            Yii::$app->response->format = Response::FORMAT_JSON;
+//            return ActiveForm::validate($model);
+//        }
+//
+//        if (Yii::$app->request->post()) {
+//            $model->load(Yii::$app->request->post());
+//            if ($model->save()) {
+//                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+//                return $this->redirect(['view', 'id' => $model->id]);
+//            } else
+//                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+//        }
+//
+//        return $this->render('create', [
+//            'model' => $model,
+//        ]);
+//    }
+//
+//    /**
+//     * Updates an existing Advice model.
+//     * If update is successful, the browser will be redirected to the 'view' page.
+//     * @param integer $id
+//     * @return mixed
+//     * @throws NotFoundHttpException if the model cannot be found
+//     */
+//    public function actionUpdate($id)
+//    {
+//        $model = $this->findModel($id);
+//
+//        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
+//            $model->load(Yii::$app->request->post());
+//            Yii::$app->response->format = Response::FORMAT_JSON;
+//            return ActiveForm::validate($model);
+//        }
+//
+//        if (Yii::$app->request->post()) {
+//            $model->load(Yii::$app->request->post());
+//
+//            if($model->answer)
+//                $model->status = UserRequest::STATUS_CONFIRM;
+//
+//            if ($model->save()) {
+//                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+//                return $this->redirect(['view', 'id' => $model->id]);
+//            } else
+//                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+//        }
+//
+//        return $this->render('view', [
+//            'model' => $model,
+//            'admin' => true
+//        ]);
+//    }
 
     /**
      * Deletes an existing Advice model.

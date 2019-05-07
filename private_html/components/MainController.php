@@ -271,8 +271,26 @@ abstract class MainController extends Controller
         $advice_count = $advice_count>0?'<span class="m-badge m-badge--danger">'.$advice_count.'</span>':'';
         $cooperation_count = Cooperation::find()->andWhere(['type' => Cooperation::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
         $cooperation_count = $cooperation_count>0?'<span class="m-badge m-badge--danger">'.$cooperation_count.'</span>':'';
-        $reception_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
-        $reception_count = $reception_count>0?'<span class="m-badge m-badge--danger">'.$reception_count.'</span>':'';
+        $reception_1_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
+            'reception_type' => Reception::RECEPTION_TYPE_HOSPITALIZATION,
+        ])->count();
+        $reception_1_count = $reception_1_count>0?'<span class="m-badge m-badge--danger">'.$reception_1_count.'</span>':'';
+        $reception_2_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
+            'reception_type' => Reception::RECEPTION_TYPE_CLINIC,
+        ])->count();
+        $reception_2_count = $reception_2_count>0?'<span class="m-badge m-badge--danger">'.$reception_2_count.'</span>':'';
+        $reception_3_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
+            'reception_type' => Reception::RECEPTION_TYPE_PARA_CLINIC,
+        ])->count();
+        $reception_3_count = $reception_3_count>0?'<span class="m-badge m-badge--danger">'.$reception_3_count.'</span>':'';
+
+        $requestLinks =[
+            ['label' => 'درخواست بستری '.$reception_1_count, 'url' => ['/reception/hospitalization']],
+            ['label' => 'درخواست کلینیک '.$reception_2_count, 'url' => ['/reception/clinic-request']],
+            ['label' => 'درخواست پاراکلینیک '.$reception_3_count, 'url' => ['/reception/para-clinic']],
+            ['label' => 'درخواست مشاوره '.$advice_count, 'url' => ['/advice/index']],
+            ['label' => 'درخواست همکاری '.$cooperation_count, 'url' => ['/cooperation/index']],
+        ];
 
         return [
             [
@@ -327,11 +345,7 @@ abstract class MainController extends Controller
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">مدیریت درخواست ها</span>'.$total_count,
-                'items' => [
-                    ['label' => 'درخواست پذیرش'.$reception_count, 'url' => ['/reception/index']],
-                    ['label' => 'درخواست مشاوره'.$advice_count, 'url' => ['/advice/index']],
-                    ['label' => 'درخواست همکاری'.$cooperation_count, 'url' => ['/cooperation/index']],
-                ],
+                'items' => $requestLinks,
                 'visible' => $permissions === true or isset($permissions['user_request'])
             ],
             [

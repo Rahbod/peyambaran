@@ -62,8 +62,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'status',
                             'value' => function ($model) {
-                                return $model->getStatusLabels($model->status);
+                                return \app\models\Slide::getStatusLabels($model->status,true);
                             },
+                            'format' => 'raw',
+                            'filter' => \app\models\Slide::getStatusFilter()
                         ],
                         'verification_code',
                         ['class' => 'app\components\customWidgets\CustomActionColumn']

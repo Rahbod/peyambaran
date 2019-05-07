@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\UserRequestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Reception request');
+$this->title = isset($title)?"درخواست پذیرش $title":Yii::t('words', 'Reception request');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-request-index">

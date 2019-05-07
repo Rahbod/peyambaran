@@ -67,7 +67,7 @@ class ReceptionSearch extends Reception
             'type' => $this->type,
             'created' => $this->created,
             'status' => $this->status,
-            'reception_type' => $this->reception_type,
+            self::columnGetString('reception_type') => $this->reception_type,
         ]);
 
         $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])

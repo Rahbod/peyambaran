@@ -67,9 +67,12 @@ use  app\components\customWidgets\CustomActiveForm;
                 <h5><?= Yii::t('words', 'Permissions') ?></h5>
             </div>
             <?php foreach ($actions as $key => $controller): ?>
-                <div class="col-sm-12 mt-4">
+                <div class="col-sm-4 mt-4">
                     <div class="form-group m-form__group">
-                        <h6><b><?php echo $controller['alias'] ?></b></h6>
+                        <a href="#" data-toggle="collapse" data-target="#group-<?= $key ?>">
+                            <h6 class="text-dark"><i class="fa fa-plus text-info"></i> <b><?php echo $controller['alias'] ?></b></h6>
+                        </a>
+                        <div class="collapse mt-3" id="group-<?= $key ?>">
                         <?php foreach ($controller['actions'] as $action): ?>
                             <div class="col-sm-12">
                                 <label class="m-checkbox m-checkbox--solid m-checkbox--brand mr-5"
@@ -80,6 +83,7 @@ use  app\components\customWidgets\CustomActiveForm;
                                 </label>
                             </div>
                         <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             <?php endforeach; ?>
