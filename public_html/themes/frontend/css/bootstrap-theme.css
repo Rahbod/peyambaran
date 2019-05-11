@@ -3802,3 +3802,6 @@ section .title-description {
 .dashboard .card-text {
     color: #919191;
 }
+.gallery-tabs .nav-tabs{
+    margin-top:80px;
+}

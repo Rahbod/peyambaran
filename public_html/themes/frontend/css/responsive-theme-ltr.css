@@ -475,7 +475,7 @@
         float: left;
     }
 
-    .insurance-btn-box ul > li.active {
+    .insurance-btn-box ul > li:first-of-type {
         margin-right: 9.99%;
     }
 
@@ -527,6 +527,19 @@
         min-height: 60px;
         border-radius: 0 !important;
     }
+    
+    .scroll section:not(.dashboard) .content-header{
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        top: 60px;
+    }
+
+    .scroll.stop section:not(.dashboard) .content-header{
+        position: absolute;
+    }
+
     .news-show .card{
         margin-top: 30px;
     }

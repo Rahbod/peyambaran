@@ -326,6 +326,7 @@
         padding-top: 55px
     }
 
+    section.gallery-bg,
     section.texture-bg {
         padding: 20px 0;
     }
@@ -349,6 +350,18 @@
     .securityCode__input{
         width: auto;
     }
+
+    .scroll section:not(.dashboard) .content-header{
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        top: 60px;
+    }
+
+    .scroll.stop section:not(.dashboard) .content-header{
+        position: absolute;
+    }
 }
 
 @media screen and (max-width: 767.98px) {
@@ -358,7 +371,7 @@
         float: right;
     }
 
-    .insurance-btn-box ul > li.active {
+    .insurance-btn-box ul > li:first-of-type {
         margin-left: 9.99%;
     }
 
@@ -524,6 +537,9 @@
     }
     .register .vertical-separator-line{
         min-height: 0;
+    }
+    .gallery-tabs .nav-tabs{
+        margin-top:30px;
     }
 }
 

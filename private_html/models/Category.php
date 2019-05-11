@@ -28,6 +28,8 @@ use yii\helpers\ArrayHelper;
  * @property int $right
  * @property int $depth
  * @property int $tree
+ * @property int $show_always
+ * @property int $show_in_home
  * @property string $fullName
  *
  * @property Page[] $pages
@@ -98,7 +100,9 @@ class Category extends MultiLangActiveRecord
             'category_type' => ['CHAR', ''],
             'en_name' => ['CHAR', ''],
             'ar_name' => ['CHAR', ''],
-            'sort' => ['INTEGER', '']
+            'sort' => ['INTEGER', ''],
+            'show_in_home' => ['INTEGER', ''],
+            'show_always' => ['INTEGER', ''],
         ]);
     }
 
@@ -117,6 +121,8 @@ class Category extends MultiLangActiveRecord
             ['created', 'default', 'value' => time()],
             [['left', 'right', 'depth', 'tree'], 'default', 'value' => 0],
             ['status', 'default', 'value' => self::STATUS_PUBLISHED],
+            ['show_in_home', 'default', 'value' => 0],
+            ['show_always', 'default', 'value' => 0],
             [['name'], 'string', 'max' => 511],
         ]);
     }
@@ -142,6 +148,8 @@ class Category extends MultiLangActiveRecord
             'tree' => Yii::t('words', 'Tree'),
             'en_name' => Yii::t('words', 'En Name'),
             'ar_name' => Yii::t('words', 'Ar Name'),
+            'show_in_home' => 'نمایش در صفحه اصلی',
+            'show_always' => 'نمایش ویژه',
         ]);
     }
 
