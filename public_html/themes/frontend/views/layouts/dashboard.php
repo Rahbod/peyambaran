@@ -102,8 +102,8 @@ AppAsset::register($this);
                                     <li>
                                         <a class="disabled" href="#user-tab-6"><i class=""></i><span>جوابدهی تصویربرداری</span></a>
                                     </li>
-                                    <li class="text-danger"><a href="<?= \yii\helpers\Url::to(['/user/logout']) ?>"><i
-                                                    class=""></i><span><?= Yii::t('words', 'Logout') ?></span></a></li>
+                                    <li><a href="<?= \yii\helpers\Url::to(['/user/logout']) ?>"><i
+                                                    class=""></i><span class="text-danger" ><?= Yii::t('words', 'Logout') ?></span></a></li>
                                 </ul>
                             </div>
                             <div class="footer-border"></div>

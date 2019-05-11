@@ -138,12 +138,28 @@ use yii\helpers\Url;
                 <h1><?= Yii::t('words', 'logo_title')?></h1>
             </a>
 
+
             <button id="sidebarCollapse" class="navbar-toggler" type="button">
                 <span class="navbar-toggler-lines"></span>
                 <span class="navbar-toggler-lines"></span>
                 <span class="navbar-toggler-lines"></span>
             </button>
 
+            <div class="dropdown language-select mobile-language">
+                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+<!--                    <span class="icon icon-chevron-down"></span>-->
+                    <span class="text-uppercase"><?= Yii::$app->language ?></span>
+<!--                    <span class="language-icon"></span>-->
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="<?= Url::to(["/fa"]) ?>">FA</a></li>
+                    <li><a href="<?= Url::to(["/en"]) ?>">EN</a></li>
+                    <!--                        --><?php //foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
+                    <!--                            <li><a href="--><? //= Url::to(["/{$key}"]) ?><!--">-->
+                    <? //= Yii::t('words', $key) ?><!--</a></li>-->
+                    <!--                        --><?php //endforeach; ?>
+                </ul>
+            </div>
         </nav>
     </div>
 </header>

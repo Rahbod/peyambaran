@@ -325,10 +325,11 @@
     .content {
         padding-top: 55px
     }
-
+    section.gallery-bg,
     section.texture-bg {
         padding: 20px 0;
     }
+
 
     #sidebarCollapse {
         display: block;
@@ -352,13 +353,16 @@
 }
 
 @media screen and (max-width: 767.98px) {
+    .nicescroll{
+        overflow-y: auto;
+    }
     /*#region insurance*/
     .insurance-btn-box ul > li {
         width: 45%;
         float: right;
     }
 
-    .insurance-btn-box ul > li.active {
+    .insurance-btn-box ul > li:first-of-type {
         margin-left: 9.99%;
     }
 
@@ -511,6 +515,19 @@
         min-height: 60px;
         border-radius: 0 !important;
     }
+
+    .scroll section:not(.dashboard) .content-header{
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        top: 60px;
+    }
+
+    .scroll.stop section:not(.dashboard) .content-header{
+        position: absolute;
+    }
+
     .news-show .card{
         margin-top: 30px;
     }
@@ -528,6 +545,9 @@
 }
 
 @media screen and (max-width: 575.98px) {
+    .gallery-list-box{
+        margin-bottom: 30px;
+    }
     .dashboard__form--btn{
         width: 100%;
     }

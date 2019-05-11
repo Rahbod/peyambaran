@@ -59,7 +59,7 @@ $expertiseID = Yii::$app->request->getQueryParam('expertise') ?: 0;
                     <button type="button" class="btn sideMenuIcon" data-toggle="modal" data-target="#myModal"></button>
 
                 </div>
-                <div class="content-body">
+                <div class="content-body p-0">
                     <div class="panel-group mt-5" id="accordion">
                         <?php echo \yii\widgets\ListView::widget([
                             'dataProvider' => $dataProvider,

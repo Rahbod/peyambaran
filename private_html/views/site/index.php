@@ -216,9 +216,13 @@ use app\components\Setting;
 
 <!--Gallery-->
 <?php if (\app\models\PictureGallery::find()->valid()->count() > 0): ?>
-    <section class="gallery-bg hidden-xs">
+    <section class="gallery-bg">
         <div class="container">
             <div class="row gallery-tabs">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
+                    <div class="gallery-icon"></div>
+                    <h3 class="section-title"><?= Yii::t('words', 'Picture Gallery') ?></h3>
+                </div>
                 <ul class="pull-left nav nav-tabs">
                     <?php $i = 0;
                     foreach ($galleryCategories as $item): ?>
@@ -231,18 +235,14 @@ use app\components\Setting;
                 </ul>
             </div>
             <div class="row gallery-container">
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 text-right">
-                    <div class="gallery-icon"></div>
-                    <h3 class="section-title"><?= Yii::t('words', 'Picture Gallery') ?></h3>
-                </div>
-                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 gallery-left-box">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 gallery-left-box">
                     <div class="tab-content row">
                         <?php $i = 0;
                         foreach ($galleryCategories as $category): ?>
                             <?php if (count($category->catitems) > 0): $i++; ?>
                                 <div class="tab-pane fade<?= $i == 1 ? ' active in' : '' ?>"
                                      id="gallery-category-<?= $category->id ?>">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right gallery-list-box nicescroll"
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-right gallery-list-box nicescroll"
                                          data-cursorcolor="#4d82f2" data-cursorborder="none"
                                          data-railpadding='js:{"top":0,"right":-5,"bottom":0,"left":0}'
                                          data-autohidemode="false">
@@ -265,7 +265,7 @@ use app\components\Setting;
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 text-right">
                                         <div class="tab-content">
                                             <?php $k = 0;
                                             foreach ($category->items as $item):$k++; ?>
