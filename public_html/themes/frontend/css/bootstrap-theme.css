@@ -3840,3 +3840,6 @@ section .title-description {
 .list-view{
     display: block;overflow: hidden;
 }
+.gallery-tabs .nav-tabs{
+    margin-top:80px;
+}

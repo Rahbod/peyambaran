@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use function app\components\dd;
 use app\components\SmsSender;
 use app\models\Category;
 use app\models\Insurance;
@@ -13,6 +14,7 @@ use app\models\Post;
 use app\models\Slide;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\ContactForm;
@@ -93,7 +95,15 @@ class SiteController extends AuthController
         $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->orderBy(['id' => SORT_ASC])->all();
         $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->orderBy(['id' => SORT_ASC])->all();
         $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();
-        $galleryCategories = Category::find()->valid()->andWhere(['type' => Category::TYPE_CATEGORY, Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY])->all();
+        $galleryCategories = Category::find()->valid()->andWhere([
+            'type' => Category::TYPE_CATEGORY,
+            Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY,
+            Category::columnGetString('show_in_home') => 1,
+        ])->orderBy([Category::columnGetString('show_always') => SORT_DESC])->addOrderBy('RAND()')->limit(5)->all();
+        ArrayHelper::multisort($galleryCategories,function ($model){
+            return $model->sort;
+        });
+
         $onlineServices = OnlineService::find()->valid()->all();
 
         return $this->render('index', compact('slides', 'inpatientInsurances', 'outpatientInsurances', 'posts', 'galleryCategories', 'onlineServices'));

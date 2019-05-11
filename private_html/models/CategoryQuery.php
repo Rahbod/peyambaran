@@ -41,7 +41,9 @@ class CategoryQuery extends MultiLangActiveQuery
                 'type' => $this->_typeName
             ]);
         }
-        $this->orderBySort();
+
+        if(!$this->orderBy)
+            $this->orderBySort();
         return parent::all($db);
     }
 
