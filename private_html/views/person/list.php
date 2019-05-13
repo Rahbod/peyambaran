@@ -23,7 +23,7 @@ $expertiseID = Yii::$app->request->getQueryParam('expertise') ?: 0;
                     <div class="sidebar-header mt-3">
                         <h4 class="text-purple"><?= Yii::t('words', 'Payambaran Medical team') ?></h4>
                     </div>
-                    <ul class="list-unstyled mt-5">
+                    <ul class="list-unstyled mt-4">
                         <?php foreach ($expertiseMenu as $item):$sc = $item->children(1)->count(); ?>
                             <li class="mb-3">
                                 <?php if ($sc > 0): ?>

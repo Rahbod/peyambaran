@@ -551,7 +551,6 @@ header .search-form {
     -ms-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
-    border-bottom: 1px solid transparent;
 }
 
 .navbar .dropdown-menu .menu-part > li.has-child > a {
@@ -582,7 +581,6 @@ header .search-form {
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a:active,
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a:hover {
     color: #3f8dfa;
-    border-bottom-color: #3f8dfa;
 }
 
 .navbar .dropdown-menu .menu-part > li.active > a:before,
@@ -766,6 +764,7 @@ section .title-description {
 
 .umbrella-texture {
     background-image: url("../images/umbrella-texture.png") !important;
+    background-position: bottom center !important;
     background-size: 100% auto !important;
     background-color: #c9c7c2 !important;
 }
@@ -1364,6 +1363,7 @@ section .title-description {
     position: absolute;
     top: 50%;
     left: 50%;
+    border-radius: 10px;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -2301,7 +2301,7 @@ section .title-description {
 }
 
 .clinic-program .content-header {
-    margin-bottom: 90px;
+    margin-bottom: 30px;
 }
 
 /*#endregion*/

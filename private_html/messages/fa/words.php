@@ -47,7 +47,7 @@ return [
     'Experience' => 'تجربه',
     'Resume' => 'توضیحات',
     'Full Name' => 'نام کامل',
-    'First Name' => 'نام کوچک',
+    'First Name' => 'نام',
     'Sure Name' => 'نام خانوادگی',
     'Type' => 'نوع',
     'Doctor' => 'پزشک',
@@ -373,4 +373,8 @@ return [
     'Answer' => 'پاسخ',
     'Password' => 'کلمه عبور',
     'Username' => 'نام کاربری',
+    'En Name' => 'نام انگلیسی',
+    'Ar Name' => 'نام عربی',
+    'En Resume' => 'توضیحات انگلیسی',
+    'Ar Resume' => 'توضیحات عربی',
 ];

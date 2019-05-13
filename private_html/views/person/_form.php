@@ -54,15 +54,6 @@ use app\models\Category;
 
     <div class="row">
         <div class="col-sm-4">
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col-sm-4">
-            <?= $form->field($model, 'en_name')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col-sm-4">
-            <?= $form->field($model, 'ar_name')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col-sm-4">
             <?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-sm-4">
@@ -80,7 +71,31 @@ use app\models\Category;
         </div>
     </div>
 
-    <?= $form->field($model, 'resume')->textarea(['rows' => 6]); ?>
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'en_name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'ar_name')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <?= $form->field($model, 'resume')->textarea(['rows' => 6]); ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'en_resume')->textarea(['rows' => 6]); ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'ar_resume')->textarea(['rows' => 6]); ?>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-sm-4">

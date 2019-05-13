@@ -69,12 +69,6 @@ use app\models\Category;
                                 'options' => ['width' => '150px']
                             ],
                             [
-                                'attribute' => 'name',
-                                'value' => function ($model) {
-                                    return $model->person->getName();
-                                }
-                            ],
-                            [
                                 'attribute' => 'date',
                                 'header' => Yii::t('words', 'Week Days'),
                                 'value' => function ($model) {
@@ -97,7 +91,7 @@ use app\models\Category;
                                 'attribute' => 'date',
                                 'header' => Yii::t('words', 'Time'),
                                 'value' => function ($model) {
-                                    return "<span>{$model->time}</span>";
+                                    return "<div class='text-center'>{$model->time}</div>";
                                 },
                                 'filter' => Html::activeTextInput($clinicSearchModel, 'fromtime', [
                                         'class' => 'form-control time-filter',
@@ -105,6 +99,7 @@ use app\models\Category;
                                         'class' => 'form-control time-filter',
                                     ]),
                                 'format' => 'raw',
+                                'options' => ['width' => '162px']
                             ],
                             [
                                 'attribute' => 'description',

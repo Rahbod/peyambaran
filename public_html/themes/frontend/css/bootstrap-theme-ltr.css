@@ -475,11 +475,14 @@ border-radius: 7px 0 0 7px !important;
 }
 
 .doctors .panel-title__doctorAvatar {
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
-    transform: rotateY(180deg);
+    /*-webkit-transform: rotateY(180deg);*/
+    /*-moz-transform: rotateY(180deg);*/
+    /*-ms-transform: rotateY(180deg);*/
+    /*-o-transform: rotateY(180deg);*/
+    /*transform: rotateY(180deg);*/
+    float: left;
+    margin-left: 0;
+    margin-right: 20px;
 }
 
 /*#endregion*/
@@ -610,4 +613,9 @@ border-radius: 7px 0 0 7px !important;
 .news .card-title,
 .news-show .card-title {
     text-align: left;
+}
+.sidebar-header h4{
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 800;
 }
