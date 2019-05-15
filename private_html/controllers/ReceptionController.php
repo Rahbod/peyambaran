@@ -248,55 +248,55 @@ class ReceptionController extends AuthController
 //        ]);
 //    }
 //
-//    /**
-//     * Updates an existing Reception model.
-//     * If update is successful, the browser will be redirected to the 'view' page.
-//     * @param integer $id
-//     * @return mixed
-//     * @throws NotFoundHttpException if the model cannot be found
-//     */
-//    public function actionUpdate($id)
-//    {
-//        $model = $this->findModel($id);
-//
-//        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
-//            $model->load(Yii::$app->request->post());
-//            Yii::$app->response->format = Response::FORMAT_JSON;
-//            return ActiveForm::validate($model);
-//        }
-//
-//        if (Yii::$app->request->post()) {
-//            $oldVisit = $model->visit_date;
-//            $model->load(Yii::$app->request->post());
-//            $date = null;
-//            if ($model->visit_date) {
-//                $date = $model->visit_date;
-//                $model->visit_date = (string)Helper::jDateTotoGregorian($model->visit_date);
-//                $model->status = UserRequest::STATUS_CONFIRM;
-//            }
-//
-//            if ($model->save()) {
-//
-//                if ($model->visit_date) {
-//                    if (!$oldVisit)
-//                        SmsSender::Send(SmsSender::$afterReceptionTemplate, $model->user->phone, $model->getReceptionTypeLabel(),
-//                            \jDateTime::date('Y/m/d', $model->visit_date));
-//                    elseif($oldVisit!=$model->visit_date)
-//                        SmsSender::Send(SmsSender::$afterChangeReceptionTemplate, $model->user->phone, $model->getReceptionTypeLabel(),
-//                            \jDateTime::date('Y/m/d', $model->visit_date));
-//                }
-//
-//                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-//                return $this->redirect(['view', 'id' => $model->id]);
-//            } else
-//                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
-//            $model->visit_date = $date;
-//        }
-//
-//        return $this->render('view', [
-//            'model' => $model,
-//        ]);
-//    }
+    /**
+     * Updates an existing Reception model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
+            $model->load(Yii::$app->request->post());
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if (Yii::$app->request->post()) {
+            $oldVisit = $model->visit_date;
+            $model->load(Yii::$app->request->post());
+            $date = null;
+            if ($model->visit_date) {
+                $date = $model->visit_date;
+                $model->visit_date = (string)Helper::jDateTotoGregorian($model->visit_date);
+                $model->status = UserRequest::STATUS_CONFIRM;
+            }
+
+            if ($model->save()) {
+
+                if ($model->visit_date) {
+                    if (!$oldVisit)
+                        SmsSender::Send(SmsSender::$afterReceptionTemplate, $model->user->phone, $model->getReceptionTypeLabel(),
+                            \jDateTime::date('Y/m/d', $model->visit_date));
+                    elseif($oldVisit!=$model->visit_date)
+                        SmsSender::Send(SmsSender::$afterChangeReceptionTemplate, $model->user->phone, $model->getReceptionTypeLabel(),
+                            \jDateTime::date('Y/m/d', $model->visit_date));
+                }
+
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            $model->visit_date = $date;
+        }
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Deletes an existing Reception model.
