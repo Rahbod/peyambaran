@@ -261,24 +261,34 @@ class MainController extends Controller
         $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department'], 'visible' => $permissions || Yii::$app->user->can('messageDepartment')];
 
         // requests count
-        $total_count = UserRequest::find()->andWhere(['status' => UserRequest::STATUS_PENDING])->count();
-        $total_count = $total_count > 0 ? '<span class="m-badge m-badge--danger">' . $total_count . '</span>' : '';
+        $total_count=0;
         $advice_count = Advice::find()->andWhere(['type' => Advice::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
         $advice_count = $advice_count > 0 ? '<span class="m-badge m-badge--danger">' . $advice_count . '</span>' : '';
         $cooperation_count = Cooperation::find()->andWhere(['type' => Cooperation::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
         $cooperation_count = $cooperation_count > 0 ? '<span class="m-badge m-badge--danger">' . $cooperation_count . '</span>' : '';
-        $reception_1_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
-            'reception_type' => Reception::RECEPTION_TYPE_HOSPITALIZATION,
-        ])->count();
-        $reception_1_count = $reception_1_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_1_count . '</span>' : '';
-        $reception_2_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
-            'reception_type' => Reception::RECEPTION_TYPE_CLINIC,
-        ])->count();
-        $reception_2_count = $reception_2_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_2_count . '</span>' : '';
-        $reception_3_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
-            'reception_type' => Reception::RECEPTION_TYPE_PARA_CLINIC,
-        ])->count();
-        $reception_3_count = $reception_3_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_3_count . '</span>' : '';
+
+        if($permissions || Yii::$app->user->can('receptionHospitalization')) {
+            $reception_1_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
+                'reception_type' => Reception::RECEPTION_TYPE_HOSPITALIZATION,
+            ])->count();
+            $total_count = $reception_1_count;
+            $reception_1_count = $reception_1_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_1_count . '</span>' : '';
+        }
+        if($permissions || Yii::$app->user->can('receptionClinicRequest')) {
+            $reception_2_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
+                'reception_type' => Reception::RECEPTION_TYPE_CLINIC,
+            ])->count();
+            $total_count += $reception_2_count;
+            $reception_2_count = $reception_2_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_2_count . '</span>' : '';
+        }
+        if($permissions || Yii::$app->user->can('receptionParaClinic')) {
+            $reception_3_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
+                'reception_type' => Reception::RECEPTION_TYPE_PARA_CLINIC,
+            ])->count();
+            $total_count += $reception_3_count;
+            $reception_3_count = $reception_3_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_3_count . '</span>' : '';
+        }
+        $total_count = $total_count > 0 ? '<span class="m-badge m-badge--danger">' . $total_count . '</span>' : '';
 
         return [
             [

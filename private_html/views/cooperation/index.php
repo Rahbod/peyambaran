@@ -41,6 +41,34 @@ $this->params['breadcrumbs'][] = $this->title;
                             }
                         ],
                         [
+                            'attribute' => 'gender',
+                            'value' => function ($model) {
+                                return $model->getGenderLabel();
+                            },
+                            'filter' => \app\models\Cooperation::getGenderLabels()
+                        ],
+                        [
+                            'attribute' => 'cooperation_type',
+                            'value' => function ($model) {
+                                return $model->getCooperationTypeLabel();
+                            },
+                            'filter' => \app\models\Cooperation::getCooperationTypeLabels()
+                        ],
+                        [
+                            'attribute' => 'military_status',
+                            'value' => function ($model) {
+                                if ($model->military_status === null)
+                                    return $model->military_status;
+                                return $model->military_status == 1 ? 'پایان خدمت' : 'معافیت';
+                            },
+                            'filter' => [
+                                    0 => 'معافیت',
+                                    1 => 'پایان خدمت',
+                            ]
+                        ],
+                        'city',
+                        'activity_requested',
+                        [
                             'attribute' => 'created',
                             'value' => function ($model) {
                                 return jDateTime::date('y/m/d', $model->created);

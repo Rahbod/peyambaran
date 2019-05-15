@@ -19,8 +19,9 @@ class CooperationSearch extends Cooperation
     {
         return [
             [['id', 'userID', 'status'], 'integer'],
-            [['type'], 'number'],
-            [['name'], 'safe'],
+            [['type','military_status'], 'number'],
+            [['city','activity_requested'], 'string'],
+            [['name','gender', 'cooperation_type'], 'safe'],
         ];
     }
 
@@ -66,7 +67,13 @@ class CooperationSearch extends Cooperation
             'type' => $this->type,
             'created' => $this->created,
             'status' => $this->status,
+            static::columnGetString('military_status')=> $this->military_status,
+            static::columnGetString('gender')=> $this->gender,
+            static::columnGetString('cooperation_type')=> $this->cooperation_type,
         ]);
+
+        $query->andFilterWhere(['REGEXP', static::columnGetString('city'), Helper::persian2Arabic($this->city)]);
+        $query->andFilterWhere(['REGEXP', static::columnGetString('activity_requested'), Helper::persian2Arabic($this->activity_requested)]);
 
         $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
             ->orFilterWhere(['REGEXP', 'family', Helper::persian2Arabic($this->name)]);
