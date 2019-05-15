@@ -179,8 +179,10 @@ border-radius: 7px 0 0 7px !important;
     float: left;
 }
 
+.news-item-inner .statics-row > span{
+    direction: ltr;
+}
 .news-item-inner .statics-row > span [class*='-icon'] {
-
     margin-left: 5px;
     padding-right: 0;
 }
@@ -331,11 +333,6 @@ border-radius: 7px 0 0 7px !important;
     float: left;
 }
 
-.user-header-box {
-    margin-left: 10px;
-    margin-right: 0;
-}
-
 .user-header-pic {
     left: 0;
     right: auto;
@@ -478,11 +475,14 @@ border-radius: 7px 0 0 7px !important;
 }
 
 .doctors .panel-title__doctorAvatar {
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
-    transform: rotateY(180deg);
+    /*-webkit-transform: rotateY(180deg);*/
+    /*-moz-transform: rotateY(180deg);*/
+    /*-ms-transform: rotateY(180deg);*/
+    /*-o-transform: rotateY(180deg);*/
+    /*transform: rotateY(180deg);*/
+    float: left;
+    margin-left: 0;
+    margin-right: 20px;
 }
 
 /*#endregion*/
@@ -605,4 +605,17 @@ border-radius: 7px 0 0 7px !important;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
+}
+
+.language-select.mobile-language{
+    float: right;
+}
+.news .card-title,
+.news-show .card-title {
+    text-align: left;
+}
+.sidebar-header h4{
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 800;
 }

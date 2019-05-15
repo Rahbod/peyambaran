@@ -551,7 +551,6 @@ header .search-form {
     -ms-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
-    border-bottom: 1px solid transparent;
 }
 
 .navbar .dropdown-menu .menu-part > li.has-child > a {
@@ -582,7 +581,6 @@ header .search-form {
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a:active,
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a:hover {
     color: #3f8dfa;
-    border-bottom-color: #3f8dfa;
 }
 
 .navbar .dropdown-menu .menu-part > li.active > a:before,
@@ -766,6 +764,7 @@ section .title-description {
 
 .umbrella-texture {
     background-image: url("../images/umbrella-texture.png") !important;
+    background-position: bottom center !important;
     background-size: 100% auto !important;
     background-color: #c9c7c2 !important;
 }
@@ -1364,6 +1363,7 @@ section .title-description {
     position: absolute;
     top: 50%;
     left: 50%;
+    border-radius: 10px;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -1872,6 +1872,10 @@ section .title-description {
     height: auto;
     border-radius: 10px;
 }
+.sidebar-user-menu .text-danger{
+    color: #e00 !important;
+    font-weight: bold !important;
+}
 
 .sidebar-user-menu .top-section {
     padding: 15px;
@@ -2297,7 +2301,7 @@ section .title-description {
 }
 
 .clinic-program .content-header {
-    margin-bottom: 90px;
+    margin-bottom: 30px;
 }
 
 /*#endregion*/
@@ -2877,7 +2881,7 @@ section .title-description {
 .-hoverBlue:hover,
 .-hoverBlue:focus {
     color: #5499fa !important;
-    border-bottom: 1px solid #5499fa;
+    /*border-bottom: 1px solid #5499fa;*/
 }
 
 /*------------------------------main content : html5lightbox */
@@ -3088,9 +3092,11 @@ section .title-description {
     justify-content: space-between;
 }
 
-.news .card-title {
+.news .card-title,
+.news-show .card-title {
     margin: 20px 0;
     color: #000;
+    text-align: right;
 }
 
 .news .card-text {
@@ -3801,6 +3807,38 @@ section .title-description {
 
 .dashboard .card-text {
     color: #919191;
+}
+
+.language-select.mobile-language{
+    float: left;
+}
+.mobile-language .btn{
+    color: #343434;
+    font-size: 9pt;
+    margin: 5px 12px 0;
+    border-radius: 50%;
+    display: block;
+    width: 28px;
+    text-align: center;
+    height: 28px;
+    border: none;
+    background-color: #fff;
+    padding: 0;
+}
+.mobile-language .btn span{
+    font-size: 12px;
+    font-weight: bold;
+}
+.mobile-language ul{
+    min-width: 0 !important;
+    padding: 10px 15px;
+}
+.mobile-language .dropdown-menu>li>a{
+    padding: 5px 0;
+}
+
+.list-view{
+    display: block;overflow: hidden;
 }
 .gallery-tabs .nav-tabs{
     margin-top:80px;

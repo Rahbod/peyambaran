@@ -1,9 +1,15 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>/admin/index</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    سامانه مدیریت وبسایت بیمارستان پیامبران
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>

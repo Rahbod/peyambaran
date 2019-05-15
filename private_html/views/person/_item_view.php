@@ -12,7 +12,7 @@
                             <div class="panel-title__doctorAvatar">
                                 <?php if ($model->avatar && is_file(Yii::getAlias("@webroot/uploads/person/$model->avatar"))): ?>
                                     <img src="<?= Yii::getAlias('@web/uploads/person/') . $model->avatar ?>"
-                                         alt="<?= $model->name ?>">
+                                         alt="<?= $model->getName() ?>">
                                 <?php else: ?>
                                     <img class="panel-title__doctorAvatar-default"
                                          src="<?= $this->theme->baseUrl ?>/images/doctors/avatar-gray.png"

@@ -24,7 +24,7 @@ if ($relatedMenu)
                         <div class="sidebar-header mt-5">
                             <h4><?= $root->name ?></h4>
                         </div>
-                        <ul class="list-unstyled mt-5">
+                        <ul class="list-unstyled mt-4">
                             <?php foreach ($root->children(1)->valid()->all() as $sub_item):$sc = $sub_item->children(1)->valid()->count(); ?>
                                 <li class="mb-3">
                                     <?php if ($sc > 0): ?>

@@ -70,6 +70,9 @@ class Person extends Item
 
             'en_name' => ['CHAR', ''],
             'ar_name' => ['CHAR', ''],
+
+            'en_resume' => ['CHAR', ''],
+            'ar_resume' => ['CHAR', ''],
         ]);
     }
 
@@ -79,7 +82,7 @@ class Person extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['en_name','ar_name'], 'string'],
+            [['en_name','ar_name', 'en_resume','ar_resume'], 'string'],
             [['expertise'], 'required'],
             [['expertise', 'experience'], 'integer'],
             [['avatar', 'link', 'resume', 'firstname', 'surename', 'medical_number'], 'string'],
@@ -99,6 +102,8 @@ class Person extends Item
             'name' => Yii::t('words', 'Full Name'),
             'en_name' => Yii::t('words', 'En Name'),
             'ar_name' => Yii::t('words', 'Ar Name'),
+            'en_resume' => Yii::t('words', 'En Resume'),
+            'ar_resume' => Yii::t('words', 'Ar Resume'),
             'firstname' => Yii::t('words', 'First Name'),
             'surename' => Yii::t('words', 'Sure Name'),
             'avatar' => Yii::t('words', 'Avatar'),
