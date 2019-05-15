@@ -80,6 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $css = $model->getStatusCssClass();
                                 return "<span class='m-badge m-badge--inline m-badge--pill m-badge--$css'>{$model->getStatusLabel()}</span>";
                             },
+                            'filter' => \app\models\UserRequest::getStatusLabels(),
                             'format' => 'raw'
                         ],
                         [
