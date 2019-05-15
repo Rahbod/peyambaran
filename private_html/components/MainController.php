@@ -8,6 +8,7 @@ use app\models\Department;
 use app\models\Reception;
 use app\models\UserRequest;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\web\Controller;
@@ -19,7 +20,7 @@ use app\models\User;
  *
  * @property User $user
  */
-abstract class MainController extends Controller
+class MainController extends Controller
 {
     public $bodyClass;
     public $headerClass;
@@ -71,9 +72,9 @@ abstract class MainController extends Controller
                 return true;
 
         if ($isPermissionName)
-            return Yii::$app->user->can($action);
+            return $permissions || Yii::$app->user->can($action);
         else
-            return Yii::$app->user->can($this->id . ucfirst($action));
+            return $permissions || Yii::$app->user->can($this->id . ucfirst($action));
     }
 
 
@@ -102,7 +103,7 @@ abstract class MainController extends Controller
      * @throws \ReflectionException
      * @throws \yii\base\InvalidConfigException
      */
-    public function getAllActions($validClasses = [], $excludeClasses = [], $menuActions = false)
+    public static function getAllActions($validClasses = [], $excludeClasses = [], $menuActions = false)
     {
         $excludeClasses = array_merge($excludeClasses, [
             'app\controllers\ApiController',
@@ -237,12 +238,7 @@ abstract class MainController extends Controller
 
         switch ($roleID) {
             case 'operator':
-                $permissions = [
-                    'clinic' => true,
-                    'items' => [
-                        'person' => true
-                    ]
-                ];
+                $permissions = false;
                 $menuName = 'Operator Menu';
                 break;
             case 'admin':
@@ -252,45 +248,37 @@ abstract class MainController extends Controller
                 break;
             case 'guest':
             default:
-                $permissions = [];
+                $permissions = false;
                 $menuName = 'Guest';
                 break;
         }
 
         $contactLinks = [];
         foreach (Department::find()->valid()->all() as $item) {
-            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id]];
+            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || Yii::$app->user->can('messageIndex')];
         }
-        $contactLinks[] = ['label' => 'همه پیام ها', 'url' => ['/message/index']];
-        $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department']];
+        $contactLinks[] = ['label' => 'همه پیام ها', 'url' => ['/message/index'], 'visible' => $permissions || Yii::$app->user->can('messageIndex')];
+        $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department'], 'visible' => $permissions || Yii::$app->user->can('messageDepartment')];
 
         // requests count
         $total_count = UserRequest::find()->andWhere(['status' => UserRequest::STATUS_PENDING])->count();
-        $total_count = $total_count>0?'<span class="m-badge m-badge--danger">'.$total_count.'</span>':'';
+        $total_count = $total_count > 0 ? '<span class="m-badge m-badge--danger">' . $total_count . '</span>' : '';
         $advice_count = Advice::find()->andWhere(['type' => Advice::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
-        $advice_count = $advice_count>0?'<span class="m-badge m-badge--danger">'.$advice_count.'</span>':'';
+        $advice_count = $advice_count > 0 ? '<span class="m-badge m-badge--danger">' . $advice_count . '</span>' : '';
         $cooperation_count = Cooperation::find()->andWhere(['type' => Cooperation::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
-        $cooperation_count = $cooperation_count>0?'<span class="m-badge m-badge--danger">'.$cooperation_count.'</span>':'';
+        $cooperation_count = $cooperation_count > 0 ? '<span class="m-badge m-badge--danger">' . $cooperation_count . '</span>' : '';
         $reception_1_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
             'reception_type' => Reception::RECEPTION_TYPE_HOSPITALIZATION,
         ])->count();
-        $reception_1_count = $reception_1_count>0?'<span class="m-badge m-badge--danger">'.$reception_1_count.'</span>':'';
+        $reception_1_count = $reception_1_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_1_count . '</span>' : '';
         $reception_2_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
             'reception_type' => Reception::RECEPTION_TYPE_CLINIC,
         ])->count();
-        $reception_2_count = $reception_2_count>0?'<span class="m-badge m-badge--danger">'.$reception_2_count.'</span>':'';
+        $reception_2_count = $reception_2_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_2_count . '</span>' : '';
         $reception_3_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
             'reception_type' => Reception::RECEPTION_TYPE_PARA_CLINIC,
         ])->count();
-        $reception_3_count = $reception_3_count>0?'<span class="m-badge m-badge--danger">'.$reception_3_count.'</span>':'';
-
-        $requestLinks =[
-            ['label' => 'درخواست بستری '.$reception_1_count, 'url' => ['/reception/hospitalization']],
-            ['label' => 'درخواست کلینیک '.$reception_2_count, 'url' => ['/reception/clinic-request']],
-            ['label' => 'درخواست پاراکلینیک '.$reception_3_count, 'url' => ['/reception/para-clinic']],
-            ['label' => 'درخواست مشاوره '.$advice_count, 'url' => ['/advice/index']],
-            ['label' => 'درخواست همکاری '.$cooperation_count, 'url' => ['/cooperation/index']],
-        ];
+        $reception_3_count = $reception_3_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_3_count . '</span>' : '';
 
         return [
             [
@@ -301,74 +289,81 @@ abstract class MainController extends Controller
             [
                 'label' => '<i class="m-menu__link-icon fa fa-calendar-alt"></i><span class="m-menu__link-text">' . Yii::t('words', 'Clinic Program') . '</span>',
                 'items' => [
-                    ['label' => Yii::t('words', 'Manage Days'), 'url' => ['/clinic/index']],
-                    ['label' => Yii::t('words', 'Create New Day'), 'url' => ['/clinic/create']],
-                    ['label' => Yii::t('words', 'Import csv'), 'url' => ['/clinic/import-csv-program']],
-                    ['label' => Yii::t('words', 'Import excel'), 'url' => ['/clinic/import-excel-program']],
-                ],
-                'visible' => $permissions === true or isset($permissions['clinic'])
+                    ['label' => Yii::t('words', 'Manage Days'), 'url' => ['/clinic/index'], 'visible' => $permissions || Yii::$app->user->can('clinicIndex')],
+                    ['label' => Yii::t('words', 'Create New Day'), 'url' => ['/clinic/create'], 'visible' => $permissions || Yii::$app->user->can('clinicCreate')],
+                    ['label' => Yii::t('words', 'Import csv'), 'url' => ['/clinic/import-csv-program'], 'visible' => $permissions || Yii::$app->user->can('clinicImportCsvProgram')],
+                    ['label' => Yii::t('words', 'Import excel'), 'url' => ['/clinic/import-excel-program'], 'visible' => $permissions || Yii::$app->user->can('clinicImportExcelProgram')],
+                ]
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-bars"></i><span class="m-menu__link-text">' . Yii::t('words', 'Menus') . '</span>',
                 'url' => ['/menu/index'],
-                'visible' => $permissions === true or isset($permissions['menu'])
+                'visible' => $permissions || Yii::$app->user->can('menuIndex')
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . Yii::t('words', 'Items') . '</span>',
                 'items' => [
-                    ['label' => Yii::t('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions === true or isset($permissions['items']['slide'])],
-                    ['label' => Yii::t('words', 'Online Services'), 'url' => ['/online/index'], 'visible' => $permissions === true or isset($permissions['items']['online'])],
-                    ['label' => Yii::t('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions === true or isset($permissions['items']['page'])],
-                    ['label' => Yii::t('words', 'People'), 'url' => ['/person/index'], 'visible' => $permissions === true or isset($permissions['items']['person'])],
-                    ['label' => Yii::t('words', 'Posts'), 'url' => ['/post/index'], 'visible' => $permissions === true or isset($permissions['items']['post'])],
-                    ['label' => Yii::t('words', 'Insurances'), 'url' => ['/insurance/index'], 'visible' => $permissions === true or isset($permissions['items']['insurance'])],
-                ],
-                'visible' => $permissions === true or isset($permissions['items'])
+                    ['label' => Yii::t('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions || Yii::$app->user->can('slideIndex')],
+                    ['label' => Yii::t('words', 'Online Services'), 'url' => ['/online/index'], 'visible' => $permissions || Yii::$app->user->can('onlineIndex')],
+                    ['label' => Yii::t('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions || Yii::$app->user->can('pageIndex')],
+                    ['label' => Yii::t('words', 'People'), 'url' => ['/person/index'], 'visible' => $permissions || Yii::$app->user->can('personIndex')],
+                    ['label' => Yii::t('words', 'Posts'), 'url' => ['/post/index'], 'visible' => $permissions || Yii::$app->user->can('postIndex')],
+                    ['label' => Yii::t('words', 'Insurances'), 'url' => ['/insurance/index'], 'visible' => $permissions || Yii::$app->user->can('insuranceIndex')],
+                ]
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-images"></i><span class="m-menu__link-text">' . Yii::t('words', 'Gallery') . '</span>',
                 'items' => [
-                    ['label' => Yii::t('words', 'Picture Gallery'), 'url' => ['/gallery/index'], 'visible' => $permissions === true or isset($permissions['gallery']['picture'])],
-                    ['label' => Yii::t('words', 'Video Gallery'), 'url' => ['/gallery/index-video'], 'visible' => $permissions === true or isset($permissions['gallery']['video'])],
-                ],
-                'visible' => $permissions === true or isset($permissions['gallery'])
+                    ['label' => Yii::t('words', 'Picture Gallery'), 'url' => ['/gallery/index'], 'visible' => $permissions || Yii::$app->user->can('galleryIndex')],
+                    ['label' => Yii::t('words', 'Video Gallery'), 'url' => ['/gallery/index-video'], 'visible' => $permissions || Yii::$app->user->can('galleryIndexVideo')],
+                ]
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-th"></i><span class="m-menu__link-text">' . Yii::t('words', 'Categories') . '</span>',
                 'url' => ['/category/index'],
-                'visible' => $permissions === true or isset($permissions['category'])
+                'visible' => $permissions || Yii::$app->user->can('categoryIndex')
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . Yii::t('words', 'Messages') . '</span>',
                 'items' => $contactLinks,
-                'visible' => $permissions === true or isset($permissions['message'])
             ],
             [
-                'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">مدیریت درخواست ها</span>'.$total_count,
-                'items' => $requestLinks,
-                'visible' => $permissions === true or isset($permissions['user_request'])
+                'label' => '<i class="m-menu__link-icon fa fa-calendar"></i><span class="m-menu__link-text">درخواست های پذیرش</span>' . $total_count,
+                'items' => [
+                    ['label' => 'درخواست بستری ' . $reception_1_count, 'url' => ['/reception/hospitalization'], 'visible' => $permissions || Yii::$app->user->can('receptionHospitalization')],
+                    ['label' => 'درخواست کلینیک ' . $reception_2_count, 'url' => ['/reception/clinic-request'], 'visible' => $permissions || Yii::$app->user->can('receptionClinicRequest')],
+                    ['label' => 'درخواست پاراکلینیک ' . $reception_3_count, 'url' => ['/reception/para-clinic'], 'visible' => $permissions || Yii::$app->user->can('receptionParaClinic')],
+                ]
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-calendar"></i><span class="m-menu__link-text">درخواست های مشاوره</span>' . $advice_count,
+                'url' => ['/advice/index'],
+                'visible' => $permissions || Yii::$app->user->can('adviceIndex'),
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-calendar"></i><span class="m-menu__link-text">درخواست های همکاری</span>' . $cooperation_count,
+                'url' => ['/cooperation/index'],
+                'visible' => $permissions || Yii::$app->user->can('cooperationIndex')
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">کاربران</span>',
                 'items' => [
-                    ['label' => 'مدیریت کاربران', 'url' => ['/user/index']],
-                    ['label' => 'افزودن کاربر', 'url' => ['/user/create']],
-                    ['label' => 'مدیریت نقش های کاربری', 'url' => ['/role/index'], 'visible' => $permissions === true or isset($permissions['user']['role'])],
-                ],
-                'visible' => $permissions === true or isset($permissions['user'])
+                    ['label' => 'مدیریت کاربران', 'url' => ['/user/index'], 'visible' => $permissions || Yii::$app->user->can('userIndex')],
+                    ['label' => 'افزودن کاربر', 'url' => ['/user/create'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
+                    ['label' => 'مدیریت نقش های کاربری', 'url' => ['/role/index'], 'visible' => $permissions || Yii::$app->user->can('roleIndex')],
+                ]
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-language"></i><span class="m-menu__link-text">مدیریت ترجمه ها</span>',
                 'url' => ['/admin/translate'],
-                'visible' => $permissions === true or isset($permissions['setting'])
+                'visible' => $permissions || Yii::$app->user->can('adminTranslate')
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-cogs"></i><span class="m-menu__link-text">' . Yii::t('words', 'Setting') . '</span>',
                 'items' => [
-                    ['label' => 'تنظیمات عمومی', 'url' => ['/setting/index']],
-                    ['label' => 'تنظیمات اسلایدر', 'url' => ['/slide/setting']],
-                ],
-                'visible' => $permissions === true or isset($permissions['setting'])
+                    ['label' => 'تنظیمات عمومی', 'url' => ['/setting/index'], 'visible' => $permissions || Yii::$app->user->can('settingIndex')],
+                    ['label' => 'تنظیمات اسلایدر', 'url' => ['/slide/setting'], 'visible' => $permissions || Yii::$app->user->can('sliderSetting')],
+                ]
             ],
             [
                 'label' => '<i class="m-menu__link-icon flaticon-logout"></i><span class="m-menu__link-text text-danger">' . Yii::t('words', 'Logout') . '</span>',
@@ -378,7 +373,7 @@ abstract class MainController extends Controller
             [
                 'label' => '<i class="m-menu__link-icon flaticon-imac"></i><span class="m-menu__link-text">' . Yii::t('words', 'Login') . '</span>',
                 'url' => ['/admin/login'],
-                'visible' => !$permissions
+                'visible' => Yii::$app->user->isGuest
             ]
         ];
     }

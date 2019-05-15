@@ -5,7 +5,7 @@ use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\UserRequestSearch */
+/* @var $searchModel app\models\ReceptionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = isset($title)?"درخواست پذیرش $title":Yii::t('words', 'Reception request');
