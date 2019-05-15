@@ -76,7 +76,7 @@ class CooperationSearch extends Cooperation
         $query->andFilterWhere(['REGEXP', static::columnGetString('activity_requested'), Helper::persian2Arabic($this->activity_requested)]);
 
         $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
-            ->orFilterWhere(['REGEXP', 'family', Helper::persian2Arabic($this->name)]);
+            ->orFilterWhere(['REGEXP', static::columnGetString('family'), Helper::persian2Arabic($this->name)]);
 
         $query->orderBy(['status' => SORT_ASC, 'id' => SORT_DESC]);
 

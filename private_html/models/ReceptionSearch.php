@@ -71,7 +71,7 @@ class ReceptionSearch extends Reception
         ]);
 
         $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
-            ->orFilterWhere(['REGEXP', 'family', Helper::persian2Arabic($this->name)]);
+            ->orFilterWhere(['REGEXP', static::columnGetString('family'), Helper::persian2Arabic($this->name)]);
 
         $query->orderBy(['status' => SORT_ASC,'id' => SORT_DESC]);
 
