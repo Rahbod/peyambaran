@@ -22,12 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="m-portlet__head-tools">
             <ul class="m-portlet__nav">
-                <li class="m-portlet__nav-item hidden">
-                    <?= Html::a('<span><i class="far fa-edit"></i><span>' . Yii::t('words', 'Update') . '</span></span>', ['update', 'id' => $model->id], [
-                        'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-success',
-                        'encode' => false,
-                    ]) ?>
-                </li>
+<!--                <li class="m-portlet__nav-item hidden">-->
+<!--                    --><?//= Html::a('<span><i class="far fa-edit"></i><span>' . Yii::t('words', 'Update') . '</span></span>', ['update', 'id' => $model->id], [
+//                        'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-success',
+//                        'encode' => false,
+//                    ]) ?>
+<!--                </li>-->
                 <li class="m-portlet__nav-item">
                     <?= Html::a('<span><i class="far fa-trash-alt"></i><span>' . Yii::t('words', 'Delete') . '</span></span>', ['delete', 'id' => $model->id], [
                         'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-danger',
