@@ -1558,8 +1558,8 @@ section .title-description {
 }
 
 .instagram-icon {
-    background: url("../svg/instagram.png") no-repeat center;
-    background-size: 32px 38px;
+    background: url("../svg/instagram.svg") no-repeat center;
+    background-size: 24px;
 }
 
 .facebook-icon {

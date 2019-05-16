@@ -86,7 +86,12 @@ class PersonSearch extends Person
         if($ids !== null)
             $query->andWhere(['IN', 'id', $ids]);
 
-        $query->orderBy(['name' => SORT_ASC]);
+        $query->orderBy([static::columnGetString('priority') => SORT_DESC]);
+
+        if(\Yii::$app->language == 'fa')
+            $query->addOrderBy(['name' => SORT_ASC]);
+        else
+            $query->addOrderBy([static::columnGetString(\Yii::$app->language.'_name') => SORT_ASC]);
 
         return $dataProvider;
     }
