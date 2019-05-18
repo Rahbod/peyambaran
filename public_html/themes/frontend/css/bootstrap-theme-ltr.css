@@ -619,3 +619,7 @@ border-radius: 7px 0 0 7px !important;
     text-transform: uppercase;
     font-weight: 800;
 }
+
+.-required:after{
+    content: "(required)";
+}
