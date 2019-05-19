@@ -66,6 +66,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => jDateTime::date('Y/m/d', $model->created)
                     ],
                     [
+                        'attribute' => 'publish_date',
+                        'value' => jDateTime::date('Y/m/d', $model->publish_date)
+                    ],
+                    [
                         'attribute' => 'status',
                         'value' => \app\models\Page::getStatusLabels($model->status)
                     ],

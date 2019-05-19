@@ -11,7 +11,7 @@
                                 class="comment-icon"></i></span>
                     <span class="view-count text-center"><?= number_format($model->seen) ?><i
                                 class="eye-icon"></i></span>
-                    <span class="news-date text-left"><?= jDateTime::date('Y/m/d', strtotime($model->publish_date)) ?>
+                    <span class="news-date text-left"><?= jDateTime::date('Y/m/d', $model->publish_date) ?>
                         <i class="calendar-icon"></i></span>
                 </div>
                 <div class="news-image">

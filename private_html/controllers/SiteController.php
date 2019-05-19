@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
 use function app\components\dd;
+use app\components\Helper;
 use app\components\SmsSender;
 use app\models\Category;
 use app\models\Insurance;
@@ -94,7 +95,7 @@ class SiteController extends AuthController
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
         $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->orderBy(['id' => SORT_ASC])->all();
         $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->orderBy(['id' => SORT_ASC])->all();
-        $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->all();
+        $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->orderBy([Post::columnGetString('publish_date') => SORT_DESC])->all();
         $galleryCategories = Category::find()->valid()->andWhere([
             'type' => Category::TYPE_CATEGORY,
             Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY,
@@ -287,10 +288,5 @@ class SiteController extends AuthController
     }*/
 
     public function actionTest(){
-        try {
-            \app\components\dd(SmsSender::SendVerification('09358389265', 23121));
-        }catch (\Exception $re){
-            \app\components\dd($re);
-        }
     }
 }

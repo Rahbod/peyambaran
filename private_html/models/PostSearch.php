@@ -40,7 +40,7 @@ class PostSearch extends Post
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $admin = false)
     {
         $query = Post::find();
 
@@ -71,6 +71,11 @@ class PostSearch extends Post
             ->andFilterWhere(['like', 'dyna', $this->dyna])
             ->andFilterWhere(['like', 'extra', $this->extra])
             ->andFilterWhere(['like', 'created', $this->created]);
+
+        if ($admin)
+            $query->orderBy(['id' => SORT_DESC]);
+        else
+            $query->orderBy([static::columnGetString('publish_date') => SORT_DESC]);
 
         return $dataProvider;
     }

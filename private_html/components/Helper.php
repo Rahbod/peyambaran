@@ -25,6 +25,7 @@ class Helper
      */
     public static function jDateTotoGregorian($date, $delimiter = '/')
     {
+        $date = self::convertNumbersToEnglish($date);
         if (($gtime = strtotime($date)) > 0)
             return $gtime;
 
@@ -75,5 +76,21 @@ class Helper
         $th = strlen($str) === 3 ? substr($str, 0, 1) : substr($str, 0, 2);
         $tm = strlen($str) === 3 ? substr($str, 1) : substr($str, 2);
         return "$th:$tm";
+    }
+
+    public static function convertNumbersToPersian($matches)
+    {
+        $farsi_array   = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹');
+        $english_array = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+        return str_replace($english_array, $farsi_array, $matches);
+    }
+
+    public static function convertNumbersToEnglish($matches)
+    {
+        $farsi_array   = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹');
+        $english_array = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+        return str_replace($farsi_array, $english_array, $matches);
     }
 }
