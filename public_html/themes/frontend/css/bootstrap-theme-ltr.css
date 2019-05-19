@@ -623,3 +623,12 @@ border-radius: 7px 0 0 7px !important;
 .-required:after{
     content: "(required)";
 }
+.contactUsPage .submitBtn{
+    float: right;
+}
+.captcha-container .pull-right{
+    float: left !important;
+}
+.captcha-container .floatToLeft{
+    float: right !important;
+}

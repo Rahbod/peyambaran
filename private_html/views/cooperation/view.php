@@ -37,10 +37,32 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="m-portlet__body">
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+                <div class="row">
+                    <?php $form = \app\components\customWidgets\CustomActiveForm::begin([
+                        'id' => 'change-status-form',
+                        'options' => ['class' => 'form-inline col-sm-12','data-pjax' => false],
+                        'action' => ['update', 'id' => $model->id],
+                        'enableAjaxValidation' => false,
+                        'enableClientValidation' => true,
+                        'validateOnSubmit' => true,
+                    ]); ?>
+                    <div class="mb-4 col-sm-12">
+                        <div class="row">
+                            <?= $form->field($model, 'status')->dropDownList(\app\models\UserRequest::getStatusLabels())->label('تغییر وضعیت درخواست') ?>
+                            <div class="pull-left mt-2 ml-5">
+                                <?= Html::submitButton('تغییر وضعیت', ['class' => 'btn btn-success btn-sm']) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php \app\components\customWidgets\CustomActiveForm::end() ?>
+                </div>
+
                 <?php if ($model->avatar && is_file(Yii::getAlias('@webroot/' . CooperationController::$avatarPath . '/' . $model->avatar))): ?>
                     <div class="row mt-5 mb-5">
                         <div class="col-sm-4">
-                            <a href="<?= Yii::getAlias('@web/' . CooperationController::$avatarPath . '/' . $model->avatar) ?>" target="_blank" data-pjax="0">
+                            <a href="<?= Yii::getAlias('@web/' . CooperationController::$avatarPath . '/' . $model->avatar) ?>"
+                               target="_blank" data-pjax="0">
                                 <?= Html::img(Yii::getAlias('@web/' . CooperationController::$avatarPath . '/' . $model->avatar), ['class' => 'rounded-circle', 'style' => 'width:150px;height:150px;']) ?>
                             </a>
                         </div>

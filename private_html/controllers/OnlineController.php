@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 class OnlineController extends AuthController
 {
     public $iconDir = 'uploads/online';
-    private $iconOptions = ['resize' => ['width' => 100,'height' => 100]];
+    private $iconOptions = ['resize' => ['width' => 100, 'height' => 100]];
 
     /**
      * for set admin theme
@@ -34,9 +34,21 @@ class OnlineController extends AuthController
         parent::init();
     }
 
+    public function getMenuActions()
+    {
+        return [
+            'reception',
+            'cooperation',
+            'advice',
+        ];
+    }
+
     public function getSystemActions()
     {
         return [
+            'advice',
+            'cooperation',
+            'reception',
             'upload-icon',
             'delete-icon',
             'upload-icon-hover',
@@ -150,14 +162,14 @@ class OnlineController extends AuthController
             $hoverIcon = new UploadedFiles($this->tmpDir, $model->hover_icon, $this->iconOptions);
             if ($model->save()) {
                 $icon->move($this->iconDir);
-                $hoverIcon ->move($this->iconDir);
+                $hoverIcon->move($this->iconDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
-        return $this->render('create', compact('model','icon','hoverIcon'));
+        return $this->render('create', compact('model', 'icon', 'hoverIcon'));
     }
 
     /**
@@ -185,15 +197,15 @@ class OnlineController extends AuthController
             $oldHoverIcon = $model->hover_icon;
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
-                $icon->update($oldIcon,$model->icon,$this->tmpDir);
-                $hoverIcon->update($oldHoverIcon,$model->hover_icon,$this->tmpDir);
+                $icon->update($oldIcon, $model->icon, $this->tmpDir);
+                $hoverIcon->update($oldHoverIcon, $model->hover_icon, $this->tmpDir);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
-        return $this->render('update',  compact('model','icon','hoverIcon'));
+        return $this->render('update', compact('model', 'icon', 'hoverIcon'));
     }
 
     /**
@@ -233,5 +245,28 @@ class OnlineController extends AuthController
         }
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+    }
+
+
+    public function actionAdvice()
+    {
+        $url = '/advice/request';
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity->roleID != 'user')
+            return $this->redirect(['/user/login', 'return' => $url]);
+        return $this->redirect([$url]);
+    }
+    public function actionCooperation()
+    {
+        $url = '/cooperation/request';
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity->roleID != 'user')
+            return $this->redirect(['/user/login', 'return' => $url]);
+        return $this->redirect([$url]);
+    }
+    public function actionReception()
+    {
+        $url = '/reception/request';
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity->roleID != 'user')
+            return $this->redirect(['/user/login', 'return' => $url]);
+        return $this->redirect([$url]);
     }
 }

@@ -160,15 +160,16 @@ class Reception extends UserRequest
 
     public static $receptionTypeLabels = [
         1  => 'Hospitalization',
-        2  => 'Unequal',
-        3  => 'Laboratory',
-        4  => 'Nuclear medicine',
-        5  => 'Digestive and scooby',
-        6  => 'Physiotherapy and rehabilitation',
-        7  => 'Dentistry and Orthodontics',
-        8  => 'Sleep clinic',
-        9  => 'Wound clinic',
-        10 => 'Clinic of Health and Lifestyle Improvement',
+        2  => 'Fertility Clinic',
+        3  => 'Clinical & Medical Laboratory',
+        4  => 'Medical Imaging Center',
+        5  => 'Nuclear Medicine',
+        6  => 'Endoscopy & Colonoscopy Center',
+        7  => 'Physiotherapy & Rehabilitation Clinic',
+        8  => 'Dental & Orthodontic Clinic',
+        9  => 'Sleep Medicine Clinic',
+        10  => 'Wound Care Clinic',
+        11 => 'The Lifestyle Health & Beauty Clinic',
     ];
 
     public function getReceptionTypeLabel($type = false)

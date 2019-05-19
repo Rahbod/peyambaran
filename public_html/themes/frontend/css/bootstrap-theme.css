@@ -361,6 +361,12 @@ header .logo img {
 .language-select > .btn {
     display: block;
 }
+.language-select .dropdown-menu {
+    min-width: 60px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
 
 .btn [class*='-icon'] {
     margin: -5px 0;
@@ -540,7 +546,7 @@ header .search-form {
 
 .navbar .dropdown-menu .menu-part > li > a {
     display: inline-block;
-    line-height: 2;
+    margin-bottom: 10px;
 }
 
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a {
@@ -1957,6 +1963,10 @@ section .title-description {
     padding: 5px 15px 5px 15px;
 
 }
+.sidebar-user-menu .content-section > ul > li > a{
+    display: block;
+    overflow: hidden;
+}
 
 .sidebar-user-menu .content-section > ul > li.active,
 .sidebar-user-menu .content-section > ul > li:hover,
@@ -2130,7 +2140,7 @@ section .title-description {
 
 .content-header__image {
     width: 60px;
-    height: 60px;
+    height: auto;
 }
 
 .content-header__titles {
@@ -3846,4 +3856,8 @@ section .title-description {
 }
 .gallery-tabs .nav-tabs{
     margin-top:80px;
+}
+
+.iran-sans{
+    font-family: "IRANSans" !important;
 }

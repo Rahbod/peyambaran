@@ -89,53 +89,14 @@ class ReceptionController extends AuthController
      * Lists all Reception models.
      * @return mixed
      */
-    public function actionHospitalization()
+    public function actionIndex()
     {
         $searchModel = new ReceptionSearch();
-        $searchModel->reception_type=Reception::RECEPTION_TYPE_HOSPITALIZATION;
-        $title = $searchModel->getReceptionTypeLabel();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'title' => $title,
-        ]);
-    }
-
-    /**
-     * Lists all Reception models.
-     * @return mixed
-     */
-    public function actionClinicRequest()
-    {
-        $searchModel = new ReceptionSearch();
-        $searchModel->reception_type=Reception::RECEPTION_TYPE_CLINIC;
-        $title = $searchModel->getReceptionTypeLabel();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'title' => $title,
-        ]);
-    }
-
-    /**
-     * Lists all Reception models.
-     * @return mixed
-     */
-    public function actionParaClinic()
-    {
-        $searchModel = new ReceptionSearch();
-        $searchModel->reception_type=Reception::RECEPTION_TYPE_PARA_CLINIC;
-        $title = $searchModel->getReceptionTypeLabel();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'title' => $title,
         ]);
     }
 
@@ -295,6 +256,7 @@ class ReceptionController extends AuthController
 
         return $this->render('view', [
             'model' => $model,
+            'admin' => true,
         ]);
     }
 

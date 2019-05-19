@@ -48,10 +48,48 @@ class MessageController extends AuthController
      * Lists all Message models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionContactus()
     {
         $searchModel = new MessageSearch();
+        $searchModel->type = Message::TYPE_CONTACT_US;
+        if(Yii::$app->request->getQueryParam('id'))
+            $searchModel->department_id = Yii::$app->request->getQueryParam('id');
 
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists all Message models.
+     * @return mixed
+     */
+    public function actionSuggestions()
+    {
+        $searchModel = new MessageSearch();
+        $searchModel->type = Message::TYPE_SUGGESTIONS;
+        if(Yii::$app->request->getQueryParam('id'))
+            $searchModel->department_id = Yii::$app->request->getQueryParam('id');
+
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists all Message models.
+     * @return mixed
+     */
+    public function actionComplaints()
+    {
+        $searchModel = new MessageSearch();
+        $searchModel->type = Message::TYPE_COMPLAINTS;
         if(Yii::$app->request->getQueryParam('id'))
             $searchModel->department_id = Yii::$app->request->getQueryParam('id');
 

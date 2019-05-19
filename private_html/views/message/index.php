@@ -50,13 +50,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['class' => 'yii\grid\SerialColumn'],
                         'id',
                         'name',
-                        [
-                            'attribute' => 'type',
-                            'value' => function ($model) {
-                                return \app\models\Message::getStatusLabels($model->type);
-                            },
-                            'filter' => \app\models\Message::getStatusLabels()
-                        ],
+//                        [
+//                            'attribute' => 'type',
+//                            'value' => function ($model) {
+//                                return \app\models\Message::getStatusLabels($model->type);
+//                            },
+//                            'filter' => \app\models\Message::getStatusLabels()
+//                        ],
                         [
                             'attribute' => 'department_id',
                             'value' => function ($model) {

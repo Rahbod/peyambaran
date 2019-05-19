@@ -118,4 +118,11 @@ return [
     'hospitalization' => 'درخواست های بستری',
     'clinicRequest' => 'درخواست های کلینیک',
     'paraClinic' => 'درخواست های پاراکلینیک',
+    'contactus' => 'پیام های تماس',
+    'suggestions' => 'پیام های انتقادات و پیشنهادات',
+    'complaints' => 'پیام های شکایات',
+    'online.cooperation' => 'درخواست همکاری',
+    'online.advice' => 'درخواست مشاوره پزشکی',
+    'online.reception' => 'درخواست پذیرش',
+    'online.visit' => 'درخواست نوبت دهی',
 ];

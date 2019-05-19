@@ -257,7 +257,9 @@ class MainController extends Controller
         foreach (Department::find()->valid()->all() as $item) {
             $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || Yii::$app->user->can('messageIndex')];
         }
-        $contactLinks[] = ['label' => 'همه پیام ها', 'url' => ['/message/index'], 'visible' => $permissions || Yii::$app->user->can('messageIndex')];
+        $contactLinks[] = ['label' => 'پیام های تماس با ما', 'url' => ['/message/contactus'], 'visible' => $permissions || Yii::$app->user->can('messageContactus')];
+        $contactLinks[] = ['label' => 'انتقادات و پیشنهادات', 'url' => ['/message/suggestions'], 'visible' => $permissions || Yii::$app->user->can('messageSuggestions')];
+        $contactLinks[] = ['label' => 'شکایات', 'url' => ['/message/complaints'], 'visible' => $permissions || Yii::$app->user->can('messageComplaints')];
         $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department'], 'visible' => $permissions || Yii::$app->user->can('messageDepartment')];
 
         // requests count
@@ -267,28 +269,8 @@ class MainController extends Controller
         $cooperation_count = Cooperation::find()->andWhere(['type' => Cooperation::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
         $cooperation_count = $cooperation_count > 0 ? '<span class="m-badge m-badge--danger">' . $cooperation_count . '</span>' : '';
 
-        if($permissions || Yii::$app->user->can('receptionHospitalization')) {
-            $reception_1_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
-                'reception_type' => Reception::RECEPTION_TYPE_HOSPITALIZATION,
-            ])->count();
-            $total_count = $reception_1_count;
-            $reception_1_count = $reception_1_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_1_count . '</span>' : '';
-        }
-        if($permissions || Yii::$app->user->can('receptionClinicRequest')) {
-            $reception_2_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
-                'reception_type' => Reception::RECEPTION_TYPE_CLINIC,
-            ])->count();
-            $total_count += $reception_2_count;
-            $reception_2_count = $reception_2_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_2_count . '</span>' : '';
-        }
-        if($permissions || Yii::$app->user->can('receptionParaClinic')) {
-            $reception_3_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING,
-                'reception_type' => Reception::RECEPTION_TYPE_PARA_CLINIC,
-            ])->count();
-            $total_count += $reception_3_count;
-            $reception_3_count = $reception_3_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_3_count . '</span>' : '';
-        }
-        $total_count = $total_count > 0 ? '<span class="m-badge m-badge--danger">' . $total_count . '</span>' : '';
+        $reception_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
+        $reception_count = $reception_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_count . '</span>' : '';
 
         return [
             [
@@ -338,12 +320,9 @@ class MainController extends Controller
                 'items' => $contactLinks,
             ],
             [
-                'label' => '<i class="m-menu__link-icon fa fa-calendar"></i><span class="m-menu__link-text">درخواست های پذیرش</span>' . $total_count,
-                'items' => [
-                    ['label' => 'درخواست بستری ' . $reception_1_count, 'url' => ['/reception/hospitalization'], 'visible' => $permissions || Yii::$app->user->can('receptionHospitalization')],
-                    ['label' => 'درخواست کلینیک ' . $reception_2_count, 'url' => ['/reception/clinic-request'], 'visible' => $permissions || Yii::$app->user->can('receptionClinicRequest')],
-                    ['label' => 'درخواست پاراکلینیک ' . $reception_3_count, 'url' => ['/reception/para-clinic'], 'visible' => $permissions || Yii::$app->user->can('receptionParaClinic')],
-                ]
+                'label' => '<i class="m-menu__link-icon fa fa-calendar"></i><span class="m-menu__link-text">درخواست های پذیرش</span>' . $reception_count,
+                'url' => ['/reception/index'],
+                'visible' => $permissions || Yii::$app->user->can('receptionIndex'),
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-calendar"></i><span class="m-menu__link-text">درخواست های مشاوره</span>' . $advice_count,

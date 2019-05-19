@@ -71,6 +71,28 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php \app\components\customWidgets\CustomActiveForm::end() ?>
                 </div>
             </div>
+
+            <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+            <div class="row">
+                <?php $form = \app\components\customWidgets\CustomActiveForm::begin([
+                    'id' => 'change-status-form',
+                    'options' => ['class' => 'form-inline col-sm-12','data-pjax' => false],
+                    'action' => ['update', 'id' => $model->id],
+                    'enableAjaxValidation' => false,
+                    'enableClientValidation' => true,
+                    'validateOnSubmit' => true,
+                ]); ?>
+                <div class="mb-4 col-sm-12">
+                    <div class="row">
+                        <?= $form->field($model, 'status')->dropDownList(\app\models\UserRequest::getStatusLabels())->label('تغییر وضعیت درخواست') ?>
+                        <div class="pull-left mt-2 ml-5">
+                            <?= Html::submitButton('تغییر وضعیت', ['class' => 'btn btn-success btn-sm']) ?>
+                        </div>
+                    </div>
+                </div>
+                <?php \app\components\customWidgets\CustomActiveForm::end() ?>
+            </div>
+
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                 <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
                 <table class="table table-striped table-bordered detail-view">

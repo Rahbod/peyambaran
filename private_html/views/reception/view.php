@@ -9,18 +9,10 @@ use app\models\Reception;
 /* @var $model app\models\Reception */
 
 $this->title = "درخواست پذیرش \"{$model->getPatientName()}\"";
-switch ($model->reception_type){
-    case Reception::RECEPTION_TYPE_HOSPITALIZATION:
-        $this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Reception request'), 'url' => ['hospitalization']];break;
-    case Reception::RECEPTION_TYPE_CLINIC:
-        $this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Reception request'), 'url' => ['clinic-request']];break;
-    case Reception::RECEPTION_TYPE_PARA_CLINIC:
-        $this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Reception request'), 'url' => ['para-clinic']];break;
-}
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Reception request'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php if ($admin): ?>
-    <?php \yii\widgets\Pjax::begin() ?>
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
@@ -92,8 +84,31 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php \app\components\customWidgets\CustomActiveForm::end() ?>
                 </div>
             </div>
+
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                 <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+
+                <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+                <div class="row">
+                    <?php $form = \app\components\customWidgets\CustomActiveForm::begin([
+                        'id' => 'change-status-form',
+                        'options' => ['class' => 'form-inline col-sm-12','data-pjax' => false],
+                        'action' => ['update', 'id' => $model->id],
+                        'enableAjaxValidation' => false,
+                        'enableClientValidation' => true,
+                        'validateOnSubmit' => true,
+                    ]); ?>
+                    <div class="mb-4 col-sm-12">
+                        <div class="row">
+                            <?= $form->field($model, 'status')->dropDownList(\app\models\UserRequest::getStatusLabels())->label('تغییر وضعیت درخواست') ?>
+                            <div class="pull-left mt-2 ml-5">
+                                <?= Html::submitButton('تغییر وضعیت', ['class' => 'btn btn-success btn-sm']) ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php \app\components\customWidgets\CustomActiveForm::end() ?>
+                </div>
+
                 <table class="table table-striped table-bordered detail-view">
                     <tbody>
                     <tr>
@@ -144,7 +159,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    <?php \yii\widgets\Pjax::end() ?>
+
 <?php else: ?>
     <div class="content-header">
         <img src="<?= $this->theme->baseUrl ?>/svg/"
