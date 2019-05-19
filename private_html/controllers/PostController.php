@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use function app\components\dd;
+use app\components\Helper;
 use app\models\Attachment;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
@@ -117,7 +119,7 @@ class PostController extends AuthController
     {
         $searchModel = new PostSearch();
 
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, true);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -155,6 +157,11 @@ class PostController extends AuthController
 
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
+            $pdate = null;
+            if ($model->publish_date) {
+                $pdate = $model->publish_date;
+                $model->publish_date = Helper::jDateTotoGregorian($model->publish_date);
+            }
             $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
             $gallery = new UploadedFiles($this->tmpDir, $model->gallery, $this->galleryOptions);
             if ($model->save()) {
@@ -164,6 +171,7 @@ class PostController extends AuthController
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            $model->publish_date = $pdate;
         }
 
         return $this->render('create', [
@@ -195,6 +203,12 @@ class PostController extends AuthController
             $oldImage = $model->image;
             $oldGallery = ArrayHelper::map($model->gallery, 'id', 'file');
             $model->load(Yii::$app->request->post());
+            $pdate = null;
+            if ($model->publish_date) {
+                $pdate = $model->publish_date;
+                $model->publish_date = Helper::jDateTotoGregorian($model->publish_date);
+            }
+
             if ($model->save()) {
                 $image->update($oldImage, $model->image, $this->tmpDir);
                 $gallery->updateAll($oldGallery, $model->gallery, $this->tmpDir, Attachment::getAttachmentRelativePath());
@@ -202,6 +216,7 @@ class PostController extends AuthController
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+            $model->publish_date = $pdate;
         }
 
         return $this->render('update', [

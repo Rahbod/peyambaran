@@ -57,6 +57,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             'attribute' => 'created',
                             'value' => function ($model) {
                                 return jDateTime::date('Y/m/d', $model->created);
+                            },
+                            'filter' => false
+                        ],
+                        [
+                            'attribute' => 'publish_date',
+                            'value' => function ($model) {
+                                return jDateTime::date('Y/m/d', $model->publish_date);
                             }
                         ],
                         [

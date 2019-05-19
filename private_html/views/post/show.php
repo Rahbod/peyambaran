@@ -48,7 +48,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                                         class="comment-icon"></i></span>
                                             <span class="view-count text-center"><?= number_format($model->seen) ?><i
                                                         class="eye-icon"></i></span>
-                                            <span class="news-date text-left"><?= jDateTime::date('Y/m/d', strtotime($model->publish_date)) ?>
+                                            <span class="news-date text-left"><?= jDateTime::date('Y/m/d', $model->publish_date) ?>
                                                 <i
                                                         class="calendar-icon"></i></span>
                                         </div>
@@ -80,14 +80,13 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                                 <div class="gallery__imageContainer">
                                                     <a class="simpleGallery__link html5lightbox"
                                                        data-transition="crossfade" data-group="mygroup"
-                                                       href="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/') . $item->file ?>">
+                                                       href="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>">
                                                         <img class="gallery__images"
-                                                                src="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/') . $item->file ?>">
+                                                                src="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .'/thumbs/100x100/'. $item->file ?>">
                                                     </a>
                                                     <div class="-hoverBox">
-                                                        <a href="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/') . $item->file ?>"
+                                                        <a href="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>"
                                                            data-transition="crossfade"
-                                                           data-thumbnail="<?= Yii::getAlias('@web/uploads/items/attachments/thumbs/100x100/') . $item->file ?>"
                                                            class="html5lightbox"
                                                            data-group="mygroup"
                                                            title="<?= $item->name ?>">
@@ -144,7 +143,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                             class="comment-icon"></i></span>
                                     <span class="view-count text-center"><?= number_format($item->seen) ?><i
                                                 class="eye-icon"></i></span>
-                                    <span class="news-date text-left"><?= jDateTime::date('Y/m/d', strtotime($item->publish_date)) ?>
+                                    <span class="news-date text-left"><?= jDateTime::date('Y/m/d', $item->publish_date) ?>
                                         <i class="calendar-icon"></i></span>
                                 </div>
                                 <div class="news-image">
