@@ -159,9 +159,16 @@ class Reception extends UserRequest
     }
 
     public static $receptionTypeLabels = [
-        self::RECEPTION_TYPE_HOSPITALIZATION => 'hospitalization',
-        self::RECEPTION_TYPE_CLINIC => 'clinic',
-        self::RECEPTION_TYPE_PARA_CLINIC => 'para clinic',
+        1  => 'Hospitalization',
+        2  => 'Unequal',
+        3  => 'Laboratory',
+        4  => 'Nuclear medicine',
+        5  => 'Digestive and scooby',
+        6  => 'Physiotherapy and rehabilitation',
+        7  => 'Dentistry and Orthodontics',
+        8  => 'Sleep clinic',
+        9  => 'Wound clinic',
+        10 => 'Clinic of Health and Lifestyle Improvement',
     ];
 
     public function getReceptionTypeLabel($type = false)

@@ -1558,8 +1558,8 @@ section .title-description {
 }
 
 .instagram-icon {
-    background: url("../svg/instagram.png") no-repeat center;
-    background-size: 32px 38px;
+    background: url("../svg/instagram.svg") no-repeat center;
+    background-size: 24px;
 }
 
 .facebook-icon {
@@ -2386,6 +2386,10 @@ section .title-description {
     color: #e33b3b;
     font-weight: bold;
     font-size: 11px;
+    position: relative;
+}
+.-required:after{
+    content: "(الزامی)";
 }
 
 .texts {

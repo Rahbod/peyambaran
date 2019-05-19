@@ -60,11 +60,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="form-row">
                         <div class="row">
                             <div class="col-sm-12">
-                                <?= $form->field($model, 'department_id', ['template' => '{label} <span class="-required">(الزامی)</span> {input} {error}'])->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', 'name'), ['tabindex' => 1]) ?>
+                                <?= $form->field($model, 'department_id', ['template' => '{label} <span class="-required"></span> {input} {error}'])->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', 'name'), ['tabindex' => 1]) ?>
 
-                                <?= $form->field($model, 'name', ['template' => '{label} <span class="-required">(الزامی)</span> {input} {error}'])->textInput(['tabindex' => 2]) ?>
+                                <?= $form->field($model, 'name', ['template' => '{label} <span class="-required"></span> {input} {error}'])->textInput(['tabindex' => 2]) ?>
 
-                                <?= $form->field($model, 'email', ['template' => '{label} <span class="-required">(الزامی)</span> {input} {error}'])->textInput(['placeholder' => 'user@example.com', 'tabindex' => 3]) ?>
+                                <?= $form->field($model, 'email', ['template' => '{label} <span class="-required"></span> {input} {error}'])->textInput(['placeholder' => 'user@example.com', 'tabindex' => 3]) ?>
 
                                 <?= $form->field($model, 'degree')->dropDownList(Message::getDegrees(), ['tabindex' => 4]) ?>
                             </div>
@@ -75,12 +75,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <?= $form->field($model, 'city')->textInput(['tabindex' => 6]) ?>
 
-                                <?= $form->field($model, 'tel', ['template' => '{label} <span class="-required">(الزامی)</span> {input} {error}'])->textInput(['tabindex' => 7]) ?>
+                                <?= $form->field($model, 'tel', ['template' => '{label} <span class="-required"></span> {input} {error}'])->textInput(['tabindex' => 7]) ?>
 
                                 <?= $form->field($model, 'address', ['options' => ['class' => 'form-group col-sm-3']])->textInput(['tabindex' => 8]) ?>
                             </div>
                         </div>
-                        <?= $form->field($model, 'body', ['options' => ['class' => 'form-group col-sm-12'], 'template' => '{label} <span class="-required">(الزامی)</span> {input} {error}'])->textarea(['tabindex' => 9, 'rows' => 8]) ?>
+                        <?= $form->field($model, 'body', ['options' => ['class' => 'form-group col-sm-12'], 'template' => '{label} <span class="-required"></span> {input} {error}'])->textarea(['tabindex' => 9, 'rows' => 8]) ?>
 
                         <div class="form-group col-sm-12">
                             <div class="clearfix captcha-container row">

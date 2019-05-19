@@ -25,6 +25,7 @@ class MultiLangActiveQuery extends DynamicActiveQuery
                 $field => \Yii::$app->language
             ]);
         }
+
         return parent::all($db);
     }
 
