@@ -31,6 +31,38 @@ $this->registerJs('
         table.find("tbody").append(html);
     });
 ');
+
+$this->registerJs('
+    $(".box-trigger[type=radio]").each(function(){
+        var val = $(this).is(":checked"),
+            target = $($(this).data("target"));
+        target.find(":input").attr("disabled", !val);
+    });
+    
+    $("body").on("change", ".box-trigger[type=radio]", function (e) {
+        var val = $(this).is(":checked"),
+            target = $($(this).data("target")),
+            fieldset = $(this).data("fieldset");
+            console.log(val,target,fieldset);
+        $(".box-trigger[data-fieldset="+fieldset+"]").not(target).each(function(){
+            var target = $($(this).data("target"));
+            target.removeClass("show").find(":input").attr("disabled", true);
+        });
+        target.addClass("show").find(":input").attr("disabled", !val);
+    });
+', \yii\web\View::POS_READY, 'box-toggle');
+
+$this->registerJs('
+    if($("#cooperation-marital_status").val() == 1)
+        $(".field-cooperation-children_count").hide();
+    
+    $("body").on("change", "#cooperation-marital_status", function (e) {
+        if($(this).val() == 2)
+            $(".field-cooperation-children_count").show();
+        else
+            $(".field-cooperation-children_count").hide();
+    });
+', \yii\web\View::POS_READY, 'cooperation-marital_status');
 ?>
 
 <div class="content-header">
@@ -155,7 +187,7 @@ $this->registerJs('
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][cause]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][contact]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                     </tr>
-                    <?= $i++; ?>
+                    <?php $i++; ?>
                     <tr>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][place]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][type]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
@@ -213,20 +245,20 @@ $this->registerJs('
                         <div class="form-group">
                             <fieldset>
                                 <label>
-                                    <input type="radio" name="Cooperation[military_status]" value="1" tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
+                                    <input type="radio" class="box-trigger" data-fieldset="military" data-target="#military_date" name="Cooperation[military_status]" value="1" tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
                                     انجام دادم
                                 </label>
                                 <label>
-                                    <input type="radio" name="Cooperation[military_status]" value="0" tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
+                                    <input type="radio" class="box-trigger" data-fieldset="military" data-target="#military_reason" name="Cooperation[military_status]" value="0" tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
                                     معافیت
                                 </label>
                             </fieldset>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="box-toggle col-sm-4" id="military_reason">
                         <?= $form->field($model, 'military_reason')->textInput(['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('military_reason'), 'tabindex' => \app\models\Cooperation::$tabindex++])->label(false) ?>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="box-toggle col-sm-4" id="military_date">
                         <?= $form->field($model, 'military_date')->textInput(['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('military_date'), 'tabindex' => \app\models\Cooperation::$tabindex++])->label(false) ?>
                     </div>
                 </div>
@@ -284,5 +316,11 @@ $this->registerJs('
 
     .fields-container.show {
         display: block;
+    }
+    .box-toggle{
+        display:none
+    }
+    .box-toggle.show{
+        display:block;
     }
 </style>

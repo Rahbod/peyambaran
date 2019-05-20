@@ -88,6 +88,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             case 'gender':
                                 $value = $model->getGenderLabel();
                                 break;
+                            case 'marital_status':
+                                $value = $model->getMaritalLabel();
+                                break;
                             case 'cooperation_type':
                                 $value = $model->getCooperationTypeLabel();
                                 break;
@@ -179,6 +182,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     switch ($field) {
                         case 'gender':
                             $value = $model->getGenderLabel();
+                            break;
+                        case 'marital_status':
+                            $value = $model->getMaritalLabel();
                             break;
                         case 'cooperation_type':
                             $value = $model->getCooperationTypeLabel();
