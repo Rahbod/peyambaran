@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="form-row">
                         <div class="row">
                             <div class="col-sm-12">
-                                <?= $form->field($model, 'department_id', ['template' => '{label} <span class="-required"></span> {input} {error}'])->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', 'name'), ['tabindex' => 1]) ?>
+                                <?= $form->field($model, 'department_id', ['template' => '{label} <span class="-required"></span> {input} {error}'])->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', function ($model){return$model->getName();}), ['tabindex' => 1]) ?>
 
                                 <?= $form->field($model, 'name', ['template' => '{label} <span class="-required"></span> {input} {error}'])->textInput(['tabindex' => 2]) ?>
 

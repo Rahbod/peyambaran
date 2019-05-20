@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ReceptionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = isset($title)?"درخواست پذیرش $title":Yii::t('words', 'Reception request');
+$this->title = "درخواست های پذیرش";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-request-index">
@@ -42,13 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return $model->getPatientName();
                             }
                         ],
-//                        [
-//                            'attribute' => 'reception_type',
-//                            'value' => function ($model) {
-//                                return $model->getReceptionTypeLabel();
-//                            },
-//                            'filter' => \app\models\Reception::getReceptionTypeLabels()
-//                        ],
+                        [
+                            'attribute' => 'reception_type',
+                            'value' => function ($model) {
+                                return $model->getReceptionTypeLabel();
+                            },
+                            'filter' => \app\models\Reception::getReceptionTypeLabels()
+                        ],
                         [
                             'attribute' => 'created',
                             'value' => function ($model) {

@@ -13,15 +13,15 @@ use yii\helpers\Url;
         <div class="top row">
             <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">
                 <div class="dropdown language-select">
-                    <label class="text-right"><?= Yii::t('words', 'Language') ?></label>
+                    <label class="text-right iran-sans"><?= Yii::t('words', 'Language') ?></label>
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="icon icon-chevron-down"></span>
                         <?= Yii::t('words', Yii::$app->language); ?>
                         <span class="language-icon"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="<?= Url::to(["/fa"]) ?>"><?= Yii::t('words', 'fa') ?></a></li>
-                        <li><a href="<?= Url::to(["/en"]) ?>"><?= Yii::t('words', 'en') ?></a></li>
+                        <li><a href="<?= Url::to(["/fa"]) ?>">FA</a></li>
+                        <li><a href="<?= Url::to(["/en"]) ?>">EN</a></li>
                         <!--                        --><?php //foreach (\app\components\MultiLangActiveRecord::$langArray as $key => $item): ?>
                         <!--                            <li><a href="--><? //= Url::to(["/{$key}"]) ?><!--">-->
                         <? //= Yii::t('words', $key) ?><!--</a></li>-->

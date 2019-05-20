@@ -270,9 +270,12 @@ class UserController extends AuthController
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
 
+        if($return = Yii::$app->request->getQueryParam('return'))
+            Yii::$app->session->set('return', $return);
+
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(['/dashboard']);
+            return $this->redirect([$return?:'/dashboard']);
         }
 
         $model->password = '';
