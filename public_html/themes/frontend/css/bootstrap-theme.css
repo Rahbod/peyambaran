@@ -303,7 +303,7 @@ header {
     left: 0;
     right: 0;
     z-index: 100;
-    border-top: 5px solid #3f8dfa;
+    border-top: 5px solid #2f2484;
     padding: 30px 0 45px;
     background-color: #fff;
     -webkit-transform: translateY(0);
@@ -349,7 +349,7 @@ header .logo img {
 
 .logo .logo-right a > * {
     line-height: 13px;
-    color: #3f8dfa;
+    color: #2f2484;
     margin: 0;
     text-align: left;
 }
@@ -479,14 +479,14 @@ header .search-form {
 .navbar > li > a:active,
 .navbar > li > a:focus,
 .navbar > li > a:hover {
-    background-color: #3f8dfa !important;
+    background-color: #2f2484 !important;
     color: #fff !important;
 }
 
 .navbar .dropdown-menu {
     border: none;
     border-radius: 0;
-    border-top: 5px solid #3f8dfa;
+    border-top: 5px solid #2f2484;
     position: absolute;
     right: 0 !important;
     left: auto;
@@ -569,7 +569,7 @@ header .search-form {
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a:before {
     content: "\f053";
     font-family: FontAwesome !important;
-    color: #3f8dfa;
+    color: #2f2484;
     position: absolute;
     right: -15px;
     top: 2px;
@@ -586,7 +586,7 @@ header .search-form {
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a:focus,
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a:active,
 .navbar .dropdown-menu .menu-part > li:not(.has-child) > a:hover {
-    color: #3f8dfa;
+    color: #2f2484;
 }
 
 .navbar .dropdown-menu .menu-part > li.active > a:before,
@@ -861,7 +861,7 @@ section .title-description {
 .insurance-box {
     display: block;
     overflow: hidden;
-    margin: 0 0 60px;
+    /*margin: 0 0 60px;*/
     padding: 0 15px;
 }
 
@@ -931,7 +931,7 @@ section .title-description {
 
 .insurance-box .insurance-item {
     width: 25%;
-    height: 60px;
+    /*height: 60px;*/
     display: inline-block;
     float: right;
     margin-bottom: 5px;
@@ -974,7 +974,7 @@ section .title-description {
 }
 
 .insurance-box .insurance-item h5 {
-    line-height: 35px;
+    line-height: 15px;
     margin: 0;
     display: block;
     color: #323232;
@@ -1026,6 +1026,7 @@ section .title-description {
 .news-carousel {
     margin-top: 60px;
     position: relative;
+    overflow: hidden;
 }
 
 .news-carousel.owl-carousel .owl-stage-outer {
@@ -1301,7 +1302,7 @@ section .title-description {
 .gallery-item .item-details h4 {
     display: block;
     overflow: hidden;
-    color: #4a9af3;
+    color: #2f2484;
     font-size: 16px;
     font-weight: bold;
     line-height: 35px;
@@ -1333,7 +1334,7 @@ section .title-description {
 .gallery-item-details .gallery-details h3 {
     display: block;
     overflow: hidden;
-    color: #4a9af3;
+    color: #2f2484;
     font-size: 20px;
     font-weight: bold;
 }
@@ -1362,10 +1363,10 @@ section .title-description {
     vertical-align: top;
 }
 
-.gallery-item-details .item-image-big img {
+.gallery-item-details .item-image-big > a >img {
     display: inline-block;
-    width: auto;
-    height: 100%;
+    width: 100%;
+    height: auto;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1400,6 +1401,21 @@ section .title-description {
     background-size: cover;
     padding: 70px 0;
     color: #fff;
+    position: relative;
+}
+.bottom-section:before{
+    position: absolute;
+    content: "";
+    background-color: #2f248487;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    bottom: 0;
+    top: 0;
+}
+.bottom-section > .container{
+    position: relative;
+    z-index: 1;
 }
 
 .bottom-section .form-container {
@@ -2066,7 +2082,7 @@ section .title-description {
 }
 
 .innerPages header {
-    background-color: #3f8dfa;
+    background-color: #2f2484;
     color: #fff;
 }
 
@@ -2079,7 +2095,7 @@ section .title-description {
 }
 
 .innerPages header .logo img {
-    background-color: #3f8dfa;
+    background-color: #2f2484;
 }
 
 .rounded {
@@ -2099,7 +2115,8 @@ section .title-description {
     color: #fff !important;
 }
 
-.innerPages header .nav > li > a:focus, .innerPages header .nav > li > a:hover {
+header .nav > li > a:focus,
+header .nav > li > a:hover {
     background-color: #85c296 !important;
 }
 
@@ -2378,7 +2395,7 @@ section .title-description {
 }
 
 .-blue {
-    color: #3f8dfa;
+    color: #2f2484;
 }
 
 .-grey {
@@ -2428,11 +2445,11 @@ section .title-description {
 }
 
 .contactUsPage .content-header {
-    background: #3f8dfa;
+    background: #2f2484;
 }
 
 .contactUsPage .submitBtn {
-    background: #3f8dfa;
+    background: #2f2484;
 }
 
 .contactUsPage.green-theme .content-header {
@@ -2966,45 +2983,47 @@ section .title-description {
     position: relative;
 }
 
-.gallery .-hoverBox {
+.-hoverBox {
     top: 0;
     width: 100%;
     right: 0;
+    bottom: 0;
     height: 0;
     opacity: 0;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    transition: all 0.5s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
     z-index: -1;
     position: absolute;
     background: #000;
     margin: auto;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.gallery .-hoverBox a {
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
+.-hoverBox a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
 }
 
-.gallery .-hoverBox a img {
+.-hoverBox a img {
     display: inline-block;
     margin: 0 auto;
 }
 
+.item-image-big:hover .-hoverBox,
 .gallery .gallery__imageContainer:hover .-hoverBox {
     background: #877ef3cc;
     color: #fff;
     z-index: 1;
-    height: 100%;
     opacity: 1;
 }
 
@@ -3012,7 +3031,7 @@ section .title-description {
 
 /*#region login*/
 .register.login .-blueBg {
-    background: #3f8dfa !important;
+    background: #2f2484 !important;
 }
 
 .register.login .submitBtn:hover, .submitBtn:focus {
@@ -3024,7 +3043,7 @@ section .title-description {
 }
 
 .register.login .vertical-separator-line {
-    border-left-color: #3f8dfa;
+    border-left-color: #2f2484;
 }
 
 .register.login .register-form-container__title {
@@ -3039,7 +3058,7 @@ section .title-description {
 }
 
 .register.login .social-accounts:hover a, .social-accounts:focus a {
-    color: #3f8dfa;
+    color: #2f2484;
 }
 
 /*#endregion*/
@@ -3481,7 +3500,7 @@ section .title-description {
 .smallHeader {
     border-top: none;
     padding: 0 0 45px;
-    background-color: #3f8dfa;
+    background-color: #2f2484;
     color: #fff;
 }
 

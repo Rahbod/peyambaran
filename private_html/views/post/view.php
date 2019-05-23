@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'publish_date',
-                        'value' => jDateTime::date('Y/m/d', $model->publish_date)
+                        'value' => $model->publish_date?jDateTime::date('Y/m/d', $model->publish_date):null
                     ],
                     [
                         'attribute' => 'status',

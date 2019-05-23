@@ -73,12 +73,12 @@ use yii\helpers\Url;
                 <?= Html::endForm() ?>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs logo pull-left">
-                <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white.png" : "/images/logo.png") ?>">
+                <img src="<?= $this->theme->baseUrl . (Yii::$app->controller->bodyClass == 'innerPages' ? "/images/logo-white2.png" : "/images/logo2.png") ?>">
                 <div class="logo-right">
                     <a href="<?= Url::to(['/']) ?>">
                         <h1><?= Yii::t('words', 'logo_title') ?></h1>
                         <h2>Payambaran</h2>
-                        <h3 class="font-light">Tamilnadu Government<br>Multi Super Speciality Hospital</h3>
+                        <h3 class="font-light">Speciality Hospital</h3>
                     </a>
                 </div>
             </div>

@@ -877,13 +877,13 @@
 }
 
 /*#region navbar*/
-.smallHeader .nav .open > a,
-.smallHeader .navbar > li.active > a,
-.smallHeader .navbar > li > a:active,
-.smallHeader .navbar > li > a:focus,
-.smallHeader .navbar > li > a:hover {
-    background-color: #6d6d6d !important;
-}
+/*.smallHeader .nav .open > a,*/
+/*.smallHeader .navbar > li.active > a,*/
+/*.smallHeader .navbar > li > a:active,*/
+/*.smallHeader .navbar > li > a:focus,*/
+/*.smallHeader .navbar > li > a:hover {*/
+    /*background-color: #6d6d6d !important;*/
+/*}*/
 
 /*#endregion*/
 /*#region footer*/

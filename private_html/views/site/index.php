@@ -15,12 +15,16 @@ use app\components\Setting;
 /** @var $posts Post[] */
 /** @var $galleryCategories Category[] */
 /** @var $onlineServices OnlineService[] */
+
+$baseUrl = $this->theme->baseUrl;
+$this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/froogaloop2.min.js', [], 'froogaloop2');
+$this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [], 'html5lightbox');
 ?>
 
 
 <section class="slider-container">
     <div class="slider header-slider owl-carousel owl-theme"
-         <?= Yii::$app->language == 'en'?'data-rtl="false"':'data-rtl="true"' ?>
+        <?= Yii::$app->language == 'en' ? 'data-rtl="false"' : 'data-rtl="true"' ?>
          data-owlcarousel='js:<?= \yii\helpers\Json::encode(Setting::get('slider')); ?>'
          data-items="1"
          data-autoHeight="true">
@@ -173,11 +177,13 @@ use app\components\Setting;
             </div>
             <div class="news-carousel owl-carousel owl-theme"
                  data-stagePadding="50"
-                 <?= Yii::$app->language == 'fa'?'data-rtl="true"':'data-rtl="false"'?>
+                <?= Yii::$app->language == 'fa' ? 'data-rtl="true"' : 'data-rtl="false"' ?>
                  data-autoWidth="true"
                  data-nav="true"
+                 data-loop="true"
                  data-items="1"
                  data-margin="15"
+                 data-autoplay="true"
                  data-autoplayspeed="9000"
                  data-autoHeight="true"
                  data-responsive='{"786" :{ "items": 2 }, "992" :{ "items": 3 }}'>
@@ -273,8 +279,22 @@ use app\components\Setting;
                                                      id="gallery-details-<?= $item->id ?>">
                                                     <div class="gallery-item-details">
                                                         <div class="item-image-big">
-                                                            <img src="<?= Yii::getAlias('@web/uploads/gallery/thumbs/280x380/') . $item->full_image ?>"
-                                                                 alt="<?= $item->name ?>">
+                                                            <a href="<?= Yii::getAlias('@web/uploads/gallery/') . $item->full_image ?>"
+                                                               data-transition="crossfade"
+                                                               class="html5lightbox"
+                                                               data-group="gallery-group-<?= $category->id ?>">
+                                                                <img src="<?= Yii::getAlias('@web/uploads/gallery/thumbs/280x380/') . $item->full_image ?>"
+                                                                     alt="<?= $item->name ?>">
+                                                            </a>
+                                                            <div class="-hoverBox">
+                                                                <a href="<?= Yii::getAlias('@web/uploads/gallery/') . $item->full_image ?>"
+                                                                   data-transition="crossfade"
+                                                                   class="html5lightbox"
+                                                                   data-group="gallery-group-<?= $category->id ?>"
+                                                                   title="<?= $item->name ?>">
+                                                                    <img src="<?= $this->theme->baseUrl ?>/images/gallery/frame.png">
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                         <div class="gallery-details">
                                                             <h3><?= $item->name ?></h3>

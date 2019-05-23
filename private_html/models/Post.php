@@ -63,7 +63,7 @@ class Post extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['body', 'image', 'formCategories'], 'required'],
+            [['body', 'image', 'formCategories','publish_date'], 'required'],
             [['summary'], 'string'],
             [['publish_date'], 'safe'],
             ['seen', 'default', 'value' => 0],
