@@ -389,4 +389,5 @@ return [
     'Married' => 'متاهل',
     'Single' => 'مجرد',
     'Number of children' => 'تعداد فرزندان',
+    'Resume file' => 'فایل رزومه',
 ];

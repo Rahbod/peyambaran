@@ -2,6 +2,7 @@
 
 use \yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use \yii\helpers\Url;
 
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Cooperation */
@@ -207,6 +208,7 @@ $this->registerJs('
             </div>
         </div>
 
+        <!--Language-->
         <div class="row">
             <div class="col-sm-12">
                 <h4><?= $model->getAttributeLabel('language_level') ?></h4>
@@ -237,6 +239,7 @@ $this->registerJs('
             </div>
         </div>
 
+        <!--Military-->
         <div class="row">
             <div class="col-sm-12 mt-4 fields-container fields-type-1">
                 <h4><?= $model->getAttributeLabel('military_status') ?></h4>
@@ -299,6 +302,29 @@ $this->registerJs('
                 <div class="col-sm-12">
                     <h4><?= $model->getAttributeLabel('resume') ?></h4>
                     <?= $form->field($model, 'resume')->textarea(['class' => 'form-control', 'rows' => 3, 'tabindex' => \app\models\Cooperation::$tabindex++])->label(false) ?>
+                </div>
+
+                <div class="col-sm-12 hidden">
+                    <h4><?= $model->getAttributeLabel('resume_file') ?></h4>
+                    <?php echo $form->field($model, 'resume_file')->widget(\devgroup\dropzone\DropZone::className(), [
+                        'url' => Url::to(['upload-resume']),
+                        'removeUrl' => Url::to(['delete-resume']),
+                        'storedFiles' => isset($resume) ? $resume: [],
+                        'sortable' => false, // sortable flag
+                        'sortableOptions' => [], // sortable options
+                        'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'resume_file')],
+                        'options' => [
+                            'createImageThumbnails' => false,
+                            'addRemoveLinks' => true,
+                            'dictRemoveFile' => 'حذف',
+                            'addViewLinks' => true,
+                            'dictViewFile' => '',
+                            'dictDefaultMessage' => 'جهت آپلود فایل رزومه کلیک کنید',
+                            'acceptedFiles' => 'pdf',
+                            'maxFiles' => 1,
+                            'maxFileSize' => 1,
+                        ],
+                    ])->label(false) ?>
                 </div>
             </div>
             <!--Begin Medical fields-->

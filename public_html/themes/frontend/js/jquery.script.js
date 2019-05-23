@@ -1,10 +1,18 @@
 var nicescrolls = [];
 
 $(function () {
-    // $(".nicescroll").each(function () {
-    //     var options = $(this).data();
-    //     $(this).niceScroll(options);
-    // });
+    $('.digitFormat').digitFormat();
+    $('.numberFormat').numericFormat();
+
+    $("body").on("keyup", '.digitFormat', function () {
+        $(this).digitFormat();
+    }).on("change", '.digitFormat', function () {
+        $(this).digitFormat();
+    }).on("keyup", '.numberFormat', function () {
+        $(this).numericFormat();
+    }).on("change", '.numberFormat', function () {
+        $(this).numericFormat();
+    });
 
     // $(window).on("load resize scroll", function () {
         $(".owl-carousel").each(function () {
@@ -181,3 +189,36 @@ $('#sidebarCollapse').on('click', function () {
     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     $('body').addClass('overflow-fix');
 });
+
+
+$.fn.digitFormat = function () {
+    return this.each(function (event) {
+        if (event.which >= 37 && event.which <= 40) return;
+        $(this).val(function (index, value) {
+            if (parseInt(value) === 0)
+                return value;
+            else if (value.indexOf(".") >=0) {
+                return value;
+                var arr = value.split('.');
+                console.log(arr);
+                value = arr[0]
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"."+arr[1];
+                return value;
+            }
+            return value
+                .replace(/\D/g, "")
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        });
+    });
+};
+
+$.fn.numericFormat = function () {
+    return this.each(function (event) {
+        if (event.which >= 37 && event.which <= 40) return;
+        $(this).val(function (index, value) {
+            return value
+                .replace(/\D/g, "");
+        });
+    });
+};

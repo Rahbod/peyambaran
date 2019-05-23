@@ -36,6 +36,7 @@ use yii\helpers\Url;
  * @property int $work_permits_status
  * @property int $work_permits_expire
  * @property int $resume
+ * @property int $resume_file
  * @property int $activity_date
  *
  * @property User $user
@@ -78,6 +79,7 @@ class Cooperation extends UserRequest
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'avatar' => ['CHAR', ''],
+            'resume_file' => ['CHAR', ''],
             'cooperation_type' => ['INTEGER', ''],
             'family' => ['CHAR', ''],
             'tell' => ['CHAR', ''],
@@ -124,7 +126,9 @@ class Cooperation extends UserRequest
         return array_merge(parent::rules(), [
             [['cooperation_type', 'family', 'tell'], 'required'],
             ['type', 'default', 'value' => self::$typeName],
-            ['cooperation_type', 'number'],
+            [['cooperation_type', 'tell', 'children_count', 'national_code', 'postal_code', 'medical_number'], 'integer'],
+            [['tell'], 'string', 'max' => 11, 'min' => 11],
+            [['postal_code'], 'string', 'max' => 10, 'min' => 10],
             [[
                 'tell',
                 'family',
@@ -193,6 +197,7 @@ class Cooperation extends UserRequest
             'work_permits_issued' => Yii::t('words', 'issuance date'),
             'work_permits_expire' => Yii::t('words', 'expire date'),
             'resume' => Yii::t('words', 'Brief resume'),
+            'resume_file' => Yii::t('words', 'Resume file'),
             'activity_date' => Yii::t('words', 'Activity start date'),
             'language_cert' => Yii::t('words', 'Language certification'),
             'other_language_cert' => Yii::t('words', 'Other language certification'),
@@ -235,17 +240,26 @@ class Cooperation extends UserRequest
             'name' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'family' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'father_name' => ['type' => static::FORM_FIELD_TYPE_TEXT],
-            'tell' => ['type' => static::FORM_FIELD_TYPE_TEXT],
+            'tell' => [
+                'type' => static::FORM_FIELD_TYPE_TEXT,
+                'options' => ['class' => 'form-control numberFormat', 'maxLength' => 11]
+            ],
             'gender' => [
                 'type' => static::FORM_FIELD_TYPE_SELECT,
                 'items' => static::getGenderLabels()
             ],
             'birth_day' => ['type' => static::FORM_FIELD_TYPE_DATE],
-            'national_code' => ['type' => static::FORM_FIELD_TYPE_TEXT, 'options' => ['maxLength' => 10]],
+            'national_code' => [
+                'type' => static::FORM_FIELD_TYPE_TEXT,
+                'options' => ['class' => 'form-control numberFormat', 'maxLength' => 10]
+            ],
 
 //            'passport_id' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'issued' => ['type' => static::FORM_FIELD_TYPE_TEXT],
-            'postal_code' => ['type' => static::FORM_FIELD_TYPE_TEXT],
+            'postal_code' => [
+                'type' => static::FORM_FIELD_TYPE_TEXT,
+                'options' => ['class' => 'form-control numberFormat', 'maxLength' => 10]
+            ],
             'city' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'area' => ['type' => static::FORM_FIELD_TYPE_TEXT],
 //            'email' => ['type' => static::FORM_FIELD_TYPE_TEXT],
@@ -253,7 +267,10 @@ class Cooperation extends UserRequest
                 'type' => static::FORM_FIELD_TYPE_SELECT,
                 'items' => static::getMaritalLabels()
             ],
-            'children_count' => ['type' => static::FORM_FIELD_TYPE_TEXT],
+            'children_count' => [
+                'type' => static::FORM_FIELD_TYPE_TEXT,
+                'options' => ['class' => 'form-control numberFormat']
+            ],
 //            'edu_history' => ['CHAR', ''],
 //            'job_history' => ['CHAR', ''],
 //            'language_level' => ['CHAR', ''],
@@ -365,13 +382,13 @@ class Cooperation extends UserRequest
 
     public function getGradeLabel($grade, $medical = false)
     {
-        return Yii::t('words', ucfirst($medical?self::$medicalGradeLabels[$grade]:self::$gradeLabels[$grade]));
+        return Yii::t('words', ucfirst($medical ? self::$medicalGradeLabels[$grade] : self::$gradeLabels[$grade]));
     }
 
     public static function getGradeLabels($medical = false)
     {
         $lbs = [];
-        $list = $medical?self::$medicalGradeLabels:self::$gradeLabels;
+        $list = $medical ? self::$medicalGradeLabels : self::$gradeLabels;
         foreach ($list as $key => $label)
             $lbs[$key] = Yii::t('words', ucfirst($label));
         return $lbs;

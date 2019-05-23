@@ -2365,6 +2365,20 @@ header .nav > li > a:hover {
 
 .contactUs__form .form-group {
     margin: 0;
+    padding-bottom: 15px;
+    position: relative;
+}
+.contactUs__form .form-group .help-block{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0;
+}
+
+.contactUs__form [class^='col-'] .help-block{
+    right: 15px;
+    left: 15px;
 }
 
 #clinic-table .form-control,
