@@ -344,7 +344,7 @@ return [
     'Passport ID' => 'شماره شناسنامه',
     'Issued' => 'صادره',
     'Postal code' => 'کدپستی',
-    'Area' => 'منطقه',
+    'Area' => 'منطقه شهرداری',
     'Education History' => 'سوابق تحصیلی',
     'Job History' => 'سوابق کاری',
     'Language Level' => 'سطح زبان خارجی',
@@ -385,4 +385,8 @@ return [
     'Ar Name' => 'نام عربی',
     'En Resume' => 'توضیحات انگلیسی',
     'Ar Resume' => 'توضیحات عربی',
+    'Marital status' => 'وضعیت تاهل',
+    'Married' => 'متاهل',
+    'Single' => 'مجرد',
+    'Number of children' => 'تعداد فرزندان',
 ];

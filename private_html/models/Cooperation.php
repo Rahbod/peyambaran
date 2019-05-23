@@ -14,6 +14,8 @@ use yii\helpers\Url;
  * @property int $family
  * @property int $father_name
  * @property int $gender
+ * @property int $marital_status
+ * @property int $children_count
  * @property int $birth_day
  * @property int $avatar
  * @property int $national_code
@@ -47,6 +49,9 @@ class Cooperation extends UserRequest
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 2;
 
+    const MARITAL_SINGLE = 1;
+    const MARITAL_MARRIED = 2;
+
     const GRADE_DIPLOMA = 'diploma';
     const GRADE_ASSOCIATE_DEGREE = 'associate_degree';
     const GRADE_BACHELOR = 'bachelor';
@@ -78,6 +83,8 @@ class Cooperation extends UserRequest
             'tell' => ['CHAR', ''],
             'father_name' => ['CHAR', ''],
             'gender' => ['CHAR', ''],
+            'marital_status' => ['CHAR', ''],
+            'children_count' => ['INTEGER', ''],
             'birth_day' => ['CHAR', ''],
             'national_code' => ['CHAR', ''],
             'passport_id' => ['CHAR', ''],
@@ -123,6 +130,8 @@ class Cooperation extends UserRequest
                 'family',
                 'father_name',
                 'gender',
+                'marital_status',
+                'children_count',
                 'birth_day',
                 'avatar',
                 'national_code',
@@ -156,10 +165,12 @@ class Cooperation extends UserRequest
         return array_merge(parent::attributeLabels(), [
             'cooperation_type' => Yii::t('words', 'Cooperation type'),
             'name' => Yii::t('words', 'First Name'),
-            'tell' => Yii::t('words', 'Tell'),
+            'tell' => Yii::t('words', 'Tel'),
             'family' => Yii::t('words', 'Sure Name'),
             'father_name' => Yii::t('words', 'Father name'),
             'gender' => Yii::t('words', 'Gender'),
+            'marital_status' => Yii::t('words', 'Marital status'),
+            'children_count' => Yii::t('words', 'Number of children'),
             'birth_day' => Yii::t('words', 'Birthday'),
             'avatar' => Yii::t('words', 'Picture'),
             'national_code' => Yii::t('words', 'National code'),
@@ -223,9 +234,8 @@ class Cooperation extends UserRequest
             ],
             'name' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'family' => ['type' => static::FORM_FIELD_TYPE_TEXT],
-            'tell' => ['type' => static::FORM_FIELD_TYPE_TEXT],
-
             'father_name' => ['type' => static::FORM_FIELD_TYPE_TEXT],
+            'tell' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'gender' => [
                 'type' => static::FORM_FIELD_TYPE_SELECT,
                 'items' => static::getGenderLabels()
@@ -233,12 +243,17 @@ class Cooperation extends UserRequest
             'birth_day' => ['type' => static::FORM_FIELD_TYPE_DATE],
             'national_code' => ['type' => static::FORM_FIELD_TYPE_TEXT, 'options' => ['maxLength' => 10]],
 
-            'passport_id' => ['type' => static::FORM_FIELD_TYPE_TEXT],
+//            'passport_id' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'issued' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'postal_code' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'city' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'area' => ['type' => static::FORM_FIELD_TYPE_TEXT],
-            'email' => ['type' => static::FORM_FIELD_TYPE_TEXT],
+//            'email' => ['type' => static::FORM_FIELD_TYPE_TEXT],
+            'marital_status' => [
+                'type' => static::FORM_FIELD_TYPE_SELECT,
+                'items' => static::getMaritalLabels()
+            ],
+            'children_count' => ['type' => static::FORM_FIELD_TYPE_TEXT],
 //            'edu_history' => ['CHAR', ''],
 //            'job_history' => ['CHAR', ''],
 //            'language_level' => ['CHAR', ''],
@@ -311,12 +326,32 @@ class Cooperation extends UserRequest
         return $lbs;
     }
 
+    public static $maritalLabels = [
+        self::MARITAL_SINGLE => 'Single',
+        self::MARITAL_MARRIED => 'Married',
+    ];
+
+    public function getMaritalLabel($marital = false)
+    {
+        if (!$marital)
+            $marital = $this->marital_status;
+        return Yii::t('words', ucfirst(self::$maritalLabels[$marital]));
+    }
+
+    public static function getMaritalLabels()
+    {
+        $lbs = [];
+        foreach (self::$maritalLabels as $key => $label)
+            $lbs[$key] = Yii::t('words', ucfirst($label));
+        return $lbs;
+    }
+
     public static $gradeLabels = [
         self::GRADE_DIPLOMA => 'Diploma',
         self::GRADE_ASSOCIATE_DEGREE => 'Associate Degree',
         self::GRADE_BACHELOR => 'Bachelor',
         self::GRADE_MASTER => 'Master',
-        self::GRADE_DOCTORATE => 'Doctorate',
+//        self::GRADE_DOCTORATE => 'Doctorate',
     ];
 
     public static $medicalGradeLabels = [
