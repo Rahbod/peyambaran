@@ -20,7 +20,7 @@ class PostSearch extends Post
         return [
             [['id', 'userID', 'modelID', 'status'], 'integer'],
             [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created'], 'safe'],
+            [['name', 'dyna', 'extra', 'created', 'summary'], 'safe'],
         ];
     }
 
@@ -68,9 +68,7 @@ class PostSearch extends Post
         ]);
 
         $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
-            ->andFilterWhere(['like', 'dyna', $this->dyna])
-            ->andFilterWhere(['like', 'extra', $this->extra])
-            ->andFilterWhere(['like', 'created', $this->created]);
+            ->orFilterWhere(['REGEXP', static::columnGetString('summary'), Helper::persian2Arabic($this->summary)]);
 
         if ($admin)
             $query->orderBy(['id' => SORT_DESC]);

@@ -361,6 +361,7 @@ header .logo img {
 .language-select > .btn {
     display: block;
 }
+
 .language-select .dropdown-menu {
     min-width: 60px;
     left: 0;
@@ -1363,7 +1364,7 @@ section .title-description {
     vertical-align: top;
 }
 
-.gallery-item-details .item-image-big > a >img {
+.gallery-item-details .item-image-big > a > img {
     display: inline-block;
     width: 100%;
     height: auto;
@@ -1403,7 +1404,8 @@ section .title-description {
     color: #fff;
     position: relative;
 }
-.bottom-section:before{
+
+.bottom-section:before {
     position: absolute;
     content: "";
     background-color: #2f248487;
@@ -1413,7 +1415,8 @@ section .title-description {
     bottom: 0;
     top: 0;
 }
-.bottom-section > .container{
+
+.bottom-section > .container {
     position: relative;
     z-index: 1;
 }
@@ -1894,7 +1897,8 @@ section .title-description {
     height: auto;
     border-radius: 10px;
 }
-.sidebar-user-menu .text-danger{
+
+.sidebar-user-menu .text-danger {
     color: #e00 !important;
     font-weight: bold !important;
 }
@@ -1979,7 +1983,8 @@ section .title-description {
     padding: 5px 15px 5px 15px;
 
 }
-.sidebar-user-menu .content-section > ul > li > a{
+
+.sidebar-user-menu .content-section > ul > li > a {
     display: block;
     overflow: hidden;
 }
@@ -2368,7 +2373,8 @@ header .nav > li > a:hover {
     padding-bottom: 15px;
     position: relative;
 }
-.contactUs__form .form-group .help-block{
+
+.contactUs__form .form-group .help-block {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -2376,7 +2382,7 @@ header .nav > li > a:hover {
     margin: 0;
 }
 
-.contactUs__form [class^='col-'] .help-block{
+.contactUs__form [class^='col-'] .help-block {
     right: 15px;
     left: 15px;
 }
@@ -2429,7 +2435,8 @@ header .nav > li > a:hover {
     font-size: 11px;
     position: relative;
 }
-.-required:after{
+
+.-required:after {
     content: "(الزامی)";
 }
 
@@ -3856,10 +3863,11 @@ header .nav > li > a:hover {
     color: #919191;
 }
 
-.language-select.mobile-language{
+.language-select.mobile-language {
     float: left;
 }
-.mobile-language .btn{
+
+.mobile-language .btn {
     color: #343434;
     font-size: 9pt;
     margin: 5px 12px 0;
@@ -3872,25 +3880,68 @@ header .nav > li > a:hover {
     background-color: #fff;
     padding: 0;
 }
-.mobile-language .btn span{
+
+.mobile-language .btn span {
     font-size: 12px;
     font-weight: bold;
 }
-.mobile-language ul{
+
+.mobile-language ul {
     min-width: 0 !important;
     padding: 10px 15px;
 }
-.mobile-language .dropdown-menu>li>a{
+
+.mobile-language .dropdown-menu > li > a {
     padding: 5px 0;
 }
 
-.list-view{
-    display: block;overflow: hidden;
-}
-.gallery-tabs .nav-tabs{
-    margin-top:80px;
+.list-view {
+    display: block;
 }
 
-.iran-sans{
+.gallery-tabs .nav-tabs {
+    margin-top: 80px;
+}
+
+.iran-sans {
     font-family: "IRANSans" !important;
+}
+
+.mb-5, .my-5 {
+    margin-bottom: 3rem !important;
+}
+
+.justify-content-center {
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+}
+
+.nav.search-nav{
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    margin-top: 60px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-pills > li + li {
+    margin: 0
+}
+.d-flex__title{
+    margin: 0 auto;
+    opacity: .7;
+    padding: 100px 0;
+}
+
+.badge-danger{
+    background-color: #ee0000aa;
 }

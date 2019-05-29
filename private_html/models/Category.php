@@ -49,7 +49,7 @@ class Category extends MultiLangActiveRecord
     const TYPE_LIST = 'lst';
     const TYPE_MENU = 'mnu';
     const TYPE_DEPARTMENT = 'dep';
-    const TYPE_ONLINE = 'online';
+    const TYPE_ONLINE = 'onl';
 
     const CATEGORY_TYPE_NEWS = 'news';
     const CATEGORY_TYPE_PICTURE_GALLERY = 'image_gallery';

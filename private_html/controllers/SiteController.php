@@ -11,7 +11,9 @@ use app\models\Category;
 use app\models\Insurance;
 use app\models\Message;
 use app\models\OnlineService;
+use app\models\PageSearch;
 use app\models\Post;
+use app\models\PostSearch;
 use app\models\Slide;
 use Yii;
 use yii\filters\AccessControl;
@@ -73,8 +75,8 @@ class SiteController extends AuthController
                 'transparent' => true,
                 'onlyNumber' => true,
                 'foreColor' => 0x2040A0,
-                'minLength'=>3,
-                'maxLength'=>3,
+                'minLength' => 3,
+                'maxLength' => 3,
 //                'fontFile' => '@webroot/themes/default/assets/vendors/base/fonts/IranSans/ttf/fa-num/IRANSansWeb.ttf'
             ],
         ];
@@ -101,7 +103,7 @@ class SiteController extends AuthController
             Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY,
             Category::columnGetString('show_in_home') => 1,
         ])->orderBy([Category::columnGetString('show_always') => SORT_DESC])->addOrderBy('RAND()')->limit(5)->all();
-        ArrayHelper::multisort($galleryCategories,function ($model){
+        ArrayHelper::multisort($galleryCategories, function ($model) {
             return $model->sort;
         });
 
@@ -198,9 +200,26 @@ class SiteController extends AuthController
 
     public function actionSearch()
     {
-        $term = Yii::$app->request->getQueryParam('term');
+        $term = Yii::$app->request->getQueryParam('q');
         if ($term && !empty($term)) {
-            return $this->render('search', compact('term'));
+//            $term = Helper::persian2Arabic($term);
+
+            $searchPost = new PostSearch();
+            $searchPost->name = $term;
+            $searchPost->summary = $term;
+            $searchPost->type = Post::TYPE_NEWS;
+            $newsProvider = $searchPost->search([]);
+            $newsProvider->getPagination()->pageSize = 50;
+            $searchPost->type = Post::TYPE_ARTICLE;
+            $articleProvider = $searchPost->search([]);
+            $articleProvider->getPagination()->pageSize = 50;
+
+            $searchPage = new PageSearch();
+            $searchPage->name = $term;
+            $pageProvider = $searchPage->search([]);
+            $pageProvider->getPagination()->pageSize = 100;
+
+            return $this->render('search', compact('term', 'newsProvider', 'articleProvider', 'pageProvider'));
         } else
             return $this->goBack();
     }
@@ -287,6 +306,7 @@ class SiteController extends AuthController
         }
     }*/
 
-    public function actionTest(){
+    public function actionTest()
+    {
     }
 }

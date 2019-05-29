@@ -65,7 +65,7 @@ use yii\helpers\Url;
                 <?php endif; ?>
                 <?= Html::beginForm(['/site/search'], 'get', ['class' => 'search-form']) ?>
                 <div class="input-group search-container">
-                    <?= Html::textInput('term', Yii::$app->request->getQueryParam('term'), ['class' => 'form-control', 'placeholder' => Yii::t('words', 'Search...')]) ?>
+                    <?= Html::textInput('q', Yii::$app->request->getQueryParam('q'), ['class' => 'form-control', 'placeholder' => Yii::t('words', 'Search...')]) ?>
                     <span class="input-group-addon">
                             <button type="submit" class="search-btn"><i class="search-icon"></i></button>
                         </span>

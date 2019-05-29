@@ -102,7 +102,7 @@ return [
     'Menus' => 'مدیریت منو',
     'Create Page' => 'صفحه جدید',
     'Update Page: {name}' => 'ویرایش صفحه: {name}',
-    'Pages' => 'مدیریت صفحات',
+    'Pages' => 'صفحات',
     'Create Slide' => 'اسلاید جدید',
     'Update Slide: {name}' => 'ویرایش اسلاید: {name}',
     'Slides' => 'مدیریت اسلایدها',
@@ -390,4 +390,5 @@ return [
     'Single' => 'مجرد',
     'Number of children' => 'تعداد فرزندان',
     'Resume file' => 'فایل رزومه',
+    'No Result!' => 'نتیجه ای یافت نشد!',
 ];

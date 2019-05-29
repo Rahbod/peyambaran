@@ -193,7 +193,7 @@ $this->registerJs('
             <div class="form-group m-form__group row">
                 <?php echo Html::label(Yii::t('words', 'Facebook'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][googleplus]', $settings['socialNetworks']['googleplus'], [
+                    <?php echo Html::textInput('Setting[socialNetworks][facebook]', $settings['socialNetworks']['facebook'], [
                         'class' => 'form-control m-input m-input__solid text-right',
                         'dir' => 'ltr',
                     ]); ?>
@@ -202,7 +202,7 @@ $this->registerJs('
             <div class="form-group m-form__group row">
                 <?php echo Html::label(Yii::t('words', 'Google Plus'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][facebook]', $settings['socialNetworks']['facebook'], [
+                    <?php echo Html::textInput('Setting[socialNetworks][googleplus]', $settings['socialNetworks']['googleplus'], [
                         'class' => 'form-control m-input m-input__solid text-right',
                         'dir' => 'ltr',
                     ]); ?>

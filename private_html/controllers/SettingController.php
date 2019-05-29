@@ -34,7 +34,7 @@ class SettingController extends AuthController
                     foreach ($config[$key] as $subKey => $subVal) {
                         if (!isset($postData[$key][$subKey]))
                             continue;
-                        if ($postData[$key][$subKey] && $subVal != $postData[$key][$subKey])
+                        if ($subVal != $postData[$key][$subKey])
                             $config[$key][$subKey] = $postData[$key][$subKey];
                     }
                 } elseif ($postData[$key] && $value != $postData[$key])
@@ -42,7 +42,7 @@ class SettingController extends AuthController
             }
 
             if (Setting::setAll($config))
-                \Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => \Yii::t('words', 'setting.successMsg')]);
+                \Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => \Yii::t('words', 'base.successMsg')]);
             else
                 \Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => \Yii::t('words', 'base.dangerMsg')]);
         }

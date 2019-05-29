@@ -9,6 +9,7 @@ use yii\helpers\Url;
  * This is the model class for table "item".
  *
  * @property int $publish_date
+ * @property int $summary
  */
 class Post extends Item
 {

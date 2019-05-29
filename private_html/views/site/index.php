@@ -57,8 +57,8 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                 <a href="<?= $onlineService->url ?>">
                                     <div class="item-image">
                                         <div class="item-image-circle">
-                                            <div class="clock-icon online-services-icons"></div>
-                                            <div class="clock-icon-white -hover-show"></div>
+<!--                                            <div class="clock-icon online-services-icons"></div>-->
+<!--                                            <div class="clock-icon-white -hover-show"></div>-->
                                         </div>
                                     </div>
                                     <div class="item-details">
