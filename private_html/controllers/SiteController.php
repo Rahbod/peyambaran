@@ -9,8 +9,11 @@ use app\components\Helper;
 use app\components\SmsSender;
 use app\models\Category;
 use app\models\Insurance;
+use app\models\Menu;
+use app\models\MenuSearch;
 use app\models\Message;
 use app\models\OnlineService;
+use app\models\Page;
 use app\models\PageSearch;
 use app\models\Post;
 use app\models\PostSearch;
@@ -208,18 +211,33 @@ class SiteController extends AuthController
             $searchPost->name = $term;
             $searchPost->summary = $term;
             $searchPost->type = Post::TYPE_NEWS;
+            $searchPost->status = Post::STATUS_PUBLISHED;
             $newsProvider = $searchPost->search([]);
             $newsProvider->getPagination()->pageSize = 50;
+
+            $searchPost = new PostSearch();
+            $searchPost->name = $term;
+            $searchPost->summary = $term;
             $searchPost->type = Post::TYPE_ARTICLE;
+            $searchPost->status = Post::STATUS_PUBLISHED;
             $articleProvider = $searchPost->search([]);
             $articleProvider->getPagination()->pageSize = 50;
 
             $searchPage = new PageSearch();
             $searchPage->name = $term;
+            $searchPage->body= $term;
+            $searchPage->status = Page::STATUS_PUBLISHED;
             $pageProvider = $searchPage->search([]);
             $pageProvider->getPagination()->pageSize = 100;
 
-            return $this->render('search', compact('term', 'newsProvider', 'articleProvider', 'pageProvider'));
+            $searchMenu = new MenuSearch();
+            $searchMenu->name = $term;
+            $searchMenu->status = Menu::STATUS_PUBLISHED;
+            $searchMenu->menu_type = [Menu::MENU_TYPE_ACTION,Menu::MENU_TYPE_EXTERNAL_LINK];
+            $menuProvider = $searchMenu->search([]);
+            $menuProvider->getPagination()->pageSize = 100;
+
+            return $this->render('search', compact('term', 'newsProvider', 'articleProvider', 'pageProvider', 'menuProvider'));
         } else
             return $this->goBack();
     }

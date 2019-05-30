@@ -391,4 +391,5 @@ return [
     'Number of children' => 'تعداد فرزندان',
     'Resume file' => 'فایل رزومه',
     'No Result!' => 'نتیجه ای یافت نشد!',
+    'Menu' => 'منوها',
 ];

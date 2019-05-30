@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use function app\components\dd;
 use app\components\Helper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -67,8 +68,7 @@ class PostSearch extends Post
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
-            ->orFilterWhere(['REGEXP', static::columnGetString('summary'), Helper::persian2Arabic($this->summary)]);
+        $query->andFilterWhere(['or',['REGEXP', 'name', Helper::persian2Arabic($this->name)],['REGEXP', static::columnGetString('summary'), Helper::persian2Arabic($this->summary)]]);
 
         if ($admin)
             $query->orderBy(['id' => SORT_DESC]);
