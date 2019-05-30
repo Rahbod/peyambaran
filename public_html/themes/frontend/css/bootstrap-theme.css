@@ -1587,6 +1587,11 @@ section .title-description {
     background-size: 24px;
 }
 
+.telegram-icon {
+    background: url("../svg/telegram.svg") no-repeat center;
+    background-size: 24px;
+}
+
 .facebook-icon {
     background: url("../svg/facebook.png") no-repeat center;
     background-size: 32px 38px;
