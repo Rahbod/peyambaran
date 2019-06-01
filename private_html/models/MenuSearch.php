@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\Helper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Menu;
@@ -18,7 +19,7 @@ class MenuSearch extends Menu
     {
         return [
             [['id', 'parentID', 'status', 'left', 'right', 'depth', 'tree'], 'integer'],
-            [['type', 'name', 'dyna', 'extra', 'created'], 'safe'],
+            [['type', 'name', 'dyna', 'extra', 'menu_type'], 'safe'],
         ];
     }
 
@@ -66,12 +67,11 @@ class MenuSearch extends Menu
             'right' => $this->right,
             'depth' => $this->depth,
             'tree' => $this->tree,
+            'type' => $this->type,
+            static::columnGetString('menu_type') => $this->menu_type,
         ]);
 
-        $query->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'dyna', $this->dyna])
-            ->andFilterWhere(['like', 'extra', $this->extra]);
+        $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)]);
 
         $query->orderBy([self::columnGetString('sort') => SORT_ASC]);
 

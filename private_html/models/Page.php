@@ -8,6 +8,7 @@ use yii\helpers\Url;
 
 /**
  * This is the model class for table "item".
+ * @property $body
  *
  */
 class Page extends Item

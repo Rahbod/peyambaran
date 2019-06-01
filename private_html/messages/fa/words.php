@@ -289,8 +289,9 @@ return [
     'Time Zone' => 'محدوده زمانی',
     'Sms' => 'تنظیمات پنل پیامک',
     'Language' => 'Language',
-    'pictures' => 'تصاویر   ',
+    'pictures' => 'تصاویر',
     'Instagram' => 'اینستاگرام',
+    'Telegram' => 'تلگرام',
     'reception' => 'پذیرش',
     'cooperation' => 'همکاری',
     'Visit request' => 'درخواست نوبت',
@@ -391,4 +392,5 @@ return [
     'Number of children' => 'تعداد فرزندان',
     'Resume file' => 'فایل رزومه',
     'No Result!' => 'نتیجه ای یافت نشد!',
+    'Menu' => 'منوها',
 ];

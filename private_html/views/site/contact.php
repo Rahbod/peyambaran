@@ -39,6 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '"><img src="' . $this->theme->baseUrl . '/svg/twitter.png" alt="Twitter"></a>' : ''; ?>
                         <?php $val = Setting::get('socialNetworks.instagram');
                         echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '"><img src="' . $this->theme->baseUrl . '/svg/instagram.png" alt="Instagram"></a>' : ''; ?>
+                        <?php $val = Setting::get('socialNetworks.telegram');
+                        echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '"><img src="' . $this->theme->baseUrl . '/svg/telegram.svg" alt="Telegram" width="34px"></a>' : ''; ?>
                     </div>
                 </div>
             </div>

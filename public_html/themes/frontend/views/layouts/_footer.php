@@ -115,6 +115,8 @@ $contactModel = new \app\models\ContactForm();
                                 echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon twitter-icon"></a>' : ''; ?>
                                 <?php $val = Setting::get('socialNetworks.instagram');
                                 echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon instagram-icon"></a>' : ''; ?>
+                                <?php $val = Setting::get('socialNetworks.telegram');
+                                echo $val && !empty($val) ? '<a rel="nofollow" target="_blank" href="' . $val . '" class="icon telegram-icon"></a>' : ''; ?>
                             </div>
                         </li>
                     </ul>
