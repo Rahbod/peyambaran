@@ -7,6 +7,7 @@ use app\models\Menu;
 use devgroup\dropzone\DropZone;
 use devgroup\dropzone\UploadedFiles;
 use dosamigos\tinymce\TinyMce;
+use faravaghi\jalaliDatePicker\jalaliDatePicker;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Html;
@@ -259,9 +260,12 @@ abstract class CustomActiveRecord extends ActiveRecord
                 return $form->field($model, $attribute, $fieldOptions)->textarea($options);
             case static::FORM_FIELD_TYPE_PASSWORD:
                 return $form->field($model, $attribute, $fieldOptions)->passwordInput($options);
+            case static::FORM_FIELD_TYPE_DATE:
+                $options['htmlOptions']['tabindex'] = $options['tabindex'];
+                unset($options['tabindex']);
+                return $form->field($model, $attribute)->widget(jalaliDatePicker::className(), $options);
             case static::FORM_FIELD_TYPE_TAG:
             case static::FORM_FIELD_TYPE_TIME:
-            case static::FORM_FIELD_TYPE_DATE:
             case static::FORM_FIELD_TYPE_DATETIME:
             case static::FORM_FIELD_TYPE_TEXT:
             default:

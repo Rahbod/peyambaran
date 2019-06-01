@@ -248,7 +248,22 @@ class Cooperation extends UserRequest
                 'type' => static::FORM_FIELD_TYPE_SELECT,
                 'items' => static::getGenderLabels()
             ],
-            'birth_day' => ['type' => static::FORM_FIELD_TYPE_DATE],
+            'birth_day' => [
+                'type' => static::FORM_FIELD_TYPE_DATE,
+                'options' => [
+                    'options' => [
+                        'format' => 'yyyy/mm/dd',
+                        'viewformat' => 'yyyy/mm/dd',
+                        'placement' => 'right',
+                    ],
+                    'htmlOptions' => [
+//                        'id' => ,
+                        'class' => 'form-control ltr',
+                        'autocomplete' => 'off',
+//                        'value' => $model->visit_date ? \jDateTime::date('Y/m/d', $model->visit_date) : ''
+                    ]
+                ]
+            ],
             'national_code' => [
                 'type' => static::FORM_FIELD_TYPE_TEXT,
                 'options' => ['class' => 'form-control numberFormat', 'maxLength' => 10]

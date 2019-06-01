@@ -3945,3 +3945,7 @@ ul {
 .badge-danger{
     background-color: #ee0000aa;
 }
+
+.datepicker-dropdown.dropdown-menu{
+    right: auto !important;
+}

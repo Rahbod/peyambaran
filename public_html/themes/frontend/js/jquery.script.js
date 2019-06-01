@@ -3,6 +3,7 @@ var nicescrolls = [];
 $(function () {
     $('.digitFormat').digitFormat();
     $('.numberFormat').numericFormat();
+    $('.dateFormat').dateFormat();
 
     $("body").on("keyup", '.digitFormat', function () {
         $(this).digitFormat();
@@ -12,6 +13,10 @@ $(function () {
         $(this).numericFormat();
     }).on("change", '.numberFormat', function () {
         $(this).numericFormat();
+    }).on("keyup", '.dateFormat', function () {
+        $(this).dateFormat();
+    }).on("change", '.dateFormat', function () {
+        $(this).dateFormat();
     });
 
     // $(window).on("load resize scroll", function () {
@@ -219,6 +224,16 @@ $.fn.numericFormat = function () {
         $(this).val(function (index, value) {
             return value
                 .replace(/\D/g, "");
+        });
+    });
+};
+
+$.fn.dateFormat = function () {
+    return this.each(function (event) {
+        if (event.which >= 37 && event.which <= 40) return;
+        $(this).val(function (index, value) {
+            return value
+                .replace(/[0-9\/]*/g, "");
         });
     });
 };
