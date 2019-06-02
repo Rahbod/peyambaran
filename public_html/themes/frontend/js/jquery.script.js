@@ -138,29 +138,22 @@ $(function () {
             $(".news-carousel .owl-prev").css({left: $(".news-carousel .owl-dot:first-of-type").offset().left + 10 - (($(window).width() - $(".container").width() - 30)/2)});
         }
         if($(window).width()>768)
-            $(".nicescroll").niceScrollTrigger();
+            $(".nicescroll").each(function () {
+                var options = $(this).data();
+                $.each(options, function (key, value) {
+                    if (typeof value === "string" && value.indexOf("js:") !== -1)
+                        options[key] = JSON.parse(value.substr(3));
+                });
+                // if (refresh === true)
+                //     $(this).getNiceScroll().remove();
+
+                var instance = $(this).niceScroll(options);
+                // if($(this).attr('id')=='scroll-box')
+                //     console.log(instance);
+                nicescrolls.push({id: $(this).attr('id'), instance: instance});
+            });
     });
 });
-(function () {
-    /// define functions
-    $.fn.niceScrollTrigger = function (refresh) {
-        this.each(function () {
-            var options = $(this).data();
-            $.each(options, function (key, value) {
-                if (typeof value === "string" && value.indexOf("js:") !== -1)
-                    options[key] = JSON.parse(value.substr(3));
-            });
-            if (refresh === true)
-                $(this).getNiceScroll().remove();
-
-            var instance = $(this).niceScroll(options);
-            // if($(this).attr('id')=='scroll-box')
-            //     console.log(instance);
-            nicescrolls.push({id: $(this).attr('id'), instance: instance});
-        });
-    };
-})(jQuery);
-
 // hide or show the main navbar base on page scroll : start
 // var header_height = $('header').height();
 var header_height = 160;
