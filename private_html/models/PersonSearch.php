@@ -93,6 +93,10 @@ class PersonSearch extends Person
         else
             $query->addOrderBy([static::columnGetString(\Yii::$app->language.'_name') => SORT_ASC]);
 
+        if(isset($_GET['debug'])){
+            \app\components\dd($query->createCommand()->sql);
+        }
+
         return $dataProvider;
     }
 }

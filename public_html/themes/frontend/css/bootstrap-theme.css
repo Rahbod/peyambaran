@@ -3954,3 +3954,7 @@ ul {
 .datepicker-dropdown.dropdown-menu{
     right: auto !important;
 }
+
+.nicescroll{
+    overflow-y: auto;
+}
