@@ -19,6 +19,14 @@ $(function () {
         $(this).dateFormat();
     });
 
+    if($.fn.datepicker) {
+        $(".datepicker").each(function () {
+            var options = $(this).data('datepicker');
+            $(this).datepicker(options);
+        });
+    }
+
+
     // $(window).on("load resize scroll", function () {
         $(".owl-carousel").each(function () {
             var options = $(this).data(),

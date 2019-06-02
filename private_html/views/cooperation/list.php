@@ -34,7 +34,7 @@ use yii\widgets\Pjax;
                     ['class' => '\yii\grid\SerialColumn'],
                     [
                         'attribute' => 'name',
-                        'header' => Yii::t('words', 'Patient name'),
+                        'header' => Yii::t('words', 'Name and Family'),
                         'value' => function ($model) {
                             return $model->getFullName();
                         }

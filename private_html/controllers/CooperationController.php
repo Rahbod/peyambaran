@@ -9,6 +9,7 @@ use app\models\UserRequest;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
+use faravaghi\jalaliDatePicker\jalaliDatePicker;
 use Yii;
 use app\components\AuthController;
 use yii\helpers\Html;
@@ -37,6 +38,7 @@ class CooperationController extends AuthController
             'delete-attachment',
             'upload-avatar',
             'delete-avatar',
+            'fetchDynamicRow',
         ];
     }
 
@@ -181,7 +183,7 @@ class CooperationController extends AuthController
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        if(Yii::$app->user->isGuest)
+        if (Yii::$app->user->isGuest)
             throw new ForbiddenHttpException('شما مجوز انجام این عملیات را ندارید.');
 
         if (Yii::$app->user->identity->roleID === 'user') {
@@ -301,5 +303,46 @@ class CooperationController extends AuthController
         }
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+    }
+
+
+    public function actionFetchDynamicRow()
+    {
+        $index = Yii::$app->request->getQueryParam('index');
+        $attribute = Yii::$app->request->getQueryParam('attribute');
+
+        if ($index && $attribute) {
+            ob_start();
+            ob_implicit_flush(false);
+            switch ($attribute) {
+                case 'job_history':
+                    echo "<tr>
+                        <td>" . Html::textInput("Cooperation[{$attribute}][{$index}][place]", '', ['class' => 'form-control', ]) . "</td>
+                        <td>" . Html::textInput("Cooperation[{$attribute}][{$index}][type]", '', ['class' => 'form-control', ]) . "</td>
+                        <td>";
+                    echo jalaliDatePicker::widget([
+                            'id' => "date_{$attribute}_".$index,
+                            'name' => "Cooperation[{$attribute}][{$index}][end_date]",
+                            'value' => null,
+                            'ajax' => true,
+                            'options' => [
+                                'format' => 'yyyy/mm/dd',
+                                'viewformat' => 'yyyy/mm/dd',
+                                'placement' => 'right',
+                            ],
+                            'htmlOptions' => [
+                                'class' => 'form-control',
+                                'autocomplete' => 'off',
+                                'placeholder' => '__/__/____'
+                            ]
+                        ]) . "</td>
+                        <td>" . Html::textInput("Cooperation[{$attribute}][{$index}][cause]", '', ['class' => 'form-control', ]) . "</td>
+                        <td>" . Html::textInput("Cooperation[{$attribute}][{$index}][contact]", '', ['class' => 'form-control', ]) . "</td>
+                    </tr>";
+                    break;
+            }
+            return ob_get_clean();
+        }
+        return "";
     }
 }

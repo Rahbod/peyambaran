@@ -3,6 +3,7 @@
 use \yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use \yii\helpers\Url;
+use faravaghi\jalaliDatePicker\jalaliDatePicker;
 
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Cooperation */
@@ -19,17 +20,19 @@ $this->registerJs('
 $this->registerJs('
     $("body").on("click", ".table-add-row-trigger", function (e) {
         e.preventDefault();
-        var table = $(this).parents("table");
-        var i = table.find("tbody tr").length;
-        var namePrefix = "Cooperation[job_history][" + i + "]";
-        var html = "<tr>" +
-            "<td><input name=\"" + namePrefix + "[place]\" class=\'form-control\'></td>" +
-            "<td><input name=\"" + namePrefix + "[type]\" class=\'form-control\'></td>" +
-            "<td><input name=\"" + namePrefix + "[end_date]\" class=\'form-control\' placeholder=\'__/__/____\'></td>" +
-            "<td><input name=\"" + namePrefix + "[cause]\" class=\'form-control\'></td>" +
-            "<td><input name=\"" + namePrefix + "[contact]\" class=\'form-control\'></td>" +
-            "</tr>";
-        table.find("tbody").append(html);
+        var table = $(this).parents("table"),
+            i = table.find("tbody tr").length,
+            attribute = $(this).data("attribute");
+            
+        $.ajax({
+            url: $(this).data("url"),
+            type: "GET",
+            data: {index: i, attribute: attribute},
+            dataType: "html",
+            success: function(html){
+                table.find("tbody").append(html);                             
+            }
+        });             
     });
 ');
 
@@ -113,7 +116,21 @@ $this->registerJs('
                         <tr>
                             <td><?= $label ?></td>
                             <td><?= Html::textInput("Cooperation[edu_history][{$grade}][field]", $field, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
-                            <td><?= Html::textInput("Cooperation[edu_history][{$grade}][graduation_date]", $graduation_date, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++,'placeholder' => '__/__/____']) ?></td>
+                            <td><?= jalaliDatePicker::widget([
+                                    'name' => "Cooperation[edu_history][{$grade}][graduation_date]",
+                                    'value' => $graduation_date,
+                                    'options' => [
+                                        'format' => 'yyyy/mm/dd',
+                                        'viewformat' => 'yyyy/mm/dd',
+                                        'placement' => 'right',
+                                    ],
+                                    'htmlOptions' => [
+                                        'class' => 'form-control',
+                                        'autocomplete' => 'off',
+                                        'tabindex' => \app\models\Cooperation::$tabindex++,
+                                        'placeholder' => '__/__/____'
+                                    ]
+                                ]) ?></td>
                             <td><?= Html::textInput("Cooperation[edu_history][{$grade}][detail]", $detail, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -142,7 +159,21 @@ $this->registerJs('
                         <tr>
                             <td><?= $label ?></td>
                             <td><?= Html::textInput("Cooperation[edu_history][{$grade}][field]", $field, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
-                            <td><?= Html::textInput("Cooperation[edu_history][{$grade}][graduation_date]", $graduation_date, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++,'placeholder' => '__/__/____']) ?></td>
+                            <td><?= jalaliDatePicker::widget([
+                                    'name' => "Cooperation[edu_history][{$grade}][graduation_date]",
+                                    'value' => $graduation_date,
+                                    'options' => [
+                                        'format' => 'yyyy/mm/dd',
+                                        'viewformat' => 'yyyy/mm/dd',
+                                        'placement' => 'right',
+                                    ],
+                                    'htmlOptions' => [
+                                        'class' => 'form-control',
+                                        'autocomplete' => 'off',
+                                        'tabindex' => \app\models\Cooperation::$tabindex++,
+                                        'placeholder' => '__/__/____'
+                                    ]
+                                ]) ?></td>
                             <td><?= Html::textInput("Cooperation[edu_history][{$grade}][detail]", $detail, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -176,7 +207,21 @@ $this->registerJs('
                         <tr>
                             <td><?= Html::textInput("Cooperation[job_history][{$key}][place]", $place, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                             <td><?= Html::textInput("Cooperation[job_history][{$key}][type]", $type, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
-                            <td><?= Html::textInput("Cooperation[job_history][{$key}][end_date]", $end_date, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++,'placeholder' => '__/__/____']) ?></td>
+                            <td><?= jalaliDatePicker::widget([
+                                    'name' => "Cooperation[job_history][{$key}][end_date]",
+                                    'value' => $end_date,
+                                    'options' => [
+                                        'format' => 'yyyy/mm/dd',
+                                        'viewformat' => 'yyyy/mm/dd',
+                                        'placement' => 'right',
+                                    ],
+                                    'htmlOptions' => [
+                                        'class' => 'form-control',
+                                        'autocomplete' => 'off',
+                                        'tabindex' => \app\models\Cooperation::$tabindex++,
+                                        'placeholder' => '__/__/____'
+                                    ]
+                                ]) ?></td>
                             <td><?= Html::textInput("Cooperation[job_history][{$key}][cause]", $cause, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                             <td><?= Html::textInput("Cooperation[job_history][{$key}][contact]", $contact, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                         </tr>
@@ -184,7 +229,21 @@ $this->registerJs('
                     <tr>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][place]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][type]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
-                        <td><?= Html::textInput("Cooperation[job_history][{$i}][end_date]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++,'placeholder' => '__/__/____']) ?></td>
+                        <td><?= jalaliDatePicker::widget([
+                                'name' => "Cooperation[job_history][{$i}][end_date]",
+                                'value' => null,
+                                'options' => [
+                                    'format' => 'yyyy/mm/dd',
+                                    'viewformat' => 'yyyy/mm/dd',
+                                    'placement' => 'right',
+                                ],
+                                'htmlOptions' => [
+                                    'class' => 'form-control',
+                                    'autocomplete' => 'off',
+                                    'tabindex' => \app\models\Cooperation::$tabindex++,
+                                    'placeholder' => '__/__/____'
+                                ]
+                            ]) ?></td>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][cause]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][contact]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                     </tr>
@@ -192,14 +251,31 @@ $this->registerJs('
                     <tr>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][place]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][type]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
-                        <td><?= Html::textInput("Cooperation[job_history][{$i}][end_date]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++,'placeholder' => '__/__/____']) ?></td>
+                        <td><?= jalaliDatePicker::widget([
+                                'name' => "Cooperation[job_history][{$i}][end_date]",
+                                'value' => null,
+                                'options' => [
+                                    'format' => 'yyyy/mm/dd',
+                                    'viewformat' => 'yyyy/mm/dd',
+                                    'placement' => 'right',
+                                ],
+                                'htmlOptions' => [
+                                    'class' => 'form-control',
+                                    'autocomplete' => 'off',
+                                    'tabindex' => \app\models\Cooperation::$tabindex++,
+                                    'placeholder' => '__/__/____'
+                                ]
+                            ]) ?></td>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][cause]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                         <td><?= Html::textInput("Cooperation[job_history][{$i}][contact]", null, ['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?></td>
                     </tr>
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="5" class="text-center"><a href="#" class="table-add-row-trigger" type="button"
+                        <td colspan="5" class="text-center"><a href="#" class="table-add-row-trigger"
+                                                               data-url="<?= Url::to(['fetch-dynamic-row']) ?>"
+                                                               data-attribute="job_history"
+                                                               type="button"
                                                                style="width: 100%;height: 100%;display: inline-block"><i
                                         class="icon icon-plus"></i></a></td>
                     </tr>
@@ -216,15 +292,18 @@ $this->registerJs('
                     <fieldset>
                         <label>زبان انگلیسی:</label>
                         <label>
-                            <input type="radio" name="Cooperation[language_level]" value="1" tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
+                            <input type="radio" name="Cooperation[language_level]" value="1"
+                                   tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
                             متوسط
                         </label>
                         <label>
-                            <input type="radio" name="Cooperation[language_level]" value="2" tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
+                            <input type="radio" name="Cooperation[language_level]" value="2"
+                                   tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
                             خوب
                         </label>
                         <label>
-                            <input type="radio" name="Cooperation[language_level]" value="3" tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
+                            <input type="radio" name="Cooperation[language_level]" value="3"
+                                   tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
                             عالی
                         </label>
                     </fieldset>
@@ -248,11 +327,15 @@ $this->registerJs('
                         <div class="form-group">
                             <fieldset>
                                 <label>
-                                    <input type="radio" class="box-trigger" data-fieldset="military" data-target="#military_date" name="Cooperation[military_status]" value="1" tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
+                                    <input type="radio" class="box-trigger" data-fieldset="military"
+                                           data-target="#military_date" name="Cooperation[military_status]" value="1"
+                                           tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
                                     انجام دادم
                                 </label>
                                 <label>
-                                    <input type="radio" class="box-trigger" data-fieldset="military" data-target="#military_reason" name="Cooperation[military_status]" value="0" tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
+                                    <input type="radio" class="box-trigger" data-fieldset="military"
+                                           data-target="#military_reason" name="Cooperation[military_status]" value="0"
+                                           tabindex="<?= \app\models\Cooperation::$tabindex++ ?>">
                                     معافیت
                                 </label>
                             </fieldset>
@@ -262,7 +345,19 @@ $this->registerJs('
                         <?= $form->field($model, 'military_reason')->textInput(['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('military_reason'), 'tabindex' => \app\models\Cooperation::$tabindex++])->label(false) ?>
                     </div>
                     <div class="box-toggle col-sm-4" id="military_date">
-                        <?= $form->field($model, 'military_date')->textInput(['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('military_date'), 'tabindex' => \app\models\Cooperation::$tabindex++])->label(false) ?>
+                        <?= $form->field($model, 'military_date')->widget(\faravaghi\jalaliDatePicker\jalaliDatePicker::className(), [
+                            'options' => [
+                                'format' => 'yyyy/mm/dd',
+                                'viewformat' => 'yyyy/mm/dd',
+                                'placement' => 'right',
+                            ],
+                            'htmlOptions' => [
+                                'class' => 'form-control ltr',
+                                'autocomplete' => 'off',
+                                'placeholder' => $model->getAttributeLabel('military_date'),
+                                'tabindex' => \app\models\Cooperation::$tabindex++
+                            ]
+                        ])->label(false) ?>
                     </div>
                 </div>
             </div>
@@ -284,11 +379,24 @@ $this->registerJs('
                         1 => 'پروانه موقت',
                         2 => 'پروانه مطب',
                         3 => 'پروانه دائم',
-                    ],['tabindex' => \app\models\Cooperation::$tabindex++])?>
+                    ], ['tabindex' => \app\models\Cooperation::$tabindex++]) ?>
                 </div>
 
                 <div class="col-sm-4">
-                    <?= $form->field($model, 'work_permits_expire')->textInput(['class' => 'form-control', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?>
+                    <?= $form->field($model, 'work_permits_expire')->widget(\faravaghi\jalaliDatePicker\jalaliDatePicker::className(), [
+                        'options' => [
+                            'format' => 'yyyy/mm/dd',
+                            'viewformat' => 'yyyy/mm/dd',
+                            'placement' => 'right',
+                        ],
+                        'htmlOptions' => [
+                            'class' => 'form-control ltr',
+                            'autocomplete' => 'off',
+                            'placeholder' => $model->getAttributeLabel('work_permits_expire'),
+                            'tabindex' => \app\models\Cooperation::$tabindex++
+                        ]
+
+                    ])->label(false) ?>
                 </div>
 
                 <div class="col-sm-4">
@@ -296,7 +404,20 @@ $this->registerJs('
                 </div>
 
                 <div class="col-sm-4">
-                    <?= $form->field($model, 'activity_date')->textInput(['class' => 'form-control','placeholder' => '__/__/____', 'tabindex' => \app\models\Cooperation::$tabindex++]) ?>
+                    <?= $form->field($model, 'activity_date')->widget(\faravaghi\jalaliDatePicker\jalaliDatePicker::className(), [
+                        'options' => [
+                            'format' => 'yyyy/mm/dd',
+                            'viewformat' => 'yyyy/mm/dd',
+                            'placement' => 'right',
+                        ],
+                        'htmlOptions' => [
+                            'class' => 'form-control ltr',
+                            'autocomplete' => 'off',
+                            'placeholder' => $model->getAttributeLabel('activity_date'),
+                            'tabindex' => \app\models\Cooperation::$tabindex++
+                        ]
+
+                    ])->label(false) ?>
                 </div>
 
                 <div class="col-sm-12">
@@ -309,7 +430,7 @@ $this->registerJs('
                     <?php echo $form->field($model, 'resume_file')->widget(\devgroup\dropzone\DropZone::className(), [
                         'url' => Url::to(['upload-resume']),
                         'removeUrl' => Url::to(['delete-resume']),
-                        'storedFiles' => isset($resume) ? $resume: [],
+                        'storedFiles' => isset($resume) ? $resume : [],
                         'sortable' => false, // sortable flag
                         'sortableOptions' => [], // sortable options
                         'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'resume_file')],
@@ -343,10 +464,12 @@ $this->registerJs('
     .fields-container.show {
         display: block;
     }
-    .box-toggle{
-        display:none
+
+    .box-toggle {
+        display: none
     }
-    .box-toggle.show{
-        display:block;
+
+    .box-toggle.show {
+        display: block;
     }
 </style>
