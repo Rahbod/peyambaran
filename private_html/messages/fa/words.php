@@ -309,6 +309,7 @@ return [
     'Question Hint' => '( لطفا سئوال خود را شفاف و دقیق بپرسید و موارد مرتبط با سوابق بیماری و سوابق خانوادگی و درمان‌ها و آزمایشات انجام گرفته را بیان کنید)',
     'Tests result files' => 'الصاق نتیجه آزمایشات و تصویربرداری‌ها',
     'Reception Type' => 'نوع پذیرش',
+    'Reception type permission' => 'دسترسی نوع پذیرش',
     'Hospitalization' => 'بستری',
     'Fertility Clinic' => 'ناباروری',
     'Clinical & Medical Laboratory' => 'آزمایشگاه',

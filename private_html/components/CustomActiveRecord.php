@@ -234,7 +234,7 @@ abstract class CustomActiveRecord extends ActiveRecord
             case static::FORM_SEPARATOR:
                 Html::addCssClass($options, 'm-form__heading');
                 return Html::tag('hr') .
-                    Html::tag('div', Html::tag('h3', $field['label'], ['class' => 'm-form__heading-title']), $options);
+                    (isset($field['label'])?Html::tag('div', Html::tag('h3', $field['label'], ['class' => 'm-form__heading-title']), $options):'');
             case static::FORM_FIELD_TYPE_DROP_ZONE:
                 unset($options['tabindex']);
                 if (!$model->isNewRecord)

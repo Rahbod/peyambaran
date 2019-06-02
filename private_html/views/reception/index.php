@@ -9,6 +9,8 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = "درخواست های پذیرش";
+if(Yii::$app->user->identity->reception_type)
+    $this->title = "درخواست های پذیرش - ".$searchModel->getReceptionTypeLabel(Yii::$app->user->identity->reception_type);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-request-index">
@@ -47,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'value' => function ($model) {
                                 return $model->getReceptionTypeLabel();
                             },
+                            'visible' => !Yii::$app->user->identity->reception_type,
                             'filter' => \app\models\Reception::getReceptionTypeLabels()
                         ],
                         [

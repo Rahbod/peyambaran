@@ -31,6 +31,7 @@ use yii\web\IdentityInterface;
  * @property integer $gender
  * @property integer $address
  * @property integer $birthDate
+ * @property integer $reception_type
  *
  */
 class User extends DynamicActiveRecord implements IdentityInterface
@@ -72,6 +73,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
 
             'updated' => ['DATETIME', ''],
             'lastLogin' => ['DATETIME', ''],
+            'reception_type' => ['CHAR', ''],
         ]);
     }
 
@@ -80,6 +82,13 @@ class User extends DynamicActiveRecord implements IdentityInterface
         return [
             'name' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'email' => ['type' => self::FORM_FIELD_TYPE_TEXT],
+            'hr' => ['type' => static::FORM_SEPARATOR],
+            'reception_type' => [
+                'type' => self::FORM_FIELD_TYPE_SELECT,
+                'items' => Reception::getReceptionTypeLabels(),
+                'options' => ['prompt' => 'دسترسی پذیرش را در صورت نیاز انتخاب نمایید'],
+                'containerCssClass' => 'col-sm-12'
+            ],
         ];
     }
 
@@ -119,6 +128,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
             [['status', 'nationalCode', 'memCode', 'gender'], 'integer'],
             [['name', 'username', 'password'], 'string', 'max' => 255],
             [['nationalCode'], 'string', 'max' => 10],
+            [['reception_type'], 'string'],
             [['phone'], 'string', 'min' => 11, 'max' => 11],
             [['username'], 'unique'],
             [['email'], 'email'],
@@ -171,6 +181,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
             'birthDate' => Yii::t('words', 'user.birthDate'),
             'verifyCode' => Yii::t('words', 'verifyCode'),
             'verification_code' => Yii::t('words', 'Verification code'),
+            'reception_type' => Yii::t('words', 'Reception type permission'),
         ];
     }
 

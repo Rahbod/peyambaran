@@ -92,6 +92,10 @@ class ReceptionController extends AuthController
     public function actionIndex()
     {
         $searchModel = new ReceptionSearch();
+
+        if(Yii::$app->user->identity->reception_type)
+            $searchModel->reception_type = Yii::$app->user->identity->reception_type;
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

@@ -47,7 +47,7 @@ use app\components\customWidgets\CustomActiveForm;
         <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
         <div class="row">
 
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <?php if ($model->isNewRecord): ?>
                     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
                 <?php else: ?>
@@ -58,20 +58,20 @@ use app\components\customWidgets\CustomActiveForm;
                 <?php endif; ?>
             </div>
             <?php if ($model->isNewRecord): ?>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <?= $form->field($model, 'repeatPassword')->passwordInput(['maxlength' => true]) ?>
                 </div>
             <?php endif; ?>
-            <div class="col-sm-3">
-                <?= $form->field($model, 'roleID')->dropDownList($roles, ['prompt' => Yii::t('words', 'user.chooseRole')]) ?>
+            <div class="col-sm-4">
+                <?= $form->field($model, 'roleID')->dropDownList($roles, ['prompt' => 'نقش کاربر را انتخاب کنید']) ?>
             </div>
         </div>
 
         <div class="row">
-            <?= $model->formRenderer($form, '{field}', 'col-sm-3') ?>
+            <?= $model->formRenderer($form, '{field}', 'col-sm-4') ?>
         </div>
     </div>
 
