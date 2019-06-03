@@ -137,7 +137,7 @@ $(function () {
             $(".news-carousel .owl-next").css({left: $(".news-carousel .owl-dot:last-of-type").offset().left - 45 - (($(window).width() - $(".container").width() - 30)/2)});
             $(".news-carousel .owl-prev").css({left: $(".news-carousel .owl-dot:first-of-type").offset().left + 10 - (($(window).width() - $(".container").width() - 30)/2)});
         }
-        if($(window).width()>768)
+        // if($(window).width()>768)
             // $(".nicescroll").each(function () {
             //     var options = $(this).data();
             //     $.each(options, function (key, value) {
