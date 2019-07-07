@@ -327,4 +327,42 @@ class Category extends MultiLangActiveRecord
         }
         return $this->name;
     }
+
+    public function getParentIds($withself = true)
+    {
+        $parent = $this->parent;
+        $ids = [];
+        $ids[] = $parent->id;
+        while ($parent = $parent->parent)
+            $ids[] = $parent->id;
+        if ($withself)
+            $ids[] = $this->id;
+        return $ids;
+    }
+
+    public function getChildIds($withself = true)
+    {
+        $childs = self::find()->valid()->andWhere(['parentID' => $this->id])->all();
+        $ids = [];
+        foreach ($childs as $child) {
+            $ids[] = $child->id;
+            while ($childs = self::find()->valid()->andWhere(['parentID' => $child->id])->all())
+                foreach ($childs as $child2)
+                    $ids[] = $child2->id;
+        }
+        if ($withself)
+            $ids[] = $this->id;
+        return $ids;
+    }
+
+    public function getItemsCount()
+    {
+        $model = $this;
+        return Yii::$app->cache->getOrSet('gallery_category_count_' . $this->id, function () use ($model) {
+            return \app\models\PictureGallery::find()
+                ->innerJoinWith('catitems')
+                ->andWhere(['catitem.catID' => $model->getChildIds()])
+                ->count();
+        }, 10);
+    }
 }

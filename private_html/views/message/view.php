@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 
 switch ($model->type) {
     case \app\models\Message::TYPE_CONTACT_US:
+        $label =Yii::t('words', 'Contactus');
         $url = ['contactus'];
         $attributes = [
             [
@@ -38,6 +39,7 @@ switch ($model->type) {
         ];
         break;
     case \app\models\Message::TYPE_COMPLAINTS:
+        $label =Yii::t('words', 'Complaints');
         $url = ['complaints'];
         $attributes = [
             [
@@ -63,6 +65,7 @@ switch ($model->type) {
         ];
         break;
     case \app\models\Message::TYPE_SUGGESTIONS:
+        $label =Yii::t('words', 'Suggestions');
         $url = ['suggestions'];
         $attributes = [
             [
@@ -73,6 +76,14 @@ switch ($model->type) {
             [
                 'attribute' => 'created',
                 'value' => jDateTime::date('Y/m/d', $model->created)
+            ],
+            [
+                'attribute' => 'subject',
+                'value' => function ($model) {
+                    $subject = Message::getSubjects($model->subject);
+                    return "<b>{$subject}</b>";
+                },
+                'format' => 'raw'
             ],
             'name',
             'email',
@@ -90,7 +101,7 @@ switch ($model->type) {
 }
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Messages'), 'url' => $url];
+$this->params['breadcrumbs'][] = ['label' => $label, 'url' => $url];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>

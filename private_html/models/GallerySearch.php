@@ -19,6 +19,7 @@ class GallerySearch extends Gallery
         return [
             [['id', 'userID', 'modelID', 'status'], 'integer'],
             [['type'], 'number'],
+            [['catID'], 'number'],
             [['name', 'dyna', 'extra', 'created', 'status'], 'safe'],
         ];
     }
@@ -62,15 +63,16 @@ class GallerySearch extends Gallery
             'id' => $this->id,
             'userID' => $this->userID,
             'modelID' => $this->modelID,
-            'type' => $this->type,
+            'item.type' => $this->type,
             'status' => $this->status,
         ]);
 
+        if($this->catID){
+            $query->innerJoinWith('catitems')
+                ->andWhere(['catitem.catID' => $this->catID]);
+        }
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'dyna', $this->dyna])
-            ->andFilterWhere(['like', 'extra', $this->extra])
-            ->andFilterWhere(['like', 'created', $this->created]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

@@ -38,7 +38,7 @@ else
             <div class="col-xs-12">
                 <ul class="nav nav-tabs search-nav justify-content-center" id="tabs-tab" role="tablist">
                     <li class="nav-item<?= $active == 'doctor' ? ' active' : '' ?>">
-                        <a class="nav-link" id="tabs-doctors-tab" data-toggle="tab" href="#tab-pages" role="tab"
+                        <a class="nav-link" id="tabs-doctors-tab" data-toggle="tab" href="#tab-doctors" role="tab"
                            aria-controls="tabs-doctors" aria-selected="false">
                             <?= Yii::t('words', 'Doctors') ?>
                             <span class="badge badge-danger"><?= number_format($doctorProvider->count) ?></span></a>
@@ -74,7 +74,7 @@ else
             </div>
             <div class="col-xs-12 mt-5">
                 <div class="tab-content">
-                    <div class="tab-pane doctors fade<?= $active == 'doctor' ? ' in active' : '' ?>" id="tab-pages">
+                    <div class="tab-pane doctors fade<?= $active == 'doctor' ? ' in active' : '' ?>" id="tab-doctors">
                         <? if ($doctorProvider->count): ?>
                             <div class="panel-group mt-5" id="accordion">
                                 <?php echo \yii\widgets\ListView::widget([

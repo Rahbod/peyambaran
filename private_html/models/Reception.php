@@ -61,8 +61,8 @@ class Reception extends UserRequest
             ],
             'name' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'family' => ['type' => static::FORM_FIELD_TYPE_TEXT],
-            'national_code' => ['type' => static::FORM_FIELD_TYPE_TEXT, 'options' => ['maxLength' => 10]],
-            'tell' => ['type' => static::FORM_FIELD_TYPE_TEXT, 'options' => ['maxLength' => 11]],
+            'national_code' => ['type' => static::FORM_FIELD_TYPE_TEXT, 'options' => ['maxLength' => 10, 'class' => 'form-control numberFormat']],
+            'tell' => ['type' => static::FORM_FIELD_TYPE_TEXT, 'options' => ['maxLength' => 11, 'class' => 'form-control numberFormat']],
             'description' => [
                 'type' => static::FORM_FIELD_TYPE_TEXT_AREA,
                 'containerCssClass' => 'col-sm-12',

@@ -8,11 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\MessageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Messages');
-$this->params['breadcrumbs'][] = $this->title;
-
-
-switch ($this->context->action->id){
+switch ($this->context->action->id) {
     case 'contactus':
         $gridColumns = [
             ['class' => 'yii\grid\SerialColumn'],
@@ -41,7 +37,7 @@ switch ($this->context->action->id){
             ]
         ];
         break;
-    case    'suggestions':
+    case 'suggestions':
     case 'complaints':
         $gridColumns = [
             ['class' => 'yii\grid\SerialColumn'],
@@ -55,7 +51,8 @@ switch ($this->context->action->id){
         break;
 }
 
-
+$this->title = Yii::t('words', ucfirst($this->context->action->id));
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="message-index">
 

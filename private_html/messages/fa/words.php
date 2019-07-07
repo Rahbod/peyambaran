@@ -399,4 +399,5 @@ return [
     'Create User' => 'افزودن کاربر',
     'Users' => 'کاربران',
     'user.image' => 'تصویر کاربر',
+    'Contactus' => 'تماس با ما',
 ];

@@ -2956,6 +2956,17 @@ header .nav > li > a:hover {
     border-radius: 10px;
     text-align: center;
     vertical-align: middle;
+    height: 180px;
+}
+
+.gallery .content-body{
+    padding: 0;
+}
+
+.gallery .-hoverBox a{
+    display: inline-block;
+    width: 100%;
+    padding-top: 20%;
 }
 
 .page-gallery .gallery__imageContainer {

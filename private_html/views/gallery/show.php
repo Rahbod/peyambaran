@@ -1,12 +1,23 @@
 <?php
 
+use app\models\Category;
+use app\models\Gallery;
 use yii\helpers\Url;
 
 /** @var $this \yii\web\View */
 /** @var $model \app\models\Person */
 
 $categories = \app\models\Category::find()
+    ->roots()
     ->andWhere([
+        'type' => \app\models\Category::TYPE_CATEGORY,
+        'category_type' => \app\models\Category::CATEGORY_TYPE_PICTURE_GALLERY,
+    ])
+    ->one();
+
+$categories = \app\models\Category::find()
+    ->andWhere([
+        'parentID' => $categories->id,
         'type' => \app\models\Category::TYPE_CATEGORY,
         'category_type' => \app\models\Category::CATEGORY_TYPE_PICTURE_GALLERY,
     ])
@@ -27,17 +38,28 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                         <h4 class="text-purple"><?= Yii::t('words', 'Payambaran Hospital Gallery') ?></h4>
                     </div>
                     <ul class="list-unstyled mt-5">
-                        <?php foreach ($categories as $item):$sc = $item->children(1)->count(); ?>
+                        <?php foreach ($categories as $item):
+                            $sc = $item->children(1)->count();
+                            $itemsCount = $item->getItemsCount();
+                            if($item->id == 229)
+                                \app\components\dd($sc);
+                            if ($itemsCount == 0)
+                                continue;
+                        ?>
                             <li class="mb-3">
                                 <?php if ($sc > 0): ?>
-                                    <a href="void:;" class="text-purple"><?= $item->name ?></a>
+                                    <a href="void:;" class="text-purple"><?= $item->name.'-'.$itemsCount ?></a>
                                     <ul class="list-unstyled submenu">
                                         <?php foreach ($item->children(1)->all() as $item_child):
+                                            $itemsCount = $item_child->getItemsCount();
+                                            if ($itemsCount == 0)
+                                                continue;
+
                                             if ($categoryID == $item_child->id) $category = $item_child;
                                             $url = Url::to(['/gallery/show', 'category' => $item_child->id]); ?>
                                             <li>
                                                 <a class="-hoverBlue text-dark-2<?= $categoryID == $item_child->id ? " active" : "" ?>"
-                                                   href="<?= $url ?>"><?= $item_child->name ?></a>
+                                                   href="<?= $url ?>"><?= $item_child->name . '-' . $itemsCount ?></a>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
@@ -45,7 +67,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                     if ($categoryID == $item->id) $category = $item;
                                     $url = Url::to(['/gallery/show', 'category' => $item->id]); ?>
                                     <a class="-hoverBlue text-dark-2<?= $categoryID == $item->id ? " active" : "" ?>"
-                                       href="<?= $url ?>"><?= $item->fullName ?></a>
+                                       href="<?= $url ?>"><?= $item->name ?></a>
                                 <?php endif; ?>
                             </li>
                         <?php endforeach; ?>
@@ -106,7 +128,12 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
             <div class="modal-body">
                 <nav class="">
                     <ul class="list-unstyled">
-                        <?php foreach ($categories as $item):$sc = $item->children(1)->count(); ?>
+                        <?php foreach ($categories as $item):$sc = $item->children(1)->count();
+
+                            $itemsCount = Yii::$app->cache->getOrSet('gallery_category_' . $item->id, function () use ($item) {
+                                Gallery::find()->valid()->andWhere(['catID' => $item->id])->count();
+                            });
+                            ?>
                             <li class="mb-3">
                                 <?php if ($sc > 0): ?>
                                     <a href="void:;" class="text-purple"><?= $item->name ?></a>
@@ -124,7 +151,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                     if ($categoryID == $item->id) $category = $item;
                                     $url = Url::to(['/gallery/show', 'category' => $item->id]); ?>
                                     <a class="-hoverBlue text-dark-2<?= $categoryID == $item->id ? " active" : "" ?>"
-                                       href="<?= $url ?>"><?= $item->fullName ?></a>
+                                       href="<?= $url ?>"><?= $item->name ?></a>
                                 <?php endif; ?>
                             </li>
                         <?php endforeach; ?>

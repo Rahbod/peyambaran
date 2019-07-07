@@ -49,7 +49,7 @@ class ItemQuery extends MultiLangActiveQuery
 
         if ($this->_typeName) {
             $this->andWhere([
-                'type' => $this->_typeName
+                self::getPrimaryTableName().'.type' => $this->_typeName
             ]);
         }
 

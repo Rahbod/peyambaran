@@ -77,7 +77,7 @@ class Advice extends UserRequest
         return [
             'name' => ['type' => static::FORM_FIELD_TYPE_TEXT],
             'family' => ['type' => static::FORM_FIELD_TYPE_TEXT],
-            'tell' => ['type' => static::FORM_FIELD_TYPE_TEXT],
+            'tell' => ['type' => static::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control numberFormat']],
             'question' => [
                 'type' => static::FORM_FIELD_TYPE_TEXT_AREA,
                 'containerCssClass' => 'col-sm-12',

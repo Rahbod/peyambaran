@@ -173,6 +173,8 @@ class GalleryController extends AuthController
 
         $searchModel->type = Gallery::TYPE_PICTURE_GALLERY;
 //        $searchModel->status = Gallery::STATUS_PUBLISHED;
+        if($category = Yii::$app->request->getQueryParam('category'))
+            $searchModel->catID = $category;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('show', [
@@ -238,8 +240,8 @@ class GalleryController extends AuthController
 
         return $this->render('create', [
             'model' => $model,
-            'thumb' => $thumb?:[],
-            'fullImage' => $fullImage?:[],
+            'thumb' => $thumb ?: [],
+            'fullImage' => $fullImage ?: [],
         ]);
     }
 

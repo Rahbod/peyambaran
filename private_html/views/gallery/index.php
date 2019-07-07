@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Category;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
@@ -46,13 +48,28 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
+                        'name',
+
+                        [
+                            'attribute' => 'catID',
+                            'value' => function($model){
+                                return $model->categories[0]->name;
+                            },
+                            'filter' => Category::getWithType(Category::CATEGORY_TYPE_PICTURE_GALLERY)
+                        ],
+                        [
+                            'attribute' => 'lang',
+                            'value' => function($model){
+                                return \app\models\Gallery::$langArray[$model->lang];
+                            },
+                            'filter'=>\app\models\Gallery::$langArray
+                        ],
                         [
                             'attribute' => 'userID',
                             'value' => function($model){
                                 return $model->user->username;
                             }
                         ],
-                        'name',
                         [
                             'attribute' => 'created',
                             'value' => function($model){
@@ -66,13 +83,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             },
                             'format' => 'raw',
                             'filter'=>\app\models\Gallery::getStatusFilter()
-                        ],
-                        [
-                            'attribute' => 'lang',
-                            'value' => function($model){
-                                return \app\models\Gallery::$langArray[$model->lang];
-                            },
-                            'filter'=>\app\models\Gallery::$langArray
                         ],
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
