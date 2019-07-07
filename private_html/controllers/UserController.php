@@ -219,8 +219,10 @@ class UserController extends AuthController
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $avatar = new UploadedFiles($this->avatarPath, $model->avatar);
-        $avatar->removeAll(true);
+        if($model->avatar) {
+            $avatar = new UploadedFiles($this->avatarPath, $model->avatar);
+            $avatar->removeAll(true);
+        }
         $model->delete();
 
         Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
