@@ -67,9 +67,8 @@ class UserSearch extends User
             'roleID' => $this->roleID,
         ]);
 
-        $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)])
-            ->orFilterWhere(['REGEXP', 'username', Helper::persian2Arabic($this->name)])
-            ->orFilterWhere(['REGEXP', 'roleID', Helper::persian2Arabic($this->name)]);
+        $query->andFilterWhere(['like', 'username', $this->username]);
+        $query->andFilterWhere(['REGEXP', 'name', Helper::persian2Arabic($this->name)]);
 
         $query->andWhere(['<>', 'roleID', 'superAdmin']);
 

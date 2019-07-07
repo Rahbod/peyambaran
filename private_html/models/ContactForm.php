@@ -39,6 +39,7 @@ class ContactForm extends Model
             [['degree'], 'integer', 'max' => 10],
             [['country', 'city'], 'string', 'max' => 50],
             [['address'], 'string'],
+            [['address'], 'string', 'on' => 'cmp-scenario'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];

@@ -1,13 +1,96 @@
 <?php
 
+use app\models\Message;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Message */
 
+switch ($model->type) {
+    case \app\models\Message::TYPE_CONTACT_US:
+        $url = ['contactus'];
+        $attributes = [
+            [
+                'attribute' => 'type',
+                'value' => \app\models\Message::getStatusLabels($model->type),
+                'format' => 'raw'
+            ],
+            [
+                'attribute' => 'created',
+                'value' => jDateTime::date('Y/m/d', $model->created)
+            ],
+            [
+                'attribute' => 'department_id',
+                'value' => $model->department->name,
+            ],
+            'name',
+            'email',
+            'tel',
+            [
+                'attribute' => 'subject',
+                'value' => function ($model) {
+                    return $model->subject ? "<b>{$model->subject}</b>" : null;
+                },
+                'format' => 'raw'
+            ],
+            'body:ntext',
+        ];
+        break;
+    case \app\models\Message::TYPE_COMPLAINTS:
+        $url = ['complaints'];
+        $attributes = [
+            [
+                'attribute' => 'type',
+                'value' => \app\models\Message::getStatusLabels($model->type),
+                'format' => 'raw'
+            ],
+            [
+                'attribute' => 'created',
+                'value' => jDateTime::date('Y/m/d', $model->created)
+            ],
+            'name',
+            'email',
+            [
+                'attribute' => 'degree',
+                'value' => Message::getDegrees($model->degree)
+            ],
+            'tel',
+            'country',
+            'city',
+            'address',
+            'body:ntext',
+        ];
+        break;
+    case \app\models\Message::TYPE_SUGGESTIONS:
+        $url = ['suggestions'];
+        $attributes = [
+            [
+                'attribute' => 'type',
+                'value' => \app\models\Message::getStatusLabels($model->type),
+                'format' => 'raw'
+            ],
+            [
+                'attribute' => 'created',
+                'value' => jDateTime::date('Y/m/d', $model->created)
+            ],
+            'name',
+            'email',
+            [
+                'attribute' => 'degree',
+                'value' => Message::getDegrees($model->degree)
+            ],
+            'tel',
+            'country',
+            'city',
+            'address',
+            'body:ntext',
+        ];
+        break;
+}
+
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Messages'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Messages'), 'url' => $url];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -22,12 +105,12 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="m-portlet__head-tools">
             <ul class="m-portlet__nav">
-<!--                <li class="m-portlet__nav-item hidden">-->
-<!--                    --><?//= Html::a('<span><i class="far fa-edit"></i><span>' . Yii::t('words', 'Update') . '</span></span>', ['update', 'id' => $model->id], [
-//                        'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-success',
-//                        'encode' => false,
-//                    ]) ?>
-<!--                </li>-->
+                <!--                <li class="m-portlet__nav-item hidden">-->
+                <!--                    --><? //= Html::a('<span><i class="far fa-edit"></i><span>' . Yii::t('words', 'Update') . '</span></span>', ['update', 'id' => $model->id], [
+                //                        'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-success',
+                //                        'encode' => false,
+                //                    ]) ?>
+                <!--                </li>-->
                 <li class="m-portlet__nav-item">
                     <?= Html::a('<span><i class="far fa-trash-alt"></i><span>' . Yii::t('words', 'Delete') . '</span></span>', ['delete', 'id' => $model->id], [
                         'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-danger',
@@ -46,32 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
             <?= DetailView::widget([
                 'model' => $model,
-                'attributes' => [
-                    [
-                        'attribute' => 'type',
-                        'value' => \app\models\Message::getStatusLabels($model->type),
-                        'format' => 'raw'
-                    ],
-                    [
-                        'attribute' => 'department_id',
-                        'value' => $model->department->name,
-                    ],
-                    [
-                        'attribute' => 'created',
-                        'value' => jDateTime::date('Y/m/d', $model->created)
-                    ],
-                    'name',
-                    'email',
-                    'tel',
-                    [
-                        'attribute' => 'subject',
-                        'value' => function ($model) {
-                            return $model->subject?"<b>{$model->subject}</b>":null;
-                        },
-                        'format' => 'raw'
-                    ],
-                    'body:ntext',
-                ],
+                'attributes' => $attributes,
             ]) ?>
         </div>
     </div>

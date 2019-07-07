@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="contactUs__container">
                     <?php $form = ActiveForm::begin([
-                        'action' => ['/site/contact'],
+                        'action' => ['/site/complaint'],
                         'enableClientValidation' => true,
                         'validateOnSubmit' => true,
                         'options' => ['class' => 'contactUs__form'],
@@ -61,27 +61,28 @@ $this->params['breadcrumbs'][] = $this->title;
                             'labelOptions' => ['class' => ''],
                         ],
                     ]) ?>
+
+                    <div class="col-sm-12 text-danger mb-5"><?= $form->errorSummary($model) ?></div>
+
                     <div class="form-row">
                         <div class="row">
                             <div class="col-sm-12">
-                                <?= $form->field($model, 'department_id', ['template' => '{label} <span class="-required"></span> {input} {error}'])->dropDownList(ArrayHelper::map(Department::find()->valid()->all(), 'id', function ($model){return$model->getName();}), ['tabindex' => 1]) ?>
-
                                 <?= $form->field($model, 'name', ['template' => '{label} <span class="-required"></span> {input} {error}'])->textInput(['tabindex' => 2]) ?>
 
                                 <?= $form->field($model, 'email', ['template' => '{label} <span class="-required"></span> {input} {error}'])->textInput(['placeholder' => 'user@example.com', 'tabindex' => 3]) ?>
 
                                 <?= $form->field($model, 'degree')->dropDownList(Message::getDegrees(), ['tabindex' => 4]) ?>
+
+                                <?= $form->field($model, 'tel', ['template' => '{label} <span class="-required"></span> {input} {error}'])->textInput(['tabindex' => 5]) ?>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <?= $form->field($model, 'country')->textInput(['tabindex' => 5]) ?>
+                                <?= $form->field($model, 'country')->textInput(['tabindex' => 6]) ?>
 
-                                <?= $form->field($model, 'city')->textInput(['tabindex' => 6]) ?>
+                                <?= $form->field($model, 'city')->textInput(['tabindex' => 7]) ?>
 
-                                <?= $form->field($model, 'tel', ['template' => '{label} <span class="-required"></span> {input} {error}'])->textInput(['tabindex' => 7]) ?>
-
-                                <?= $form->field($model, 'address', ['options' => ['class' => 'form-group col-sm-3']])->textInput(['tabindex' => 8]) ?>
+                                <?= $form->field($model, 'address', ['options' => ['class' => 'form-group col-sm-6']])->textInput(['tabindex' => 8]) ?>
                             </div>
                         </div>
                         <?= $form->field($model, 'body', ['options' => ['class' => 'form-group col-sm-12'], 'template' => '{label} <span class="-required"></span> {input} {error}'])->textarea(['tabindex' => 9, 'rows' => 8]) ?>

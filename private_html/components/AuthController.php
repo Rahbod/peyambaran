@@ -54,6 +54,7 @@ abstract class AuthController extends MainController
                 break;
         }
 
+        $parentPermission = ucfirst($parentPermission);
         if ($parentPermission and Yii::$app->user->can($this->id . $parentPermission))
             return true;
 

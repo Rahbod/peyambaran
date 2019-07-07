@@ -10,9 +10,16 @@
 
 @media screen and (max-width: 991.98px) {
     /*#region insurance*/
+    .online-services--header--mobile,
     .insurance--header--mobile {
         display: flex;
         align-items: center;
+    }
+    .online-services--header--mobile{
+        margin-bottom: 3rem;
+    }
+    .online-services-container{
+        padding-top: 0;
     }
 
     .insurance-box .insurance-item {
@@ -204,7 +211,9 @@
         font-size: 16px;
     }
 
-    .insurance .umbrella-icon, .new-articles .news-icon {
+    .online-services .online-services-icon,
+    .insurance .umbrella-icon,
+    .new-articles .news-icon {
         width: 50px;
         height: 50px;
         margin-left: 10px;
@@ -375,6 +384,7 @@
         margin-left: 9.99%;
     }
 
+    .online-services--header--desktop,
     .insurance .insurance--header--desktop {
         display: none;
     }
@@ -666,6 +676,7 @@
 
 @media screen and (min-width: 992px) {
     /*#region insurance*/
+    .online-services--header--mobile,
     .insurance--header--mobile {
         display: none;
     }
@@ -772,7 +783,7 @@
     .scrollButton {
         display: none;
     }
-
+    .online-services--header--mobile,
     .insurance--header--mobile {
         display: none;
     }

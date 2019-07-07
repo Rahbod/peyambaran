@@ -19,6 +19,9 @@ use app\components\DynamicActiveRecord;
  * @property resource $dyna All fields
  * @property string $created
  * @property int $degree
+ * @property int $country
+ * @property int $city
+ * @property int $address
  */
 class Message extends DynamicActiveRecord
 {
@@ -60,8 +63,8 @@ class Message extends DynamicActiveRecord
             [['tel'], 'string', 'max' => 15],
             [['body'], 'string'],
             [['created'], 'string', 'max' => 20],
-            [['department_id'], 'safe'],
-            [['degree'], 'string'],
+            [['department_id'], 'safe', 'on' => ['cmp-scenario', 'sgn-scenario']],
+            [['degree', 'country', 'city', 'address'], 'string'],
             [['created'], 'default', 'value' => time()],
         ]);
     }

@@ -7,8 +7,8 @@ use yii\helpers\Html;
 /* @var $roles array */
 /* @var $groups array */
 
-$this->title = 'Create User';
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->title = Yii::t('words','Create User');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words','Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

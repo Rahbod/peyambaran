@@ -6,6 +6,7 @@ use app\components\DynamicActiveRecord;
 use app\components\MultiLangActiveRecord;
 use Yii;
 use yii\db\Query;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\web\HttpException;
 use yii\web\IdentityInterface;
@@ -32,6 +33,7 @@ use yii\web\IdentityInterface;
  * @property integer $address
  * @property integer $birthDate
  * @property integer $reception_type
+ * @property integer $contactus_type
  *
  */
 class User extends DynamicActiveRecord implements IdentityInterface
@@ -74,6 +76,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
             'updated' => ['DATETIME', ''],
             'lastLogin' => ['DATETIME', ''],
             'reception_type' => ['CHAR', ''],
+            'contactus_type' => ['CHAR', ''],
         ]);
     }
 
@@ -87,7 +90,13 @@ class User extends DynamicActiveRecord implements IdentityInterface
                 'type' => self::FORM_FIELD_TYPE_SELECT,
                 'items' => Reception::getReceptionTypeLabels(),
                 'options' => ['prompt' => 'دسترسی پذیرش را در صورت نیاز انتخاب نمایید'],
-                'containerCssClass' => 'col-sm-12'
+                'containerCssClass' => 'col-sm-6'
+            ],
+            'contactus_type' => [
+                'type' => self::FORM_FIELD_TYPE_SELECT,
+                'items' => ArrayHelper::map(Department::find()->all(), 'id', 'name'),
+                'options' => ['prompt' => 'دسترسی بخش تماس با ما را در صورت نیاز انتخاب نمایید'],
+                'containerCssClass' => 'col-sm-6'
             ],
         ];
     }
@@ -128,7 +137,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
             [['status', 'nationalCode', 'memCode', 'gender'], 'integer'],
             [['name', 'username', 'password'], 'string', 'max' => 255],
             [['nationalCode'], 'string', 'max' => 10],
-            [['reception_type'], 'string'],
+            [['reception_type','contactus_type'], 'string'],
             [['phone'], 'string', 'min' => 11, 'max' => 11],
             [['username'], 'unique'],
             [['email'], 'email'],
@@ -182,6 +191,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
             'verifyCode' => Yii::t('words', 'verifyCode'),
             'verification_code' => Yii::t('words', 'Verification code'),
             'reception_type' => Yii::t('words', 'Reception type permission'),
+            'contactus_type' => Yii::t('words', 'Contactus type permission'),
         ];
     }
 

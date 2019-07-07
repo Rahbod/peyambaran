@@ -134,24 +134,24 @@ $(function () {
     $(window).on("load resize", function () {
         // news carousel initialize
         if ($(".news-carousel").length) {
-            $(".news-carousel .owl-next").css({left: $(".news-carousel .owl-dot:last-of-type").offset().left - 45 - (($(window).width() - $(".container").width() - 30)/2)});
-            $(".news-carousel .owl-prev").css({left: $(".news-carousel .owl-dot:first-of-type").offset().left + 10 - (($(window).width() - $(".container").width() - 30)/2)});
+            $(".news-carousel .owl-next").css({left: $(".news-carousel .owl-dot:last-of-type").offset().left - 45 - (($(window).width() - $(".container").width() - 30) / 2)});
+            $(".news-carousel .owl-prev").css({left: $(".news-carousel .owl-dot:first-of-type").offset().left + 10 - (($(window).width() - $(".container").width() - 30) / 2)});
         }
         // if($(window).width()>768)
-            // $(".nicescroll").each(function () {
-            //     var options = $(this).data();
-            //     $.each(options, function (key, value) {
-            //         if (typeof value === "string" && value.indexOf("js:") !== -1)
-            //             options[key] = JSON.parse(value.substr(3));
-            //     });
-            //     // if (refresh === true)
-            //     //     $(this).getNiceScroll().remove();
-            //
-            //     var instance = $(this).niceScroll(options);
-            //     // if($(this).attr('id')=='scroll-box')
-            //     //     console.log(instance);
-            //     nicescrolls.push({id: $(this).attr('id'), instance: instance});
-            // });
+        // $(".nicescroll").each(function () {
+        //     var options = $(this).data();
+        //     $.each(options, function (key, value) {
+        //         if (typeof value === "string" && value.indexOf("js:") !== -1)
+        //             options[key] = JSON.parse(value.substr(3));
+        //     });
+        //     // if (refresh === true)
+        //     //     $(this).getNiceScroll().remove();
+        //
+        //     var instance = $(this).niceScroll(options);
+        //     // if($(this).attr('id')=='scroll-box')
+        //     //     console.log(instance);
+        //     nicescrolls.push({id: $(this).attr('id'), instance: instance});
+        // });
     });
 });
 // hide or show the main navbar base on page scroll : start

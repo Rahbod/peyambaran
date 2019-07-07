@@ -10,6 +10,52 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('words', 'Messages');
 $this->params['breadcrumbs'][] = $this->title;
+
+
+switch ($this->context->action->id){
+    case 'contactus':
+        $gridColumns = [
+            ['class' => 'yii\grid\SerialColumn'],
+            'name',
+//                        [
+//                            'attribute' => 'type',
+//                            'value' => function ($model) {
+//                                return \app\models\Message::getStatusLabels($model->type);
+//                            },
+//                            'filter' => \app\models\Message::getStatusLabels()
+//                        ],
+            [
+                'attribute' => 'department_id',
+                'value' => function ($model) {
+                    return $model->department->name;
+                },
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Department::find()->all(), 'id', 'name'),
+                'visible' =>
+                    !Yii::$app->request->getQueryParam('id') &&
+                    !Yii::$app->user->identity->contactus_type,
+            ],
+            'tel',
+            [
+                'class' => 'app\components\customWidgets\CustomActionColumn',
+                'template' => '{view} {delete}'
+            ]
+        ];
+        break;
+    case    'suggestions':
+    case 'complaints':
+        $gridColumns = [
+            ['class' => 'yii\grid\SerialColumn'],
+            'name',
+            'tel',
+            [
+                'class' => 'app\components\customWidgets\CustomActionColumn',
+                'template' => '{view} {delete}'
+            ]
+        ];
+        break;
+}
+
+
 ?>
 <div class="message-index">
 
@@ -46,31 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= CustomGridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
-                    'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
-                        'id',
-                        'name',
-//                        [
-//                            'attribute' => 'type',
-//                            'value' => function ($model) {
-//                                return \app\models\Message::getStatusLabels($model->type);
-//                            },
-//                            'filter' => \app\models\Message::getStatusLabels()
-//                        ],
-                        [
-                            'attribute' => 'department_id',
-                            'value' => function ($model) {
-                                return $model->department->name;
-                            },
-                            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Department::find()->all(), 'id', 'name'),
-                            'visible' => !Yii::$app->request->getQueryParam('id')
-                        ],
-                        'tel',
-                        [
-                            'class' => 'app\components\customWidgets\CustomActionColumn',
-                            'template' => '{view} {delete}'
-                        ]
-                    ],
+                    'columns' => $gridColumns,
                 ]); ?>
             </div>
         </div>

@@ -46,9 +46,17 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
         <div class="container">
             <div class="row online-services-container">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-right">
-                    <div class="online-services-icon"></div>
-                    <h3 class="section-title"><?= Yii::t('words', 'Online Services') ?></h3>
-                    <p class="title-description"><?= Yii::t('words', 'Payambaran hospital') ?></p>
+                    <div class="online-services--header--desktop">
+                        <div class="online-services-icon"></div>
+                        <h3 class="section-title"><?= Yii::t('words', 'Online Services') ?></h3>
+                    </div>
+                    <div class="online-services--header--mobile">
+                        <div class="online-services-icon"></div>
+                        <div class="flex-fill">
+                            <h3 class="section-title"><?= Yii::t('words', 'Online Services') ?></h3>
+                            <p class="title-description"><?= Yii::t('words', 'Payambaran hospital') ?></p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 text-right">
                     <?php foreach ($onlineServices as $onlineService): ?>

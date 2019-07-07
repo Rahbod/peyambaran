@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="contactUs__container">
                     <?php $form = ActiveForm::begin([
-                        'action' => ['/site/contact'],
+                        'action' => ['/site/suggestion'],
                         'enableClientValidation' => true,
                         'validateOnSubmit' => true,
                         'options' => ['class' => 'contactUs__form'],

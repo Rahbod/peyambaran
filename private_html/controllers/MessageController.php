@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use function app\components\dd;
 use app\models\Department;
 use app\models\DepartmentSearch;
 use Yii;
@@ -19,6 +18,15 @@ use yii\widgets\ActiveForm;
  */
 class MessageController extends AuthController
 {
+    public function getSamePermissions()
+    {
+        return [
+            'contactus' => ['view', 'delete'],
+            'suggestions' => ['view', 'delete'],
+            'complaints' => ['view', 'delete'],
+        ];
+    }
+
     /**
     * for set admin theme
     */
@@ -48,12 +56,35 @@ class MessageController extends AuthController
      * Lists all Message models.
      * @return mixed
      */
+//    public function actionIndex()
+//    {
+//        $searchModel = new MessageSearch();
+//        $searchModel->type = Message::TYPE_CONTACT_US;
+//        if(Yii::$app->request->getQueryParam('id'))
+//            $searchModel->department_id = Yii::$app->request->getQueryParam('id');
+//
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//
+//        return $this->render('index', [
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
+//        ]);
+//    }
+
+    /**
+     * Lists all Message models.
+     * @return mixed
+     */
     public function actionContactus()
     {
         $searchModel = new MessageSearch();
         $searchModel->type = Message::TYPE_CONTACT_US;
-        if(Yii::$app->request->getQueryParam('id'))
-            $searchModel->department_id = Yii::$app->request->getQueryParam('id');
+
+        if(Yii::$app->user->identity->contactus_type)
+            $searchModel->department_id = Yii::$app->user->identity->contactus_type;
+
+//        if(Yii::$app->request->getQueryParam('id'))
+//            $searchModel->department_id = Yii::$app->request->getQueryParam('id');
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -183,9 +214,17 @@ class MessageController extends AuthController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+        switch ($model->type){
+            case \app\models\Message::TYPE_CONTACT_US: $url = ['contactus'];break;
+            case \app\models\Message::TYPE_COMPLAINTS: $url = ['complaints'];break;
+            case \app\models\Message::TYPE_SUGGESTIONS: $url = ['suggestions'];break;
+        }
+
+        $model->delete();
+
+        return $this->redirect($url);
     }
 
     /**

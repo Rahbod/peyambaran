@@ -4,9 +4,6 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
-use function app\components\dd;
-use app\components\Helper;
-use app\components\SmsSender;
 use app\models\Category;
 use app\models\Insurance;
 use app\models\Menu;
@@ -15,6 +12,8 @@ use app\models\Message;
 use app\models\OnlineService;
 use app\models\Page;
 use app\models\PageSearch;
+use app\models\Person;
+use app\models\PersonSearch;
 use app\models\Post;
 use app\models\PostSearch;
 use app\models\Slide;
@@ -166,6 +165,9 @@ class SiteController extends AuthController
             if ($model->validate()) {
                 $message = new  Message();
                 $message->scenario = $type == 'cnt' ? 'default' : "$type-scenario";
+                $message->country = $model->country;
+                $message->city = $model->city;
+                $message->address= $model->address;
                 $message->type = $type;
                 $message->name = $model->name;
                 $message->tel = $model->tel;
@@ -207,6 +209,13 @@ class SiteController extends AuthController
         if ($term && !empty($term)) {
 //            $term = Helper::persian2Arabic($term);
 
+            $searchDoctor = new PersonSearch();
+            $searchDoctor->name = $term;
+            $searchDoctor->type = Person::TYPE_DOCTOR;
+            $searchDoctor->status = Person::STATUS_PUBLISHED;
+            $doctorProvider = $searchDoctor->search([]);
+            $doctorProvider->getPagination()->pageSize = 50;
+            
             $searchPost = new PostSearch();
             $searchPost->name = $term;
             $searchPost->summary = $term;
@@ -237,7 +246,7 @@ class SiteController extends AuthController
             $menuProvider = $searchMenu->search([]);
             $menuProvider->getPagination()->pageSize = 100;
 
-            return $this->render('search', compact('term', 'newsProvider', 'articleProvider', 'pageProvider', 'menuProvider'));
+            return $this->render('search', compact('term', 'doctorProvider','newsProvider', 'articleProvider', 'pageProvider', 'menuProvider'));
         } else
             return $this->goBack();
     }

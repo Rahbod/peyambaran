@@ -254,9 +254,9 @@ class MainController extends Controller
         }
 
         $contactLinks = [];
-        foreach (Department::find()->valid()->all() as $item) {
-            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || Yii::$app->user->can('messageIndex')];
-        }
+//        foreach (Department::find()->valid()->all() as $item) {
+//            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || Yii::$app->user->can('messageIndex')];
+//        }
         $contactLinks[] = ['label' => 'پیام های تماس با ما', 'url' => ['/message/contactus'], 'visible' => $permissions || Yii::$app->user->can('messageContactus')];
         $contactLinks[] = ['label' => 'انتقادات و پیشنهادات', 'url' => ['/message/suggestions'], 'visible' => $permissions || Yii::$app->user->can('messageSuggestions')];
         $contactLinks[] = ['label' => 'شکایات', 'url' => ['/message/complaints'], 'visible' => $permissions || Yii::$app->user->can('messageComplaints')];
