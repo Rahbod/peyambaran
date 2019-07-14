@@ -19,6 +19,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= (($this->title) ? $this->title . ' - ' : '') . Yii::$app->name; ?></title>
+    <link rel="icon" href="<?= $this->theme->baseUrl.'/images/logo.ico' ?>">
     <?php if (Yii::$app->language != 'en')
         $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-rtl.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-rtl'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-4-classes.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-4-classes'); ?>
