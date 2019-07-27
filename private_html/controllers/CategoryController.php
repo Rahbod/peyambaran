@@ -194,7 +194,16 @@ public function actionCreateGallery()
 
         if (Yii::$app->request->post()){
             $model->load(Yii::$app->request->post());
-            if ($model->save()) {
+            $saveResult = false;
+            $parentID = $model->parentID;
+            if ($parentID == '') {
+                $saveResult = $model->makeRoot();
+                $model->parentID = null;
+            } else {
+                $parent = Category::findOne($parentID);
+                $saveResult = $model->prependTo($parent);
+            }
+            if ($saveResult) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             }else
