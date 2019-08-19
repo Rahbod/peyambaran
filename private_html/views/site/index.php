@@ -237,6 +237,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                     <div class="gallery-icon"></div>
                     <h3 class="section-title"><?= Yii::t('words', 'Picture Gallery') ?></h3>
                 </div>
+                <?if(!isset($_GET['debug'])):?>
                 <ul class="pull-left nav nav-tabs">
                     <?php $i = 0;
                     foreach ($galleryCategories as $item): ?>
@@ -247,6 +248,23 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </ul>
+                <?else:?>
+                <div class="news-carousel owl-carousel owl-theme"
+                    <?= Yii::$app->language == 'fa' ? 'data-rtl="true"' : 'data-rtl="false"' ?>
+                     data-autoWidth="true"
+                     data-items="5"
+                     style="width: 70%;float: left"
+                >
+                    <?php $i = 0;
+                    foreach ($galleryCategories as $item): ?>
+                        <?php if (count($item->catitems) > 0): $i++; ?>
+                            <div<?= $i == 1 ? ' class="active"' : '' ?> style="text-align: center;display: inline-block"><a href="#" data-toggle="tab"
+                                                                          data-target="#gallery-category-<?= $item->id ?>"><?= $item->name ?></a>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+                <?endif;?>
             </div>
             <div class="row gallery-container">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 gallery-left-box">

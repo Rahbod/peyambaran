@@ -104,10 +104,15 @@ class SiteController extends AuthController
             'type' => Category::TYPE_CATEGORY,
             Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY,
             Category::columnGetString('show_in_home') => 1,
-        ])->orderBy([Category::columnGetString('show_always') => SORT_DESC])->addOrderBy('RAND()')->limit(5)->all();
-        ArrayHelper::multisort($galleryCategories, function ($model) {
-            return $model->sort;
-        });
+        ])
+            ->orderBy(['name' => SORT_ASC])
+//            ->orderBy([Category::columnGetString('show_always') => SORT_DESC])
+//            ->addOrderBy('RAND()')
+            ->limit(5)
+            ->all();
+//        ArrayHelper::multisort($galleryCategories, function ($model) {
+//            return $model->sort;
+//        });
 
         $onlineServices = OnlineService::find()->valid()->all();
 

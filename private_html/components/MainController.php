@@ -24,6 +24,8 @@ class MainController extends Controller
 {
     public $bodyClass;
     public $headerClass;
+    public $description;
+    public $keywords;
     public $theme;
     public $tmpDir = 'uploads/temp';
 
@@ -35,6 +37,9 @@ class MainController extends Controller
             Yii::$app->language = Yii::$app->session->get('language');
         else if (isset(Yii::$app->request->cookies['language']))
             Yii::$app->language = Yii::$app->request->cookies['language']->value;
+
+        $this->description = Setting::get(Yii::$app->language.'_site_description');
+        $this->keywords = Setting::get(Yii::$app->language.'_site_keywords');
     }
 
     /**

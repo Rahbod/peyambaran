@@ -41,9 +41,10 @@ class SettingController extends AuthController
                     $config[$key] = $postData[$key];
             }
 
-            if (Setting::setAll($config))
+            if (Setting::setAll($config)) {
                 \Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => \Yii::t('words', 'base.successMsg')]);
-            else
+                return $this->refresh();
+            } else
                 \Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => \Yii::t('words', 'base.dangerMsg')]);
         }
         $settings = Setting::getAll(true);
