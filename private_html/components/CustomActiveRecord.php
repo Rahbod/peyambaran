@@ -255,6 +255,8 @@ abstract class CustomActiveRecord extends ActiveRecord
                     $fieldOptions['template'] = '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}';
                 return $form->field($model, $attribute, $fieldOptions)->checkbox([], false);
             case static::FORM_FIELD_TYPE_TEXT_EDITOR:
+                $options['clientOptions']['tabindex'] = $options['tabindex'];
+                unset($options['tabindex']);
                 return $form->field($model, $attribute, $fieldOptions)->widget(TinyMce::className(), $options);
             case static::FORM_FIELD_TYPE_TEXT_AREA:
                 return $form->field($model, $attribute, $fieldOptions)->textarea($options);
