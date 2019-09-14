@@ -134,6 +134,75 @@ $this->registerJs('
                     ]); ?>
                 </div>
             </div>
+        </div>
+
+        <div class="m-form__section m-form__section--last">
+            <div class="m-form__heading">
+                <h3 class="m-form__heading-title"><?= Yii::t('words', 'Seo settings') ?></h3>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Site Description') ?></label>
+
+                <div class="col-lg-6">
+                    <?php echo Html::textarea('Setting[fa_site_description]', $settings['fa_site_description'], [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'auto',
+                        'rows' => 3
+                    ]); ?>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Ar Site Description') ?></label>
+
+                <div class="col-lg-6">
+                    <?php echo Html::textarea('Setting[ar_site_description]', $settings['ar_site_description'], [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'auto',
+                        'rows' => 3
+                    ]); ?>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'En Site Description') ?></label>
+
+                <div class="col-lg-6">
+                    <?php echo Html::textarea('Setting[en_site_description]', $settings['en_site_description'], [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'auto',
+                        'rows' => 3
+                    ]); ?>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Site Keywords') ?></label>
+
+                <div class="col-lg-6">
+                    <?php echo Html::textInput('Setting[fa_site_keywords]', $settings['fa_site_keywords'], [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                    ]); ?>
+                    <small>کلید واژه ها را با کامای انگلیسی (,) از یکدگیر جدا کنید</small>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Ar Site Keywords') ?></label>
+
+                <div class="col-lg-6">
+                    <?php echo Html::textInput('Setting[ar_site_keywords]', $settings['ar_site_keywords'], [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                    ]); ?>
+                    <small>کلید واژه ها را با کامای انگلیسی (,) از یکدگیر جدا کنید</small>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'En Site Keywords') ?></label>
+
+                <div class="col-lg-6">
+                    <?php echo Html::textInput('Setting[en_site_keywords]', $settings['en_site_keywords'], [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                    ]); ?>
+                    <small>کلید واژه ها را با کامای انگلیسی (,) از یکدگیر جدا کنید</small>
+                </div>
+            </div>
 
         </div>
 

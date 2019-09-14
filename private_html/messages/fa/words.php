@@ -3,6 +3,13 @@
 return [
     'Payambaran Hospital' => 'بیمارستان پیامبران',
     'logo_title' => 'بیمارســتان پیامبران',
+    'Seo settings' => 'تنظیمات سئو',
+    'Site Description' => 'توضیحات فارسی سایت',
+    'Ar Site Description' => 'توضیحات عربی سایت',
+    'En Site Description' => 'توضیحات انگلیسی سایت',
+    'Site Keywords' => 'کلیدواژه های سایت',
+    'Ar Site Keywords' => 'کلیدواژه های عربی سایت',
+    'En Site Keywords' => 'کلیدواژه های انگلیسی سایت',
     'fa' => 'فارسی',
     'en' => 'انگلیسی',
     'ar' => 'عربی',
