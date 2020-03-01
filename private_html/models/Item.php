@@ -21,6 +21,7 @@ use yii\helpers\ArrayHelper;
  * @property int $status
  * @property int $en_status
  * @property int $ar_status
+ * @property int $post_body
  *
  * @property Catitem[] $catitems
  * @property Attachment[] $attachments
@@ -103,6 +104,7 @@ class Item extends MultiLangActiveRecord
             'gallery' => Yii::t('words', 'Picture Gallery'),
             'formCategories' => Yii::t('words', 'Category'),
             'formTags' => Yii::t('words', 'Tags'),
+            'post_body' => Yii::t('words', 'Body'),
         ]);
     }
 

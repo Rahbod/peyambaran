@@ -10,6 +10,11 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Posts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
+
+if (empty($model->post_body) && !empty($model->body))
+    $model->post_body = $model->body;
+
 ?>
 <div class="m-portlet m-portlet--mobile">
     <div class="m-portlet__head">
@@ -79,8 +84,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'raw'
                     ],
                     [
-                        'attribute' => 'body',
-                        'value' => $model->body,
+                        'attribute' => 'post_body',
+                        'value' => $model->post_body,
                         'format' => 'raw'
                     ],
                 ],

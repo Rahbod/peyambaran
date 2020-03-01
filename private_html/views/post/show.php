@@ -7,6 +7,9 @@ use app\models\Attachment;
 /** @var $relatedPosts \app\models\Post[] */
 $baseUrl = $this->theme->baseUrl;
 $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [], 'html5lightbox');
+
+if (empty($model->post_body) && !empty($model->body))
+    $model->post_body = $model->body;
 ?>
 <section class="news-show gallery">
     <div class="container">
@@ -104,7 +107,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                 <div class="newsShow">
                                     <div class="newsShow__content">
                                         <h4 class="newsShow__title"><?= $model->name ?></h4>
-                                        <div class="mb-5 mt-5 text-justify page-text"><?= $model->body ?></div>
+                                        <div class="mb-5 mt-5 text-justify page-text"><?= $model->post_body ?></div>
                                     </div>
                                 </div>
                             </div>
