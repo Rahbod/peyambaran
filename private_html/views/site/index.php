@@ -186,10 +186,9 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
             <div class="news-carousel owl-carousel owl-theme"
                  data-stagePadding="50"
                 <?= Yii::$app->language == 'fa' ? 'data-rtl="true"' : 'data-rtl="false"' ?>
-                 data-autoWidth="true"
                  data-nav="true"
                  data-loop="true"
-                 data-items="1"
+                 data-items="4"
                  data-margin="15"
                  data-autoplay="true"
                  data-autoplayspeed="9000"

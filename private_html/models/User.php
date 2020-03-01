@@ -90,7 +90,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
                 'type' => self::FORM_FIELD_TYPE_SELECT,
                 'items' => Reception::getReceptionTypeLabels(),
                 'options' => ['prompt' => 'دسترسی پذیرش را در صورت نیاز انتخاب نمایید'],
-                'containerCssClass' => 'col-sm-6'
+                'containerCssClass' => 'col-sm-6',
             ],
             'contactus_type' => [
                 'type' => self::FORM_FIELD_TYPE_SELECT,
