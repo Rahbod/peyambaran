@@ -2959,6 +2959,10 @@ header .nav > li > a:hover {
     height: 180px;
 }
 
+.gallery .gallery-container .gallery__imageContainer {
+    height: auto !important;
+}
+
 .gallery .content-body{
     padding: 0;
 }

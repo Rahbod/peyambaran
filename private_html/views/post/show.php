@@ -76,7 +76,7 @@ if (empty($model->post_body) && !empty($model->body))
                                     </div>
                                     <?php if ($model->gallery): ?>
                                         <hr>
-                                        <div class="clearfix">
+                                        <div class="clearfix gallery-container">
                                             <p style="color: #7a7a7a;"><?= Yii::t('words', 'News pictures') ?></p>
                                             <?php foreach ($model->gallery as $item):
                                                 if (!$item->file OR !is_file(Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file)) continue; ?>
@@ -85,7 +85,7 @@ if (empty($model->post_body) && !empty($model->body))
                                                        data-transition="crossfade" data-group="mygroup"
                                                        href="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>">
                                                         <img class="gallery__images"
-                                                                src="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .'/thumbs/100x100/'. $item->file ?>">
+                                                                src="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .'/'. $item->file ?>">
                                                     </a>
                                                     <div class="-hoverBox">
                                                         <a href="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>"

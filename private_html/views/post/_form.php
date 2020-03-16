@@ -75,7 +75,13 @@ if (empty($model->post_body) && !empty($model->body))
 
 
 
-    <?php echo $form->field($model, 'gallery')->widget(\devgroup\dropzone\DropZone::className(), [
+    <?php
+
+    if(isset($_GET['debug'])){
+        \app\components\dd($gallery);
+    }
+
+    echo $form->field($model, 'gallery')->widget(\devgroup\dropzone\DropZone::className(), [
         'url' => Url::to(['upload-attachment']),
         'removeUrl' => Url::to(['delete-attachment']),
         'storedFiles' => isset($gallery) ? $gallery : [],

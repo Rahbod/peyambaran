@@ -285,7 +285,7 @@ class Item extends MultiLangActiveRecord
             $query = Attachment::find()->andWhere([Attachment::columnGetString('type') => $type]);
         if ($fieldID)
             return $query->andWhere(['itemID' => $this->id, 'fieldID' => $fieldID])->all();
-        return $query->andWhere(['itemID' => $this->id])->andWhere([Attachment::columnExistsString('fieldID') => 0])->all();
+        return $query->andWhere([Attachment::columnGetString('itemID') => $this->id])->andWhere([Attachment::columnExistsString('fieldID') => 0])->all();
     }
 
     /**
